@@ -1,0 +1,153 @@
+/* Buzzybox — marketing + legal site
+   Palette pulled from the app icon: sky-blue backdrop, mailbox red, grass green. */
+
+:root {
+  --sky-top: #9fcdef;
+  --sky-bottom: #5b93cf;
+  --ink: #1f2d3d;
+  --ink-soft: #41566b;
+  --paper: #fffaf0;
+  --card: #ffffff;
+  --red: #c0392b;
+  --red-deep: #9c2c20;
+  --honey: #f2b134;
+  --line: rgba(31, 45, 61, 0.12);
+  --shadow: 0 18px 40px rgba(31, 56, 88, 0.22);
+  --radius: 22px;
+  --maxw: 760px;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  font-family: ui-rounded, "SF Pro Rounded", "Nunito", "Segoe UI", system-ui, -apple-system, sans-serif;
+  color: var(--ink);
+  line-height: 1.6;
+  background: linear-gradient(180deg, var(--sky-top) 0%, var(--sky-bottom) 100%);
+  background-attachment: fixed;
+  min-height: 100vh;
+}
+
+a { color: var(--red); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+.wrap {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 22px;
+}
+
+/* ---------- Header ---------- */
+.site-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 26px 22px;
+  max-width: var(--maxw);
+  margin: 0 auto;
+}
+.site-head img { width: 44px; height: 44px; border-radius: 11px; box-shadow: 0 4px 12px rgba(31,56,88,0.25); }
+.site-head .name { font-weight: 800; font-size: 1.25rem; color: #fff; letter-spacing: -0.01em; text-shadow: 0 1px 2px rgba(31,56,88,0.35); }
+.site-head nav { margin-left: auto; display: flex; gap: 18px; }
+.site-head nav a { color: #fff; font-weight: 600; font-size: 0.95rem; opacity: 0.92; }
+
+/* ---------- Hero ---------- */
+.hero {
+  text-align: center;
+  padding: 18px 22px 40px;
+  max-width: var(--maxw);
+  margin: 0 auto;
+}
+.hero .icon {
+  width: 180px; height: 180px;
+  border-radius: 40px;
+  box-shadow: var(--shadow);
+  margin-bottom: 26px;
+}
+.hero h1 {
+  font-size: clamp(2.2rem, 6vw, 3.2rem);
+  margin: 0 0 10px;
+  color: #fff;
+  letter-spacing: -0.02em;
+  text-shadow: 0 2px 6px rgba(31,56,88,0.3);
+}
+.hero .tagline {
+  font-size: clamp(1.05rem, 2.6vw, 1.35rem);
+  color: #fff;
+  opacity: 0.95;
+  max-width: 30ch;
+  margin: 0 auto 26px;
+  font-weight: 600;
+}
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,0.92);
+  color: var(--ink);
+  font-weight: 700;
+  padding: 11px 20px;
+  border-radius: 999px;
+  box-shadow: 0 6px 16px rgba(31,56,88,0.2);
+  font-size: 0.95rem;
+}
+
+/* ---------- Cards / content ---------- */
+.card {
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 34px 30px;
+  margin: 0 auto 26px;
+  max-width: var(--maxw);
+}
+.features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 18px;
+}
+.feature h3 { margin: 0 0 4px; font-size: 1.05rem; }
+.feature p { margin: 0; color: var(--ink-soft); font-size: 0.96rem; }
+.feature .emoji { font-size: 1.6rem; display: block; margin-bottom: 6px; }
+
+/* ---------- Legal / doc pages ---------- */
+.doc {
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 40px 36px;
+  margin: 0 auto 40px;
+  max-width: var(--maxw);
+}
+.doc h1 { margin-top: 0; font-size: 1.9rem; }
+.doc h2 { font-size: 1.25rem; margin-top: 32px; color: var(--ink); }
+.doc p, .doc li { color: var(--ink-soft); }
+.doc .updated { color: var(--ink-soft); font-size: 0.9rem; margin-top: -8px; }
+.doc ul { padding-left: 22px; }
+.doc li { margin-bottom: 6px; }
+.doc a.back { display: inline-block; margin-bottom: 18px; font-weight: 700; }
+
+.contact-box {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 18px 20px;
+  margin-top: 18px;
+}
+
+/* ---------- Footer ---------- */
+footer {
+  text-align: center;
+  padding: 30px 22px 50px;
+  color: #fff;
+}
+footer a { color: #fff; font-weight: 600; margin: 0 10px; opacity: 0.92; }
+footer .fine { display: block; margin-top: 14px; opacity: 0.8; font-size: 0.85rem; }
+
+@media (max-width: 520px) {
+  .doc, .card { padding: 26px 20px; }
+  .site-head nav { gap: 12px; }
+}

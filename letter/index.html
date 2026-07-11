@@ -29,7 +29,10 @@
        drop-shadow (alpha-aware) instead of the pages' rectangular box-shadow
        so the soft shadow follows the envelope's own shape. */
     .envelope img {
-      max-width: min(480px, 100%);
+      /* ~80% of the letter page's width (pages are max-width:100%) so the
+         envelope reads as the smaller object above the letter, not a sibling
+         the same size. Capped so it never gets huge on wide screens. */
+      max-width: min(480px, 80%);
       background: transparent;
       border-radius: 0;
       box-shadow: none;

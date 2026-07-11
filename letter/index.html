@@ -25,7 +25,16 @@
       box-shadow: 0 8px 28px rgba(60, 42, 20, 0.22);
       background: #fff;
     }
-    .envelope img { max-width: 480px; }
+    /* The envelope is a transparent cutout, so it gets no white card —
+       drop-shadow (alpha-aware) instead of the pages' rectangular box-shadow
+       so the soft shadow follows the envelope's own shape. */
+    .envelope img {
+      max-width: 480px;
+      background: transparent;
+      border-radius: 0;
+      box-shadow: none;
+      filter: drop-shadow(0 10px 20px rgba(60, 42, 20, 0.22));
+    }
     .writeback {
       margin-top: 40px;
       background: #fbf7ec;

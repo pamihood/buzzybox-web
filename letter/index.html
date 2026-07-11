@@ -29,7 +29,7 @@
        drop-shadow (alpha-aware) instead of the pages' rectangular box-shadow
        so the soft shadow follows the envelope's own shape. */
     .envelope img {
-      max-width: 480px;
+      max-width: min(480px, 100%);
       background: transparent;
       border-radius: 0;
       box-shadow: none;

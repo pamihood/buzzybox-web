@@ -18,7 +18,15 @@
     /* The handwritten letter is the hero — give it a wide column so it fills
        the screen instead of a narrow strip. The page JPEG is 1600px, so it
        stays sharp well past this. */
-    main { max-width: 960px; margin: 0 auto; padding: 32px 16px 64px; }
+    main { max-width: 960px; margin: 0 auto; padding: 24px 16px 64px; }
+    /* Brand letterhead — lives outside #main so the JS render never wipes it,
+       and shows during loading and on the quiet (expired/missing) states. */
+    .brand {
+      display: flex; align-items: center; justify-content: center; gap: 9px;
+      padding: 26px 16px 0;
+    }
+    .brand img { width: 36px; height: 36px; border-radius: 9px; box-shadow: 0 3px 10px rgba(60, 42, 20, 0.18); }
+    .brand span { font-weight: 800; font-size: 17px; letter-spacing: -0.01em; }
     h1 { font-size: 24px; text-align: center; margin: 12px 0 4px; }
     .subtitle { text-align: center; color: #8a7a5f; margin: 0 0 24px; font-size: 15px; }
     figure { margin: 0 0 24px; text-align: center; }
@@ -71,6 +79,10 @@
   </style>
 </head>
 <body>
+  <header class="brand">
+    <img src="/assets/favicon.png" alt="" />
+    <span>Buzzybox</span>
+  </header>
   <main id="main">
     <div class="quiet" id="loading">
       <h1>Opening your letter&hellip;</h1>

@@ -133,8 +133,9 @@
           var section = el('section', { 'class': 'writeback' });
           section.appendChild(el('h2', { text: 'Write back to ' + data.from_name }));
           var ol = el('ol');
-          ['Download or open Buzzybox.',
-           'Create or pick a desk.',
+          ['On an iPad, download Apple\u2019s TestFlight app from the App Store.',
+           'Tap \u201cGet Buzzybox\u201d below to install Buzzybox with our TestFlight link.',
+           'Open Buzzybox and create or pick a desk.',
            'Enter ' + data.from_name + '\u2019s connect code below.',
            'Wait for ' + data.from_name + '\u2019s side to approve.'
           ].forEach(function (step) { ol.appendChild(el('li', { text: step })); });
@@ -144,7 +145,7 @@
           var copy = el('button', { type: 'button', id: 'copy-code', text: 'Copy ' + data.from_name + '\u2019s Code' });
           section.appendChild(el('div', { 'class': 'actions' }, [
             copy,
-            el('a', { 'class': 'get-app', href: data.get_app_url || 'https://buzzybox.app', text: 'Get Buzzybox' }),
+            el('a', { 'class': 'get-app', href: data.get_app_url || 'https://testflight.apple.com/join/mUq9G292', text: 'Get Buzzybox' }),
           ]));
           section.appendChild(el('p', { 'class': 'hint',
             text: 'Entering the code only asks to connect \u2014 ' + data.from_name + '\u2019s side still approves it.' }));

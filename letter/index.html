@@ -72,6 +72,11 @@
     #copy-code { background: #ded2b4; color: #3c2a14; }
     .get-app { background: #b5802f; color: #fff; }
     .hint { color: #8a7a5f; font-size: 13px; text-align: center; margin: 16px 0 0; }
+    .qr { text-align: center; margin-top: 12px; }
+    .qr img {
+      width: 156px; height: 156px; border-radius: 12px;
+      box-shadow: 0 4px 14px rgba(60, 42, 20, 0.15);
+    }
     .privacy { color: #8a7a5f; font-size: 12px; text-align: center; margin-top: 36px; }
     .quiet { text-align: center; margin-top: 18vh; }
     .quiet h1 { font-size: 22px; }
@@ -143,12 +148,24 @@
           var code = el('div', { 'class': 'code', id: 'connect-code', text: data.connect_code });
           section.appendChild(code);
           var copy = el('button', { type: 'button', id: 'copy-code', text: 'Copy ' + data.from_name + '\u2019s Code' });
+          var testflightUrl = 'https://testflight.apple.com/join/mUq9G292';
+          var appUrl = data.get_app_url || testflightUrl;
           section.appendChild(el('div', { 'class': 'actions' }, [
             copy,
-            el('a', { 'class': 'get-app', href: data.get_app_url || 'https://testflight.apple.com/join/mUq9G292', text: 'Get Buzzybox' }),
+            el('a', { 'class': 'get-app', href: appUrl, text: 'Get Buzzybox' }),
           ]));
           section.appendChild(el('p', { 'class': 'hint',
             text: 'Entering the code only asks to connect \u2014 ' + data.from_name + '\u2019s side still approves it.' }));
+          if (appUrl === testflightUrl) {
+            // The QR asset encodes exactly this URL; hide it if the env
+            // ever repoints the button (e.g. App Store launch).
+            section.appendChild(el('p', { 'class': 'hint',
+              text: 'Not on the iPad right now? Open this letter on the iPad and tap \u201cGet Buzzybox\u201d there \u2014 or point the iPad\u2019s camera at this code:' }));
+            section.appendChild(el('div', { 'class': 'qr' }, [
+              el('img', { src: '/assets/testflight-qr.png', width: '156', height: '156',
+                alt: 'QR code that opens the Buzzybox TestFlight invite' }),
+            ]));
+          }
           main.appendChild(section);
           copy.addEventListener('click', function () {
             var value = code.textContent.trim();

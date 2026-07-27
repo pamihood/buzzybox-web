@@ -115,26 +115,19 @@ a:hover { text-decoration: underline; }
   max-width: 940px;
 }
 
-/* An iPad, drawn in CSS rather than shipped as a PNG mockup: no asset to
-   licence or keep in sync, it stays crisp at every density, and the bezel
-   scales with the shot. The bezel is doing real work — it gives the
-   screenshot a reason to have an edge, which is what the bare crop lacked. */
-.shot .device {
-  background: #1d1d1f;
-  border-radius: 30px;
-  padding: 12px;
-  box-shadow:
-    /* thin lighter rim = the aluminium chamfer catching light */
-    inset 0 0 0 1px rgba(255, 255, 255, 0.10),
-    0 24px 60px rgba(42, 33, 24, 0.28);
-}
+/* The device is now Apple's own iPad Air 13" (M4) product bezel, composited
+   into the image itself rather than drawn in CSS. The bezel's screen hole is
+   exactly 2732x2048 — the native resolution of the simulator capture — so the
+   screenshot lands 1:1 with no resampling.
+
+   The surround is flattened onto --paper, so the JPEG's edge is invisible
+   against the page and no alpha channel has to ship. Which also means NO
+   border, radius or shadow here: the bezel already is the frame, and its own
+   drop shadow is baked into Apple's asset. */
 .shot img {
   width: 100%;
   height: auto;
   display: block;
-  /* Slightly tighter than the bezel radius, the way a real screen sits
-     inside its housing. */
-  border-radius: 20px;
 }
 
 /* ---------- Assurance ---------- */

@@ -73,19 +73,14 @@ a:hover { text-decoration: underline; }
 /* ---------- Hero ---------- */
 .hero {
   text-align: center;
-  padding: 40px 22px 56px;
+  padding: 56px 22px 36px;
   max-width: var(--maxw);
   margin: 0 auto;
 }
-.hero .icon {
-  width: 132px; height: 132px;
-  border-radius: 30px;
-  /* One soft shadow, tinted to the icon's own sky rather than neutral grey,
-     so the mark sits on the paper instead of floating above it. */
-  box-shadow: 0 10px 30px rgba(90, 140, 190, 0.28);
-  margin-bottom: 28px;
-}
 .hero h1 {
+  /* Balance beats a hard <br>: the headline keeps even lines at every width
+     instead of stranding one word. */
+  text-wrap: balance;
   font-size: clamp(2.3rem, 7vw, 3.4rem);
   margin: 0 0 14px;
   color: var(--ink);
@@ -93,11 +88,12 @@ a:hover { text-decoration: underline; }
   line-height: 1.1;
 }
 .hero .tagline {
-  font-size: clamp(1.08rem, 2.6vw, 1.3rem);
+  font-size: clamp(1.05rem, 2.4vw, 1.2rem);
   color: var(--ink-soft);
-  max-width: 34ch;
-  margin: 0 auto 28px;
+  max-width: 52ch;
+  margin: 0 auto 26px;
   font-weight: 400;
+  text-wrap: balance;
 }
 .badge {
   display: inline-flex;
@@ -112,7 +108,42 @@ a:hover { text-decoration: underline; }
   font-size: 0.9rem;
 }
 
-/* ---------- Features ---------- */
+/* ---------- Product shot ---------- */
+.shot {
+  margin: 0 auto 56px;
+  padding: 0 22px;
+  max-width: 1040px;
+}
+.shot img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 20px;
+  border: 1px solid var(--line);
+  /* Tinted to the desk's own warm wood rather than neutral grey, so the shot
+     sits on the paper instead of hovering over it. */
+  box-shadow: 0 24px 60px rgba(120, 84, 40, 0.20);
+}
+
+/* ---------- Assurance ---------- */
+/* Deliberately ONE line where three feature cards used to be. Writing and
+   sending are already shown by the headline and the screenshot; restating them
+   in prose was the page repeating itself. This is the only claim a parent
+   needs that no image can carry. */
+.assurance {
+  max-width: 46ch;
+  margin: 0 auto 56px;
+  padding: 0 22px;
+  text-align: center;
+}
+.assurance p {
+  margin: 0;
+  text-wrap: balance;
+  color: var(--ink-soft);
+  font-size: 1.02rem;
+}
+
+/* ---------- Features (legacy, unused on the landing page) ---------- */
 /* Text-forward rows, not emoji chips in tinted boxes. A hairline rule and a
    single accent dot per row carry the structure; the shorter the visual
    vocabulary, the more the logo reads as the brand. */

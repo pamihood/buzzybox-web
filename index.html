@@ -9,7 +9,7 @@
   <link rel="apple-touch-icon" href="assets/favicon.png" />
   <meta property="og:title" content="Buzzybox" />
   <meta property="og:description" content="Handwritten letters for the people you love." />
-  <meta property="og:image" content="assets/app-icon.png" />
+  <meta property="og:image" content="assets/app-desk.jpg" />
   <meta property="og:type" content="website" />
   <link rel="stylesheet" href="styles.css" />
 </head>
@@ -24,26 +24,26 @@
   </header>
 
   <main>
+    <!-- The product IS the pitch. The icon lives in the header at 34px; the
+         hero is the desk itself, which says "write by hand" and "send and
+         receive" in one image and needs no paragraph to explain it. -->
     <section class="hero">
-      <img class="icon" src="assets/app-icon.png" alt="Buzzybox — a red mailbox with a friendly bee" />
-      <h1>Buzzybox</h1>
-      <p class="tagline">Handwritten letters for the people you love.</p>
+      <h1>Handwritten letters for the people you love.</h1>
+      <p class="tagline">A quiet writing desk for iPad.</p>
       <span class="badge">Coming soon to iPad</span>
     </section>
 
-    <section class="features">
-      <div class="feature feature--write">
-        <h3>Write by hand</h3>
-        <p>A blank sheet and a pen. Draw, doodle, and write real letters — no keyboards, no feeds.</p>
-      </div>
-      <div class="feature feature--send">
-        <h3>Send &amp; receive</h3>
-        <p>Drop a letter in the mailbox and watch for the flag to go up when something arrives.</p>
-      </div>
-      <div class="feature feature--trust">
-        <h3>Only trusted contacts</h3>
-        <p>Admins approve every connection. Letters only travel between people you both trust.</p>
-      </div>
+    <figure class="shot">
+      <img src="assets/app-desk.jpg"
+           alt="The Buzzybox writing desk on iPad — a mailbox, a stack of paper and pen, drafts, and a sealed envelope"
+           width="1600" height="1112" />
+    </figure>
+
+    <!-- One line, not three cards. The headline and the screenshot already
+         cover writing and sending; the only thing left that a parent needs
+         and cannot see is who is allowed to reach their child. -->
+    <section class="assurance">
+      <p>Every contact is approved by an adult. No feeds, no ads, no strangers.</p>
     </section>
   </main>
 

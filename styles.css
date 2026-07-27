@@ -110,19 +110,19 @@ a:hover { text-decoration: underline; }
 
 /* ---------- Product shot ---------- */
 .shot {
-  margin: 0 auto 56px;
-  padding: 0 22px;
-  max-width: 1040px;
+  margin: 0 0 56px;
+  padding: 0;
+  width: 100%;
 }
 .shot img {
   width: 100%;
   height: auto;
   display: block;
-  border-radius: 20px;
-  border: 1px solid var(--line);
-  /* Tinted to the desk's own warm wood rather than neutral grey, so the shot
-     sits on the paper instead of hovering over it. */
-  box-shadow: 0 24px 60px rgba(120, 84, 40, 0.20);
+  /* FULL BLEED. The screenshot is cropped inside the desk's own rails, so the
+     wood runs off both edges of the viewport and reads as a surface that
+     continues rather than a cut-out object sitting on the page. No border,
+     no radius, no shadow — every one of those redraws the edge we just
+     removed. */
 }
 
 /* ---------- Assurance ---------- */

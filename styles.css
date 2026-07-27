@@ -110,19 +110,31 @@ a:hover { text-decoration: underline; }
 
 /* ---------- Product shot ---------- */
 .shot {
-  margin: 0 0 56px;
-  padding: 0;
-  width: 100%;
+  margin: 0 auto 60px;
+  padding: 0 22px;
+  max-width: 940px;
+}
+
+/* An iPad, drawn in CSS rather than shipped as a PNG mockup: no asset to
+   licence or keep in sync, it stays crisp at every density, and the bezel
+   scales with the shot. The bezel is doing real work — it gives the
+   screenshot a reason to have an edge, which is what the bare crop lacked. */
+.shot .device {
+  background: #1d1d1f;
+  border-radius: 30px;
+  padding: 12px;
+  box-shadow:
+    /* thin lighter rim = the aluminium chamfer catching light */
+    inset 0 0 0 1px rgba(255, 255, 255, 0.10),
+    0 24px 60px rgba(42, 33, 24, 0.28);
 }
 .shot img {
   width: 100%;
   height: auto;
   display: block;
-  /* FULL BLEED. The screenshot is cropped inside the desk's own rails, so the
-     wood runs off both edges of the viewport and reads as a surface that
-     continues rather than a cut-out object sitting on the page. No border,
-     no radius, no shadow — every one of those redraws the edge we just
-     removed. */
+  /* Slightly tighter than the bezel radius, the way a real screen sits
+     inside its housing. */
+  border-radius: 20px;
 }
 
 /* ---------- Assurance ---------- */

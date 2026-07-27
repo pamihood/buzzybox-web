@@ -77,6 +77,30 @@ a:hover { text-decoration: underline; }
   max-width: var(--maxw);
   margin: 0 auto;
 }
+/* The bee sits BESIDE the headline, not above it: "Letters, not messages." is
+   a flat, declarative line and the mascot is what keeps it from reading stern.
+   Baseline-ish alignment rather than centre — the bee should look like it flew
+   up to the words, not like a bullet point. */
+.headline {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(10px, 2vw, 22px);
+}
+.headline .bee {
+  width: clamp(58px, 9vw, 104px);
+  height: auto;
+  flex: none;
+  /* nudged down so it reads as hovering by the line rather than floating off
+     the cap height */
+  margin-top: 0.18em;
+}
+@media (max-width: 560px) {
+  /* Stacked, the bee would push the headline off the first screen — and a
+     smaller bee beside a wrapped headline reads as a stray glyph. Drop it. */
+  .headline .bee { display: none; }
+}
+
 .hero h1 {
   /* Balance beats a hard <br>: the headline keeps even lines at every width
      instead of stranding one word. */

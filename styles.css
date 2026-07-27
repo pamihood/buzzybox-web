@@ -77,27 +77,32 @@ a:hover { text-decoration: underline; }
   max-width: var(--maxw);
   margin: 0 auto;
 }
-/* The bee sits BESIDE the headline, not above it: "Letters, not messages." is
-   a flat, declarative line and the mascot is what keeps it from reading stern.
-   Baseline-ish alignment rather than centre — the bee should look like it flew
-   up to the words, not like a bullet point. */
+/* The bee sits BESIDE the headline, not above it: "Letters, not messages" is a
+   flat, declarative line and the mascot is what keeps it from reading stern.
+   Above, it would become a logo and the line a subtitle; beside, it reads as
+   having flown up to the words.
+
+   ABSOLUTELY positioned, deliberately. As a flex sibling it was part of the
+   centred group, so the headline itself sat left of centre to make room — the
+   title has to stay optically centred and the bee has to hang off it. Taking
+   the bee out of flow does exactly that: `.headline` shrinks to the text and
+   centres, and the bee is anchored to its trailing edge. */
 .headline {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: clamp(10px, 2vw, 22px);
+  position: relative;
+  display: inline-block;
 }
 .headline .bee {
-  width: clamp(58px, 9vw, 104px);
+  position: absolute;
+  left: 100%;
+  top: 50%;
+  transform: translateY(-46%);
+  width: clamp(42px, 6.2vw, 74px);
   height: auto;
-  flex: none;
-  /* nudged down so it reads as hovering by the line rather than floating off
-     the cap height */
-  margin-top: 0.18em;
+  margin-left: clamp(6px, 1.2vw, 14px);
 }
-@media (max-width: 560px) {
-  /* Stacked, the bee would push the headline off the first screen — and a
-     smaller bee beside a wrapped headline reads as a stray glyph. Drop it. */
+@media (max-width: 640px) {
+  /* Beside a wrapped headline the bee overhangs the viewport, and shrunk
+     further it reads as a stray glyph rather than a mascot. */
   .headline .bee { display: none; }
 }
 

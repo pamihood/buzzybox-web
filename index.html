@@ -3,12 +3,12 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Buzzybox — Letters, not messages</title>
+  <title>Buzzybox — Letters, made with care</title>
   <meta name="description" content="Buzzybox is a quiet iPad app for writing, sending, and rereading real letters with a small circle of approved contacts." />
   <link rel="icon" type="image/png" href="assets/favicon.png" />
   <link rel="apple-touch-icon" href="assets/favicon.png" />
   <meta property="og:title" content="Buzzybox" />
-  <meta property="og:description" content="Letters, not messages" />
+  <meta property="og:description" content="Letters, made with care." />
   <meta property="og:image" content="assets/app-desk.jpg" />
   <meta property="og:type" content="website" />
   <link rel="stylesheet" href="styles.css" />
@@ -18,7 +18,7 @@
     <img src="assets/favicon.png" alt="Buzzybox app icon" />
     <span class="name">Buzzybox</span>
     <nav>
-      <a href="support.html">Support</a>
+      <a href="support.html">Help</a>
       <a href="privacy.html">Privacy</a>
     </nav>
   </header>
@@ -29,10 +29,10 @@
          receive" in one image and needs no paragraph to explain it. -->
     <section class="hero">
       <div class="headline">
-        <h1>Letters, not messages</h1>
+        <h1>Letters, made with care.</h1>
         <img class="bee" src="assets/bee.png" alt="" width="440" height="439" />
       </div>
-      <p class="tagline">A quiet writing desk for iPad.</p>
+      <p class="tagline">A private desk for writing and sending letters to family and friends.</p>
       <span class="badge">Coming soon to iPad</span>
     </section>
 
@@ -42,21 +42,32 @@
            width="1800" height="1389" />
     </figure>
 
-    <!-- One line, not three cards. The headline and the screenshot already
-         cover writing and sending; the only thing left that a parent needs
-         and cannot see is who is allowed to reach their child. -->
-    <section class="assurance">
-      <p>Every contact is approved by an admin. No feeds, no ads, no strangers.</p>
+    <!-- The contrast the hero deliberately refuses to make. "Letters, made
+         with care." is warm and says nothing about what this replaces; here,
+         once the product has been seen, is where the page can name the
+         alternative without opening on a lecture. -->
+    <section class="pitch">
+      <h2>Keep in touch, without keeping up.</h2>
+      <p>A quiet place for letters, away from the rush of messaging.</p>
     </section>
+
   </main>
 
   <footer>
+    <!-- Trust copy, not pitch copy — so it sits where fine print lives rather
+         than in the content flow. As its own <section> under .pitch it was a
+         second centred text block in the same face, and the two read as one
+         four-line paragraph; a rule, a band and more leading all failed
+         because the problem was position, not decoration. Here the footer's
+         existing border-top does the separating for free, and the page ends on
+         the message instead of on a disclaimer. -->
+    <p class="assurance">Every contact is approved by an admin.<span class="aside">No feeds. No ads. No strangers.</span></p>
     <nav>
-      <a href="support.html">Support</a>
+      <a href="support.html">Help</a>
       <a href="privacy.html">Privacy Policy</a>
       <a href="terms.html">Terms</a>
     </nav>
-    <span class="fine">© 2026 Buzzybox · Made with care for letter-writers everywhere.</span>
+    <span class="fine">© 2026 Buzzybox · For letter-writers everywhere.</span>
   </footer>
 </body>
 </html>

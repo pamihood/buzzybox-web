@@ -9,6 +9,10 @@
 
 :root {
   --ink: #2a2118;
+  /* Midpoint of --ink and --ink-soft. The hero subhead sat on --ink-soft and
+     read as a detached caption rather than part of the headline group; full
+     --ink makes it compete with the h1. */
+  --ink-mid: #4a3f31;
   --ink-soft: #6b5d4b;
   --ink-faint: #9b8f7e;
   --paper: #fbf8f3;
@@ -77,8 +81,8 @@ a:hover { text-decoration: underline; }
   max-width: var(--maxw);
   margin: 0 auto;
 }
-/* The bee sits BESIDE the headline, not above it: "Letters, not messages" is a
-   flat, declarative line and the mascot is what keeps it from reading stern.
+/* The bee sits BESIDE the headline, not above it: "Letters, made with care."
+   is a warm line, and the mascot rides along with it rather than announcing it.
    Above, it would become a logo and the line a subtitle; beside, it reads as
    having flown up to the words.
 
@@ -94,11 +98,20 @@ a:hover { text-decoration: underline; }
 .headline .bee {
   position: absolute;
   left: 100%;
-  top: 50%;
-  transform: translateY(-46%);
+  /* Anchored to the h1's own box, not the container's midpoint: the h1's 14px
+     bottom margin is inside .headline, so `top: 50%` centred the bee on a box
+     taller than the text and it landed mid-sentence, reading as punctuation.
+     Sitting it near the baseline instead reads as having flown up to the line.
+     Also held farther off the final word so it stops interrupting the read. */
+  bottom: 14px;
+  /* `bottom: 14px` (the h1's own bottom margin) lands the bee's box exactly on
+     the text baseline, and the PNG is trimmed to 1px of padding, so box bottom
+     IS ink bottom. The 4% is optical overshoot — a round body has to dip below
+     the baseline by a hair to read as sitting on it, same as an `o`. */
+  transform: translateY(4%);
   width: clamp(42px, 6.2vw, 74px);
   height: auto;
-  margin-left: clamp(6px, 1.2vw, 14px);
+  margin-left: clamp(14px, 2.4vw, 30px);
 }
 @media (max-width: 640px) {
   /* Beside a wrapped headline the bee overhangs the viewport, and shrunk
@@ -117,9 +130,12 @@ a:hover { text-decoration: underline; }
   line-height: 1.1;
 }
 .hero .tagline {
-  font-size: clamp(1.05rem, 2.4vw, 1.2rem);
-  color: var(--ink-soft);
-  max-width: 52ch;
+  font-size: clamp(1.1rem, 2.5vw, 1.28rem);
+  color: var(--ink-mid);
+  /* Wide enough that the line breaks late and the block reads as part of the
+     headline group. `balance` equalises whatever lines remain, so widening the
+     measure alone does nothing until the text can actually run longer. */
+  max-width: 64ch;
   margin: 0 auto 26px;
   font-weight: 400;
   text-wrap: balance;
@@ -159,22 +175,32 @@ a:hover { text-decoration: underline; }
   display: block;
 }
 
-/* ---------- Assurance ---------- */
-/* Deliberately ONE line where three feature cards used to be. Writing and
-   sending are already shown by the headline and the screenshot; restating them
-   in prose was the page repeating itself. This is the only claim a parent
-   needs that no image can carry. */
-.assurance {
-  max-width: 46ch;
-  margin: 0 auto 56px;
+/* ---------- Pitch ---------- */
+/* Sits BETWEEN the screenshot and the assurance, and that order is the point:
+   show the thing, say what it is instead of, then reassure. Leading with the
+   contrast would make the page argumentative before it has been charming. */
+.pitch {
+  /* `ch` here resolves against the section's 1rem, not the h2's 1.75rem, so
+     42ch broke the headline across two lines. Wide enough for both lines to
+     land whole at desktop; they wrap on their own below ~560px. */
+  max-width: 60ch;
+  margin: 0 auto 38px;
   padding: 0 22px;
   text-align: center;
 }
-.assurance p {
-  margin: 0;
+.pitch h2 {
+  margin: 0 0 10px;
+  font-size: clamp(1.4rem, 3.2vw, 1.75rem);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--ink);
   text-wrap: balance;
-  color: var(--ink-soft);
+}
+.pitch p {
+  margin: 0;
+  color: var(--ink-mid);
   font-size: 1.02rem;
+  text-wrap: balance;
 }
 
 /* ---------- Features (legacy, unused on the landing page) ---------- */
@@ -242,7 +268,7 @@ a:hover { text-decoration: underline; }
 /* ---------- Footer ---------- */
 footer {
   text-align: center;
-  padding: 24px 22px 56px;
+  padding: 30px 22px 56px;
   color: var(--ink-faint);
   border-top: 1px solid var(--line);
   max-width: var(--maxw);
@@ -250,6 +276,22 @@ footer {
 }
 footer a { color: var(--ink-soft); font-weight: 500; margin: 0 10px; }
 footer .fine { display: block; margin-top: 12px; font-size: 0.84rem; }
+/* The assurance, relocated out of the main flow. It reads as the footer's
+   opening line rather than the page's closing argument — which is the right
+   weight for it. Ramp continues to descend: claim, absences, then the nav and
+   copyright below. */
+footer .assurance {
+  margin: 0 0 26px;
+  color: var(--ink-soft);
+  font-size: 0.96rem;
+  text-wrap: balance;
+}
+footer .assurance .aside {
+  display: block;
+  margin-top: 5px;
+  font-size: 0.86rem;
+  color: var(--ink-faint);
+}
 
 @media (max-width: 520px) {
   .doc, .card { padding: 26px 20px; }

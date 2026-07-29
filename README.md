@@ -21,6 +21,28 @@ Artwork in `assets/` is exported from the app project (app icon, splash scene, p
 
 ## TODO
 
+- **Re-shoot the three step panels before launch** (`assets/step-*.jpg`).
+  The current set is good enough to iterate on and not good enough to ship:
+
+  - **`step-writing.jpg` — the handwriting is fake.** Those strokes were drawn
+    by `idb ui swipe`, and every swipe is a straight segment, so each "word" is
+    a polyline. It passes as a child's hand at 285px and falls apart the moment
+    anyone looks closely or the image is shown larger. Needs a letter actually
+    written by hand — trackpad on the simulator, or Pencil on a device.
+  - **The desks are under-dressed.** In the paper picker and the canvas the
+    desk behind the content is nearly bare. A shipped shot should look lived
+    in: mail in the mailbox, a draft or two on the surface, stickers placed on
+    the letter — closer to how a real desk looks after a week of use than to a
+    freshly seeded one. `marketing-desk-seed.sh` populates the drawer rail but
+    not the desk surface.
+  - The letter in `step-writing.jpg` also has no stickers on it, which
+    undersells the sticker packs entirely.
+
+  Capture recipe, cast, device and aspect rules are in the app repo at
+  `docs/MARKETING_SHOT.md`. Keep all three panels on one device — the 11-inch
+  is 1.44 and the 13-inch is 4:3, and mixing them staggers the row — and trim
+  the bottom 32px, which is where iOS draws the home indicator.
+
 - **Does the assurance coda survive?** (`.assurance`, bottom of `index.html`).
   It was one run-on sentence; it is now two tiers — "Every contact is approved
   by an admin." as the claim, "No feeds. No ads. No strangers." as a quieter

@@ -236,14 +236,6 @@ a:hover { text-decoration: underline; }
   border-radius: 10px;
   border: 1px solid var(--line);
 }
-/* One line for four images, so it sits lower and quieter than a .steps
-   figcaption — those label one panel each, this describes a set. */
-.desks p {
-  margin: 16px 0 0;
-  text-align: center;
-  color: var(--ink-mid);
-  font-size: 1.02rem;
-}
 
 /* ---------- Pitch ---------- */
 /* Sits BETWEEN the screenshot and the assurance, and that order is the point:

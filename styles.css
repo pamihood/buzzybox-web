@@ -215,6 +215,36 @@ a:hover { text-decoration: underline; }
   letter-spacing: -0.015em;
 }
 
+/* ---------- Desks ---------- */
+/* Same 940px measure as .shot and .steps so all three sections share an outer
+   edge. Two columns, not four: four across is 235px a desk, which is smaller
+   than the step panels and throws away the art this section exists to show. */
+.desks {
+  max-width: 940px;
+  margin: 0 auto 52px;
+  padding: 0 22px;
+}
+.desk-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 18px;
+}
+.desks img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+}
+/* One line for four images, so it sits lower and quieter than a .steps
+   figcaption — those label one panel each, this describes a set. */
+.desks p {
+  margin: 16px 0 0;
+  text-align: center;
+  color: var(--ink-mid);
+  font-size: 1.02rem;
+}
+
 /* ---------- Pitch ---------- */
 /* Sits BETWEEN the screenshot and the assurance, and that order is the point:
    show the thing, say what it is instead of, then reassure. Leading with the

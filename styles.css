@@ -175,6 +175,46 @@ a:hover { text-decoration: underline; }
   display: block;
 }
 
+/* ---------- Steps ---------- */
+/* Bezel-free on purpose: the hero shot has already said "iPad", and repeating
+   the frame three more times spends ~15% of each image on chrome the reader no
+   longer needs. Matches .shot's 940px so the row's outer edges line up with the
+   hero above it.
+   auto-fit rather than a fixed 3 columns: at 300px a panel is still legible,
+   below that the row folds to two and then one on its own. */
+.steps {
+  max-width: 940px;
+  margin: 0 auto 52px;
+  padding: 0 22px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+}
+.steps figure {
+  margin: 0;
+}
+/* A hairline and a small radius, no shadow. Without the bezel these are bare
+   crops, and cream-on-cream needs *some* edge or the paper in the shot bleeds
+   into the paper of the page; a shadow would be the heavier way to say it. */
+.steps img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+}
+/* Captions carry the sequence, so they are labels rather than footnotes: full
+   --ink, 600, and tightened tracking at size. At 0.95rem/--ink-mid they read as
+   image credits and the row lost its "paper, writing, stamp" reading. */
+.steps figcaption {
+  margin-top: 12px;
+  text-align: center;
+  color: var(--ink);
+  font-size: clamp(1.02rem, 1.5vw, 1.15rem);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+}
+
 /* ---------- Pitch ---------- */
 /* Sits BETWEEN the screenshot and the assurance, and that order is the point:
    show the thing, say what it is instead of, then reassure. Leading with the

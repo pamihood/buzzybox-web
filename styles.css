@@ -1,4 +1,4 @@
-/* Buzzybox — marketing + legal site.
+/* Posty World — marketing + legal site.
  *
  * One palette across all three surfaces (this site, the letter page, the
  * letter email): warm paper, mailbox red, bee honey. The old site ran a
@@ -81,7 +81,7 @@ a:hover { text-decoration: underline; }
   max-width: var(--maxw);
   margin: 0 auto;
 }
-/* The bee sits BESIDE the headline, not above it: "Letters, made with care."
+/* The bee sits BESIDE the headline, not above it: "One letter at a time."
    is a warm line, and the mascot rides along with it rather than announcing it.
    Above, it would become a logo and the line a subtitle; beside, it reads as
    having flown up to the words.

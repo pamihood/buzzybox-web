@@ -6,7 +6,7 @@
   <meta name="robots" content="noindex, nofollow" />
   <meta name="referrer" content="no-referrer" />
   <link rel="icon" type="image/png" href="/assets/favicon.png" />
-  <title>Your Buzzybox letter</title>
+  <title>Your Posty World letter</title>
   <style>
     :root { color-scheme: light; }
     body {
@@ -86,7 +86,7 @@
 <body>
   <header class="brand">
     <img src="/assets/favicon.png" alt="" />
-    <span>Buzzybox</span>
+    <span>Posty World</span>
   </header>
   <main id="main">
     <div class="quiet" id="loading">
@@ -96,7 +96,7 @@
   <script>
     (function () {
       // The private token is the credential; this page just renders the
-      // payload from the Buzzybox letter service. Served from buzzybox.app
+      // payload from the Posty World letter service. Served from buzzybox.app
       // because Supabase does not render HTML on its shared functions domain.
       var ENDPOINT = 'https://jbrxtkedjahpbzrqxeos.supabase.co/functions/v1/letter-page';
       var main = document.getElementById('main');
@@ -139,8 +139,8 @@
           section.appendChild(el('h2', { text: 'Write back to ' + data.from_name }));
           var ol = el('ol');
           ['On an iPad, download Apple\u2019s TestFlight app from the App Store.',
-           'Tap \u201cGet Buzzybox\u201d below to install Buzzybox with our TestFlight link.',
-           'Open Buzzybox and create or pick a desk.',
+           'Tap \u201cGet Posty World\u201d below to install Posty World with our TestFlight link.',
+           'Open Posty World and create or pick a desk.',
            'Enter ' + data.from_name + '\u2019s connect code below.',
            'Wait for ' + data.from_name + '\u2019s side to approve.'
           ].forEach(function (step) { ol.appendChild(el('li', { text: step })); });
@@ -152,7 +152,7 @@
           var appUrl = data.get_app_url || testflightUrl;
           section.appendChild(el('div', { 'class': 'actions' }, [
             copy,
-            el('a', { 'class': 'get-app', href: appUrl, text: 'Get Buzzybox' }),
+            el('a', { 'class': 'get-app', href: appUrl, text: 'Get Posty World' }),
           ]));
           section.appendChild(el('p', { 'class': 'hint',
             text: 'Entering the code only asks to connect \u2014 ' + data.from_name + '\u2019s side still approves it.' }));
@@ -160,10 +160,10 @@
             // The QR asset encodes exactly this URL; hide it if the env
             // ever repoints the button (e.g. App Store launch).
             section.appendChild(el('p', { 'class': 'hint',
-              text: 'Not on the iPad right now? Open this letter on the iPad and tap \u201cGet Buzzybox\u201d there \u2014 or point the iPad\u2019s camera at this code:' }));
+              text: 'Not on the iPad right now? Open this letter on the iPad and tap \u201cGet Posty World\u201d there \u2014 or point the iPad\u2019s camera at this code:' }));
             section.appendChild(el('div', { 'class': 'qr' }, [
               el('img', { src: '/assets/testflight-qr.png', width: '156', height: '156',
-                alt: 'QR code that opens the Buzzybox TestFlight invite' }),
+                alt: 'QR code that opens the Posty World TestFlight invite' }),
             ]));
           }
           main.appendChild(section);

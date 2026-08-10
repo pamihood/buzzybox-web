@@ -1,6 +1,6 @@
-# Buzzybox website
+# Posty World website
 
-Static marketing + legal site for [Buzzybox](https://buzzybox.app), the cozy iPad app for handwritten letters.
+Static marketing + legal site for [Posty World](https://buzzybox.app), the cozy iPad app for handwritten letters.
 
 Served via **GitHub Pages** at the apex domain `buzzybox.app`.
 

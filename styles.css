@@ -885,11 +885,31 @@ main > .feature:last-child { padding-bottom: var(--s-5); }
   color: var(--ink);
   text-wrap: balance;
 }
+/* The article's own subtitle, carried down from the piece rather than written
+   for the web: it states the argument before the first paragraph starts. */
+.post-deck {
+  margin: 0 0 var(--s-3);
+  font-size: clamp(1.24rem, 1.8vw, 1.48rem);
+  font-weight: 500;
+  line-height: 1.35;
+  letter-spacing: -0.015em;
+  color: var(--ink-mid);
+  text-wrap: balance;
+}
 .post-meta {
   margin: 0 0 var(--s-5);
   font-size: var(--fs-small);
   color: var(--ink-soft);
 }
+/* A line the author set on its own and put in bold — a beat in the argument,
+   not a heading. Given air either side and full ink, so it lands as one. */
+.post-beat {
+  margin: var(--s-4) 0 !important;
+  font-size: 1.28rem !important;
+  line-height: 1.45;
+  color: var(--ink) !important;
+}
+.post-beat strong { font-weight: 600; }
 .post p, .blog-index > p {
   font-size: 1.19rem;
   line-height: 1.72;
@@ -897,8 +917,8 @@ main > .feature:last-child { padding-bottom: var(--s-5); }
   margin: 0 0 var(--s-3);
 }
 .post h2 {
-  margin: var(--s-5) 0 var(--s-3);
-  font-size: clamp(1.35rem, 1.9vw, 1.6rem);
+  margin: var(--s-6) 0 var(--s-3);
+  font-size: clamp(1.45rem, 2.1vw, 1.75rem);
   font-weight: 600;
   line-height: 1.25;
   letter-spacing: -0.02em;
@@ -956,7 +976,21 @@ main > .feature:last-child { padding-bottom: var(--s-5); }
   line-height: 1.6;
   color: var(--ink-soft);
 }
-.post-list .post-meta { margin: 0; }
+/* The subtitle repeated on the index, so the list says what each piece argues
+   rather than only what it is called. */
+.post-list-deck {
+  font-size: clamp(1.15rem, 1.5vw, 1.28rem) !important;
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--ink-mid) !important;
+  letter-spacing: -0.012em;
+}
+.post-list .post-meta { margin: 0 0 var(--s-3); font-size: var(--fs-small); }
+/* Whole-entry hover, so the target is the block and not just the six words of
+   the title. */
+.post-list li:hover h2 a { color: var(--red); }
+/* The current page in the nav is stated, not styled loudly. */
+.site-head nav a[aria-current="page"] { color: var(--ink); font-weight: 600; }
 
 /* ---------- Cards / doc pages ---------- */
 .card,

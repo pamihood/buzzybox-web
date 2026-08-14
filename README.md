@@ -9,6 +9,8 @@ Served via **GitHub Pages** at the apex domain `buzzybox.app`.
 | Page | Purpose |
 |------|---------|
 | `index.html` | Landing page |
+| `blog/index.html` | Blog index |
+| `blog/<slug>/index.html` | One post per directory, so the URL is `/blog/<slug>/` with no server config |
 | `privacy.html` | Privacy Policy (App Store privacy URL) |
 | `support.html` | Help / contact (App Store support URL — filename kept for the store listing, nav reads "Help") |
 | `terms.html` | Terms of Use |
@@ -18,6 +20,16 @@ Served via **GitHub Pages** at the apex domain `buzzybox.app`.
 Plain HTML + one stylesheet (`styles.css`). No build step. Edit and push to `main`; GitHub Pages redeploys automatically.
 
 Artwork in `assets/` is exported from the app project (app icon, splash scene, paper/envelope textures).
+
+**Blog posts keep their markdown source.** `blog/<slug>/index.md` is the prose
+as written; `index.html` is the rendering of it. Edit the `.md` and bring the
+change across — they are not generated from each other, so they can drift, and
+the `.md` is the one a human wrote. `blog/why-i-built-postmello/index.md` is
+Patrick's, verbatim; the HTML was diffed against it word by word.
+
+Posts carry a **deck** (the article's own subtitle) and, where there is one, a
+byline. Standalone bolded lines in the source become `<p class="post-beat">` —
+a beat in the argument, not a heading.
 
 **The landing page has a spec.** Section order, the exact copy, the audience and
 platform wording rules, and the acceptance list live in the app repo at

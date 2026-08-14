@@ -42,38 +42,6 @@
            width="1800" height="1389" />
     </figure>
 
-    <!-- Three moments, ordered as a ritual (paper, writing, stamp) so the row
-         reads as a sequence rather than a gallery.
-
-         No bezel: the hero already establishes the device, and a second, third
-         and fourth frame would repeat that while spending ~15% of each image on
-         chrome the reader no longer needs.
-
-         WHOLE screens, not crops. Cropping in read as accidental framing — the
-         panels looked like details of something rather than the thing itself.
-         All three are 11-inch captures trimmed to 2360x1608, so they share an
-         aspect and the captions sit on one line; mixing the 13-inch (4:3) in
-         here would leave one panel short and stagger the captions.
-
-         The 32px trimmed off the bottom is iOS's home indicator, which showed
-         as a black bar under the stamp tray. Only the send screen rendered it,
-         but ALL THREE are cut by the same amount — trimming just the one would
-         change its aspect and stagger the row it was meant to keep even. -->
-    <section class="steps">
-      <figure>
-        <img src="assets/step-paper.jpg" alt="A grid of letter papers to choose from — plain cream, a moonlit sky, a rainbow wash and a green-blue wash" width="760" height="518" />
-        <figcaption>Choose your paper.</figcaption>
-      </figure>
-      <figure>
-        <img src="assets/step-writing.jpg" alt="A letter being handwritten on moonlit paper with a sleepy moon in the corner" width="760" height="518" />
-        <figcaption>Write your letter.</figcaption>
-      </figure>
-      <figure>
-        <img src="assets/step-stamp.jpg" alt="A lavender envelope addressed to Iris with a star stamp on it, a tray of stamps below and the postbox waiting" width="760" height="518" />
-        <figcaption>Stamp it and send.</figcaption>
-      </figure>
-    </section>
-
     <!-- Three claims, deliberately on equal footing rather than one headline.
          The old .pitch section here said "away from the rush of messaging",
          which the hero tagline already says in almost those words — a second
@@ -85,45 +53,79 @@
          guarantee on the page but it is also table stakes, and opening on it
          would make the page read as a safety product rather than a place to
          write. -->
-    <section class="pillars">
-      <div class="pillar pillar--quiet">
-        <h3>A quiet place</h3>
-        <p>No photos, no video, no GIFs. No threads, no typing dots, no read
-           receipts. Letters arrive and wait for you.</p>
+    <section class="feature" id="quiet">
+      <div class="feature-head">
+        <h2><span>A quiet place</span></h2>
+        <p class="lede">Letters arrive and wait for you. Nothing buzzes, nothing scrolls.</p>
+        <!-- The strikethrough is the argument, not decoration: the list is of
+             things that are ABSENT, and struck words say that in one glance
+             where a sentence of "no… no… no…" has to be read. -->
+        <ul class="absences" aria-label="Not in Postmello">
+          <li>photos</li>
+          <li>video</li>
+          <li>GIFs</li>
+          <li>threads</li>
+          <li>typing dots</li>
+          <li>read receipts</li>
+        </ul>
       </div>
-      <div class="pillar pillar--desk">
-        <h3>A desk of their own</h3>
-        <p>Every mailbox gets a desk to decorate — the wood, the mailbox, the
-           nameplate. Collections bring matching paper, envelopes and stamps.</p>
+      <figure class="feature-shot">
+        <img src="assets/step-writing.jpg"
+             alt="A letter being handwritten on moonlit paper — a sleepy moon in the corner, a pen tray below, and nothing else on screen"
+             width="760" height="518" loading="lazy" />
+      </figure>
+    </section>
+
+    <section class="feature feature--band" id="desks">
+      <div class="feature-head">
+        <h2><span>A desk of your own</span></h2>
+        <p class="lede">Choose the wood, the mailbox, the nameplate. Collections bring
+           paper, envelopes and stamps to match.</p>
       </div>
-      <div class="pillar pillar--trust">
-        <h3>Only people you approve</h3>
-        <p>An admin approves every contact before a letter can move. No feeds,
-           no ads, and no way for a stranger to reach a mailbox.</p>
+
+      <!-- One desk at a time, not the old 2x2. Four desks at 450px each showed
+           the layout and hid the craft; the craft is the reason anyone picks
+           one. Native scroll-snap does the work, so it swipes on touch with no
+           JS at all — the script only adds dots and arrows on top. -->
+      <div class="carousel">
+        <button class="car-arrow car-prev" type="button" aria-label="Previous desk">&#8249;</button>
+        <ul class="car-track">
+          <li>
+            <img src="assets/desk-honey_cottage.jpg" alt="The Honey Cottage desk — warm honey wood with a cream arched mailbox and brass flag" width="920" height="639" loading="lazy" />
+            <span>Honey Cottage</span>
+          </li>
+          <li>
+            <img src="assets/desk-storybook.jpg" alt="The Storybook desk — deep wood with a slate-blue mailbox, red flag and floral writing paper" width="920" height="639" loading="lazy" />
+            <span>Storybook</span>
+          </li>
+          <li>
+            <img src="assets/desk-pale_oak_studio.jpg" alt="The Pale Oak Studio desk — pale oak with a deep blue mailbox" width="920" height="639" loading="lazy" />
+            <span>Pale Oak Studio</span>
+          </li>
+          <li>
+            <img src="assets/desk-mint_modern.jpg" alt="The Mint Modern desk — pale maple with a mint mailbox and coral flag" width="920" height="639" loading="lazy" />
+            <span>Mint Modern</span>
+          </li>
+        </ul>
+        <button class="car-arrow car-next" type="button" aria-label="Next desk">&#8250;</button>
+        <div class="car-dots" role="tablist" aria-label="Choose a desk"></div>
       </div>
     </section>
 
-    <!-- Deliberately NOT a fourth panel in .steps: that row is a ritual
-         (paper, writing, stamp) and "pick a desk" is not a step in it — joining
-         them would turn a sequence back into a gallery. Its own section, and
-         2x2 rather than 4-across, because at 235px the desk art is unreadable
-         and the art is the entire reason this section exists.
-
-         Sits directly under the pillars, where it is now evidence for the
-         middle one rather than a coda: "a desk of their own" is a claim, and
-         four real desks immediately below are the proof of it.
-
-         Four real captures of the same desk, not the in-app style swatches:
-         the swatches are thumbnails and show none of the craft. Four
-         screenshots presented as four screenshots is honest; compositing them
-         into one invented "picker" screen would not be. -->
-    <section class="desks">
-      <div class="desk-grid">
-        <img src="assets/desk-honey_cottage.jpg" alt="The Honey Cottage desk — warm honey wood with a cream arched mailbox and brass flag" width="920" height="639" />
-        <img src="assets/desk-storybook.jpg" alt="The Storybook desk — deep wood with a slate-blue mailbox, red flag and floral writing paper" width="920" height="639" />
-        <img src="assets/desk-pale_oak_studio.jpg" alt="The Pale Oak Studio desk — pale oak with a deep blue mailbox" width="920" height="639" />
-        <img src="assets/desk-mint_modern.jpg" alt="The Mint Modern desk — pale maple with a mint mailbox and coral flag" width="920" height="639" />
+    <section class="feature" id="approved">
+      <div class="feature-head">
+        <h2><span>Only people you approve</span></h2>
+        <p class="lede">An admin approves every contact before a letter can move.
+           No feeds, no ads, no strangers.</p>
       </div>
+      <!-- The drawers ARE the guarantee, drawn: one per approved person, and no
+           way to add a sixth from inside the app. A screenshot of an approval
+           form would show the mechanism; this shows the result. -->
+      <figure class="feature-shot feature-shot--wide">
+        <img src="assets/circle-drawers.jpg"
+             alt="A row of five desk drawers, each with a wooden nameplate — Iris, Theo, Grandma, Grandpa, Nana"
+             width="1660" height="287" loading="lazy" />
+      </figure>
     </section>
 
   </main>
@@ -141,5 +143,70 @@
     </nav>
     <span class="fine">© 2026 Postmello · For letter-writers everywhere.</span>
   </footer>
+
+  <!-- The carousel swipes and snaps with no JS at all; this only adds the dots
+       and arrows, and only once it knows it can. Everything it creates is
+       created here rather than in the markup, so a reader without JS gets a
+       plain scrollable strip instead of dead controls. -->
+  <script>
+    (function () {
+      var car = document.querySelector('.carousel');
+      if (!car) return;
+      var track = car.querySelector('.car-track');
+      var slides = Array.prototype.slice.call(track.children);
+      var dots = car.querySelector('.car-dots');
+      var prev = car.querySelector('.car-prev');
+      var next = car.querySelector('.car-next');
+      if (!track || slides.length < 2) return;
+
+      var smooth = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      slides.forEach(function (slide, i) {
+        var b = document.createElement('button');
+        b.type = 'button';
+        b.setAttribute('role', 'tab');
+        b.setAttribute('aria-label', (slide.querySelector('span') || {}).textContent || 'Desk ' + (i + 1));
+        b.addEventListener('click', function () { go(i); });
+        dots.appendChild(b);
+      });
+
+      function index() {
+        // Nearest slide to the track's centre — more robust than dividing
+        // scrollLeft by a width, which drifts once a gap is in play.
+        var mid = track.scrollLeft + track.clientWidth / 2;
+        var best = 0, bestD = Infinity;
+        slides.forEach(function (s, i) {
+          var d = Math.abs(s.offsetLeft + s.offsetWidth / 2 - mid);
+          if (d < bestD) { bestD = d; best = i; }
+        });
+        return best;
+      }
+
+      function go(i) {
+        i = Math.max(0, Math.min(slides.length - 1, i));
+        track.scrollTo({ left: slides[i].offsetLeft, behavior: smooth ? 'smooth' : 'auto' });
+      }
+
+      function sync() {
+        var i = index();
+        Array.prototype.forEach.call(dots.children, function (d, n) {
+          d.setAttribute('aria-selected', n === i ? 'true' : 'false');
+        });
+        prev.disabled = i === 0;
+        next.disabled = i === slides.length - 1;
+      }
+
+      prev.addEventListener('click', function () { go(index() - 1); });
+      next.addEventListener('click', function () { go(index() + 1); });
+
+      var raf;
+      track.addEventListener('scroll', function () {
+        cancelAnimationFrame(raf);
+        raf = requestAnimationFrame(sync);
+      }, { passive: true });
+      window.addEventListener('resize', sync);
+      sync();
+    })();
+  </script>
 </body>
 </html>

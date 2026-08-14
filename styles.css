@@ -21,8 +21,58 @@
   --red: #c8402f;
   --honey: #e9a227;
   --sky: #8fc3ee;
-  --radius: 18px;
+
+  /* A second ground, one step warmer and darker than --paper. Alternating
+     bands is what separates the three feature sections without drawing a box
+     around each one — cards would have made them read as a comparison table. */
+  --paper-deep: #f4ece0;
+
+  /* Feint notebook ruling. --sky is the icon's sky; dropped to this weight it
+     is the blue line on a sheet of writing paper, which is what the section
+     headings sit on. */
+  --rule: rgba(143, 195, 238, 0.55);
+
+  /* ---- Faces ----
+     Two roles, not one. --font-voice is the app's own rounded face and carries
+     everything anyone reads as a sentence. --font-apparatus is for the postal
+     furniture — plate names, the absence list, the badge — because in THIS
+     subject a monospace reads as franking and address labels rather than as
+     code. Both are system stacks: no webfont request, so no CDN and no FOUT. */
+  --font-voice: ui-rounded, "SF Pro Rounded", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-apparatus: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+
+  /* ---- Scales ----
+     Until now this file had a palette and two lengths; every section then
+     hard-coded its own margin and its own clamp(), which is why anything new
+     bolted on looked bolted on. These are the three scales the page is built
+     from, and nothing outside them should appear below. */
+
+  /* Type. Ratio ~1.25, clamped so the top of the scale only arrives when
+     there is width for it. */
+  --fs-display: clamp(2.3rem, 7vw, 3.4rem);
+  --fs-section: clamp(1.95rem, 4.8vw, 2.9rem);
+  --fs-lede:    clamp(1.06rem, 2.1vw, 1.3rem);
+  --fs-body:    1rem;
+  --fs-small:   0.92rem;
+  --fs-micro:   0.84rem;
+
+  /* Space. Doubling-ish; --space-section is the page's vertical heartbeat and
+     every band uses it, so the rhythm is set in one place. */
+  --s-1: 6px;
+  --s-2: 12px;
+  --s-3: 20px;
+  --s-4: 32px;
+  --s-5: 52px;
+  --s-6: 84px;
+  --space-section: clamp(56px, 9vw, 104px);
+
+  /* Measure. Text stays near 65 characters; media gets the wide one. */
   --maxw: 720px;
+  --maxw-wide: 940px;
+  --gutter: 22px;
+
+  --radius: 18px;
+  --radius-media: 14px;
 }
 
 * { box-sizing: border-box; }
@@ -34,7 +84,7 @@ html {
 
 body {
   margin: 0;
-  font-family: ui-rounded, "SF Pro Rounded", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-family: var(--font-voice);
   color: var(--ink);
   line-height: 1.65;
   background: var(--paper);
@@ -152,14 +202,18 @@ a:hover { text-decoration: underline; }
   font-weight: 600;
   padding: 9px 18px;
   border-radius: 999px;
-  font-size: 0.9rem;
+  font-family: var(--font-apparatus);
+  font-size: var(--fs-micro);
+  /* No text-transform here, unlike the other apparatus text: it would render
+     Apple's "iPad" as "IPAD". */
+  letter-spacing: 0.05em;
 }
 
 /* ---------- Product shot ---------- */
 .shot {
-  margin: 0 auto 60px;
-  padding: 0 22px;
-  max-width: 940px;
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+  max-width: var(--maxw-wide);
 }
 
 /* The device is now Apple's own iPad Air 13" (M4) product bezel, composited
@@ -177,166 +231,208 @@ a:hover { text-decoration: underline; }
   display: block;
 }
 
-/* ---------- Steps ---------- */
-/* Bezel-free on purpose: the hero shot has already said "iPad", and repeating
-   the frame three more times spends ~15% of each image on chrome the reader no
-   longer needs. Matches .shot's 940px so the row's outer edges line up with the
-   hero above it.
-   auto-fit rather than a fixed 3 columns: at 300px a panel is still legible,
-   below that the row folds to two and then one on its own. */
-.steps {
-  max-width: 940px;
-  margin: 0 auto 52px;
-  padding: 0 22px;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 20px;
-}
-.steps figure {
-  margin: 0;
-}
-/* A hairline and a small radius, no shadow. Without the bezel these are bare
-   crops, and cream-on-cream needs *some* edge or the paper in the shot bleeds
-   into the paper of the page; a shadow would be the heavier way to say it. */
-.steps img {
-  width: 100%;
-  height: auto;
-  display: block;
-  border-radius: 10px;
-  border: 1px solid var(--line);
-}
-/* Captions carry the sequence, so they are labels rather than footnotes: full
-   --ink, 600, and tightened tracking at size. At 0.95rem/--ink-mid they read as
-   image credits and the row lost its "paper, writing, stamp" reading. */
-.steps figcaption {
-  margin-top: 12px;
-  text-align: center;
-  color: var(--ink);
-  font-size: clamp(1.02rem, 1.5vw, 1.15rem);
-  font-weight: 600;
-  letter-spacing: -0.015em;
-}
+/* ---------- Feature bands ---------- */
+/* Three sections of equal weight, each: a big heading, one line of lede, and
+   one large piece of supporting art. Stacked and centred rather than the
+   alternating left/right zigzag every SaaS page uses — the art here is
+   landscape screenshots of a desk, and a half-width column would shrink the
+   very craft the section exists to show.
 
-/* ---------- Desks ---------- */
-/* Same 940px measure as .shot and .steps so all three sections share an outer
-   edge. Two columns, not four: four across is 235px a desk, which is smaller
-   than the step panels and throws away the art this section exists to show. */
-.desks {
-  max-width: 940px;
-  margin: 0 auto 52px;
-  padding: 0 22px;
-}
-.desk-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 18px;
-}
-.desks img {
-  width: 100%;
-  height: auto;
-  display: block;
-  border-radius: 10px;
-  border: 1px solid var(--line);
-}
-
-/* ---------- Pillars ---------- */
-/* Three claims of equal weight, replacing the single centred .pitch headline
-   that used to sit here (it restated the hero tagline rather than adding to
-   it). Equal weight is the design brief, so: one grid, one column width, one
-   type scale, no "hero" card and no numbering — nothing that ranks them
-   visually. Reading order carries the priority instead.
-
-   940px, not --maxw's 720: the same width as .desk-grid below, so the three
-   columns and the four desks share an edge and the pair reads as one block.
-   At 720 the columns come out ~215px and every heading wraps.
-
-   The accent dot is inherited from the (legacy) .feature rows — it was the
-   site's existing way of marking a claim without reaching for an icon, and
-   this section is the one place that vocabulary is still needed. */
-.pillars {
-  max-width: 940px;
-  margin: 0 auto 44px;
-  padding: 0 22px;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 18px;
-  /* stretch, not start: equal weight is the brief, and three cards of three
-     different heights rank them by accident. */
-  align-items: stretch;
-}
-.pillar {
-  background: var(--card);
-  border: 1px solid var(--line);
-  border-radius: 14px;
-  padding: 24px 22px;
-}
-/* Grid, not flex, so the dot keeps its own column and the heading's second
-   line aligns under the first instead of under the dot. `align-items: center`
-   on a flex heading also floated the dot to the middle of a two-line title;
-   here it is pinned to the first line's optical centre. */
-.pillar h3 {
-  margin: 0 0 8px;
-  font-size: 1.06rem;
-  letter-spacing: -0.01em;
-  color: var(--ink);
-  display: grid;
-  grid-template-columns: 8px 1fr;
-  gap: 10px;
-  align-items: start;
-  text-wrap: balance;
-}
-.pillar h3::before {
-  content: "";
-  width: 8px; height: 8px;
-  margin-top: 0.46em;
-  border-radius: 50%;
-  background: var(--accent, var(--honey));
-}
-.pillar p {
-  margin: 0;
-  color: var(--ink-soft);
-  font-size: 0.97rem;
-  line-height: 1.6;
-}
-.pillar--quiet { --accent: var(--sky); }
-.pillar--desk  { --accent: var(--honey); }
-.pillar--trust { --accent: var(--red); }
-
-/* ---------- Features (legacy, unused on the landing page) ---------- */
-/* Text-forward rows, not emoji chips in tinted boxes. A hairline rule and a
-   single accent dot per row carry the structure; the shorter the visual
-   vocabulary, the more the logo reads as the brand. */
-.features {
-  max-width: var(--maxw);
-  margin: 0 auto 40px;
-  padding: 0 22px;
-  display: grid;
-  gap: 0;
-}
+   Bands alternate ground (paper / paper-deep / paper) so the three separate
+   without any card, rule or number. They are not a sequence, so they are not
+   numbered: order carries priority, not steps. */
 .feature {
-  padding: 26px 0;
-  border-top: 1px solid var(--line);
+  padding: var(--space-section) var(--gutter);
 }
-.feature:last-child { border-bottom: 1px solid var(--line); }
-.feature h3 {
-  margin: 0 0 5px;
-  font-size: 1.06rem;
-  letter-spacing: -0.01em;
+.feature--band {
+  background: var(--paper-deep);
+}
+.feature-head {
+  max-width: var(--maxw-wide);
+  margin: 0 auto var(--s-5);
+  text-align: center;
+}
+/* THE SIGNATURE: the heading sits ON a feint blue rule, the way a line of
+   writing sits on ruled paper. It is the page's only structural device, and it
+   is the subject's own material — so there are no cards, no boxes, and no
+   01/02/03 anywhere. The rule spans the wide measure while the lede below
+   stays at reading width, which is what keeps the band feeling like a sheet
+   rather than a column. */
+.feature h2 {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: var(--s-4);
+  margin: 0 0 var(--s-3);
+  font-size: var(--fs-section);
+  line-height: 1.08;
+  letter-spacing: -0.035em;
+  color: var(--ink);
 }
-.feature h3::before {
+.feature h2::before,
+.feature h2::after {
   content: "";
-  width: 8px; height: 8px;
-  border-radius: 50%;
-  background: var(--accent, var(--honey));
-  flex: none;
+  flex: 1 1 0;
+  height: 1px;
+  background: var(--rule);
 }
-.feature p { margin: 0; color: var(--ink-soft); font-size: 0.98rem; }
-.feature--write { --accent: var(--honey); }
-.feature--send  { --accent: var(--red); }
-.feature--trust { --accent: var(--sky); }
+.feature h2 span {
+  flex: 0 1 auto;
+  text-wrap: balance;
+}
+.feature .lede {
+  max-width: 46ch;
+  margin: 0 auto;
+  font-size: var(--fs-lede);
+  line-height: 1.55;
+  color: var(--ink-mid);
+  text-wrap: balance;
+}
+/* Narrow: the heading fills the measure, so the flanking rules collapse to two
+   stubs and read as a mistake. The line moves UNDER the text instead — which is
+   the more literal version of the idea anyway, a line of writing sitting on the
+   rule of the page. */
+@media (max-width: 700px) {
+  .feature h2 { display: block; }
+  .feature h2::before { display: none; }
+  .feature h2::after {
+    display: block;
+    flex: none;
+    width: 100%;
+    margin-top: var(--s-3);
+  }
+}
+.feature-shot {
+  max-width: var(--maxw-wide);
+  margin: 0 auto;
+}
+.feature-shot img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: var(--radius-media);
+  border: 1px solid var(--line);
+}
+/* The drawer strip is 5.8:1 — at the full measure it becomes a thin ribbon and
+   the nameplates stop being readable, so it is held narrower than the rest. */
+.feature-shot--wide { max-width: 820px; }
+
+/* The absences. Struck, because the strike IS the claim; a bulleted list of
+   "no photos / no video" says it twice. Set small and faint so it reads as a
+   footnote to the lede rather than a second headline. */
+.absences {
+  list-style: none;
+  margin: var(--s-4) 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--s-2) var(--s-3);
+}
+.absences li {
+  font-family: var(--font-apparatus);
+  font-size: var(--fs-micro);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  text-decoration: line-through;
+  text-decoration-thickness: 1.5px;
+  text-decoration-color: var(--red);
+  text-underline-offset: 2px;
+}
+
+/* ---------- Desk carousel ---------- */
+.carousel {
+  position: relative;
+  max-width: var(--maxw-wide);
+  margin: 0 auto;
+}
+.car-track {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: var(--s-3);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+.car-track::-webkit-scrollbar { display: none; }
+.car-track > li {
+  flex: 0 0 100%;
+  scroll-snap-align: center;
+  margin: 0;
+}
+.car-track img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: var(--radius-media);
+  border: 1px solid var(--line);
+}
+/* Plate names, set like the brass nameplate they are: apparatus face, small,
+   tracked, uppercase. In the rounded face they read as captions; here they
+   read as part of the object. */
+.car-track span {
+  display: block;
+  margin-top: var(--s-3);
+  text-align: center;
+  font-family: var(--font-apparatus);
+  font-size: var(--fs-micro);
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.car-arrow {
+  position: absolute;
+  top: calc(50% - 22px);
+  transform: translateY(-50%);
+  z-index: 2;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: var(--card);
+  color: var(--ink);
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 2px 10px rgba(42, 33, 24, 0.10);
+}
+.car-arrow:hover { background: var(--paper); }
+.car-arrow:disabled { opacity: 0.3; cursor: default; }
+.car-prev { left: -12px; }
+.car-next { right: -12px; }
+.car-dots {
+  display: flex;
+  justify-content: center;
+  gap: var(--s-2);
+  margin-top: var(--s-3);
+}
+.car-dots button {
+  width: 8px; height: 8px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(42, 33, 24, 0.18);
+  cursor: pointer;
+}
+.car-dots button[aria-selected="true"] { background: var(--red); }
+:where(.car-arrow, .car-dots button):focus-visible {
+  outline: 2px solid var(--red);
+  outline-offset: 3px;
+}
+/* Below the wide measure the arrows would sit on top of the art; touch swipes
+   the track anyway, so they go and the dots carry the affordance. */
+@media (max-width: 1024px) {
+  .car-arrow { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .car-track { scroll-behavior: auto; }
+}
 
 /* ---------- Cards / doc pages ---------- */
 .card,

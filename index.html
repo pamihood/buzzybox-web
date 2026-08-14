@@ -42,6 +42,38 @@
            width="1800" height="1389" />
     </figure>
 
+    <!-- Three moments, ordered as a ritual (paper, writing, stamp) so the row
+         reads as a sequence rather than a gallery.
+
+         No bezel: the hero already establishes the device, and a second, third
+         and fourth frame would repeat that while spending ~15% of each image on
+         chrome the reader no longer needs.
+
+         WHOLE screens, not crops. Cropping in read as accidental framing — the
+         panels looked like details of something rather than the thing itself.
+         All three are 11-inch captures trimmed to 2360x1608, so they share an
+         aspect and the captions sit on one line; mixing the 13-inch (4:3) in
+         here would leave one panel short and stagger the captions.
+
+         The 32px trimmed off the bottom is iOS's home indicator, which showed
+         as a black bar under the stamp tray. Only the send screen rendered it,
+         but ALL THREE are cut by the same amount — trimming just the one would
+         change its aspect and stagger the row it was meant to keep even. -->
+    <section class="steps">
+      <figure>
+        <img src="assets/step-paper.jpg" alt="A grid of letter papers to choose from — plain cream, a moonlit sky, a rainbow wash and a green-blue wash" width="760" height="518" />
+        <figcaption>Choose your paper.</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/step-writing.jpg" alt="A letter being handwritten on moonlit paper with a sleepy moon in the corner" width="760" height="518" />
+        <figcaption>Write your letter.</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/step-stamp.jpg" alt="A lavender envelope addressed to Iris with a star stamp on it, a tray of stamps below and the postbox waiting" width="760" height="518" />
+        <figcaption>Stamp it and send.</figcaption>
+      </figure>
+    </section>
+
     <!-- Three claims, deliberately on equal footing rather than one headline.
          The old .pitch section here said "away from the rush of messaging",
          which the hero tagline already says in almost those words — a second
@@ -53,11 +85,11 @@
          guarantee on the page but it is also table stakes, and opening on it
          would make the page read as a safety product rather than a place to
          write. -->
-    <section class="feature" id="quiet">
+    <section class="feature feature--band" id="quiet">
       <div class="feature-head">
-        <h2><span>A quiet place</span></h2>
-        <p class="lede">Letters arrive and wait. Nothing buzzes, nothing scrolls —
-           an admin gets an email when mail lands, so nobody has to keep checking.</p>
+        <h2><span>Letters wait for you</span></h2>
+        <p class="lede">Nothing buzzes, nothing scrolls. An admin gets an email when
+           mail lands, so nobody has to keep checking.</p>
         <!-- The strikethrough is the argument, not decoration: the list is of
              things that are ABSENT, and struck words say that in one glance
              where a sentence of "no… no… no…" has to be read. -->
@@ -77,7 +109,7 @@
       </figure>
     </section>
 
-    <section class="feature feature--band" id="desks">
+    <section class="feature" id="desks">
       <div class="feature-head">
         <h2><span>A desk worth sitting down at</span></h2>
         <p class="lede">A honey cottage, a storybook study, a mountain of ember and
@@ -114,7 +146,7 @@
       </div>
     </section>
 
-    <section class="feature" id="approved">
+    <section class="feature feature--band" id="approved">
       <div class="feature-head">
         <h2><span>Only people you approve</span></h2>
         <p class="lede">An admin approves every contact before a letter can move —

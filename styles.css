@@ -239,33 +239,68 @@ a:hover { text-decoration: underline; }
   border: 1px solid var(--line);
 }
 
-/* ---------- Pitch ---------- */
-/* Sits BETWEEN the screenshot and the assurance, and that order is the point:
-   show the thing, say what it is instead of, then reassure. Leading with the
-   contrast would make the page argumentative before it has been charming. */
-.pitch {
-  /* `ch` here resolves against the section's 1rem, not the h2's 1.75rem, so
-     42ch broke the headline across two lines. Wide enough for both lines to
-     land whole at desktop; they wrap on their own below ~560px. */
-  max-width: 60ch;
-  margin: 0 auto 38px;
+/* ---------- Pillars ---------- */
+/* Three claims of equal weight, replacing the single centred .pitch headline
+   that used to sit here (it restated the hero tagline rather than adding to
+   it). Equal weight is the design brief, so: one grid, one column width, one
+   type scale, no "hero" card and no numbering — nothing that ranks them
+   visually. Reading order carries the priority instead.
+
+   940px, not --maxw's 720: the same width as .desk-grid below, so the three
+   columns and the four desks share an edge and the pair reads as one block.
+   At 720 the columns come out ~215px and every heading wraps.
+
+   The accent dot is inherited from the (legacy) .feature rows — it was the
+   site's existing way of marking a claim without reaching for an icon, and
+   this section is the one place that vocabulary is still needed. */
+.pillars {
+  max-width: 940px;
+  margin: 0 auto 44px;
   padding: 0 22px;
-  text-align: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 18px;
+  /* stretch, not start: equal weight is the brief, and three cards of three
+     different heights rank them by accident. */
+  align-items: stretch;
 }
-.pitch h2 {
-  margin: 0 0 10px;
-  font-size: clamp(1.4rem, 3.2vw, 1.75rem);
-  line-height: 1.2;
-  letter-spacing: -0.02em;
+.pillar {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 24px 22px;
+}
+/* Grid, not flex, so the dot keeps its own column and the heading's second
+   line aligns under the first instead of under the dot. `align-items: center`
+   on a flex heading also floated the dot to the middle of a two-line title;
+   here it is pinned to the first line's optical centre. */
+.pillar h3 {
+  margin: 0 0 8px;
+  font-size: 1.06rem;
+  letter-spacing: -0.01em;
   color: var(--ink);
+  display: grid;
+  grid-template-columns: 8px 1fr;
+  gap: 10px;
+  align-items: start;
   text-wrap: balance;
 }
-.pitch p {
+.pillar h3::before {
+  content: "";
+  width: 8px; height: 8px;
+  margin-top: 0.46em;
+  border-radius: 50%;
+  background: var(--accent, var(--honey));
+}
+.pillar p {
   margin: 0;
-  color: var(--ink-mid);
-  font-size: 1.02rem;
-  text-wrap: balance;
+  color: var(--ink-soft);
+  font-size: 0.97rem;
+  line-height: 1.6;
 }
+.pillar--quiet { --accent: var(--sky); }
+.pillar--desk  { --accent: var(--honey); }
+.pillar--trust { --accent: var(--red); }
 
 /* ---------- Features (legacy, unused on the landing page) ---------- */
 /* Text-forward rows, not emoji chips in tinted boxes. A hairline rule and a
@@ -340,23 +375,6 @@ footer {
 }
 footer a { color: var(--ink-soft); font-weight: 500; margin: 0 10px; }
 footer .fine { display: block; margin-top: 12px; font-size: 0.84rem; }
-/* The assurance, relocated out of the main flow. It reads as the footer's
-   opening line rather than the page's closing argument — which is the right
-   weight for it. Ramp continues to descend: claim, absences, then the nav and
-   copyright below. */
-footer .assurance {
-  margin: 0 0 26px;
-  color: var(--ink-soft);
-  font-size: 0.96rem;
-  text-wrap: balance;
-}
-footer .assurance .aside {
-  display: block;
-  margin-top: 5px;
-  font-size: 0.86rem;
-  color: var(--ink-faint);
-}
-
 @media (max-width: 520px) {
   .doc, .card { padding: 26px 20px; }
   .site-head nav { gap: 14px; }

@@ -57,8 +57,10 @@ a:hover { text-decoration: underline; }
   margin: 0 auto;
 }
 .site-head img {
-  width: 34px; height: 34px;
-  border-radius: 9px;
+  /* The mark is a cut-out mailbox, not a rounded app tile — it carries its own
+     silhouette, so no border-radius, and it can run bigger than the 34px tile
+     did without crowding the wordmark. */
+  width: 46px; height: 46px;
 }
 .site-head .name {
   font-weight: 700;

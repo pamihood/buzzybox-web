@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Designing a Desk, Not an App — Postmello Blog</title>
+  <meta name="description" content="Why Postmello uses paper, drawers, mailboxes, stamps and a courier bee instead of conventional buttons, menus and status messages." />
+  <link rel="icon" type="image/png" href="../../assets/favicon.png" />
+  <link rel="apple-touch-icon" href="../../assets/app-icon.png" />
+  <meta property="og:title" content="Designing a Desk, Not an App" />
+  <meta property="og:description" content="Why Postmello uses paper, drawers, mailboxes, stamps and a courier bee instead of conventional buttons, menus and status messages." />
+  <meta property="og:type" content="article" />
+  <link rel="stylesheet" href="../../styles.css" />
+</head>
+<body>
+  <header class="site-head">
+    <a href="../../" style="display:flex;align-items:center;gap:12px;">
+      <img src="../../assets/mark.png" alt="" />
+      <span class="name">Postmello</span>
+    </a>
+    <nav>
+      <a href="../">Blog</a>
+      <span class="dot" aria-hidden="true">·</span>
+      <a href="../../support.html">Help</a>
+    </nav>
+  </header>
+
+  <main>
+    <article class="post">
+      <a class="back" href="../">← Postmello Blog</a>
+      <h1>Designing a Desk, Not an App</h1>
+      <p class="post-meta">The design philosophy behind Postmello</p>
+
+      <p>Most software aimed at children looks like software aimed at adults,
+         with rounder corners and brighter colours. The navigation bar is still
+         a navigation bar. The list of conversations is still a list. The red
+         dot still counts things.</p>
+
+      <p>Postmello starts somewhere else.</p>
+
+      <blockquote>The best interface for a child may be one that doesn't feel
+         like an interface at all.</blockquote>
+
+      <p>The child-facing side of Postmello is a writing desk. There is paper
+         on it, a mailbox, a row of drawers, a tray of stamps, a basket for
+         crumpled drafts. Those objects are not a costume worn over an ordinary
+         app. They <strong>are</strong> the app — each one does a job that would
+         otherwise belong to a button, a menu or a status message.</p>
+
+      <h2>Objects that do the work</h2>
+
+      <ul>
+        <li><strong>The stack of paper</strong> is how you start writing. You
+            take a sheet.</li>
+        <li><strong>The mailbox</strong> is where letters arrive. Not an inbox —
+            a box, with mail in it.</li>
+        <li><strong>The flag on the mailbox</strong> is how you know something
+            is waiting.</li>
+        <li><strong>The drawers</strong> hold your correspondence, one per
+            person, with their name on the plate.</li>
+        <li><strong>Envelopes and stamps</strong> are how a letter is addressed
+            and sent.</li>
+        <li><strong>The basket</strong> is where discarded work goes, crumpled,
+            and it is a real basket — you can look inside it.</li>
+      </ul>
+
+      <p>A child who has never used the app can be told "write to your
+         grandmother" and get most of the way there without instruction,
+         because the desk answers the question "what do I do now?" the way
+         desks always have: by showing you what is on it.</p>
+
+      <p>What is deliberately missing is as important. There is no navigation
+         bar, no tab bar, no scrolling list of conversations, no unread count,
+         no typing indicator, no read receipt. A letter is a discrete object
+         that you read one at a time, and the desk never shows two open at
+         once.</p>
+
+      <h2>The flag, not the badge</h2>
+
+      <p>When a letter arrives, the mailbox changes. The flag goes up.</p>
+
+      <p>That is the whole notification system, and the difference from a badge
+         is not cosmetic. A number on an icon is a demand: it counts up, it
+         asks to be cleared, and it makes the child responsible for the count
+         rather than interested in the letter. A raised flag is information. It
+         says something is here whenever you want it, and it says the same
+         thing whether one letter is waiting or three.</p>
+
+      <p>Then it waits. Nothing buzzes, nothing scrolls, and nothing tells the
+         person who wrote to you whether you have read it yet.</p>
+
+      <h2>Why there is a bee</h2>
+
+      <p>The bee did not arrive as a mascot looking for a job. It arrived
+         because of a genuinely hard problem: what happens after a child drops
+         an envelope into the mailbox.</p>
+
+      <p>Dropping the envelope is a commitment. From the child's point of view
+         the letter is <em>gone</em> — sent, on its way, out of their hands —
+         and that moment happens at the speed of the animation, never at the
+         speed of the network. Usually the letter really is delivered in that
+         instant. But sometimes there is no signal, or the connection fails
+         halfway, and the letter is genuinely still waiting to go.</p>
+
+      <p>There are two dishonest ways to handle that. One is to pretend it
+         went, and quietly fix it later. The other is to throw a technical
+         error into the middle of a nine-year-old's desk — a red banner about a
+         failed request, which tells them nothing they can act on and makes the
+         desk feel broken.</p>
+
+      <p>The bee is the honest third option. When a letter cannot complete its
+         journey immediately, the bee is visibly still carrying it. The state
+         is unresolved, and it <em>looks</em> unresolved, in language the desk
+         already speaks: a courier who has not come back yet. When the
+         connection returns, the bee finishes the trip.</p>
+
+      <p>Nothing is lost and nothing is faked, and the child never has to learn
+         a piece of network vocabulary to understand what is going on.</p>
+
+      <h2>Local first, because losing a letter is unforgivable</h2>
+
+      <p>Underneath the desk, the rule that shapes most of the engineering is
+         simple: the critical failure case is losing a letter someone wrote.</p>
+
+      <p>So every stroke is saved locally, on the device, as it is drawn —
+         before any network is involved, and again whenever the child turns a
+         page, closes the app or puts the iPad down. Handwritten work is never
+         deleted or overwritten until the server has confirmed it is safely
+         stored. A letter written on a plane, in a car, or in a house with no
+         signal is a letter that exists.</p>
+
+      <p>This is also why a network problem is not allowed to change what the
+         desk looks like. Being offline is an ordinary condition, not an error
+         state. The desk stays a desk; the mail simply goes when it can.</p>
+
+      <h2>Skeuomorphism with a job to do</h2>
+
+      <p>The word for drawing software to look like physical objects is
+         skeuomorphism, and it has a reputation for being decorative — leather
+         stitching on a calendar, a bookshelf that holds no books.</p>
+
+      <p>That is not the goal here. The goal is not to make software look
+         old-fashioned.</p>
+
+      <blockquote>The goal is to make software behave like things a child
+         already understands.</blockquote>
+
+      <p>Every object on the Postmello desk earns its place by doing the job it
+         appears to do. The drawer opens and your letters are in it. The stamp
+         goes on the envelope. The flag goes up when there is mail. Nothing is
+         a picture of a thing that does something else.</p>
+
+      <p>Get that right, and there is very little left to teach.</p>
+
+      <p class="post-end">Postmello is coming first to iPad.
+         <a href="../why-i-built-postmello/">Read why it was built →</a></p>
+    </article>
+  </main>
+
+  <footer>
+    <p class="signoff">
+      <span class="signoff-name">Postmello</span>
+      <span class="signoff-line">Letters at your own pace.</span>
+    </p>
+    <nav>
+      <a href="../../support.html">Help</a>
+      <span class="dot" aria-hidden="true">·</span>
+      <a href="../../privacy.html">Privacy Policy</a>
+      <span class="dot" aria-hidden="true">·</span>
+      <a href="../../terms.html">Terms</a>
+    </nav>
+    <span class="fine">© 2026 Postmello</span>
+  </footer>
+</body>
+</html>

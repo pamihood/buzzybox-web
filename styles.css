@@ -160,7 +160,8 @@ a:hover { text-decoration: underline; }
   color: var(--ink);
   letter-spacing: -0.01em;
 }
-.site-head nav { margin-left: auto; display: flex; gap: 20px; }
+.site-head nav { margin-left: auto; display: flex; align-items: center; gap: 12px; }
+.site-head .dot { color: var(--ink-faint); }
 .site-head nav a {
   color: var(--ink-soft);
   font-weight: 500;
@@ -573,6 +574,78 @@ main > .feature:last-child { padding-bottom: var(--s-5); }
   border-radius: var(--radius-media);
 }
 
+/* ---------- The editorial interlude ---------- */
+/* Two ideas, one section, sitting between the calm section and the
+   collections. Compact on purpose — this is an interlude, not a third pillar,
+   so it runs at roughly three-quarters of the page's section rhythm and its
+   headings are a size below every other h2 on the page.
+
+   Editorial, not promotional: no cards, no shadows, no illustrations, no
+   buttons. One hairline between the columns is the entire apparatus. */
+.editorial-section { padding-block: calc(var(--space-section) * 0.72); }
+.editorial {
+  max-width: var(--maxw-page);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(40px, 6vw, 96px);
+}
+.editorial-col + .editorial-col {
+  border-left: 1px solid var(--line);
+  padding-left: clamp(40px, 6vw, 96px);
+  /* The gap already separates them; the rule needs the same space on both
+     sides of itself or it reads as attached to the second column. */
+  margin-left: calc(-1 * clamp(40px, 6vw, 96px) / 2);
+}
+/* Eyebrows are dark, not decorative grey. They label the two ideas, and a
+   label nobody can read is just texture. */
+.eyebrow {
+  margin: 0 0 var(--s-3);
+  font-family: var(--font-apparatus);
+  font-size: var(--fs-micro);
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--ink-mid);
+}
+.editorial h2 {
+  margin: 0 0 var(--s-3);
+  font-size: clamp(1.7rem, 2.6vw, 2.38rem);   /* 27 → 38px */
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.028em;
+  color: var(--ink);
+  text-wrap: balance;
+}
+.editorial p:not(.eyebrow) {
+  margin: 0 0 var(--s-4);
+  max-width: 46ch;
+  font-size: var(--fs-lede);
+  line-height: 1.62;
+  color: var(--ink-soft);
+}
+.editorial-link {
+  font-size: 1.06rem;
+  font-weight: 600;
+  color: var(--red);
+}
+.editorial-link:hover { text-decoration: underline; }
+@media (max-width: 760px) {
+  .editorial {
+    grid-template-columns: 1fr;
+    gap: var(--s-5);
+    max-width: var(--maxw-read);
+  }
+  /* Stacked, the vertical rule becomes a horizontal one between the two. */
+  .editorial-col + .editorial-col {
+    border-left: 0;
+    border-top: 1px solid var(--line);
+    padding-left: 0;
+    padding-top: var(--s-5);
+    margin-left: 0;
+  }
+}
+
 /* ---------- The stationery spread ---------- */
 /* Six desks say where you sit; this says what you can make there, which is the
    half of a collection the desk shots cannot show. It sits INSIDE the
@@ -790,6 +863,100 @@ main > .feature:last-child { padding-bottom: var(--s-5); }
   }
   .plans-more, .reassurance { max-width: 420px; }
 }
+
+/* ---------- Blog ---------- */
+/* Articles sit on the paper itself rather than in the white card the legal
+   pages use: those are documents to be consulted, these are meant to be read,
+   and a 680px measure on the open page is the difference. Same palette, same
+   faces, same grain — the blog is the site in long form, not a second site. */
+/* --maxw, not a bespoke 680: with the gutter this puts the text edge exactly
+   under the wordmark in the header, which a 680px box missed by 20px. */
+.post, .blog-index {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: clamp(24px, 4vw, 48px) var(--gutter) var(--s-6);
+}
+.post h1, .blog-index h1 {
+  margin: var(--s-3) 0 var(--s-3);
+  font-size: clamp(2rem, 3.2vw, 2.85rem);
+  font-weight: 700;
+  line-height: 1.12;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+  text-wrap: balance;
+}
+.post-meta {
+  margin: 0 0 var(--s-5);
+  font-size: var(--fs-small);
+  color: var(--ink-soft);
+}
+.post p, .blog-index > p {
+  font-size: 1.19rem;
+  line-height: 1.72;
+  color: var(--ink-soft);
+  margin: 0 0 var(--s-3);
+}
+.post h2 {
+  margin: var(--s-5) 0 var(--s-3);
+  font-size: clamp(1.35rem, 1.9vw, 1.6rem);
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+.post strong { color: var(--ink); font-weight: 600; }
+/* The one pull-quote device: a hairline and a size, no italics and no quote
+   marks — the same reasoning that took the italics off the footer tagline. */
+.post blockquote {
+  margin: var(--s-5) 0;
+  padding-left: var(--s-4);
+  border-left: 2px solid var(--line);
+  font-size: 1.32rem;
+  line-height: 1.45;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+.post ul { margin: 0 0 var(--s-3); padding-left: 1.15rem; }
+.post li {
+  font-size: 1.19rem;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  margin-bottom: var(--s-2);
+}
+.post-end {
+  margin-top: var(--s-6);
+  padding-top: var(--s-4);
+  border-top: 1px solid var(--line);
+  font-size: var(--fs-small);
+  color: var(--ink-soft);
+}
+
+/* The index. Entries, not cards: a title, a sentence and a byline, separated
+   by the same hairline the rest of the site uses for structure. */
+.blog-intro { margin-bottom: var(--s-5) !important; }
+.post-list { list-style: none; margin: 0; padding: 0; }
+.post-list li {
+  padding: var(--s-5) 0;
+  border-top: 1px solid var(--line);
+}
+.post-list li:last-child { border-bottom: 1px solid var(--line); }
+.post-list h2 {
+  margin: 0 0 var(--s-2);
+  font-size: clamp(1.45rem, 2.2vw, 1.85rem);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+}
+.post-list h2 a { color: var(--ink); }
+.post-list h2 a:hover { color: var(--red); text-decoration: none; }
+.post-list p {
+  margin: 0 0 var(--s-2);
+  font-size: var(--fs-lede);
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+.post-list .post-meta { margin: 0; }
 
 /* ---------- Cards / doc pages ---------- */
 .card,

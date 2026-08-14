@@ -8,24 +8,38 @@
  */
 
 :root {
-  --ink: #2a2118;
-  /* Midpoint of --ink and --ink-soft. The hero subhead sat on --ink-soft and
-     read as a detached caption rather than part of the headline group; full
-     --ink makes it compete with the h1. */
-  --ink-mid: #4a3f31;
-  --ink-soft: #6b5d4b;
-  --ink-faint: #9b8f7e;
-  --paper: #fbf8f3;
-  --card: #ffffff;
-  --line: rgba(42, 33, 24, 0.10);
+  /* ---- Ink ----
+     Four steps, and the rule that governs them: **use whitespace to make this
+     page quiet, never faint text.** Secondary copy used to sit at --ink-soft
+     on a warm ground and looked elegant at reading distance while being hard
+     to skim on a laptop, which is how a pricing section ended up invisible.
+     Everything a visitor needs to understand is now --ink or --ink-soft;
+     --ink-faint is for material nobody has to read. */
+  --ink: #271f19;        /* headlines, plan names, anything primary */
+  --ink-mid: #4a4038;    /* ledes and the hero sentence — one step off black */
+  --ink-soft: #65584d;   /* normal body, notes, nav links */
+  --ink-faint: #9c8f82;  /* TERTIARY ONLY: copyright, separators */
+
+  /* ---- Paper ----
+     Three surfaces for the whole site, not a colour per section: the canvas,
+     a barely-different second sheet, and one warm card. The accent colour IS
+     the paper — the desks, stamps, stickers and bee bring every other colour
+     on the page, and a standard web accent would only compete with them. */
+  --paper: #faf7f2;      /* writing paper: the canvas */
+  --paper-alt: #f7f2ea;  /* a second sheet — a tonal hair, not a band */
+  --paper-card: #f0e7dd; /* warm card: the one emphasised block */
+  --card: #fdfbf8;       /* outlined blocks, and the doc pages */
+  --line: #ded5cb;
+  --line-card: #ddd3c9;
   --red: #c8402f;
   --honey: #e9a227;
   --sky: #8fc3ee;
 
-  /* A second ground, one step warmer and darker than --paper. Alternating
-     bands is what separates the three feature sections without drawing a box
-     around each one — cards would have made them read as a comparison table. */
-  --paper-deep: #f4ece0;
+  /* Every surface carries the same seamless grain tile at 128px (the PNG is
+     256px, so it lands 1:1 on a 2x screen). ~3.5% mean alpha: enough that the
+     page reads as paper on a second look, not enough to touch legibility. */
+  --grain: url("assets/paper-grain.png");
+  --grain-size: 128px;
 
   /* ---- Faces ----
      Two roles, not one. --font-voice is the app's own rounded face and carries
@@ -46,13 +60,14 @@
      there is width for it. Both ends are pinned deliberately: the low end is
      the phone reading size and the high end is the desktop one, so a clamp
      that only sets a maximum ends up phone-sized on a phone by accident. */
-  --fs-display: clamp(2.5rem, 5.2vw, 4.4rem);   /* 40 → 70px */
-  --fs-section: clamp(2rem, 3.6vw, 3.3rem);     /* 32 → 53px */
-  --fs-hero:    clamp(1.12rem, 1.6vw, 1.4rem);  /* 18 → 22px */
-  --fs-lede:    clamp(1.06rem, 1.5vw, 1.24rem); /* 17 → 20px */
-  --fs-body:    1rem;
-  --fs-small:   0.92rem;
-  --fs-micro:   0.84rem;
+  --fs-display: clamp(2.5rem, 5.4vw, 4.6rem);   /* 40 → 74px */
+  --fs-section: clamp(2rem, 3.7vw, 3.4rem);     /* 32 → 54px */
+  --fs-sub:     clamp(1.5rem, 2.2vw, 1.85rem);  /* 24 → 30px, subheadings */
+  --fs-hero:    clamp(1.15rem, 1.55vw, 1.36rem);/* 18 → 22px */
+  --fs-lede:    clamp(1.1rem, 1.4vw, 1.2rem);   /* 18 → 19px */
+  --fs-body:    1.06rem;                        /* 17px */
+  --fs-small:   1rem;                           /* 16px */
+  --fs-micro:   0.85rem;                        /* 14px, eyebrows only */
 
   /* Space. Doubling-ish; --space-section is the page's vertical heartbeat and
      every band uses it, so the rhythm is set in one place. It runs to ~148px
@@ -88,12 +103,30 @@ html {
 
 body {
   margin: 0;
+  position: relative;
   font-family: var(--font-voice);
   color: var(--ink);
-  line-height: 1.65;
-  background: var(--paper);
+  line-height: 1.6;
+  font-size: var(--fs-body);
+  background-color: var(--paper);
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
+}
+/* The grain goes OVER the whole document rather than under it, and that is the
+   difference between "the background has a texture" and "the site is printed
+   on paper". It also fixes something a background-only grain broke: the hero
+   JPEG has the device flattened onto a flat sheet of --paper, so against a
+   textured page its surround appeared as a bare rectangle. Over the top,
+   everything — page, photographs, tinted blocks — takes the same tooth.
+   Absolute, not fixed: paper does not slide under the words as you scroll. */
+body::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background-image: var(--grain);
+  background-size: var(--grain-size);
 }
 
 a { color: var(--red); text-decoration: none; }
@@ -210,10 +243,16 @@ a:hover { text-decoration: underline; }
   max-width: var(--maxw-page);
   margin: 0 auto;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 0.8fr);
+  /* Near enough to half and half — the words get 45% and the picture the
+     rest. This is the philosophical middle of the product and the section it
+     sits in can afford the asymmetry the letter-making row cannot. */
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   align-items: center;
   gap: clamp(24px, 5vw, 72px);
 }
+/* And a little more air than its neighbours, for the same reason. */
+#quiet { padding-block: calc(var(--space-section) * 1.15); }
+.quiet-copy .lede { font-size: var(--fs-hero); }
 .quiet-copy { text-align: left; }
 /* Same specificity as `.feature .lede` loses to it on source order, and the
    sentence sat indented from its own heading by the auto margins. */
@@ -221,7 +260,7 @@ a:hover { text-decoration: underline; }
 .quiet-shot {
   position: relative;
   margin: 0;
-  max-width: 480px;
+  max-width: 520px;
   justify-self: center;
 }
 .quiet-shot > img:not(.bee):first-child {
@@ -311,13 +350,15 @@ a:hover { text-decoration: underline; }
 /* Captions carry the sequence, so they are labels rather than footnotes: full
    --ink, 600, and tightened tracking at size. At 0.95rem/--ink-mid they read as
    image credits and the row lost its "paper, writing, stamp" reading. */
+/* Labels, not captions: at 16px they were image credits under three big
+   pictures, and this row IS the section's copy. */
 .steps figcaption {
-  margin-top: 12px;
+  margin-top: 14px;
   text-align: center;
   color: var(--ink);
-  font-size: clamp(1.02rem, 1.5vw, 1.15rem);
+  font-size: clamp(1.2rem, 1.5vw, 1.32rem);
   font-weight: 600;
-  letter-spacing: -0.015em;
+  letter-spacing: -0.018em;
 }
 
 /* ---------- Feature bands ---------- */
@@ -337,8 +378,14 @@ a:hover { text-decoration: underline; }
    air, so the full section padding underneath it opened a hole big enough to
    read as a missing block. */
 main > .feature:last-child { padding-bottom: var(--s-5); }
+/* A different sheet of paper, not a coloured band. --paper-alt is three units
+   off the canvas — at the old --paper-deep these read as two full-width
+   rectangles of another colour, which is the one thing the page's own
+   background is not allowed to do. The hairline at each edge is what makes the
+   change legible: a paper edge rather than a block. */
 .feature--band {
-  background: var(--paper-deep);
+  background-color: var(--paper-alt);
+  border-block: 1px solid var(--line);
 }
 .feature-head {
   max-width: var(--maxw-wide);
@@ -462,21 +509,27 @@ main > .feature:last-child { padding-bottom: var(--s-5); }
   flex-direction: column;
   gap: var(--s-2);
 }
+/* No border. These are the most colourful things on the site and they carry
+   their own edges — a hairline round each one turned six places into six
+   cards. The radius stays so they read as objects rather than as bleeds. */
 .collections img {
   width: 100%;
   height: auto;
   display: block;
   border-radius: var(--radius-media);
-  border: 1px solid var(--line);
 }
 /* Plate names, set like the brass nameplates they are. */
+/* Plate names, set like the brass nameplates they are — and one of the two
+   places the monospace is allowed, because a collection name is taxonomy. Up
+   from 13px: these name the things the section is selling. */
 .collections figcaption {
   text-align: center;
   font-family: var(--font-apparatus);
-  font-size: var(--fs-micro);
-  letter-spacing: 0.09em;
+  font-size: clamp(0.95rem, 1.1vw, 1.06rem);
+  font-weight: 500;
+  letter-spacing: 0.085em;
   text-transform: uppercase;
-  color: var(--ink-soft);
+  color: var(--ink-mid);
 }
 
 /* On a phone the same grid would make each world a ~150px card, which is the
@@ -534,12 +587,14 @@ main > .feature:last-child { padding-bottom: var(--s-5); }
    Percentage geometry inside an aspect-ratio box, so the whole composition
    scales as one object: at 1200px or 780px every overlap lands identically.
    The angles are fixed values — this is a composition, not a shuffle. */
+/* A subheading, deliberately a third the size of the section h2 above it: the
+   spread is a flourish inside the collections section, not another argument. */
 .stationery-head {
   max-width: var(--maxw-page);
   margin: var(--s-6) auto var(--s-5);
   text-align: center;
-  font-size: clamp(1.3rem, 2vw, 1.7rem);
-  font-weight: 700;
+  font-size: var(--fs-sub);
+  font-weight: 600;
   letter-spacing: -0.025em;
   color: var(--ink);
 }
@@ -652,18 +707,30 @@ main > .feature:last-child { padding-bottom: var(--s-5); }
   gap: var(--s-3);
 }
 .plans--add { grid-template-columns: repeat(2, 1fr); }
+/* The two optional blocks are OUTLINED on near-white stock; the free one is
+   FILLED on the warm card. Same paper family, different weight of sheet — the
+   one you get is the substantial one, and the two you may add sit lighter. All
+   three keep the page's typography exactly; nothing here gets a plan colour, a
+   pill, a tick or a button. */
 .plan {
   text-align: left;
-  background: var(--paper-deep);
+  background-color: var(--card);
+  border: 1px solid var(--line-card);
   border-radius: var(--radius-media);
   padding: var(--s-4) var(--s-4) calc(var(--s-4) - 4px);
 }
-/* The free block carries the proposition, so it gets the full width and one
-   size more on its headline. */
-.plan--included { padding: var(--s-5) var(--s-4); }
+.plan--included {
+  background-color: var(--paper-card);
+  border-color: transparent;
+  padding: var(--s-5) var(--s-4);
+}
+/* Plan names are taxonomy, so they keep the monospace — the page's small
+   accent vocabulary, used for collection names and plan names and nothing
+   else. 14px semibold: an eyebrow that can still be read. */
 .plans dt {
   font-family: var(--font-apparatus);
-  font-size: var(--fs-small);
+  font-size: var(--fs-micro);
+  font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--ink-mid);
@@ -684,9 +751,9 @@ main > .feature:last-child { padding-bottom: var(--s-5); }
 }
 .plan--included dd strong { font-size: clamp(1.4rem, 2.2vw, 1.85rem); }
 .plans dd span {
-  font-size: var(--fs-small);
+  font-size: var(--fs-body);
   line-height: 1.5;
-  color: var(--ink-mid);
+  color: var(--ink-soft);
 }
 /* The hinge. Small and centred between the free block and the pair, in the
    apparatus face so it reads as a label on the group rather than as a fourth
@@ -695,7 +762,8 @@ main > .feature:last-child { padding-bottom: var(--s-5); }
   margin: var(--s-4) auto var(--s-3);
   text-align: center;
   font-family: var(--font-apparatus);
-  font-size: var(--fs-small);
+  font-size: var(--fs-micro);
+  font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--ink-soft);
@@ -707,8 +775,8 @@ main > .feature:last-child { padding-bottom: var(--s-5); }
 .reassurance {
   max-width: 880px;
   margin: var(--s-5) auto 0;
-  font-size: clamp(1rem, 1.3vw, 1.08rem);
-  font-weight: 600;
+  font-size: clamp(1.06rem, 1.2vw, 1.12rem);
+  font-weight: 500;
   line-height: 1.5;
   color: var(--ink);
   text-align: center;
@@ -761,9 +829,9 @@ footer {
   max-width: var(--maxw);
   margin: 0 auto;
 }
-footer a { color: var(--ink-soft); font-weight: 500; margin: 0 8px; }
+footer a { color: var(--ink-soft); font-weight: 500; font-size: 1rem; margin: 0 8px; }
 footer .dot { color: var(--ink-faint); }
-footer .fine { display: block; margin-top: 10px; font-size: 0.84rem; }
+footer .fine { display: block; margin-top: 10px; font-size: 0.875rem; font-weight: 400; color: var(--ink-faint); }
 
 /* The one sign-off on the page, and it happens once. The page used to end
    three times over — a bolded claim under the plans, a gap, a centred
@@ -782,14 +850,17 @@ footer .signoff {
 }
 footer .signoff-name {
   font-weight: 700;
-  font-size: 1.08rem;
-  letter-spacing: -0.01em;
+  font-size: 1.19rem;
+  letter-spacing: -0.012em;
   color: var(--ink);
 }
+/* Not italic. Italics made the tagline read as a quotation or a decorative
+   aside; upright, at nearly body size, it reads as brand copy — which is what
+   it is. */
 footer .signoff-line {
-  font-style: italic;
-  font-size: 1.02rem;
-  color: var(--ink-soft);
+  font-size: 1.1rem;
+  font-weight: 450;
+  color: var(--ink-mid);
 }
 
 @media (max-width: 520px) {

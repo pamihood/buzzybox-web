@@ -116,32 +116,23 @@
            its own desk, paper, envelopes and stamps.</p>
       </div>
 
-      <!-- One desk at a time, not the old 2x2. Four desks at 450px each showed
-           the layout and hid the craft; the craft is the reason anyone picks
-           one. Native scroll-snap does the work, so it swipes on touch with no
-           JS at all — the script only adds dots and arrows on top. -->
-      <div class="carousel">
-        <button class="car-arrow car-prev" type="button" aria-label="Previous desk">&#8249;</button>
-        <ul class="car-track">
-          <li>
-            <img src="assets/desk-honey_cottage.jpg" alt="The Honey Cottage desk — warm honey wood with a cream arched mailbox and brass flag" width="920" height="639" loading="lazy" />
-            <span>Honey Cottage</span>
-          </li>
-          <li>
-            <img src="assets/desk-storybook.jpg" alt="The Storybook desk — deep wood with a slate-blue mailbox, red flag and floral writing paper" width="920" height="639" loading="lazy" />
-            <span>Storybook</span>
-          </li>
-          <li>
-            <img src="assets/desk-pale_oak_studio.jpg" alt="The Pale Oak Studio desk — pale oak with a deep blue mailbox" width="920" height="639" loading="lazy" />
-            <span>Pale Oak Studio</span>
-          </li>
-          <li>
-            <img src="assets/desk-mint_modern.jpg" alt="The Mint Modern desk — pale maple with a mint mailbox and coral flag" width="920" height="639" loading="lazy" />
-            <span>Mint Modern</span>
-          </li>
-        </ul>
-        <button class="car-arrow car-next" type="button" aria-label="Next desk">&#8250;</button>
-        <div class="car-dots" role="tablist" aria-label="Choose a desk"></div>
+      <!-- Three at once, not a carousel. A carousel showed one desk and hid
+           the rest behind a swipe, which is the opposite of what this section
+           is for — and the page wanted colour (Patrick, 2026-08-13). Picked for
+           spread rather than order: warm honey, dark walnut, pale mint. -->
+      <div class="worlds">
+        <figure>
+          <img src="assets/desk-honey_cottage.jpg" alt="The Honey Cottage desk — warm honey wood with a cream arched mailbox and brass flag" width="920" height="639" loading="lazy" />
+          <figcaption>Honey Cottage</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/desk-storybook.jpg" alt="The Storybook desk — deep wood with a slate-blue mailbox, red flag and floral writing paper" width="920" height="639" loading="lazy" />
+          <figcaption>Storybook</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/desk-mint_modern.jpg" alt="The Mint Modern desk — pale maple with a mint mailbox and coral flag" width="920" height="639" loading="lazy" />
+          <figcaption>Mint Modern</figcaption>
+        </figure>
       </div>
     </section>
 
@@ -191,69 +182,5 @@
     <span class="fine">© 2026 Postmello · For letter-writers everywhere.</span>
   </footer>
 
-  <!-- The carousel swipes and snaps with no JS at all; this only adds the dots
-       and arrows, and only once it knows it can. Everything it creates is
-       created here rather than in the markup, so a reader without JS gets a
-       plain scrollable strip instead of dead controls. -->
-  <script>
-    (function () {
-      var car = document.querySelector('.carousel');
-      if (!car) return;
-      var track = car.querySelector('.car-track');
-      var slides = Array.prototype.slice.call(track.children);
-      var dots = car.querySelector('.car-dots');
-      var prev = car.querySelector('.car-prev');
-      var next = car.querySelector('.car-next');
-      if (!track || slides.length < 2) return;
-
-      var smooth = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-      slides.forEach(function (slide, i) {
-        var b = document.createElement('button');
-        b.type = 'button';
-        b.setAttribute('role', 'tab');
-        b.setAttribute('aria-label', (slide.querySelector('span') || {}).textContent || 'Desk ' + (i + 1));
-        b.addEventListener('click', function () { go(i); });
-        dots.appendChild(b);
-      });
-
-      function index() {
-        // Nearest slide to the track's centre — more robust than dividing
-        // scrollLeft by a width, which drifts once a gap is in play.
-        var mid = track.scrollLeft + track.clientWidth / 2;
-        var best = 0, bestD = Infinity;
-        slides.forEach(function (s, i) {
-          var d = Math.abs(s.offsetLeft + s.offsetWidth / 2 - mid);
-          if (d < bestD) { bestD = d; best = i; }
-        });
-        return best;
-      }
-
-      function go(i) {
-        i = Math.max(0, Math.min(slides.length - 1, i));
-        track.scrollTo({ left: slides[i].offsetLeft, behavior: smooth ? 'smooth' : 'auto' });
-      }
-
-      function sync() {
-        var i = index();
-        Array.prototype.forEach.call(dots.children, function (d, n) {
-          d.setAttribute('aria-selected', n === i ? 'true' : 'false');
-        });
-        prev.disabled = i === 0;
-        next.disabled = i === slides.length - 1;
-      }
-
-      prev.addEventListener('click', function () { go(index() - 1); });
-      next.addEventListener('click', function () { go(index() + 1); });
-
-      var raf;
-      track.addEventListener('scroll', function () {
-        cancelAnimationFrame(raf);
-        raf = requestAnimationFrame(sync);
-      }, { passive: true });
-      window.addEventListener('resize', sync);
-      sync();
-    })();
-  </script>
 </body>
 </html>

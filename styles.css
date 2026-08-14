@@ -399,41 +399,28 @@ a:hover { text-decoration: underline; }
   text-underline-offset: 2px;
 }
 
-/* ---------- Desk carousel ---------- */
-.carousel {
-  position: relative;
+/* ---------- The worlds ---------- */
+/* Three desks side by side. This was a carousel, which showed one and hid three
+   behind a swipe — wrong for the one section whose whole job is to say "there
+   are lots of these", and it cost the page the colour those desks carry.
+   auto-fit folds the row to two and then one on its own. */
+.worlds {
   max-width: var(--maxw-wide);
   margin: 0 auto;
-}
-.car-track {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: var(--s-3);
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  scrollbar-width: none;
-  -webkit-overflow-scrolling: touch;
 }
-.car-track::-webkit-scrollbar { display: none; }
-.car-track > li {
-  flex: 0 0 100%;
-  scroll-snap-align: center;
-  margin: 0;
-}
-.car-track img {
+.worlds figure { margin: 0; }
+.worlds img {
   width: 100%;
   height: auto;
   display: block;
   border-radius: var(--radius-media);
   border: 1px solid var(--line);
 }
-/* Plate names, set like the brass nameplate they are: apparatus face, small,
-   tracked, uppercase. In the rounded face they read as captions; here they
-   read as part of the object. */
-.car-track span {
-  display: block;
+/* Plate names, set like the brass nameplates they are. */
+.worlds figcaption {
   margin-top: var(--s-3);
   text-align: center;
   font-family: var(--font-apparatus);
@@ -441,56 +428,6 @@ a:hover { text-decoration: underline; }
   letter-spacing: 0.09em;
   text-transform: uppercase;
   color: var(--ink-soft);
-}
-.car-arrow {
-  position: absolute;
-  top: calc(50% - 22px);
-  transform: translateY(-50%);
-  z-index: 2;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  border: 1px solid var(--line);
-  background: var(--card);
-  color: var(--ink);
-  font-size: 1.5rem;
-  line-height: 1;
-  cursor: pointer;
-  display: grid;
-  place-items: center;
-  box-shadow: 0 2px 10px rgba(42, 33, 24, 0.10);
-}
-.car-arrow:hover { background: var(--paper); }
-.car-arrow:disabled { opacity: 0.3; cursor: default; }
-.car-prev { left: -12px; }
-.car-next { right: -12px; }
-.car-dots {
-  display: flex;
-  justify-content: center;
-  gap: var(--s-2);
-  margin-top: var(--s-3);
-}
-.car-dots button {
-  width: 8px; height: 8px;
-  padding: 0;
-  border: 0;
-  border-radius: 50%;
-  background: rgba(42, 33, 24, 0.18);
-  cursor: pointer;
-}
-.car-dots button[aria-selected="true"] { background: var(--red); }
-:where(.car-arrow, .car-dots button):focus-visible {
-  outline: 2px solid var(--red);
-  outline-offset: 3px;
-}
-/* Below the wide measure the arrows would sit on top of the art; touch swipes
-   the track anyway, so they go and the dots carry the affordance. */
-@media (max-width: 1024px) {
-  .car-arrow { display: none; }
-}
-@media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-  .car-track { scroll-behavior: auto; }
 }
 
 /* ---------- Cards / doc pages ---------- */

@@ -19,6 +19,21 @@ Plain HTML + one stylesheet (`styles.css`). No build step. Edit and push to `mai
 
 Artwork in `assets/` is exported from the app project (app icon, splash scene, paper/envelope textures).
 
+**The landing page has a spec.** Section order, the exact copy, the audience and
+platform wording rules, and the acceptance list live in the app repo at
+`docs/WEBSITE_SPEC.md` (applied 2026-08-14). The rules that are easiest to
+break by accident:
+
+- **Kids, family and friends, household, approved contacts.** Never "parents",
+  "grown-ups" or "guardians" as generic labels in marketing copy — approval is
+  stated in the passive ("Every contact is approved before letters can be
+  exchanged"). The legal pages are exempt; they say "parent or guardian"
+  because that is the wording the law uses.
+- **Postmello is not "an iPad app".** It is *coming first to iPad*.
+- **"World" in copy, "collection" in the catalog.** No prices, locks or buy
+  controls in the worlds grid; the money is explained in its own section.
+- **"One letter at a time." is the footer sign-off, not the H1.**
+
 ## TODO
 
 - **Re-shoot the three step panels before launch** (`assets/step-*.jpg`).
@@ -43,14 +58,13 @@ Artwork in `assets/` is exported from the app project (app icon, splash scene, p
   is 1.44 and the 13-inch is 4:3, and mixing them staggers the row — and trim
   the bottom 32px, which is where iOS draws the home indicator.
 
-- **Does the assurance coda survive?** (`.assurance`, bottom of `index.html`).
-  It was one run-on sentence; it is now two tiers — "Every contact is approved
-  by an admin." as the claim, "No feeds. No ads. No strangers." as a quieter
-  second line. That fixes how it *reads*, but not the open question: the coda
-  still partly duplicates the `.pitch` section above it, where "away from the
-  rush of messaging" already covers no-feeds. The approval line is definitely
-  staying — it is the one claim a parent needs that no image can carry, and
-  nothing else on the page makes it. The coda is the part to decide on.
+- **Two of the six worlds are the same two desks twice.** Only four desk styles
+  have ever been captured from the app, so Honey Cottage and Storybook repeat
+  in slots 5 and 6. At the old three-across size this passed; at ~580px each it
+  does not. Fix is capture time, not a file copy — the concept renders in the
+  app repo are not the app, and this site presents captures as captures. Recipe
+  and cast in the app repo's `docs/MARKETING_SHOT.md`; tracked in its
+  `docs/TODO.md`. Swapping the last two `<figure>`s is the whole integration.
 
 ## Custom domain
 

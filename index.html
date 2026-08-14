@@ -3,18 +3,18 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Postmello — One letter at a time</title>
-  <meta name="description" content="Postmello is a quiet iPad app for writing, sending, and rereading real letters with a small circle of approved contacts." />
+  <title>Postmello — A quiet place for letters</title>
+  <meta name="description" content="Postmello is a private desk where kids write and send letters to family and friends — without the rush of messaging. Coming first to iPad." />
   <link rel="icon" type="image/png" href="assets/favicon.png" />
   <link rel="apple-touch-icon" href="assets/app-icon.png" />
-  <meta property="og:title" content="Postmello" />
-  <meta property="og:description" content="One letter at a time." />
+  <meta property="og:title" content="Postmello — A quiet place for letters" />
+  <meta property="og:description" content="A private desk where kids write and send letters to family and friends — without the rush of messaging." />
   <meta property="og:image" content="assets/app-desk.jpg" />
   <meta property="og:type" content="website" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <header class="site-head">
+  <header class="site-head site-head--wide">
     <img src="assets/mark.png" alt="" />
     <span class="name">Postmello</span>
     <nav>
@@ -24,23 +24,29 @@
   </header>
 
   <main>
-    <!-- The product IS the pitch. The icon lives in the header at 34px; the
-         hero is the desk itself, which says "write by hand" and "send and
-         receive" in one image and needs no paragraph to explain it. -->
-    <section class="hero">
-      <div class="headline">
-        <h1>One letter at a time.</h1>
-        <img class="bee" src="assets/bee.png" alt="" width="440" height="439" />
-      </div>
-      <p class="tagline">A private desk for writing and sending letters to family and friends—without the rush of messaging.</p>
-      <span class="badge">Coming soon to iPad</span>
-    </section>
+    <!-- The desk IS the pitch, so it runs beside the words at nearly 60% of the
+         hero rather than below them as a full-width figure. Read in sequence,
+         the old page spent a whole screen on a headline and a mascot before the
+         product appeared; side by side, the visitor sees what it is before
+         reading a word.
 
-    <figure class="shot">
-      <img src="assets/app-desk.jpg"
-           alt="Postmello running on an iPad Air — a mailbox with mail waiting, a stack of paper and pen, and a row of named drawers"
-           width="1800" height="1389" />
-    </figure>
+         The bee stays, small, tucked at the device's lower corner — it belongs
+         to this world, and at 440px above the headline it was competing with
+         the product for the one thing the hero has to say. -->
+    <section class="hero">
+      <div class="hero-copy">
+        <h1>A quiet place for letters.</h1>
+        <p class="tagline">A private desk where kids write and send letters to
+           family and friends — without the rush of messaging.</p>
+        <span class="badge">Coming first to iPad.</span>
+      </div>
+      <figure class="hero-shot">
+        <img src="assets/app-desk.jpg"
+             alt="Postmello on an iPad — a desk with a mailbox holding mail, a stack of writing paper and a pen, and a row of drawers named for each contact"
+             width="1800" height="1389" fetchpriority="high" />
+        <img class="bee" src="assets/bee.png" alt="" width="440" height="439" />
+      </figure>
+    </section>
 
     <!-- Three moments, ordered as a ritual (paper, writing, stamp) so the row
          reads as a sequence rather than a gallery.
@@ -55,52 +61,48 @@
          aspect and the captions sit on one line; mixing the 13-inch (4:3) in
          here would leave one panel short and stagger the captions.
 
-         The 32px trimmed off the bottom is iOS's home indicator, which showed
-         as a black bar under the stamp tray. Only the send screen rendered it,
-         but ALL THREE are cut by the same amount — trimming just the one would
-         change its aspect and stagger the row it was meant to keep even. -->
-    <section class="steps">
-      <figure>
-        <img src="assets/step-paper.jpg" alt="A grid of letter papers to choose from — plain cream, a moonlit sky, a rainbow wash and a green-blue wash" width="760" height="518" />
-        <figcaption>Choose your paper.</figcaption>
-      </figure>
-      <figure>
-        <img src="assets/step-writing.jpg" alt="A letter being handwritten on moonlit paper with a sleepy moon in the corner" width="760" height="518" />
-        <figcaption>Write your letter.</figcaption>
-      </figure>
-      <figure>
-        <img src="assets/step-stamp.jpg" alt="A lavender envelope addressed to Iris with a star stamp on it, a tray of stamps below and the postbox waiting" width="760" height="518" />
-        <figcaption>Stamp it and send.</figcaption>
-      </figure>
+         "Make it yours." rather than "Write your letter.": the middle step is
+         not only handwriting. Paper, ink, stickers and the rest are what make
+         each letter an artifact, and the old label named just one of them. -->
+    <section class="feature" id="make">
+      <div class="feature-head">
+        <h2><span>Make a letter from scratch.</span></h2>
+        <p class="lede">Every letter starts with a blank page. Choose the paper,
+           make it yours, pick an envelope and stamp, then send it off.</p>
+      </div>
+      <div class="steps">
+        <figure>
+          <img src="assets/step-paper.jpg" alt="A grid of letter papers to choose from — plain cream, a moonlit sky, a rainbow wash and a green-blue wash" width="760" height="518" loading="lazy" />
+          <figcaption>Choose your paper.</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/step-writing.jpg" alt="A letter being handwritten on moonlit paper with a sleepy moon in the corner" width="760" height="518" loading="lazy" />
+          <figcaption>Make it yours.</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/step-stamp.jpg" alt="A lavender envelope addressed to Iris with a star stamp on it, a tray of stamps below and the postbox waiting" width="760" height="518" loading="lazy" />
+          <figcaption>Stamp it and send.</figcaption>
+        </figure>
+      </div>
     </section>
 
-    <!-- Three claims, deliberately on equal footing rather than one headline.
-         The old .pitch section here said "away from the rush of messaging",
-         which the hero tagline already says in almost those words — a second
-         centred text block that added a restatement instead of an argument.
+    <!-- One emotional idea, not an inventory. This section used to carry a
+         struck-through list — photos, video, GIFs, threads, typing dots, read
+         receipts — which defined the product by six absences and made the page
+         argue with messaging apps instead of describing itself. The single
+         secondary line below says the part worth saying, and the heading
+         carries the rest.
 
-         Order is by how much each one distinguishes us, not by how reassuring
-         it is. Quiet comes first because it is the only one a competitor
-         cannot simply add. Approval is last on purpose: it is the strongest
-         guarantee on the page but it is also table stakes, and opening on it
-         would make the page read as a safety product rather than a place to
-         write. -->
+         The admin-email claim went with it: mail arriving is an ambient flag on
+         the desk, and promising a notification email was the one sentence on
+         the page that contradicted the product it was selling. -->
     <section class="feature feature--band" id="quiet">
       <div class="feature-head">
-        <h2><span>Letters wait for you</span></h2>
-        <p class="lede">Nothing buzzes, nothing scrolls. An admin gets an email when
-           mail lands, so nobody has to keep checking.</p>
-        <!-- The strikethrough is the argument, not decoration: the list is of
-             things that are ABSENT, and struck words say that in one glance
-             where a sentence of "no… no… no…" has to be read. -->
-        <ul class="absences" aria-label="Not in Postmello">
-          <li>photos</li>
-          <li>video</li>
-          <li>GIFs</li>
-          <li>threads</li>
-          <li>typing dots</li>
-          <li>read receipts</li>
-        </ul>
+        <h2><span>Keep in touch, without keeping up.</span></h2>
+        <p class="lede">Nothing buzzes. Nothing scrolls. When a letter arrives,
+           the mailbox flag goes up, and it waits until you're ready.</p>
+        <p class="claim">No feed. No typing dots. No read receipts. No pressure
+           to answer now.</p>
       </div>
       <figure class="feature-shot">
         <img src="assets/step-writing.jpg"
@@ -109,61 +111,74 @@
       </figure>
     </section>
 
-    <section class="feature" id="desks">
+    <!-- The desire section. Two across at nearly half the content width each,
+         not three or six across: at 300px these read as product variants in a
+         grid, and at 580px each one reads as a place — which is the only thing
+         this section is for. No prices, no locks, no "new" flags; the business
+         model has its own quiet section further down.
+
+         "World" in the copy, never "collection". Collection is what we call it
+         in the catalog and the receipts.
+
+         THE LAST TWO ARE PLACEHOLDER. Only four desks have been captured from
+         the app, so Honey Cottage and Storybook repeat to hold the six slots.
+         Each collection ships its own desk, so the grid should end up Toadstool
+         Hollow, Driftwood Cove, Snug Hollow and the rest — captures, not the
+         concept renders. Tracked in posty's docs/TODO.md. Swapping the two
+         files and their captions is the whole job; the layout does not move. -->
+    <section class="feature" id="worlds">
       <div class="feature-head">
-        <h2><span>Pick a world to write from</span></h2>
-        <p class="lede">Each collection brings its own desk, paper, envelopes and
-           stamps — and spurs the imagination.</p>
+        <h2><span>Pick a world to write from.</span></h2>
+        <p class="lede">Every world is a place of its own — with its own desk,
+           mailbox, paper, envelopes, stamps and stickers.</p>
       </div>
 
-      <!-- Six at once, not a carousel. A carousel showed one desk and hid the
-           rest behind a swipe, which is the opposite of what this section is
-           for — and the page wanted colour (Patrick, 2026-08-13).
-
-           THE SECOND ROW IS PLACEHOLDER. Only four desks have been captured
-           from the app, so Honey Cottage and Storybook repeat to hold the six
-           slots. Each of the seven collections ships its own desk, so the row
-           should end up Toadstool Hollow (Fairy Glen), Driftwood Cove (Seaside
-           Post), Snug Hollow (Woodland Friends) and the rest — captures, not
-           the concept renders. Tracked in posty's docs/TODO.md. -->
-      <div class="worlds">
+      <div class="worlds" tabindex="0" role="group" aria-label="Postmello worlds">
         <figure>
+          <figcaption>Honey Cottage</figcaption>
           <img src="assets/desk-honey_cottage.jpg" alt="The Honey Cottage desk — warm honey wood with a cream arched mailbox and brass flag" width="920" height="639" loading="lazy" />
-          <figcaption>Honey Cottage</figcaption>
         </figure>
         <figure>
+          <figcaption>Storybook</figcaption>
           <img src="assets/desk-storybook.jpg" alt="The Storybook desk — deep wood with a slate-blue mailbox, red flag and floral writing paper" width="920" height="639" loading="lazy" />
-          <figcaption>Storybook</figcaption>
         </figure>
         <figure>
-          <img src="assets/desk-mint_modern.jpg" alt="The Mint Modern desk — pale maple with a mint mailbox and coral flag" width="920" height="639" loading="lazy" />
           <figcaption>Mint Modern</figcaption>
+          <img src="assets/desk-mint_modern.jpg" alt="The Mint Modern desk — pale maple with a mint mailbox and coral flag" width="920" height="639" loading="lazy" />
         </figure>
         <figure>
-          <img src="assets/desk-pale_oak_studio.jpg" alt="The Pale Oak Studio desk — pale oak with a deep blue mailbox" width="920" height="639" loading="lazy" />
           <figcaption>Pale Oak Studio</figcaption>
+          <img src="assets/desk-pale_oak_studio.jpg" alt="The Pale Oak Studio desk — pale oak with a deep blue mailbox" width="920" height="639" loading="lazy" />
         </figure>
         <figure>
-          <img src="assets/desk-honey_cottage.jpg" alt="" width="920" height="639" loading="lazy" />
           <figcaption>Honey Cottage</figcaption>
+          <img src="assets/desk-honey_cottage.jpg" alt="" width="920" height="639" loading="lazy" />
         </figure>
         <figure>
-          <img src="assets/desk-storybook.jpg" alt="" width="920" height="639" loading="lazy" />
           <figcaption>Storybook</figcaption>
+          <img src="assets/desk-storybook.jpg" alt="" width="920" height="639" loading="lazy" />
         </figure>
       </div>
     </section>
 
-    <section class="feature feature--band" id="approved">
+    <!-- Relationship first, boundary second. "Only people you approve" led with
+         the rule, which made a page about writing to your grandmother read as a
+         parental-control product. The people come first now; the approval line
+         follows in one neutral sentence and needs no more than that. -->
+    <section class="feature feature--band" id="contacts">
       <div class="feature-head">
-        <h2><span>Only people you approve</span></h2>
-        <p class="lede">An admin approves every contact. Desks in the same account can
-           write to each other.</p>
+        <h2><span>Across town, or across an ocean.</span></h2>
+        <p class="lede">Cousins, grandparents, summer-camp friends, the friend
+           who moved away, a class pen pal.</p>
+        <p class="claim">Every contact is approved before letters can be
+           exchanged.</p>
       </div>
       <!-- Five drawers, cut from five DIFFERENT desks, floated apart rather than
            shown as one cropped row. The row read as repetition (one desk
            photographed once); apart, each drawer is somebody, which is what the
-           section is about. Every one is a real capture. -->
+           section is about. Every one is a real capture, and they stay objects —
+           turning them into avatars and names on cards would be the contacts
+           screen every other app already has. -->
       <div class="circle" role="img"
            aria-label="Five desk drawers, each with a wooden nameplate — Iris, Grandma, Nana, Theo and Grandpa">
         <img src="assets/drawer-iris.png" alt="" width="328" height="236" loading="lazy" />
@@ -172,26 +187,35 @@
         <img src="assets/drawer-theo.png" alt="" width="328" height="236" loading="lazy" />
         <img src="assets/drawer-grandpa.png" alt="" width="332" height="236" loading="lazy" />
       </div>
-      <!-- Who those drawers turn out to be, in practice. Same apparatus face as
-           the absences above, unstruck: these are the ones that DO exist. -->
-      <ul class="uses" aria-label="Who people write to">
-        <li>cousins</li>
-        <li>grandparents</li>
-        <li>summer camp</li>
-        <li>the friend who moved away</li>
-        <li>a class pen pal</li>
-        <li>across an ocean</li>
-      </ul>
+    </section>
+
+    <!-- Where the money is explained, deliberately down here and deliberately
+         plain. It is reassurance, not a pricing page: no cards, no tiers, no
+         comparison table, and no per-world price — worlds are one-time
+         purchases, and putting a number on them up here would turn the section
+         above into a shop. -->
+    <section class="feature" id="household">
+      <div class="feature-head">
+        <h2><span>Start with one desk, free.</span></h2>
+        <p class="lede">Writing, sending and receiving letters is free, with
+           unlimited approved contacts. Postmello Family adds more desks to the
+           household with a one-time purchase. Additional worlds are optional
+           one-time purchases, yours to keep.</p>
+        <p class="claim">No ads. No subscription required to write letters.</p>
+      </div>
     </section>
 
   </main>
 
   <footer>
-    <!-- The assurance line ("Every contact is approved by an admin. No feeds.
-         No ads. No strangers.") lived here as fine print. It is now the third
-         pillar, in full, above the fold of the page's argument — repeating it
-         down here would be the same restatement the pitch section was removed
-         for. -->
+    <!-- "One letter at a time." was the H1 and had to explain the product from
+         a standing start, which it cannot — it is a sign-off, not a
+         description. Down here, after the page has done the explaining, it
+         reads as the line it is. -->
+    <p class="signoff">
+      <span class="signoff-name">Postmello</span>
+      <span class="signoff-line">One letter at a time.</span>
+    </p>
     <nav>
       <a href="support.html">Help</a>
       <a href="privacy.html">Privacy Policy</a>

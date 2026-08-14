@@ -43,27 +43,36 @@
      from, and nothing outside them should appear below. */
 
   /* Type. Ratio ~1.25, clamped so the top of the scale only arrives when
-     there is width for it. */
-  --fs-display: clamp(2.3rem, 7vw, 3.4rem);
-  --fs-section: clamp(1.95rem, 4.8vw, 2.9rem);
-  --fs-lede:    clamp(1.06rem, 2.1vw, 1.3rem);
+     there is width for it. Both ends are pinned deliberately: the low end is
+     the phone reading size and the high end is the desktop one, so a clamp
+     that only sets a maximum ends up phone-sized on a phone by accident. */
+  --fs-display: clamp(2.5rem, 5.2vw, 4.4rem);   /* 40 → 70px */
+  --fs-section: clamp(2rem, 3.6vw, 3.3rem);     /* 32 → 53px */
+  --fs-hero:    clamp(1.12rem, 1.6vw, 1.4rem);  /* 18 → 22px */
+  --fs-lede:    clamp(1.06rem, 1.5vw, 1.24rem); /* 17 → 20px */
   --fs-body:    1rem;
   --fs-small:   0.92rem;
   --fs-micro:   0.84rem;
 
   /* Space. Doubling-ish; --space-section is the page's vertical heartbeat and
-     every band uses it, so the rhythm is set in one place. */
+     every band uses it, so the rhythm is set in one place. It runs to ~148px
+     on a desktop: the sections are big pictures with a line of type over them,
+     and at the old 104px they crowded into a scroll of panels. */
   --s-1: 6px;
   --s-2: 12px;
   --s-3: 20px;
   --s-4: 32px;
   --s-5: 52px;
   --s-6: 84px;
-  --space-section: clamp(56px, 9vw, 104px);
+  --space-section: clamp(76px, 10vw, 148px);
 
-  /* Measure. Text stays near 65 characters; media gets the wide one. */
+  /* Measure. Prose stays near 65 characters; the hero and the worlds get the
+     page-wide one, which is what makes a world nearly half the content width
+     instead of a third of it. */
   --maxw: 720px;
   --maxw-wide: 940px;
+  --maxw-page: 1200px;
+  --maxw-read: 650px;
   --gutter: 22px;
 
   --radius: 18px;
@@ -101,6 +110,11 @@ a:hover { text-decoration: underline; }
   max-width: var(--maxw);
   margin: 0 auto;
 }
+/* The landing page is built on the 1200px measure, so its header has to be
+   too — at the 720px doc width the mark sat 200px inboard of the headline
+   beneath it, which reads as two pages stacked. The legal pages keep the
+   narrow one, where it lines up with the 720px card. */
+.site-head--wide { max-width: var(--maxw-page); }
 .site-head img {
   /* The mark is a cut-out mailbox, not a rounded app tile — it carries its own
      silhouette, so no border-radius, and it can run bigger than the 34px tile
@@ -122,70 +136,88 @@ a:hover { text-decoration: underline; }
 .site-head nav a:hover { color: var(--ink); text-decoration: none; }
 
 /* ---------- Hero ---------- */
+/* Two columns, and the product takes the larger one. The hero used to be a
+   centred headline with the mascot beside it, and the actual app appeared
+   below the fold as a separate figure — so the first screen of a page about a
+   writing desk showed everything except the desk. Words left, desk right, and
+   the visitor knows what this is before reading a line.
+   43/57 rather than half and half: the text column lands near 480px, which is
+   a comfortable measure for three short blocks, and every pixel it gives up
+   goes to the screenshot. */
 .hero {
-  text-align: center;
-  padding: 56px 22px 36px;
-  max-width: var(--maxw);
+  max-width: var(--maxw-page);
   margin: 0 auto;
+  /* Almost nothing below: the next section brings its own --space-section, and
+     stacking both left ~290px of empty paper under the device. */
+  padding: clamp(20px, 3vw, 48px) var(--gutter) clamp(8px, 1.6vw, 24px);
+  display: grid;
+  grid-template-columns: minmax(0, 43fr) minmax(0, 57fr);
+  align-items: center;
+  gap: clamp(28px, 4vw, 56px);
 }
-/* The bee sits BESIDE the headline, not above it: "One letter at a time."
-   is a warm line, and the mascot rides along with it rather than announcing it.
-   Above, it would become a logo and the line a subtitle; beside, it reads as
-   having flown up to the words.
-
-   ABSOLUTELY positioned, deliberately. As a flex sibling it was part of the
-   centred group, so the headline itself sat left of centre to make room — the
-   title has to stay optically centred and the bee has to hang off it. Taking
-   the bee out of flow does exactly that: `.headline` shrinks to the text and
-   centres, and the bee is anchored to its trailing edge. */
-.headline {
-  position: relative;
-  display: inline-block;
+/* One column below 900px, text first — which is already the source order, so
+   nothing has to be reordered and the reading order stays the visual one. */
+@media (max-width: 900px) {
+  .hero {
+    grid-template-columns: 1fr;
+    gap: clamp(24px, 5vw, 40px);
+    max-width: var(--maxw);
+  }
 }
-.headline .bee {
-  position: absolute;
-  left: 100%;
-  /* Anchored to the h1's own box, not the container's midpoint: the h1's 14px
-     bottom margin is inside .headline, so `top: 50%` centred the bee on a box
-     taller than the text and it landed mid-sentence, reading as punctuation.
-     Sitting it near the baseline instead reads as having flown up to the line.
-     Also held farther off the final word so it stops interrupting the read. */
-  bottom: 14px;
-  /* `bottom: 14px` (the h1's own bottom margin) lands the bee's box exactly on
-     the text baseline, and the PNG is trimmed to 1px of padding, so box bottom
-     IS ink bottom. The 4% is optical overshoot — a round body has to dip below
-     the baseline by a hair to read as sitting on it, same as an `o`. */
-  transform: translateY(4%);
-  width: clamp(42px, 6.2vw, 74px);
-  height: auto;
-  margin-left: clamp(14px, 2.4vw, 30px);
-}
-@media (max-width: 640px) {
-  /* Beside a wrapped headline the bee overhangs the viewport, and shrunk
-     further it reads as a stray glyph rather than a mascot. */
-  .headline .bee { display: none; }
-}
-
 .hero h1 {
   /* Balance beats a hard <br>: the headline keeps even lines at every width
      instead of stranding one word. */
   text-wrap: balance;
-  font-size: clamp(2.3rem, 7vw, 3.4rem);
-  margin: 0 0 14px;
+  font-size: var(--fs-display);
+  margin: 0 0 var(--s-3);
   color: var(--ink);
   letter-spacing: -0.03em;
-  line-height: 1.1;
+  line-height: 1.06;
 }
 .hero .tagline {
-  font-size: clamp(1.1rem, 2.5vw, 1.28rem);
+  font-size: var(--fs-hero);
   color: var(--ink-mid);
-  /* Wide enough that the line breaks late and the block reads as part of the
-     headline group. `balance` equalises whatever lines remain, so widening the
-     measure alone does nothing until the text can actually run longer. */
-  max-width: 64ch;
-  margin: 0 auto 26px;
+  max-width: var(--maxw-read);
+  margin: 0 0 var(--s-4);
   font-weight: 400;
-  text-wrap: balance;
+  line-height: 1.5;
+  text-wrap: pretty;
+}
+
+/* The screenshot, and the bee parked on it. The bee is a resident of this
+   world rather than a second illustration of the product, so it sits ON the
+   scene at a tenth of its width instead of standing beside the headline at
+   440px — where it read as the logo of a mascot company and outweighed the
+   only thing the hero has to establish.
+   The bezel fills its JPEG to within 1% on every side, so there is no margin
+   inside the image to park a bee in — anywhere fully "on" the shot covers the
+   app. It perches on the lower-right corner instead, overhanging the edge, out
+   over the page's own paper. Clear of the text column and of the mailbox. */
+.hero-shot {
+  position: relative;
+  margin: 0;
+}
+.hero-shot > img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+/* The device is Apple's own iPad Air 13" (M4) product bezel, composited into
+   the image itself rather than drawn in CSS. The bezel's screen hole is exactly
+   2732x2048 — the native resolution of the simulator capture — so the shot
+   lands 1:1 with no resampling. The surround is flattened onto --paper, so the
+   JPEG's edge is invisible against the page and no alpha channel ships. Which
+   also means NO border, radius or shadow here: the bezel already is the frame,
+   and its drop shadow is baked into Apple's asset. */
+.hero-shot .bee {
+  position: absolute;
+  right: -2%;
+  bottom: -5%;
+  /* 10% of the shot, floored at 40px — the floor only bites on a phone, where
+     a percentage of a 350px image would shrink the bee to a smudge. */
+  width: clamp(40px, 10%, 104px);
+  height: auto;
+  filter: drop-shadow(-2px 5px 8px rgba(42, 33, 24, 0.18));
 }
 .badge {
   display: inline-flex;
@@ -204,42 +236,23 @@ a:hover { text-decoration: underline; }
   letter-spacing: 0.05em;
 }
 
-/* ---------- Product shot ---------- */
-.shot {
-  margin: 0 auto;
-  padding: 0 var(--gutter);
-  max-width: var(--maxw-wide);
-}
-
-/* The device is now Apple's own iPad Air 13" (M4) product bezel, composited
-   into the image itself rather than drawn in CSS. The bezel's screen hole is
-   exactly 2732x2048 — the native resolution of the simulator capture — so the
-   screenshot lands 1:1 with no resampling.
-
-   The surround is flattened onto --paper, so the JPEG's edge is invisible
-   against the page and no alpha channel has to ship. Which also means NO
-   border, radius or shadow here: the bezel already is the frame, and its own
-   drop shadow is baked into Apple's asset. */
-.shot img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
 /* ---------- Steps ---------- */
 /* Bezel-free on purpose: the hero shot has already said "iPad", and repeating
    the frame three more times spends ~15% of each image on chrome the reader no
    longer needs. Matches .shot's 940px so the row's outer edges line up with the
    hero above it.
    auto-fit rather than a fixed 3 columns: at 300px a panel is still legible,
-   below that the row folds to two and then one on its own. */
+   below that the row folds to two and then one on its own.
+
+   Now a child of .feature, which owns the vertical rhythm and the gutter — the
+   row used to be its own top-level section and carried its own margins, which
+   is how the page ended up with two different section spacings. */
 .steps {
-  max-width: var(--maxw-wide);
-  margin: var(--s-6) auto var(--space-section);
-  padding: 0 var(--gutter);
+  max-width: var(--maxw-page);
+  margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--s-4);
 }
 .steps figure {
   margin: 0;
@@ -284,9 +297,13 @@ a:hover { text-decoration: underline; }
 }
 .feature-head {
   max-width: var(--maxw-wide);
-  margin: 0 auto var(--s-5);
+  margin: 0 auto var(--s-6);
   text-align: center;
 }
+/* The business-model section is words only, so its heading block IS the
+   section and a trailing 84px would open a gap to the footer that reads as a
+   missing image. */
+.feature-head:only-child { margin-bottom: 0; }
 /* Rules either side of the heading were tried and cut (Patrick, 2026-08-13:
    "the blue dividers are a strange choice and look weird"). The alternating
    band grounds already separate the sections, so the heading needs no device
@@ -300,11 +317,28 @@ a:hover { text-decoration: underline; }
 }
 .feature h2 span { text-wrap: balance; }
 .feature .lede {
-  max-width: 46ch;
+  /* Two limits, and the tighter one wins: 58ch keeps the measure readable at
+     small sizes, --maxw-read caps it at ~650px once the type is large enough
+     that 58 characters would run wider than that. */
+  max-width: min(58ch, var(--maxw-read));
   margin: 0 auto;
   font-size: var(--fs-lede);
   line-height: 1.55;
   color: var(--ink-mid);
+  text-wrap: pretty;
+}
+/* The one line in a section that is a flat claim rather than description —
+   "No feed. No typing dots…", "Every contact is approved…". Full --ink and
+   600 against the lede's --ink-mid: it is the sentence a reader should leave
+   the section with, and it earns that by weight rather than by being a badge,
+   a callout box or a list of struck-through words. */
+.feature .claim {
+  max-width: min(52ch, var(--maxw-read));
+  margin: var(--s-3) auto 0;
+  font-size: clamp(1rem, 1.3vw, 1.12rem);
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--ink);
   text-wrap: balance;
 }
 .feature-shot {
@@ -350,73 +384,46 @@ a:hover { text-decoration: underline; }
 .circle img:nth-child(4) { transform: rotate(2deg)    translateY(-5px); }
 .circle img:nth-child(5) { transform: rotate(-1.5deg) translateY(3px); }
 
-/* Who they turn out to be. Same face as the absences and deliberately NOT
-   struck — that list is what the app refuses, this is what it is for. */
-.uses {
-  list-style: none;
-  max-width: 62ch;
-  margin: var(--s-5) auto 0;
-  padding: 0;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: var(--s-2) var(--s-3);
-}
-.uses li {
-  font-family: var(--font-apparatus);
-  font-size: var(--fs-micro);
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
-}
-/* No "·" separator: as a ::before it survives the wrap and starts the second
-   line with what looks like a bullet. Space does the separating. */
+/* The struck-through `.absences` list (photos / video / GIFs / threads /
+   typing dots / read receipts) and the `.uses` list of relationships both
+   lived here. Both are gone, for the same reason: they defined the product by
+   enumeration, in the apparatus face, at the two moments the page most needed
+   to sound like a person. Their content survives as prose — one bold line in
+   the quiet section, one lede in the contacts section.
+
+   Nothing on this page animates, so the only motion to answer for is the
+   drawers' fixed tilts and the smooth scroll. */
 @media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
   .circle img { transform: none; }
 }
 
-/* The absences. Struck, because the strike IS the claim; a bulleted list of
-   "no photos / no video" says it twice. Set small and faint so it reads as a
-   footnote to the lede rather than a second headline. */
-.absences {
-  list-style: none;
-  margin: var(--s-4) 0 0;
-  padding: 0;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: var(--s-2) var(--s-3);
-}
-.absences li {
-  font-family: var(--font-apparatus);
-  font-size: var(--fs-micro);
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--ink-faint);
-  text-decoration: line-through;
-  text-decoration-thickness: 1.5px;
-  text-decoration-color: var(--red);
-  text-underline-offset: 2px;
-}
-
 /* ---------- The worlds ---------- */
-/* Three desks side by side. This was a carousel, which showed one and hid three
-   behind a swipe — wrong for the one section whose whole job is to say "there
-   are lots of these", and it cost the page the colour those desks carry.
-   auto-fit folds the row to two and then one on its own. */
+/* Two across, each nearly half the 1200px content measure — about 580px, or
+   roughly double what a three-across row gave them. This was a carousel first
+   (one visible, three hidden behind a swipe) and then a three-up row, and both
+   made the desks read as variants of one product. At 580px you can see the
+   mailbox, the plate, the paper on the desk: six places rather than six
+   thumbnails, which is the only reason this section exists.
+
+   Fixed 2 columns rather than auto-fit: with six items auto-fit can settle on
+   a count that strands an orphan on the last row. */
 .worlds {
-  max-width: var(--maxw-wide);
+  max-width: var(--maxw-page);
   margin: 0 auto;
   display: grid;
-  /* Fixed 3 columns, not auto-fit: with six items auto-fit can settle on a
-     count that leaves an orphan on the last row. Three then two then one, on
-     breakpoints, keeps every row full. */
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--s-4) var(--s-3);
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--s-5) var(--s-4);
 }
-@media (max-width: 760px)  { .worlds { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 460px)  { .worlds { grid-template-columns: 1fr; } }
-.worlds figure { margin: 0; }
+.worlds figure {
+  margin: 0;
+  /* The plate name reads before the picture, the way a place is labelled on a
+     map. figcaption is legal as the first child of a figure, so this needs no
+     ordering trick and the DOM order is the reading order. */
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+}
 .worlds img {
   width: 100%;
   height: auto;
@@ -426,13 +433,53 @@ a:hover { text-decoration: underline; }
 }
 /* Plate names, set like the brass nameplates they are. */
 .worlds figcaption {
-  margin-top: var(--s-3);
   text-align: center;
   font-family: var(--font-apparatus);
   font-size: var(--fs-micro);
   letter-spacing: 0.09em;
   text-transform: uppercase;
   color: var(--ink-soft);
+}
+
+/* On a phone the same grid would make each world a ~150px card, which is the
+   thumbnail problem the section was rebuilt to escape. So the grid becomes one
+   large world at a time on a scroll-snap rail, with the next one showing at
+   the edge so it is obvious there are more.
+
+   CSS scroll-snap, not a JS carousel: native momentum, no autoplay, no dots,
+   nothing to pause for reduced motion. The rail is full-bleed (negative
+   margins cancel the section gutter) so a world can reach the screen edge, and
+   scroll-padding keeps the snapped item off it. */
+@media (max-width: 760px) {
+  .worlds {
+    display: flex;
+    gap: var(--s-3);
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline-start: var(--gutter);
+    margin-inline: calc(-1 * var(--gutter));
+    padding-inline: var(--gutter);
+    /* Room for the peeking neighbour's shadow-free edge, and for the caption
+       of the snapped one; without it the rail clips at the figure box. */
+    padding-bottom: var(--s-1);
+    scrollbar-width: none;
+  }
+  .worlds::-webkit-scrollbar { display: none; }
+  .worlds figure {
+    /* 78%, not 100%: the remaining fifth of the screen shows the start of the
+       next world, which is what tells a thumb there is anything to swipe. */
+    flex: 0 0 78%;
+    scroll-snap-align: start;
+  }
+}
+/* The rail is a scrollable region, so it has to be reachable by keyboard —
+   Safari does not focus scroll containers on its own, hence tabindex in the
+   markup and a visible ring here. */
+.worlds:focus-visible {
+  outline: 2px solid var(--red);
+  outline-offset: 8px;
+  border-radius: var(--radius-media);
 }
 
 /* ---------- Cards / doc pages ---------- */
@@ -464,7 +511,7 @@ a:hover { text-decoration: underline; }
 /* ---------- Footer ---------- */
 footer {
   text-align: center;
-  padding: 30px 22px 56px;
+  padding: var(--s-6) 22px 56px;
   color: var(--ink-faint);
   border-top: 1px solid var(--line);
   max-width: var(--maxw);
@@ -472,8 +519,31 @@ footer {
 }
 footer a { color: var(--ink-soft); font-weight: 500; margin: 0 10px; }
 footer .fine { display: block; margin-top: 12px; font-size: 0.84rem; }
+
+/* The sign-off. "One letter at a time." spent this page as the H1, where it
+   had to introduce a product nobody had seen yet — a job a sign-off cannot do.
+   Here, after the page has explained itself, it is the line it always was.
+   Set under the wordmark and italic so it reads as a motto rather than as one
+   more claim. */
+footer .signoff {
+  margin: 0 0 var(--s-4);
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+footer .signoff-name {
+  font-weight: 700;
+  font-size: 1.08rem;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+footer .signoff-line {
+  font-style: italic;
+  font-size: 1.02rem;
+  color: var(--ink-soft);
+}
+
 @media (max-width: 520px) {
   .doc, .card { padding: 26px 20px; }
   .site-head nav { gap: 14px; }
-  .hero { padding: 24px 22px 40px; }
 }

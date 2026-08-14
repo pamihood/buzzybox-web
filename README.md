@@ -30,8 +30,11 @@ break by accident:
   exchanged"). The legal pages are exempt; they say "parent or guardian"
   because that is the wording the law uses.
 - **Postmello is not "an iPad app".** It is *coming first to iPad*.
-- **"World" in copy, "collection" in the catalog.** No prices, locks or buy
-  controls in the worlds grid; the money is explained in its own section.
+- **"Collection" is the public noun, matching the app** (Revision 2 reversed
+  the earlier "world" rule). It belongs in the supporting sentence and in the
+  business-model column, not in an emotional headline — the collections
+  heading names the desk, which is the object in the pictures. No prices,
+  locks or buy controls in the desk grid; the money has its own section.
 - **"One letter at a time." is the footer sign-off, not the H1.**
 
 ## TODO

@@ -30,9 +30,10 @@
          product appeared; side by side, the visitor sees what it is before
          reading a word.
 
-         The bee stays, small, tucked at the device's lower corner — it belongs
-         to this world, and at 440px above the headline it was competing with
-         the product for the one thing the hero has to say. -->
+         No bee here. It perched on the device's corner for one revision and the
+         first screen still had two things asking to be looked at; the product
+         now explains itself without a mascot in the frame. The bee gets the
+         calm section below, where it is the only illustration. -->
     <section class="hero">
       <div class="hero-copy">
         <h1>A quiet place for letters.</h1>
@@ -44,7 +45,6 @@
         <img src="assets/app-desk.jpg"
              alt="Postmello on an iPad — a desk with a mailbox holding mail, a stack of writing paper and a pen, and a row of drawers named for each contact"
              width="1800" height="1389" fetchpriority="high" />
-        <img class="bee" src="assets/bee.png" alt="" width="440" height="439" />
       </figure>
     </section>
 
@@ -63,12 +63,14 @@
 
          "Make it yours." rather than "Write your letter.": the middle step is
          not only handwriting. Paper, ink, stickers and the rest are what make
-         each letter an artifact, and the old label named just one of them. -->
+         each letter an artifact, and the old label named just one of them.
+
+         No paragraph under the heading. It said "choose the paper, make it
+         yours, pick an envelope and stamp" — which is the three captions, in
+         order, six inches above them. -->
     <section class="feature" id="make">
       <div class="feature-head">
         <h2><span>Make a letter from scratch.</span></h2>
-        <p class="lede">Every letter starts with a blank page. Choose the paper,
-           make it yours, pick an envelope and stamp, then send it off.</p>
       </div>
       <div class="steps">
         <figure>
@@ -86,29 +88,27 @@
       </div>
     </section>
 
-    <!-- One emotional idea, not an inventory. This section used to carry a
-         struck-through list — photos, video, GIFs, threads, typing dots, read
-         receipts — which defined the product by six absences and made the page
-         argue with messaging apps instead of describing itself. The single
-         secondary line below says the part worth saying, and the heading
-         carries the rest.
+    <!-- One heading, one sentence, one bee. Three rounds of copy lived here:
+         a struck-through list of six things the app refuses, a "No feed. No
+         typing dots." line under it, and a claim that an admin gets an email
+         when mail lands — which was the one sentence on the page that
+         contradicted the product it was selling. All of it argued with
+         messaging apps. The heading already makes the point; the sentence
+         describes what actually happens instead.
 
-         The admin-email claim went with it: mail arriving is an ambient flag on
-         the desk, and promising a notification email was the one sentence on
-         the page that contradicted the product it was selling. -->
+         This is the bee's moment on the page, and its only one: beside the
+         quietest section, carrying a letter, at a size that reads as a
+         character rather than as a logo. Everywhere else the product is the
+         picture. -->
     <section class="feature feature--band" id="quiet">
-      <div class="feature-head">
-        <h2><span>Keep in touch, without keeping up.</span></h2>
-        <p class="lede">Nothing buzzes. Nothing scrolls. When a letter arrives,
-           the mailbox flag goes up, and it waits until you're ready.</p>
-        <p class="claim">No feed. No typing dots. No read receipts. No pressure
-           to answer now.</p>
+      <div class="quiet-row">
+        <div class="quiet-copy">
+          <h2><span>Keep in touch, without keeping up.</span></h2>
+          <p class="lede">When a letter arrives, the mailbox flag goes up, and
+             it waits until you're ready.</p>
+        </div>
+        <img class="quiet-bee" src="assets/bee.png" alt="" width="440" height="439" loading="lazy" />
       </div>
-      <figure class="feature-shot">
-        <img src="assets/step-writing.jpg"
-             alt="A letter being handwritten on moonlit paper — a sleepy moon in the corner, a pen tray below, and nothing else on screen"
-             width="760" height="518" loading="lazy" />
-      </figure>
     </section>
 
     <!-- The desire section. Two across at nearly half the content width each,
@@ -117,8 +117,13 @@
          this section is for. No prices, no locks, no "new" flags; the business
          model has its own quiet section further down.
 
-         "World" in the copy, never "collection". Collection is what we call it
-         in the catalog and the receipts.
+         The heading names the DESK, because that is the object in the pictures
+         and the thing a reader can recognise without interpreting anything.
+         "Pick a world to write from" and "Choose where your letters begin" both
+         asked to be decoded first (Patrick, 2026-08-14). The sentence under it
+         is where "collection" arrives — the product's own noun, the one the app
+         and the receipts use, introduced once the pictures have already made
+         the case.
 
          THE LAST TWO ARE PLACEHOLDER. Only four desks have been captured from
          the app, so Honey Cottage and Storybook repeat to hold the six slots.
@@ -126,14 +131,14 @@
          Hollow, Driftwood Cove, Snug Hollow and the rest — captures, not the
          concept renders. Tracked in posty's docs/TODO.md. Swapping the two
          files and their captions is the whole job; the layout does not move. -->
-    <section class="feature" id="worlds">
+    <section class="feature" id="collections">
       <div class="feature-head">
-        <h2><span>Pick a world to write from.</span></h2>
-        <p class="lede">Every world is a place of its own — with its own desk,
-           mailbox, paper, envelopes, stamps and stickers.</p>
+        <h2><span>Pick a desk that inspires you.</span></h2>
+        <p class="lede">Each collection brings its own desk, mailbox and
+           matching stationery.</p>
       </div>
 
-      <div class="worlds" tabindex="0" role="group" aria-label="Postmello worlds">
+      <div class="collections" tabindex="0" role="group" aria-label="Postmello collections">
         <figure>
           <figcaption>Honey Cottage</figcaption>
           <img src="assets/desk-honey_cottage.jpg" alt="The Honey Cottage desk — warm honey wood with a cream arched mailbox and brass flag" width="920" height="639" loading="lazy" />
@@ -159,6 +164,41 @@
           <img src="assets/desk-storybook.jpg" alt="" width="920" height="639" loading="lazy" />
         </figure>
       </div>
+
+      <!-- What the desks alone cannot say: the collection changes what a child
+           can MAKE there, not just where they sit. Every piece is a real
+           shipped asset, one per collection where possible — Fairy Glen's
+           wisteria paper, Seaside Post's lighthouse, Woodland's pines, Griffin
+           Keep's pennants, Baan Naa's frangipani, and a stamp and sticker from
+           each of the same packs.
+
+           Laid out in CSS rather than baked as one image so a piece can be
+           swapped for a better one without a re-render, and so the arrangement
+           can be re-composed for a phone instead of shrinking to a postcard.
+           The angles are fixed values, not random: this is a composition. -->
+      <h3 class="stationery-head">Made to match.</h3>
+      <div class="stationery" role="img"
+           aria-label="A spread of Postmello stationery — five letter papers from different collections, an airmail envelope, five stamps and four stickers">
+        <img class="st-paper st-paper--1" src="assets/stationery/paper-wisteria.jpg" alt="" width="620" height="465" loading="lazy" />
+        <img class="st-paper st-paper--2" src="assets/stationery/paper-starry-pines.jpg" alt="" width="620" height="465" loading="lazy" />
+        <img class="st-paper st-paper--3" src="assets/stationery/paper-pennants.jpg" alt="" width="620" height="465" loading="lazy" />
+        <img class="st-paper st-paper--4" src="assets/stationery/paper-lighthouse.jpg" alt="" width="620" height="465" loading="lazy" />
+        <!-- Fifth paper is the one the envelope overlaps, so its art has to
+             live on the LEFT: Baan Naa's frangipani sat here first and its
+             flowers are in the bottom-right corner, which the envelope covered
+             exactly, leaving a blank cream card in the fan. -->
+        <img class="st-paper st-paper--5" src="assets/stationery/paper-banana-leaf.jpg" alt="" width="620" height="465" loading="lazy" />
+        <img class="st-envelope" src="assets/stationery/envelope-airmail.png" alt="" width="560" height="400" loading="lazy" />
+        <img class="st-stamp st-stamp--1" src="assets/stationery/stamp-wings.png" alt="" width="200" height="200" loading="lazy" />
+        <img class="st-stamp st-stamp--2" src="assets/stationery/stamp-gull.png" alt="" width="200" height="200" loading="lazy" />
+        <img class="st-stamp st-stamp--3" src="assets/stationery/stamp-fox.png" alt="" width="200" height="200" loading="lazy" />
+        <img class="st-stamp st-stamp--4" src="assets/stationery/stamp-griffin.png" alt="" width="200" height="200" loading="lazy" />
+        <img class="st-stamp st-stamp--5" src="assets/stationery/stamp-elephant.png" alt="" width="200" height="200" loading="lazy" />
+        <img class="st-sticker st-sticker--1" src="assets/stationery/sticker-butterfly.png" alt="" width="200" height="170" loading="lazy" />
+        <img class="st-sticker st-sticker--2" src="assets/stationery/sticker-anchor.png" alt="" width="180" height="200" loading="lazy" />
+        <img class="st-sticker st-sticker--3" src="assets/stationery/sticker-acorn.png" alt="" width="182" height="200" loading="lazy" />
+        <img class="st-sticker st-sticker--4" src="assets/stationery/sticker-bow.png" alt="" width="200" height="174" loading="lazy" />
+      </div>
     </section>
 
     <!-- Relationship first, boundary second. "Only people you approve" led with
@@ -168,10 +208,8 @@
     <section class="feature feature--band" id="contacts">
       <div class="feature-head">
         <h2><span>Across town, or across an ocean.</span></h2>
-        <p class="lede">Cousins, grandparents, summer-camp friends, the friend
-           who moved away, a class pen pal.</p>
-        <p class="claim">Every contact is approved before letters can be
-           exchanged.</p>
+        <p class="lede">Family, friends and pen pals. Every contact is approved
+           before letters can be exchanged.</p>
       </div>
       <!-- Five drawers, cut from five DIFFERENT desks, floated apart rather than
            shown as one cropped row. The row read as repetition (one desk
@@ -191,18 +229,38 @@
 
     <!-- Where the money is explained, deliberately down here and deliberately
          plain. It is reassurance, not a pricing page: no cards, no tiers, no
-         comparison table, and no per-world price — worlds are one-time
-         purchases, and putting a number on them up here would turn the section
-         above into a shop. -->
+         comparison table, no buy buttons, and no per-collection price — that
+         number is genuinely unsettled, and printing it here would turn the
+         section above into a shop.
+
+         Three columns because the same content as a paragraph was four lines of
+         prose that had to be read in order to find out which part was free.
+         Separated by hairlines rather than boxed: a card each is how this
+         becomes a pricing table. It is also the one section on the page with no
+         picture, on purpose — after the desks and the stationery, a plain
+         typographic block is the rest before the footer. -->
     <section class="feature" id="household">
       <div class="feature-head">
         <h2><span>Start with one desk, free.</span></h2>
-        <p class="lede">Writing, sending and receiving letters is free, with
-           unlimited approved contacts. Postmello Family adds more desks to the
-           household with a one-time purchase. Additional worlds are optional
-           one-time purchases, yours to keep.</p>
-        <p class="claim">No ads. No subscription required to write letters.</p>
       </div>
+      <dl class="plans">
+        <div class="plan">
+          <dt>Free</dt>
+          <dd><strong>One desk</strong>
+              <span>Unlimited letters &amp; approved contacts</span></dd>
+        </div>
+        <div class="plan">
+          <dt>Postmello Family</dt>
+          <dd><strong>More household desks</strong>
+              <span>One-time purchase</span></dd>
+        </div>
+        <div class="plan">
+          <dt>Collections</dt>
+          <dd><strong>Creative desks &amp; matching stationery</strong>
+              <span>Optional one-time purchases</span></dd>
+        </div>
+      </dl>
+      <p class="claim">No ads · No subscription required to write letters</p>
     </section>
 
   </main>

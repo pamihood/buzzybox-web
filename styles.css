@@ -66,9 +66,9 @@
   --s-6: 84px;
   --space-section: clamp(76px, 10vw, 148px);
 
-  /* Measure. Prose stays near 65 characters; the hero and the worlds get the
-     page-wide one, which is what makes a world nearly half the content width
-     instead of a third of it. */
+  /* Measure. Prose stays near 65 characters; the hero and the collection grid
+     get the page-wide one, which is what makes a desk nearly half the content
+     width instead of a third of it. */
   --maxw: 720px;
   --maxw-wide: 940px;
   --maxw-page: 1200px;
@@ -184,24 +184,6 @@ a:hover { text-decoration: underline; }
   text-wrap: pretty;
 }
 
-/* The screenshot, and the bee parked on it. The bee is a resident of this
-   world rather than a second illustration of the product, so it sits ON the
-   scene at a tenth of its width instead of standing beside the headline at
-   440px — where it read as the logo of a mascot company and outweighed the
-   only thing the hero has to establish.
-   The bezel fills its JPEG to within 1% on every side, so there is no margin
-   inside the image to park a bee in — anywhere fully "on" the shot covers the
-   app. It perches on the lower-right corner instead, overhanging the edge, out
-   over the page's own paper. Clear of the text column and of the mailbox. */
-.hero-shot {
-  position: relative;
-  margin: 0;
-}
-.hero-shot > img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
 /* The device is Apple's own iPad Air 13" (M4) product bezel, composited into
    the image itself rather than drawn in CSS. The bezel's screen hole is exactly
    2732x2048 — the native resolution of the simulator capture — so the shot
@@ -209,15 +191,53 @@ a:hover { text-decoration: underline; }
    JPEG's edge is invisible against the page and no alpha channel ships. Which
    also means NO border, radius or shadow here: the bezel already is the frame,
    and its drop shadow is baked into Apple's asset. */
-.hero-shot .bee {
-  position: absolute;
-  right: -2%;
-  bottom: -5%;
-  /* 10% of the shot, floored at 40px — the floor only bites on a phone, where
-     a percentage of a 350px image would shrink the bee to a smudge. */
-  width: clamp(40px, 10%, 104px);
+.hero-shot {
+  margin: 0;
+}
+.hero-shot > img {
+  width: 100%;
   height: auto;
-  filter: drop-shadow(-2px 5px 8px rgba(42, 33, 24, 0.18));
+  display: block;
+}
+
+/* ---------- The calm section, and the bee ---------- */
+/* Words on one side, bee on the other. This section is a heading and a single
+   sentence, so a full-width screenshot under it (which is what used to be
+   here, and it was the same writing canvas the step row already showed) left
+   a lot of section for very little to say. The bee fills it as a character
+   instead of as a second explanation of the product. */
+.quiet-row {
+  max-width: var(--maxw-page);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.55fr);
+  align-items: center;
+  gap: clamp(24px, 5vw, 72px);
+}
+.quiet-copy { text-align: left; }
+/* Same specificity as `.feature .lede` loses to it on source order, and the
+   sentence sat indented from its own heading by the auto margins. */
+.quiet-row .quiet-copy .lede { margin-inline: 0 auto; }
+.quiet-bee {
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  justify-self: center;
+  filter: drop-shadow(-6px 12px 18px rgba(42, 33, 24, 0.16));
+}
+/* Stacked below 760px, bee under the sentence and smaller — beside a wrapped
+   heading on a phone it takes half the section and starts to look like the
+   subject rather than the company. */
+@media (max-width: 760px) {
+  .quiet-row {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+    gap: var(--s-4);
+  }
+  .quiet-copy { text-align: center; }
+  .quiet-copy .lede { margin-inline: auto; }
+  .quiet-bee { max-width: 168px; }
 }
 .badge {
   display: inline-flex;
@@ -300,10 +320,10 @@ a:hover { text-decoration: underline; }
   margin: 0 auto var(--s-6);
   text-align: center;
 }
-/* The business-model section is words only, so its heading block IS the
-   section and a trailing 84px would open a gap to the footer that reads as a
-   missing image. */
-.feature-head:only-child { margin-bottom: 0; }
+/* A heading with nothing under it (the letter-making and business-model
+   sections are now a heading plus their art) needs less air beneath it than a
+   heading with a sentence — otherwise the h2 floats between two voids. */
+.feature-head:has(> h2:only-child) { margin-bottom: var(--s-5); }
 /* Rules either side of the heading were tried and cut (Patrick, 2026-08-13:
    "the blue dividers are a strange choice and look weird"). The alternating
    band grounds already separate the sections, so the heading needs no device
@@ -314,8 +334,11 @@ a:hover { text-decoration: underline; }
   line-height: 1.08;
   letter-spacing: -0.035em;
   color: var(--ink);
+  /* On the h2, not on its span: balancing is a block-level operation and had
+     no effect on an inline child, which is why the left-aligned calm heading
+     broke as "…without keeping / up." */
+  text-wrap: balance;
 }
-.feature h2 span { text-wrap: balance; }
 .feature .lede {
   /* Two limits, and the tighter one wins: 58ch keeps the measure readable at
      small sizes, --maxw-read caps it at ~650px once the type is large enough
@@ -327,30 +350,20 @@ a:hover { text-decoration: underline; }
   color: var(--ink-mid);
   text-wrap: pretty;
 }
-/* The one line in a section that is a flat claim rather than description —
-   "No feed. No typing dots…", "Every contact is approved…". Full --ink and
-   600 against the lede's --ink-mid: it is the sentence a reader should leave
-   the section with, and it earns that by weight rather than by being a badge,
-   a callout box or a list of struck-through words. */
+/* The one flat claim left on the page: "No ads · No subscription required to
+   write letters", under the three plan columns. Full --ink and 600 against the
+   lede's --ink-mid — it is the sentence a reader should leave the section
+   with, and it earns that by weight rather than by being a badge or a callout
+   box. */
 .feature .claim {
   max-width: min(52ch, var(--maxw-read));
-  margin: var(--s-3) auto 0;
+  margin: var(--s-5) auto 0;
   font-size: clamp(1rem, 1.3vw, 1.12rem);
   font-weight: 600;
   line-height: 1.5;
   color: var(--ink);
+  text-align: center;
   text-wrap: balance;
-}
-.feature-shot {
-  max-width: var(--maxw-wide);
-  margin: 0 auto;
-}
-.feature-shot img {
-  width: 100%;
-  height: auto;
-  display: block;
-  border-radius: var(--radius-media);
-  border: 1px solid var(--line);
 }
 
 /* ---------- The circle of drawers ---------- */
@@ -408,14 +421,14 @@ a:hover { text-decoration: underline; }
 
    Fixed 2 columns rather than auto-fit: with six items auto-fit can settle on
    a count that strands an orphan on the last row. */
-.worlds {
+.collections {
   max-width: var(--maxw-page);
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: var(--s-5) var(--s-4);
 }
-.worlds figure {
+.collections figure {
   margin: 0;
   /* The plate name reads before the picture, the way a place is labelled on a
      map. figcaption is legal as the first child of a figure, so this needs no
@@ -424,7 +437,7 @@ a:hover { text-decoration: underline; }
   flex-direction: column;
   gap: var(--s-2);
 }
-.worlds img {
+.collections img {
   width: 100%;
   height: auto;
   display: block;
@@ -432,7 +445,7 @@ a:hover { text-decoration: underline; }
   border: 1px solid var(--line);
 }
 /* Plate names, set like the brass nameplates they are. */
-.worlds figcaption {
+.collections figcaption {
   text-align: center;
   font-family: var(--font-apparatus);
   font-size: var(--fs-micro);
@@ -451,7 +464,7 @@ a:hover { text-decoration: underline; }
    margins cancel the section gutter) so a world can reach the screen edge, and
    scroll-padding keeps the snapped item off it. */
 @media (max-width: 760px) {
-  .worlds {
+  .collections {
     display: flex;
     gap: var(--s-3);
     overflow-x: auto;
@@ -465,10 +478,10 @@ a:hover { text-decoration: underline; }
     padding-bottom: var(--s-1);
     scrollbar-width: none;
   }
-  .worlds::-webkit-scrollbar { display: none; }
-  .worlds figure {
+  .collections::-webkit-scrollbar { display: none; }
+  .collections figure {
     /* 78%, not 100%: the remaining fifth of the screen shows the start of the
-       next world, which is what tells a thumb there is anything to swipe. */
+       next desk, which is what tells a thumb there is anything to swipe. */
     flex: 0 0 78%;
     scroll-snap-align: start;
   }
@@ -476,10 +489,181 @@ a:hover { text-decoration: underline; }
 /* The rail is a scrollable region, so it has to be reachable by keyboard —
    Safari does not focus scroll containers on its own, hence tabindex in the
    markup and a visible ring here. */
-.worlds:focus-visible {
+.collections:focus-visible {
   outline: 2px solid var(--red);
   outline-offset: 8px;
   border-radius: var(--radius-media);
+}
+
+/* ---------- The stationery spread ---------- */
+/* Six desks say where you sit; this says what you can make there, which is the
+   half of a collection the desk shots cannot show. It sits INSIDE the
+   collections section, after the grid, rather than becoming a seventh section
+   of its own — it is evidence for a claim already made, not a new argument.
+
+   Every piece is a real shipped asset, one collection each where possible.
+   Laid out in CSS rather than baked into a single JPEG for two reasons: any
+   piece can be swapped for a better one without a re-render, and a phone can
+   get a different arrangement instead of the same picture at a third the size.
+
+   Percentage geometry inside an aspect-ratio box, so the whole composition
+   scales as one object: at 1200px or 780px every overlap lands identically.
+   The angles are fixed values — this is a composition, not a shuffle. */
+.stationery-head {
+  max-width: var(--maxw-page);
+  margin: var(--s-6) auto var(--s-5);
+  text-align: center;
+  font-size: clamp(1.3rem, 2vw, 1.7rem);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+}
+.stationery {
+  position: relative;
+  max-width: var(--maxw-page);
+  margin: 0 auto;
+  aspect-ratio: 1200 / 520;
+}
+.stationery img {
+  position: absolute;
+  display: block;
+  height: auto;
+}
+/* Papers: opaque rectangles, so they need their own soft shadow to sit on the
+   page and a hairline to keep cream-on-cream from bleeding into the ground. */
+.st-paper {
+  width: 26%;
+  border-radius: 3px;
+  border: 1px solid var(--line);
+  box-shadow: -4px 8px 16px rgba(42, 33, 24, 0.13);
+}
+.st-paper--1 { left: 1%;  top: 4%;  transform: rotate(-6deg); z-index: 1; }
+.st-paper--2 { left: 15%; top: 20%; transform: rotate(3deg);  z-index: 2; }
+.st-paper--3 { left: 30%; top: 2%;  transform: rotate(-2deg); z-index: 3; }
+.st-paper--4 { left: 44%; top: 21%; transform: rotate(5deg);  z-index: 4; }
+.st-paper--5 { left: 58%; top: 3%;  transform: rotate(-3deg); z-index: 5; }
+/* The envelope is a cut-out with its own baked edge, so it takes a shadow but
+   no border. It anchors the right end of the fan. */
+.st-envelope {
+  width: 25%;
+  top: 24%;
+  right: 1%;
+  transform: rotate(3deg);
+  z-index: 6;
+  filter: drop-shadow(-4px 8px 14px rgba(42, 33, 24, 0.16));
+}
+/* Stamps and stickers, in pairs by collection — the gull with the anchor, the
+   fox with the acorn — rather than evenly spaced along the bottom. Evenly
+   spaced, they lined up into exactly the product row this section exists to
+   avoid; in clusters at four different heights they read as things set down
+   next to their own paper. The elephant stamp is the exception and sits ON the
+   envelope, where a stamp goes. */
+.st-stamp, .st-sticker {
+  z-index: 7;
+  filter: drop-shadow(-2px 4px 7px rgba(42, 33, 24, 0.20));
+}
+.st-stamp   { width: 7%; }
+.st-sticker { width: 6%; }
+.st-stamp--1   { left: 3.5%;  top: 66%; transform: rotate(-9deg); }  /* fairy */
+.st-sticker--1 { left: 7%;    top: 33%; transform: rotate(8deg); }   /* …on its paper */
+.st-stamp--2   { left: 24%;   top: 76%; transform: rotate(5deg); }   /* seaside */
+.st-sticker--2 { left: 31%;   top: 66%; transform: rotate(-7deg); }
+.st-stamp--3   { left: 47%;   top: 72%; transform: rotate(-4deg); }  /* woodland */
+.st-sticker--3 { left: 54%;   top: 80%; transform: rotate(6deg); }
+.st-stamp--4   { left: 66%;   top: 75%; transform: rotate(8deg); }   /* keep */
+.st-sticker--4 { left: 73.5%; top: 60%; transform: rotate(-9deg); }
+/* On the envelope, above its fold: z-index 8 so it sits over the cut-out. */
+.st-stamp--5   { left: 88%;   top: 29%; transform: rotate(-4deg); z-index: 8; }
+
+/* On a phone the composition would put a 7%-wide stamp at 24px, which is a
+   speck. The absolute geometry is dropped entirely and the pieces scatter in
+   normal flow instead — same pieces, same fixed tilts, sizes that survive.
+
+   Everything stays: three papers to a row rather than two, because at 44% the
+   same fifteen objects ran 1200px down a phone, and the brief for this block
+   is that it must not make the page substantially longer. Small and complete
+   beats large and truncated — it is a spread, not a gallery. */
+@media (max-width: 760px) {
+  .stationery {
+    aspect-ratio: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: var(--s-2) var(--s-1);
+  }
+  .stationery img {
+    position: static;
+    top: auto; left: auto; right: auto;
+  }
+  .stationery .st-paper    { width: 31%; }
+  .stationery .st-envelope { width: 31%; }
+  .stationery .st-stamp    { width: 15%; }
+  .stationery .st-sticker  { width: 13.5%; }
+}
+
+/* ---------- The three plans ---------- */
+/* The business model as three columns instead of a paragraph. It was four
+   lines of prose in which the reader had to find out which part was free; now
+   the label says which tier, the strong line says what you get, and the quiet
+   line says what it costs. Nothing is a card, nothing is coloured, no number
+   appears — hairlines between the columns are the only furniture, because the
+   moment each one gets a box this reads as a pricing table and the page turns
+   into a funnel. */
+.plans {
+  max-width: var(--maxw-page);
+  margin: 0 auto;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--s-5);
+}
+.plan {
+  text-align: center;
+  padding: 0 var(--s-4);
+}
+/* Separators sit on the columns rather than between them, so the first one
+   never gets a stray rule to its left. */
+.plan + .plan { border-left: 1px solid var(--line); }
+.plans dt {
+  font-family: var(--font-apparatus);
+  font-size: var(--fs-micro);
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: var(--s-2);
+}
+.plans dd {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-1);
+}
+.plans dd strong {
+  font-size: clamp(1.06rem, 1.5vw, 1.24rem);
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--ink);
+  letter-spacing: -0.015em;
+}
+.plans dd span {
+  font-size: var(--fs-small);
+  line-height: 1.45;
+  color: var(--ink-soft);
+}
+/* One column on a phone, with the rules turned horizontal — a 3-up grid at
+   340px gives each plan eleven characters a line. */
+@media (max-width: 760px) {
+  .plans {
+    grid-template-columns: 1fr;
+    gap: var(--s-4);
+    max-width: 420px;
+  }
+  .plan { padding: var(--s-4) 0 0; }
+  .plan + .plan {
+    border-left: 0;
+    border-top: 1px solid var(--line);
+  }
 }
 
 /* ---------- Cards / doc pages ---------- */
@@ -511,7 +695,10 @@ a:hover { text-decoration: underline; }
 /* ---------- Footer ---------- */
 footer {
   text-align: center;
-  padding: var(--s-6) 22px 56px;
+  /* Less above than a section break: the plans block that precedes it is
+     typographic and already surrounded by air, so the full 84px on top of the
+     section's own padding read as a hole. */
+  padding: var(--s-5) 22px 56px;
   color: var(--ink-faint);
   border-top: 1px solid var(--line);
   max-width: var(--maxw);

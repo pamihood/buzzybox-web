@@ -27,11 +27,6 @@
      around each one — cards would have made them read as a comparison table. */
   --paper-deep: #f4ece0;
 
-  /* Feint notebook ruling. --sky is the icon's sky; dropped to this weight it
-     is the blue line on a sheet of writing paper, which is what the section
-     headings sit on. */
-  --rule: rgba(143, 195, 238, 0.55);
-
   /* ---- Faces ----
      Two roles, not one. --font-voice is the app's own rounded face and carries
      everything anyone reads as a sentence. --font-apparatus is for the postal
@@ -252,33 +247,18 @@ a:hover { text-decoration: underline; }
   margin: 0 auto var(--s-5);
   text-align: center;
 }
-/* THE SIGNATURE: the heading sits ON a feint blue rule, the way a line of
-   writing sits on ruled paper. It is the page's only structural device, and it
-   is the subject's own material — so there are no cards, no boxes, and no
-   01/02/03 anywhere. The rule spans the wide measure while the lede below
-   stays at reading width, which is what keeps the band feeling like a sheet
-   rather than a column. */
+/* Rules either side of the heading were tried and cut (Patrick, 2026-08-13:
+   "the blue dividers are a strange choice and look weird"). The alternating
+   band grounds already separate the sections, so the heading needs no device
+   of its own — which leaves the type to do it, at full size. */
 .feature h2 {
-  display: flex;
-  align-items: center;
-  gap: var(--s-4);
   margin: 0 0 var(--s-3);
   font-size: var(--fs-section);
   line-height: 1.08;
   letter-spacing: -0.035em;
   color: var(--ink);
 }
-.feature h2::before,
-.feature h2::after {
-  content: "";
-  flex: 1 1 0;
-  height: 1px;
-  background: var(--rule);
-}
-.feature h2 span {
-  flex: 0 1 auto;
-  text-wrap: balance;
-}
+.feature h2 span { text-wrap: balance; }
 .feature .lede {
   max-width: 46ch;
   margin: 0 auto;
@@ -286,20 +266,6 @@ a:hover { text-decoration: underline; }
   line-height: 1.55;
   color: var(--ink-mid);
   text-wrap: balance;
-}
-/* Narrow: the heading fills the measure, so the flanking rules collapse to two
-   stubs and read as a mistake. The line moves UNDER the text instead — which is
-   the more literal version of the idea anyway, a line of writing sitting on the
-   rule of the page. */
-@media (max-width: 700px) {
-  .feature h2 { display: block; }
-  .feature h2::before { display: none; }
-  .feature h2::after {
-    display: block;
-    flex: none;
-    width: 100%;
-    margin-top: var(--s-3);
-  }
 }
 .feature-shot {
   max-width: var(--maxw-wide);
@@ -312,9 +278,62 @@ a:hover { text-decoration: underline; }
   border-radius: var(--radius-media);
   border: 1px solid var(--line);
 }
-/* The drawer strip is 5.8:1 — at the full measure it becomes a thin ribbon and
-   the nameplates stop being readable, so it is held narrower than the rest. */
-.feature-shot--wide { max-width: 820px; }
+
+/* ---------- The circle of drawers ---------- */
+/* Five drawers, each cut from a different desk, scattered instead of lined up.
+   A straight row is what the single cropped strip already was, and it read as
+   one thing repeated; broken apart, with each drawer tipped a degree or two and
+   sitting at its own height, they read as five people. The tilts are fixed
+   values rather than random so the arrangement is the same every load — this is
+   a composition, not a shuffle. */
+.circle {
+  max-width: var(--maxw-wide);
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: var(--s-4) var(--s-3);
+}
+.circle img {
+  /* Sized so all five fit one line at the wide measure: 5 x 168 + 4 x 20 = 920.
+     At 186 they broke 4 + 1, and a single orphaned drawer reads as a mistake
+     rather than as a scatter. */
+  width: clamp(132px, 16vw, 168px);
+  height: auto;
+  display: block;
+  filter: drop-shadow(-3px 6px 10px rgba(42, 33, 24, 0.16));
+}
+.circle img:nth-child(1) { transform: rotate(-2.5deg) translateY(4px); }
+.circle img:nth-child(2) { transform: rotate(1.5deg)  translateY(-8px); }
+.circle img:nth-child(3) { transform: rotate(-1deg)   translateY(6px); }
+.circle img:nth-child(4) { transform: rotate(2deg)    translateY(-5px); }
+.circle img:nth-child(5) { transform: rotate(-1.5deg) translateY(3px); }
+
+/* Who they turn out to be. Same face as the absences and deliberately NOT
+   struck — that list is what the app refuses, this is what it is for. */
+.uses {
+  list-style: none;
+  max-width: 62ch;
+  margin: var(--s-5) auto 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--s-2) var(--s-3);
+}
+.uses li {
+  font-family: var(--font-apparatus);
+  font-size: var(--fs-micro);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+/* No "·" separator: as a ::before it survives the wrap and starts the second
+   line with what looks like a bullet. Space does the separating. */
+@media (prefers-reduced-motion: reduce) {
+  .circle img { transform: none; }
+}
 
 /* The absences. Struck, because the strike IS the claim; a bulleted list of
    "no photos / no video" says it twice. Set small and faint so it reads as a

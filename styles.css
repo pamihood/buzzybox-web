@@ -200,17 +200,17 @@ a:hover { text-decoration: underline; }
   display: block;
 }
 
-/* ---------- The calm section, and the bee ---------- */
-/* Words on one side, bee on the other. This section is a heading and a single
-   sentence, so a full-width screenshot under it (which is what used to be
-   here, and it was the same writing canvas the step row already showed) left
-   a lot of section for very little to say. The bee fills it as a character
-   instead of as a second explanation of the product. */
+/* ---------- The calm section: the mailbox, and the bee ---------- */
+/* Words on one side, the thing the words describe on the other. Two versions
+   preceded this: the writing canvas the step row already showed, then the bee
+   alone — which illustrated the brand rather than the claim. The claim is
+   "when a letter arrives, the flag goes up and it waits", and a mailbox with
+   its flag up and three letters in it says that without a caption. */
 .quiet-row {
   max-width: var(--maxw-page);
   margin: 0 auto;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 0.55fr);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.8fr);
   align-items: center;
   gap: clamp(24px, 5vw, 72px);
 }
@@ -218,16 +218,33 @@ a:hover { text-decoration: underline; }
 /* Same specificity as `.feature .lede` loses to it on source order, and the
    sentence sat indented from its own heading by the auto margins. */
 .quiet-row .quiet-copy .lede { margin-inline: 0 auto; }
-.quiet-bee {
-  width: 100%;
-  max-width: 300px;
-  height: auto;
+.quiet-shot {
+  position: relative;
+  margin: 0;
+  max-width: 480px;
   justify-self: center;
-  filter: drop-shadow(-6px 12px 18px rgba(42, 33, 24, 0.16));
 }
-/* Stacked below 760px, bee under the sentence and smaller — beside a wrapped
-   heading on a phone it takes half the section and starts to look like the
-   subject rather than the company. */
+.quiet-shot > img:not(.bee):first-child {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: var(--radius-media);
+  border: 1px solid var(--line);
+}
+/* Off the left edge on purpose: fully inside the frame the bee reads as a
+   sticker lying on the desk, and half outside it reads as arriving. It carries
+   a letter and the art already faces right, so it is flying INTO the picture,
+   towards the box. A fifth of the frame wide — a character in the scene, not
+   the subject of it. */
+.quiet-bee {
+  position: absolute;
+  left: -7%;
+  top: 40%;
+  width: 21%;
+  height: auto;
+  filter: drop-shadow(-3px 7px 11px rgba(42, 33, 24, 0.20));
+}
+/* Stacked below 760px, picture under the sentence. */
 @media (max-width: 760px) {
   .quiet-row {
     grid-template-columns: 1fr;
@@ -237,7 +254,11 @@ a:hover { text-decoration: underline; }
   }
   .quiet-copy { text-align: center; }
   .quiet-copy .lede { margin-inline: auto; }
-  .quiet-bee { max-width: 168px; }
+  .quiet-shot { max-width: 340px; }
+  /* Barely outside the frame rather than 5% out: at 375px the picture is
+     nearly full width, and the same overhang put the bee's wing on the
+     viewport edge. */
+  .quiet-bee { left: -1%; width: 22%; }
 }
 .badge {
   display: inline-flex;

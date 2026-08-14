@@ -408,9 +408,14 @@ a:hover { text-decoration: underline; }
   max-width: var(--maxw-wide);
   margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: var(--s-3);
+  /* Fixed 3 columns, not auto-fit: with six items auto-fit can settle on a
+     count that leaves an orphan on the last row. Three then two then one, on
+     breakpoints, keeps every row full. */
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--s-4) var(--s-3);
 }
+@media (max-width: 760px)  { .worlds { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 460px)  { .worlds { grid-template-columns: 1fr; } }
 .worlds figure { margin: 0; }
 .worlds img {
   width: 100%;

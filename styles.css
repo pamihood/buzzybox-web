@@ -312,6 +312,10 @@ a:hover { text-decoration: underline; }
 .feature {
   padding: var(--space-section) var(--gutter);
 }
+/* The last section is typographic and the footer that follows brings its own
+   air, so the full section padding underneath it opened a hole big enough to
+   read as a missing block. */
+main > .feature:last-child { padding-bottom: var(--s-6); }
 .feature--band {
   background: var(--paper-deep);
 }
@@ -603,15 +607,22 @@ a:hover { text-decoration: underline; }
 }
 
 /* ---------- The three plans ---------- */
-/* The business model as three columns instead of a paragraph. It was four
-   lines of prose in which the reader had to find out which part was free; now
-   the label says which tier, the strong line says what you get, and the quiet
-   line says what it costs. Nothing is a card, nothing is coloured, no number
-   appears — hairlines between the columns are the only furniture, because the
-   moment each one gets a box this reads as a pricing table and the page turns
-   into a funnel. */
+/* The business model as three blocks instead of a paragraph. It was four lines
+   of prose in which the reader had to find out which part was free.
+
+   Rules ACROSS the top of each block, not between the columns. Vertical
+   dividers read as a comparison table, which is what a page about writing to
+   your grandmother must not turn into at the last screen; a top rule with an
+   eyebrow under it is an editorial column, and it also gives the row a
+   baseline to hang from. Still no boxes, no colour, no number, no buttons.
+
+   Hierarchy comes from size, not decoration: the middle line is the biggest
+   thing in each block because "One desk" is the fact, and FREE is one step
+   bigger again with a darker rule, since starting free is the whole point of
+   the heading above. Narrower than the rest of the page (1040 rather than
+   1200) so the three read as one group after the full-width art. */
 .plans {
-  max-width: var(--maxw-page);
+  max-width: 1040px;
   margin: 0 auto;
   padding: 0;
   display: grid;
@@ -619,12 +630,11 @@ a:hover { text-decoration: underline; }
   gap: var(--s-5);
 }
 .plan {
-  text-align: center;
-  padding: 0 var(--s-4);
+  text-align: left;
+  padding: var(--s-3) 0 0;
+  border-top: 1px solid var(--line);
 }
-/* Separators sit on the columns rather than between them, so the first one
-   never gets a stray rule to its left. */
-.plan + .plan { border-left: 1px solid var(--line); }
+.plan--free { border-top-color: rgba(42, 33, 24, 0.26); }
 .plans dt {
   font-family: var(--font-apparatus);
   font-size: var(--fs-micro);
@@ -640,30 +650,39 @@ a:hover { text-decoration: underline; }
   gap: var(--s-1);
 }
 .plans dd strong {
-  font-size: clamp(1.06rem, 1.5vw, 1.24rem);
+  font-size: clamp(1.15rem, 1.7vw, 1.42rem);
   font-weight: 600;
-  line-height: 1.35;
+  line-height: 1.3;
   color: var(--ink);
-  letter-spacing: -0.015em;
+  letter-spacing: -0.02em;
 }
+.plan--free dd strong { font-size: clamp(1.3rem, 2vw, 1.65rem); }
 .plans dd span {
   font-size: var(--fs-small);
   line-height: 1.45;
   color: var(--ink-soft);
 }
-/* One column on a phone, with the rules turned horizontal — a 3-up grid at
-   340px gives each plan eleven characters a line. */
+/* Reassurance, not a headline: the "No ads." line was set at claim weight and
+   became a fourth thing to read at the bottom of the page. Small, soft, and
+   close under the blocks it reassures about. */
+.reassurance {
+  max-width: 1040px;
+  margin: var(--s-4) auto 0;
+  font-size: var(--fs-small);
+  line-height: 1.5;
+  color: var(--ink-soft);
+  text-align: center;
+}
+/* One column on a phone — a 3-up grid at 340px gives each plan eleven
+   characters a line. The top rules stay; they are the treatment, not a
+   desktop-only divider. */
 @media (max-width: 760px) {
   .plans {
     grid-template-columns: 1fr;
     gap: var(--s-4);
     max-width: 420px;
   }
-  .plan { padding: var(--s-4) 0 0; }
-  .plan + .plan {
-    border-left: 0;
-    border-top: 1px solid var(--line);
-  }
+  .reassurance { max-width: 420px; }
 }
 
 /* ---------- Cards / doc pages ---------- */
@@ -698,22 +717,27 @@ footer {
   /* Less above than a section break: the plans block that precedes it is
      typographic and already surrounded by air, so the full 84px on top of the
      section's own padding read as a hole. */
-  padding: var(--s-5) 22px 56px;
+  padding: var(--s-5) 22px 48px;
   color: var(--ink-faint);
   border-top: 1px solid var(--line);
   max-width: var(--maxw);
   margin: 0 auto;
 }
-footer a { color: var(--ink-soft); font-weight: 500; margin: 0 10px; }
-footer .fine { display: block; margin-top: 12px; font-size: 0.84rem; }
+footer a { color: var(--ink-soft); font-weight: 500; margin: 0 8px; }
+footer .dot { color: var(--ink-faint); }
+footer .fine { display: block; margin-top: 10px; font-size: 0.84rem; }
 
-/* The sign-off. "One letter at a time." spent this page as the H1, where it
-   had to introduce a product nobody had seen yet — a job a sign-off cannot do.
-   Here, after the page has explained itself, it is the line it always was.
-   Set under the wordmark and italic so it reads as a motto rather than as one
-   more claim. */
+/* The one sign-off on the page, and it happens once. The page used to end
+   three times over — a bolded claim under the plans, a gap, a centred
+   name-and-tagline block, then the links — so it kept looking finished and
+   then continuing. Name, tagline, links and copyright are one tight block now.
+
+   "Letters at your own pace." replaces "One letter at a time." It names the
+   distinction (letters rather than messages, and no clock) where the old line
+   was gentle but unownable, and it holds for a grandparent as well as a
+   nine-year-old. */
 footer .signoff {
-  margin: 0 0 var(--s-4);
+  margin: 0 0 var(--s-3);
   display: flex;
   flex-direction: column;
   gap: 3px;

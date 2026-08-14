@@ -4,11 +4,11 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Postmello — A quiet place for letters</title>
-  <meta name="description" content="Postmello is a private desk where kids write and send letters to family and friends — without the rush of messaging. Coming first to iPad." />
+  <meta name="description" content="Postmello is a private desk where kids write and exchange digital letters with family and friends — without the rush of messaging. Coming first to iPad." />
   <link rel="icon" type="image/png" href="assets/favicon.png" />
   <link rel="apple-touch-icon" href="assets/app-icon.png" />
   <meta property="og:title" content="Postmello — A quiet place for letters" />
-  <meta property="og:description" content="A private desk where kids write and send letters to family and friends — without the rush of messaging." />
+  <meta property="og:description" content="A private desk where kids write and exchange digital letters with family and friends — without the rush of messaging." />
   <meta property="og:image" content="assets/app-desk.jpg" />
   <meta property="og:type" content="website" />
   <link rel="stylesheet" href="styles.css" />
@@ -37,8 +37,15 @@
     <section class="hero">
       <div class="hero-copy">
         <h1>A quiet place for letters.</h1>
-        <p class="tagline">A private desk where kids write and send letters to
-           family and friends — without the rush of messaging.</p>
+        <!-- "digital", once, here, and never again. The rest of the page is a
+             mailbox, stamps, envelopes, a flag and a courier bee, and a cold
+             visitor could reasonably read all that as "I write it on the iPad
+             and Postmello posts a paper letter". One word in the first
+             sentence settles it without weakening the metaphor anywhere else —
+             and "exchange" rather than "send", because these travel between
+             people who both have a desk, not to a printing service. -->
+        <p class="tagline">A private desk where kids write and exchange digital
+           letters with family and friends — without the rush of messaging.</p>
         <span class="badge">Coming first to iPad.</span>
       </div>
       <figure class="hero-shot">
@@ -244,42 +251,53 @@
         <h2><span>Start with one desk, free.</span></h2>
       </div>
       <dl class="plans">
-        <div class="plan">
+        <div class="plan plan--free">
           <dt>Free</dt>
           <dd><strong>One desk</strong>
               <span>Unlimited letters &amp; approved contacts</span></dd>
         </div>
         <div class="plan">
           <dt>Postmello Family</dt>
-          <dd><strong>More household desks</strong>
-              <span>One-time purchase</span></dd>
+          <dd><strong>More desks</strong>
+              <span>One-time household upgrade</span></dd>
         </div>
         <div class="plan">
           <dt>Collections</dt>
-          <dd><strong>Creative desks &amp; matching stationery</strong>
+          <dd><strong>Desks + matching stationery</strong>
               <span>Optional one-time purchases</span></dd>
         </div>
       </dl>
-      <p class="claim">No ads · No subscription required to write letters</p>
+      <p class="reassurance">No ads. No subscription required to write letters.</p>
     </section>
 
   </main>
 
+  <!-- One wind-down, not two. The page used to end with a bolded claim under
+       the plans, a gap, then a centred name-and-tagline block, then the links —
+       three separate endings, so it kept looking finished and then continuing.
+       The reassurance line is now small and quiet where it sits, and everything
+       that is actually a sign-off happens once, here.
+
+       "Letters at your own pace." replaces "One letter at a time." (Patrick,
+       2026-08-14). The old line is gentle but not ownable, and neither it nor
+       "For letter-writers everywhere" said anything a competitor could not.
+       The new one names the distinction — letters rather than messages, and no
+       clock — and it holds for a grandparent as well as a nine-year-old.
+       NOTE: the app's splash, auth and wordmark art still read "One letter at
+       a time.", baked in; see the app repo's tagline-swap recipe. -->
   <footer>
-    <!-- "One letter at a time." was the H1 and had to explain the product from
-         a standing start, which it cannot — it is a sign-off, not a
-         description. Down here, after the page has done the explaining, it
-         reads as the line it is. -->
     <p class="signoff">
       <span class="signoff-name">Postmello</span>
-      <span class="signoff-line">One letter at a time.</span>
+      <span class="signoff-line">Letters at your own pace.</span>
     </p>
     <nav>
       <a href="support.html">Help</a>
+      <span class="dot" aria-hidden="true">·</span>
       <a href="privacy.html">Privacy Policy</a>
+      <span class="dot" aria-hidden="true">·</span>
       <a href="terms.html">Terms</a>
     </nav>
-    <span class="fine">© 2026 Postmello · For letter-writers everywhere.</span>
+    <span class="fine">© 2026 Postmello</span>
   </footer>
 
 </body>

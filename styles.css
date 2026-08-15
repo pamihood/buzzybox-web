@@ -924,6 +924,17 @@ main > .feature:last-child { padding-bottom: var(--s-5); }
   letter-spacing: -0.02em;
   color: var(--ink);
 }
+/* A subsection inside a section — "Replying on the letter itself". Close to
+   body size and set in the ink of a heading: it has to be a step DOWN from the
+   h2 above it, or the article grows a second layer of section breaks. */
+.post h3 {
+  margin: var(--s-5) 0 var(--s-3);
+  font-size: 1.24rem;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+}
 .post strong { color: var(--ink); font-weight: 600; }
 /* The one pull-quote device: a hairline and a size, no italics and no quote
    marks — the same reasoning that took the italics off the footer tagline. */

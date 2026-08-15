@@ -4,14 +4,19 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Designing a Desk, Not an App — Postmello Blog</title>
-  <meta name="description" content="Why Postmello uses paper, drawers, mailboxes, stamps and a courier bee instead of conventional buttons, menus and status messages." />
+  <meta name="description" content="The hard part wasn’t making Postmello look physical. It was deciding how the software should behave when the illusion was tested." />
   <link rel="icon" type="image/png" href="../../assets/favicon.png" />
   <link rel="apple-touch-icon" href="../../assets/app-icon.png" />
   <meta property="og:title" content="Designing a Desk, Not an App" />
-  <meta property="og:description" content="Why Postmello uses paper, drawers, mailboxes, stamps and a courier bee instead of conventional buttons, menus and status messages." />
+  <meta property="og:description" content="The hard part wasn’t making Postmello look physical. It was deciding how the software should behave when the illusion was tested." />
   <meta property="og:type" content="article" />
   <link rel="stylesheet" href="../../styles.css" />
 </head>
+<!-- The prose is Patrick's, verbatim. The markdown he wrote is kept beside this
+     file as index.md — that is the source, this is the rendering. Edit the .md,
+     then bring the change across; do not let them drift. The byline is the one
+     addition: the piece is written in the first person and needs attribution on
+     a page that carries two authors' work. -->
 <body>
   <header class="site-head">
     <a href="../../" style="display:flex;align-items:center;gap:12px;">
@@ -29,128 +34,346 @@
     <article class="post">
       <a class="back" href="../">← Postmello Blog</a>
       <h1>Designing a Desk, Not an App</h1>
-      <p class="post-meta">The design philosophy behind Postmello</p>
+      <p class="post-deck">The hard part wasn’t making Postmello look physical.
+         It was deciding how the software should behave when the illusion was
+         tested.</p>
+      <p class="post-meta">By Patrick Amihood, Founder of Postmello</p>
 
-      <p>Most software aimed at children looks like software aimed at adults,
-         with rounder corners and brighter colours. The navigation bar is still
-         a navigation bar. The list of conversations is still a list. The red
-         dot still counts things.</p>
+      <p>Postmello looks like a writing desk. There is paper, a mailbox,
+         drawers, envelopes, stamps, a wastebasket and a little courier bee.</p>
 
-      <p>Postmello starts somewhere else.</p>
+      <p>Those are the obvious parts.</p>
 
-      <blockquote>The best interface for a child may be one that doesn't feel
-         like an interface at all.</blockquote>
+      <p>The more interesting design questions appear when the metaphor runs
+         into the things physical desks never have to deal with. What happens
+         after a child mails a letter if the internet disappears? How do you
+         make deletion safe without interrupting the desk with an “Are you
+         sure?” dialog? How do you let someone write back on top of another
+         person’s letter without quietly creating a forwarding mechanism? How do
+         you offer beautiful things a child may want without turning that desire
+         into pressure to buy?</p>
 
-      <p>The child-facing side of Postmello is a writing desk. There is paper
-         on it, a mailbox, a row of drawers, a tray of stamps, a basket for
-         crumpled drafts. Those objects are not a costume worn over an ordinary
-         app. They <strong>are</strong> the app — each one does a job that would
-         otherwise belong to a button, a menu or a status message.</p>
+      <p>If every difficult moment falls back to spinners, alerts, status
+         screens and transaction prompts, then the result isn’t really a desk.
+         It is a conventional app wearing a wooden costume.</p>
 
-      <h2>Objects that do the work</h2>
+      <p>So Postmello needed rules beneath the metaphor. The state of the desk
+         should tell the truth. Losing something a child made should be the
+         failure we fear most. A letter should remain an object rather than
+         becoming another message in a stream. Privacy should come from the
+         structure of the product wherever possible, rather than from warnings.
+         And when the software needs to explain something, the world itself
+         should do as much of that explaining as it can.</p>
 
-      <ul>
-        <li><strong>The stack of paper</strong> is how you start writing. You
-            take a sheet.</li>
-        <li><strong>The mailbox</strong> is where letters arrive. Not an inbox —
-            a box, with mail in it.</li>
-        <li><strong>The flag on the mailbox</strong> is how you know something
-            is waiting.</li>
-        <li><strong>The drawers</strong> hold your correspondence, one per
-            person, with their name on the plate.</li>
-        <li><strong>Envelopes and stamps</strong> are how a letter is addressed
-            and sent.</li>
-        <li><strong>The basket</strong> is where discarded work goes, crumpled,
-            and it is a real basket — you can look inside it.</li>
-      </ul>
+      <p>Those principles have shaped Postmello far more than the wood
+         grain.</p>
 
-      <p>A child who has never used the app can be told "write to your
-         grandmother" and get most of the way there without instruction,
-         because the desk answers the question "what do I do now?" the way
-         desks always have: by showing you what is on it.</p>
+      <h2>The design had to work for children, not for designers</h2>
 
-      <p>What is deliberately missing is as important. There is no navigation
-         bar, no tab bar, no scrolling list of conversations, no unread count,
-         no typing indicator, no read receipt. A letter is a discrete object
-         that you read one at a time, and the desk never shows two open at
-         once.</p>
+      <p>Postmello took shape over more than 60 builds, with my children and
+         their friends using it as it changed.</p>
 
-      <h2>The flag, not the badge</h2>
+      <p>That process taught me how unreliable my own idea of “obvious” could
+         be.</p>
 
-      <p>When a letter arrives, the mailbox changes. The flag goes up.</p>
+      <p>Sometimes I could see a problem coming. I would watch a child approach
+         an interaction and know, somewhere in the back of my mind, that I was
+         asking too much or that the next step was not going to be as clear as I
+         wanted it to be.</p>
 
-      <p>That is the whole notification system, and the difference from a badge
-         is not cosmetic. A number on an icon is a demand: it counts up, it
-         asks to be cleared, and it makes the child responsible for the count
-         rather than interested in the letter. A raised flag is information. It
-         says something is here whenever you want it, and it says the same
-         thing whether one letter is waiting or three.</p>
+      <p>Just as often, they surprised me.</p>
 
-      <p>Then it waits. Nothing buzzes, nothing scrolls, and nothing tells the
-         person who wrote to you whether you have read it yet.</p>
+      <p>Something I had taken completely for granted would stop them. An
+         interaction that made perfect sense to an adult who had spent years
+         learning the conventions of software meant nothing to them. And
+         occasionally the reverse happened: something I was tempted to explain
+         turned out not to need an explanation at all.</p>
 
-      <h2>Why there is a bee</h2>
+      <p>Watching them made it possible to distinguish between an interface that
+         looked understandable to me and one that actually was understandable to
+         them.</p>
 
-      <p>The bee did not arrive as a mascot looking for a job. It arrived
-         because of a genuinely hard problem: what happens after a child drops
-         an envelope into the mailbox.</p>
+      <p>Over time, the question became less <em>Will they know what to
+         tap?</em> and more <em>Does the desk respond in a way that makes sense
+         once they do?</em></p>
 
-      <p>Dropping the envelope is a commitment. From the child's point of view
-         the letter is <em>gone</em> — sent, on its way, out of their hands —
-         and that moment happens at the speed of the animation, never at the
-         speed of the network. Usually the letter really is delivered in that
-         instant. But sometimes there is no signal, or the connection fails
-         halfway, and the letter is genuinely still waiting to go.</p>
+      <p>Once Postmello had taken shape, I could see the difference in the way
+         they used it. They stopped looking for reassurance. They moved around
+         the desk confidently and seemed to know what the objects would do.</p>
 
-      <p>There are two dishonest ways to handle that. One is to pretend it
-         went, and quietly fix it later. The other is to throw a technical
-         error into the middle of a nine-year-old's desk — a red banner about a
-         failed request, which tells them nothing they can act on and makes the
-         desk feel broken.</p>
+      <p>That confidence mattered because it was also a form of trust. The desk
+         had become predictable. It didn’t suddenly change languages when
+         something complicated happened underneath it.</p>
 
-      <p>The bee is the honest third option. When a letter cannot complete its
-         journey immediately, the bee is visibly still carrying it. The state
-         is unresolved, and it <em>looks</em> unresolved, in language the desk
-         already speaks: a courier who has not come back yet. When the
-         connection returns, the bee finishes the trip.</p>
+      <p>A lot of the design that followed came from trying to protect that
+         trust.</p>
 
-      <p>Nothing is lost and nothing is faked, and the child never has to learn
-         a piece of network vocabulary to understand what is going on.</p>
+      <h2>Never fake the pickup</h2>
 
-      <h2>Local first, because losing a letter is unforgivable</h2>
+      <p>Sending a letter is one of the clearest examples.</p>
 
-      <p>Underneath the desk, the rule that shapes most of the engineering is
-         simple: the critical failure case is losing a letter someone wrote.</p>
+      <p>A child finishes a page, chooses an envelope and stamp, addresses it
+         and drops it into the mailbox. That physical action makes a very clear
+         promise: <em>I sent this.</em></p>
 
-      <p>So every stroke is saved locally, on the device, as it is drawn —
-         before any network is involved, and again whenever the child turns a
-         page, closes the app or puts the iPad down. Handwritten work is never
-         deleted or overwritten until the server has confirmed it is safely
-         stored. A letter written on a plane, in a car, or in a house with no
-         signal is a letter that exists.</p>
+      <p>The network may have other ideas.</p>
 
-      <p>This is also why a network problem is not allowed to change what the
-         desk looks like. Being offline is an ordinary condition, not an error
-         state. The desk stays a desk; the mail simply goes when it can.</p>
+      <p>The connection may have disappeared, or the server may not yet have
+         confirmed the send. A conventional app has several reasonable answers:
+         wait behind a spinner, show an error, or optimistically declare success
+         and sort everything out later.</p>
 
-      <h2>Skeuomorphism with a job to do</h2>
+      <p>None felt right for Postmello. I didn’t want a child to have to
+         understand a networking problem, but I also didn’t want the desk to lie
+         about what had happened.</p>
 
-      <p>The word for drawing software to look like physical objects is
-         skeuomorphism, and it has a reputation for being decorative — leather
-         stitching on a calendar, a bookshelf that holds no books.</p>
+      <p>That is where the bee became much more than a character.</p>
 
-      <p>That is not the goal here. The goal is not to make software look
-         old-fashioned.</p>
+      <p>The courier bee only takes possession of a letter once delivery is
+         genuinely underway. If the letter cannot leave yet, it stays in the
+         mailbox and the bee waits. Once the bee has the envelope, that itself
+         has meaning: delivery has begun.</p>
 
-      <blockquote>The goal is to make software behave like things a child
-         already understands.</blockquote>
+      <p>The design problem underneath the bee is not whimsical at all. It is
+         about giving a technical state a form a child can understand without
+         suddenly changing languages from “writing desk” to “network
+         status.”</p>
 
-      <p>Every object on the Postmello desk earns its place by doing the job it
-         appears to do. The drawer opens and your letters are in it. The stamp
-         goes on the envelope. The flag goes up when there is mail. Nothing is
-         a picture of a thing that does something else.</p>
+      <p>This led to one of the broader rules we use in Postmello: if you froze
+         the app at any moment, the resting state should still tell the truth.
+         Animation can add movement and delight, but essential information
+         should not depend on having watched the previous three seconds.</p>
 
-      <p>Get that right, and there is very little left to teach.</p>
+      <p>That is also why the bee can’t simply disappear with an envelope
+         because the software <em>expects</em> a network request to succeed. The
+         physical state has to correspond to what is actually happening.</p>
+
+      <p>The bee isn’t decoration placed on top of the delivery system.</p>
+
+      <p>It is part of how the delivery system becomes understandable.</p>
+
+      <h2>Deleting something without a warning dialog</h2>
+
+      <p>The wastebasket solves a very different problem in much the same
+         spirit.</p>
+
+      <p>Deleting something a child made needs to be safe. The obvious software
+         solution is familiar: ask whether they are sure, perhaps add a red
+         Delete button, and maybe provide Undo afterward.</p>
+
+      <p>But that means the moment a child decides to throw away a piece of
+         paper, the physical world disappears and a software warning takes
+         over.</p>
+
+      <p>Instead, the page crumples into the basket and stays there.</p>
+
+      <p>The basket visibly contains it. Tap it again and the page comes back
+         out. There is no countdown and no tiny Undo banner racing against the
+         child. The deletion only becomes permanent once the child leaves the
+         desk with the paper still in the basket.</p>
+
+      <p>So destruction takes two understandable acts: throw it away, then leave
+         it behind.</p>
+
+      <p>The system is deliberately biased toward preservation as well. If
+         something interrupts that process before the deletion commits,
+         Postmello restores the letter. Accidentally keeping something is
+         preferable to accidentally losing something a child made.</p>
+
+      <p>That principle reaches far beyond the basket. The critical failure in
+         Postmello is not that a screen was briefly stale or that a request took
+         a little longer than expected. It is that a letter disappeared.</p>
+
+      <p>The wastebasket is useful to me as a design example because it isn’t
+         really about replacing a Delete button with a cute object. It is about
+         finding safety in the behavior of the object instead of asking a child
+         to reason about software consequences.</p>
+
+      <h2>A letter is not a message in a stream</h2>
+
+      <p>Some of the most important Postmello design decisions are things the
+         product refuses to become.</p>
+
+      <p>There is no conventional conversation thread. Postmello does not
+         present two full-size readable letters at once. There are no typing
+         indicators, read receipts to the sender or online-presence dots.</p>
+
+      <p>These aren’t messaging features waiting to be added later. They change
+         the basic unit of the product.</p>
+
+      <p>In a messaging system, the conversation is the object. One message
+         flows into another, and the interface encourages continuity. In
+         Postmello, the letter is the object. Someone makes it, sends it, and
+         the recipient opens that one thing on its own.</p>
+
+      <p>That difference matters because interfaces create expectations. A
+         typing indicator tells you something is coming. A read receipt turns
+         opening something into a signal to the sender. Presence tells you that
+         now might be the moment to answer.</p>
+
+      <p>Those are useful conventions when the goal is instant messaging.
+         Postmello is trying to preserve another rhythm: one complete thing from
+         one person to another, with room for life to happen in between.</p>
+
+      <p>One unusual feature helped clarify how seriously we needed to take that
+         distinction.</p>
+
+      <h3>Replying on the letter itself</h3>
+
+      <p>Postmello lets someone write directly on top of a letter they received,
+         like scribbling a response on a physical letter and mailing it back.</p>
+
+      <p>The original pages become a fixed surface underneath the new writing.
+         They are not quoted text waiting to grow into an email chain.</p>
+
+      <p>But once someone else’s letter becomes part of your reply, there is a
+         privacy question hidden inside the feature: who should be allowed to
+         receive it?</p>
+
+      <p>Postmello gives you two choices. You can reply privately to the sender,
+         or you can send the response back to the original group. If you reply
+         to the group, that audience is fixed. You cannot remove selected
+         recipients from it, and you cannot add somebody new.</p>
+
+      <p class="post-beat"><strong>The audience travels with the
+         letter.</strong></p>
+
+      <p>Without that rule, Reply on Top could quietly become a forwarding
+         feature. A child could take someone else’s private letter, write
+         something on it and send the entire thing to somebody who was never
+         meant to see the original.</p>
+
+      <p>I would rather make that state impossible than show a warning and ask a
+         child to reason through the privacy consequences.</p>
+
+      <p>That principle applies more broadly in Postmello. Correspondence can
+         only happen between approved contacts, and that boundary is enforced by
+         the system rather than merely suggested by the interface.</p>
+
+      <p>A warning asks someone to understand a risk and choose correctly.</p>
+
+      <p>Good architecture can sometimes remove the risky choice altogether.</p>
+
+      <p>For software made for children, I think that distinction matters.</p>
+
+      <h2>The child should never become the sales mechanism</h2>
+
+      <p>Collections created another kind of design problem.</p>
+
+      <p>Children enjoy choosing different desks, papers, stamps and stickers.
+         That makes the collections valuable, but it also creates a danger
+         familiar to children’s products: a child’s desire can very easily
+         become part of the mechanism used to sell something.</p>
+
+      <p>I wanted a bright line between the two.</p>
+
+      <p>On the child’s desk there are no prices, locks, countdowns, currencies
+         or limited-time offers. Collections appear in a printed catalog, and if
+         something appeals to a child there is one action:</p>
+
+      <p class="post-beat"><strong>Make a wish.</strong></p>
+
+      <p>Those words carry more weight than they may seem to.</p>
+
+      <p>A wish can exist without promising an outcome. It doesn’t require
+         someone to answer yes or no in front of the child, and it doesn’t turn
+         the product into a negotiation between the child and whoever controls
+         the purchase.</p>
+
+      <p>Even where the wish goes matters. It goes to the <strong>Postmello
+         Stationery Shop</strong>, not to the bee, a shopkeeper or another
+         smiling character. A character who hears a request and then does
+         nothing can feel as though it has refused you. A place can simply
+         receive a wish.</p>
+
+      <p>The household can act on it or quietly leave it alone. The child is not
+         told that a wish was declined, and the desk does not expose the
+         mechanics of the transaction.</p>
+
+      <p>The principle underneath this became simple:</p>
+
+      <p class="post-beat"><strong>The child may want. Only an adult may buy.
+         The child should never be used to push the sale.</strong></p>
+
+      <p>That may sound like a monetization policy, but I think it is
+         fundamentally a design decision. Interfaces don’t just shape how people
+         interact with software; they can create pressure between people.</p>
+
+      <p>Sometimes the responsible design is the one that deliberately chooses
+         not to expose information the software technically knows.</p>
+
+      <h2>The product is allowed to have rituals</h2>
+
+      <p>A lot of interface design is about reducing steps. Postmello
+         deliberately keeps some of them.</p>
+
+      <p>A child chooses the paper, makes the page, selects an envelope,
+         addresses it, adds a stamp and sends the letter.</p>
+
+      <p>If the only objective were to move information between two people as
+         efficiently as possible, almost all of those steps should
+         disappear.</p>
+
+      <p>Keep optimizing and eventually you rediscover texting.</p>
+
+      <p>But efficiency is not always the experience being designed.</p>
+
+      <p>In Postmello, choosing the paper is part of making something. Sending
+         an envelope is part of finishing it. Opening the mailbox is part of
+         receiving something. Returning to a drawer of correspondence is
+         different from scrolling backward through a chat history.</p>
+
+      <p>The point isn’t to make communication artificially slow. It is to
+         preserve the parts of correspondence that give the act some weight.</p>
+
+      <p>The collections made this even more visible. As the desks became more
+         complete — with their own mailboxes, papers, stamps and stickers — they
+         stopped feeling like background themes and began giving children a
+         place to start from.</p>
+
+      <p>Choosing a desk could shape what they felt like making before the blank
+         page had anything on it.</p>
+
+      <p>That was a useful reminder that not every interaction should be
+         optimized out of existence.</p>
+
+      <p>Sometimes the ritual is the point.</p>
+
+      <h2>Designing a world the software has to respect</h2>
+
+      <p>Postmello is still software. Under the desk are databases, networks,
+         synchronization, permissions, local files and all the machinery that
+         any communication product requires.</p>
+
+      <p>A child should not have to carry that complexity.</p>
+
+      <p>But hiding complexity is not the same as lying about it, and that
+         distinction has become central to the design.</p>
+
+      <p>The bee has to tell the truth about whether the mail has really left.
+         The wastebasket has to make deletion safe without becoming a warning
+         dialog. A letter has to remain an object rather than slowly turning
+         into a conversation thread. Reply on Top has to preserve the privacy of
+         the letter it carries. A wish has to remain a wish rather than becoming
+         pressure to buy.</p>
+
+      <p>After more than 60 builds, one of the best signs that the design was
+         working was not simply that the children could complete a task. It was
+         that they stopped needing to think very much about the interface at
+         all.</p>
+
+      <p>They trusted what the desk would do.</p>
+
+      <p>That is what I have come to find interesting about skeuomorphism.</p>
+
+      <p>Making software resemble familiar things is the easy part.</p>
+
+      <p>The harder part is asking the software to obey the logic of the world
+         it presents.</p>
+
+      <p class="post-beat"><strong>The goal is not to make software look like
+         things a child already understands. It is to make the software behave
+         in ways a child can understand, trust and believe.</strong></p>
 
       <p class="post-end">Postmello is coming first to iPad.
          <a href="../why-i-built-postmello/">Read why it was built →</a></p>

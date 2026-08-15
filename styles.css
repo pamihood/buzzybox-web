@@ -129,8 +129,22 @@ body::after {
   background-size: var(--grain-size);
 }
 
-a { color: var(--red); text-decoration: none; }
-a:hover { text-decoration: underline; }
+/* Links are ink with a rule under them, not red text.
+   Red is the mailbox — the one saturated thing in the logo and the art — and
+   as a link colour it was the loudest element on a page whose whole system
+   says the accent is the paper. Underlined ink is what a printed page does:
+   the link is marked, not coloured. The rule sits at a third strength so it
+   reads as a mark rather than a border, and it takes the mailbox red on
+   hover, which is the one place that colour still earns its keep. */
+a {
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-decoration-color: rgba(39, 31, 25, 0.32);
+  text-underline-offset: 0.17em;
+  transition: text-decoration-color 120ms ease;
+}
+a:hover { text-decoration-color: var(--red); }
 
 .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 22px; }
 
@@ -160,12 +174,16 @@ a:hover { text-decoration: underline; }
   color: var(--ink);
   letter-spacing: -0.01em;
 }
+/* The wordmark is a link on every page but the home page, and it must not
+   pick up the prose underline — it is a logo. */
+.site-head > a { text-decoration: none; }
 .site-head nav { margin-left: auto; display: flex; align-items: center; gap: 12px; }
 .site-head .dot { color: var(--ink-faint); }
 .site-head nav a {
   color: var(--ink-soft);
   font-weight: 500;
   font-size: 0.94rem;
+  text-decoration: none;
 }
 .site-head nav a:hover { color: var(--ink); text-decoration: none; }
 
@@ -627,9 +645,10 @@ main > .feature:last-child { padding-bottom: var(--s-5); }
 .editorial-link {
   font-size: 1.06rem;
   font-weight: 600;
-  color: var(--red);
+  color: var(--ink);
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 0.22em;
 }
-.editorial-link:hover { text-decoration: underline; }
 @media (max-width: 760px) {
   .editorial {
     grid-template-columns: 1fr;
@@ -980,7 +999,8 @@ main > .feature:last-child { padding-bottom: var(--s-5); }
   letter-spacing: -0.025em;
 }
 .post-list h2 a { color: var(--ink); }
-.post-list h2 a:hover { color: var(--red); text-decoration: none; }
+.post-list h2 a { text-decoration: none; }
+.post-list h2 a:hover { text-decoration: underline; text-decoration-color: var(--red); }
 .post-list p {
   margin: 0 0 var(--s-2);
   font-size: var(--fs-lede);
@@ -999,7 +1019,7 @@ main > .feature:last-child { padding-bottom: var(--s-5); }
 .post-list .post-meta { margin: 0 0 var(--s-3); font-size: var(--fs-small); }
 /* Whole-entry hover, so the target is the block and not just the six words of
    the title. */
-.post-list li:hover h2 a { color: var(--red); }
+.post-list li:hover h2 a { text-decoration: underline; text-decoration-color: var(--red); }
 /* The current page in the nav is stated, not styled loudly. */
 .site-head nav a[aria-current="page"] { color: var(--ink); font-weight: 600; }
 
@@ -1019,6 +1039,14 @@ main > .feature:last-child { padding-bottom: var(--s-5); }
 .doc .updated { color: var(--ink-faint); font-size: 0.88rem; margin-top: -8px; }
 .doc ul { padding-left: 20px; }
 .doc li { margin-bottom: 6px; }
+/* Back links are navigation, so no standing rule under them; they take one on
+   hover like the nav does. */
+.back {
+  color: var(--ink-soft);
+  font-weight: 500;
+  text-decoration: none;
+}
+.back:hover { color: var(--ink); text-decoration: underline; text-decoration-color: var(--red); }
 .doc a.back { display: inline-block; margin-bottom: 18px; font-weight: 600; }
 
 .contact-box {
@@ -1041,7 +1069,8 @@ footer {
   max-width: var(--maxw);
   margin: 0 auto;
 }
-footer a { color: var(--ink-soft); font-weight: 500; font-size: 1rem; margin: 0 8px; }
+footer a { color: var(--ink-soft); font-weight: 500; font-size: 1rem; margin: 0 8px; text-decoration: none; }
+footer a:hover { color: var(--ink); text-decoration: underline; text-decoration-color: var(--red); }
 footer .dot { color: var(--ink-faint); }
 footer .fine { display: block; margin-top: 10px; font-size: 0.875rem; font-weight: 400; color: var(--ink-faint); }
 

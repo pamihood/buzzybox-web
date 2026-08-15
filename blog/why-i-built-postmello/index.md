@@ -36,7 +36,7 @@ So I started wondering whether there could be another one.
 
 The obvious alternative was a letter.
 
-A letter asks something different of you. You sit down and decide what you want to say. You might draw something, decorate the page, or take your time making it your own.
+A letter asks something different of you. You sit down and decide what you want to say. You might draw something, decorate the page, or take your time over it.
 
 You make the page your own, then send it off.
 

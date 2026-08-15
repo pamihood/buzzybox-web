@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Postmello — Safety by design</title>
+  <meta name="description" content="How Postmello keeps children safe: only approved contacts, no way for strangers to find a child, no ads, and nothing sold to the child at the desk." />
+  <link rel="icon" type="image/png" href="assets/favicon.png" />
+  <link rel="apple-touch-icon" href="assets/app-icon.png" />
+  <meta property="og:title" content="Postmello — Safety by design" />
+  <meta property="og:description" content="How Postmello keeps children safe: only approved contacts, no way for strangers to find a child, no ads, and nothing sold to the child at the desk." />
+  <meta property="og:image" content="https://buzzybox.app/assets/og-card.jpg" />
+  <meta property="og:url" content="https://buzzybox.app/safety.html" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta property="og:site_name" content="Postmello" />
+  <link rel="canonical" href="https://buzzybox.app/safety.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@500&amp;family=Nunito:wght@400..800&amp;family=Rubik:wght@600&amp;display=swap" />
+  <link rel="stylesheet" href="styles.css?v=38ed96cc" />
+</head>
+<!-- The page a parent looks for after deciding they like the pictures: "okay,
+     but how does this actually work for kids?" It exists so that question does
+     not have to be answered out of the Privacy Policy, which is written for
+     lawyers and says nothing about how the product is BUILT.
+
+     Every claim here is a property of the software, not a promise about our
+     intentions — the approval check runs on the server, the reply audience is
+     enforced at send, and there is no discovery surface to search. Nothing goes
+     on this page that a determined reader could not verify by using the app. In
+     particular: no encryption claims beyond what the Privacy Policy states, and
+     no "we never look at letters", which we cannot honestly say of a service
+     that stores them in order to deliver them.
+
+     Plain English on purpose. The Privacy Policy is the legal instrument and
+     this is the explanation; where they touch, this page links there rather
+     than restating it in softer words. -->
+<body>
+  <header class="site-head">
+    <a href="index.html" style="display:flex;align-items:center;gap:12px;">
+      <img src="assets/mark.png" alt="" />
+      <span class="name">Postmello</span>
+    </a>
+    <nav>
+      <a href="blog/">Blog</a>
+      <span class="dot" aria-hidden="true">·</span>
+      <a href="support.html">Help</a>
+    </nav>
+  </header>
+
+  <main>
+    <article class="doc">
+      <a class="back" href="index.html">← Home</a>
+      <h1>Safety by design</h1>
+      <p class="updated">Last updated: August 15, 2026</p>
+
+      <p>Postmello is a place for children to write letters to people they
+         already know. Most of what keeps that safe isn’t a setting someone has
+         to find and switch on — it’s the way the product is built. This page
+         explains it in plain English. The legal detail lives in our
+         <a href="privacy.html">Privacy Policy</a>.</p>
+
+      <h2>The short version</h2>
+      <ul>
+        <li>Letters travel only between contacts that have been approved.</li>
+        <li>There is no way for a stranger to find, search for, or write to a child.</li>
+        <li>An adult owns the account, approves every contact, and can remove one at any time.</li>
+        <li>A reply can never reach anyone who wasn’t already part of the original letter.</li>
+        <li>No ads, no third-party advertising, and we don’t sell anyone’s information.</li>
+        <li>Nothing is sold to your child. Buying happens away from the desk, in the adult’s area.</li>
+      </ul>
+
+      <h2>Only approved contacts</h2>
+      <p>Before two people can write to each other, the connection has to be
+         approved on both sides. Once it is, a drawer with that person’s name
+         appears on the desk, and letters can travel in either direction.</p>
+      <p>This isn’t a rule the interface merely suggests. Every letter is
+         checked against the approved connections by our server as it is sent,
+         so unapproved mail — incoming or outgoing — cannot be created in the
+         first place. There is no “send to an address” field for a child to type
+         a stranger into.</p>
+
+      <h2>Nobody can find your child</h2>
+      <p>Postmello has no public profiles, no user search, no friend
+         suggestions, no “people you may know”, and no open inbox that anyone
+         can post into. A child cannot be discovered by someone who has their
+         name, their school, or their email address. Connections start as an
+         invitation between people who already know each other, and they only
+         become a correspondence when both sides accept.</p>
+      <p>There are also no comments, likes, followers or public posts anywhere
+         in Postmello. A letter goes to the people it is addressed to, and to
+         nobody else.</p>
+
+      <h2>An adult stays in control</h2>
+      <p>An adult creates the account and holds the admin area, which is
+         reached through the Postmello Key — a deliberately quiet affordance on
+         the desk, not a button that invites a child to explore. From there an
+         adult can invite a contact, approve or decline a request, and remove a
+         contact whenever they want to. A desk can also be given a PIN.</p>
+      <p>Removing a contact stops any further letters between those two
+         people.</p>
+
+      <h2>A reply can’t reach someone new</h2>
+      <p>Postmello lets a child write their reply directly on top of the letter
+         they received, the way you might scribble an answer on a paper letter
+         and post it back. That creates a privacy question the moment it exists:
+         the reply now carries somebody else’s letter inside it.</p>
+      <p>So the audience travels with the letter. A reply can go back privately
+         to the person who wrote it, or to that whole original group — and
+         nothing else. Recipients can’t be added, and the group can’t be
+         narrowed to single people out. It is not possible to take a letter
+         somebody sent your child, write on it, and pass it along to someone who
+         was never meant to see it.</p>
+      <p>We would rather make that impossible than show a warning and ask a
+         child to reason through the consequences. The reasoning behind this and
+         other decisions is in
+         <a href="blog/designing-a-desk-not-an-app/">Designing a Desk, Not an App</a>.</p>
+
+      <h2>No ads, and no selling your data</h2>
+      <p>Postmello shows no advertising of any kind, and contains no
+         third-party ad networks. We do not sell personal information, and we do
+         not use letters, drawings or contacts to build advertising or marketing
+         profiles. We use limited diagnostic information — things like app
+         version and error reports — only to keep the app working.</p>
+
+      <h2>Nothing is sold to your child</h2>
+      <p>Postmello offers collections of desks and stationery, and children
+         enjoy choosing between them. That is exactly where a children’s product
+         can go wrong, so the desk carries no prices, no locks, no countdowns,
+         no currencies and no limited-time offers.</p>
+      <p>If something appeals to a child, there is one action: <strong>make a
+         wish</strong>. The wish goes to the Postmello Stationery Shop — a
+         place, not a character who could appear to say no. The household can
+         act on it or quietly leave it alone, and the child is never told a wish
+         was declined. Purchases happen in the adult’s area. The child may want;
+         only an adult may buy.</p>
+
+      <h2>No pressure to reply</h2>
+      <p>There are no typing indicators, no read receipts back to the sender,
+         no presence dots and no streaks. Nothing in Postmello tells a child
+         that someone is waiting, or turns opening a letter into a signal. A
+         letter arrives, the mailbox flag goes up, and it waits.</p>
+
+      <h2>If something goes wrong</h2>
+      <p>If a letter upsets your child, or you want a connection to end, an
+         adult can remove that contact in the admin area and no further letters
+         will be delivered between them. Letters can be removed from inside the
+         app. If you need help with anything else — including deleting an
+         account and its data — write to us and a person will read it.</p>
+
+      <div class="contact-box">
+        Questions about safety? Email
+        <a href="mailto:support@postmello.com">support@postmello.com</a>.
+      </div>
+    </article>
+  </main>
+
+  <footer>
+    <p class="signoff">
+      <span class="signoff-name">Postmello</span>
+      <span class="signoff-line">Letters at your own pace.</span>
+    </p>
+    <nav class="foot-groups" aria-label="Footer">
+      <div class="foot-group">
+        <p class="foot-label">Explore</p>
+        <a href="blog/">Blog</a>
+        <a href="support.html">Help</a>
+      </div>
+      <div class="foot-group">
+        <p class="foot-label">Trust</p>
+        <a href="safety.html">Safety</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms</a>
+      </div>
+      <div class="foot-group">
+        <p class="foot-label">Contact</p>
+        <a href="mailto:support@postmello.com">support@postmello.com</a>
+      </div>
+    </nav>
+    <span class="fine">© 2026 Postmello</span>
+  </footer>
+</body>
+</html>

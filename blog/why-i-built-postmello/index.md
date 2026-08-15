@@ -2,7 +2,7 @@
 
 ## Staying in touch doesn’t have to start with texting.
 
-*By Patrick Amihood, Founder of Postmello*
+*By Patrick Amihood, Creator of Postmello*
 
 One summer, my nine-year-old daughter asked my wife if she could borrow our phone to text her best friend.
 

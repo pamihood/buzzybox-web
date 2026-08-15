@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Postmello share card — source</title>
+  <!-- The 1200x630 image a Postmello link unfurls as, authored as a PAGE rather
+       than composed in PIL. That is the whole point: the card is rendered by the
+       same browser, with the same three webfonts and the same tokens as the
+       site, so it cannot drift into a different typeface than the page it
+       points at. `make-og-card.py` shoots this file at 2x and downsamples.
+
+       Not linked from anywhere and not in the sitemap — it is a source file that
+       happens to be HTML. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@500&amp;family=Nunito:wght@400..800&amp;family=Rubik:wght@600&amp;display=swap" />
+  <style>
+    :root {
+      --ink: #29211b;
+      --ink-mark: #2c231d;
+      --ink-soft: #62564c;
+      --paper: #faf7f2;
+      --font-mark: "Rubik", system-ui, sans-serif;
+      --font-voice: "Nunito", system-ui, sans-serif;
+      --font-apparatus: "DM Mono", ui-monospace, monospace;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      width: 1200px; height: 630px;
+      background: var(--paper);
+      font-family: var(--font-voice);
+      color: var(--ink);
+      display: grid;
+      grid-template-columns: 460px 1fr;
+      align-items: center;
+      gap: 24px;
+      padding: 0 0 0 64px;
+      overflow: hidden;
+      position: relative;
+    }
+    /* The site's own grain, at the site's own cadence. */
+    body::after {
+      content: ""; position: absolute; inset: 0; pointer-events: none;
+      background-image: url("../assets/paper-grain.png");
+      background-size: 128px;
+    }
+    .mark { display: flex; align-items: center; gap: 13px; margin-bottom: 30px; }
+    .mark img { width: 54px; height: 54px; }
+    .mark span {
+      font-family: var(--font-mark);
+      font-weight: 600; font-size: 30px;
+      text-transform: uppercase; letter-spacing: 0.025em;
+      color: var(--ink-mark);
+      line-height: 1;
+    }
+    h1 {
+      font-weight: 800; font-size: 60px;
+      line-height: 1.02; letter-spacing: -0.025em;
+      margin-bottom: 30px;
+    }
+    .badge {
+      display: inline-block;
+      font-family: var(--font-apparatus);
+      font-weight: 500; font-size: 16px; letter-spacing: 0.05em;
+      color: var(--ink-soft);
+      border: 1px solid #ddd4ca; border-radius: 999px;
+      padding: 10px 20px;
+    }
+    /* The desk runs to the right edge with a little air, cropped to the device
+       itself — the shot's own surround is the same paper, so there is no seam. */
+    .shot { justify-self: end; padding-right: 40px; }
+    .shot img { width: 640px; height: auto; display: block; }
+  </style>
+</head>
+<body>
+  <div>
+    <div class="mark">
+      <img src="../assets/mark.png" alt="" />
+      <span>Postmello</span>
+    </div>
+    <h1>A quiet place<br />for letters.</h1>
+    <span class="badge">Coming first to iPad.</span>
+  </div>
+  <div class="shot">
+    <img src="../assets/app-desk.jpg" alt="" />
+  </div>
+</body>
+</html>

@@ -1,0 +1,14 @@
+# Postmello — everything here is public marketing and legal copy.
+User-agent: *
+Allow: /
+
+# /letter/ renders one shared letter from a payload in the URL — it is mail,
+# addressed to one person. The page already carries noindex, nofollow; this
+# keeps crawlers off it in the first place.
+Disallow: /letter/
+
+# Build sources, deployed only because Pages publishes the whole repo.
+# scripts/og-card.html is the share-card artwork, not a page.
+Disallow: /scripts/
+
+Sitemap: https://buzzybox.app/sitemap.xml

@@ -15,10 +15,15 @@
      to skim on a laptop, which is how a pricing section ended up invisible.
      Everything a visitor needs to understand is now --ink or --ink-soft;
      --ink-faint is for material nobody has to read. */
-  --ink: #271f19;        /* headlines, plan names, anything primary */
-  --ink-mid: #4a4038;    /* ledes and the hero sentence — one step off black */
-  --ink-soft: #65584d;   /* normal body, notes, nav links */
-  --ink-faint: #9c8f82;  /* TERTIARY ONLY: copyright, separators */
+  --ink: #29211b;        /* headlines and anything primary */
+  /* The mark sits a hair warmer and lighter than the headline ink. At Rubik 600
+     across eight uppercase letters the wordmark carries more mass than any
+     heading on the page, and at full --ink it read as the heaviest thing in the
+     header rather than as a logo the page is printed under. */
+  --ink-mark: #2c231d;   /* the wordmark, and only the wordmark */
+  --ink-mid: #453b32;    /* ledes and the hero sentence — one step off black */
+  --ink-soft: #62564c;   /* normal body, notes, nav links */
+  --ink-faint: #918478;  /* TERTIARY ONLY: copyright, dates, separators */
 
   /* ---- Paper ----
      Three surfaces for the whole site, not a colour per section: the canvas,
@@ -27,10 +32,10 @@
      on the page, and a standard web accent would only compete with them. */
   --paper: #faf7f2;      /* writing paper: the canvas */
   --paper-alt: #f7f2ea;  /* a second sheet — a tonal hair, not a band */
-  --paper-card: #f0e7dd; /* warm card: the one emphasised block */
-  --card: #fdfbf8;       /* outlined blocks, and the doc pages */
-  --line: #ded5cb;
-  --line-card: #ddd3c9;
+  --paper-card: #f1e8de; /* warm card stock: the one emphasised block */
+  --card: #fdfbf8;       /* very light card: secondary information blocks */
+  --line: #ddd4ca;
+  --line-card: #ddd4ca;
   --red: #c8402f;
   --honey: #e9a227;
   --sky: #8fc3ee;
@@ -42,13 +47,35 @@
   --grain-size: 128px;
 
   /* ---- Faces ----
-     Two roles, not one. --font-voice is the app's own rounded face and carries
-     everything anyone reads as a sentence. --font-apparatus is for the postal
-     furniture — plate names, the absence list, the badge — because in THIS
-     subject a monospace reads as franking and address labels rather than as
-     code. Both are system stacks: no webfont request, so no CDN and no FOUT. */
-  --font-voice: ui-rounded, "SF Pro Rounded", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-apparatus: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+     THREE roles, and the rule is one line: **Rubik is the mark, Nunito is the
+     voice, DM Mono is the apparatus.**
+
+     --font-mark is Rubik Bold, and it is reserved for the wordmark — the header
+     and the footer sign-off, nowhere else. That reservation is the whole point:
+     a face used in one place reads as a logo, and the same face sprinkled over
+     headings reads as a font choice. In sentences the product is always
+     "Postmello"; only the mark is set POSTMELLO.
+
+     --font-voice is Nunito and carries everything anyone reads as a sentence,
+     from the hero down to the legal pages. It has the warmth of the app's own
+     rounded lettering without tipping into a children's-book face, and unlike
+     the old ui-rounded stack it is the SAME face for every visitor — the site
+     used to render in SF Pro Rounded on Apple hardware and Segoe UI everywhere
+     else, which is two different brands.
+
+     --font-apparatus is DM Mono, for the postal furniture — eyebrows, plan
+     names, the badge, the footer group labels. In THIS subject a monospace
+     reads as franking and address labels rather than as code. Never set a
+     paragraph in it. DM Mono ships 300/400/500 only, so apparatus text is
+     weight 500 and never 600: asking for 600 gets a synthesised bold.
+
+     These now come from Google Fonts (Patrick, 2026-08-15), so the site takes
+     an external stylesheet where it previously took none. Every stack keeps its
+     old system fallback, in that order, so a blocked or slow CDN degrades to
+     what the site looked like yesterday rather than to Times New Roman. */
+  --font-mark: "Rubik", ui-rounded, "SF Pro Rounded", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-voice: "Nunito", ui-rounded, "SF Pro Rounded", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-apparatus: "DM Mono", ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
 
   /* ---- Scales ----
      Until now this file had a palette and two lengths; every section then
@@ -59,15 +86,21 @@
   /* Type. Ratio ~1.25, clamped so the top of the scale only arrives when
      there is width for it. Both ends are pinned deliberately: the low end is
      the phone reading size and the high end is the desktop one, so a clamp
-     that only sets a maximum ends up phone-sized on a phone by accident. */
-  --fs-display: clamp(2.5rem, 5.4vw, 4.6rem);   /* 40 → 74px */
-  --fs-section: clamp(2rem, 3.7vw, 3.4rem);     /* 32 → 54px */
-  --fs-sub:     clamp(1.5rem, 2.2vw, 1.85rem);  /* 24 → 30px, subheadings */
-  --fs-hero:    clamp(1.15rem, 1.55vw, 1.36rem);/* 18 → 22px */
-  --fs-lede:    clamp(1.1rem, 1.4vw, 1.2rem);   /* 18 → 19px */
-  --fs-body:    1.06rem;                        /* 17px */
+     that only sets a maximum ends up phone-sized on a phone by accident.
+
+     Rebuilt for Nunito (2026-08-15) and a step heavier and larger throughout.
+     Nunito's x-height runs smaller than SF Pro Rounded's, so the old scale read
+     a size down once the face changed; body copy also moves 17 → 19px, on the
+     principle that **the page should be quiet because of whitespace, never
+     because the text is small or faint.** */
+  --fs-display: clamp(2.7rem, 5.2vw, 4.9rem);   /* 43 → 78px */
+  --fs-section: clamp(2.15rem, 3.7vw, 3.4rem);  /* 34 → 54px */
+  --fs-sub:     clamp(1.65rem, 2.4vw, 2.2rem);  /* 26 → 35px, subheadings */
+  --fs-hero:    clamp(1.18rem, 1.55vw, 1.38rem);/* 19 → 22px */
+  --fs-lede:    clamp(1.18rem, 1.4vw, 1.3rem);  /* 19 → 21px */
+  --fs-body:    clamp(1.06rem, 0.95vw, 1.19rem);/* 17 → 19px */
   --fs-small:   1rem;                           /* 16px */
-  --fs-micro:   0.85rem;                        /* 14px, eyebrows only */
+  --fs-micro:   0.85rem;                        /* 13.6px, DM Mono only */
 
   /* Space. Doubling-ish; --space-section is the page's vertical heartbeat and
      every band uses it, so the rhythm is set in one place. It runs to ~148px
@@ -90,7 +123,10 @@
   --maxw-read: 650px;
   --gutter: 22px;
 
-  --radius: 18px;
+  /* Cards are rare here and never SaaS cards: 12px is the ceiling, and nothing
+     that uses it carries a drop shadow. --radius-media is for photographs,
+     where a slightly larger corner reads as an object rather than a bleed. */
+  --radius: 12px;
   --radius-media: 14px;
 }
 
@@ -106,7 +142,10 @@ body {
   position: relative;
   font-family: var(--font-voice);
   color: var(--ink);
-  line-height: 1.6;
+  line-height: 1.55;
+  /* Nunito's regular is light on a warm ground; 450 is the weight at which body
+     copy reads as ink rather than as grey. */
+  font-weight: 450;
   font-size: var(--fs-body);
   background-color: var(--paper);
   min-height: 100vh;
@@ -135,12 +174,19 @@ body::after {
    says the accent is the paper. Underlined ink is what a printed page does:
    the link is marked, not coloured. The rule sits at a third strength so it
    reads as a mark rather than a border, and it takes the mailbox red on
-   hover, which is the one place that colour still earns its keep. */
+   hover, which is the one place that colour still earns its keep.
+
+   The standing underline is kept for links INSIDE PROSE, deliberately, against
+   the "no underline by default" rule that governs the chrome. In a paragraph an
+   unmarked link is indistinguishable from bold text, and the Privacy Policy and
+   the blog are mostly paragraph. Navigation, footer and the editorial links —
+   which sit alone, where nothing can be confused with them — carry no rule
+   until hover. */
 a {
   color: var(--ink);
   text-decoration: underline;
   text-decoration-thickness: 1px;
-  text-decoration-color: rgba(39, 31, 25, 0.32);
+  text-decoration-color: rgba(41, 33, 27, 0.32);
   text-underline-offset: 0.17em;
   transition: text-decoration-color 120ms ease;
 }
@@ -168,11 +214,25 @@ a:hover { text-decoration-color: var(--red); }
      did without crowding the wordmark. */
   width: 46px; height: 46px;
 }
+/* THE MARK. Rubik Bold, all caps, positive tracking — the one place on the site
+   that face appears, alongside the footer sign-off. Written "Postmello" in the
+   markup and uppercased here, so screen readers and copy-paste get the name the
+   way it is spoken while the header shows the logo.
+
+   It used to be the body face at 1.05rem with negative tracking, which is to
+   say: an icon followed by ordinary site text. */
 .site-head .name {
-  font-weight: 700;
-  font-size: 1.05rem;
-  color: var(--ink);
-  letter-spacing: -0.01em;
+  font-family: var(--font-mark);
+  /* 600, not 700 (2026-08-15). Rubik's Bold at 27px uppercase was a heavier
+     object than the H1 underneath it; Semibold keeps the authority and gives
+     the counters back. Tracking eased 0.045 → 0.025em to match: the wider
+     letterspacing was compensating for the weight. */
+  font-weight: 600;
+  font-size: clamp(1.35rem, 2vw, 1.72rem);   /* 22 → 27.5px */
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+  color: var(--ink-mark);
+  line-height: 1;
 }
 /* The wordmark is a link on every page but the home page, and it must not
    pick up the prose underline — it is a logo. */
@@ -181,8 +241,8 @@ a:hover { text-decoration-color: var(--red); }
 .site-head .dot { color: var(--ink-faint); }
 .site-head nav a {
   color: var(--ink-soft);
-  font-weight: 500;
-  font-size: 0.94rem;
+  font-weight: 550;
+  font-size: 1.06rem;   /* 17px */
   text-decoration: none;
 }
 .site-head nav a:hover { color: var(--ink); text-decoration: none; }
@@ -223,15 +283,18 @@ a:hover { text-decoration-color: var(--red); }
   font-size: var(--fs-display);
   margin: 0 0 var(--s-3);
   color: var(--ink);
-  letter-spacing: -0.03em;
-  line-height: 1.06;
+  font-weight: 800;
+  /* Nunito goes loose at display size; -0.025em is what pulls "A quiet place"
+     back into one word-shape instead of five letters and four gaps. */
+  letter-spacing: -0.025em;
+  line-height: 1.02;
 }
 .hero .tagline {
   font-size: var(--fs-hero);
   color: var(--ink-mid);
   max-width: var(--maxw-read);
   margin: 0 0 var(--s-4);
-  font-weight: 400;
+  font-weight: 500;
   line-height: 1.5;
   text-wrap: pretty;
 }
@@ -325,8 +388,9 @@ a:hover { text-decoration-color: var(--red); }
   background: var(--card);
   border: 1px solid var(--line);
   color: var(--ink-soft);
-  font-weight: 600;
-  padding: 9px 18px;
+  /* DM Mono ships 300/400/500 — 600 would be a synthesised bold. */
+  font-weight: 500;
+  padding: 10px 20px;
   border-radius: 999px;
   font-family: var(--font-apparatus);
   font-size: var(--fs-micro);
@@ -376,7 +440,7 @@ a:hover { text-decoration-color: var(--red); }
   text-align: center;
   color: var(--ink);
   font-size: clamp(1.2rem, 1.5vw, 1.32rem);
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: -0.018em;
 }
 
@@ -422,8 +486,9 @@ main > .feature:last-child { padding-bottom: var(--s-5); }
 .feature h2 {
   margin: 0 0 var(--s-3);
   font-size: var(--fs-section);
+  font-weight: 780;
   line-height: 1.08;
-  letter-spacing: -0.035em;
+  letter-spacing: -0.015em;
   color: var(--ink);
   /* On the h2, not on its span: balancing is a block-level operation and had
      no effect on an inline child, which is why the left-aligned calm heading
@@ -537,18 +602,18 @@ main > .feature:last-child { padding-bottom: var(--s-5); }
   display: block;
   border-radius: var(--radius-media);
 }
-/* Plate names, set like the brass nameplates they are. */
-/* Plate names, set like the brass nameplates they are — and one of the two
-   places the monospace is allowed, because a collection name is taxonomy. Up
-   from 13px: these name the things the section is selling. */
+/* Understated (2026-08-15). These were mono, uppercase and letterspaced — set
+   like brass nameplates, on the theory that a collection name is taxonomy. Six
+   of them across the most colourful block on the site, and the labels were
+   performing as hard as the pictures. Fairy Glen, Seaside Post and Ember Peak
+   are imaginative enough on their own; the name only has to say which desk you
+   are looking at. Nunito, sentence case, full ink. */
 .collections figcaption {
   text-align: center;
-  font-family: var(--font-apparatus);
-  font-size: clamp(0.95rem, 1.1vw, 1.06rem);
-  font-weight: 500;
-  letter-spacing: 0.085em;
-  text-transform: uppercase;
-  color: var(--ink-mid);
+  font-size: clamp(1.12rem, 1.3vw, 1.25rem);   /* 18 → 20px */
+  font-weight: 680;
+  letter-spacing: -0.008em;
+  color: var(--ink);
 }
 
 /* On a phone the same grid would make each world a ~150px card, which is the
@@ -633,17 +698,17 @@ main > .feature:last-child { padding-bottom: var(--s-5); }
   margin: 0 0 var(--s-3);
   font-family: var(--font-apparatus);
   font-size: var(--fs-micro);
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: 0.09em;
   text-transform: uppercase;
   color: var(--ink-mid);
 }
 .editorial h2 {
   margin: 0 0 var(--s-3);
-  font-size: clamp(1.7rem, 2.6vw, 2.38rem);   /* 27 → 38px */
-  font-weight: 700;
-  line-height: 1.15;
-  letter-spacing: -0.028em;
+  font-size: clamp(1.68rem, 2.5vw, 2.25rem);   /* 27 → 36px */
+  font-weight: 750;
+  line-height: 1.16;
+  letter-spacing: -0.02em;
   color: var(--ink);
   text-wrap: balance;
 }
@@ -654,12 +719,31 @@ main > .feature:last-child { padding-bottom: var(--s-5); }
   line-height: 1.62;
   color: var(--ink-soft);
 }
+/* No rule until you reach for it. These sit alone under a paragraph with
+   nothing around them to be confused with, so the standing underline was
+   decoration; the arrow already says "this goes somewhere". On hover the rule
+   arrives and the arrow steps 3px in the direction it points. */
 .editorial-link {
-  font-size: 1.06rem;
-  font-weight: 600;
+  display: inline-block;
+  font-size: 1.09rem;
+  font-weight: 650;
   color: var(--ink);
+  text-decoration: none;
   text-decoration-thickness: 1.5px;
   text-underline-offset: 0.22em;
+}
+.editorial-link:hover {
+  text-decoration: underline;
+  text-decoration-color: var(--red);
+}
+.editorial-link span {
+  display: inline-block;
+  transition: transform 140ms ease;
+}
+.editorial-link:hover span { transform: translateX(3px); }
+@media (prefers-reduced-motion: reduce) {
+  .editorial-link span { transition: none; }
+  .editorial-link:hover span { transform: none; }
 }
 @media (max-width: 760px) {
   .editorial {
@@ -710,8 +794,8 @@ main > .feature:last-child { padding-bottom: var(--s-5); }
   margin: var(--s-6) auto var(--s-5);
   text-align: center;
   font-size: var(--fs-sub);
-  font-weight: 600;
-  letter-spacing: -0.025em;
+  font-weight: 720;
+  letter-spacing: -0.02em;
   color: var(--ink);
 }
 .stationery {
@@ -862,7 +946,7 @@ main > .feature:last-child { padding-bottom: var(--s-5); }
 .plans dt {
   font-family: var(--font-apparatus);
   font-size: var(--fs-micro);
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--ink-mid);
@@ -876,7 +960,7 @@ main > .feature:last-child { padding-bottom: var(--s-5); }
 }
 .plans dd strong {
   font-size: clamp(1.2rem, 1.7vw, 1.45rem);
-  font-weight: 600;
+  font-weight: 700;
   line-height: 1.3;
   color: var(--ink);
   letter-spacing: -0.02em;
@@ -895,7 +979,7 @@ main > .feature:last-child { padding-bottom: var(--s-5); }
   text-align: center;
   font-family: var(--font-apparatus);
   font-size: var(--fs-micro);
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--ink-soft);
@@ -935,12 +1019,15 @@ main > .feature:last-child { padding-bottom: var(--s-5); }
   margin: 0 auto;
   padding: clamp(24px, 4vw, 48px) var(--gutter) var(--s-6);
 }
+/* The blog is more editorial than the rest of the site but it is NOT a second
+   brand: no serif, same three voices, same paper. An article title runs close
+   to the homepage hero because on that page it IS the hero. */
 .post h1, .blog-index h1 {
   margin: var(--s-3) 0 var(--s-3);
-  font-size: clamp(2rem, 3.2vw, 2.85rem);
-  font-weight: 700;
-  line-height: 1.12;
-  letter-spacing: -0.03em;
+  font-size: clamp(2.25rem, 3.8vw, 3.9rem);   /* 36 → 62px */
+  font-weight: 800;
+  line-height: 1.06;
+  letter-spacing: -0.025em;
   color: var(--ink);
   text-wrap: balance;
 }
@@ -948,16 +1035,22 @@ main > .feature:last-child { padding-bottom: var(--s-5); }
    for the web: it states the argument before the first paragraph starts. */
 .post-deck {
   margin: 0 0 var(--s-3);
-  font-size: clamp(1.24rem, 1.8vw, 1.48rem);
+  font-size: clamp(1.3rem, 1.9vw, 1.6rem);   /* 21 → 26px */
   font-weight: 500;
   line-height: 1.35;
   letter-spacing: -0.015em;
   color: var(--ink-mid);
   text-wrap: balance;
 }
+/* The byline takes the apparatus face — lower case, not the uppercase the
+   eyebrows use. A typewritten credit under a headline is exactly the register
+   this brand is in, and it separates the attribution from the prose without a
+   rule or a colour. */
 .post-meta {
   margin: 0 0 var(--s-5);
-  font-size: var(--fs-small);
+  font-family: var(--font-apparatus);
+  font-size: 0.94rem;   /* 15px */
+  font-weight: 500;
   color: var(--ink-soft);
 }
 /* A line the author set on its own and put in bold — a beat in the argument,
@@ -970,16 +1063,16 @@ main > .feature:last-child { padding-bottom: var(--s-5); }
 }
 .post-beat strong { font-weight: 600; }
 .post p, .blog-index > p {
-  font-size: 1.19rem;
-  line-height: 1.72;
+  font-size: 1.19rem;   /* 19px */
+  line-height: 1.65;
   color: var(--ink-soft);
   margin: 0 0 var(--s-3);
 }
 .post h2 {
   margin: var(--s-6) 0 var(--s-3);
-  font-size: clamp(1.45rem, 2.1vw, 1.75rem);
-  font-weight: 600;
-  line-height: 1.25;
+  font-size: clamp(1.6rem, 2.3vw, 2.3rem);   /* 26 → 37px */
+  font-weight: 750;
+  line-height: 1.2;
   letter-spacing: -0.02em;
   color: var(--ink);
 }
@@ -1031,12 +1124,14 @@ main > .feature:last-child { padding-bottom: var(--s-5); }
   border-top: 1px solid var(--line);
 }
 .post-list li:last-child { border-bottom: 1px solid var(--line); }
+/* Blog-card headings sit at the editorial scale, a clear step under an article
+   title but well above the deck beneath them. */
 .post-list h2 {
   margin: 0 0 var(--s-2);
-  font-size: clamp(1.45rem, 2.2vw, 1.85rem);
-  font-weight: 700;
-  line-height: 1.2;
-  letter-spacing: -0.025em;
+  font-size: clamp(1.62rem, 2.3vw, 2.1rem);   /* 26 → 34px */
+  font-weight: 720;
+  line-height: 1.18;
+  letter-spacing: -0.02em;
 }
 .post-list h2 a { color: var(--ink); }
 .post-list h2 a { text-decoration: none; }
@@ -1056,12 +1151,12 @@ main > .feature:last-child { padding-bottom: var(--s-5); }
   color: var(--ink-mid) !important;
   letter-spacing: -0.012em;
 }
-.post-list .post-meta { margin: 0 0 var(--s-3); font-size: var(--fs-small); }
+.post-list .post-meta { margin: 0 0 var(--s-3); font-size: 0.92rem; }
 /* Whole-entry hover, so the target is the block and not just the six words of
    the title. */
 .post-list li:hover h2 a { text-decoration: underline; text-decoration-color: var(--red); }
 /* The current page in the nav is stated, not styled loudly. */
-.site-head nav a[aria-current="page"] { color: var(--ink); font-weight: 600; }
+.site-head nav a[aria-current="page"] { color: var(--ink); font-weight: 650; }
 
 /* ---------- Cards / doc pages ---------- */
 .card,
@@ -1073,21 +1168,27 @@ main > .feature:last-child { padding-bottom: var(--s-5); }
   margin: 0 auto 32px;
   max-width: var(--maxw);
 }
-.doc h1 { margin-top: 0; font-size: 1.8rem; letter-spacing: -0.02em; }
-.doc h2 { font-size: 1.15rem; margin-top: 30px; color: var(--ink); letter-spacing: -0.01em; }
-.doc p, .doc li { color: var(--ink-soft); }
-.doc .updated { color: var(--ink-faint); font-size: 0.88rem; margin-top: -8px; }
+.doc h1 { margin-top: 0; font-size: 2.1rem; font-weight: 780; letter-spacing: -0.02em; line-height: 1.14; }
+.doc h2 { font-size: 1.28rem; font-weight: 720; margin-top: 34px; color: var(--ink); letter-spacing: -0.012em; }
+/* The Help page's questions. They were <h2 style="font-size:1.1rem"> — a
+   heading level lied about in an inline style, five times, so a screen reader
+   heard five sibling sections where there is one list of questions. Same size
+   they rendered at before. */
+.doc h3 { font-size: 1.16rem; font-weight: 700; margin-top: 30px; color: var(--ink); letter-spacing: -0.01em; }
+.doc p, .doc li { color: var(--ink-soft); line-height: 1.6; }
+/* A date is genuinely tertiary — one of the few things --ink-faint is for. */
+.doc .updated { color: var(--ink-faint); font-family: var(--font-apparatus); font-size: 0.85rem; margin-top: -8px; }
 .doc ul { padding-left: 20px; }
 .doc li { margin-bottom: 6px; }
 /* Back links are navigation, so no standing rule under them; they take one on
    hover like the nav does. */
 .back {
   color: var(--ink-soft);
-  font-weight: 500;
+  font-weight: 550;
   text-decoration: none;
 }
 .back:hover { color: var(--ink); text-decoration: underline; text-decoration-color: var(--red); }
-.doc a.back { display: inline-block; margin-bottom: 18px; font-weight: 600; }
+.doc a.back { display: inline-block; margin-bottom: 18px; font-weight: 650; }
 
 .contact-box {
   background: var(--paper);
@@ -1109,10 +1210,10 @@ footer {
   max-width: var(--maxw);
   margin: 0 auto;
 }
-footer a { color: var(--ink-soft); font-weight: 500; font-size: 1rem; margin: 0 8px; text-decoration: none; }
+footer a { color: var(--ink-soft); font-weight: 550; font-size: 1rem; margin: 0 8px; text-decoration: none; }
 footer a:hover { color: var(--ink); text-decoration: underline; text-decoration-color: var(--red); }
 footer .dot { color: var(--ink-faint); }
-footer .fine { display: block; margin-top: 10px; font-size: 0.875rem; font-weight: 400; color: var(--ink-faint); }
+footer .fine { display: block; margin-top: 10px; font-size: 0.875rem; font-weight: 450; color: var(--ink-faint); }
 
 /* The one sign-off on the page, and it happens once. The page used to end
    three times over — a bolded claim under the plans, a gap, a centred
@@ -1129,19 +1230,76 @@ footer .signoff {
   flex-direction: column;
   gap: 3px;
 }
+/* The mark again, and the only other place Rubik is allowed. Same treatment as
+   the header at a size down: uppercased here, "Postmello" in the markup. */
 footer .signoff-name {
-  font-weight: 700;
-  font-size: 1.19rem;
-  letter-spacing: -0.012em;
-  color: var(--ink);
+  font-family: var(--font-mark);
+  font-weight: 600;
+  font-size: 1.32rem;   /* 21px */
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+  color: var(--ink-mark);
+  line-height: 1.15;
 }
 /* Not italic. Italics made the tagline read as a quotation or a decorative
    aside; upright, at nearly body size, it reads as brand copy — which is what
    it is. */
 footer .signoff-line {
-  font-size: 1.1rem;
-  font-weight: 450;
+  font-size: 1.12rem;   /* 18px */
+  font-weight: 500;
   color: var(--ink-mid);
+}
+
+/* Three labelled groups instead of one run of four links (2026-08-15).
+   Blog · Help · Privacy Policy · Terms in a single row gave a legal page and a
+   blog post the same weight and left nowhere to put an address, so a visitor
+   looking for "how does this work for kids" or "who do I write to" had to guess
+   which link hid it. Grouping says which is which in three words.
+
+   Deliberately NOT a corporate footer: no Company, no Careers, no Partners, no
+   social row, and nothing here that does not exist. Three groups, one line of
+   labels, same quiet centre as before. */
+footer .foot-groups {
+  display: flex;
+  justify-content: center;
+  gap: clamp(var(--s-4), 7vw, var(--s-6));
+  text-align: left;
+  margin-bottom: var(--s-3);
+}
+.foot-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+/* The group labels are furniture, not links, so they take the apparatus face —
+   the same reasoning as the plate names and the badge. Small and faint is right
+   HERE (contra the whitespace-not-faint-text rule): nobody needs to read the
+   word "Trust", it only has to separate the columns for someone scanning. */
+.foot-label {
+  margin: 0 0 2px;
+  font-family: var(--font-apparatus);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+/* Stacked, so the horizontal margin that separates inline footer links would
+   only push each column off its own label. */
+footer .foot-group a {
+  margin: 0;
+  font-size: 0.98rem;
+}
+
+@media (max-width: 560px) {
+  /* One centred column each, in the same order. Two-up wrapping put Contact
+     under Explore and left a hole where Trust should have been. */
+  footer .foot-groups {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: var(--s-3);
+  }
 }
 
 @media (max-width: 520px) {

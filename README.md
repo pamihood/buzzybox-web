@@ -11,13 +11,58 @@ Served via **GitHub Pages** at the apex domain `buzzybox.app`.
 | `index.html` | Landing page |
 | `blog/index.html` | Blog index |
 | `blog/<slug>/index.html` | One post per directory, so the URL is `/blog/<slug>/` with no server config |
+| `safety.html` | Safety by design — how the product protects children, in plain English |
 | `privacy.html` | Privacy Policy (App Store privacy URL) |
 | `support.html` | Help / contact (App Store support URL — filename kept for the store listing, nav reads "Help") |
 | `terms.html` | Terms of Use |
+| `404.html` | Not-found page. **Root-absolute links only** — GitHub Pages serves it at any depth, so `assets/…` would resolve against the missing path and the page would arrive unstyled |
+| `sitemap.xml`, `robots.txt` | Hand-maintained. Add the entry in the same commit that adds a page. `/letter/` is excluded from both: it is mail |
 
 ## Editing
 
 Plain HTML + one stylesheet (`styles.css`). No build step. Edit and push to `main`; GitHub Pages redeploys automatically.
+
+**Contact address: `support@postmello.com`** — Help, Privacy, Terms, Safety, 404
+and every footer. Nothing on the site should carry a personal address.
+
+**The footer is one block, repeated.** `scripts/apply-footer.py` rewrites the
+`<footer>` on every page from a single template with per-page path prefixes; run
+it rather than hand-editing nine copies, which is how Help and Privacy drifted
+apart before.
+
+**Share card**: `assets/og-card.jpg` (1200×630). `scripts/og-card.html` is the
+source — a real page in the site's own fonts and tokens — and
+`scripts/make-og-card.py` shoots it in headless Chrome at 2x and downsamples.
+Rerun it after any change to the H1, the hero capture, or the type system.
+`og:image`, `og:url` and `canonical` are **absolute** on every page (a scraper
+has no base to resolve a relative one against, so a shared link unfurled with no
+picture at all).
+
+## Typography
+
+**Rubik is the mark. Nunito is the voice. DM Mono is the apparatus.** All three
+load from Google Fonts (`scripts/apply-head-meta.py` owns the `<link>`), and
+every stack keeps its old system fallback so a blocked CDN degrades to what the
+site looked like before rather than to Times New Roman.
+
+- **Rubik 600** — the wordmark only, header and footer sign-off, uppercase,
+  `0.025em` tracking, `--ink-mark` (#2C231D). Written `Postmello` in the markup
+  and uppercased in CSS, so screen readers and copy-paste get the spoken name.
+  Keeping it to those two places is what makes it read as a logo instead of a
+  third font. The CDN request asks for `wght@600` — a real Semibold face, not a
+  synthesised one — so changing the mark's weight means changing
+  `scripts/apply-head-meta.py` **and** `scripts/og-card.html` too.
+- **Nunito 450–800** — every heading and every sentence, hero to legal page.
+  Display sizes need `letter-spacing: -0.025em`; Nunito goes loose when large.
+- **DM Mono 500** — eyebrows, plan names, the badge, footer group labels, the
+  blog byline, dates. Never a paragraph. **The face ships 300/400/500 only**, so
+  apparatus text is 500 — asking for 600 gets a synthesised bold.
+
+Sizes and weights live in the `--fs-*` tokens and the component rules; the
+governing rule is that **the page is quiet because of whitespace, never because
+the text is small or faint.** No accent colour is introduced anywhere: the desks,
+stamps and stickers supply all the colour, and everything else is warm paper and
+dark ink.
 
 Artwork in `assets/` is exported from the app project (app icon, splash scene, paper/envelope textures).
 

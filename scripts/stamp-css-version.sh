@@ -10,7 +10,7 @@
 set -euo pipefail
 cd "$(dirname "$0")/.."   # repo root, not scripts/
 HASH=$(md5 -q styles.css | cut -c1-8)
-for f in index.html support.html privacy.html terms.html blog/index.html blog/*/index.html; do
+for f in index.html support.html privacy.html terms.html safety.html 404.html blog/index.html blog/*/index.html; do
   [ -f "$f" ] || continue
   perl -pi -e "s{(href=\"[^\"]*styles\.css)(\?v=[a-f0-9]+)?\"}{\$1?v=$HASH\"}g" "$f"
 done

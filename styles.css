@@ -592,6 +592,18 @@ main > .feature:last-child { padding-bottom: var(--s-5); }
   border-radius: var(--radius-media);
 }
 
+/* The drawer rail, one photograph rather than five cut-outs. */
+.drawer-row {
+  max-width: var(--maxw-wide);
+  margin: 0 auto;
+}
+.drawer-row img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: var(--radius-media);
+}
+
 /* ---------- The editorial interlude ---------- */
 /* Two ideas, one section, sitting between the calm section and the
    collections. Compact on purpose — this is an interlude, not a third pillar,

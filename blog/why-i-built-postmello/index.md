@@ -60,7 +60,7 @@ I didn’t want a small text field with a Send button. I wanted a child to begin
 
 The recipient would receive that page as it was made.
 
-Postmello letters are digital-to-digital. Nothing is automatically printed or put into the physical mail. But the experience deliberately borrows from correspondence rather than instant messaging.
+Postmello letters are digital-to-digital. Nothing is automatically printed or put into the physical mail — though that may come later. But the experience deliberately borrows from correspondence rather than instant messaging.
 
 That gives children something messaging often doesn’t:
 

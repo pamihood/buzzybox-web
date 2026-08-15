@@ -32,13 +32,13 @@ Simply postponing communication because I didn’t like the tools available didn
 
 So I started wondering whether there could be another one.
 
-## What if a digital letter could arrive quickly?
+## Letters, without waiting for the mail
 
 The obvious alternative was a letter.
 
 A letter asks something different of you. You sit down and decide what you want to say. You might draw something, decorate the page, or take your time making it your own.
 
-Then you send a complete thing to someone.
+You make the page your own, then send it off.
 
 The other person receives it, reads it, and perhaps sits down later to make something back. There is a beginning and an end to the act, and that felt much closer to what I wanted for my daughter.
 

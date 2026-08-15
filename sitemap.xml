@@ -5,42 +5,42 @@
      same commit that adds the page. -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://postmello.com/</loc>
+    <loc>https://buzzybox.app/</loc>
     <lastmod>2026-08-15</lastmod>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://postmello.com/blog/</loc>
+    <loc>https://buzzybox.app/blog/</loc>
     <lastmod>2026-08-15</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://postmello.com/blog/why-i-built-postmello/</loc>
+    <loc>https://buzzybox.app/blog/why-i-built-postmello/</loc>
     <lastmod>2026-08-15</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://postmello.com/blog/designing-a-desk-not-an-app/</loc>
+    <loc>https://buzzybox.app/blog/designing-a-desk-not-an-app/</loc>
     <lastmod>2026-08-15</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://postmello.com/safety.html</loc>
+    <loc>https://buzzybox.app/safety.html</loc>
     <lastmod>2026-08-15</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://postmello.com/support.html</loc>
+    <loc>https://buzzybox.app/support.html</loc>
     <lastmod>2026-08-15</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://postmello.com/privacy.html</loc>
+    <loc>https://buzzybox.app/privacy.html</loc>
     <lastmod>2026-08-15</lastmod>
     <priority>0.4</priority>
   </url>
   <url>
-    <loc>https://postmello.com/terms.html</loc>
+    <loc>https://buzzybox.app/terms.html</loc>
     <lastmod>2026-08-15</lastmod>
     <priority>0.4</priority>
   </url>

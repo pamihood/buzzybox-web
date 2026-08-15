@@ -11,7 +11,7 @@ import re
 import pathlib
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent   # repo root, not scripts/
-ORIGIN = "https://postmello.com"          # flip here at the domain move
+ORIGIN = "https://buzzybox.app"          # flip here at the domain move
 CARD = f"{ORIGIN}/assets/og-card.jpg"
 
 # Rubik for the mark, Nunito for the voice, DM Mono for the apparatus.

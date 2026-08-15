@@ -11,4 +11,4 @@ Disallow: /letter/
 # scripts/og-card.html is the share-card artwork, not a page.
 Disallow: /scripts/
 
-Sitemap: https://postmello.com/sitemap.xml
+Sitemap: https://buzzybox.app/sitemap.xml

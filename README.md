@@ -1,8 +1,8 @@
 # Postmello website
 
-Static marketing + legal site for [Postmello](https://buzzybox.app), the cozy iPad app for handwritten letters.
+Static marketing + legal site for [Postmello](https://postmello.com), the cozy iPad app for handwritten letters.
 
-Served via **GitHub Pages** at the apex domain `buzzybox.app`.
+Served via **GitHub Pages** at the apex domain `postmello.com`.
 
 ## Pages
 
@@ -128,4 +128,10 @@ break by accident:
 
 ## Custom domain
 
-`CNAME` pins the site to `buzzybox.app`. DNS is managed at Namecheap (see the apex A/AAAA records pointing at GitHub Pages).
+`CNAME` pins the site to `postmello.com`, whose DNS is on **Cloudflare** (apex
+A/AAAA plus a `www` CNAME, all DNS-only so GitHub issues the certificate).
+
+`buzzybox.app` is the old home and now **404s**. GitHub Pages serves exactly one
+custom domain and does not redirect the others — its DNS is still at Namecheap
+pointing here, which is why it errors rather than failing to resolve. Nothing
+depends on it; keep renewing it anyway so redirecting stays an option.

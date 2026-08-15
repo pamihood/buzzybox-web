@@ -679,6 +679,18 @@ main > .feature:last-child { padding-bottom: var(--s-5); }
    Percentage geometry inside an aspect-ratio box, so the whole composition
    scales as one object: at 1200px or 780px every overlap lands identically.
    The angles are fixed values — this is a composition, not a shuffle. */
+/* A note on the grid, not a heading for what follows — so it sits close under
+   the desks and well clear of the subheading beneath it. */
+.collections-note {
+  max-width: var(--maxw-read);
+  margin: var(--s-5) auto 0;
+  text-align: center;
+  font-size: var(--fs-lede);
+  line-height: 1.5;
+  color: var(--ink-soft);
+  text-wrap: balance;
+}
+
 /* A subheading, deliberately a third the size of the section h2 above it: the
    spread is a flourish inside the collections section, not another argument. */
 .stationery-head {

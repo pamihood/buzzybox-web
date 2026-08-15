@@ -709,21 +709,29 @@ main > .feature:last-child { padding-bottom: var(--s-5); }
   border: 1px solid var(--line);
   box-shadow: -4px 8px 16px rgba(42, 33, 24, 0.13);
 }
-.st-paper--1 { left: 0.5%; top: 5%;  transform: rotate(-6deg); z-index: 1; }
-.st-paper--2 { left: 13%;  top: 21%; transform: rotate(3deg);  z-index: 2; }
-.st-paper--3 { left: 26%;  top: 3%;  transform: rotate(-2deg); z-index: 3; }
-.st-paper--4 { left: 38%;  top: 22%; transform: rotate(5deg);  z-index: 4; }
-.st-paper--5 { left: 50%;  top: 4%;  transform: rotate(-4deg); z-index: 5; }
-.st-paper--6 { left: 62%;  top: 20%; transform: rotate(2deg);  z-index: 6; }
-/* The envelope is a cut-out with its own baked edge, so it takes a shadow but
-   no border. It anchors the right end of the fan. */
+/* Tops ALTERNATE high/low, and that is load-bearing rather than decorative.
+   Every paper in a fan has its right side covered by the next one, and three of
+   these carry their art on the right: the dragon top-right, the frangipani
+   bottom-right, the toadstool on the envelope. A sheet whose art is at the TOP
+   therefore sits high with a low neighbour, and one whose art is at the BOTTOM
+   sits low with a high neighbour, so the covering sheet reaches only the half
+   that is empty cream. Change the order and the art disappears. */
+.st-paper--1 { left: 0.5%;  top: 4%;  transform: rotate(-6deg); z-index: 1; }  /* wisteria: top */
+.st-paper--2 { left: 13%;   top: 22%; transform: rotate(3deg);  z-index: 2; }  /* lanterns: all over */
+.st-paper--3 { left: 25.5%; top: 3%;  transform: rotate(-2deg); z-index: 3; }  /* lighthouse: lower left */
+.st-paper--4 { left: 38%;   top: 21%; transform: rotate(4deg);  z-index: 4; }  /* macarons: bottom row */
+.st-paper--5 { left: 50.5%; top: 3%;  transform: rotate(-3deg); z-index: 6; }  /* dragon: TOP right */
+.st-paper--6 { left: 63%;   top: 21%; transform: rotate(2deg);  z-index: 7; }  /* frangipani: BOTTOM right */
+/* Behind the last sheet, not over it — over it, the envelope covered exactly
+   the corner the frangipani lives in. It still reads: the paper ends at 87%
+   and the envelope runs to the edge, so its own toadstool corner is clear. */
 .st-envelope {
   position: absolute;
   width: 24%;
-  top: 27%;
+  top: 26%;
   right: 0.5%;
   transform: rotate(3deg);
-  z-index: 7;
+  z-index: 5;
   filter: drop-shadow(-4px 8px 14px rgba(42, 33, 24, 0.16));
 }
 /* One prop per collection, paired with its own paper and set at a different
@@ -736,13 +744,14 @@ main > .feature:last-child { padding-bottom: var(--s-5); }
 }
 .st-stamp   { width: 7%; }
 .st-sticker { width: 6.4%; }
-.st-sticker--1 { left: 3.5%;  top: 64%; transform: rotate(-9deg); }  /* Fairy Glen */
-.st-stamp--1   { left: 15%;   top: 74%; transform: rotate(6deg); }   /* Seaside Post */
-.st-sticker--2 { left: 37%;   top: 67%; transform: rotate(8deg); }   /* Petit Café */
-.st-stamp--3   { left: 50%;   top: 78%; transform: rotate(-5deg); }  /* Ember Peak */
-.st-sticker--3 { left: 64%;   top: 66%; transform: rotate(4deg); }   /* Baan Naa */
-/* On the envelope, above its fold. */
-.st-stamp--2   { left: 88%;   top: 31%; transform: rotate(-4deg); z-index: 9; }
+.st-sticker--1 { left: 3.5%;  top: 66%; transform: rotate(-9deg); }  /* Fairy Glen */
+.st-stamp--1   { left: 15%;   top: 76%; transform: rotate(6deg); }   /* Seaside Post */
+.st-sticker--2 { left: 34%;   top: 69%; transform: rotate(8deg); }   /* Petit Café */
+.st-stamp--3   { left: 47%;   top: 79%; transform: rotate(-5deg); }  /* Ember Peak */
+.st-sticker--3 { left: 60%;   top: 72%; transform: rotate(4deg); }   /* Baan Naa */
+/* On the strip of envelope the last sheet leaves showing, clear of its own
+   toadstool corner. */
+.st-stamp--2   { left: 89%;   top: 30%; transform: rotate(-4deg); z-index: 9; }
 
 /* On a phone the composition would put a 7%-wide stamp at 24px, which is a
    speck. The absolute geometry is dropped entirely and the pieces scatter in

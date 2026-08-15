@@ -742,16 +742,26 @@ main > .feature:last-child { padding-bottom: var(--s-5); }
   z-index: 8;
   filter: drop-shadow(-2px 4px 7px rgba(42, 33, 24, 0.20));
 }
-.st-stamp   { width: 7%; }
-.st-sticker { width: 6.4%; }
-.st-sticker--1 { left: 3.5%;  top: 66%; transform: rotate(-9deg); }  /* Fairy Glen */
-.st-stamp--1   { left: 15%;   top: 76%; transform: rotate(6deg); }   /* Seaside Post */
-.st-sticker--2 { left: 34%;   top: 69%; transform: rotate(8deg); }   /* Petit Café */
-.st-stamp--3   { left: 47%;   top: 79%; transform: rotate(-5deg); }  /* Ember Peak */
-.st-sticker--3 { left: 60%;   top: 72%; transform: rotate(4deg); }   /* Baan Naa */
+.st-stamp   { width: 6.1%; }
+.st-sticker { width: 5.6%; }
+/* Twelve pieces along the foot of the fan — a stamp and a sticker from each
+   collection — at ALTERNATING heights. Level, twelve of anything is a product
+   row; staggered, they read as things set down. Sizes come down a notch from
+   the six-piece version or they run into each other. */
+.st-sticker--1 { left: 2.5%;  top: 65%; transform: rotate(-9deg); }  /* Fairy Glen */
+.st-stamp--1   { left: 9.5%;  top: 76%; transform: rotate(5deg); }
+.st-stamp--2   { left: 18%;   top: 67%; transform: rotate(-6deg); }  /* Seaside Post */
+.st-sticker--2 { left: 25.5%; top: 78%; transform: rotate(7deg); }
+.st-sticker--3 { left: 33%;   top: 67%; transform: rotate(8deg); }   /* Petit Café */
+.st-stamp--3   { left: 40%;   top: 78%; transform: rotate(-4deg); }
+.st-sticker--4 { left: 48%;   top: 68%; transform: rotate(6deg); }   /* Japanese Garden */
+.st-stamp--4   { left: 55.5%; top: 79%; transform: rotate(-7deg); }  /* Baan Naa */
+.st-sticker--5 { left: 63%;   top: 69%; transform: rotate(4deg); }
+.st-stamp--5   { left: 70.5%; top: 79%; transform: rotate(-5deg); }  /* Ember Peak */
+.st-sticker--6 { left: 78%;   top: 69%; transform: rotate(9deg); }
 /* On the strip of envelope the last sheet leaves showing, clear of its own
    toadstool corner. */
-.st-stamp--2   { left: 89%;   top: 30%; transform: rotate(-4deg); z-index: 9; }
+.st-stamp--6   { left: 89%;   top: 30%; transform: rotate(-4deg); z-index: 9; }
 
 /* On a phone the composition would put a 7%-wide stamp at 24px, which is a
    speck. The absolute geometry is dropped entirely and the pieces scatter in

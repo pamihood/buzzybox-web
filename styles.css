@@ -32,7 +32,12 @@
      on the page, and a standard web accent would only compete with them. */
   --paper: #faf7f2;      /* writing paper: the canvas */
   --paper-alt: #f7f2ea;  /* a second sheet — a tonal hair, not a band */
-  --paper-card: #f1e8de; /* warm card stock: the one emphasised block */
+  /* Manila — the kraft-envelope material, and the one place the page's paper
+     gets real chroma. The old #f1e8de darkened the ground without warming it
+     (chroma ~7%), and darker-without-warmer is the recipe for grey; Patrick
+     called it twice, 2026-08-16. Deeper (#eee0c4) read as a highlighted
+     callout, paler (#f3e7d0) stayed timid. Soft ink on this passes AA. */
+  --paper-card: #f4e8cc; /* manila card stock: the one emphasised block */
   --card: #fdfbf8;       /* very light card: secondary information blocks */
   --line: #ddd4ca;
   --line-card: #ddd4ca;
@@ -1036,46 +1041,57 @@ main > .feature:last-child { padding-bottom: var(--s-5); }
 }
 
 /* ---------- The plans: free core, optional additions ---------- */
-/* Two earlier builds presented the three offerings as equals — first with
-   vertical dividers, then with a rule over each column — and both made the
-   reader assemble the story themselves. The story is not "three things". It
-   is: Postmello is free, and there are two ways to add to it. So the shape now
-   says that before any of it is read: one wide block, the words "Add more",
-   then a pair.
+/* Three equal columns, restored 2026-08-16 (Patrick) after two intermediate
+   shapes. The history matters because it says what each build got wrong: the
+   FIRST three-column build presented the offerings as equals in light type —
+   a thing you had to study to learn that one was free — so it became a wide
+   free block, the words "Add more", then a pair, which told the story with
+   layout but read as a bespoke diagram. Three columns in a row is the more
+   universal shape: one glance says there are exactly three things and none of
+   them is hidden. The fix for the original failure now lives in the PAPER,
+   not the layout — the free column is the filled warm sheet, the additions
+   are outlined near-white, so the one you get is the substantial one even
+   though the three footprints match.
 
-   Pale warm fills rather than rules. The blocks have to read as objects to be
-   grouped at all, and --paper-deep against --paper is about as little contrast
-   as can do that — a tint, not a card: no border, no shadow, nothing to click.
-   The floating top rules that were here added structure without hierarchy.
-
-   Contrast was the other failure: eyebrows at --ink-soft/13px and notes at the
-   same colour vanished at laptop distance on a warm ground. Eyebrows are
-   bigger and --ink-mid now, notes are --ink-mid rather than --ink-soft, and
-   the middle line is the biggest thing in every block. */
+   Contrast was the other old failure: eyebrows at --ink-soft/13px and notes
+   at the same colour vanished at laptop distance on a warm ground. Eyebrows
+   are bigger and --ink-mid now, notes are --ink-mid rather than --ink-soft,
+   and the middle line is the biggest thing in every block. */
 .plans {
-  max-width: 880px;
+  max-width: 980px;
   margin: 0 auto;
   padding: 0;
   display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: var(--s-3);
 }
-.plans--add { grid-template-columns: repeat(2, 1fr); }
-/* The two optional blocks are OUTLINED on near-white stock; the free one is
+/* The two optional blocks are OUTLINED on a warm sheet; the free one is
    FILLED on the warm card. Same paper family, different weight of sheet — the
    one you get is the substantial one, and the two you may add sit lighter. All
    three keep the page's typography exactly; nothing here gets a plan colour, a
-   pill, a tick or a button. */
+   pill, a tick or a button. Identical padding and type across the row: in
+   equal columns a size or inset bump reads as a mistake, so the fill and the
+   border are the ONLY two things allowed to differ.
+
+   The additions sat on --card (#fdfbf8) and looked GREY (Patrick, 2026-08-16):
+   that token is cooler than the page ground, and cool-on-warm reads grey by
+   contrast — the dullness was a temperature bug, not the intended quietness.
+   These two values are --card and --line-card pulled to the page's own warmth;
+   local rather than token edits because --card elsewhere (legal document
+   cards, blog) is near-white ON PURPOSE. Per-plan hues were tried the same
+   day and rejected: honey and lilac washes inverted the hierarchy — the free
+   column became the dullest of the three — and read as pricing-tier coding,
+   which "nothing here gets a plan colour" exists to prevent. */
 .plan {
   text-align: left;
-  background-color: var(--card);
-  border: 1px solid var(--line-card);
+  background-color: #f7f1e8;
+  border: 1px solid #dccfbe;
   border-radius: var(--radius-media);
   padding: var(--s-4) var(--s-4) calc(var(--s-4) - 4px);
 }
 .plan--included {
   background-color: var(--paper-card);
   border-color: transparent;
-  padding: var(--s-5) var(--s-4);
 }
 /* Plan names are taxonomy, so they keep the monospace — the page's small
    accent vocabulary, used for collection names and plan names and nothing
@@ -1102,23 +1118,9 @@ main > .feature:last-child { padding-bottom: var(--s-5); }
   color: var(--ink);
   letter-spacing: -0.02em;
 }
-.plan--included dd strong { font-size: clamp(1.4rem, 2.2vw, 1.85rem); }
 .plans dd span {
   font-size: var(--fs-body);
   line-height: 1.5;
-  color: var(--ink-soft);
-}
-/* The hinge. Small and centred between the free block and the pair, in the
-   apparatus face so it reads as a label on the group rather than as a fourth
-   heading. */
-.plans-more {
-  margin: var(--s-4) auto var(--s-3);
-  text-align: center;
-  font-family: var(--font-apparatus);
-  font-size: var(--fs-micro);
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
   color: var(--ink-soft);
 }
 /* Reassurance. Not a headline, but it was nearly invisible at --fs-small in
@@ -1134,14 +1136,15 @@ main > .feature:last-child { padding-bottom: var(--s-5); }
   color: var(--ink);
   text-align: center;
 }
-/* One column on a phone: the pair side by side at 340px gives each block
-   eleven characters a line. */
+/* One column on a phone: three abreast at 340px gives each block eleven
+   characters a line. Stacked, the filled sheet leads and the two outlined
+   ones follow — the same story the row tells, read downward. */
 @media (max-width: 760px) {
-  .plans, .plans--add {
+  .plans {
     grid-template-columns: 1fr;
     max-width: 420px;
   }
-  .plans-more, .reassurance { max-width: 420px; }
+  .reassurance { max-width: 420px; }
 }
 
 /* ---------- Blog ---------- */

@@ -18,7 +18,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@500&amp;family=Nunito:wght@400..800&amp;family=Rubik:wght@600&amp;display=swap" />
-  <link rel="stylesheet" href="styles.css?v=6fe1e766" />
+  <link rel="stylesheet" href="styles.css?v=5b038497" />
 </head>
 <body>
   <header class="site-head site-head--wide">
@@ -434,21 +434,26 @@
 
          Three columns because the same content as a paragraph was four lines of
          prose that had to be read in order to find out which part was free.
-         Separated by hairlines rather than boxed: a card each is how this
-         becomes a pricing table. It is also the one section on the page with no
-         picture, on purpose — after the desks and the stationery, a plain
-         typographic block is the rest before the footer. -->
+         Tinted sheets rather than cards — no shadow, no button, nothing to
+         click — because a card each is how this becomes a pricing table. It is
+         also the one section on the page with no picture, on purpose — after
+         the desks and the stationery, a plain typographic block is the rest
+         before the footer. -->
     <section class="feature" id="household">
       <div class="feature-head">
         <h2><span>Your first desk is free.</span></h2>
       </div>
 
-      <!-- Free core, then the optional additions — not three equal columns.
-           As equals in light type they were a thing you had to STUDY to learn
-           the actual story, which is: Postmello is free, and there are two ways
-           to add to it. So the free block runs full width with its own label,
-           "Add more" separates, and Family and Collections sit under it as a
-           pair. The word inside is "Included", not "Free": the heading has
+      <!-- Three equal columns again (2026-08-16, Patrick) — the wide-block-
+           then-a-pair build said "free first, additions second" with LAYOUT,
+           and three columns in a row is the more universal shape: one glance
+           says there are exactly three things and none of them is a catch.
+           What must not come back with it is the failure that killed three
+           columns the first time round — three offerings reading as EQUALS.
+           The hierarchy moved into the paper instead: the free column is the
+           FILLED one and the two additions are outlined, so the one you get
+           is the substantial sheet even though the three footprints match.
+           The word inside is still "Included", not "Free": the heading has
            already said free, and "included" reads as what the product gives
            you rather than as the bottom tier of a price list. -->
       <dl class="plans">
@@ -456,20 +461,23 @@
              two jobs three inches apart: in Family it means another person's
              writing space, in Collections it means a different look for one.
              Naming the axis in each line removes the ambiguity without
-             inventing a new product noun. -->
+             inventing a new product noun.
+
+             Family says WHO, not an adjective (2026-08-16): "More personal
+             desks" garden-pathed — read as "more-personal desks" before it
+             read as "additional ones". "Desks for more kids" cannot be
+             misparsed, keeps the site's kid-forward voice, and stays honest
+             about the cap: the desk count is a server-side number
+             (account_capabilities, starter 1 / family 6 today), so the line
+             promises MORE, never a figure and never "every". -->
         <div class="plan plan--included">
           <dt>Included</dt>
           <dd><strong>One personal desk</strong>
               <span>Unlimited letters · Unlimited approved contacts</span></dd>
         </div>
-      </dl>
-
-      <p class="plans-more">Add more</p>
-
-      <dl class="plans plans--add">
         <div class="plan">
           <dt>Postmello Family</dt>
-          <dd><strong>More personal desks</strong>
+          <dd><strong>Desks for more kids</strong>
               <span>One-time household upgrade</span></dd>
         </div>
         <div class="plan">

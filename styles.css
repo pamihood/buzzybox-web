@@ -767,7 +767,12 @@ main > .feature:last-child { padding-bottom: var(--s-5); }
    collections section, after the grid, rather than becoming a seventh section
    of its own — it is evidence for a claim already made, not a new argument.
 
-   Every piece is a real shipped asset, one collection each where possible.
+   ONE collection, whole — every piece of Fairy Glen, nothing sampled. The
+   earlier build took the prettiest piece from each of six packs, which showed
+   the catalog's range but left the desk grid's real question unanswered: what
+   do you get if you pick one? A pack shown complete answers it, and the
+   sentence underneath does the work of saying the others match.
+
    Laid out in CSS rather than baked into a single JPEG for two reasons: any
    piece can be swapped for a better one without a re-render, and a phone can
    get a different arrangement instead of the same picture at a third the size.
@@ -802,7 +807,7 @@ main > .feature:last-child { padding-bottom: var(--s-5); }
   position: relative;
   max-width: var(--maxw-page);
   margin: 0 auto;
-  aspect-ratio: 1200 / 520;
+  aspect-ratio: 1200 / 580;
 }
 .stationery img {
   position: absolute;
@@ -812,90 +817,198 @@ main > .feature:last-child { padding-bottom: var(--s-5); }
 /* Papers: opaque rectangles, so they need their own soft shadow to sit on the
    page and a hairline to keep cream-on-cream from bleeding into the ground. */
 .st-paper {
-  width: 24%;
+  width: 21%;
   border-radius: 3px;
   border: 1px solid var(--line);
   box-shadow: -4px 8px 16px rgba(42, 33, 24, 0.13);
 }
-/* Tops ALTERNATE high/low, and that is load-bearing rather than decorative.
-   Every paper in a fan has its right side covered by the next one, and three of
-   these carry their art on the right: the dragon top-right, the frangipani
-   bottom-right, the toadstool on the envelope. A sheet whose art is at the TOP
-   therefore sits high with a low neighbour, and one whose art is at the BOTTOM
-   sits low with a high neighbour, so the covering sheet reaches only the half
-   that is empty cream. Change the order and the art disappears. */
-.st-paper--1 { left: 0.5%;  top: 4%;  transform: rotate(-6deg); z-index: 1; }  /* wisteria: top */
-.st-paper--2 { left: 13%;   top: 22%; transform: rotate(3deg);  z-index: 2; }  /* lanterns: all over */
-.st-paper--3 { left: 25.5%; top: 3%;  transform: rotate(-2deg); z-index: 3; }  /* lighthouse: lower left */
-.st-paper--4 { left: 38%;   top: 21%; transform: rotate(4deg);  z-index: 4; }  /* macarons: bottom row */
-.st-paper--5 { left: 50.5%; top: 3%;  transform: rotate(-3deg); z-index: 6; }  /* dragon: TOP right */
-.st-paper--6 { left: 63%;   top: 21%; transform: rotate(2deg);  z-index: 7; }  /* frangipani: BOTTOM right */
-/* Behind the last sheet, not over it — over it, the envelope covered exactly
-   the corner the frangipani lives in. It still reads: the paper ends at 87%
-   and the envelope runs to the edge, so its own toadstool corner is clear. */
+/* Nine sheets across the full width at a 9.6% step, so each one shows a little
+   under half of itself and the fan still reaches both edges.
+
+   Tops ALTERNATE high/low, and that is load-bearing rather than decorative.
+   Every paper in a fan has its right side covered by the next one. A sheet
+   sitting HIGH gets a LOW neighbour, so its TOP-right stays clear; a sheet
+   sitting LOW gets a HIGH one, so its BOTTOM-right does. Papers carrying their
+   art along the top (wisteria, dewdrops, firefly night) are therefore at the
+   odd positions, and papers carrying it along the bottom (lily pond, sparkle
+   trail, glen meadow, fairy ring) at the even ones. The fairy door is the one
+   sheet with its art on the RIGHT, so it goes last where nothing covers it.
+   Reorder these and the art disappears under the neighbouring sheet.
+
+   Two things are layered on top of the alternation. A sweep, so the tilt runs
+   from -5° at the left edge to +5° at the right instead of jittering about
+   zero — that is what makes nine sheets read as one fan opening rather than a
+   staircase. And an arc, so the pair of tops dips a little toward the middle:
+   with both tops flat the fan looked ruled off along a horizon. */
+.st-paper--1 { left: 1%;    top: 2%;    transform: rotate(-5deg);   z-index: 1; }  /* wisteria: TOP band */
+.st-paper--2 { left: 10.6%; top: 11%;   transform: rotate(-3.5deg); z-index: 2; }  /* lily pond: BOTTOM */
+.st-paper--3 { left: 20.2%; top: 3.5%;  transform: rotate(-2.5deg); z-index: 3; }  /* dewdrops: TOP left */
+.st-paper--4 { left: 29.8%; top: 12.5%; transform: rotate(-1deg);   z-index: 4; }  /* sparkle: BOTTOM left */
+.st-paper--5 { left: 39.4%; top: 4.5%;  transform: rotate(0deg);    z-index: 5; }  /* bluebells: LEFT edge */
+.st-paper--6 { left: 49%;   top: 12.5%; transform: rotate(1deg);    z-index: 6; }  /* glen meadow: BOTTOM band */
+.st-paper--7 { left: 58.6%; top: 3.5%;  transform: rotate(2.5deg);  z-index: 7; }  /* firefly night: full bleed */
+.st-paper--8 { left: 68.2%; top: 11%;   transform: rotate(3.5deg);  z-index: 8; }  /* fairy ring: BOTTOM centre */
+.st-paper--9 { left: 77.8%; top: 2%;    transform: rotate(5deg);    z-index: 9; }  /* fairy door: RIGHT edge */
+
+/* The compressed fan, bottom left. A 4.4% step against a 17% width shows only
+   a quarter of each envelope — which is right, because these are colour fields
+   with one small motif, and what a tight fan has to carry is the chord: deep
+   purple, lilac, pink, sage, blue, cream. The rotation sweeps -7° to +3° about
+   the bottom-left corner so the six splay from a common hinge like a hand of
+   cards, rather than six rectangles each tilted on its own centre. */
 .st-envelope {
-  position: absolute;
-  width: 24%;
-  top: 26%;
-  right: 0.5%;
-  transform: rotate(3deg);
-  z-index: 5;
-  filter: drop-shadow(-4px 8px 14px rgba(42, 33, 24, 0.16));
+  width: 18%;
+  top: 57%;
+  transform-origin: 0% 100%;
+  filter: drop-shadow(-3px 6px 11px rgba(42, 33, 24, 0.16));
 }
-/* One prop per collection, paired with its own paper and set at a different
-   height from its neighbour — evenly spaced along the bottom they line up into
-   exactly the product row this section exists to avoid. The koi stamp is the
-   exception and sits ON the envelope, where a stamp goes. */
+.st-envelope--1 { left: 1.5%;  transform: rotate(-7deg); z-index: 11; }  /* twilight: deep purple */
+.st-envelope--2 { left: 6.1%;  transform: rotate(-5deg); z-index: 12; }  /* sparkle: lilac */
+.st-envelope--3 { left: 10.7%; transform: rotate(-3deg); z-index: 13; }  /* petals: pink */
+.st-envelope--4 { left: 15.3%; transform: rotate(-1deg); z-index: 14; }  /* bluebell: sage */
+.st-envelope--5 { left: 19.9%; transform: rotate(1deg);  z-index: 15; }  /* moon: blue, motif ↘ */
+.st-envelope--6 { left: 24.5%; transform: rotate(3deg);  z-index: 16; }  /* toadstool: cream, motif ↘ */
+
+/* Stamps and stickers sit above everything — they are the loose things set
+   down on top of the rest. */
 .st-stamp, .st-sticker {
-  z-index: 8;
+  z-index: 20;
   filter: drop-shadow(-2px 4px 7px rgba(42, 33, 24, 0.20));
 }
-.st-stamp   { width: 6.1%; }
-.st-sticker { width: 5.6%; }
-/* Twelve pieces along the foot of the fan — a stamp and a sticker from each
-   collection — at ALTERNATING heights. Level, twelve of anything is a product
-   row; staggered, they read as things set down. Sizes come down a notch from
-   the six-piece version or they run into each other. */
-.st-sticker--1 { left: 2.5%;  top: 65%; transform: rotate(-9deg); }  /* Fairy Glen */
-.st-stamp--1   { left: 9.5%;  top: 76%; transform: rotate(5deg); }
-.st-stamp--2   { left: 18%;   top: 67%; transform: rotate(-6deg); }  /* Seaside Post */
-.st-sticker--2 { left: 25.5%; top: 78%; transform: rotate(7deg); }
-.st-sticker--3 { left: 33%;   top: 67%; transform: rotate(8deg); }   /* Petit Café */
-.st-stamp--3   { left: 40%;   top: 78%; transform: rotate(-4deg); }
-.st-sticker--4 { left: 48%;   top: 68%; transform: rotate(6deg); }   /* Japanese Garden */
-.st-stamp--4   { left: 55.5%; top: 79%; transform: rotate(-7deg); }  /* Baan Naa */
-.st-sticker--5 { left: 63%;   top: 69%; transform: rotate(4deg); }
-.st-stamp--5   { left: 70.5%; top: 79%; transform: rotate(-5deg); }  /* Ember Peak */
-.st-sticker--6 { left: 78%;   top: 69%; transform: rotate(9deg); }
-/* On the strip of envelope the last sheet leaves showing, clear of its own
-   toadstool corner. */
-.st-stamp--6   { left: 89%;   top: 30%; transform: rotate(-4deg); z-index: 9; }
+/* Five in two staggered rows, just right of the envelope fan. Level, six
+   identical squares are the product row this section exists to avoid. */
+.st-stamp { width: 7.6%; }
+.st-stamp--1 { left: 45.5%; top: 53%;   transform: rotate(-7deg); }
+.st-stamp--3 { left: 53.7%; top: 50.5%; transform: rotate(3deg); }
+.st-stamp--4 { left: 61.9%; top: 54%;   transform: rotate(-4deg); }
+.st-stamp--5 { left: 49.6%; top: 71%;   transform: rotate(5deg); }
+.st-stamp--6 { left: 57.8%; top: 73.5%; transform: rotate(6deg); }
+/* The sixth is AFFIXED to the top envelope, not laid on top of it. The top
+   envelope is the one piece here with a large plain face, and left bare it
+   reads as a blank cream rectangle under a fan of blank cream paper; stamped,
+   it is a letter about to be posted, which is the only thing in the picture
+   doing anything.
 
-/* On a phone the composition would put a 7%-wide stamp at 24px, which is a
-   speck. The absolute geometry is dropped entirely and the pieces scatter in
-   normal flow instead — same pieces, same fixed tilts, sizes that survive.
+   Two things make it read as stuck on rather than resting there:
 
-   Everything stays: three papers to a row rather than two, because at 44% the
-   same fifteen objects ran 1200px down a phone, and the brief for this block
-   is that it must not make the page substantially longer. Small and complete
-   beats large and truncated — it is a spread, not a gallery. */
+   1. It sits where the APP puts a stamp, at the app's size. EnvelopeMetrics
+      (Buzzybox/UI/Components/EnvelopeVisual.swift) states all three as
+      fractions of the envelope WIDTH — side 0.157, top inset 0.071, trailing
+      inset 0.099 — so at this envelope (18% of 1200 = 216px wide, 154.35 tall
+      at the art's 343/480):
+        side  = 216 × 0.157             = 33.91px → 2.83% of the composition
+        left  = 294 + 216 − 21.38 − 33.91 = 454.70px → 37.89%
+        top   = 330.6 + 15.34          = 345.94px → 59.64%
+      That is a third the size of the loose stamps beside it, and it should be:
+      those are catalog pieces at catalog size, this one is at letter scale.
+      Retuning either fraction in the app means recomputing these.
+
+   2. It shares the envelope's rotation ABOUT THE ENVELOPE'S OWN PIVOT, so the
+      two turn as one object. The envelope rotates 3° around its bottom-left
+      corner, at (294, 484.95) in this 1200×580 space; putting that same point
+      in the stamp's coordinates gives an origin of (−160.70, +139.01) from its
+      top-left, which as a fraction of its own 33.91px box is −473.9% / 409.9%.
+      Percentages rather than px so it survives the composition scaling. Rotate
+      the stamp about its own centre instead and it sits at a jaunty angle to
+      the envelope, which is a sticker's behaviour, not a stamp's. */
+.st-stamp--2 {
+  width: 2.826%;
+  left: 37.892%;
+  top: 59.644%;
+  transform-origin: -473.9% 409.9%;
+  transform: rotate(3deg);
+  filter: drop-shadow(-1px 1px 2px rgba(42, 33, 24, 0.22));
+}
+
+/* Sized ONE BY ONE rather than to a shared width. The wand is 95×180 and the
+   flying letter 180×138; at a single width the wand looms over everything and
+   the letter reads as a speck. These widths equalise AREA instead, which is
+   what the eye takes for "the same size". Three heights rather than two, so
+   ten of them settle into a cloud instead of resolving into rows. */
+/* One of them sits ON the last sheet of the fan, at the foot of the paper
+   nothing else covers. Without it the two bands are two exhibits with a rule
+   of empty page between them; with it, a sticker has been put on a letter,
+   which is what stickers are for. */
+.st-sticker--1  { width: 7.2%; left: 82.5%; top: 27%;   transform: rotate(-8deg); }  /* butterfly, on the fairy-door sheet */
+.st-sticker--2  { width: 6.4%; left: 70.5%; top: 50%; transform: rotate(5deg); }   /* toadstool house */
+.st-sticker--3  { width: 4.7%; left: 78.5%; top: 47%; transform: rotate(-6deg); }  /* wand */
+.st-sticker--4  { width: 7.2%; left: 85.5%; top: 52%; transform: rotate(7deg); }   /* flower crown */
+.st-sticker--6  { width: 5.6%; left: 69.5%; top: 66%; transform: rotate(6deg); }   /* bluebell */
+.st-sticker--7  { width: 6.7%; left: 77.5%; top: 63%; transform: rotate(-4deg); }  /* fairy door */
+.st-sticker--8  { width: 5.6%; left: 86.5%; top: 67%; transform: rotate(8deg); }   /* lantern */
+.st-sticker--9  { width: 7.5%; left: 72%;   top: 80%; transform: rotate(-7deg); }  /* wings */
+.st-sticker--10 { width: 7.7%; left: 81%;   top: 83%; transform: rotate(4deg); }   /* flying letter */
+.st-sticker--5  { width: 6.3%; left: 90.5%; top: 78%; transform: rotate(-5deg); }  /* moon */
+
+/* The picture is one collection; this line is what makes it stand for all of
+   them, so it sits directly under the spread rather than beside the heading. */
+.stationery-note {
+  max-width: 44ch;
+  margin: var(--s-4) auto 0;
+  text-align: center;
+  font-size: var(--fs-body);
+  line-height: 1.55;
+  color: var(--ink-soft);
+  text-wrap: balance;
+}
+
+/* The wrappers exist only for the phone; on the composition every piece is
+   absolutely positioned against .stationery, so these collapse to nothing. */
+.st-group { margin: 0; }
+
+/* On a phone the single coordinate space would put a 7.6%-wide stamp at 26px,
+   which is a speck. It is dropped for four bands in normal flow — papers,
+   envelopes, stamps, stickers — each group wrapping inside its own row and
+   keeping the character it has above: papers and envelopes still shingle, the
+   loose pieces still scatter.
+
+   The overlap is symmetric negative margins (`0 -5.5%`, not `-11% 0 0`), which
+   matters: a one-sided negative margin shortens the flex line without moving
+   the last item, so a centred row hangs 11% off the right edge. Halved on both
+   sides, every row centres on its true visual span.
+
+   Thirty-one pieces laid out with no overlap at all ran this block past 900px
+   down a phone, and the brief for this section is that it must not make the
+   page substantially longer. Small and complete beats large and truncated —
+   it is a spread, not a gallery. */
 @media (max-width: 760px) {
   .stationery {
     aspect-ratio: auto;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    gap: var(--s-2) var(--s-1);
+    display: block;
   }
   .stationery img {
     position: static;
     top: auto; left: auto; right: auto;
+    transform-origin: center;
   }
-  .stationery .st-paper    { width: 31%; }
-  .stationery .st-envelope { width: 31%; }
-  .stationery .st-stamp    { width: 15%; }
-  .stationery .st-sticker  { width: 14%; }
+  .st-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-end;
+    margin-bottom: var(--s-3);
+  }
+  .st-group--stickers { margin-bottom: 0; }
+  /* Three sheets to a row at 38%, overlapping 11% of each other. */
+  .stationery .st-paper    { width: 38%; margin: 0 -5.5% var(--s-2); }
+  /* Tighter than the papers — the envelopes are a stack, not a fan. */
+  .stationery .st-envelope { width: 34%; margin: 0 -4% var(--s-2); }
+  /* Six stamps across one row. At this size a stamp is 50px and 50px of
+     overlap is most of the stamp, so these separate instead. */
+  .stationery .st-stamp    { width: 15%; margin: 0 0.5% var(--s-2); }
+  /* Widths carried over from the composition, doubled — same equal-area
+     reasoning, and five to a row. */
+  .stationery .st-sticker  { margin: 0 1% var(--s-2); }
+  .st-sticker--1  { width: 14.4%; }
+  .st-sticker--2  { width: 12.8%; }
+  .st-sticker--3  { width: 9.4%; }
+  .st-sticker--4  { width: 14.4%; }
+  .st-sticker--5  { width: 12.6%; }
+  .st-sticker--6  { width: 11.2%; }
+  .st-sticker--7  { width: 13.4%; }
+  .st-sticker--8  { width: 11.2%; }
+  .st-sticker--9  { width: 15%; }
+  .st-sticker--10 { width: 15.4%; }
 }
 
 /* ---------- The plans: free core, optional additions ---------- */

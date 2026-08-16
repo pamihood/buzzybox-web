@@ -18,7 +18,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@500&amp;family=Nunito:wght@400..800&amp;family=Rubik:wght@600&amp;display=swap" />
-  <link rel="stylesheet" href="styles.css?v=38ed96cc" />
+  <link rel="stylesheet" href="styles.css?v=2f9b5214" />
 </head>
 <body>
   <header class="site-head site-head--wide">
@@ -280,11 +280,15 @@
       </div>
 
       <!-- What the desks alone cannot say: the collection changes what a child
-           can MAKE there, not just where they sit. Every piece is a real
-           shipped asset, one per collection where possible — Fairy Glen's
-           wisteria paper, Seaside Post's lighthouse, Woodland's pines, Griffin
-           Keep's pennants, Baan Naa's frangipani, and a stamp and sticker from
-           each of the same packs.
+           can MAKE there, not just where they sit.
+
+           This used to be one prettiest-piece-from-each-of-six spread, which
+           showed the RANGE of the catalog but never answered the question the
+           desk grid raises — "what do I actually get if I pick one?" A single
+           collection shown whole answers it: every paper, every envelope,
+           every stamp and every sticker in Fairy Glen, nothing left out. The
+           promise that the others match is carried by one sentence underneath
+           rather than by a sampler.
 
            Laid out in CSS rather than baked as one image so a piece can be
            swapped for a better one without a re-render, and so the arrangement
@@ -296,42 +300,94 @@
            spread below. -->
       <p class="collections-note">A few favorites — with more collections to discover.</p>
 
-      <h3 class="stationery-head">Stationery for every collection.</h3>
+      <h3 class="stationery-head">Everything in one collection.</h3>
       <div class="stationery" role="img"
-           aria-label="A spread of Postmello stationery — a letter paper from each of the six collections, a toadstool envelope, six stamps and six stickers">
-        <!-- One paper per collection, in the same six the grid above shows, and
-             one prop from each of those collections with it. The set used to be
-             drawn from whatever was prettiest — Woodland's pines, Griffin
-             Keep's pennants — which made the spread beautiful and unrelated to
-             the desks it sits under. -->
-        <img class="st-paper st-paper--1" src="assets/stationery/paper-wisteria.jpg" alt="" width="620" height="465" loading="lazy" />
-        <img class="st-paper st-paper--2" src="assets/stationery/paper-lanterns.jpg" alt="" width="620" height="465" loading="lazy" />
-        <img class="st-paper st-paper--3" src="assets/stationery/paper-lighthouse.jpg" alt="" width="620" height="465" loading="lazy" />
-        <img class="st-paper st-paper--4" src="assets/stationery/paper-macarons.jpg" alt="" width="620" height="465" loading="lazy" />
-        <img class="st-paper st-paper--5" src="assets/stationery/paper-dragon-flight.jpg" alt="" width="620" height="465" loading="lazy" />
-        <!-- Three of these carry their art on the RIGHT — the dragon top-right,
-             the frangipani bottom-right, the envelope's toadstool bottom-right
-             — and every paper in a fan has its right side covered by the next
-             one. The tops alternate high/low so each paper's art zone is the
-             part its neighbour does NOT reach, and the envelope sits BEHIND the
-             last sheet rather than over it. -->
-        <img class="st-paper st-paper--6" src="assets/stationery/paper-frangipani.jpg" alt="" width="620" height="465" loading="lazy" />
-        <img class="st-envelope" src="assets/stationery/envelope-toadstool.png" alt="" width="560" height="400" loading="lazy" />
-        <!-- Twelve now, one stamp AND one sticker per collection. Deliberately
-             not the ember claw. -->
-        <img class="st-sticker st-sticker--1" src="assets/stationery/sticker-butterfly.png" alt="" width="200" height="170" loading="lazy" />
-        <img class="st-stamp st-stamp--1" src="assets/stationery/stamp-bluebell.png" alt="" width="200" height="200" loading="lazy" />
-        <img class="st-stamp st-stamp--2" src="assets/stationery/stamp-whale.png" alt="" width="200" height="200" loading="lazy" />
-        <img class="st-sticker st-sticker--2" src="assets/stationery/sticker-starfish.png" alt="" width="200" height="197" loading="lazy" />
-        <img class="st-sticker st-sticker--3" src="assets/stationery/sticker-macaron.png" alt="" width="200" height="179" loading="lazy" />
-        <img class="st-stamp st-stamp--3" src="assets/stationery/stamp-eiffel.png" alt="" width="200" height="200" loading="lazy" />
-        <img class="st-sticker st-sticker--4" src="assets/stationery/sticker-crane.png" alt="" width="182" height="200" loading="lazy" />
-        <img class="st-stamp st-stamp--4" src="assets/stationery/stamp-krathong.png" alt="" width="200" height="200" loading="lazy" />
-        <img class="st-sticker st-sticker--5" src="assets/stationery/sticker-elephant.png" alt="" width="200" height="139" loading="lazy" />
-        <img class="st-stamp st-stamp--5" src="assets/stationery/stamp-dragon.png" alt="" width="200" height="200" loading="lazy" />
-        <img class="st-sticker st-sticker--6" src="assets/stationery/sticker-dragonegg.png" alt="" width="180" height="200" loading="lazy" />
-        <img class="st-stamp st-stamp--6" src="assets/stationery/stamp-koi.png" alt="" width="200" height="200" loading="lazy" />
+           aria-label="Everything in the Fairy Glen collection — nine letter papers fanned out, six envelopes stacked in a fan, six stamps and ten stickers">
+        <!-- The whole Fairy Glen pack, exactly as it ships. The set and the
+             counts in the caption below come from the catalog:
+               select s.type, count(*) from stationery s
+                 join stationery_packs p on p.id = s.pack_id and p.type = s.type
+                where p.collection_id = 'col_fairy_glen' and s.is_active
+                group by 1;
+             (papers counted once per design — the app carries a portrait and a
+             landscape of each.) If the pack gains a piece, both the spread and
+             that sentence have to change together. -->
+
+        <!-- The four groups are wrapped only so the phone can lay each out as
+             its own row. On the desktop composition every piece is absolutely
+             positioned against .stationery, so these wrappers collapse to zero
+             height and change nothing. -->
+
+        <!-- Every paper in a fan has its right side covered by the next one, so
+             the tops ALTERNATE high/low and that is load-bearing rather than
+             decorative. A sheet sitting HIGH has a LOW neighbour, so its
+             TOP-right stays clear; a sheet sitting LOW has a HIGH neighbour, so
+             its BOTTOM-right does. Papers whose art is at the top are therefore
+             at the odd positions and papers whose art is along the bottom at
+             the even ones, and the fairy door — the one sheet with its art on
+             the RIGHT — goes last, where nothing covers it at all. Reorder
+             these and the art disappears under the neighbouring sheet. -->
+        <div class="st-group st-group--papers">
+        <img class="st-paper st-paper--1" src="assets/stationery/fairy-glen/paper-wisteria.jpg" alt="" width="560" height="420" loading="lazy" />
+        <img class="st-paper st-paper--2" src="assets/stationery/fairy-glen/paper-lily-pond.jpg" alt="" width="560" height="420" loading="lazy" />
+        <img class="st-paper st-paper--3" src="assets/stationery/fairy-glen/paper-dewdrops.jpg" alt="" width="560" height="420" loading="lazy" />
+        <img class="st-paper st-paper--4" src="assets/stationery/fairy-glen/paper-sparkle.jpg" alt="" width="560" height="420" loading="lazy" />
+        <img class="st-paper st-paper--5" src="assets/stationery/fairy-glen/paper-bluebells.jpg" alt="" width="560" height="420" loading="lazy" />
+        <img class="st-paper st-paper--6" src="assets/stationery/fairy-glen/paper-glen-meadow.jpg" alt="" width="560" height="420" loading="lazy" />
+        <img class="st-paper st-paper--7" src="assets/stationery/fairy-glen/paper-firefly-night.jpg" alt="" width="560" height="420" loading="lazy" />
+        <img class="st-paper st-paper--8" src="assets/stationery/fairy-glen/paper-fairy-ring.jpg" alt="" width="560" height="420" loading="lazy" />
+        <img class="st-paper st-paper--9" src="assets/stationery/fairy-glen/paper-fairy-door.jpg" alt="" width="560" height="420" loading="lazy" />
+        </div>
+
+        <!-- The envelopes are near-solid colour fields with one small motif
+             each, so a tight fan is the honest way to show six of them: what
+             reads is the chord — deep purple, lilac, pink, sage, blue, cream —
+             and the two whose motif sits bottom-right (moon, toadstool) are the
+             last two, where the fan no longer covers that corner. -->
+        <div class="st-group st-group--envelopes">
+        <img class="st-envelope st-envelope--1" src="assets/stationery/fairy-glen/envelope-twilight.png" alt="" width="480" height="343" loading="lazy" />
+        <img class="st-envelope st-envelope--2" src="assets/stationery/fairy-glen/envelope-sparkle.png" alt="" width="480" height="343" loading="lazy" />
+        <img class="st-envelope st-envelope--3" src="assets/stationery/fairy-glen/envelope-petals.png" alt="" width="480" height="343" loading="lazy" />
+        <img class="st-envelope st-envelope--4" src="assets/stationery/fairy-glen/envelope-bluebell.png" alt="" width="480" height="343" loading="lazy" />
+        <img class="st-envelope st-envelope--5" src="assets/stationery/fairy-glen/envelope-moon.png" alt="" width="480" height="343" loading="lazy" />
+        <img class="st-envelope st-envelope--6" src="assets/stationery/fairy-glen/envelope-toadstool.png" alt="" width="480" height="343" loading="lazy" />
+        </div>
+
+        <!-- Six stamps in two staggered rows, near the envelopes they belong
+             to. Level, six identical squares are a product row; offset, they
+             read as a strip that has been dealt out. -->
+        <div class="st-group st-group--stamps">
+        <img class="st-stamp st-stamp--1" src="assets/stationery/fairy-glen/stamp-bluebell.png" alt="" width="180" height="180" loading="lazy" />
+        <img class="st-stamp st-stamp--2" src="assets/stationery/fairy-glen/stamp-toadstool-house.png" alt="" width="180" height="180" loading="lazy" />
+        <img class="st-stamp st-stamp--3" src="assets/stationery/fairy-glen/stamp-moon.png" alt="" width="180" height="180" loading="lazy" />
+        <img class="st-stamp st-stamp--4" src="assets/stationery/fairy-glen/stamp-fairy-door.png" alt="" width="180" height="180" loading="lazy" />
+        <img class="st-stamp st-stamp--5" src="assets/stationery/fairy-glen/stamp-lantern.png" alt="" width="180" height="180" loading="lazy" />
+        <img class="st-stamp st-stamp--6" src="assets/stationery/fairy-glen/stamp-wings.png" alt="" width="180" height="180" loading="lazy" />
+        </div>
+
+        <!-- Ten stickers, sized one by one rather than to a single width: the
+             wand is twice as tall as it is wide and the flying letter is half
+             as tall, so one shared width makes the wand loom and the letter
+             vanish. These widths equalise AREA, which is what the eye reads as
+             "the same size". -->
+        <div class="st-group st-group--stickers">
+        <img class="st-sticker st-sticker--1" src="assets/stationery/fairy-glen/sticker-butterfly.png" alt="" width="180" height="153" loading="lazy" />
+        <img class="st-sticker st-sticker--2" src="assets/stationery/fairy-glen/sticker-toadstoolhouse.png" alt="" width="165" height="180" loading="lazy" />
+        <img class="st-sticker st-sticker--3" src="assets/stationery/fairy-glen/sticker-wand.png" alt="" width="95" height="180" loading="lazy" />
+        <img class="st-sticker st-sticker--4" src="assets/stationery/fairy-glen/sticker-flowercrown.png" alt="" width="180" height="159" loading="lazy" />
+        <img class="st-sticker st-sticker--5" src="assets/stationery/fairy-glen/sticker-moon.png" alt="" width="161" height="180" loading="lazy" />
+        <img class="st-sticker st-sticker--6" src="assets/stationery/fairy-glen/sticker-bluebell.png" alt="" width="141" height="180" loading="lazy" />
+        <img class="st-sticker st-sticker--7" src="assets/stationery/fairy-glen/sticker-fairydoor.png" alt="" width="177" height="180" loading="lazy" />
+        <img class="st-sticker st-sticker--8" src="assets/stationery/fairy-glen/sticker-lantern.png" alt="" width="140" height="180" loading="lazy" />
+        <img class="st-sticker st-sticker--9" src="assets/stationery/fairy-glen/sticker-wings.png" alt="" width="180" height="141" loading="lazy" />
+        <img class="st-sticker st-sticker--10" src="assets/stationery/fairy-glen/sticker-flyingletter.png" alt="" width="180" height="138" loading="lazy" />
+        </div>
       </div>
+      <!-- The picture is one collection; this sentence is what makes it stand
+           for all of them. Without it the spread reads as "here is Fairy Glen"
+           rather than "this is what a collection is". -->
+      <p class="stationery-note">Fairy Glen — nine papers, six envelopes, six
+         stamps and ten stickers. Every collection brings its own.</p>
     </section>
 
     <!-- Relationship first, boundary second. "Only people you approve" led with

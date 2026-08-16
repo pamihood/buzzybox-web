@@ -66,6 +66,24 @@ dark ink.
 
 Artwork in `assets/` is exported from the app project (app icon, splash scene, paper/envelope textures).
 
+**`assets/stationery/fairy-glen/` is one whole shipped pack, not a selection.**
+The spread under the desk grid shows every active piece of the Fairy Glen
+collection — nine papers, six envelopes, six stamps, ten stickers — and the
+sentence beneath it counts them, so the folder and that sentence have to change
+together. Sources are the app repo's `samples/collections/fairy_glen/`
+(landscape papers only); the catalog is the authority on what is in the pack:
+
+```sql
+select s.type, s.name from stationery s
+  join stationery_packs p on p.id = s.pack_id and p.type = s.type
+ where p.collection_id = 'col_fairy_glen' and s.is_active order by 1, 2;
+```
+
+Sizes are chosen from the on-page display size at 2×: papers 560px JPEG q78,
+envelopes 480px, stamps and stickers 180px. Every PNG goes through
+`pngquant --quality 60-88 --speed 1 --strip`, which is the difference between a
+2MB block and a 600KB one.
+
 **Blog posts keep their markdown source.** `blog/<slug>/index.md` is the prose
 as written; `index.html` is the rendering of it. Edit the `.md` and bring the
 change across — they are not generated from each other, so they can drift, and

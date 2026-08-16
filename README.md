@@ -114,6 +114,37 @@ break by accident:
 
 ## TODO
 
+- **Re-cast the contacts in every screenshot** (Patrick, 2026-08-16). The
+  drawer cast is currently Iris, Theo, Grandma, Grandpa and Nana — five
+  contacts, four of them relatives and none of them the account holder. Two
+  changes:
+
+  - **"Mom" replaces "Nana."** The free plan now includes a desk for the
+    account holder as well as the kid ("A desk for your kid — and one for
+    you"), and no picture on the site shows that person in a drawer. A "Mom"
+    nameplate makes the plans copy visible in the product: the first pen pal
+    is whoever set the desk up. Whatever the app ends up calling the field,
+    the shot must show the answer to "what should Maya call you?", not a
+    label like "Admin" or "Parent" — §1 still forbids those words on this
+    site, and the drawer is the child's own word for a person.
+  - **"Luna" replaces "Grandpa."** Four relatives and one friend under a
+    heading about friends and family undersells the friend half, and Postmello
+    is a pen-pal product before it is a family one. Keeping Grandma covers the
+    relatives.
+
+  So the row becomes **Iris, Theo, Luna, Grandma, Mom** — friend-forward,
+  five drawers, no layout change. Touches `assets/drawer-nana.png` →
+  `drawer-mom.png`, `assets/drawer-grandpa.png` → `drawer-luna.png`,
+  `assets/drawer-row.jpg`, and every screenshot with the drawer rail in it:
+  `assets/app-desk.jpg` (hero), `assets/step-stamp.jpg`, and `assets/og-card.jpg`
+  once the hero is re-shot. **Two alt strings name the cast** and must change
+  in the same commit — `index.html` at the step-stamp figure and at
+  `drawer-row.jpg`. The seed that populates the rail is
+  `marketing-desk-seed.sh` in the app repo; capture recipe and cast rules live
+  in the app repo at `docs/MARKETING_SHOT.md`, which is where the canonical
+  cast list should be updated too. Do it in the same pass as the step-panel
+  re-shoot below — both need the same seeded device.
+
 - **Re-shoot the three step panels before launch** (`assets/step-*.jpg`).
   The current set is good enough to iterate on and not good enough to ship:
 

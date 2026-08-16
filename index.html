@@ -457,22 +457,42 @@
            already said free, and "included" reads as what the product gives
            you rather than as the bottom tier of a price list. -->
       <dl class="plans">
-        <!-- "Personal desk", "desk designs" — because plain "desk" was doing
-             two jobs three inches apart: in Family it means another person's
-             writing space, in Collections it means a different look for one.
-             Naming the axis in each line removes the ambiguity without
-             inventing a new product noun.
+        <!-- Every line names WHO the desk is for, because plain "desk" was
+             doing two jobs three inches apart: in Family it means another
+             person's writing space, in Collections it means a different look
+             for one. Naming the axis in each line removes the ambiguity
+             without inventing a new product noun.
 
-             Family says WHO, not an adjective (2026-08-16): "More personal
-             desks" garden-pathed — read as "more-personal desks" before it
-             read as "additional ones". "Desks for more kids" cannot be
-             misparsed, keeps the site's kid-forward voice, and stays honest
-             about the cap: the desk count is a server-side number
-             (account_capabilities, starter 1 / family 6 today), so the line
-             promises MORE, never a figure and never "every". -->
+             "Desks for more kids" over "More personal desks" (2026-08-16):
+             the old line garden-pathed, reading as "more-personal desks"
+             before "additional ones". It also stays honest about the cap —
+             the desk count is a server-side number (account_capabilities,
+             starter 1 / family 6 today), so the line promises MORE, never a
+             figure and never "every".
+
+             The free line now says the household plan includes a desk for the
+             ACCOUNT HOLDER too (2026-08-16), which is the free tier's most
+             persuasive fact and was invisible: a kid's first pen pal is the
+             person who set the desk up, and it answers what is in the mailbox
+             on day one. Three constraints shaped the wording:
+
+             - It never says "parent" (§1). It does not have to: this section
+               already addresses the visitor as "you" in its own heading, so
+               "one for you" carries the relationship without a label.
+             - "Personal desk" is RETIRED here. The desk `kind` column being
+               added app-side calls the account holder's desk `personal` and
+               the kid's `household`; leaving the website calling the KID's
+               desk "personal" would have inverted the schema's own vocabulary
+               in every future conversation about this block.
+             - It says nothing about the PIN. The PIN on that desk is what
+               makes it uneconomical to use as a free second kid desk, but it
+               is framed in the APP as privacy ("this desk is yours"), and a
+               lock mentioned on a pricing page reads as a restriction being
+               disclosed. The boundary the visitor needs is in the next column
+               anyway: a second KID is what costs money. -->
         <div class="plan plan--included">
           <dt>Included</dt>
-          <dd><strong>One personal desk</strong>
+          <dd><strong>A desk for your kid — and one for you</strong>
               <span>Unlimited letters · Unlimited approved contacts</span></dd>
         </div>
         <div class="plan">

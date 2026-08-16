@@ -18,7 +18,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@500&amp;family=Nunito:wght@400..800&amp;family=Rubik:wght@600&amp;display=swap" />
-  <link rel="stylesheet" href="styles.css?v=2f9b5214" />
+  <link rel="stylesheet" href="styles.css?v=6fe1e766" />
 </head>
 <body>
   <header class="site-head site-head--wide">
@@ -302,7 +302,7 @@
 
       <h3 class="stationery-head">Everything in one collection.</h3>
       <div class="stationery" role="img"
-           aria-label="Everything in the Fairy Glen collection — nine letter papers fanned out, six envelopes stacked in a fan, six stamps and ten stickers">
+           aria-label="Everything in the Fairy Glen collection — nine letter papers fanned out, some turned portrait and some landscape, six envelopes stacked in a fan, six stamps and ten stickers">
         <!-- The whole Fairy Glen pack, exactly as it ships. The set and the
              counts in the caption below come from the catalog:
                select s.type, count(*) from stationery s
@@ -310,8 +310,9 @@
                 where p.collection_id = 'col_fairy_glen' and s.is_active
                 group by 1;
              (papers counted once per design — the app carries a portrait and a
-             landscape of each.) If the pack gains a piece, both the spread and
-             that sentence have to change together. -->
+             landscape of each, which is why three of the nine sheets here are
+             turned and why the caption can say so.) If the pack gains a piece,
+             both the spread and that sentence have to change together. -->
 
         <!-- The four groups are wrapped only so the phone can lay each out as
              its own row. On the desktop composition every piece is absolutely
@@ -328,13 +329,13 @@
              the RIGHT — goes last, where nothing covers it at all. Reorder
              these and the art disappears under the neighbouring sheet. -->
         <div class="st-group st-group--papers">
-        <img class="st-paper st-paper--1" src="assets/stationery/fairy-glen/paper-wisteria.jpg" alt="" width="560" height="420" loading="lazy" />
+        <img class="st-paper st-paper--portrait st-paper--1" src="assets/stationery/fairy-glen/paper-wisteria-portrait.jpg" alt="" width="420" height="560" loading="lazy" />
         <img class="st-paper st-paper--2" src="assets/stationery/fairy-glen/paper-lily-pond.jpg" alt="" width="560" height="420" loading="lazy" />
         <img class="st-paper st-paper--3" src="assets/stationery/fairy-glen/paper-dewdrops.jpg" alt="" width="560" height="420" loading="lazy" />
         <img class="st-paper st-paper--4" src="assets/stationery/fairy-glen/paper-sparkle.jpg" alt="" width="560" height="420" loading="lazy" />
-        <img class="st-paper st-paper--5" src="assets/stationery/fairy-glen/paper-bluebells.jpg" alt="" width="560" height="420" loading="lazy" />
+        <img class="st-paper st-paper--portrait st-paper--5" src="assets/stationery/fairy-glen/paper-bluebells-portrait.jpg" alt="" width="420" height="560" loading="lazy" />
         <img class="st-paper st-paper--6" src="assets/stationery/fairy-glen/paper-glen-meadow.jpg" alt="" width="560" height="420" loading="lazy" />
-        <img class="st-paper st-paper--7" src="assets/stationery/fairy-glen/paper-firefly-night.jpg" alt="" width="560" height="420" loading="lazy" />
+        <img class="st-paper st-paper--portrait st-paper--7" src="assets/stationery/fairy-glen/paper-firefly-night-portrait.jpg" alt="" width="420" height="560" loading="lazy" />
         <img class="st-paper st-paper--8" src="assets/stationery/fairy-glen/paper-fairy-ring.jpg" alt="" width="560" height="420" loading="lazy" />
         <img class="st-paper st-paper--9" src="assets/stationery/fairy-glen/paper-fairy-door.jpg" alt="" width="560" height="420" loading="lazy" />
         </div>
@@ -386,8 +387,9 @@
       <!-- The picture is one collection; this sentence is what makes it stand
            for all of them. Without it the spread reads as "here is Fairy Glen"
            rather than "this is what a collection is". -->
-      <p class="stationery-note">Fairy Glen — nine papers, six envelopes, six
-         stamps and ten stickers. Every collection brings its own.</p>
+      <p class="stationery-note">Fairy Glen — nine papers, each in portrait and
+         landscape. Six envelopes, six stamps, ten stickers. Every collection
+         brings its own.</p>
     </section>
 
     <!-- Relationship first, boundary second. "Only people you approve" led with

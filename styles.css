@@ -840,7 +840,20 @@ main > .feature:last-child { padding-bottom: var(--s-5); }
    zero — that is what makes nine sheets read as one fan opening rather than a
    staircase. And an arc, so the pair of tops dips a little toward the middle:
    with both tops flat the fan looked ruled off along a horizon. */
-.st-paper--1 { left: 1%;    top: 2%;    transform: rotate(-5deg);   z-index: 1; }  /* wisteria: TOP band */
+/* Three of the nine are the PORTRAIT cut of the same design — the app ships
+   both ways round for every paper, and the art is re-composed rather than
+   rotated (wisteria arches over the top and down both sides, the bluebells run
+   the full left edge). Saying that in the caption would be a claim the picture
+   cannot back; turning three sheets says it without a word.
+
+   Width is the landscape height — 21% × 3/4 = 15.75% — because it is the same
+   sheet turned, not a smaller one. The fan's total span is unchanged: it
+   depends only on the step and the LAST sheet's width, so any of 1–8 can turn
+   freely. All three sit at ODD positions, which is forced: a portrait sheet is
+   43.4% of the box tall against a landscape's 32.6%, and one placed LOW would
+   reach into the props band. */
+.st-paper--portrait { width: 15.75%; }
+.st-paper--1 { left: 1%;    top: 2%;    transform: rotate(-5deg);   z-index: 1; }  /* wisteria: arch, TOP + both sides */
 .st-paper--2 { left: 10.6%; top: 11%;   transform: rotate(-3.5deg); z-index: 2; }  /* lily pond: BOTTOM */
 .st-paper--3 { left: 20.2%; top: 3.5%;  transform: rotate(-2.5deg); z-index: 3; }  /* dewdrops: TOP left */
 .st-paper--4 { left: 29.8%; top: 12.5%; transform: rotate(-1deg);   z-index: 4; }  /* sparkle: BOTTOM left */
@@ -943,7 +956,7 @@ main > .feature:last-child { padding-bottom: var(--s-5); }
 /* The picture is one collection; this line is what makes it stand for all of
    them, so it sits directly under the spread rather than beside the heading. */
 .stationery-note {
-  max-width: 44ch;
+  max-width: 56ch;
   margin: var(--s-4) auto 0;
   text-align: center;
   font-size: var(--fs-body);
@@ -987,10 +1000,21 @@ main > .feature:last-child { padding-bottom: var(--s-5); }
     justify-content: center;
     align-items: flex-end;
     margin-bottom: var(--s-3);
+    /* Absorbs the outer half of the first and last item's negative margins,
+       which a centred flex line otherwise hangs over the container edge. */
+    padding: 0 3%;
   }
   .st-group--stickers { margin-bottom: 0; }
-  /* Three sheets to a row at 38%, overlapping 11% of each other. */
-  .stationery .st-paper    { width: 38%; margin: 0 -5.5% var(--s-2); }
+  /* Three sheets to a row. The turned ones keep the relationship they have
+     above — same sheet, so their width is the others' height — and that mixing
+     is what sets the overlap: with two widths in play the flex line has to
+     wrap at three whichever way the row is made up. Three landscapes take
+     3 × (38 − 6) = 96% and still fit; the loosest possible four, two turned
+     and two not, take 2 × 22.5 + 2 × 32 = 109% and cannot. At the −5.5% this
+     started on, a mixed four fit and the rows came out 4/4/1 with the outer
+     sheets hanging off both edges. */
+  .stationery .st-paper    { width: 38%; margin: 0 -3% var(--s-2); }
+  .stationery .st-paper--portrait { width: 28.5%; }
   /* Tighter than the papers — the envelopes are a stack, not a fan. */
   .stationery .st-envelope { width: 34%; margin: 0 -4% var(--s-2); }
   /* Six stamps across one row. At this size a stamp is 50px and 50px of

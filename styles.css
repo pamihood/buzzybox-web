@@ -1065,33 +1065,99 @@ main > .feature:last-child { padding-bottom: var(--s-5); }
   grid-template-columns: repeat(3, 1fr);
   gap: var(--s-3);
 }
-/* The two optional blocks are OUTLINED on a warm sheet; the free one is
-   FILLED on the warm card. Same paper family, different weight of sheet — the
-   one you get is the substantial one, and the two you may add sit lighter. All
-   three keep the page's typography exactly; nothing here gets a plan colour, a
-   pill, a tick or a button. Identical padding and type across the row: in
-   equal columns a size or inset bump reads as a mistake, so the fill and the
-   border are the ONLY two things allowed to differ.
+/* COLOUR AND EMPHASIS, revised 2026-08-17 (Patrick: make it read like a plan
+   view people already know, and drive the eye to free).
 
-   The additions sat on --card (#fdfbf8) and looked GREY (Patrick, 2026-08-16):
-   that token is cooler than the page ground, and cool-on-warm reads grey by
-   contrast — the dullness was a temperature bug, not the intended quietness.
-   These two values are --card and --line-card pulled to the page's own warmth;
-   local rather than token edits because --card elsewhere (legal document
-   cards, blog) is near-white ON PURPOSE. Per-plan hues were tried the same
-   day and rejected: honey and lilac washes inverted the hierarchy — the free
-   column became the dullest of the three — and read as pricing-tier coding,
-   which "nothing here gets a plan colour" exists to prevent. */
+   The old rule here was "nothing gets a plan colour, a pill, a tick or a
+   button", and per-plan hues had been tried and rejected once. That rejection
+   is still instructive, but it was aimed at a DIFFERENT mistake than the one
+   it is quoted against: honey-on-Family and lilac-on-Collections tinted the
+   two paid blocks and left free in bare kraft, so the column the page wants
+   you to take became the dullest thing in the row. The lesson was never "no
+   colour" — it was "never let the free column lose".
+
+   So colour now runs on ONE axis, emphasis, and free wins it outright:
+
+   - FREE is the only block with chroma. Manila fill, a honey border and a
+     honey "Start here" tag — the position a conventional pricing table gives
+     its recommended plan, pointed at the free one instead.
+   - FAMILY and FAMILY PLUS are a matched PAIR, because "there is a basic and
+     a plus" is the second thing to grasp. Same hue, same border family; Plus
+     differs by one step of VALUE (slightly deeper paper, slightly stronger
+     line) and never by hue. A value step reads as "more of the same thing",
+     which is exactly what twelve desks are; a hue step would have read as
+     tier colour-coding, which is what failed before.
+   - COLLECTIONS gets its own hue on purpose, because it is not a rung on the
+     ladder at all (see .plan--row below).
+
+   Everything still refused: no buy buttons, no ticks, no prices, no shadows.
+   The tag is the one shop-like affordance on the page and it is one class. */
 .plan {
+  position: relative;
   text-align: left;
-  background-color: #f7f1e8;
+  background-color: #f5efe4;
   border: 1px solid #dccfbe;
   border-radius: var(--radius-media);
   padding: var(--s-4) var(--s-4) calc(var(--s-4) - 4px);
 }
+/* The premium rung: one step deeper in the same paper, one step stronger in
+   the same line. Enough that the pair reads as basic-then-more at a glance,
+   not enough to out-shout the free block two columns to its left. */
+.plan--plus {
+  background-color: #efe7d7;
+  border-color: #d3c4ae;
+}
 .plan--included {
   background-color: var(--paper-card);
-  border-color: transparent;
+  border-color: rgba(201, 138, 30, 0.45);
+}
+/* Prices (2026-08-17, Patrick: a plan view without prices reads less serious
+   and less real). One line per block, between the desk count and the terms.
+   The desk count stays the LARGEST line — this section's story is still what
+   you get, with what it costs one step below. The struck price is the
+   documented post-launch figure (MONETIZATION.md: $29.99, "perhaps $19.99 for
+   Founding Families"), never an invented was-price: the strike is honest only
+   as long as the plan is genuinely to charge the higher number later. Plus
+   carries a "+" because it IS an add-on on top of Family — a bare $19.99 under
+   "Up to 12 desks" would read as cheaper than Family and invert the ladder. */
+.plan-price {
+  margin: 0;
+  font-size: clamp(1.02rem, 1.25vw, 1.16rem);
+  font-weight: 700;
+  color: var(--ink);
+}
+.plan-price s {
+  font-weight: 500;
+  color: var(--ink-faint);
+}
+/* The shared founding explainer under the grid. It replaced a per-block
+   "FOUNDING PRICE" flag that wrapped to a second line in the Plus column at
+   common widths — and the term needed defining once anyway. --ink-mid per the
+   page's contrast rule: it is information a buyer acts on, not décor. */
+.founding-note {
+  max-width: 880px;
+  margin: var(--s-3) auto 0;
+  font-size: var(--fs-small);
+  color: var(--ink-mid);
+  text-align: center;
+}
+/* Honey at full strength on manila, with ink dark enough to pass AA rather
+   than the white a SaaS badge would use — white on honey is a button, and a
+   button is what this section does not have. */
+.plan-tag {
+  position: absolute;
+  top: var(--s-4);
+  right: var(--s-4);
+  font-family: var(--font-apparatus);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #4a3208;
+  background-color: rgba(233, 162, 39, 0.42);
+  border-radius: 999px;
+  padding: 4px 10px;
+  white-space: nowrap;
 }
 /* Plan names are taxonomy, so they keep the monospace — the page's small
    accent vocabulary, used for collection names and plan names and nothing
@@ -1122,6 +1188,33 @@ main > .feature:last-child { padding-bottom: var(--s-5); }
   font-size: var(--fs-body);
   line-height: 1.5;
   color: var(--ink-soft);
+}
+/* Collections spans the whole row beneath the three desk blocks (2026-08-17,
+   Patrick). As a fourth column it competed on an axis it was never on: the
+   three above answer HOW MANY DESKS, and collections answer WHAT A DESK LOOKS
+   LIKE — orthogonal, and available whichever of the three you are on. Spanning
+   is the layout saying so, which is why the copy only has to confirm it once
+   ("on any plan") instead of the middle column having to disambiguate itself
+   in words, as it did while the four sat abreast.
+
+   It keeps the STACKED text of every other block (Patrick, 2026-08-17). It
+   was briefly set horizontal — offer left, terms right — on the theory that
+   opposite ends read as a row; what actually happened is that the terms
+   drifted a full column away from the thing they qualify, and the block
+   stopped matching the three above it. Same shape as its neighbours, one
+   glance, no exception to learn.
+
+   Its own HUE is the point: lilac, the one colour on the page that is not
+   kraft. Collections are the only item here that is not a rung on the desk
+   ladder — they apply on any of the three — and a different colour says
+   "different kind of thing" faster than any sentence could. Lilac rather than
+   sage or honey for two reasons: honey is now spoken for by the free block's
+   accent, and lilac is the chord of the stationery spread directly above it,
+   so the row reads as belonging to the pictures it refers to. */
+.plan--row {
+  grid-column: 1 / -1;
+  background-color: #eee8f3;
+  border-color: #d9cee4;
 }
 /* Reassurance. Not a headline, but it was nearly invisible at --fs-small in
    --ink-soft, and it is the sentence that answers "so what is the catch". Full

@@ -104,38 +104,69 @@ break by accident:
   stated in the passive ("Every contact is approved before letters can be
   exchanged"). The legal pages are exempt; they say "parent or guardian"
   because that is the wording the law uses.
+- **The plans block names nobody, and counts instead** (2026-08-17). A desk
+  owner can be a kid, a grandparent or a pen pal, so "a desk for your kid"
+  shrank the product on the one screen where a visitor is deciding what it
+  costs. The three columns are a desk ladder — **One desk / Up to 6 desks /
+  Up to 12 desks** — and collections span the row beneath them, because they
+  apply on any plan rather than being a fourth rung. Always "up to", never a
+  bare figure and never "every": the counts are server-side
+  (`account_capabilities`, starter 1 / family 6 / family_plus 12) and meant to
+  be retunable without a client release, so check that table before editing a
+  number here.
+- **The plans block may look like a plan view; it may not act like a shop.**
+  Borrowed on purpose (2026-08-17): an aligned three-column ladder, one
+  emphasised column, a `START HERE` tag on the free one, and prices. Still
+  refused: buy buttons, ticks, shadows, and colour used as tier coding. Colour
+  runs on one axis only — **free is the only block with chroma**; Family and
+  Plus differ by a step of value, never of hue. The one rule that outranks the
+  rest here is that the free column must never lose the row.
+- **Prices carry two honesty rules** (2026-08-17). Every struck price is the
+  real post-launch figure, never an invented was-price: Family `~~$29.99~~
+  $19.99` (both from MONETIZATION.md, which has carried "perhaps $19.99 for
+  Founding Families" all along) and Plus `+ ~~$19.99~~ $14.99` (founding
+  figure decided by Patrick 2026-08-17 — this repo is currently its only
+  record; MONETIZATION.md still reads $19.99 flat). If the intent to charge
+  the struck number after launch ever goes, its strike goes with it. Plus
+  keeps its `+`, outside the strike: it is an add-on on top of Family, and a
+  bare figure under "Up to 12 desks" would read as cheaper than Family and
+  invert the ladder. Collections say `From $0.99` — "from" stays true if
+  collections ever tier. Founding totals ascend: $19.99 → $34.98.
 - **Postmello is not "an iPad app".** It is *coming first to iPad*.
 - **"Collection" is the public noun, matching the app** (Revision 2 reversed
-  the earlier "world" rule). It belongs in the supporting sentence and in the
-  business-model column, not in an emotional headline — the collections
-  heading names the desk, which is the object in the pictures. No prices,
-  locks or buy controls in the desk grid; the money has its own section.
+  the earlier "world" rule) — but on the homepage it enters exactly ONCE
+  (2026-08-17): at the stationery spread's heading, "Every desk brings its own
+  collection.", which states the desk-to-collection relationship beside the
+  picture that defines it. Everything from the collections heading through
+  the desk grid says DESK — the object in the pictures, the thing a visitor
+  picks. Never open a sentence with "each collection" before that heading has
+  run. No prices, locks or buy controls in the desk grid; the money has its
+  own section.
 - **"One letter at a time." is the footer sign-off, not the H1.**
 
 ## TODO
 
-- **Re-cast the contacts in every screenshot** (Patrick, 2026-08-16). The
-  drawer cast is currently Iris, Theo, Grandma, Grandpa and Nana — five
-  contacts, four of them relatives and none of them the account holder. Two
-  changes:
+- **Re-cast the contacts in every screenshot** (Patrick, 2026-08-16; halved
+  2026-08-17). The drawer cast is currently Iris, Theo, Grandma, Grandpa and
+  Nana — five contacts, four of them relatives. One change is left:
 
-  - **"Mom" replaces "Nana."** The free plan now includes a desk for the
-    account holder as well as the kid ("A desk for your kid — and one for
-    you"), and no picture on the site shows that person in a drawer. A "Mom"
-    nameplate makes the plans copy visible in the product: the first pen pal
-    is whoever set the desk up. Whatever the app ends up calling the field,
-    the shot must show the answer to "what should Maya call you?", not a
-    label like "Admin" or "Parent" — §1 still forbids those words on this
-    site, and the drawer is the child's own word for a person.
+  - ~~**"Mom" replaces "Nana."**~~ **Dropped 2026-08-17.** Its whole
+    justification was the free plan including a desk for the account holder
+    ("A desk for your kid — and one for you"), so that a picture somewhere on
+    the site showed that person in a drawer. That feature is being reverted
+    app-side and the copy is gone, so the re-cast has nothing left to
+    illustrate. If the account holder's desk ever ships, reopen this — with
+    the constraint that survived: the nameplate must be the answer to "what
+    should Maya call you?", never a label like "Admin" or "Parent", which §1
+    forbids on this site anyway.
   - **"Luna" replaces "Grandpa."** Four relatives and one friend under a
     heading about friends and family undersells the friend half, and Postmello
     is a pen-pal product before it is a family one. Keeping Grandma covers the
     relatives.
 
-  So the row becomes **Iris, Theo, Luna, Grandma, Mom** — friend-forward,
-  five drawers, no layout change. Touches `assets/drawer-nana.png` →
-  `drawer-mom.png`, `assets/drawer-grandpa.png` → `drawer-luna.png`,
-  `assets/drawer-row.jpg`, and every screenshot with the drawer rail in it:
+  So the row becomes **Iris, Theo, Luna, Grandma, Nana** — friend-forward,
+  five drawers, no layout change. Touches `assets/drawer-grandpa.png` →
+  `drawer-luna.png`, `assets/drawer-row.jpg`, and every screenshot with the drawer rail in it:
   `assets/app-desk.jpg` (hero), `assets/step-stamp.jpg`, and `assets/og-card.jpg`
   once the hero is re-shot. **Two alt strings name the cast** and must change
   in the same commit — `index.html` at the step-stamp figure and at

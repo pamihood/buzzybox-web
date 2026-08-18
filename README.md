@@ -30,6 +30,12 @@ and every footer. Nothing on the site should carry a personal address.
 it rather than hand-editing nine copies, which is how Help and Privacy drifted
 apart before.
 
+**Prices are written, not typed.** `scripts/apply-pricing.py` rewrites the
+plans-block price lines in `index.html` (keyed on their `data-price` markers)
+from the app repo's `../posty/pricing.json`, the single ground truth for every
+Postmello number; `--check` exits nonzero when they disagree. A price change
+starts in the JSON, then the script — see the pricing rules below.
+
 **Share card**: `assets/og-card.jpg` (1200×630). `scripts/og-card.html` is the
 source — a real page in the site's own fonts and tokens — and
 `scripts/make-og-card.py` shoots it in headless Chrome at 2x and downsamples.
@@ -121,17 +127,23 @@ break by accident:
   runs on one axis only — **free is the only block with chroma**; Family and
   Plus differ by a step of value, never of hue. The one rule that outranks the
   rest here is that the free column must never lose the row.
-- **Prices carry two honesty rules** (2026-08-17). Every struck price is the
-  real post-launch figure, never an invented was-price: Family `~~$29.99~~
-  $19.99` (both from MONETIZATION.md, which has carried "perhaps $19.99 for
-  Founding Families" all along) and Plus `+ ~~$19.99~~ $14.99` (founding
-  figure decided by Patrick 2026-08-17 — this repo is currently its only
-  record; MONETIZATION.md still reads $19.99 flat). If the intent to charge
-  the struck number after launch ever goes, its strike goes with it. Plus
-  keeps its `+`, outside the strike: it is an add-on on top of Family, and a
-  bare figure under "Up to 12 desks" would read as cheaper than Family and
-  invert the ladder. Collections say `From $0.99` — "from" stays true if
-  collections ever tier. Founding totals ascend: $19.99 → $34.98.
+- **Prices come from the app repo, never from this one** (revised 2026-08-17,
+  evening — the annual model). `../posty/pricing.json` is the ground truth for
+  every number; `scripts/apply-pricing.py` writes it into the plans block and
+  `--check` fails when they disagree. Edit the JSON first, then run the script
+  — never hand-edit a price in `index.html`. The ladder is annual now: Family
+  `$19.99/year` (up to 6 desks) and Family Plus `$29.99/year` (up to 12 — one
+  annual tier total, no longer a `+`-prefixed add-on on top of Family), and
+  always annual-first: never lead with a monthly figure, which does not appear
+  on the page at all. The founding offer is a **different product, not a
+  discount** — Postmello Family for $19.99 once, lifetime, never converting to
+  the subscription — so no strikethrough was-price may ever be printed: there
+  is no truthful higher figure to strike. (The morning build's strikes died by
+  their own rule — a strike is honest only while the struck figure is the
+  genuine post-launch price, and post-launch Family is $19.99/year, not
+  $29.99 once.) Collections stay `From $0.99`, one-time — "from" stays true
+  if collections ever tier. "No subscription to write letters" survives the
+  pivot on purpose: the subscription only covers extra desks.
 - **Postmello is not "an iPad app".** It is *coming first to iPad*.
 - **"Collection" is the public noun, matching the app** (Revision 2 reversed
   the earlier "world" rule) — but on the homepage it enters exactly ONCE

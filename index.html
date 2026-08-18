@@ -610,36 +610,49 @@
 
          PRICES arrived 2026-08-17 (Patrick: a plan view without them reads
          less official, less legitimate — pricing makes it look serious and
-         real; the earlier no-prices stance died with that sentence). The
-         numbers and their honesty constraints:
+         real; the earlier no-prices stance died with that sentence).
 
-         - FAMILY: $29.99 struck, $19.99 founding. BOTH come from
-           MONETIZATION.md, which has said "perhaps $19.99 for Founding
-           Families" against the $29.99 all along — the strike is the
-           documented post-launch price, not an invented was-price. That is
-           the line this display must never cross: the strike stays honest
-           only while the plan is genuinely to charge $29.99 after launch.
-           If that intent ever goes, the strike goes with it.
-         - FAMILY PLUS: "+ $19.99-struck $14.99 founding", and the "+" is
-           load-bearing. Plus is an ADD-ON on top of Family (Apple
-           non-consumables have no upgrade pricing); a bare figure under
-           "Up to 12 desks" would read as cheaper than Family and invert the
-           whole ladder. The span says "add-on to Family" so the + has words
-           to lean on. The founding figure was DECIDED 2026-08-17 by Patrick
-           on this page (it exists nowhere else yet — MONETIZATION.md still
-           reads $19.99 flat and needs the founding pair carried over): he
-           caught +$19.99 sitting at exactly founding Family's number, which
-           made the ladder read oddly and left Plus the only rung founding
-           members got no deal on. $14.99 keeps the founding totals ascending
-           ($19.99 → $34.98) and the same strike rule binds: $19.99 must
-           genuinely be the post-launch add-on price, or the strike goes.
-           The + sits OUTSIDE the strike — the struck thing is the price,
-           not the plus-ness.
-         - COLLECTIONS: "From $0.99" (Patrick, 2026-08-17, superseding the
-           $1.99 working guess in MONETIZATION.md — which calls itself the
-           least-supported number in that document). "From", not a flat
-           price: it stays true if collections ever tier, and it reads as an
-           invitation rather than a quote.
+         REVISED the same evening (2026-08-17): Postmello Family moved from a
+         one-time purchase to an ANNUAL subscription (spec: the app repo's
+         docs/FAMILY_SUBSCRIPTION_SPEC.md). The numbers themselves now live
+         in ONE place — ../posty/pricing.json, the app repo's ground truth —
+         and are written into this block by scripts/apply-pricing.py, which
+         keys on the data-price attributes below (--check validates without
+         writing). Edit pricing.json first, then run the script; never
+         hand-edit a figure here. The ladder, and its honesty constraints:
+
+         - FAMILY: $19.99/year, up to 6 desks. Annual-first, always: never
+           lead with a monthly figure, and the monthly equivalent does not
+           appear on this page at all. The span says it renews and that
+           cancelling preserves the desks — the expiry model pauses them,
+           it never deletes.
+         - FAMILY PLUS: $29.99/year, up to 12 desks — ONE annual tier,
+           total. Superseded (evening): the morning build sold Plus as a
+           one-time ADD-ON on top of Family, with a load-bearing "+" prefix
+           (Apple non-consumables had no upgrade pricing) and a $14.99
+           founding figure decided on this page. The annual model retires
+           all of it — no "+", no add-on framing — and $29.99 standing
+           above $19.99 keeps the ladder ascending on its own, which is
+           what the "+" existed to protect.
+         - THE STRIKES ARE GONE, by this display's own rule. The morning
+           build struck $29.99 (Family) and $19.99 (Plus) as the documented
+           post-launch prices, and recorded the line it must never cross:
+           a strike is honest only while the struck figure is the genuine
+           post-launch price. That intent is gone — post-launch Family is
+           $19.99/year, not $29.99 once — so the strikes went with it. And
+           none may come back: under this model the founding offer is a
+           DIFFERENT PRODUCT (lifetime), not a discount off the annual
+           price, so there is never a truthful was-price to print.
+         - FOUNDING: Postmello Family for $19.99 once — lifetime, never
+           converting to the subscription — for households that join while
+           Postmello is new. It lives in the founding-note line under the
+           grid, not in a column: it is an offer on Family, not a rung.
+         - COLLECTIONS: "From $0.99", one-time, unchanged (Patrick,
+           2026-08-17, superseding the $1.99 working guess in
+           MONETIZATION.md — which calls itself the least-supported number
+           in that document). "From", not a flat price: it stays true if
+           collections ever tier, and it reads as an invitation rather
+           than a quote.
          - FREE: the word "Free" sits in the price slot so the table scans as
            a table. The dt keeps "Included" — the heading has already said
            free once, and the price line saying it again is the plan-view
@@ -739,7 +752,7 @@
         <div class="plan plan--included">
           <dt>Included <span class="plan-tag">Start here</span></dt>
           <dd><strong>One desk</strong>
-              <p class="plan-price">Free</p>
+              <p class="plan-price" data-price="free">Free</p>
               <!-- "Starter stationery set" (2026-08-17, Patrick): the free
                    desk arrives dressed, and the plan view should say so —
                    it is the third thing the free column genuinely includes.
@@ -752,35 +765,47 @@
         <div class="plan">
           <dt>Postmello Family</dt>
           <dd><strong>Up to 6 desks</strong>
-              <p class="plan-price"><s>$29.99</s> $19.99</p>
-              <span>One-time household upgrade</span></dd>
+              <p class="plan-price" data-price="family">$19.99/year</p>
+              <span>Renews yearly · Cancel anytime, desks are preserved</span></dd>
         </div>
         <div class="plan plan--plus">
           <dt>Postmello Family Plus</dt>
           <dd><strong>Up to 12 desks</strong>
-              <p class="plan-price">+ <s>$19.99</s> $14.99</p>
-              <span>One-time add-on to Family</span></dd>
+              <p class="plan-price" data-price="family_plus">$29.99/year</p>
+              <span>Renews yearly</span></dd>
         </div>
         <div class="plan plan--row">
           <dt>Collections</dt>
           <dd><strong>New desk designs + matching stationery</strong>
-              <p class="plan-price">From $0.99</p>
+              <p class="plan-price" data-price="collections">From $0.99</p>
               <span>Optional one-time purchases, on any plan</span></dd>
         </div>
       </dl>
 
       <!-- One shared explainer instead of a per-block "FOUNDING PRICE" flag
-           (2026-08-17, Patrick). Two reasons, one fix: the flag wrapped to a
-           second line in the Plus block at common widths, and the term was
-           ambiguous on its own — founding of WHAT, until WHEN? The strikes
-           mark where the deal is; this line says what it is, once. "While
-           Postmello is new" answers the until-when without printing a date,
-           and "households that join" answers the who without a member badge.
-           These are one-time purchases, so the line makes no keep-forever
-           claim it would then have to explain. -->
-      <p class="founding-note">Founding prices, for households that join while
-         Postmello is new.</p>
+           (2026-08-17, Patrick). The flag wrapped to a second line in the
+           Plus block at common widths, and the term was ambiguous on its own
+           — founding of WHAT, until WHEN? "While Postmello is new" answers
+           the until-when without printing a date, and "households that join"
+           answers the who without a member badge.
 
+           Superseded (evening): the line no longer glosses strikes in the
+           grid — the strikes are gone — it now IS the founding offer, whole:
+           a different PRODUCT, not a discount. Postmello Family for $19.99
+           once, lifetime, never converting to the subscription. So the
+           keep-forever claim the morning wording deliberately avoided is
+           now made on purpose ("yours for good"): it is the offer's
+           substance, not a flourish. Still one sentence, still no urgency
+           and no countdown. apply-pricing.py rewrites this line from
+           pricing.json (data-price="founding-note"); when founding_window
+           closes there, this line comes off the same day. -->
+      <p class="founding-note" data-price="founding-note">Founding offer:
+         Postmello Family for $19.99, once — yours for good, for households
+         that join while Postmello is new.</p>
+
+      <!-- Still true under the annual model, checked on purpose (evening,
+           2026-08-17): the subscription only covers extra desks. Writing,
+           sending, receiving and rereading letters never require it. -->
       <p class="reassurance">No ads · No subscription to write letters</p>
     </section>
 

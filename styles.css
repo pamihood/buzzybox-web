@@ -801,12 +801,26 @@ main > .feature:last-child { padding-bottom: var(--s-5); }
    spread is a flourish inside the collections section, not another argument. */
 .stationery-head {
   max-width: var(--maxw-page);
-  margin: var(--s-6) auto var(--s-5);
+  /* s-3 below, matching the h2-to-lede gap in .feature-head; the lede now
+     carries the s-5 the head used to hold against the spread. */
+  margin: var(--s-6) auto var(--s-3);
   text-align: center;
   font-size: var(--fs-sub);
   font-weight: 720;
   letter-spacing: -0.02em;
   color: var(--ink);
+}
+/* The intent line under the subheading — same voice as a .feature .lede
+   (measure, size, --ink-mid) so it reads as the head's sentence, not as a
+   caption for the spread; the spread's caption stays .stationery-note. */
+.stationery-lede {
+  max-width: min(58ch, var(--maxw-read));
+  margin: 0 auto var(--s-5);
+  text-align: center;
+  font-size: var(--fs-lede);
+  line-height: 1.55;
+  color: var(--ink-mid);
+  text-wrap: pretty;
 }
 .stationery {
   position: relative;
@@ -1114,21 +1128,19 @@ main > .feature:last-child { padding-bottom: var(--s-5); }
 /* Prices (2026-08-17, Patrick: a plan view without prices reads less serious
    and less real). One line per block, between the desk count and the terms.
    The desk count stays the LARGEST line — this section's story is still what
-   you get, with what it costs one step below. The struck price is the
-   documented post-launch figure (MONETIZATION.md: $29.99, "perhaps $19.99 for
-   Founding Families"), never an invented was-price: the strike is honest only
-   as long as the plan is genuinely to charge the higher number later. Plus
-   carries a "+" because it IS an add-on on top of Family — a bare $19.99 under
-   "Up to 12 desks" would read as cheaper than Family and invert the ladder. */
+   you get, with what it costs one step below.
+
+   Superseded (evening, 2026-08-17): the strike rule and the Plus "+" are
+   gone with the annual model. Family and Plus are annual prices written from
+   the app repo's pricing.json (scripts/apply-pricing.py), the founding offer
+   is a different product (lifetime) rather than a discount, so no was-price
+   may ever be printed — the `s` rule that styled the strikes was removed,
+   and it must not come back. */
 .plan-price {
   margin: 0;
   font-size: clamp(1.02rem, 1.25vw, 1.16rem);
   font-weight: 700;
   color: var(--ink);
-}
-.plan-price s {
-  font-weight: 500;
-  color: var(--ink-faint);
 }
 /* The shared founding explainer under the grid. It replaced a per-block
    "FOUNDING PRICE" flag that wrapped to a second line in the Plus column at

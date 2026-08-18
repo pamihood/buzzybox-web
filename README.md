@@ -131,21 +131,22 @@ break by accident:
   evening — the annual model). `../posty/pricing.json` is the ground truth for
   every number; `scripts/apply-pricing.py` writes it into the plans block and
   `--check` fails when they disagree. Edit the JSON first, then run the script
-  — never hand-edit a price in `index.html`. The ladder is annual-only now
-  (third cut, same day: "everyone subscribes"): Family shows the price a
-  household actually PAYS today — `$14.99/year`, the founding launch price,
-  rising to `$19.99/year` for later households while founding subscribers
-  keep theirs (an ASC preserve-price increase, no product involved) — and
-  Family Plus `$29.99/year` (up to 12 — one annual tier total, no longer a
-  `+`-prefixed add-on on top of Family). Always annual-first: never lead
-  with a monthly figure, which does not appear on the page at all. **The
-  founding benefit is a price, not a product**, and no strikethrough
-  was-price may ever be printed: nobody has ever paid the later figure, so
-  there is no truthful figure to strike — the future `$19.99/year` is named
-  in the founding note's prose instead. (The morning build's strikes died by
-  their own rule — a strike is honest only while the struck figure is the
-  genuine post-launch price; the evening's lifetime founding product retired
-  unsold within hours.) Collections stay `From $0.99`, one-time — "from" stays true
+  — never hand-edit a price in `index.html`. The ladder is annual-only
+  ("everyone subscribes"): Family renders `~~$19.99~~ $14.99/year` — the
+  struck figure is the **genuine post-founding regular price** (the same
+  rule the very first strike stood on: a strike is honest only while the
+  struck figure is the genuine later price; pricing.json's `price_per_year`
+  is its source, and if that intent ever changes the strike follows in the
+  same run of the script). Founding subscribers keep $14.99/year via an ASC
+  preserve-price increase — no product involved. Family Plus is
+  `$29.99/year` flat (one annual tier total, no `+`, no add-on framing).
+  **There is no founding footnote** (Patrick: "that join while Postmello is
+  new" made it sound like no one is on it) — the terms line's "Early price,
+  yours to keep" carries the promise instead. The **monthly equivalent is
+  supporting copy only**, exactly as the strategy spec allows: it lives in
+  the terms line ("About $1.25 a month"), computed by the script, and never
+  leads — the price line is always the yearly figure. Collections stay
+  `From $0.99`, one-time — "from" stays true
   if collections ever tier. "No subscription to write letters" survives the
   pivot on purpose: the subscription only covers extra desks.
 - **Postmello is not "an iPad app".** It is *coming first to iPad*.

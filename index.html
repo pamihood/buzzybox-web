@@ -18,7 +18,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@500&amp;family=Nunito:wght@400..800&amp;family=Rubik:wght@600&amp;display=swap" />
-  <link rel="stylesheet" href="styles.css?v=8365b5d8" />
+  <link rel="stylesheet" href="styles.css?v=549274d8" />
 </head>
 <body>
   <header class="site-head site-head--wide">
@@ -773,14 +773,14 @@
         <div class="plan">
           <dt>Postmello Family</dt>
           <dd><strong>Up to 6 desks</strong>
-              <p class="plan-price" data-price="family">$14.99/year</p>
-              <span>Renews yearly · Cancel anytime, desks are preserved</span></dd>
+              <p class="plan-price" data-price="family"><s>$19.99</s> $14.99/year</p>
+              <span data-price="family-terms">About $1.25 a month · Renews yearly · Early price, yours to keep</span></dd>
         </div>
         <div class="plan plan--plus">
           <dt>Postmello Family Plus</dt>
           <dd><strong>Up to 12 desks</strong>
               <p class="plan-price" data-price="family_plus">$29.99/year</p>
-              <span>Renews yearly</span></dd>
+              <span data-price="family_plus-terms">About $2.50 a month · Renews yearly</span></dd>
         </div>
         <div class="plan plan--row">
           <dt>Collections</dt>
@@ -790,24 +790,15 @@
         </div>
       </dl>
 
-      <!-- One shared explainer instead of a per-block "FOUNDING PRICE" flag
-           (2026-08-17, Patrick). The flag wrapped to a second line in the
-           Plus block at common widths, and the term was ambiguous on its own
-           — founding of WHAT, until WHEN? "While Postmello is new" answers
-           the until-when without printing a date, and "households that join"
-           answers the who without a member badge.
+      <!-- The founding explainer is GONE (2026-08-17, final cut — Patrick:
+           "that join while Postmello is new" made it sound like no one is
+           on it). The strike in Family's price line carries the deal
+           (struck figure = the genuine post-founding regular price, the
+           same rule the morning strike stood on), and the terms line's
+           "Early price, yours to keep" names what the strike means in five
+           words. When founding_window closes in pricing.json, the strike
+           and the suffix drop out on the next apply-pricing.py run. -->
 
-           Superseded (evening, twice): first as the lifetime offer ("yours
-           for good"), then — Patrick, same night: "everyone subscribes" —
-           as the founding PRICE. The note now says what the deal actually
-           is: $14.99/year now, kept for as long as the household stays
-           subscribed, $19.99/year for households that join later. The
-           future price is named in prose, never struck (nobody ever paid
-           it). Still no urgency and no countdown.
-           apply-pricing.py rewrites this line from
-           pricing.json (data-price="founding-note"); when founding_window
-           closes there, this line comes off the same day. -->
-      <p class="founding-note" data-price="founding-note">Founding price: $14.99/year for households that join while Postmello is new — yours to keep for as long as you stay subscribed. Later, Family is $19.99/year.</p>
 
       <!-- Still true under the annual model, checked on purpose (evening,
            2026-08-17): the subscription only covers extra desks. Writing,

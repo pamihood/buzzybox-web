@@ -7,10 +7,16 @@ it. Edit the JSON first, then run this — never hand-edit a number in
 index.html. Each rewritable line carries a data-price marker, so the
 replacement is exact and idempotent:
 
-    <p class="plan-price" data-price="family">$19.99/year</p>
+    <p class="plan-price" data-price="family"><s>$19.99</s> $14.99/year</p>
 
-Keys: free, family, family_plus, collections, founding-note (the whole
-founding sentence, since its price is part of it).
+Keys: free, family, family_plus, collections, plus the two terms spans
+(family-terms, family_plus-terms) — they carry the monthly-equivalent
+supporting copy the spec allows (never the lead; the price line stays
+annual), so their numbers must be written, not typed. While the founding
+window is open, Family renders the struck regular price beside the founding
+selling price — honest by the site's own rule because the struck figure is
+the genuine post-founding price (pricing.json price_per_year), and the
+"Early price, yours to keep" terms suffix names what the strike means.
 
 Usage:
     python3 scripts/apply-pricing.py            # rewrite index.html in place
@@ -50,18 +56,40 @@ def selling_price(pricing, plan):
     return plan["price_per_year"]
 
 
+def monthly(amount_per_year):
+    """The supporting monthly equivalent — never the lead."""
+    return f"${amount_per_year / 12:.2f}"
+
+
+def family_price_line(pricing, plan):
+    """While founding is open: the genuine post-founding regular price,
+    struck, beside the founding selling price. The strike is honest by the
+    site's own rule only because price_per_year IS the documented later
+    price; if that intent ever changes, pricing.json changes and this line
+    follows."""
+    now = selling_price(pricing, plan)
+    later = plan["price_per_year"]
+    if now != later:
+        return f"<s>{money(later)}</s> {money(now)}/year"
+    return f"{money(now)}/year"
+
+
 def expected_lines(pricing):
     plans = pricing["plans"]
+    fam, plus = plans["family"], plans["family_plus"]
     return {
         "free": "Free",
-        "family": f"{money(selling_price(pricing, plans['family']))}/year",
-        "family_plus": f"{money(selling_price(pricing, plans['family_plus']))}/year",
+        "family": family_price_line(pricing, fam),
+        "family_plus": family_price_line(pricing, plus),
         "collections": f"From {money(pricing['collections']['price_from'])}",
-        "founding-note": (
-            f"Founding price: {money(plans['family']['founding_price_per_year'])}/year "
-            f"for households that join while Postmello is new — yours to keep "
-            f"for as long as you stay subscribed. Later, Family is "
-            f"{money(plans['family']['price_per_year'])}/year."
+        "family-terms": (
+            f"About {monthly(selling_price(pricing, fam))} a month · "
+            f"Renews yearly · Early price, yours to keep"
+            if selling_price(pricing, fam) != fam["price_per_year"]
+            else f"About {monthly(selling_price(pricing, fam))} a month · Renews yearly"
+        ),
+        "family_plus-terms": (
+            f"About {monthly(selling_price(pricing, plus))} a month · Renews yearly"
         ),
     }
 
@@ -79,21 +107,17 @@ def main():
         args.pricing or os.environ.get("POSTY_PRICING_JSON") or DEFAULT_PRICING)
     pricing = json.loads(pricing_path.read_text(encoding="utf-8"))
 
-    # The founding sentence may only be on the page while the window is open.
-    # This script writes prices; taking the line OFF is a layout decision made
-    # by hand — so refuse loudly instead of quietly leaving a stale offer up.
-    if not pricing.get("founding_window", {}).get("active"):
-        raise SystemExit(
-            "!! founding_window is closed in pricing.json — remove the "
-            "founding-note line from index.html by hand (and its data-price "
-            "key here), then rerun.")
-
+    # No founding-window gate: closing the window in pricing.json simply
+    # makes selling == regular, which drops the strike and the "Early price"
+    # suffix on the next run. (The old founding-note paragraph this script
+    # once guarded was removed 2026-08-17 — "that join while Postmello is
+    # new" read as if nobody was on it.)
     html = INDEX.read_text(encoding="utf-8")
     disagreements = []
     for key, want in expected_lines(pricing).items():
         pat = re.compile(
-            r'(<p class="[^"]+" data-price="' + re.escape(key) + r'">)'
-            r"(.*?)(</p>)", re.S)
+            r'(<(?:p|span)\b[^>]*data-price="' + re.escape(key) + r'"[^>]*>)'
+            r"(.*?)(</(?:p|span)>)", re.S)
         m = pat.search(html)
         if not m:
             raise SystemExit(

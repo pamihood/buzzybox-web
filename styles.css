@@ -1130,28 +1130,24 @@ main > .feature:last-child { padding-bottom: var(--s-5); }
    The desk count stays the LARGEST line — this section's story is still what
    you get, with what it costs one step below.
 
-   Superseded (evening, 2026-08-17): the strike rule and the Plus "+" are
-   gone with the annual model. Family and Plus are annual prices written from
-   the app repo's pricing.json (scripts/apply-pricing.py), the founding offer
-   is a different product (lifetime) rather than a discount, so no was-price
-   may ever be printed — the `s` rule that styled the strikes was removed,
-   and it must not come back. */
+   Superseded (evening, 2026-08-17): the strike rule and the Plus "+" went
+   with the annual model's first cut. THEN (same night, third cut + Patrick's
+   call to bring the strike back): under "everyone subscribes" the struck
+   figure is the genuine post-founding regular price — the SAME rule the
+   morning strike stood on — so the `s` rule returned. The founding-note
+   explainer did NOT return ("that join while Postmello is new" read as if
+   nobody was on it); the Family terms line carries "Early price, yours to
+   keep" instead, and prices are written from the app repo's pricing.json
+   (scripts/apply-pricing.py). */
 .plan-price {
   margin: 0;
   font-size: clamp(1.02rem, 1.25vw, 1.16rem);
   font-weight: 700;
   color: var(--ink);
 }
-/* The shared founding explainer under the grid. It replaced a per-block
-   "FOUNDING PRICE" flag that wrapped to a second line in the Plus column at
-   common widths — and the term needed defining once anyway. --ink-mid per the
-   page's contrast rule: it is information a buyer acts on, not décor. */
-.founding-note {
-  max-width: 880px;
-  margin: var(--s-3) auto 0;
-  font-size: var(--fs-small);
-  color: var(--ink-mid);
-  text-align: center;
+.plan-price s {
+  font-weight: 500;
+  color: var(--ink-faint);
 }
 /* Honey at full strength on manila, with ink dark enough to pass AA rather
    than the white a SaaS badge would use — white on honey is a button, and a

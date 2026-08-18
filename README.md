@@ -131,17 +131,21 @@ break by accident:
   evening — the annual model). `../posty/pricing.json` is the ground truth for
   every number; `scripts/apply-pricing.py` writes it into the plans block and
   `--check` fails when they disagree. Edit the JSON first, then run the script
-  — never hand-edit a price in `index.html`. The ladder is annual now: Family
-  `$19.99/year` (up to 6 desks) and Family Plus `$29.99/year` (up to 12 — one
-  annual tier total, no longer a `+`-prefixed add-on on top of Family), and
-  always annual-first: never lead with a monthly figure, which does not appear
-  on the page at all. The founding offer is a **different product, not a
-  discount** — Postmello Family for $19.99 once, lifetime, never converting to
-  the subscription — so no strikethrough was-price may ever be printed: there
-  is no truthful higher figure to strike. (The morning build's strikes died by
+  — never hand-edit a price in `index.html`. The ladder is annual-only now
+  (third cut, same day: "everyone subscribes"): Family shows the price a
+  household actually PAYS today — `$14.99/year`, the founding launch price,
+  rising to `$19.99/year` for later households while founding subscribers
+  keep theirs (an ASC preserve-price increase, no product involved) — and
+  Family Plus `$29.99/year` (up to 12 — one annual tier total, no longer a
+  `+`-prefixed add-on on top of Family). Always annual-first: never lead
+  with a monthly figure, which does not appear on the page at all. **The
+  founding benefit is a price, not a product**, and no strikethrough
+  was-price may ever be printed: nobody has ever paid the later figure, so
+  there is no truthful figure to strike — the future `$19.99/year` is named
+  in the founding note's prose instead. (The morning build's strikes died by
   their own rule — a strike is honest only while the struck figure is the
-  genuine post-launch price, and post-launch Family is $19.99/year, not
-  $29.99 once.) Collections stay `From $0.99`, one-time — "from" stays true
+  genuine post-launch price; the evening's lifetime founding product retired
+  unsold within hours.) Collections stay `From $0.99`, one-time — "from" stays true
   if collections ever tier. "No subscription to write letters" survives the
   pivot on purpose: the subscription only covers extra desks.
 - **Postmello is not "an iPad app".** It is *coming first to iPad*.

@@ -640,13 +640,21 @@
            a strike is honest only while the struck figure is the genuine
            post-launch price. That intent is gone — post-launch Family is
            $19.99/year, not $29.99 once — so the strikes went with it. And
-           none may come back: under this model the founding offer is a
-           DIFFERENT PRODUCT (lifetime), not a discount off the annual
-           price, so there is never a truthful was-price to print.
-         - FOUNDING: Postmello Family for $19.99 once — lifetime, never
-           converting to the subscription — for households that join while
-           Postmello is new. It lives in the founding-note line under the
-           grid, not in a column: it is an offer on Family, not a rung.
+           none may come back: the founding price is the LAUNCH price, so
+           nobody has ever paid the later figure — there is never a
+           truthful was-price to print. Naming the future $19.99/year in
+           the founding note's prose is honest (a real forward intent);
+           striking it would not be.
+         - FOUNDING (third cut, same day, Patrick: "everyone subscribes"):
+           the founding benefit is the PRICE, not a product. Family's line
+           shows what a household actually pays today — $14.99/year while
+           Postmello is new — and the founding note carries the promise:
+           subscribe now and keep that price for as long as you stay
+           subscribed (ASC preserves existing subscribers on the later
+           increase to $19.99/year; no app machinery involved). The
+           lifetime one-time offer this note briefly made ("yours for
+           good") retired UNSOLD with the second cut's non-consumable.
+           Still one sentence-ish, still no urgency and no countdown.
          - COLLECTIONS: "From $0.99", one-time, unchanged (Patrick,
            2026-08-17, superseding the $1.99 working guess in
            MONETIZATION.md — which calls itself the least-supported number
@@ -765,7 +773,7 @@
         <div class="plan">
           <dt>Postmello Family</dt>
           <dd><strong>Up to 6 desks</strong>
-              <p class="plan-price" data-price="family">$19.99/year</p>
+              <p class="plan-price" data-price="family">$14.99/year</p>
               <span>Renews yearly · Cancel anytime, desks are preserved</span></dd>
         </div>
         <div class="plan plan--plus">
@@ -789,19 +797,17 @@
            the until-when without printing a date, and "households that join"
            answers the who without a member badge.
 
-           Superseded (evening): the line no longer glosses strikes in the
-           grid — the strikes are gone — it now IS the founding offer, whole:
-           a different PRODUCT, not a discount. Postmello Family for $19.99
-           once, lifetime, never converting to the subscription. So the
-           keep-forever claim the morning wording deliberately avoided is
-           now made on purpose ("yours for good"): it is the offer's
-           substance, not a flourish. Still one sentence, still no urgency
-           and no countdown. apply-pricing.py rewrites this line from
+           Superseded (evening, twice): first as the lifetime offer ("yours
+           for good"), then — Patrick, same night: "everyone subscribes" —
+           as the founding PRICE. The note now says what the deal actually
+           is: $14.99/year now, kept for as long as the household stays
+           subscribed, $19.99/year for households that join later. The
+           future price is named in prose, never struck (nobody ever paid
+           it). Still no urgency and no countdown.
+           apply-pricing.py rewrites this line from
            pricing.json (data-price="founding-note"); when founding_window
            closes there, this line comes off the same day. -->
-      <p class="founding-note" data-price="founding-note">Founding offer:
-         Postmello Family for $19.99, once — yours for good, for households
-         that join while Postmello is new.</p>
+      <p class="founding-note" data-price="founding-note">Founding price: $14.99/year for households that join while Postmello is new — yours to keep for as long as you stay subscribed. Later, Family is $19.99/year.</p>
 
       <!-- Still true under the annual model, checked on purpose (evening,
            2026-08-17): the subscription only covers extra desks. Writing,

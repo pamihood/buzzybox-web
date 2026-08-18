@@ -40,17 +40,28 @@ def normalize(text):
     return " ".join(text.split())
 
 
+def selling_price(pricing, plan):
+    """What a subscriber PAYS today: the founding launch price while the
+    window is open (2026-08-17: everyone subscribes; the founding benefit is
+    this price, preserved for existing subscribers when the ASC price later
+    rises), the regular price after."""
+    if pricing["founding_window"]["active"] and "founding_price_per_year" in plan:
+        return plan["founding_price_per_year"]
+    return plan["price_per_year"]
+
+
 def expected_lines(pricing):
     plans = pricing["plans"]
     return {
         "free": "Free",
-        "family": f"{money(plans['family']['price_per_year'])}/year",
-        "family_plus": f"{money(plans['family_plus']['price_per_year'])}/year",
+        "family": f"{money(selling_price(pricing, plans['family']))}/year",
+        "family_plus": f"{money(selling_price(pricing, plans['family_plus']))}/year",
         "collections": f"From {money(pricing['collections']['price_from'])}",
         "founding-note": (
-            f"Founding offer: Postmello Family for "
-            f"{money(plans['founding_family']['price'])}, once — yours for "
-            f"good, for households that join while Postmello is new."
+            f"Founding price: {money(plans['family']['founding_price_per_year'])}/year "
+            f"for households that join while Postmello is new — yours to keep "
+            f"for as long as you stay subscribed. Later, Family is "
+            f"{money(plans['family']['price_per_year'])}/year."
         ),
     }
 

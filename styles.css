@@ -320,92 +320,6 @@ a:hover { text-decoration-color: var(--navy); }
   display: block;
 }
 
-/* ---------- The calm section: the mailbox, and the bee ---------- */
-/* Words on one side, the thing the words describe on the other. Two versions
-   preceded this: the writing canvas the step row already showed, then the bee
-   alone — which illustrated the brand rather than the claim. The claim is
-   "when a letter arrives, the flag goes up and it waits", and a mailbox with
-   its flag up and three letters in it says that without a caption. */
-/* The paired band. The photograph leads on the left because it is the one
-   image on the page that argues the product's whole posture, and the two
-   claims stack beside it — which is the point of the merge: the picture's
-   height now carries two sentences instead of leaving one of them stranded
-   in its own band. `align-items: center` keeps the copy optically level with
-   the photo rather than top-aligned against a tall object. */
-.paired-row {
-  max-width: var(--maxw-page);
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
-  align-items: center;
-  gap: clamp(24px, 5vw, 72px);
-}
-/* The gap between the two claims is a SECTION break in miniature — they were
-   separate bands an hour ago and must not read as one run-on argument. */
-.paired-copy {
-  display: flex;
-  flex-direction: column;
-  gap: clamp(28px, 4vw, 52px);
-}
-.paired-claim { text-align: left; }
-.paired-claim .lede {
-  font-size: var(--fs-hero);
-  margin-inline: 0 auto;
-}
-.quiet-shot {
-  position: relative;
-  margin: 0;
-  max-width: 520px;
-  justify-self: center;
-}
-.quiet-shot > img:not(.bee):first-child {
-  width: 100%;
-  height: auto;
-  display: block;
-  border-radius: var(--radius-media);
-  border: 1px solid var(--line);
-}
-/* Off the left edge on purpose: fully inside the frame the bee reads as a
-   sticker lying on the desk, and half outside it reads as arriving. It carries
-   a letter and the art already faces right, so it is flying INTO the picture,
-   towards the box. A fifth of the frame wide — a character in the scene, not
-   the subject of it. */
-.quiet-bee {
-  position: absolute;
-  left: -7%;
-  top: 40%;
-  width: 21%;
-  height: auto;
-  filter: drop-shadow(-3px 7px 11px rgba(42, 33, 24, 0.20));
-}
-/* Stacked below 760px, and the photograph goes BETWEEN the two claims. Side
-   by side it belongs to both; stacked, a picture inherits whichever claim sits
-   directly above it, so leaving it at the end would silently hand the mailbox
-   shot to "Across town, or across an ocean". Putting it after the first claim
-   keeps it with the sentence it illustrates and stops the second claim opening
-   on an image.
-   `display: contents` is what makes that possible: it dissolves .paired-copy
-   so its two claims become grid items in their own right and can be ordered
-   around the figure. Without it the copy is one indivisible block and the
-   photo can only go above or below the pair. */
-@media (max-width: 760px) {
-  .paired-row {
-    grid-template-columns: 1fr;
-    justify-items: center;
-    text-align: center;
-    gap: var(--s-5);
-  }
-  .paired-copy { display: contents; }
-  .paired-claim { text-align: center; }
-  .paired-claim .lede { margin-inline: auto; }
-  .paired-claim:first-of-type { order: 1; }
-  .quiet-shot { order: 2; max-width: 340px; }
-  .paired-claim:last-of-type { order: 3; }
-  /* Barely outside the frame rather than 5% out: at 375px the picture is
-     nearly full width, and the same overhang put the bee's wing on the
-     viewport edge. */
-  .quiet-bee { left: -1%; width: 22%; }
-}
 .badge {
   display: inline-flex;
   align-items: center;
@@ -679,20 +593,6 @@ main > .feature:last-child { padding-bottom: var(--s-5); }
 .collections:focus-visible {
   outline: 2px solid var(--navy);
   outline-offset: 8px;
-  border-radius: var(--radius-media);
-}
-
-/* The drawer rail, one photograph rather than five cut-outs. */
-.drawer-row {
-  max-width: var(--maxw-wide);
-  /* Top margin because it now closes the paired band rather than opening a
-     section of its own — without it the strip crowds the photograph above. */
-  margin: clamp(36px, 5vw, 64px) auto 0;
-}
-.drawer-row img {
-  width: 100%;
-  height: auto;
-  display: block;
   border-radius: var(--radius-media);
 }
 
@@ -1081,6 +981,46 @@ main > .feature:last-child { padding-bottom: var(--s-5); }
   .st-sticker--8  { width: 11.2%; }
   .st-sticker--9  { width: 15%; }
   .st-sticker--10 { width: 15.4%; }
+}
+
+/* ---------- The three claims under the hero ---------- */
+/* Typographic, not boxed: this sits between the hero and the first picture
+   grid, and a row of cards there would read as a second navigation. Three
+   equal columns of plain text, each a claim and its one sentence.
+   The heading sizes deliberately sit BELOW the section headings further down
+   the page — these are three quick facts, not three sections, and if they
+   competed with "Start with a blank page" the page would read as beginning
+   three times. */
+.pillars {
+  max-width: var(--maxw-page);
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(28px, 4vw, 56px);
+}
+.pillars h2 {
+  margin: 0 0 var(--s-2);
+  font-size: clamp(1.24rem, 1.8vw, 1.52rem);
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+.pillars p {
+  margin: 0;
+  font-size: var(--fs-body);
+  line-height: 1.55;
+  color: var(--ink-soft);
+}
+@media (max-width: 760px) {
+  .pillars {
+    grid-template-columns: 1fr;
+    max-width: 420px;
+    gap: var(--s-5);
+    text-align: center;
+  }
 }
 
 /* ---------- The plans: free core, optional additions ---------- */

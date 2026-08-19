@@ -7,10 +7,10 @@ it. Edit the JSON first, then run this — never hand-edit a number in
 index.html. Each rewritable line carries a data-price marker, so the
 replacement is exact and idempotent:
 
-    <p class="plan-price" data-price="family"><s>$19.99</s> $14.99/year</p>
+    <p class="plan-price" data-price="membership"><s>$19.99</s> $14.99/year</p>
 
-Keys: free, family, family_plus, collections, plus the two terms spans
-(family-terms, family_plus-terms) — they carry the monthly-equivalent
+Keys: free, membership, membership_plus, collections, plus the two terms spans
+(membership-terms, membership_plus-terms) — they carry the monthly-equivalent
 supporting copy the spec allows (never the lead; the price line stays
 annual), so their numbers must be written, not typed.
 
@@ -20,7 +20,8 @@ that used to be typed by hand, both because they had drifted: the plan NAMES
 Membership is exactly the kind of change that survives in one file and not
 another) and the DESK COUNTS (data-plan-desks="<key>", written from
 max_desks). The plan keys stay `family`/`family_plus` in the markup for the
-same reason they stay in the database: they are identifiers, not names.
+RENAMED 2026-08-18 from family/family_plus: the identifiers now match the
+public names, because nothing outside the repo was holding the old ones.
 
 While the founding
 window is open, Membership renders the struck regular price beside the founding
@@ -71,7 +72,7 @@ def monthly(amount_per_year):
     return f"${amount_per_year / 12:.2f}"
 
 
-def family_price_line(pricing, plan):
+def membership_price_line(pricing, plan):
     """While founding is open: the genuine post-founding regular price,
     struck, beside the founding selling price. The strike is honest by the
     site's own rule only because price_per_year IS the documented later
@@ -97,19 +98,19 @@ def desks_line(plan, key):
 
 def expected_lines(pricing):
     plans = pricing["plans"]
-    fam, plus = plans["family"], plans["family_plus"]
+    fam, plus = plans["membership"], plans["membership_plus"]
     return {
         "free": "Free",
-        "family": family_price_line(pricing, fam),
-        "family_plus": family_price_line(pricing, plus),
+        "membership": membership_price_line(pricing, fam),
+        "membership_plus": membership_price_line(pricing, plus),
         "collections": f"From {money(pricing['collections']['price_from'])}",
-        "family-terms": (
+        "membership-terms": (
             f"About {monthly(selling_price(pricing, fam))} a month · "
             f"Renews yearly · Early price, yours to keep"
             if selling_price(pricing, fam) != fam["price_per_year"]
             else f"About {monthly(selling_price(pricing, fam))} a month · Renews yearly"
         ),
-        "family_plus-terms": (
+        "membership_plus-terms": (
             f"About {monthly(selling_price(pricing, plus))} a month · Renews yearly"
         ),
     }

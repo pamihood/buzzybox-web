@@ -1248,6 +1248,20 @@ main > .feature:last-child { padding-bottom: var(--s-5); }
   color: var(--ink);
   text-align: center;
 }
+/* The reason under the claim (2026-08-18). One step down in size and colour,
+   because the pair is an assertion and its explanation and they must not read
+   as two competing sentences — a reader who takes only the first line has
+   already got the point. Narrower than .reassurance on purpose: it is a
+   sentence rather than a slogan, and 880px would run it to a single
+   uncomfortably wide line on a desktop. */
+.reassurance-why {
+  max-width: 620px;
+  margin: var(--s-2) auto 0;
+  font-size: var(--fs-body);
+  line-height: 1.55;
+  color: var(--ink-soft);
+  text-align: center;
+}
 /* One column on a phone: three abreast at 340px gives each block eleven
    characters a line. Stacked, the filled sheet leads and the two outlined
    ones follow — the same story the row tells, read downward. */
@@ -1257,7 +1271,7 @@ main > .feature:last-child { padding-bottom: var(--s-5); }
     max-width: 420px;
   }
   .plan--row-membership { grid-column: 1 / -1; }
-  .reassurance { max-width: 420px; }
+  .reassurance, .reassurance-why { max-width: 420px; }
 }
 
 /* ---------- Blog ---------- */

@@ -1090,22 +1090,23 @@ main > .feature:last-child { padding-bottom: var(--s-5); }
   padding: 0;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(7, auto);
+  grid-template-rows: repeat(8, auto);
   column-gap: var(--s-3);
   /* Doubles as the cards' internal line spacing, so it is a leading value,
      not a gutter. Extra breathing room is bought with margins on the two
      places that need it (price, first feature). */
   row-gap: 6px;
 }
-.plan { display: grid; grid-row: span 7; grid-template-rows: subgrid; }
+.plan { display: grid; grid-row: span 8; grid-template-rows: subgrid; }
 .plan > dt { grid-row: 1; }
-.plan > dd { grid-row: 2 / span 6; display: grid; grid-template-rows: subgrid; }
+.plan > dd { grid-row: 2 / span 7; display: grid; grid-template-rows: subgrid; }
 /* Explicit rows, so a card with no founding note leaves that slot EMPTY
    rather than pulling everything below it up a line. No placeholder markup. */
-.plan > dd > strong { grid-row: 1; }
-.plan > dd > .plan-price { grid-row: 2; margin-top: 2px; }
-.plan > dd > .plan-founding { grid-row: 3; }
-.plan > dd > .plan-list { grid-row: 4 / span 3; display: grid; grid-template-rows: subgrid; }
+.plan > dd > .plan-desks { grid-row: 1; }
+.plan > dd > strong { grid-row: 2; }
+.plan > dd > .plan-price { grid-row: 3; margin-top: 2px; }
+.plan > dd > .plan-founding { grid-row: 4; }
+.plan > dd > .plan-list { grid-row: 5 / span 3; display: grid; grid-template-rows: subgrid; }
 /* COLOUR AND EMPHASIS, revised 2026-08-17 (Patrick: make it read like a plan
    view people already know, and drive the eye to free).
 
@@ -1225,6 +1226,48 @@ main > .feature:last-child { padding-bottom: var(--s-5); }
    the plans list on 2026-08-18 — it is its own <section> now, styled under
    "Collections panel" below — so the rule and the long comment justifying its
    full-width span went with the markup they described.) */
+/* The desk charms. The real Mint Modern charm the app draws on a desk, not a
+   glyph — the same instinct as the collection props below: show the object.
+   They do NOT overlap. Overlapping was tried first, to buy size — and it
+   failed in a way worth recording: this charm is a wide, flat desk with a
+   continuous top edge, so any overlap at all fuses the row into one long
+   bench and the count becomes unreadable. Since the count is the entire
+   reason the charms are here, separation wins over size.
+   Six therefore sets the size: a third of 980px, minus padding, minus the
+   "+", divided six ways. Small, but a desk still reads as a desk, and the
+   exact number is in words directly underneath.
+   Plus stops at six and adds a "+" — twelve would be a crowd. */
+.plan-desks {
+  margin: 0 0 var(--s-1);
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  min-height: 22px;
+}
+.plan-desks img {
+  height: 20px;
+  width: auto;
+  filter: drop-shadow(0 1px 2px rgba(60, 42, 20, 0.26));
+}
+.plan-desks-more {
+  margin-left: 2px;
+  font-family: var(--font-apparatus);
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--ink-mid);
+  line-height: 20px;
+}
+/* The Catalog book, inline with the line it labels rather than up in the
+   charm row: it is not a desk, and putting it there would have read as one
+   more thing you get N of. */
+.plan-book {
+  height: 19px;
+  width: auto;
+  margin-right: 7px;
+  vertical-align: -4px;
+  filter: drop-shadow(0 1px 2px rgba(60, 42, 20, 0.22));
+}
+
 /* Feature lines. A stack of short facts, not a paragraph: three cards side by
    side are read by COMPARING rows, and prose defeats that — the eye cannot
    line up "unlimited letters and contacts, kept forever" against "choose 3
@@ -1419,6 +1462,7 @@ main > .feature:last-child { padding-bottom: var(--s-5); }
     grid-template-rows: none;
   }
   .plan > dd > .plan-list li + li { margin-top: 6px; }
+  .plan-desks { margin-bottom: var(--s-2); }
   .reassurance, .reassurance-why { max-width: 420px; }
 }
 

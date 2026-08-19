@@ -784,7 +784,16 @@
                reads as a restriction being disclosed. -->
         <div class="plan plan--included">
           <dt data-plan-name="free">Postmello Free</dt>
-          <dd><strong data-plan-desks="free">1 desk</strong>
+          <!-- The charms are DECORATION and are aria-hidden: the desk count
+               beneath them is the accessible fact, and a screen reader
+               counting six identical images would be worse than silence
+               (Patrick: "we'll let the text carry exactly how many"). Plus
+               shows six and a "+" rather than twelve — twelve would be a
+               crowd, and the number is right there in words. -->
+          <dd><p class="plan-desks" aria-hidden="true">
+              <img src="assets/icons/desk-charm.png" alt="" width="159" height="84" loading="lazy" />
+          </p>
+              <strong data-plan-desks="free">1 desk</strong>
               <p class="plan-price" data-price="free">Free</p>
               <ul class="plan-list">
                 <li>Unlimited letters and contacts</li>
@@ -802,18 +811,33 @@
                figure is desks. The promise is the emphasised feature line
                instead, which is where a reader looks after they have placed
                the card on the ladder. -->
-          <dd><strong data-plan-desks="membership">Up to 4 desks</strong>
+          <dd><p class="plan-desks" aria-hidden="true">
+              <img src="assets/icons/desk-charm.png" alt="" width="159" height="84" loading="lazy" />
+              <img src="assets/icons/desk-charm.png" alt="" width="159" height="84" loading="lazy" />
+              <img src="assets/icons/desk-charm.png" alt="" width="159" height="84" loading="lazy" />
+              <img src="assets/icons/desk-charm.png" alt="" width="159" height="84" loading="lazy" />
+          </p>
+              <strong data-plan-desks="membership">Up to 4 desks</strong>
               <p class="plan-price" data-price="membership"><s>$19.99</s> $14.99/year</p>
               <p class="plan-founding" data-price="membership-terms">Founding price - yours to keep</p>
               <ul class="plan-list">
                 <li><strong>Choose 3 collections every year</strong></li>
-                <li>The full Catalog</li>
+                <li><img class="plan-book" src="assets/icons/catalog-book.png" alt="" width="135" height="84" loading="lazy" />The full Catalog</li>
                 <li>Renews yearly</li>
               </ul></dd>
         </div>
         <div class="plan plan--plus">
           <dt data-plan-name="membership_plus">Postmello Membership Plus</dt>
-          <dd><strong data-plan-desks="membership_plus">Up to 12 desks</strong>
+          <dd><p class="plan-desks" aria-hidden="true">
+              <img src="assets/icons/desk-charm.png" alt="" width="159" height="84" loading="lazy" />
+              <img src="assets/icons/desk-charm.png" alt="" width="159" height="84" loading="lazy" />
+              <img src="assets/icons/desk-charm.png" alt="" width="159" height="84" loading="lazy" />
+              <img src="assets/icons/desk-charm.png" alt="" width="159" height="84" loading="lazy" />
+              <img src="assets/icons/desk-charm.png" alt="" width="159" height="84" loading="lazy" />
+              <img src="assets/icons/desk-charm.png" alt="" width="159" height="84" loading="lazy" />
+              <span class="plan-desks-more">+</span>
+          </p>
+              <strong data-plan-desks="membership_plus">Up to 12 desks</strong>
               <p class="plan-price" data-price="membership_plus">$29.99/year</p>
               <ul class="plan-list">
                 <!-- "with more desks" came off (2026-08-18): the headline
@@ -823,7 +847,7 @@
                      under the shared subgrid. The spec wrote it when the
                      headline was a different line. -->
                 <li><strong>Everything in Membership</strong></li>
-                <li>The full Catalog</li>
+                <li><img class="plan-book" src="assets/icons/catalog-book.png" alt="" width="135" height="84" loading="lazy" />The full Catalog</li>
                 <li>Renews yearly</li>
               </ul></dd>
         </div>

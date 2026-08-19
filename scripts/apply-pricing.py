@@ -9,10 +9,11 @@ replacement is exact and idempotent:
 
     <p class="plan-price" data-price="membership"><s>$19.99</s> $14.99/year</p>
 
-Keys: free, membership, membership_plus, collections, plus the two terms spans
-(membership-terms, membership_plus-terms) — they carry the monthly-equivalent
-supporting copy the spec allows (never the lead; the price line stays
-annual), so their numbers must be written, not typed.
+Keys: free, membership, membership_plus, collections. The two "-terms" spans
+this once wrote are gone: the monthly-equivalent line went when the cards
+switched to feature lists, and the founding annotation left the Membership
+card on 2026-08-18 (the promise it stood in for is a hand-written line beneath
+the whole pricing block).
 
 Since the 2026-08-18 Membership revision this script also owns two things
 that used to be typed by hand, both because they had drifted: the plan NAMES
@@ -135,16 +136,11 @@ def expected_lines(pricing):
         # of those can — that the struck price is not a first-year teaser.
         # When founding_window closes, selling == regular, the strike drops,
         # and this line empties itself.
-        # Two words. The PROMISE ("Founding members keep their rate") moved
-        # out from under the price to a quiet line beneath the whole section
-        # (spec §7) — inside the card it competed with the benefits, which are
-        # what the card is for. This is left doing the one job the card still
-        # needs: making the strike above it legible.
-        "membership-terms": (
-            "Founding rate"
-            if selling_price(pricing, fam) != fam["price_per_year"]
-            else ""
-        ),
+        # No membership-terms key any more: the founding annotation left the
+        # card on 2026-08-18 and the promise it stood in for is a hand-written
+        # line beneath the whole pricing block. Nothing generated explains the
+        # strike now, and nothing needs to — a crossed-out number beside a
+        # lower one is self-evident.
     }
 
 

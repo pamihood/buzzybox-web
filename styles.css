@@ -1090,23 +1090,23 @@ main > .feature:last-child { padding-bottom: var(--s-5); }
   padding: 0;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(8, auto);
+  grid-template-rows: repeat(7, auto);
   column-gap: var(--s-3);
   /* Doubles as the cards' internal line spacing, so it is a leading value,
      not a gutter. Extra breathing room is bought with margins on the two
      places that need it (price, first feature). */
   row-gap: 6px;
 }
-.plan { display: grid; grid-row: span 8; grid-template-rows: subgrid; }
+.plan { display: grid; grid-row: span 7; grid-template-rows: subgrid; }
 .plan > dt { grid-row: 1; }
-.plan > dd { grid-row: 2 / span 7; display: grid; grid-template-rows: subgrid; }
-/* Explicit rows, so a card with no founding note leaves that slot EMPTY
-   rather than pulling everything below it up a line. No placeholder markup. */
+.plan > dd { grid-row: 2 / span 6; display: grid; grid-template-rows: subgrid; }
+/* Explicit rows, so every card puts the same thing on the same line whatever
+   its own content does. (There used to be a sixth row here for the founding
+   annotation; it left the card entirely on 2026-08-18.) */
 .plan > dd > .plan-desks { grid-row: 1; }
 .plan > dd > strong { grid-row: 2; }
 .plan > dd > .plan-price { grid-row: 3; margin-top: 2px; }
-.plan > dd > .plan-founding { grid-row: 4; }
-.plan > dd > .plan-list { grid-row: 5 / span 3; display: grid; grid-template-rows: subgrid; }
+.plan > dd > .plan-list { grid-row: 4 / span 3; display: grid; grid-template-rows: subgrid; }
 /* COLOUR AND EMPHASIS — third revision (2026-08-18, spec §8).
    History, because each round was a correction of the last and the reasoning
    still binds. Round one gave the two PAID blocks hue and left free in bare
@@ -1283,25 +1283,12 @@ main > .feature:last-child { padding-bottom: var(--s-5); }
   font-weight: 600;
   color: var(--ink);
 }
-/* The founding note sits directly under the struck price because it exists to
-   explain the strike. Italic and small: it is an annotation on the number
-   above it, not a fourth feature.
-   It says only "Founding rate" now (spec §7). The longer "Founding price -
-   yours to keep" competed with the card's actual benefits, so the PROMISE
-   moved out to a quiet line beneath the whole section and the card kept just
-   enough to make the strike legible. */
-.plan-founding {
-  margin: 2px 0 0;
-  /* Smaller and lighter than the feature lines below it (2026-08-18): the
-     important thing on this card is "Write between desks at home", and a
-     discount annotation set at body weight was competing with it. Sized in
-     the micro step and stopped one shade short of --ink-faint, which is
-     reserved for genuinely tertiary text and would not carry italics at this
-     size. */
-  font-size: var(--fs-micro);
-  font-style: italic;
-  color: #7a6c60;
-}
+/* (The in-card founding annotation lived here. It went on 2026-08-18: even
+   at micro size it was one more thing between the price and the benefits, and
+   the promise it stood in for now sits once, quietly, beneath the whole
+   pricing block as .plan-founding-note. The struck price is left to speak for
+   itself, which it does — a crossed-out number beside a lower one needs no
+   caption.) */
 /* The promise, once, under everything. Small and secondary on purpose: it
    preserves the value of the offer without making it the centrepiece. */
 .plan-founding-note {

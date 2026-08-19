@@ -76,15 +76,20 @@
       <p>We do not knowingly use children’s personal information for advertising or sell it.</p>
 
       <h3>How parental consent works</h3>
-      <p>Postmello is designed so that an adult decides whether a child uses it, and with whom. That structure is how we obtain and maintain parental consent under the US Children’s Online Privacy Protection Act (COPPA):</p>
+      <p>When someone sets up a desk for a child under 13, we ask the adult to approve it and we verify that they are an adult before the desk does anything at all. That is how we obtain verifiable parental consent under the US Children’s Online Privacy Protection Act (COPPA). There is a plain-language walkthrough on the <a href="parents.html">Parent Privacy Notice</a>.</p>
       <ol>
         <li>An adult creates the account and signs in with an email address and password, Sign in with Apple, or Sign in with Google.</li>
         <li>That adult sets an <strong>Admin PIN</strong>, which protects the admin area.</li>
-        <li>The adult creates each desk. A desk is not an account - it cannot sign up, make a purchase, or invite anyone.</li>
+        <li>The adult creates each desk, and tells us whether it is for a child under 13. We store that answer and nothing more - <strong>we never ask for a birthday or an age</strong>.</li>
+        <li>For a child’s desk, the adult reads and approves our parental consent statement, and then confirms they are an adult through <strong>Kids Web Services</strong>, a verification service run by Epic Games. <strong>No identity document, card number, Social Security number or selfie ever reaches Postmello</strong> - that happens with the verification provider, and we receive only the fact that an adult was verified.</li>
+        <li>Until both the approval and the verification are recorded on our servers, the desk cannot send, cannot receive, and nothing written on it leaves the iPad. This is enforced by our database, not by the app.</li>
+        <li>An adult verifies <strong>once</strong>. Setting up a desk for another child later asks for approval again, but not for another verification.</li>
         <li><strong>Every contact is approved by the adult</strong>, in the admin area, behind that PIN.</li>
         <li>Mail between people who are not approved contacts is refused by our servers - it is not merely hidden in the app, it cannot be sent or received at all.</li>
       </ol>
       <p>We do not knowingly allow a child to create an account, and we never ask a child for a birthday, a phone number, or a location.</p>
+      <p>Desks that are not for a child under 13 - a parent’s own desk, a grandparent’s - do not go through verification.</p>
+      <p class="updated">Verification is rolling out with our next app update. Until your copy of Postmello has it, the adult-account structure described above is what governs consent on your device.</p>
 
       <h3>Rights of the parent or guardian</h3>
       <p>As the account holder you can, at any time and from inside the app: review the contacts approved for any desk and remove any of them; review and remove desks; and delete the account and its data outright (Settings → Delete Account), which also stops any further collection. You do not need to send us a written request to do any of these. If you would rather we help, or you want to review information associated with your account, contact us at <a href="mailto:support@postmello.com">support@postmello.com</a>.</p>
@@ -104,6 +109,7 @@
         <li><strong>Sentry</strong> - crash and error reporting.</li>
         <li><strong>Apple</strong> - app distribution, subscriptions and billing, and Sign in with Apple.</li>
         <li><strong>Google</strong> - Sign in with Google, if you choose that option.</li>
+        <li><strong>Kids Web Services</strong> (Epic Games) - confirming that the adult approving a child’s desk is an adult. They receive the adult’s email address; they receive nothing about the child.</li>
       </ul>
 
       <h2>Data retention and deletion</h2>

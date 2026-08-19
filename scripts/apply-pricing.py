@@ -89,7 +89,11 @@ def desks_line(plan, key):
     """The desk count, in the block's own voice. Free says what it IS; the
     paid tiers say "up to", because the number is a server-side capability
     (account_capabilities) that is meant to be retunable without a release,
-    and "up to" is what keeps that honest."""
+    and "up to" is what keeps that honest.
+
+    Only Free still puts this in the headline. On the paid cards the headline
+    is what the tier is FOR, and the desk figure rides in the terms line
+    below it — see the membership terms."""
     n = plan["max_desks"]
     if key == "free":
         return "One desk" if n == 1 else f"{n} desks"
@@ -103,21 +107,41 @@ def expected_lines(pricing):
         "free": "Free",
         "membership": membership_price_line(pricing, fam),
         "membership_plus": membership_price_line(pricing, plus),
-        "collections": f"From {money(pricing['collections']['price_from'])}",
+        # The verb rides with the price: this slot is the prominent one, and
+        # "Add more from $0.99" is the whole collection economy in four words
+        # — cheap, optional, on top of the three that come included.
+        "collections": f"Add more from {money(pricing['collections']['price_from'])}",
+        # The monthly equivalent came OUT (2026-08-18). The spec allows it as
+        # supporting copy and it was never the lead, but on a card whose
+        # headline is now a promise rather than a number, a second money
+        # figure competes with the price line for no gain. The desk count took
+        # its slot instead: it is the fact a large household needs and the
+        # headline no longer carries it.
+        #
+        # "Early price, yours to keep" survives the spec's suggested copy on
+        # purpose. The spec forgot the founding discount, and a struck $19.99
+        # with nothing explaining it is worse than no strike at all.
         "membership-terms": (
-            f"About {monthly(selling_price(pricing, fam))} a month · "
-            f"Renews yearly · Early price, yours to keep"
+            f"{desks_line(fam, 'membership')} · Renews yearly · Early price, yours to keep"
             if selling_price(pricing, fam) != fam["price_per_year"]
-            else f"About {monthly(selling_price(pricing, fam))} a month · Renews yearly"
+            else f"{desks_line(fam, 'membership')} · Renews yearly"
         ),
         "membership_plus-terms": (
-            f"About {monthly(selling_price(pricing, plus))} a month · Renews yearly"
+            f"{desks_line(plus, 'membership_plus')} · Renews yearly"
         ),
     }
 
 
 def expected_names(pricing):
-    return {key: plan["public_name"] for key, plan in pricing["plans"].items()}
+    """Card eyebrows, from public_name with the brand prefix removed.
+
+    public_name stays "Postmello Membership" — that is what App Store Connect
+    and the app say, and it must not drift. But on postmello.com the word is
+    already established three times over by the time a reader reaches this
+    block, so printing it in all three eyebrows is noise the spec's own card
+    copy drops ("Free" / "Membership" / "Membership Plus")."""
+    return {key: plan["public_name"].replace("Postmello ", "", 1)
+            for key, plan in pricing["plans"].items()}
 
 
 def expected_desks(pricing):
@@ -148,7 +172,10 @@ def main():
     for attr, tags, expected in (
         ("data-price", "p|span", expected_lines(pricing)),
         ("data-plan-name", "dt", expected_names(pricing)),
-        ("data-plan-desks", "strong", expected_desks(pricing)),
+        # Free only: the paid cards carry their desk count inside the
+        # generated terms line above, not in a headline slot.
+        ("data-plan-desks", "strong",
+         {k: v for k, v in expected_desks(pricing).items() if k == "free"}),
     ):
         for key, want in expected.items():
             pat = re.compile(

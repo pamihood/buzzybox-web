@@ -783,75 +783,55 @@
              - Nothing about PINs or locks. A lock named on a pricing page
                reads as a restriction being disclosed. -->
         <div class="plan plan--included">
-          <dt data-plan-name="free">Postmello Free</dt>
+          <dt data-plan-name="free">Free</dt>
           <dd><strong data-plan-desks="free">One desk</strong>
               <p class="plan-price" data-price="free">Free</p>
-              <!-- "Starter Collection" (2026-08-18, Patrick). This block used
-                   to say "starter stationery set" precisely to keep the word
-                   "collection" reserved for the paid worlds — the fear being
-                   that a free tier saying "collection" would seem to include
-                   one of those. The Membership revision retires that fear by
-                   making the sentence true instead of avoiding it: the free
-                   desk really does arrive as a complete set, the Catalog book
-                   on a free desk contains that set and nothing else, and the
-                   row below now says plainly where the other collections
-                   live. Naming it is what makes free read as a whole small
-                   product rather than a sample. -->
-              <span>Unlimited letters and contacts, kept forever. Desk, mailbox and stationery included.</span></dd>
+              <span>Unlimited letters and contacts. Starter Collection included.</span></dd>
         </div>
         <div class="plan">
-          <dt data-plan-name="membership">Postmello Membership</dt>
-          <dd><strong data-plan-desks="membership">Up to 4 desks</strong>
+          <dt data-plan-name="membership">Membership</dt>
+          <!-- The HEADLINE is the collections promise, not the desk count
+               (spec, 2026-08-18). That inversion is the whole revision in one
+               layout decision: while desks led, the card only spoke to a
+               household that needed a second one. "Choose 3 collections every
+               year" is a reason for a one-desk household to be here, and it is
+               why the tier recurs — the value arrives again every year rather
+               than being a one-off unlock. Desks demote to the terms line,
+               where they are still the first thing a big household reads. -->
+          <dd><strong>Choose 3 collections every year.</strong>
               <p class="plan-price" data-price="membership"><s>$19.99</s> $14.99/year</p>
-              <!-- The second line is the 2026-08-18 revision in one sentence:
-                   membership is the whole product, not a desk counter. The
-                   desk figure stays the largest line because it is still the
-                   first question a household asks, but it is no longer the
-                   only reason to be here — which is exactly the weakness the
-                   revision set out to fix. -->
-              <span>Opens the full Catalog, with three collections included.</span>
-              <span data-price="membership-terms">About $1.25 a month · Renews yearly · Early price, yours to keep</span></dd>
+              <span data-price="membership-terms">Up to 4 desks · Renews yearly · Early price, yours to keep</span></dd>
         </div>
         <div class="plan plan--plus">
-          <dt data-plan-name="membership_plus">Postmello Membership Plus</dt>
-          <dd><strong data-plan-desks="membership_plus">Up to 12 desks</strong>
+          <dt data-plan-name="membership_plus">Membership Plus</dt>
+          <dd><strong>Everything in Membership, with more desks.</strong>
               <p class="plan-price" data-price="membership_plus">$29.99/year</p>
-              <!-- Nothing is invented for Plus to have. It is the same
-                   membership with room for a bigger household, and saying so
-                   is more honest — and less confusing — than manufacturing a
-                   third feature list. -->
-              <span>Everything in Membership, with room for more desks</span>
-              <span data-price="membership_plus-terms">About $2.50 a month · Renews yearly</span></dd>
+              <span data-price="membership_plus-terms">Up to 12 desks · Renews yearly</span></dd>
         </div>
-        <!-- The collections row moved under the two MEMBERSHIP columns
-             (2026-08-18, Patrick), from spanning all three. It used to span
-             the full width because collections were orthogonal to the plan —
-             "available whichever of the three you are on" — and the spanning
-             row was the layout saying so. The revision changed the fact the
-             layout was reporting: the Catalog is what membership OPENS, and
-             three collections come with it. A row that still reached under
-             the free column would be drawing a relationship the product no
-             longer has. Starting at column 2 puts it under the two blocks it
-             belongs to and leaves the free column ending where free ends,
-             which is the same story the free block's own line now tells.
+        <!-- FULL WIDTH, and the spec is explicit about why: collections are
+             "not a fourth membership plan" and must not read as a fourth card
+             under three. The three plans are one balanced row; this is a panel
+             beneath all of them.
 
-             It keeps its lilac: still not a rung on the desk ladder, still
-             the chord of the stationery spread above it.
+             It spanned 1/-1 originally, was briefly narrowed to 2/-1 on the
+             theory that collections belong to the paid tiers, and is back.
+             The narrowing was wrong on the merits, not just the look: it made
+             the row an appendix of the two paid columns, when what it actually
+             is is the thing the whole Catalog economy runs on. Its own lilac
+             already says "different kind of thing"; the width says "applies to
+             the whole page above".
 
-             ON MOBILE THE LAYOUT ARGUMENT DISAPPEARS (Patrick, 2026-08-18,
-             looking at a phone): the columns stack, so "under the membership
-             two" becomes "last in a list of four" and says nothing. The copy
-             has to carry it there, which is why this card names Membership in
-             its first four words rather than relying on where it sits. That is
-             also why every card's supporting line was cut to ONE short
-             sentence in the same pass — stacked, four cards of run-on
-             middle-dot clauses is a wall of text on a 390px screen, and the
-             free card was the worst of them. -->
-        <div class="plan plan--row plan--row-membership">
+             "from $0.99" is deliberately in the prominent price slot. It is
+             not there to sell a $0.99 item — it is there so a reader who has
+             just been asked for an annual subscription can see that the
+             add-ons are cheap, and that joining is not the start of an
+             expensive stream. -->
+        <div class="plan plan--row">
           <dt>Collections</dt>
-          <dd><strong>New desk designs + matching stationery</strong>
-              <p class="plan-price" data-price="collections">From $0.99</p>
-              <span>Three included with Membership. Buy more any time, yours for good.</span></dd>
+          <dd><strong>Choose 3 with Membership every year.</strong>
+              <p class="plan-price" data-price="collections">Add more from $0.99</p>
+              <span>Each collection brings a new desk, mailbox, papers, envelopes, stamps and stickers.</span>
+              <span class="plan-keep">Yours for good - even if your Membership ends.</span></dd>
         </div>
       </dl>
 

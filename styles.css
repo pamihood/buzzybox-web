@@ -1224,16 +1224,17 @@ main > .feature:last-child { padding-bottom: var(--s-5); }
   background-color: #eee8f3;
   border-color: #d9cee4;
 }
-/* Under the MEMBERSHIP pair only (2026-08-18). The full-width span was
-   correct while collections applied equally to all three columns; the
-   Membership revision made the Catalog the thing membership opens, so a row
-   reaching under the free column would assert a relationship the product no
-   longer has. Column 2 to the end leaves the free block ending where free
-   ends — the empty cell beneath it is the point, not a gap to fill. Collapses
-   to full width with everything else on a phone, where the columns are
-   stacked and "under" has no meaning. */
-.plan--row-membership {
-  grid-column: 2 / -1;
+/* The 2/-1 variant is GONE (2026-08-18, same day it was added). Collections
+   are not a fourth plan and not an appendix of the two paid ones; the spec is
+   explicit that the three plans form one balanced row with a full-width panel
+   beneath. .plan--row's own 1/-1 does that, so the override simply went. */
+
+/* The permanence line closes the Collections panel, and it is the one fact on
+   the whole plans block that distinguishes a purchase from a subscription —
+   so it gets full ink rather than the note colour its siblings use. */
+.plan-keep {
+  color: var(--ink) !important;
+  font-weight: 600;
 }
 /* Reassurance. Not a headline, but it was nearly invisible at --fs-small in
    --ink-soft, and it is the sentence that answers "so what is the catch". Full
@@ -1270,7 +1271,6 @@ main > .feature:last-child { padding-bottom: var(--s-5); }
     grid-template-columns: 1fr;
     max-width: 420px;
   }
-  .plan--row-membership { grid-column: 1 / -1; }
   .reassurance, .reassurance-why { max-width: 420px; }
 }
 

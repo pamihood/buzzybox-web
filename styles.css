@@ -1345,26 +1345,25 @@ main > .feature:last-child { padding-bottom: var(--s-5); }
   letter-spacing: -0.02em;
   color: var(--ink);
 }
-/* Three short facts, stacked. Each is one line at desktop width, which is
-   what keeps this a summary rather than a paragraph — the art beside it is
-   doing the describing. The sentence that used to sit above them, listing
-   what a collection contains, went with the same cut: the pictures say it
-   better, and a panel that explains its own noun does not trust its art. */
-.collections-facts {
-  list-style: none;
+/* Two sentences, not a list of facts (2026-08-18). The facts version had
+   "additional collections from $0.99" standing alone, which reads as an offer
+   open to anyone; joining the clauses into one sentence that OPENS with
+   "Available with Membership" makes the price conditional on the thing before
+   it, which is the truth. The sentence that used to sit above these, listing
+   what a collection contains, went earlier: the pictures say it better. */
+.collections-avail,
+.collections-keep {
   margin: var(--s-3) 0 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-.collections-facts li {
   font-size: var(--fs-body);
-  line-height: 1.45;
+  line-height: 1.5;
   color: var(--ink-soft);
 }
-.collections-facts strong {
-  font-weight: 700;
+.collections-avail strong { font-weight: 700; color: var(--ink); }
+/* The permanence line is the only place on the page that distinguishes a
+   purchase from a subscription, so it carries full ink on its own. */
+.collections-keep {
+  margin-top: var(--s-2);
+  font-weight: 600;
   color: var(--ink);
 }
 /* $0.99 prominent by instruction, and for a reason: it is the figure that

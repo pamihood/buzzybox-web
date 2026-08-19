@@ -795,9 +795,18 @@
           </p>
               <strong data-plan-desks="free">1 desk</strong>
               <p class="plan-price" data-price="free">Free</p>
+              <!-- "Starter Collection ONLY", not "included" (Patrick,
+                   2026-08-18). The adult page has to be explicit here or
+                   "Collections from $0.99" reads as something a Free
+                   household can just go and buy. "Only" is the whole fix: it
+                   leaves Free complete — a real collection, not a trial — while
+                   telling a parent in one word that the rest are not part of
+                   it. It is the emphasised line on this card for the same
+                   reason: on a pricing page the honest boundary is worth more
+                   than a feature. -->
               <ul class="plan-list">
                 <li>Unlimited letters and contacts</li>
-                <li>Starter Collection included</li>
+                <li><strong>Starter Collection only</strong></li>
                 <li>Keep your letters forever</li>
               </ul></dd>
         </div>
@@ -829,7 +838,7 @@
                    feature and the word does not overlap with owning. -->
               <ul class="plan-list">
                 <li><strong>Choose 3 collections every year</strong></li>
-                <li>Browse every collection<img class="plan-book" src="assets/icons/catalog-book.png" alt="" width="135" height="84" loading="lazy" /></li>
+                <li>Full Catalog access<img class="plan-book" src="assets/icons/catalog-book.png" alt="" width="135" height="84" loading="lazy" /></li>
                 <li>Renews yearly</li>
               </ul></dd>
         </div>
@@ -847,14 +856,17 @@
               <strong data-plan-desks="membership_plus">Up to 12 desks</strong>
               <p class="plan-price" data-price="membership_plus">$29.99/year</p>
               <ul class="plan-list">
-                <!-- "with more desks" came off (2026-08-18): the headline
-                     directly above already says "Up to 12 desks", so the
-                     clause repeated it — and being the only feature line long
-                     enough to wrap, it inflated that row for all three cards
-                     under the shared subgrid. The spec wrote it when the
-                     headline was a different line. -->
-                <li><strong>Everything in Membership</strong></li>
-                <li>Browse every collection<img class="plan-book" src="assets/icons/catalog-book.png" alt="" width="135" height="84" loading="lazy" /></li>
+                <!-- Plus RESTATES the collection benefits rather than
+                     saying "Everything in Membership" (Patrick, 2026-08-18).
+                     Someone scanning only this column should not have to read
+                     the card beside it to find out what they get, and the two
+                     cards reading identically apart from desks and price IS
+                     the message: Plus is the same product with more room.
+                     ("with more desks" came off earlier for a different
+                     reason — the headline above already says "Up to 12
+                     desks".) -->
+                <li><strong>Choose 3 collections every year</strong></li>
+                <li>Full Catalog access<img class="plan-book" src="assets/icons/catalog-book.png" alt="" width="135" height="84" loading="lazy" /></li>
                 <li>Renews yearly</li>
               </ul></dd>
         </div>
@@ -889,11 +901,14 @@
                pictures to the right say better and which the page has said
                twice already by this scroll depth. A panel that explains its
                own noun is a panel that does not trust its art. -->
-          <ul class="collections-facts">
-            <li>Choose <strong>3 every year</strong> with Membership</li>
-            <li>Additional collections from <strong class="collections-price" data-price="collections">$0.99</strong></li>
-            <li>Yours for good</li>
-          </ul>
+          <!-- "Available with Membership" leads, and the softness is
+               deliberate (Patrick): "Membership required" is a paywall sign,
+               and this section should be clear without being punitive. But it
+               has to come FIRST — "additional collections from $0.99" on its
+               own implies anyone can buy one, which is the exact
+               misunderstanding the Free card's "only" is also closing. -->
+          <p class="collections-avail"><strong>Available with Membership.</strong> Choose <strong>3 every year</strong>, then add more from <strong class="collections-price" data-price="collections">$0.99</strong>.</p>
+          <p class="collections-keep">Yours for good - even if your Membership ends.</p>
         </div>
         <ul class="collections-props">
           <li><img src="assets/collections/fairy_glen.png" alt="Fairy Glen - a toadstool cottage, a lantern and a jar of fireflies" width="218" height="300" loading="lazy" /><span>Fairy Glen</span></li>

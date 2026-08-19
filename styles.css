@@ -812,7 +812,7 @@ main > .feature:last-child { padding-bottom: var(--s-5); }
 }
 /* The intent line under the subheading — same voice as a .feature .lede
    (measure, size, --ink-mid) so it reads as the head's sentence, not as a
-   caption for the spread; the spread's caption stays .stationery-note. */
+   caption for the spread; the spread's own title is .stationery-caption. */
 .stationery-lede {
   max-width: min(58ch, var(--maxw-read));
   margin: 0 auto var(--s-5);
@@ -972,16 +972,23 @@ main > .feature:last-child { padding-bottom: var(--s-5); }
 .st-sticker--10 { width: 7.7%; left: 81%;   top: 83%; transform: rotate(4deg); }   /* flying letter */
 .st-sticker--5  { width: 6.3%; left: 90.5%; top: 78%; transform: rotate(-5deg); }  /* moon */
 
-/* The picture is one collection; this line is what makes it stand for all of
-   them, so it sits directly under the spread rather than beside the heading. */
-.stationery-note {
-  max-width: 56ch;
-  margin: var(--s-4) auto 0;
+/* Was .stationery-note, a sentence that inventoried the spread and then
+   generalised it to every collection. Both jobs went (2026-08-18): nobody
+   reads piece-counts off a marketing page, the picture shows more variety
+   than the numbers claimed, and the six desk pictures further up already
+   demonstrate that every collection is built the same way.
+   What is left is the collection's NAME, set as a title for the spread — the
+   same monospace-and-caps treatment the collection labels wear in the plans
+   panel, so the two places a collection is named on this page look related. */
+.stationery-caption {
+  margin: var(--s-3) auto 0;
   text-align: center;
-  font-size: var(--fs-body);
-  line-height: 1.55;
-  color: var(--ink-soft);
-  text-wrap: balance;
+  font-family: var(--font-apparatus);
+  font-size: var(--fs-micro);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-mid);
 }
 
 /* The wrappers exist only for the phone; on the composition every piece is

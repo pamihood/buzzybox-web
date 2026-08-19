@@ -3,3 +3,6 @@
 # Local-only design mockups. These contain FABRICATED awards and
 # testimonials for envisioning work — they must never be deployed.
 _mockups/
+
+# Python bytecode from scripts/
+__pycache__/

@@ -281,6 +281,18 @@ a:hover { text-decoration-color: var(--navy); }
     max-width: var(--maxw);
   }
 }
+/* On a phone the hero fills the first screen, so the claims below always begin
+   on the second one. Without this the fold landed mid-block and screen one
+   ended on the first claim's OBJECT with its heading just underneath the edge -
+   a stack of paper and a pen floating at the bottom of the page, captionless,
+   reading as a stray image rather than the top of an argument.
+   svh, not vh: vh is the tall-chrome height on mobile Safari, which is exactly
+   the case where the overshoot would reintroduce the problem. The 90px is the
+   site header above it; the hero starts below the header, so the header's
+   height has to come out or the hero pushes a screenful too far. */
+@media (max-width: 620px) {
+  .hero { min-height: calc(100svh - 90px); align-content: center; }
+}
 .hero h1 {
   /* Balance beats a hard <br>: the headline keeps even lines at every width
      instead of stranding one word. */
@@ -992,7 +1004,7 @@ main > .feature:last-child { padding-bottom: var(--s-5); }
    below ~1000px would set every sentence to five lines.
    The headings sit BELOW the section headings further down the page on
    purpose — these are quick claims, not sections, and if they competed with
-   "Start with a blank page" the page would read as beginning twice. */
+   "See where the page takes you" the page would read as beginning twice. */
 .pillars {
   max-width: var(--maxw-page);
   margin: 0 auto;
@@ -1002,6 +1014,54 @@ main > .feature:last-child { padding-bottom: var(--s-5); }
   grid-template-columns: repeat(4, 1fr);
   gap: clamp(24px, 3vw, 40px);
 }
+/* The claim art. REAL DESK OBJECTS, not glyphs - the same instinct as the plan
+   charms and the collection props: show the object. An icon set would be the
+   one vocabulary on this page the product does not already own.
+
+   Bottom-aligned inside a fixed-height box, so four objects of four different
+   aspect ratios stand on one ground line instead of floating at four heights.
+   Height, not width, is the shared dimension - the row would otherwise size
+   itself off the widest thing in it (the drawers) and shrink the bee to a bead.
+
+   No CSS drop-shadow here, unlike .plan-desks: these props carry their own
+   baked contact shadows (the app's, and the ones composited into the two
+   groups), and a second shadow on top reads as a sticker peeling off.
+
+   The size is the whole argument for keeping this block. Its comment in the
+   markup says all four claims should land before a reader scrolls, and that
+   pictures start immediately below in "See where the page takes you". At this
+   height the art costs the block one object-height, once; at 120px+ it
+   becomes a second feature row and steals that section's entrance. */
+.pillars .pillar-art {
+  /* The gap is bigger than the block's other vertical steps on purpose. These
+     are objects with their own baked contact shadows, not glyphs, and set at
+     --s-2 each one looked like it was resting ON its heading. */
+  margin: 0 0 var(--s-3);
+  height: clamp(72px, 6.6vw, 88px);
+  display: flex;
+  align-items: flex-end;
+  /* Centred over the column, even where the type below is left-aligned
+     (Patrick, 2026-08-19). The four objects are 56px to 203px wide, so
+     left-aligning them shares an edge with the type but leaves the row itself
+     ragged - four things starting together and ending nowhere. Centred, the
+     row reads as four objects on a shelf, which is what it is; the type keeps
+     its own alignment underneath and the two systems stop competing. */
+  justify-content: center;
+}
+.pillars .pillar-art img {
+  max-height: 100%;
+  max-width: 100%;
+  width: auto;
+  height: auto;
+}
+/* The whole claim centres, not just its object (Patrick, 2026-08-19). Centred
+   art over left-aligned type measured as a 15-36px disagreement per column -
+   the art sat on the column's centre while each heading, being left-aligned and
+   shorter than its column, had its optical centre well to the left. The art was
+   not off; it was the only thing that was ON. Centring the words is what makes
+   the column read as one object with a caption, and it matches what the phone
+   layout has always done. */
+.pillars li { text-align: center; }
 .pillars h2 {
   margin: 0 0 var(--s-2);
   font-size: clamp(1.14rem, 1.5vw, 1.32rem);
@@ -1027,6 +1087,10 @@ main > .feature:last-child { padding-bottom: var(--s-5); }
     gap: var(--s-5);
     text-align: center;
   }
+  /* Already centred; the single column just needs more air under the object,
+     because here the heading sits directly beneath it with no neighbouring
+     column to give the eye a horizontal rhythm instead. */
+  .pillars .pillar-art { margin-bottom: var(--s-4); }
 }
 
 /* ---------- The plans: free core, optional additions ---------- */

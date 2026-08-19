@@ -1292,9 +1292,15 @@ main > .feature:last-child { padding-bottom: var(--s-5); }
    enough to make the strike legible. */
 .plan-founding {
   margin: 2px 0 0;
-  font-size: var(--fs-small);
+  /* Smaller and lighter than the feature lines below it (2026-08-18): the
+     important thing on this card is "Write between desks at home", and a
+     discount annotation set at body weight was competing with it. Sized in
+     the micro step and stopped one shade short of --ink-faint, which is
+     reserved for genuinely tertiary text and would not carry italics at this
+     size. */
+  font-size: var(--fs-micro);
   font-style: italic;
-  color: var(--ink-soft);
+  color: #7a6c60;
 }
 /* The promise, once, under everything. Small and secondary on purpose: it
    preserves the value of the offer without making it the centrepiece. */

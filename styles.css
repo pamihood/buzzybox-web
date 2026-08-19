@@ -1107,33 +1107,23 @@ main > .feature:last-child { padding-bottom: var(--s-5); }
 .plan > dd > .plan-price { grid-row: 3; margin-top: 2px; }
 .plan > dd > .plan-founding { grid-row: 4; }
 .plan > dd > .plan-list { grid-row: 5 / span 3; display: grid; grid-template-rows: subgrid; }
-/* COLOUR AND EMPHASIS, revised 2026-08-17 (Patrick: make it read like a plan
-   view people already know, and drive the eye to free).
-
-   The old rule here was "nothing gets a plan colour, a pill, a tick or a
-   button", and per-plan hues had been tried and rejected once. That rejection
-   is still instructive, but it was aimed at a DIFFERENT mistake than the one
-   it is quoted against: honey-on-Family and lilac-on-Collections tinted the
-   two paid blocks and left free in bare kraft, so the column the page wants
-   you to take became the dullest thing in the row. The lesson was never "no
-   colour" — it was "never let the free column lose".
-
-   So colour now runs on ONE axis, emphasis, and free wins it outright:
-
-   - FREE is the only block with chroma. Manila fill, a honey border and a
-     honey "Start here" tag — the position a conventional pricing table gives
-     its recommended plan, pointed at the free one instead.
-   - FAMILY and FAMILY PLUS are a matched PAIR, because "there is a basic and
-     a plus" is the second thing to grasp. Same hue, same border family; Plus
-     differs by one step of VALUE (slightly deeper paper, slightly stronger
-     line) and never by hue. A value step reads as "more of the same thing",
-     which is exactly what twelve desks are; a hue step would have read as
-     tier colour-coding, which is what failed before.
-   - COLLECTIONS gets its own hue on purpose, because it is not a rung on the
-     ladder at all (see .plan--row below).
-
-   Everything still refused: no buy buttons, no ticks, no prices, no shadows.
-   The tag is the one shop-like affordance on the page and it is one class. */
+/* COLOUR AND EMPHASIS — third revision (2026-08-18, spec §8).
+   History, because each round was a correction of the last and the reasoning
+   still binds. Round one gave the two PAID blocks hue and left free in bare
+   kraft, so the column the page wants you to take became the dullest thing in
+   the row; the lesson taken was "never let the free column lose". Round two
+   over-applied it: free became the only block with chroma — manila fill,
+   honey border, a "Start here" tag — sitting in the exact slot a pricing
+   table gives its recommended plan.
+   That is what this round fixes. A stronger free card reads as SELECTED, and
+   telling a visitor the free plan is the recommended one is the wrong signal
+   on a page whose job is to explain a subscription. So all three cards are
+   the same paper and the same border, and the single permitted emphasis goes
+   to Membership as the primary paid option: one step of border strength, no
+   fill change, no badge.
+   "Never let the free column lose" is still honoured — by position, and by a
+   section heading that says the first desk is free before you reach any card.
+   Everything still refused: no buy buttons, no ticks, no shadows. */
 .plan {
   position: relative;
   text-align: left;
@@ -1142,16 +1132,8 @@ main > .feature:last-child { padding-bottom: var(--s-5); }
   border-radius: var(--radius-media);
   padding: var(--s-4) var(--s-4) calc(var(--s-4) - 4px);
 }
-/* The premium rung: one step deeper in the same paper, one step stronger in
-   the same line. Enough that the pair reads as basic-then-more at a glance,
-   not enough to out-shout the free block two columns to its left. */
-.plan--plus {
-  background-color: #efe7d7;
-  border-color: #d3c4ae;
-}
-.plan--included {
-  background-color: var(--paper-card);
-  border-color: rgba(201, 138, 30, 0.45);
+.plan--membership {
+  border-color: #c9b79c;
 }
 /* Prices (2026-08-17, Patrick: a plan view without prices reads less serious
    and less real). One line per block, between the desk count and the terms.
@@ -1303,12 +1285,26 @@ main > .feature:last-child { padding-bottom: var(--s-5); }
 }
 /* The founding note sits directly under the struck price because it exists to
    explain the strike. Italic and small: it is an annotation on the number
-   above it, not a fourth feature. */
+   above it, not a fourth feature.
+   It says only "Founding rate" now (spec §7). The longer "Founding price -
+   yours to keep" competed with the card's actual benefits, so the PROMISE
+   moved out to a quiet line beneath the whole section and the card kept just
+   enough to make the strike legible. */
 .plan-founding {
   margin: 2px 0 0;
   font-size: var(--fs-small);
   font-style: italic;
-  color: var(--ink-mid);
+  color: var(--ink-soft);
+}
+/* The promise, once, under everything. Small and secondary on purpose: it
+   preserves the value of the offer without making it the centrepiece. */
+.plan-founding-note {
+  max-width: 880px;
+  margin: var(--s-4) auto 0;
+  font-size: var(--fs-small);
+  font-style: italic;
+  color: var(--ink-soft);
+  text-align: center;
 }
 
 /* ---------- Collections panel ---------- */

@@ -135,8 +135,13 @@ def expected_lines(pricing):
         # of those can — that the struck price is not a first-year teaser.
         # When founding_window closes, selling == regular, the strike drops,
         # and this line empties itself.
+        # Two words. The PROMISE ("Founding members keep their rate") moved
+        # out from under the price to a quiet line beneath the whole section
+        # (spec §7) — inside the card it competed with the benefits, which are
+        # what the card is for. This is left doing the one job the card still
+        # needs: making the strike above it legible.
         "membership-terms": (
-            "Founding price - yours to keep"
+            "Founding rate"
             if selling_price(pricing, fam) != fam["price_per_year"]
             else ""
         ),

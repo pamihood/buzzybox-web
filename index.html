@@ -782,7 +782,7 @@
                form.
              - Nothing about PINs or locks. A lock named on a pricing page
                reads as a restriction being disclosed. -->
-        <div class="plan plan--included">
+        <div class="plan">
           <dt data-plan-name="free">Postmello Free</dt>
           <!-- The charms are DECORATION and are aria-hidden: the desk count
                beneath them is the accessible fact, and a screen reader
@@ -810,7 +810,7 @@
                 <li>Keep your letters forever</li>
               </ul></dd>
         </div>
-        <div class="plan">
+        <div class="plan plan--membership">
           <dt data-plan-name="membership">Postmello Membership</dt>
           <!-- The desk count is the HEADLINE again (spec table, 2026-08-18).
                It was briefly the collections promise, on the theory that the
@@ -828,7 +828,7 @@
           </p>
               <strong data-plan-desks="membership">Up to 4 desks</strong>
               <p class="plan-price" data-price="membership"><s>$19.99</s> $14.99/year</p>
-              <p class="plan-founding" data-price="membership-terms">Founding price - yours to keep</p>
+              <p class="plan-founding" data-price="membership-terms">Founding rate</p>
               <!-- "The full Catalog" became "Browse every collection"
                    (Patrick, 2026-08-18): sitting one line under "Choose 3
                    collections every year", "full Catalog" read as though the
@@ -836,13 +836,25 @@
                    i.e. that Membership hands over every collection. It never
                    meant that; it meant the BOOK opens. Browsing is the actual
                    feature and the word does not overlap with owning. -->
+              <!-- The leading benefit is FUNCTIONAL, not cosmetic (spec,
+                   2026-08-18). "Write between desks at home" is the reason
+                   Membership exists beyond collections, and a card that led
+                   with collections handed its whole argument to the panel
+                   below. Collections come second here because the panel does
+                   most of that selling anyway.
+                   "Full Catalog access" came OFF: it is unnecessary beside
+                   "3 collections every year" and risks implying every
+                   collection is included. The Catalog book icon went with the
+                   line it labelled — there is nothing left on this card for it
+                   to be true about, and the cards are meant to stay restrained
+                   while the panel below carries the artwork. -->
               <ul class="plan-list">
-                <li><strong>Choose 3 collections every year</strong></li>
-                <li>Full Catalog access<img class="plan-book" src="assets/icons/catalog-book.png" alt="" width="135" height="84" loading="lazy" /></li>
+                <li><strong>Write between desks at home</strong></li>
+                <li>3 collections every year</li>
                 <li>Renews yearly</li>
               </ul></dd>
         </div>
-        <div class="plan plan--plus">
+        <div class="plan">
           <dt data-plan-name="membership_plus">Postmello Membership Plus</dt>
           <dd><p class="plan-desks" aria-hidden="true">
               <img src="assets/icons/desk-charm.png" alt="" width="159" height="84" loading="lazy" />
@@ -865,8 +877,7 @@
                      ("with more desks" came off earlier for a different
                      reason — the headline above already says "Up to 12
                      desks".) -->
-                <li><strong>Choose 3 collections every year</strong></li>
-                <li>Full Catalog access<img class="plan-book" src="assets/icons/catalog-book.png" alt="" width="135" height="84" loading="lazy" /></li>
+                <li><strong>Everything in Membership</strong></li>
                 <li>Renews yearly</li>
               </ul></dd>
         </div>
@@ -907,7 +918,7 @@
                has to come FIRST — "additional collections from $0.99" on its
                own implies anyone can buy one, which is the exact
                misunderstanding the Free card's "only" is also closing. -->
-          <p class="collections-avail"><strong>Available with Membership.</strong> Choose <strong>3 every year</strong>, then add more from <strong class="collections-price" data-price="collections">$0.99</strong>.</p>
+          <p class="collections-avail"><strong>Available with Membership.</strong><br />Additional collections from <strong class="collections-price" data-price="collections">$0.99</strong>.</p>
           <p class="collections-keep">Yours for good - even if your Membership ends.</p>
         </div>
         <ul class="collections-props">
@@ -921,6 +932,15 @@
           <li><img src="assets/collections/baan_naa.png" alt="Baan Naa - a lotus, a water buffalo and a garland" width="364" height="300" loading="lazy" /><span>Baan Naa</span></li>
         </ul>
       </section>
+
+      <!-- The founding PROMISE, once, beneath the pricing rather than
+           inside the Membership card (spec §7): in the card it competed
+           with the benefits, which are what the card is for. Placed
+           here rather than after the business-model statement so it
+           stays attached to the prices it qualifies — a founding-rate
+           note following a sentence about advertising reads as an
+           orphan. -->
+      <p class="plan-founding-note">Founding members keep their rate.</p>
 
       <!-- The founding explainer is GONE (2026-08-17, final cut — Patrick:
            "that join while Postmello is new" made it sound like no one is

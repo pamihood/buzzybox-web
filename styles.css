@@ -1071,14 +1071,41 @@ main > .feature:last-child { padding-bottom: var(--s-5); }
    at the same colour vanished at laptop distance on a warm ground. Eyebrows
    are bigger and --ink-mid now, notes are --ink-mid rather than --ink-soft,
    and the middle line is the biggest thing in every block. */
+/* ROW ALIGNMENT (2026-08-18, Patrick: the spec's table has vertical alignment
+   and "you're breaking that a little bit" — correctly).
+   Three cards read as a comparison only if the comparable things sit on the
+   same line. They did not: Membership's founding note pushed its feature list
+   down one row, and Plus's headline wraps to two lines, so from that point
+   down nothing in the three cards agreed.
+   Subgrid fixes it properly. .plans owns seven rows — eyebrow, desks, price,
+   founding note, and three feature lines — and every card, its dd, and its
+   feature list adopt those same tracks. Each row is then as tall as the
+   tallest content across all three cards, so a wrap in one card moves the
+   same line in the others and the table holds.
+   The alternative was hand-tuned min-heights, which is the same idea written
+   as numbers that go stale the first time a word changes. */
 .plans {
   max-width: 980px;
   margin: 0 auto;
   padding: 0;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: var(--s-3);
+  grid-template-rows: repeat(7, auto);
+  column-gap: var(--s-3);
+  /* Doubles as the cards' internal line spacing, so it is a leading value,
+     not a gutter. Extra breathing room is bought with margins on the two
+     places that need it (price, first feature). */
+  row-gap: 6px;
 }
+.plan { display: grid; grid-row: span 7; grid-template-rows: subgrid; }
+.plan > dt { grid-row: 1; }
+.plan > dd { grid-row: 2 / span 6; display: grid; grid-template-rows: subgrid; }
+/* Explicit rows, so a card with no founding note leaves that slot EMPTY
+   rather than pulling everything below it up a line. No placeholder markup. */
+.plan > dd > strong { grid-row: 1; }
+.plan > dd > .plan-price { grid-row: 2; margin-top: 2px; }
+.plan > dd > .plan-founding { grid-row: 3; }
+.plan > dd > .plan-list { grid-row: 4 / span 3; display: grid; grid-template-rows: subgrid; }
 /* COLOUR AND EMPHASIS, revised 2026-08-17 (Patrick: make it read like a plan
    view people already know, and drive the eye to free).
 
@@ -1181,9 +1208,6 @@ main > .feature:last-child { padding-bottom: var(--s-5); }
 }
 .plans dd {
   margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: var(--s-1);
 }
 .plans dd strong {
   font-size: clamp(1.2rem, 1.7vw, 1.45rem);
@@ -1209,11 +1233,10 @@ main > .feature:last-child { padding-bottom: var(--s-5); }
    rather than administrative. */
 .plan-list {
   list-style: none;
+  /* The one deliberate gap in the stack: features are a group, and they need
+     to read as separate from the price block above them. */
   margin: var(--s-2) 0 0;
   padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
 }
 .plan-list li {
   font-size: var(--fs-body);
@@ -1274,43 +1297,36 @@ main > .feature:last-child { padding-bottom: var(--s-5); }
   letter-spacing: -0.02em;
   color: var(--ink);
 }
-.collections-panel-lede {
-  margin: var(--s-2) 0 0;
+/* Three short facts, stacked. Each is one line at desktop width, which is
+   what keeps this a summary rather than a paragraph — the art beside it is
+   doing the describing. The sentence that used to sit above them, listing
+   what a collection contains, went with the same cut: the pictures say it
+   better, and a panel that explains its own noun does not trust its art. */
+.collections-facts {
+  list-style: none;
+  margin: var(--s-3) 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.collections-facts li {
   font-size: var(--fs-body);
-  line-height: 1.5;
+  line-height: 1.45;
   color: var(--ink-soft);
 }
-/* Two facts, side by side, each a figure over its qualifier. This is the one
-   place the page states the collection economy as numbers, and reading it as
-   a pair is the point: three arrive free every year, and the rest are cheap. */
-.collections-facts {
-  margin: var(--s-3) 0 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--s-3);
-}
-.collections-facts dt {
-  font-size: clamp(1.02rem, 1.25vw, 1.16rem);
+.collections-facts strong {
   font-weight: 700;
   color: var(--ink);
 }
-.collections-facts dd {
-  margin: 2px 0 0;
-  font-size: var(--fs-small);
-  color: var(--ink-soft);
+/* $0.99 prominent by instruction, and for a reason: it is the figure that
+   stops an annual subscription reading as the start of an expensive stream.
+   One step up in size is enough — a badge would oversell a number whose whole
+   job is to look small. */
+.collections-price {
+  font-size: clamp(1.02rem, 1.25vw, 1.16rem);
 }
-/* Prominent by instruction and for a reason: it is the sentence that stops an
-   annual subscription reading as the start of an expensive stream. */
-.collections-facts-price {
-  text-transform: uppercase;
-  letter-spacing: 0.02em;
-}
-.collections-panel-keep {
-  margin: var(--s-3) 0 0;
-  font-size: var(--fs-body);
-  font-weight: 600;
-  color: var(--ink);
-}
+
 /* The shelf. Transparent cutouts on the panel's own lilac — no cards, no
    frames: these are objects on a surface, the same grammar the desks use. */
 .collections-props {
@@ -1386,8 +1402,23 @@ main > .feature:last-child { padding-bottom: var(--s-5); }
 @media (max-width: 760px) {
   .plans {
     grid-template-columns: 1fr;
+    grid-template-rows: none;
     max-width: 420px;
+    row-gap: var(--s-3);
   }
+  /* Subgrid OFF when the cards stack. Row alignment is a comparison device
+     and there is nothing to compare against once each card is alone on the
+     screen — worse, three cards each spanning seven shared rows would either
+     collide or inherit a 6px leading meant for a table. Back to plain blocks
+     with their own rhythm. */
+  .plan,
+  .plan > dd,
+  .plan > dd > .plan-list {
+    display: block;
+    grid-row: auto;
+    grid-template-rows: none;
+  }
+  .plan > dd > .plan-list li + li { margin-top: 6px; }
   .reassurance, .reassurance-why { max-width: 420px; }
 }
 

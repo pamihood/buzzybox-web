@@ -783,7 +783,7 @@
              - Nothing about PINs or locks. A lock named on a pricing page
                reads as a restriction being disclosed. -->
         <div class="plan plan--included">
-          <dt data-plan-name="free">Free</dt>
+          <dt data-plan-name="free">Postmello Free</dt>
           <dd><strong data-plan-desks="free">1 desk</strong>
               <p class="plan-price" data-price="free">Free</p>
               <ul class="plan-list">
@@ -793,7 +793,7 @@
               </ul></dd>
         </div>
         <div class="plan">
-          <dt data-plan-name="membership">Membership</dt>
+          <dt data-plan-name="membership">Postmello Membership</dt>
           <!-- The desk count is the HEADLINE again (spec table, 2026-08-18).
                It was briefly the collections promise, on the theory that the
                promise is what sells the tier — which is true, and still the
@@ -812,11 +812,17 @@
               </ul></dd>
         </div>
         <div class="plan plan--plus">
-          <dt data-plan-name="membership_plus">Membership Plus</dt>
+          <dt data-plan-name="membership_plus">Postmello Membership Plus</dt>
           <dd><strong data-plan-desks="membership_plus">Up to 12 desks</strong>
               <p class="plan-price" data-price="membership_plus">$29.99/year</p>
               <ul class="plan-list">
-                <li><strong>Everything in Membership, with more desks</strong></li>
+                <!-- "with more desks" came off (2026-08-18): the headline
+                     directly above already says "Up to 12 desks", so the
+                     clause repeated it — and being the only feature line long
+                     enough to wrap, it inflated that row for all three cards
+                     under the shared subgrid. The spec wrote it when the
+                     headline was a different line. -->
+                <li><strong>Everything in Membership</strong></li>
                 <li>The full Catalog</li>
                 <li>Renews yearly</li>
               </ul></dd>
@@ -845,18 +851,18 @@
         <div class="collections-panel-copy">
           <p class="collections-panel-eyebrow" id="collections-panel-title">Collections</p>
           <h3>New places to write from.</h3>
-          <p class="collections-panel-lede">Each collection brings its own desk, mailbox, papers, envelopes, stamps and stickers.</p>
-          <dl class="collections-facts">
-            <div>
-              <dt>3 included every year</dt>
-              <dd>with Membership</dd>
-            </div>
-            <div>
-              <dt class="collections-facts-price" data-price="collections">From $0.99</dt>
-              <dd>for additional collections</dd>
-            </div>
-          </dl>
-          <p class="collections-panel-keep">Yours for good - even if your Membership ends.</p>
+          <!-- Five items, and the cut is the point (Patrick, 2026-08-18: "too
+               wordy — we already introduced the concept of the collection").
+               What went was a sentence listing what a collection contains —
+               desk, mailbox, papers, envelopes, stamps, stickers — which the
+               pictures to the right say better and which the page has said
+               twice already by this scroll depth. A panel that explains its
+               own noun is a panel that does not trust its art. -->
+          <ul class="collections-facts">
+            <li>Choose <strong>3 every year</strong> with Membership</li>
+            <li>Additional collections from <strong class="collections-price" data-price="collections">$0.99</strong></li>
+            <li>Yours for good</li>
+          </ul>
         </div>
         <ul class="collections-props">
           <li><img src="assets/collections/fairy_glen.png" alt="Fairy Glen - a toadstool cottage, a lantern and a jar of fireflies" width="218" height="300" loading="lazy" /><span>Fairy Glen</span></li>

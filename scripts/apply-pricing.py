@@ -115,7 +115,10 @@ def expected_lines(pricing):
         # Lives in the Collections panel's figure slot now, with "for
         # additional collections" as its qualifier underneath — so the verb
         # that used to ride along here is no longer needed.
-        "collections": f"From {money(pricing['collections']['price_from'])}",
+        # The bare figure: the sentence around it ("Additional collections
+        # from …") is hand-written in the panel, so this slot holds only the
+        # number that must not drift.
+        "collections": money(pricing["collections"]["price_from"]),
         # The monthly equivalent came OUT (2026-08-18). The spec allows it as
         # supporting copy and it was never the lead, but on a card whose
         # headline is now a promise rather than a number, a second money
@@ -141,15 +144,15 @@ def expected_lines(pricing):
 
 
 def expected_names(pricing):
-    """Card eyebrows, from public_name with the brand prefix removed.
+    """Card eyebrows: public_name, verbatim.
 
-    public_name stays "Postmello Membership" — that is what App Store Connect
-    and the app say, and it must not drift. But on postmello.com the word is
-    already established three times over by the time a reader reaches this
-    block, so printing it in all three eyebrows is noise the spec's own card
-    copy drops ("Free" / "Membership" / "Membership Plus")."""
-    return {key: plan["public_name"].replace("Postmello ", "", 1)
-            for key, plan in pricing["plans"].items()}
+    They were briefly stripped to "Free" / "Membership" / "Membership Plus" on
+    the theory that the brand is already established by this scroll depth.
+    Patrick put it back (2026-08-18): these are the PRODUCT names, they are
+    what the App Store sheet and the app say, and a plan view is where a
+    reader decides what to buy — the one place worth spending the word.
+    Verbatim also means one rule, with no special case for Free."""
+    return {key: plan["public_name"] for key, plan in pricing["plans"].items()}
 
 
 def expected_desks(pricing):
@@ -178,7 +181,7 @@ def main():
     disagreements = []
     # (attribute, tag alternation, expected map) — one rewrite rule each.
     for attr, tags, expected in (
-        ("data-price", "p|span|dt", expected_lines(pricing)),
+        ("data-price", "p|span|dt|strong", expected_lines(pricing)),
         ("data-plan-name", "dt", expected_names(pricing)),
         ("data-plan-desks", "strong", expected_desks(pricing)),
     ):

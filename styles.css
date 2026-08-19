@@ -1224,6 +1224,17 @@ main > .feature:last-child { padding-bottom: var(--s-5); }
   background-color: #eee8f3;
   border-color: #d9cee4;
 }
+/* Under the MEMBERSHIP pair only (2026-08-18). The full-width span was
+   correct while collections applied equally to all three columns; the
+   Membership revision made the Catalog the thing membership opens, so a row
+   reaching under the free column would assert a relationship the product no
+   longer has. Column 2 to the end leaves the free block ending where free
+   ends — the empty cell beneath it is the point, not a gap to fill. Collapses
+   to full width with everything else on a phone, where the columns are
+   stacked and "under" has no meaning. */
+.plan--row-membership {
+  grid-column: 2 / -1;
+}
 /* Reassurance. Not a headline, but it was nearly invisible at --fs-small in
    --ink-soft, and it is the sentence that answers "so what is the catch". Full
    --ink at 600, and no strip behind it — a fourth tinted block below three
@@ -1245,6 +1256,7 @@ main > .feature:last-child { padding-bottom: var(--s-5); }
     grid-template-columns: 1fr;
     max-width: 420px;
   }
+  .plan--row-membership { grid-column: 1 / -1; }
   .reassurance { max-width: 420px; }
 }
 

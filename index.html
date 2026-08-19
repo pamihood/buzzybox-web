@@ -622,6 +622,21 @@
          less official, less legitimate — pricing makes it look serious and
          real; the earlier no-prices stance died with that sentence).
 
+         RENAMED AND RESHAPED 2026-08-18 — the Membership revision. Everything
+         below that says "Family" is HISTORY and stays written that way; the
+         product it describes is now Postmello MEMBERSHIP, and Family Plus is
+         Membership Plus. The rename is not cosmetic, which is why the
+         reasoning is worth keeping beside the old text: Family named the
+         trigger for buying (a second child needed a desk), and that name was
+         an accurate description of a weak strategy — a household that used
+         Postmello every day with one desk had no reason to ever pay.
+         Membership names what the thing IS: the whole product, for a
+         household that has decided it is theirs. The desk count came DOWN
+         with the rename (6 to 4) precisely because desks stopped being the
+         pitch, and the Catalog plus three included collections took over as
+         the reason. Names and desk figures are now written from pricing.json
+         by apply-pricing.py, so this block cannot half-rename again.
+
          REVISED the same evening (2026-08-17): Postmello Family moved from a
          one-time purchase to an ANNUAL subscription (spec: the app repo's
          docs/FAMILY_SUBSCRIPTION_SPEC.md). The numbers themselves now live
@@ -768,35 +783,65 @@
              - Nothing about PINs or locks. A lock named on a pricing page
                reads as a restriction being disclosed. -->
         <div class="plan plan--included">
-          <dt>Included <span class="plan-tag">Start here</span></dt>
-          <dd><strong>One desk</strong>
+          <dt data-plan-name="free">Postmello Free</dt>
+          <dd><strong data-plan-desks="free">One desk</strong>
               <p class="plan-price" data-price="free">Free</p>
-              <!-- "Starter stationery set" (2026-08-17, Patrick): the free
-                   desk arrives dressed, and the plan view should say so —
-                   it is the third thing the free column genuinely includes.
-                   NOT "starter collection": "collection" is the product's
-                   reserved word for the themed worlds in the row below, and
-                   using it here would make the free tier seem to include
-                   one. -->
-              <span>Unlimited letters · Unlimited approved contacts · Starter stationery set</span></dd>
+              <!-- "Starter Collection" (2026-08-18, Patrick). This block used
+                   to say "starter stationery set" precisely to keep the word
+                   "collection" reserved for the paid worlds — the fear being
+                   that a free tier saying "collection" would seem to include
+                   one of those. The Membership revision retires that fear by
+                   making the sentence true instead of avoiding it: the free
+                   desk really does arrive as a complete set, the Catalog book
+                   on a free desk contains that set and nothing else, and the
+                   row below now says plainly where the other collections
+                   live. Naming it is what makes free read as a whole small
+                   product rather than a sample. -->
+              <span>Unlimited letters, contacts and replies · Every letter kept · The Starter Collection: desk, mailbox, papers, envelopes, stamps, stickers</span></dd>
         </div>
         <div class="plan">
-          <dt>Postmello Family</dt>
-          <dd><strong>Up to 6 desks</strong>
+          <dt data-plan-name="family">Postmello Membership</dt>
+          <dd><strong data-plan-desks="family">Up to 4 desks</strong>
               <p class="plan-price" data-price="family"><s>$19.99</s> $14.99/year</p>
+              <!-- The second line is the 2026-08-18 revision in one sentence:
+                   membership is the whole product, not a desk counter. The
+                   desk figure stays the largest line because it is still the
+                   first question a household asks, but it is no longer the
+                   only reason to be here — which is exactly the weakness the
+                   revision set out to fix. -->
+              <span>Opens the full Catalog · Three collections included, yours to keep</span>
               <span data-price="family-terms">About $1.25 a month · Renews yearly · Early price, yours to keep</span></dd>
         </div>
         <div class="plan plan--plus">
-          <dt>Postmello Family Plus</dt>
-          <dd><strong>Up to 12 desks</strong>
+          <dt data-plan-name="family_plus">Postmello Membership Plus</dt>
+          <dd><strong data-plan-desks="family_plus">Up to 12 desks</strong>
               <p class="plan-price" data-price="family_plus">$29.99/year</p>
+              <!-- Nothing is invented for Plus to have. It is the same
+                   membership with room for a bigger household, and saying so
+                   is more honest — and less confusing — than manufacturing a
+                   third feature list. -->
+              <span>Everything in Membership, with room for more desks</span>
               <span data-price="family_plus-terms">About $2.50 a month · Renews yearly</span></dd>
         </div>
-        <div class="plan plan--row">
+        <!-- The collections row moved under the two MEMBERSHIP columns
+             (2026-08-18, Patrick), from spanning all three. It used to span
+             the full width because collections were orthogonal to the plan —
+             "available whichever of the three you are on" — and the spanning
+             row was the layout saying so. The revision changed the fact the
+             layout was reporting: the Catalog is what membership OPENS, and
+             three collections come with it. A row that still reached under
+             the free column would be drawing a relationship the product no
+             longer has. Starting at column 2 puts it under the two blocks it
+             belongs to and leaves the free column ending where free ends,
+             which is the same story the free block's own line now tells.
+
+             It keeps its lilac: still not a rung on the desk ladder, still
+             the chord of the stationery spread above it. -->
+        <div class="plan plan--row plan--row-membership">
           <dt>Collections</dt>
           <dd><strong>New desk designs + matching stationery</strong>
               <p class="plan-price" data-price="collections">From $0.99</p>
-              <span>Optional one-time purchases, on any plan</span></dd>
+              <span>Three come with Membership. More any time — one-time, and yours for good even if Membership ends.</span></dd>
         </div>
       </dl>
 

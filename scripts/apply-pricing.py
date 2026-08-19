@@ -12,8 +12,18 @@ replacement is exact and idempotent:
 Keys: free, family, family_plus, collections, plus the two terms spans
 (family-terms, family_plus-terms) — they carry the monthly-equivalent
 supporting copy the spec allows (never the lead; the price line stays
-annual), so their numbers must be written, not typed. While the founding
-window is open, Family renders the struck regular price beside the founding
+annual), so their numbers must be written, not typed.
+
+Since the 2026-08-18 Membership revision this script also owns two things
+that used to be typed by hand, both because they had drifted: the plan NAMES
+(data-plan-name="<key>", written from public_name — the rename from Family to
+Membership is exactly the kind of change that survives in one file and not
+another) and the DESK COUNTS (data-plan-desks="<key>", written from
+max_desks). The plan keys stay `family`/`family_plus` in the markup for the
+same reason they stay in the database: they are identifiers, not names.
+
+While the founding
+window is open, Membership renders the struck regular price beside the founding
 selling price — honest by the site's own rule because the struck figure is
 the genuine post-founding price (pricing.json price_per_year), and the
 "Early price, yours to keep" terms suffix names what the strike means.
@@ -74,6 +84,17 @@ def family_price_line(pricing, plan):
     return f"{money(now)}/year"
 
 
+def desks_line(plan, key):
+    """The desk count, in the block's own voice. Free says what it IS; the
+    paid tiers say "up to", because the number is a server-side capability
+    (account_capabilities) that is meant to be retunable without a release,
+    and "up to" is what keeps that honest."""
+    n = plan["max_desks"]
+    if key == "free":
+        return "One desk" if n == 1 else f"{n} desks"
+    return f"Up to {n} desk" + ("" if n == 1 else "s")
+
+
 def expected_lines(pricing):
     plans = pricing["plans"]
     fam, plus = plans["family"], plans["family_plus"]
@@ -92,6 +113,14 @@ def expected_lines(pricing):
             f"About {monthly(selling_price(pricing, plus))} a month · Renews yearly"
         ),
     }
+
+
+def expected_names(pricing):
+    return {key: plan["public_name"] for key, plan in pricing["plans"].items()}
+
+
+def expected_desks(pricing):
+    return {key: desks_line(plan, key) for key, plan in pricing["plans"].items()}
 
 
 def main():
@@ -114,25 +143,31 @@ def main():
     # new" read as if nobody was on it.)
     html = INDEX.read_text(encoding="utf-8")
     disagreements = []
-    for key, want in expected_lines(pricing).items():
-        pat = re.compile(
-            r'(<(?:p|span)\b[^>]*data-price="' + re.escape(key) + r'"[^>]*>)'
-            r"(.*?)(</(?:p|span)>)", re.S)
-        m = pat.search(html)
-        if not m:
-            raise SystemExit(
-                f'!! index.html: no data-price="{key}" line to rewrite')
-        have = normalize(m.group(2))
-        if have == normalize(want):
-            continue
-        disagreements.append((key, have, want))
-        html = (html[: m.start(2)] + want + html[m.end(2):])
+    # (attribute, tag alternation, expected map) — one rewrite rule each.
+    for attr, tags, expected in (
+        ("data-price", "p|span", expected_lines(pricing)),
+        ("data-plan-name", "dt", expected_names(pricing)),
+        ("data-plan-desks", "strong", expected_desks(pricing)),
+    ):
+        for key, want in expected.items():
+            pat = re.compile(
+                r'(<(?:' + tags + r')\b[^>]*' + attr + r'="' + re.escape(key) + r'"[^>]*>)'
+                r"(.*?)(</(?:" + tags + r")>)", re.S)
+            m = pat.search(html)
+            if not m:
+                raise SystemExit(
+                    f'!! index.html: no {attr}="{key}" element to rewrite')
+            have = normalize(m.group(2))
+            if have == normalize(want):
+                continue
+            disagreements.append((f'{attr}="{key}"', have, want))
+            html = (html[: m.start(2)] + want + html[m.end(2):])
 
     if args.check:
         if disagreements:
             print(f"!! index.html disagrees with {pricing_path}:")
             for key, have, want in disagreements:
-                print(f'   data-price="{key}"')
+                print(f"   {key}")
                 print(f"     - {have}")
                 print(f"     + {want}")
             sys.exit(1)

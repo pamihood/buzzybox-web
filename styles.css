@@ -983,38 +983,44 @@ main > .feature:last-child { padding-bottom: var(--s-5); }
   .st-sticker--10 { width: 15.4%; }
 }
 
-/* ---------- The three claims under the hero ---------- */
+/* ---------- The four claims under the hero ---------- */
 /* Typographic, not boxed: this sits between the hero and the first picture
-   grid, and a row of cards there would read as a second navigation. Three
-   equal columns of plain text, each a claim and its one sentence.
-   The heading sizes deliberately sit BELOW the section headings further down
-   the page — these are three quick facts, not three sections, and if they
-   competed with "Start with a blank page" the page would read as beginning
-   three times. */
+   grid, and a row of cards there would read as a second navigation.
+   FOUR columns wide, TWO in the middle, one on a phone — stepped explicitly
+   rather than with auto-fit, which at some widths leaves three across and one
+   orphaned underneath. Two-by-two is the honest middle: four narrow columns
+   below ~1000px would set every sentence to five lines.
+   The headings sit BELOW the section headings further down the page on
+   purpose — these are quick claims, not sections, and if they competed with
+   "Start with a blank page" the page would read as beginning twice. */
 .pillars {
   max-width: var(--maxw-page);
   margin: 0 auto;
   padding: 0;
   list-style: none;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: clamp(28px, 4vw, 56px);
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(24px, 3vw, 40px);
 }
 .pillars h2 {
   margin: 0 0 var(--s-2);
-  font-size: clamp(1.24rem, 1.8vw, 1.52rem);
+  font-size: clamp(1.14rem, 1.5vw, 1.32rem);
   font-weight: 700;
   line-height: 1.25;
   letter-spacing: -0.02em;
   color: var(--ink);
+  text-wrap: balance;
 }
 .pillars p {
   margin: 0;
-  font-size: var(--fs-body);
+  font-size: var(--fs-small);
   line-height: 1.55;
   color: var(--ink-soft);
 }
-@media (max-width: 760px) {
+@media (max-width: 1000px) {
+  .pillars { grid-template-columns: repeat(2, 1fr); gap: var(--s-5) var(--s-4); }
+}
+@media (max-width: 620px) {
   .pillars {
     grid-template-columns: 1fr;
     max-width: 420px;

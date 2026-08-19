@@ -326,24 +326,32 @@ a:hover { text-decoration-color: var(--navy); }
    alone — which illustrated the brand rather than the claim. The claim is
    "when a letter arrives, the flag goes up and it waits", and a mailbox with
    its flag up and three letters in it says that without a caption. */
-.quiet-row {
+/* The paired band. The photograph leads on the left because it is the one
+   image on the page that argues the product's whole posture, and the two
+   claims stack beside it — which is the point of the merge: the picture's
+   height now carries two sentences instead of leaving one of them stranded
+   in its own band. `align-items: center` keeps the copy optically level with
+   the photo rather than top-aligned against a tall object. */
+.paired-row {
   max-width: var(--maxw-page);
   margin: 0 auto;
   display: grid;
-  /* Near enough to half and half — the words get 45% and the picture the
-     rest. This is the philosophical middle of the product and the section it
-     sits in can afford the asymmetry the letter-making row cannot. */
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
   align-items: center;
   gap: clamp(24px, 5vw, 72px);
 }
-/* And a little more air than its neighbours, for the same reason. */
-#quiet { padding-block: calc(var(--space-section) * 1.15); }
-.quiet-copy .lede { font-size: var(--fs-hero); }
-.quiet-copy { text-align: left; }
-/* Same specificity as `.feature .lede` loses to it on source order, and the
-   sentence sat indented from its own heading by the auto margins. */
-.quiet-row .quiet-copy .lede { margin-inline: 0 auto; }
+/* The gap between the two claims is a SECTION break in miniature — they were
+   separate bands an hour ago and must not read as one run-on argument. */
+.paired-copy {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(28px, 4vw, 52px);
+}
+.paired-claim { text-align: left; }
+.paired-claim .lede {
+  font-size: var(--fs-hero);
+  margin-inline: 0 auto;
+}
 .quiet-shot {
   position: relative;
   margin: 0;
@@ -370,17 +378,29 @@ a:hover { text-decoration-color: var(--navy); }
   height: auto;
   filter: drop-shadow(-3px 7px 11px rgba(42, 33, 24, 0.20));
 }
-/* Stacked below 760px, picture under the sentence. */
+/* Stacked below 760px, and the photograph goes BETWEEN the two claims. Side
+   by side it belongs to both; stacked, a picture inherits whichever claim sits
+   directly above it, so leaving it at the end would silently hand the mailbox
+   shot to "Across town, or across an ocean". Putting it after the first claim
+   keeps it with the sentence it illustrates and stops the second claim opening
+   on an image.
+   `display: contents` is what makes that possible: it dissolves .paired-copy
+   so its two claims become grid items in their own right and can be ordered
+   around the figure. Without it the copy is one indivisible block and the
+   photo can only go above or below the pair. */
 @media (max-width: 760px) {
-  .quiet-row {
+  .paired-row {
     grid-template-columns: 1fr;
     justify-items: center;
     text-align: center;
-    gap: var(--s-4);
+    gap: var(--s-5);
   }
-  .quiet-copy { text-align: center; }
-  .quiet-copy .lede { margin-inline: auto; }
-  .quiet-shot { max-width: 340px; }
+  .paired-copy { display: contents; }
+  .paired-claim { text-align: center; }
+  .paired-claim .lede { margin-inline: auto; }
+  .paired-claim:first-of-type { order: 1; }
+  .quiet-shot { order: 2; max-width: 340px; }
+  .paired-claim:last-of-type { order: 3; }
   /* Barely outside the frame rather than 5% out: at 375px the picture is
      nearly full width, and the same overhang put the bee's wing on the
      viewport edge. */
@@ -665,7 +685,9 @@ main > .feature:last-child { padding-bottom: var(--s-5); }
 /* The drawer rail, one photograph rather than five cut-outs. */
 .drawer-row {
   max-width: var(--maxw-wide);
-  margin: 0 auto;
+  /* Top margin because it now closes the paired band rather than opening a
+     section of its own — without it the strip crowds the photograph above. */
+  margin: clamp(36px, 5vw, 64px) auto 0;
 }
 .drawer-row img {
   width: 100%;
@@ -1092,28 +1114,43 @@ main > .feature:last-child { padding-bottom: var(--s-5); }
    The alternative was hand-tuned min-heights, which is the same idea written
    as numbers that go stale the first time a word changes. */
 .plans {
-  max-width: 980px;
+  /* Was 980px, while the page's own widest rhythm is 1200 and the desk grid
+     and stationery spread both use it. Narrow cards were the root of the
+     white-space problem: at a third of 980 minus padding, every second
+     feature line wrapped, and a shared row that has to fit a wrapped line in
+     one card opens a gap in the other two. Widening does more for the block
+     than any spacing tweak could. */
+  max-width: var(--maxw-page);
   margin: 0 auto;
   padding: 0;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(7, auto);
+  /* FOUR shared tracks, not seven (2026-08-18). Only the COMPARABLE rows are
+     worth locking together — eyebrow, charms, desk count, price — because
+     those are what a reader scans across. The feature lists underneath differ
+     in length by design (Plus has two lines where the others have three), and
+     forcing them onto shared tracks reserved an empty row in whichever card
+     was shorter. That reserved emptiness is the "weird vertical white space":
+     alignment applied to things that were never meant to line up.
+     The lists now flow at their natural height inside one final track. */
+  grid-template-rows: repeat(4, auto) auto;
   column-gap: var(--s-3);
   /* Doubles as the cards' internal line spacing, so it is a leading value,
-     not a gutter. Extra breathing room is bought with margins on the two
-     places that need it (price, first feature). */
+     not a gutter. */
   row-gap: 6px;
 }
-.plan { display: grid; grid-row: span 7; grid-template-rows: subgrid; }
+.plan { display: grid; grid-row: span 5; grid-template-rows: subgrid; }
 .plan > dt { grid-row: 1; }
-.plan > dd { grid-row: 2 / span 6; display: grid; grid-template-rows: subgrid; }
+.plan > dd { grid-row: 2 / span 4; display: grid; grid-template-rows: subgrid; }
 /* Explicit rows, so every card puts the same thing on the same line whatever
    its own content does. (There used to be a sixth row here for the founding
    annotation; it left the card entirely on 2026-08-18.) */
 .plan > dd > .plan-desks { grid-row: 1; }
 .plan > dd > strong { grid-row: 2; }
 .plan > dd > .plan-price { grid-row: 3; margin-top: 2px; }
-.plan > dd > .plan-list { grid-row: 4 / span 3; display: grid; grid-template-rows: subgrid; }
+/* Plain flow, deliberately: see the note on .plans about what alignment is
+   worth locking and what it is not. */
+.plan > dd > .plan-list { grid-row: 4; }
 /* COLOUR AND EMPHASIS — third revision (2026-08-18, spec §8).
    History, because each round was a correction of the last and the reasoning
    still binds. Round one gave the two PAID blocks hue and left free in bare
@@ -1274,6 +1311,9 @@ main > .feature:last-child { padding-bottom: var(--s-5); }
      to read as separate from the price block above them. */
   margin: var(--s-2) 0 0;
   padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
 .plan-list li {
   font-size: var(--fs-body);
@@ -1313,7 +1353,7 @@ main > .feature:last-child { padding-bottom: var(--s-5); }
    argument — a collection is a whole world, and eight of them on one shelf
    says that faster than the sentence above them does. */
 .collections-panel {
-  max-width: 980px;
+  max-width: var(--maxw-page);
   margin: var(--s-4) auto 0;
   display: grid;
   grid-template-columns: 40% 1fr;
@@ -1455,13 +1495,11 @@ main > .feature:last-child { padding-bottom: var(--s-5); }
      collide or inherit a 6px leading meant for a table. Back to plain blocks
      with their own rhythm. */
   .plan,
-  .plan > dd,
-  .plan > dd > .plan-list {
+  .plan > dd {
     display: block;
     grid-row: auto;
     grid-template-rows: none;
   }
-  .plan > dd > .plan-list li + li { margin-top: 6px; }
   .plan-desks { margin-bottom: var(--s-2); }
   .reassurance, .reassurance-why { max-width: 420px; }
 }

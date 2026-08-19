@@ -173,301 +173,47 @@
          The bee stays, much smaller, off the left edge and heading for the
          box: about to deliver rather than posing. The art already faces right,
          so it needs no mirroring to be flying INTO the frame. -->
+    <!-- TWO SECTIONS, ONE BAND (Patrick, 2026-08-18). "It's a mailbox, not a
+         chat" and "Across town, or across an ocean" were separate bands, and
+         after their ledes were cut to one line each they were mostly air —
+         two full section paddings wrapped around two short sentences.
+
+         Not side by side as separate halves, which was the first idea and is
+         worse: the mailbox photograph is ~500px tall and the drawer rail is a
+         1400x229 strip, so a two-half split leaves the right half four
+         hundred pixels of nothing. The imbalance IS the constraint.
+
+         So the tall picture takes the left and both claims stack on the
+         right, which is what actually removes the white space — the photo's
+         height is now spent on two sentences instead of one — and the drawer
+         rail runs full width beneath, the shape a 6:1 strip wants anyway.
+         Both headings keep their own h2 and #contacts keeps its id. -->
     <section class="feature feature--band" id="quiet">
-      <div class="quiet-row">
-        <div class="quiet-copy">
-          <h2><span>It’s a mailbox, not a chat.</span></h2>
-          <!-- The flag sentence came off (Patrick, 2026-08-18). It was
-               explaining the photograph beside it, and a lede that narrates
-               its own illustration is doing the picture's job twice. What is
-               left is the claim; the raised flag in the shot is the evidence,
-               and a reader who needs the flag explained is not the reader
-               this page is written for. -->
-          <p class="lede">No feed, no typing dots, no rush to reply.</p>
-        </div>
+      <div class="paired-row">
         <figure class="quiet-shot">
           <img src="assets/mailbox-flag-up.jpg"
                alt="A mailbox on a Postmello desk, its flag raised, with three letters waiting inside"
                width="760" height="730" loading="lazy" />
           <img class="quiet-bee" src="assets/bee.png" alt="" width="440" height="439" loading="lazy" />
         </figure>
-      </div>
-    </section>
-
-    <!-- The desire section. Two across at nearly half the content width each,
-         not three or six across: at 300px these read as product variants in a
-         grid, and at 580px each one reads as a place — which is the only thing
-         this section is for. No prices, no locks, no "new" flags; the business
-         model has its own quiet section further down.
-
-         The heading names the DESK, because that is the object in the pictures
-         and the thing a reader can recognise without interpreting anything.
-         "Pick a world to write from" and "Choose where your letters begin" both
-         asked to be decoded first (Patrick, 2026-08-14).
-
-         The LEDE now sells (2026-08-17, Patrick: sell these a bit, say how each
-         is made, spur imagination without overwhelming). It used to read "Each
-         collection brings its own desk, mailbox and matching stationery" — a
-         spec line, accurate and inert. "A different place to write from" is the
-         imaginative promise; "even the mailbox changes" is the evidence, and it
-         is the one detail a reader can CHECK against the six pictures directly
-         below it (toadstool, striped seaside box, café front, teahouse, stilt
-         house, volcanic). A claim the artwork proves in the same glance beats
-         any adjective. Note it still leaves the inventory to the note under the
-         spread — the imagination goes here, the counting goes there.
-
-         ONE SUBJECT PER ZONE (Patrick, 2026-08-17, same day, catching a hole
-         the selling rewrite opened): the heading says desk and the first draft
-         of the new lede said "each collection" — a noun the page had not
-         introduced, doing silent double duty for the thing in the pictures.
-         The old spec-line lede had been quietly DEFINING the noun by
-         enumeration, and losing that definition broke the vocabulary. The
-         rule now: everything from the heading through the desk grid says
-         DESK, the thing a reader can see; "collection" enters exactly once,
-         at the stationery spread's own heading ("Every desk brings its own
-         collection."), which states the desk-to-collection relationship in
-         the same glance as the picture that defines it — a word introduced
-         beside 31 pieces of evidence. After that the note may use both nouns
-         freely, and by the plans block "Collections" stands on its own.
-
-         (Scope nuance, deliberate: "every desk" on this page means the desks
-         the page shows — collection desks. The app's everyday catalog styles
-         are not on the site, so the claim is true where it is made.)
-
-         ("Collection" is the product's own noun — the one the app and the
-         receipts use — which is why it must arrive somewhere on this page,
-         and why it arrives only after the pictures have made the case.)
-
-         All six are real captures of the SAME desk — Maya's, with the same
-         five drawers and the same mail — re-styled between shots, so nothing
-         changes across the grid except the craft. Recipe in the app repo's
-         docs/MARKETING_SHOT.md. -->
-    <section class="feature" id="collections">
-      <div class="feature-head">
-        <h2><span>Pick a desk that inspires you.</span></h2>
-        <!-- The nbsp keeps "the mailbox" together: unbound, the line broke
-             after "even the", and an article dangling at a line end is the one
-             break worth spending a character to prevent. -->
-        <!-- "- even the mailbox changes" came off (Patrick, 2026-08-18).
-             It was there as the checkable detail behind the promise, and the
-             six pictures directly below prove it in the same glance without
-             being told to. The promise reads better alone. -->
-        <p class="lede">Each desk is a different place to write from.</p>
-      </div>
-
-      <div class="collections" tabindex="0" role="group" aria-label="Postmello collections">
-        <figure>
-          <figcaption>Fairy Glen</figcaption>
-          <img src="assets/desk-fairy_glen.jpg" alt="The Fairy Glen desk - a red-capped toadstool mailbox on a lilac desk, with a butterfly on the first drawer" width="920" height="639" loading="lazy" />
-        </figure>
-        <figure>
-          <figcaption>Seaside Post</figcaption>
-          <img src="assets/desk-seaside_post.jpg" alt="The Seaside Post desk - a red-and-cream striped mailbox with a brass porthole, on whitewashed boards" width="920" height="639" loading="lazy" />
-        </figure>
-        <figure>
-          <figcaption>Petit Café</figcaption>
-          <img src="assets/desk-petit_cafe.jpg" alt="The Petit Café desk - a Parisian café front with a green awning and a plate of macarons" width="920" height="639" loading="lazy" />
-        </figure>
-        <figure>
-          <figcaption>Japanese Garden</figcaption>
-          <img src="assets/desk-japanese_garden.jpg" alt="The Japanese Garden desk - a hinoki teahouse mailbox with indigo noren curtains and shoji drawers" width="920" height="639" loading="lazy" />
-        </figure>
-        <figure>
-          <figcaption>Baan Naa</figcaption>
-          <img src="assets/desk-baan_naa.jpg" alt="The Baan Naa desk - a stilt house mailbox beside a rice paddy, with woven drawer fronts" width="920" height="639" loading="lazy" />
-        </figure>
-        <figure>
-          <figcaption>Ember Peak</figcaption>
-          <img src="assets/desk-ember_peak.jpg" alt="The Ember Peak desk - a black volcanic mailbox lit from within, on a lava-veined desk" width="920" height="639" loading="lazy" />
-        </figure>
-      </div>
-
-      <!-- What the desks alone cannot say: the collection changes what a child
-           can MAKE there, not just where they sit.
-
-           This used to be one prettiest-piece-from-each-of-six spread, which
-           showed the RANGE of the catalog but never answered the question the
-           desk grid raises — "what do I actually get if I pick one?" A single
-           collection shown whole answers it: every paper, every envelope,
-           every stamp and every sticker in Fairy Glen, nothing left out. The
-           promise that the others match is carried by one sentence underneath
-           rather than by a sampler.
-
-           Laid out in CSS rather than baked as one image so a piece can be
-           swapped for a better one without a re-render, and so the arrangement
-           can be re-composed for a phone instead of shrinking to a postcard.
-           The angles are fixed values, not random: this is a composition. -->
-      <!-- The grid is six of a bigger set, and without a line saying so it
-           reads as the whole catalog. Set as a note under the desks rather than
-           a heading: it qualifies the grid above it, it does not introduce the
-           spread below. -->
-      <p class="collections-note">A few favorites - with more to discover.</p>
-
-      <h3 class="stationery-head">Every desk brings its own collection.</h3>
-      <!-- The one sentence of intent over the spread (Patrick, 2026-08-17).
-           Without it, 31 beautiful pieces can read as "lots of decoration";
-           this line converts the same evidence into a design promise — the
-           collection is made to be WRITTEN ON, not looked at. It is checkable
-           in the glance the page's own rule demands: every sheet below keeps
-           its art in a band at the edges and its middle open (the fan layout
-           already ORDERS the sheets by where their art sits — same fact,
-           load-bearing twice). Deliberately ONE sentence, and deliberately
-           silent about stickers and stamps: a second explanatory line about
-           restraint would spend the restraint the first one just claimed.
-           The word "premium" never appears — restraint stated plainly is how
-           the page earns it. -->
-      <p class="stationery-lede">The art keeps to the edges of every sheet -
-         the page itself is left for the letter.</p>
-      <div class="stationery" role="img"
-           aria-label="Everything in the Fairy Glen collection - nine letter papers fanned out, some turned portrait and some landscape, six envelopes stacked in a fan, six stamps and ten stickers">
-        <!-- The whole Fairy Glen pack, exactly as it ships. The set and the
-             counts in the caption below come from the catalog:
-               select s.type, count(*) from stationery s
-                 join stationery_packs p on p.id = s.pack_id and p.type = s.type
-                where p.collection_id = 'col_fairy_glen' and s.is_active
-                group by 1;
-             (papers counted once per design — the app carries a portrait and a
-             landscape of each, which is why three of the nine sheets here are
-             turned and why the caption can say so.) If the pack gains a piece,
-             both the spread and that sentence have to change together. -->
-
-        <!-- The four groups are wrapped only so the phone can lay each out as
-             its own row. On the desktop composition every piece is absolutely
-             positioned against .stationery, so these wrappers collapse to zero
-             height and change nothing. -->
-
-        <!-- Every paper in a fan has its right side covered by the next one, so
-             the tops ALTERNATE high/low and that is load-bearing rather than
-             decorative. A sheet sitting HIGH has a LOW neighbour, so its
-             TOP-right stays clear; a sheet sitting LOW has a HIGH neighbour, so
-             its BOTTOM-right does. Papers whose art is at the top are therefore
-             at the odd positions and papers whose art is along the bottom at
-             the even ones, and the fairy door — the one sheet with its art on
-             the RIGHT — goes last, where nothing covers it at all. Reorder
-             these and the art disappears under the neighbouring sheet. -->
-        <div class="st-group st-group--papers">
-        <img class="st-paper st-paper--portrait st-paper--1" src="assets/stationery/fairy-glen/paper-wisteria-portrait.jpg" alt="" width="420" height="560" loading="lazy" />
-        <img class="st-paper st-paper--2" src="assets/stationery/fairy-glen/paper-lily-pond.jpg" alt="" width="560" height="420" loading="lazy" />
-        <img class="st-paper st-paper--3" src="assets/stationery/fairy-glen/paper-dewdrops.jpg" alt="" width="560" height="420" loading="lazy" />
-        <img class="st-paper st-paper--4" src="assets/stationery/fairy-glen/paper-sparkle.jpg" alt="" width="560" height="420" loading="lazy" />
-        <img class="st-paper st-paper--portrait st-paper--5" src="assets/stationery/fairy-glen/paper-bluebells-portrait.jpg" alt="" width="420" height="560" loading="lazy" />
-        <img class="st-paper st-paper--6" src="assets/stationery/fairy-glen/paper-glen-meadow.jpg" alt="" width="560" height="420" loading="lazy" />
-        <img class="st-paper st-paper--portrait st-paper--7" src="assets/stationery/fairy-glen/paper-firefly-night-portrait.jpg" alt="" width="420" height="560" loading="lazy" />
-        <img class="st-paper st-paper--8" src="assets/stationery/fairy-glen/paper-fairy-ring.jpg" alt="" width="560" height="420" loading="lazy" />
-        <img class="st-paper st-paper--9" src="assets/stationery/fairy-glen/paper-fairy-door.jpg" alt="" width="560" height="420" loading="lazy" />
-        </div>
-
-        <!-- The envelopes are near-solid colour fields with one small motif
-             each, so a tight fan is the honest way to show six of them: what
-             reads is the chord — deep purple, lilac, pink, sage, blue, cream —
-             and the two whose motif sits bottom-right (moon, toadstool) are the
-             last two, where the fan no longer covers that corner. -->
-        <div class="st-group st-group--envelopes">
-        <img class="st-envelope st-envelope--1" src="assets/stationery/fairy-glen/envelope-twilight.png" alt="" width="480" height="343" loading="lazy" />
-        <img class="st-envelope st-envelope--2" src="assets/stationery/fairy-glen/envelope-sparkle.png" alt="" width="480" height="343" loading="lazy" />
-        <img class="st-envelope st-envelope--3" src="assets/stationery/fairy-glen/envelope-petals.png" alt="" width="480" height="343" loading="lazy" />
-        <img class="st-envelope st-envelope--4" src="assets/stationery/fairy-glen/envelope-bluebell.png" alt="" width="480" height="343" loading="lazy" />
-        <img class="st-envelope st-envelope--5" src="assets/stationery/fairy-glen/envelope-moon.png" alt="" width="480" height="343" loading="lazy" />
-        <img class="st-envelope st-envelope--6" src="assets/stationery/fairy-glen/envelope-toadstool.png" alt="" width="480" height="343" loading="lazy" />
-        </div>
-
-        <!-- Six stamps in two staggered rows, near the envelopes they belong
-             to. Level, six identical squares are a product row; offset, they
-             read as a strip that has been dealt out. -->
-        <div class="st-group st-group--stamps">
-        <img class="st-stamp st-stamp--1" src="assets/stationery/fairy-glen/stamp-bluebell.png" alt="" width="180" height="180" loading="lazy" />
-        <img class="st-stamp st-stamp--2" src="assets/stationery/fairy-glen/stamp-toadstool-house.png" alt="" width="180" height="180" loading="lazy" />
-        <img class="st-stamp st-stamp--3" src="assets/stationery/fairy-glen/stamp-moon.png" alt="" width="180" height="180" loading="lazy" />
-        <img class="st-stamp st-stamp--4" src="assets/stationery/fairy-glen/stamp-fairy-door.png" alt="" width="180" height="180" loading="lazy" />
-        <img class="st-stamp st-stamp--5" src="assets/stationery/fairy-glen/stamp-lantern.png" alt="" width="180" height="180" loading="lazy" />
-        <img class="st-stamp st-stamp--6" src="assets/stationery/fairy-glen/stamp-wings.png" alt="" width="180" height="180" loading="lazy" />
-        </div>
-
-        <!-- Ten stickers, sized one by one rather than to a single width: the
-             wand is twice as tall as it is wide and the flying letter is half
-             as tall, so one shared width makes the wand loom and the letter
-             vanish. These widths equalise AREA, which is what the eye reads as
-             "the same size". -->
-        <div class="st-group st-group--stickers">
-        <img class="st-sticker st-sticker--1" src="assets/stationery/fairy-glen/sticker-butterfly.png" alt="" width="180" height="153" loading="lazy" />
-        <img class="st-sticker st-sticker--2" src="assets/stationery/fairy-glen/sticker-toadstoolhouse.png" alt="" width="165" height="180" loading="lazy" />
-        <img class="st-sticker st-sticker--3" src="assets/stationery/fairy-glen/sticker-wand.png" alt="" width="95" height="180" loading="lazy" />
-        <img class="st-sticker st-sticker--4" src="assets/stationery/fairy-glen/sticker-flowercrown.png" alt="" width="180" height="159" loading="lazy" />
-        <img class="st-sticker st-sticker--5" src="assets/stationery/fairy-glen/sticker-moon.png" alt="" width="161" height="180" loading="lazy" />
-        <img class="st-sticker st-sticker--6" src="assets/stationery/fairy-glen/sticker-bluebell.png" alt="" width="141" height="180" loading="lazy" />
-        <img class="st-sticker st-sticker--7" src="assets/stationery/fairy-glen/sticker-fairydoor.png" alt="" width="177" height="180" loading="lazy" />
-        <img class="st-sticker st-sticker--8" src="assets/stationery/fairy-glen/sticker-lantern.png" alt="" width="140" height="180" loading="lazy" />
-        <img class="st-sticker st-sticker--9" src="assets/stationery/fairy-glen/sticker-wings.png" alt="" width="180" height="141" loading="lazy" />
-        <img class="st-sticker st-sticker--10" src="assets/stationery/fairy-glen/sticker-flyingletter.png" alt="" width="180" height="138" loading="lazy" />
+        <div class="paired-copy">
+          <div class="paired-claim">
+            <h2><span>It’s a mailbox, not a chat.</span></h2>
+            <p class="lede">No feed, no typing dots, no rush to reply.</p>
+          </div>
+          <div class="paired-claim" id="contacts">
+            <h2><span>Across town, or across an ocean.</span></h2>
+            <p class="lede">Every contact is approved before letters can be
+               exchanged.</p>
+          </div>
         </div>
       </div>
-      <!-- The picture is one collection; this sentence is what makes it stand
-           for all of them. Without it the spread reads as "here is Fairy Glen"
-           rather than "this is what a collection is".
-
-           It gained the CRAFT clause on 2026-08-17. The old ending — "Every
-           collection brings its own." — trailed off exactly where it should
-           have landed: its own WHAT? The replacement answers that and says how
-           a collection is made, in the only terms that are actually true of
-           these sets: one style, carried across every piece, with each piece
-           made for its own desk. Deliberately NOT "hand-drawn", "painted"
-           or "illustrated by artists" — a craft claim the production process
-           does not support is the one kind of copy that can really cost trust,
-           and coherence is the honest thing to boast about here anyway.
-
-           Vocabulary split inside the sentence (same day): "made for this
-           DESK alone" but "every COLLECTION is built the same way". Not an
-           accident — the first clause points at the pictures (the desk is
-           what the reader has been choosing since the heading), the second
-           uses the noun the heading directly above this spread has just
-           introduced, so the note is the handshake between the two words.
-
-           "In portrait and landscape", NOT "both ways round" (Patrick,
-           2026-08-17: weird). The folksier phrase read as plainer in a draft
-           and as a puzzle on the page — a Britishism the reader has to decode,
-           which is the same tax the section keeps paying down elsewhere.
-           Portrait/landscape is vocabulary every phone has already taught.
-           The spread stays re-composed to earn the claim either way (three of
-           the nine sheets are turned so the caption can say it). -->
-      <!-- Just the name now (Patrick, 2026-08-18) — a title for the spread
-           above rather than an inventory beneath it. The counts were doing
-           two jobs badly: nobody reads "nine papers, six envelopes, six
-           stamps, ten stickers" off a marketing page, and the picture already
-           shows more variety than the numbers claim. The rule the last line
-           stated ("every collection is built the same way") is likewise
-           something the six desk pictures further up demonstrate, so saying
-           it was belt over braces. -->
-      <p class="stationery-caption">Fairy Glen</p>
-    </section>
-
-    <!-- Relationship first, boundary second. "Only people you approve" led with
-         the rule, which made a page about writing to your grandmother read as a
-         parental-control product. The people come first now; the approval line
-         follows in one neutral sentence and needs no more than that. -->
-    <section class="feature feature--band" id="contacts">
-      <div class="feature-head">
-        <h2><span>Across town, or across an ocean.</span></h2>
-        <!-- "Friends, family and pen pals." came off (Patrick, 2026-08-18):
-             a list of who, in front of a sentence about how, when the heading
-             above already says "Across town, or across an ocean". The
-             friends-before-family ordering it existed to protect is still
-             argued four hundred lines up in the hero comment and still binds
-             anywhere the list comes back. -->
-        <p class="lede">Every contact is approved before letters can be
-           exchanged.</p>
-      </div>
-      <!-- The rail as it actually is: five drawers in order on one desk, in
-           the order the app puts them. This was five drawers cut from five
-           DIFFERENT desks and floated apart, which read as five separate
-           objects and made the row look assembled rather than photographed.
-           One crop of the mint desk. The bezel's inner edge is FOUND rather than
-           guessed — walk in from each side until the black frame ends — because
-           eyeballing it left a seven-pixel black bar down both edges. -->
       <figure class="drawer-row">
         <img src="assets/drawer-row.jpg"
              alt="A row of five desk drawers, each with a wooden nameplate - Iris, Theo, Grandma, Grandpa and Nana"
              width="1400" height="229" loading="lazy" />
       </figure>
+
     </section>
 
     <!-- One editorial interlude, two ideas: what Postmello believes, and how

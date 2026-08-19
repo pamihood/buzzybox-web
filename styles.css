@@ -1197,44 +1197,161 @@ main > .feature:last-child { padding-bottom: var(--s-5); }
   line-height: 1.5;
   color: var(--ink-soft);
 }
-/* Collections spans the whole row beneath the three desk blocks (2026-08-17,
-   Patrick). As a fourth column it competed on an axis it was never on: the
-   three above answer HOW MANY DESKS, and collections answer WHAT A DESK LOOKS
-   LIKE — orthogonal, and available whichever of the three you are on. Spanning
-   is the layout saying so, which is why the copy only has to confirm it once
-   ("on any plan") instead of the middle column having to disambiguate itself
-   in words, as it did while the four sat abreast.
-
-   It keeps the STACKED text of every other block (Patrick, 2026-08-17). It
-   was briefly set horizontal — offer left, terms right — on the theory that
-   opposite ends read as a row; what actually happened is that the terms
-   drifted a full column away from the thing they qualify, and the block
-   stopped matching the three above it. Same shape as its neighbours, one
-   glance, no exception to learn.
-
-   Its own HUE is the point: lilac, the one colour on the page that is not
-   kraft. Collections are the only item here that is not a rung on the desk
-   ladder — they apply on any of the three — and a different colour says
-   "different kind of thing" faster than any sentence could. Lilac rather than
-   sage or honey for two reasons: honey is now spoken for by the free block's
-   accent, and lilac is the chord of the stationery spread directly above it,
-   so the row reads as belonging to the pictures it refers to. */
-.plan--row {
-  grid-column: 1 / -1;
-  background-color: #eee8f3;
-  border-color: #d9cee4;
+/* (The old .plan--row rule lived here. Collections stopped being a member of
+   the plans list on 2026-08-18 — it is its own <section> now, styled under
+   "Collections panel" below — so the rule and the long comment justifying its
+   full-width span went with the markup they described.) */
+/* Feature lines. A stack of short facts, not a paragraph: three cards side by
+   side are read by COMPARING rows, and prose defeats that — the eye cannot
+   line up "unlimited letters and contacts, kept forever" against "choose 3
+   collections every year" when both are sentences. No bullet glyphs; the
+   left edge and the spacing do the listing, which keeps the block typographic
+   rather than administrative. */
+.plan-list {
+  list-style: none;
+  margin: var(--s-2) 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
-/* The 2/-1 variant is GONE (2026-08-18, same day it was added). Collections
-   are not a fourth plan and not an appendix of the two paid ones; the spec is
-   explicit that the three plans form one balanced row with a full-width panel
-   beneath. .plan--row's own 1/-1 does that, so the override simply went. */
-
-/* The permanence line closes the Collections panel, and it is the one fact on
-   the whole plans block that distinguishes a purchase from a subscription —
-   so it gets full ink rather than the note colour its siblings use. */
-.plan-keep {
-  color: var(--ink) !important;
+.plan-list li {
+  font-size: var(--fs-body);
+  line-height: 1.45;
+  color: var(--ink-soft);
+}
+/* The one line that is the reason to buy the tier gets full ink. One per card,
+   never two — the moment everything is emphasised, nothing is.
+   font-size:inherit is load-bearing: `.plans dd strong` sizes the card
+   HEADLINE, and without this reset it caught these too, so the feature line
+   rendered at headline size and Plus appeared to have two headlines. */
+.plan-list li strong {
+  font-size: inherit;
   font-weight: 600;
+  color: var(--ink);
+}
+/* The founding note sits directly under the struck price because it exists to
+   explain the strike. Italic and small: it is an annotation on the number
+   above it, not a fourth feature. */
+.plan-founding {
+  margin: 2px 0 0;
+  font-size: var(--fs-small);
+  font-style: italic;
+  color: var(--ink-mid);
+}
+
+/* ---------- Collections panel ---------- */
+/* Not a plan, so not in the plans grid and not shaped like a card. 40/60: the
+   copy needs only enough width to keep its lines short, and the art is the
+   argument — a collection is a whole world, and eight of them on one shelf
+   says that faster than the sentence above them does. */
+.collections-panel {
+  max-width: 980px;
+  margin: var(--s-4) auto 0;
+  display: grid;
+  grid-template-columns: 40% 1fr;
+  gap: var(--s-4);
+  align-items: center;
+  background-color: #eee8f3;
+  border: 1px solid #d9cee4;
+  border-radius: var(--radius-media);
+  padding: var(--s-4);
+}
+.collections-panel-eyebrow {
+  margin: 0 0 var(--s-2);
+  font-family: var(--font-apparatus);
+  font-size: var(--fs-micro);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-mid);
+}
+.collections-panel h3 {
+  margin: 0;
+  font-size: clamp(1.2rem, 1.7vw, 1.45rem);
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+.collections-panel-lede {
+  margin: var(--s-2) 0 0;
+  font-size: var(--fs-body);
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+/* Two facts, side by side, each a figure over its qualifier. This is the one
+   place the page states the collection economy as numbers, and reading it as
+   a pair is the point: three arrive free every year, and the rest are cheap. */
+.collections-facts {
+  margin: var(--s-3) 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-3);
+}
+.collections-facts dt {
+  font-size: clamp(1.02rem, 1.25vw, 1.16rem);
+  font-weight: 700;
+  color: var(--ink);
+}
+.collections-facts dd {
+  margin: 2px 0 0;
+  font-size: var(--fs-small);
+  color: var(--ink-soft);
+}
+/* Prominent by instruction and for a reason: it is the sentence that stops an
+   annual subscription reading as the start of an expensive stream. */
+.collections-facts-price {
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+.collections-panel-keep {
+  margin: var(--s-3) 0 0;
+  font-size: var(--fs-body);
+  font-weight: 600;
+  color: var(--ink);
+}
+/* The shelf. Transparent cutouts on the panel's own lilac — no cards, no
+   frames: these are objects on a surface, the same grammar the desks use. */
+.collections-props {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--s-3) var(--s-2);
+}
+.collections-props li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  text-align: center;
+}
+.collections-props img {
+  width: auto;
+  max-width: 100%;
+  height: 74px;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 8px rgba(60, 42, 20, 0.14));
+}
+.collections-props span {
+  font-family: var(--font-apparatus);
+  font-size: 0.68rem;
+  letter-spacing: 0.04em;
+  color: var(--ink-mid);
+}
+/* Phone: the panel stacks and the shelf halves its columns. The art stays —
+   it is the most persuasive thing in the section and the first thing a
+   responsive pass would be tempted to drop. */
+@media (max-width: 760px) {
+  .collections-panel {
+    grid-template-columns: 1fr;
+    max-width: 420px;
+    gap: var(--s-3);
+  }
+  .collections-props { grid-template-columns: repeat(2, 1fr); }
+  .collections-props img { height: 84px; }
 }
 /* Reassurance. Not a headline, but it was nearly invisible at --fs-small in
    --ink-soft, and it is the sentence that answers "so what is the catch". Full

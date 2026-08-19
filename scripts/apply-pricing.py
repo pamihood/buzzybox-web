@@ -96,7 +96,9 @@ def desks_line(plan, key):
     below it — see the membership terms."""
     n = plan["max_desks"]
     if key == "free":
-        return "One desk" if n == 1 else f"{n} desks"
+        # Numeral, like every other figure in the block. "One desk" was the
+        # odd one out the moment the paid cards started saying "Up to 4".
+        return f"{n} desk" + ("" if n == 1 else "s")
     return f"Up to {n} desk" + ("" if n == 1 else "s")
 
 
@@ -110,7 +112,10 @@ def expected_lines(pricing):
         # The verb rides with the price: this slot is the prominent one, and
         # "Add more from $0.99" is the whole collection economy in four words
         # — cheap, optional, on top of the three that come included.
-        "collections": f"Add more from {money(pricing['collections']['price_from'])}",
+        # Lives in the Collections panel's figure slot now, with "for
+        # additional collections" as its qualifier underneath — so the verb
+        # that used to ride along here is no longer needed.
+        "collections": f"From {money(pricing['collections']['price_from'])}",
         # The monthly equivalent came OUT (2026-08-18). The spec allows it as
         # supporting copy and it was never the lead, but on a card whose
         # headline is now a promise rather than a number, a second money
@@ -121,13 +126,16 @@ def expected_lines(pricing):
         # "Early price, yours to keep" survives the spec's suggested copy on
         # purpose. The spec forgot the founding discount, and a struck $19.99
         # with nothing explaining it is worse than no strike at all.
+        # One job now: explain the strike. The spec's card table moved the
+        # desk count back into the headline and "Renews yearly" into the
+        # feature list, which leaves this line saying the only thing neither
+        # of those can — that the struck price is not a first-year teaser.
+        # When founding_window closes, selling == regular, the strike drops,
+        # and this line empties itself.
         "membership-terms": (
-            f"{desks_line(fam, 'membership')} · Renews yearly · Early price, yours to keep"
+            "Founding price - yours to keep"
             if selling_price(pricing, fam) != fam["price_per_year"]
-            else f"{desks_line(fam, 'membership')} · Renews yearly"
-        ),
-        "membership_plus-terms": (
-            f"{desks_line(plus, 'membership_plus')} · Renews yearly"
+            else ""
         ),
     }
 
@@ -170,12 +178,9 @@ def main():
     disagreements = []
     # (attribute, tag alternation, expected map) — one rewrite rule each.
     for attr, tags, expected in (
-        ("data-price", "p|span", expected_lines(pricing)),
+        ("data-price", "p|span|dt", expected_lines(pricing)),
         ("data-plan-name", "dt", expected_names(pricing)),
-        # Free only: the paid cards carry their desk count inside the
-        # generated terms line above, not in a headline slot.
-        ("data-plan-desks", "strong",
-         {k: v for k, v in expected_desks(pricing).items() if k == "free"}),
+        ("data-plan-desks", "strong", expected_desks(pricing)),
     ):
         for key, want in expected.items():
             pat = re.compile(

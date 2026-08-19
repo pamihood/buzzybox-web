@@ -784,56 +784,91 @@
                reads as a restriction being disclosed. -->
         <div class="plan plan--included">
           <dt data-plan-name="free">Free</dt>
-          <dd><strong data-plan-desks="free">One desk</strong>
+          <dd><strong data-plan-desks="free">1 desk</strong>
               <p class="plan-price" data-price="free">Free</p>
-              <span>Unlimited letters and contacts. Starter Collection included.</span></dd>
+              <ul class="plan-list">
+                <li>Unlimited letters and contacts</li>
+                <li>Starter Collection included</li>
+                <li>Keep your letters forever</li>
+              </ul></dd>
         </div>
         <div class="plan">
           <dt data-plan-name="membership">Membership</dt>
-          <!-- The HEADLINE is the collections promise, not the desk count
-               (spec, 2026-08-18). That inversion is the whole revision in one
-               layout decision: while desks led, the card only spoke to a
-               household that needed a second one. "Choose 3 collections every
-               year" is a reason for a one-desk household to be here, and it is
-               why the tier recurs — the value arrives again every year rather
-               than being a one-off unlock. Desks demote to the terms line,
-               where they are still the first thing a big household reads. -->
-          <dd><strong>Choose 3 collections every year.</strong>
+          <!-- The desk count is the HEADLINE again (spec table, 2026-08-18).
+               It was briefly the collections promise, on the theory that the
+               promise is what sells the tier — which is true, and still the
+               wrong slot for it. The headline's job across three cards side by
+               side is to be the thing you COMPARE, and the only comparable
+               figure is desks. The promise is the emphasised feature line
+               instead, which is where a reader looks after they have placed
+               the card on the ladder. -->
+          <dd><strong data-plan-desks="membership">Up to 4 desks</strong>
               <p class="plan-price" data-price="membership"><s>$19.99</s> $14.99/year</p>
-              <span data-price="membership-terms">Up to 4 desks · Renews yearly · Early price, yours to keep</span></dd>
+              <p class="plan-founding" data-price="membership-terms">Founding price - yours to keep</p>
+              <ul class="plan-list">
+                <li><strong>Choose 3 collections every year</strong></li>
+                <li>The full Catalog</li>
+                <li>Renews yearly</li>
+              </ul></dd>
         </div>
         <div class="plan plan--plus">
           <dt data-plan-name="membership_plus">Membership Plus</dt>
-          <dd><strong>Everything in Membership, with more desks.</strong>
+          <dd><strong data-plan-desks="membership_plus">Up to 12 desks</strong>
               <p class="plan-price" data-price="membership_plus">$29.99/year</p>
-              <span data-price="membership_plus-terms">Up to 12 desks · Renews yearly</span></dd>
-        </div>
-        <!-- FULL WIDTH, and the spec is explicit about why: collections are
-             "not a fourth membership plan" and must not read as a fourth card
-             under three. The three plans are one balanced row; this is a panel
-             beneath all of them.
-
-             It spanned 1/-1 originally, was briefly narrowed to 2/-1 on the
-             theory that collections belong to the paid tiers, and is back.
-             The narrowing was wrong on the merits, not just the look: it made
-             the row an appendix of the two paid columns, when what it actually
-             is is the thing the whole Catalog economy runs on. Its own lilac
-             already says "different kind of thing"; the width says "applies to
-             the whole page above".
-
-             "from $0.99" is deliberately in the prominent price slot. It is
-             not there to sell a $0.99 item — it is there so a reader who has
-             just been asked for an annual subscription can see that the
-             add-ons are cheap, and that joining is not the start of an
-             expensive stream. -->
-        <div class="plan plan--row">
-          <dt>Collections</dt>
-          <dd><strong>Choose 3 with Membership every year.</strong>
-              <p class="plan-price" data-price="collections">Add more from $0.99</p>
-              <span>Each collection brings a new desk, mailbox, papers, envelopes, stamps and stickers.</span>
-              <span class="plan-keep">Yours for good - even if your Membership ends.</span></dd>
+              <ul class="plan-list">
+                <li><strong>Everything in Membership, with more desks</strong></li>
+                <li>The full Catalog</li>
+                <li>Renews yearly</li>
+              </ul></dd>
         </div>
       </dl>
+
+      <!-- COLLECTIONS: out of the plans list altogether (spec, 2026-08-18).
+           It spent the day as a fourth card, then a part-width card, and the
+           reason neither looked right is that it was never a plan — sitting
+           inside the <dl> of plans was the markup saying something untrue.
+           It is now its own panel: 40% copy, 60% pictures.
+
+           The pictures are the point (Patrick: "those are beautiful prop
+           icons... we could put all of them there"). They are the REAL prop
+           clusters the app prints on each collection's first Catalog page —
+           the same art, not marketing renders — so the panel doubles as proof
+           that a collection is a whole world rather than a texture pack. All
+           eight, because the spec's "3-4 glimpses" undersells a shelf this
+           good, and because eight reads as a catalog while three reads as a
+           sample.
+
+           $0.99 is deliberately prominent: a reader who has just been asked
+           for an annual subscription needs to see that the add-ons are cheap,
+           not that they are the beginning of a stream. -->
+      <section class="collections-panel" aria-labelledby="collections-panel-title">
+        <div class="collections-panel-copy">
+          <p class="collections-panel-eyebrow" id="collections-panel-title">Collections</p>
+          <h3>New places to write from.</h3>
+          <p class="collections-panel-lede">Each collection brings its own desk, mailbox, papers, envelopes, stamps and stickers.</p>
+          <dl class="collections-facts">
+            <div>
+              <dt>3 included every year</dt>
+              <dd>with Membership</dd>
+            </div>
+            <div>
+              <dt class="collections-facts-price" data-price="collections">From $0.99</dt>
+              <dd>for additional collections</dd>
+            </div>
+          </dl>
+          <p class="collections-panel-keep">Yours for good - even if your Membership ends.</p>
+        </div>
+        <ul class="collections-props">
+          <li><img src="assets/collections/fairy_glen.png" alt="Fairy Glen - a toadstool cottage, a lantern and a jar of fireflies" width="218" height="300" loading="lazy" /><span>Fairy Glen</span></li>
+          <li><img src="assets/collections/japanese_garden.png" alt="Japanese Garden - a blossoming bonsai, a koi and a rice ball" width="470" height="298" loading="lazy" /><span>Japanese Garden</span></li>
+          <li><img src="assets/collections/seaside_post.png" alt="Seaside Post - a lighthouse, a crab and a pail" width="168" height="300" loading="lazy" /><span>Seaside Post</span></li>
+          <li><img src="assets/collections/woodland_friends.png" alt="Woodland Friends - a fox, an owl and a scatter of acorns" width="445" height="300" loading="lazy" /><span>Woodland Friends</span></li>
+          <li><img src="assets/collections/petit_cafe.png" alt="Petit Café - macarons, an eclair and a coffee cup" width="338" height="300" loading="lazy" /><span>Petit Café</span></li>
+          <li><img src="assets/collections/ember_peak.png" alt="Ember Peak - a dragon, a flame and a snowflake" width="287" height="300" loading="lazy" /><span>Ember Peak</span></li>
+          <li><img src="assets/collections/ironhold.png" alt="Ironhold - a castle keep, a crown and a torch" width="332" height="300" loading="lazy" /><span>Ironhold</span></li>
+          <li><img src="assets/collections/baan_naa.png" alt="Baan Naa - a lotus, a water buffalo and a garland" width="364" height="300" loading="lazy" /><span>Baan Naa</span></li>
+        </ul>
+      </section>
 
       <!-- The founding explainer is GONE (2026-08-17, final cut — Patrick:
            "that join while Postmello is new" made it sound like no one is

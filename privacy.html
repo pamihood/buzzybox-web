@@ -37,7 +37,7 @@
     <article class="doc">
       <a class="back" href="index.html">← Home</a>
       <h1>Privacy Policy</h1>
-      <p class="updated">Last updated: August 18, 2026</p>
+      <p class="updated">Last updated: August 21, 2026</p>
 
       <p>Postmello (“we,” “us,” “our”) makes a cozy iPad app for writing and exchanging handwritten digital letters with a small circle of approved contacts. We care deeply about privacy - especially because families and children use Postmello. This policy explains what we collect, why, and the choices you have.</p>
 
@@ -104,11 +104,29 @@
       <p>The service providers we currently use are:</p>
       <ul>
         <li><strong>Supabase</strong> - hosting, database, file storage, and authentication (servers in the United States).</li>
-        <li><strong>Resend</strong> - delivery of account and notification emails.</li>
+        <li><strong>Resend</strong> - delivery of account and notification emails, and of the email that tells an email contact a letter is waiting for them.</li>
+        <li><strong>Postmark</strong> - receiving replies from an email contact, so they can arrive on the desk as a letter.</li>
         <li><strong>Sentry</strong> - crash and error reporting.</li>
         <li><strong>Apple</strong> - app distribution, subscriptions and billing, and Sign in with Apple.</li>
         <li><strong>Google</strong> - Sign in with Google, if you choose that option.</li>
         <li><strong>Kids Web Services</strong> (Epic Games) - confirming that the adult approving a child’s desk is an adult. They receive the adult’s email address; they receive nothing about the child.</li>
+      </ul>
+
+      <h2>Letters sent to an email contact</h2>
+      <p>Most Postmello contacts are other Postmello desks, and those letters never leave the app. But an adult can also approve an <strong>email contact</strong> for a desk - a grandparent, say, who does not use the app. Mail then leaves and enters the service by email, so it is worth setting out exactly what happens.</p>
+      <p><strong>When a letter is sent to an email contact:</strong></p>
+      <ul>
+        <li><strong>The letter itself is not sent by email.</strong> The email carries a picture of the <em>envelope</em> - the outside, with its stickers and address - and a private link. The letter is read on a web page opened by that link.</li>
+        <li><strong>The link expires after 30 days</strong>, and an adult can revoke it sooner from the admin area. Anyone holding the link can open that page, so it is private in the same way a posted letter is: treat it as something not to forward.</li>
+        <li><strong>The email also carries a private return address</strong> belonging to that one contact and that one desk, so they can write back.</li>
+      </ul>
+      <p><strong>When that contact replies:</strong></p>
+      <ul>
+        <li><strong>Postmark receives the reply</strong> and passes it to us. We keep the reply's text and a few technical details - who it came from, when it arrived, and the result of the checks below. We do not keep the original email message.</li>
+        <li><strong>We check the reply really came from the approved address</strong>, using the standard anti-spoofing signals that mail providers publish. A reply we cannot confirm is <strong>held for an adult to review</strong> in the admin area and is never shown to the desk unless that adult delivers it.</li>
+        <li><strong>The reply becomes a typewritten letter</strong> on the desk. Only the words carry over: web links are replaced with "[link removed]", emoji are left out, and photos and attachments are not delivered at all. A long reply arrives as several letters in a row.</li>
+        <li><strong>We email the sender a short confirmation</strong> that their letter is on its way, listing anything that changed - so they are never left guessing. It never says whether the letter was read.</li>
+        <li><strong>An adult stays in control.</strong> An email contact has to be approved by an adult in the admin area, like any other contact, and can be removed at any time.</li>
       </ul>
 
       <h2>Data retention and deletion</h2>

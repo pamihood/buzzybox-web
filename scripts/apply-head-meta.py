@@ -30,9 +30,13 @@ FONTS = (
 
 # Every page takes the fonts, including 404 (which takes nothing else — it is
 # noindex and served at any depth, so canonical and og:url are meaningless).
+# `confirmed` and `reset` are here for the same reason 404 is: they take the
+# fonts and nothing else. Both are noindex transactional landings that a
+# Supabase redirect drops someone on once, so a canonical URL and an og:card
+# would be describing a page nobody links to.
 FONT_PAGES = [
     "index.html", "support.html", "privacy.html", "terms.html", "safety.html",
-    "404.html", "parents.html", "blog/index.html",
+    "404.html", "parents.html", "confirmed.html", "reset.html", "blog/index.html",
     "blog/why-i-built-postmello/index.html",
     "blog/designing-a-desk-not-an-app/index.html",
 ]

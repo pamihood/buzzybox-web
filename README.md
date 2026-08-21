@@ -2,7 +2,7 @@
 
 Static marketing + legal site for [Postmello](https://postmello.com), the cozy iPad app for handwritten letters.
 
-Served via **GitHub Pages** at the apex domain `postmello.com`.
+Served via **Cloudflare Pages** at the apex domain `postmello.com`.
 
 ## Pages
 
@@ -15,12 +15,12 @@ Served via **GitHub Pages** at the apex domain `postmello.com`.
 | `privacy.html` | Privacy Policy (App Store privacy URL) |
 | `support.html` | Help / contact (App Store support URL — filename kept for the store listing, nav reads "Help") |
 | `terms.html` | Terms of Use |
-| `404.html` | Not-found page. **Root-absolute links only** — GitHub Pages serves it at any depth, so `assets/…` would resolve against the missing path and the page would arrive unstyled |
+| `404.html` | Not-found page. **Root-absolute links only** — the host serves it at any depth, so `assets/…` would resolve against the missing path and the page would arrive unstyled |
 | `sitemap.xml`, `robots.txt` | Hand-maintained. Add the entry in the same commit that adds a page. `/letter/` is excluded from both: it is mail |
 
 ## Editing
 
-Plain HTML + one stylesheet (`styles.css`). No build step. Edit and push to `main`; GitHub Pages redeploys automatically.
+Plain HTML + one stylesheet (`styles.css`). No build step. Edit and push to `main`; Cloudflare Pages redeploys automatically.
 
 **Contact address: `support@postmello.com`** — Help, Privacy, Terms, Safety, 404
 and every footer. Nothing on the site should carry a personal address.
@@ -225,10 +225,23 @@ break by accident:
 
 ## Custom domain
 
-`CNAME` pins the site to `postmello.com`, whose DNS is on **Cloudflare** (apex
-A/AAAA plus a `www` CNAME, all DNS-only so GitHub issues the certificate).
+The site is served by **Cloudflare Pages** — project `postmello-web`, connected
+to this repo, deploying on push to `main`. `postmello.com` and `www` are both
+proxied CNAMEs to `postmello-web.pages.dev`, and Cloudflare issues the
+certificate. The `CNAME` file is a GitHub Pages leftover, kept while that stays
+claimed as a one-DNS-change rollback; it does nothing here.
 
-`buzzybox.app` is the old home and now **404s**. GitHub Pages serves exactly one
-custom domain and does not redirect the others — its DNS is still at Namecheap
-pointing here, which is why it errors rather than failing to resolve. Nothing
-depends on it; keep renewing it anyway so redirecting stays an option.
+Cloudflare Pages 308-redirects `/x.html` to `/x`. Both forms resolve and the
+content is identical, but `sitemap.xml` and the `canonical`/`og:url` tags still
+name the `.html` form — so they currently point at a path the server redirects.
+Worth aligning next time the head meta is regenerated.
+
+`buzzybox.app` is the old home and no longer resolves at all. Its DNS was left
+at Namecheap pointing at GitHub Pages after the site moved, and because GitHub
+had released the hostname, a stranger claimed it and served their own site from
+our domain (2026-08-20). The A records and the `www` CNAME were deleted the same
+day. The Resend TXT and MX records were deliberately kept: they are the idle
+email rollback lane, and unlike a hostname they cannot be claimed by anyone
+else. Keep renewing the domain — letting it lapse hands the name away for good —
+and know that redirecting it needs a Redirect Rule at a host that can serve two
+domains, which is a thing DNS alone never did.

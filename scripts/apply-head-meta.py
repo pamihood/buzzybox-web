@@ -32,18 +32,25 @@ FONTS = (
 # noindex and served at any depth, so canonical and og:url are meaningless).
 FONT_PAGES = [
     "index.html", "support.html", "privacy.html", "terms.html", "safety.html",
-    "404.html", "blog/index.html",
+    "404.html", "parents.html", "blog/index.html",
     "blog/why-i-built-postmello/index.html",
     "blog/designing-a-desk-not-an-app/index.html",
 ]
 
 # page -> (canonical path, asset prefix)
+#
+# Paths are EXTENSIONLESS. The host 308-redirects /x.html to /x, so naming the
+# .html form here pointed every canonical and og:url at a URL that immediately
+# redirects -- the page telling crawlers one thing and the server another.
+# Both forms still resolve, so old links (the App Store privacy and support
+# URLs among them) keep working.
 PAGES = {
     "index.html": ("/", ""),
-    "support.html": ("/support.html", ""),
-    "privacy.html": ("/privacy.html", ""),
-    "terms.html": ("/terms.html", ""),
-    "safety.html": ("/safety.html", ""),
+    "support.html": ("/support", ""),
+    "privacy.html": ("/privacy", ""),
+    "terms.html": ("/terms", ""),
+    "safety.html": ("/safety", ""),
+    "parents.html": ("/parents", ""),
     "blog/index.html": ("/blog/", "../"),
     "blog/why-i-built-postmello/index.html": ("/blog/why-i-built-postmello/", "../../"),
     "blog/designing-a-desk-not-an-app/index.html": ("/blog/designing-a-desk-not-an-app/", "../../"),
@@ -93,11 +100,29 @@ for rel, (path, prefix) in PAGES.items():
                           f'{indent}<meta property="og:image" content="{CARD}" />', anchor)
         added += ["og:image"] if ok else []
 
+    # og:url and canonical carry the origin AND the path, so they have to be
+    # REPLACED when either changes. ensure() only inserts, which is why the
+    # .html canonicals sat stale after the host started redirecting them, and
+    # why the "single grep" in the docstring was not actually true for these
+    # two. Same replace-then-fall-back-to-insert shape as og:image above.
+    for pattern, tag, probe, label in [
+        (r'<meta property="og:url" content="[^"]*"',
+         f'<meta property="og:url" content="{ORIGIN}{path}"',
+         'property="og:url"', "og:url"),
+        (r'<link rel="canonical" href="[^"]*"',
+         f'<link rel="canonical" href="{ORIGIN}{path}"',
+         'rel="canonical"', "canonical"),
+    ]:
+        html, n = re.subn(pattern, tag, html)
+        if n:
+            added.append(label)
+        else:
+            html, ok = ensure(html, probe, f"{indent}{tag} />", anchor)
+            added += [label] if ok else []
+
     for probe, tag in [
-        ('property="og:url"', f'<meta property="og:url" content="{ORIGIN}{path}" />'),
         ('property="og:site_name"', '<meta property="og:site_name" content="Postmello" />'),
         ('name="twitter:card"', '<meta name="twitter:card" content="summary_large_image" />'),
-        ('rel="canonical"', f'<link rel="canonical" href="{ORIGIN}{path}" />'),
         ('rel="apple-touch-icon"', f'<link rel="apple-touch-icon" href="{prefix}assets/app-icon.png" />'),
     ]:
         html, ok = ensure(html, probe, indent + tag, anchor)

@@ -232,9 +232,10 @@ certificate. The `CNAME` file is a GitHub Pages leftover, kept while that stays
 claimed as a one-DNS-change rollback; it does nothing here.
 
 Cloudflare Pages 308-redirects `/x.html` to `/x`. Both forms resolve and the
-content is identical, but `sitemap.xml` and the `canonical`/`og:url` tags still
-name the `.html` form — so they currently point at a path the server redirects.
-Worth aligning next time the head meta is regenerated.
+content is identical; `sitemap.xml` and the `canonical`/`og:url` tags name the
+extensionless form to match, so nothing advertises a URL the server redirects.
+Old `.html` links keep working — the App Store privacy and support URLs among
+them.
 
 `buzzybox.app` is the old home and no longer resolves at all. Its DNS was left
 at Namecheap pointing at GitHub Pages after the site moved, and because GitHub

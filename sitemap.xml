@@ -25,24 +25,24 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://postmello.com/safety.html</loc>
+    <loc>https://postmello.com/safety</loc>
     <lastmod>2026-08-15</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://postmello.com/support.html</loc>
+    <loc>https://postmello.com/support</loc>
     <lastmod>2026-08-15</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://postmello.com/privacy.html</loc>
+    <loc>https://postmello.com/privacy</loc>
     <lastmod>2026-08-15</lastmod>
     <priority>0.4</priority>
   </url>
   <url>
-    <loc>https://postmello.com/terms.html</loc>
+    <loc>https://postmello.com/terms</loc>
     <lastmod>2026-08-15</lastmod>
     <priority>0.4</priority>
   </url>
-  <url><loc>https://postmello.com/parents.html</loc></url>
+  <url><loc>https://postmello.com/parents</loc></url>
 </urlset>

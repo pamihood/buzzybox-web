@@ -18,7 +18,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@500&amp;family=Nunito:wght@400..800&amp;family=Rubik:wght@600&amp;display=swap" />
-  <link rel="stylesheet" href="styles.css?v=4e9b6463" />
+  <link rel="stylesheet" href="styles.css?v=021fb251" />
 </head>
 <body>
   <header class="site-head site-head--wide">
@@ -86,7 +86,36 @@
              above argues for, minus the claim. -->
         <p class="tagline">A private desk for digital letters with friends
            and family - without the rush of messaging.</p>
-        <span class="badge">Coming first to iPad.</span>
+        <!-- The platform fact keeps its badge; the beta fact sits under it
+             as a footnote (Patrick, 2026-08-22, after two rounds).
+
+             Round one put both facts on one line with a middot and dropped the
+             pill, because the pair overflowed the hero's text column at every
+             desktop width from about 900 to 1400px and the badge broke into a
+             two-row rounded box. Correct diagnosis, wrong fix: the pill was
+             never the problem, the LINE was. Split across two lines the badge
+             holds one short phrase again - which is the only thing it was ever
+             good at - and the second fact gets to be what it actually is.
+
+             "Currently in private beta" is a fact, not a tease: the build is on
+             TestFlight with real households on it, and it is the honest reason
+             there is no download button anywhere on this page. It reads as a
+             footnote because that is its weight - a visitor needs to know it
+             before they go looking for a link, and not one moment sooner. No
+             waitlist form, no "request an invite", no count of testers: the
+             moment this line asks for something it stops being quiet, and
+             there is nothing to collect an address for yet.
+
+             No scroll cue here. A "See how it works" link with an arrow lived
+             under this pair for one round and came off (Patrick: not needed) -
+             the page is a single column of large pictures and nobody has ever
+             needed to be told it continues downward. It was also the only
+             thing on the first screen that looked like a control, which is one
+             more than this hero wants. -->
+        <p class="hero-status">
+          <span class="badge">Coming first to iPad.</span>
+          <span class="hero-note">Currently in private beta</span>
+        </p>
       </div>
       <figure class="hero-shot">
         <img src="assets/app-desk.jpg"
@@ -231,54 +260,107 @@
          differentiator and the artwork cannot show it; and never reach for
          wellness vocabulary, no screen time, no mindful anything.) -->
 
-    <!-- One editorial interlude, two ideas: what Postmello believes, and how
-         it is built. Both are doorways to the blog rather than arguments
-         finished here.
+    <!-- WHY POSTMELLO, moved up to sit between the ritual and the desks
+         (Patrick, 2026-08-22). It spent five days at the bottom of the page,
+         and his reading of that order is the argument for this one: by the
+         time "Staying in touch doesn't have to start with texting." arrived,
+         a visitor had already been shown an enormous amount of product - and
+         that sentence is what explains why any of it should matter to them.
+         It belongs before the showcase it justifies, not after it.
 
-         Moved BELOW the product (2026-08-17, Patrick). It used to sit third,
-         between the calm band and the desks — the only all-text stretch on
-         the page, landing exactly where a cold visitor is still deciding
-         whether to scroll, and people being shown the site switched off
-         before ever reaching the desks. The visuals now run unbroken
-         (screenshots, mailbox, desks, stationery, drawer row), and the
-         editorial is the bridge into the money section: both columns are
-         written for the adult deciding whether to trust this thing, and the
-         reader standing here is that adult. Two smaller wins ride along —
-         "who a reply is allowed to reach" now lands AFTER the contacts
-         section has stated the approval rule it references, and the quiet
-         band up top carries the blunt differentiation, so the page no longer
-         needs this section early to say what makes it different.
+         This is NOT a straight revert of the 2026-08-17 move that put it
+         down there, and the difference is the whole reason it can work this
+         time. What was killed then sat THIRD, directly under a text band,
+         so the page's first two screens after the hero were both prose and
+         people being shown the site switched off before ever reaching the
+         desks. It now lands FOURTH, after four claims and three photographs
+         of a letter being made: the reader arrives here having already seen
+         what the thing is and what you do with it, and one calm block of type
+         is a breath between the ritual and the desks rather than a wall in
+         front of them. If it ever starts costing scroll depth again, the
+         thing to move is this section - not the pictures.
 
-         Written in the BRAND voice, deliberately. The founder's story — the
-         nine-year-old who wanted to borrow a phone to text her best friend — is
-         the whole of /blog/why-i-built-postmello, where first person belongs.
-         On the homepage it would make a lasting children's brand read as one
-         developer's side project. Homepage: what Postmello believes. Blog:
-         where those beliefs came from.
+         SPLIT from Design philosophy on the same move, which stayed where it
+         was. The two rode in one two-column grid for months, and only one of
+         them wanted to travel: "Looking like a desk was the easy part" is
+         written to land AFTER six desk photographs and a whole stationery
+         collection, because the reader has just been seduced by exactly the
+         surface that sentence sets aside. Dragged up here it would be
+         setting aside a surface nobody has been shown yet. So each is its
+         own single centred column now, and the pair reads as one editorial
+         voice returning rather than as an interlude and a stray.
 
-         The headline names texting outright. Not as an enemy — the point is not
-         that texting is bad, it is that instant messaging has become the
-         assumed FIRST form of independent digital communication, and there can
-         be another starting point. Hence none of the vocabulary that would turn
-         this into a wellness pitch: no digital independence, no screen time, no
-         mindful anything.
+         Still the BRAND voice, and that rule survives the warming below. The
+         founder's story - the nine-year-old who wanted to borrow a phone to
+         text her best friend - is the whole of /blog/why-i-built-postmello,
+         where first person belongs. Homepage: what Postmello believes, and
+         now where that belief was tested. Blog: whose belief it is.
 
-         BOTH paragraphs were cut by about half on 2026-08-17 (Patrick: reduce
-         the text, the taglines are good). The headlines are untouched — they
-         were always the load-bearing part, and each column is a doorway to a
-         blog post rather than the argument finished here, so the prose only has
-         to earn the click. What went, in both columns, was the sentence that
-         RESTATED the headline before adding anything.
+         The headline names texting outright. Not as an enemy - the point is
+         not that texting is bad, it is that instant messaging has become the
+         assumed FIRST form of independent digital communication, and there
+         can be another starting point. Hence none of the vocabulary that
+         would turn this into a wellness pitch: no digital independence, no
+         screen time, no mindful anything. -->
+    <section class="feature editorial-section" id="why">
+      <div class="editorial editorial--solo">
+        <article class="editorial-col">
+          <p class="eyebrow">Why Postmello</p>
+          <h2>Staying in touch doesn’t have to start with texting.</h2>
+          <!-- Patrick's copy, 2026-08-22, third cut. It replaced "Kids are
+               getting access to technology earlier…" and then tightened twice
+               in one day, and both edits went the same direction.
 
-         "Postmello is another place to start" answers this column's headline in
-         its own words ("doesn't have to START with texting") instead of the old
-         "gives them another way", which pointed nowhere in particular. The cut
-         also retires "with more room for thought and creativity" — a claim the
-         page cannot show and the blog can.
+               WHAT THE PARAGRAPH DOES: the old one named a trend and offered an
+               alternative to it; this one names the MACHINERY and offers an
+               alternative to that. Quick replies, group chats, photos, links,
+               notifications - every item is a real mechanism a reader can
+               picture, which is the same move the four claims at the top of the
+               page make and the reason they work. A list of mechanisms
+               convinces where an adjective about calm would not.
 
-         It fixes a rule violation too: "exchange digital letters" was the
-         SECOND "digital" in the page's body copy, and the hero's comment says
-         that word appears once and never again. Now it does. -->
+               WHAT CAME OUT, twice, and should stay out. "The pressure to
+               always be reachable" was the sixth item and the only one that was
+               not a mechanism - it was the CONCLUSION, and stating it made the
+               five real things read as evidence for an accusation instead of
+               simply being true. Let the list end on "notifications" and the
+               reader draws it themselves. "A medium of their own - room to
+               write" lost both its noun and its dash: "medium" is a critic's
+               word, "place" is the product, and the page now has no dash in
+               this section at all.
+
+               "wasn't made for kids" is the whole argument in five words, and
+               it is NOT "texting is bad" - the distinction this section has
+               always kept, and the reason "made for" beats "designed for":
+               design is a judgement, making is just who it was built for.
+               Texting was built for adults who had already agreed to be
+               reachable.
+
+               TWO paragraphs, not one. The break falls exactly where the
+               argument turns from what texting is to what Postmello is, and a
+               centred column at this measure needs the air - as one block it
+               ran six lines and read as a wall.
+
+               The word "texting" lands in the headline and again in the first
+               line on purpose: the headline states it, the body picks it up.
+
+               (A second paragraph about the nine-year-old and "shaped by
+               watching real kids use it" stood here between the two cuts. It
+               went with this one - Patrick has now written this body twice
+               without it. The legitimacy it carried is not lost, only moved: it
+               is the whole of the essay the link below opens. If it ever comes
+               back, it comes back as ONE sentence and every clause in it has to
+               be a fact that essay already tells.) -->
+          <p>Texting wasn’t made for kids. It’s built around quick replies,
+             group chats, photos, links, and notifications.</p>
+          <p>Postmello gives kids a place of their own to write, draw, be silly
+             or thoughtful, and stay in touch independently with people you
+             approve.</p>
+          <a class="editorial-link" href="blog/why-i-built-postmello/">Read the Postmello story <span aria-hidden="true">→</span></a>
+        </article>
+      </div>
+    </section>
+
     <section class="feature" id="collections">
       <div class="feature-head">
         <h2><span>Pick a desk that inspires you.</span></h2>
@@ -484,35 +566,51 @@
          a fourth sentence would start explaining infrastructure.
 
          Grandma is not a new character: she has been on the drawer row and
-         the address roll since the first capture, and the editorial below
-         already speaks of "the grandparent writing back". The section just
-         lets her finish the round trip.
+         the address roll since the first capture. The section just lets her
+         finish the round trip.
 
          Everything shown is live product, nothing sold forward: email
          contacts, the envelope-in-an-email, replying by plain email, replies
-         arriving as typewritten letters. "Photos and links can't ride along"
-         is quoted from the letter email itself - the closer states the
-         absence, per the pillars' own rule, because the absence (no app to
+         arriving as typewritten letters. The closer's "no photos or links can
+         ride along" paraphrases the letter email's own wording, and it states
+         the ABSENCE per the pillars' rule, because the absence (no app to
          install, no account to make, nothing a reply can smuggle in) is the
          feature.
 
          Placed AFTER the desks and stationery, not after the steps (Patrick,
          2026-08-21): the desks and collections are the stronger sell and keep
          their run unbroken; this lands as the last product beat before the
-         editorial, whose reply-on-top teaser it sets up. The middle and right
+         pricing. What follows it is still the design column - it kept its
+         place through the 2026-08-22 reorder, when only the Why column moved,
+         and the two now rhyme rather than hand off: this section shows one
+         guarantee about what a reply may carry, the column beneath says every
+         part of the product is built that way. The middle and right
          panels are baked stills rendered from the letter email's real layout;
          the left is an app capture from the same desk as the hero. -->
     <section class="feature" id="beyond">
       <div class="feature-head">
-        <h2><span>Grandma doesn&rsquo;t need Postmello.</span></h2>
-        <!-- One fact, not a summary. The lede's second sentence ("the
+        <!-- "the app", not "Postmello" (Patrick, 2026-08-22). The old
+             heading read two ways and only one of them was meant: "Grandma
+             doesn't need Postmello" can land as "Postmello is not for her",
+             which is the opposite of a section about letting her in. What she
+             does not need is an INSTALL, and naming the app says exactly that
+             and nothing else. It is also the one place the page may use the
+             word - WEBSITE_SPEC forbids defining Postmello as an "iPad app",
+             which is about platform-locking the product, not about a sentence
+             whose whole point is that no download is involved. -->
+        <h2><span>Grandma doesn&rsquo;t need the app.</span></h2>
+        <!-- One fact, not a summary. An earlier lede's second sentence ("the
              letter arrives in her inbox - and her reply comes back as a
              letter") WAS the three captions below it, and the make-a-letter
              section's comment already rules on that shape: no paragraph that
-             restates the captions six inches above them. What survives is the
-             one thing the panels cannot show - how someone without Postmello
-             becomes writable at all. -->
-        <p class="lede">A contact can be just an email address.</p>
+             restates the captions six inches above them.
+             This line answers the heading in its own terms (Patrick,
+             2026-08-22): "A contact can be just an email address" described
+             the SETUP, from the account holder's side, and left the heading's
+             promise hanging - fine, she does not need it, so what does she do?
+             Both directions in five words, and "receive AND reply" is the half
+             a reader does not assume. -->
+        <p class="lede">She can receive and reply by email.</p>
       </div>
       <div class="steps">
         <figure>
@@ -528,101 +626,94 @@
           <figcaption>She simply hits Reply.</figcaption>
         </figure>
       </div>
-      <p class="beyond-closer">Only people you approve can be written to -
-         and replies arrive as typewritten letters, so photos and links
-         can&rsquo;t ride along.</p>
+      <!-- Two sentences now, not one clause hung off another (Patrick,
+           2026-08-22). The old line made the approval rule and the
+           typewritten-reply rule share a conjunction, which read as one
+           consequence of the other; they are two separate guarantees and each
+           gets a full stop. The closer still states the ABSENCE, per the
+           pillars' own rule, because the absence - no app to install, no
+           account to make, nothing a reply can smuggle in - is the feature.
+           Site hyphen, not the em dash the copy was drafted with (a075cdd). -->
+      <p class="beyond-closer">Only people you approve can be written to.
+         Replies return as typewritten letters - no photos or links can ride
+         along.</p>
     </section>
 
-    <section class="feature editorial-section" id="why">
-      <div class="editorial">
-        <article class="editorial-col">
-          <p class="eyebrow">Why Postmello</p>
-          <h2>Staying in touch doesn’t have to start with texting.</h2>
-          <p>Kids are getting access to technology earlier, and they want to
-             stay close to their friends and family. Postmello is another place
-             to start: letters they write and draw themselves, sent to people
-             they know.</p>
-          <a class="editorial-link" href="blog/why-i-built-postmello/">Read the Postmello story <span aria-hidden="true">→</span></a>
-        </article>
+    <!-- DESIGN PHILOSOPHY, alone now and exactly where it was. Why Postmello
+         moved up above the desks on 2026-08-22 and this column deliberately
+         did not go with it: its opening sentence is written to be read by
+         someone who has just scrolled through six desk photographs and a
+         whole stationery collection, so it has to stay downstream of them.
+         The reasoning is in the .editorial--solo comment above and in the
+         paragraph note below; the short version is that "Looking like a desk
+         was the easy part" needs the desk to have already done its work.
+
+         Same treatment as its former partner - one centred column at reading
+         measure - so the two read as the same editorial voice at two points
+         in the page rather than as one interlude that lost a half. -->
+    <section class="feature editorial-section" id="design">
+      <div class="editorial editorial--solo">
         <article class="editorial-col">
           <p class="eyebrow">Design philosophy</p>
-          <h2>Designed like a desk, not an app.</h2>
-          <!-- The THESIS, not three of its consequences (2026-08-15). This
-               named a mailbox, a wastebasket and the courier bee — three
-               clever interactions, advertised — when the blog it points at is
-               about the rules that produced them. Deletion was the worst of the
-               three: a good essay example, a poor shorthand for "the logic of a
-               real desk". The bee, the wastebasket and the wishes are the
-               blog's to spend.
+          <h2>Made to feel like letters.</h2>
+          <!-- Patrick's copy, 2026-08-22, replacing "Designed like a desk, not
+               an app." and the paragraph under it. The old heading named the
+               CRAFT; this one names the RESULT, and after six desk photographs
+               and a whole stationery collection the reader has already seen
+               the craft - what they have not been told is what all of it was
+               for. It is also the only heading in this section's history that
+               a nine-year-old and a parent would read the same way.
 
-               Then the opposite failure. Halved on 2026-08-17 to "the software
-               follows rules a child can understand and trust: it tells the
-               truth… protects what they make… builds privacy into the actions
-               themselves", which Patrick called meaningless the same day — and
-               he was right: every one of those clauses is a virtue any software
-               claims, so the column asserted depth instead of showing any. Both
-               failure modes are now on the record. Name three clever objects
-               and it is a feature list; state three abstract virtues and it is
-               nothing at all.
+               Three beats: a rule, its absences, and the reason. The middle
+               one states the ABSENCE, which is this page's oldest standing
+               rule about its own copy - absence is the differentiator and no
+               photograph can show it - and it names MECHANISMS (feeds, read
+               receipts, pressure to reply) rather than virtues, for the same
+               reason the four claims at the top of the page do. Note the
+               overlap with the fourth claim up there, which is deliberate as a
+               bookend but is the first thing to vary if either line ever
+               starts to feel like an echo.
 
-               What works is the middle: pose the QUESTIONS. The paragraph is
-               built from the blog's own thesis — the hard part was never making
-               it look physical, it was deciding how the software behaves when
-               the illusion is tested — and then spends its length on two
-               concrete tests a reader can feel. Neither is described as a
-               feature and neither is answered here. An unanswered question is
-               what earns the click; a solved one closes the subject on the
-               homepage.
+               "One letter at a time." is the app's OWN retired tagline, and it
+               is not a mistake that it is here. It was dropped as the site's
+               SIGN-OFF on 2026-08-14 for being gentle but not ownable - a
+               brand line has to do more work than that - and the footer says
+               "Letters at your own pace." instead. As the first of three
+               product rules in a body paragraph it is doing a completely
+               different job, and it is still what the software actually does.
+               Do not "fix" the duplication with the app's splash art; do not
+               promote it back to a tagline either.
 
-               "A letter mailed offline", not "when the internet disappears"
-               (Patrick, 2026-08-17). The old phrase was the blog's own
-               ("...if the internet disappears?") and its whimsy belongs in the
-               first-person essay; on the homepage it read as one more small
-               riddle in a paragraph whose job is bluntness. "Offline" is
-               vocabulary every device has taught, and "mailed" keeps the
-               desk's verb — the kid dropped it in the mailbox, THEN the
-               network was gone. The blog keeps its own wording; a teaser
-               may paraphrase the essay it opens.
+               WHAT THE PARAGRAPH GAVE UP, because it took two failures to
+               find and both are still worth avoiding. Name three clever
+               objects (the mailbox, the wastebasket, the courier bee) and the
+               column is a feature list. State three abstract virtues (it tells
+               the truth, it protects what they make, it builds privacy into
+               the actions) and it is nothing at all - every one of those is a
+               claim any software makes. What replaced them was two unanswered
+               questions, which earned the click by being uncomfortable; this
+               copy trades that hook for a promise instead, which is a fair
+               trade for a section that now has to work in three lines.
 
-               The SECOND test is reply-on-top, not the wastebasket (Patrick,
-               2026-08-17: throwing a drawing away is less interesting than the
-               forwarding restriction, and he is right). Deleting without an
-               "Are you sure?" is a nice piece of craft, but a reader can guess
-               roughly how it goes. "Writes back on top of someone else's letter
-               without that quietly becoming a way to forward it" names a
-               problem most people have never considered, and the only honest
-               answer is architectural — which is exactly the essay's argument
-               (make the bad state impossible instead of warning about it). It
-               also teases the one feature no competitor has. Do not swap it for
-               a friendlier example: the discomfort is the hook.
-
-               "Looking like a desk was the easy part" is deliberate placement.
-               This column now sits AFTER six desk photographs and a whole
-               stationery collection, so the reader has just been seduced by
-               exactly the surface the sentence sets aside — which is what makes
-               it land as a promise of something deeper rather than as false
-               modesty about the art.
-
-               The closing clause is the blog's own line ("shaped Postmello far
-               more than the wood grain"), echoed on purpose: the teaser should
-               sound like the essay it opens.
+               PLACEMENT is unchanged and still load-bearing: this column sits
+               AFTER the desks and the stationery on purpose. Why Postmello
+               moved above them on 2026-08-22 and this did not, because a
+               section about what the design is FOR only lands once the reader
+               has been seduced by the surface it sets aside.
 
                Never "app chrome" in any version: design-industry shorthand,
                and it means nothing to a visitor who has never sat in a design
                review. -->
-          <p>Looking like a desk was the easy part. The hard questions are the
-             ones a real desk never has to answer: what happens to a letter
-             mailed offline, or how a child writes back on top of someone
-             else’s letter without that quietly becoming a way to forward it.
-             The answers became rules - and the rules shaped Postmello more
-             than the wood grain.</p>
-          <a class="editorial-link" href="blog/designing-a-desk-not-an-app/">Explore the design philosophy <span aria-hidden="true">→</span></a>
+          <p>One letter at a time. No feeds, read receipts, or pressure to
+             reply. Every part of Postmello is designed to leave a little more
+             room for the person on the other side.</p>
+          <a class="editorial-link" href="blog/designing-a-desk-not-an-app/">Read our design philosophy <span aria-hidden="true">&rarr;</span></a>
         </article>
       </div>
     </section>
 
-    <!-- RESERVED: verified social proof goes HERE, between the editorial
-         interlude and the business model — families, educators, press and
+    <!-- RESERVED: verified social proof goes HERE, between the design
+         column and the business model — families, educators, press and
          recognition, in that order of usefulness. Nothing goes in until it is
          real: no placeholder quotes, no publication logos we have not earned,
          no star ratings, no invented awards. An empty position is honest; a
@@ -761,109 +852,95 @@
          before the footer. -->
     <section class="feature" id="household">
       <div class="feature-head">
-        <h2><span>Your first desk is free.</span></h2>
-        <!-- The one place the homepage states the account model (2026-08-21,
-             legal read): a desk can belong to a child OR an adult. It sits
-             here, not in the plans <dl> — the block below counts desks and
-             names nobody, and that rule holds. This line is what lets
-             Grandma read the desk ladder as including a desk of her own.
-             Trimmed to ONE sentence the same day (Patrick: not sure the
-             second was needed): "accounts are created and managed by
-             adults" is the legal half, and it already lives on the safety
-             page, the Terms, the Privacy Policy and the sign-in screen —
-             a pricing headnote does not have to carry it too. If a reviewer
-             ever wants the account model ON the homepage, that sentence is
-             the one to restore. -->
-        <p class="lede">A desk can belong to a child or an adult.</p>
+        <!-- The heading now states the FIRST STEP rather than the price of it
+             (Patrick, 2026-08-22). "Your first desk is free." was a fact about
+             the free tier; "Start with one desk, free." is an instruction to
+             the reader, and the difference is what makes the whole section
+             read as a progression instead of a table - one desk, then more
+             desks at home, then more desks still, then more worlds. The lede
+             carries the second rung and names WHY anyone climbs it: not "more
+             desks" as a quantity but the household writing to each other. -->
+        <h2><span>Start with one desk, free.</span></h2>
+        <p class="lede">When you want more desks at home, Membership brings
+           everyone together.</p>
       </div>
 
-      <!-- Three equal columns again (2026-08-16, Patrick) — the wide-block-
-           then-a-pair build said "free first, additions second" with LAYOUT,
-           and three columns in a row is the more universal shape: one glance
-           says there are exactly three things and none of them is a catch.
-           What must not come back with it is the failure that killed three
-           columns the first time round — three offerings reading as EQUALS.
-           The hierarchy moved into the paper instead: the free column is the
-           FILLED one and the two additions are outlined, so the one you get
-           is the substantial sheet even though the three footprints match.
-           The word inside is still "Included", not "Free": the heading has
-           already said free, and "included" reads as what the product gives
-           you rather than as the bottom tier of a price list. -->
+      <!-- TWO CARDS, not three (Patrick, 2026-08-22). Three cards asked every
+           visitor to compare three plans before understanding what one plan
+           was for; Plus is a real product but it answers a question most
+           households never ask, so it drops to a secondary row beneath and
+           opens only for the people who want it. What is left is the actual
+           choice: keep the desk you have, or bring the house in.
+
+           WHAT THE CARDS TRADE, and it is deliberate: the price is now the
+           LAST line on both, under the benefits, where the older build put it
+           second. A price sitting directly beneath the desk count made the
+           card a quote; sitting under what you get, it reads as the cost of
+           the list above it. Both cards do it, so the two prices still line up
+           across the row - which is the only alignment in this block that was
+           ever worth locking.
+
+           MEMBERSHIP CARRIES THE WEIGHT, and it carries it in paper and width
+           only: manila stock against Free's plain sheet, a stronger hairline,
+           and a column ~12% wider. NO BADGE. "Most popular" and "Best value"
+           are claims about other people's behaviour, and this section has
+           never made one - it is also the exact device that would turn a
+           two-card choice back into a sales table. The refusals from every
+           earlier round still stand: no buy buttons, no ticks, no shadows,
+           nothing here is a control.
+
+           "Never let the free column lose" still binds, and Free is not a
+           demo: it holds a real collection, unlimited letters and unlimited
+           contacts, and the heading above says it is free before a reader
+           reaches either card. -->
       <dl class="plans">
         <!-- NOBODY IS NAMED IN THIS BLOCK, and that is the rule (2026-08-17,
-             Patrick). Two lines used to say who a desk was for — "A desk for
-             your kid — and one for you", "Desks for more kids" — and both were
+             Patrick). Two lines used to say who a desk was for - "A desk for
+             your kid - and one for you", "Desks for more kids" - and both were
              wrong in the same way: a desk owner can just as easily be a
              grandparent, a pen pal or the account holder, and naming the kid
              shrank the product to a children's toy on the one screen where a
              visitor is deciding what it costs. The desks are COUNTED here, not
              cast.
 
-             The stopgap was "More desks, for more people" — the role removed
-             but a person-word left behind to keep Family (more people) apart
-             from Collections (more looks). Moving collections out of the row
-             the same day retired even that: the three columns share one axis
-             now, so "Up to 6 desks" needs no help telling you what it is
-             counting. Simpler was available as soon as the layout stopped
-             conflating two questions.
-
-             The account holder's desk is GONE from the free column (2026-08-17)
-             because the feature itself is being reverted app-side; the
-             admin-desk `kind` work is WIP and the website must not sell it.
-             Free is one desk, which is exactly what the heading has always
-             said. If that desk returns, this column is where it lands — but it
-             comes back without a role attached, for the reason above.
-
              What survives from the earlier rounds and still binds:
-             - Never "parent" (§1), and now no role noun at all.
+             - Never "parent" (WEBSITE_SPEC 1), and no role noun at all.
              - The line promises MORE, never a figure and never "every": the
-               desk count is a server-side number (account_capabilities,
-               starter 1 today) and is deliberately retunable without a client
-               release.
+               desk count is a server-side number (account_capabilities) and is
+               deliberately retunable without a client release. Which is why
+               the paid cards say "Up to" and Free says what it IS - the
+               phrasing is written by scripts/apply-pricing.py from
+               pricing.json, so it cannot be typed differently here.
              - No garden-path adjectives. "More personal desks" was retired
                because it parses as "more-personal desks" before it parses as
-               "additional ones"; do not reintroduce "personal" here in any
-               form.
+               "additional ones"; do not reintroduce "personal" here.
              - Nothing about PINs or locks. A lock named on a pricing page
                reads as a restriction being disclosed. -->
         <div class="plan">
           <dt data-plan-name="free">Postmello Free</dt>
           <!-- The charms are DECORATION and are aria-hidden: the desk count
                beneath them is the accessible fact, and a screen reader
-               counting six identical images would be worse than silence
-               (Patrick: "we'll let the text carry exactly how many"). Plus
-               shows six and a "+" rather than twelve — twelve would be a
-               crowd, and the number is right there in words. -->
+               counting identical images would be worse than silence
+               (Patrick: "we'll let the text carry exactly how many"). -->
           <dd><p class="plan-desks" aria-hidden="true">
               <img src="assets/icons/desk-charm.png" alt="" width="159" height="84" loading="lazy" />
           </p>
               <strong data-plan-desks="free">1 desk</strong>
-              <p class="plan-price" data-price="free">Free</p>
-              <!-- "Starter Collection ONLY", not "included" (Patrick,
-                   2026-08-18). The adult page has to be explicit here or
-                   "Collections from $0.99" reads as something a Free
-                   household can just go and buy. "Only" is the whole fix: it
-                   leaves Free complete — a real collection, not a trial — while
-                   telling a parent in one word that the rest are not part of
-                   it. It is the emphasised line on this card for the same
-                   reason: on a pricing page the honest boundary is worth more
-                   than a feature. -->
+              <!-- "Starter Collection only" keeps the word "only" and loses
+                   the bold (Patrick, 2026-08-22). The word is the honest
+                   boundary and has to stay - without it "Collections from
+                   $0.99" reads as something a Free household can go and buy -
+                   but emphasising it made the limit the loudest thing on the
+                   card, which is how a free tier starts looking like a trial.
+                   Stated plainly, it is a fact about a complete product. -->
               <ul class="plan-list">
-                <li>Unlimited letters and contacts</li>
-                <li><strong>Starter Collection only</strong></li>
-                <li>Keep your letters forever</li>
-              </ul></dd>
+                <li>Starter Collection only</li>
+                <li>Unlimited letters &amp; approved contacts</li>
+              </ul>
+              <p class="plan-pricing"><span class="plan-price" data-price="free">Free</span></p></dd>
         </div>
         <div class="plan plan--membership">
           <dt data-plan-name="membership">Postmello Membership</dt>
-          <!-- The desk count is the HEADLINE again (spec table, 2026-08-18).
-               It was briefly the collections promise, on the theory that the
-               promise is what sells the tier — which is true, and still the
-               wrong slot for it. The headline's job across three cards side by
-               side is to be the thing you COMPARE, and the only comparable
-               figure is desks. The promise is the emphasised feature line
-               instead, which is where a reader looks after they have placed
-               the card on the ladder. -->
           <dd><p class="plan-desks" aria-hidden="true">
               <img src="assets/icons/desk-charm.png" alt="" width="159" height="84" loading="lazy" />
               <img src="assets/icons/desk-charm.png" alt="" width="159" height="84" loading="lazy" />
@@ -871,173 +948,173 @@
               <img src="assets/icons/desk-charm.png" alt="" width="159" height="84" loading="lazy" />
           </p>
               <strong data-plan-desks="membership">Up to 4 desks</strong>
-              <p class="plan-price" data-price="membership"><s>$19.99</s> $14.99/year</p>
-              <!-- "The full Catalog" became "Browse every collection"
-                   (Patrick, 2026-08-18): sitting one line under "Choose 3
-                   collections every year", "full Catalog" read as though the
-                   other line were a floor rather than the whole allowance —
-                   i.e. that Membership hands over every collection. It never
-                   meant that; it meant the BOOK opens. Browsing is the actual
-                   feature and the word does not overlap with owning. -->
-              <!-- The leading benefit is FUNCTIONAL, not cosmetic (spec,
-                   2026-08-18). "Write between desks at home" is the reason
-                   Membership exists beyond collections, and a card that led
-                   with collections handed its whole argument to the panel
-                   below. Collections come second here because the panel does
-                   most of that selling anyway.
-                   "Full Catalog access" came OFF: it is unnecessary beside
-                   "3 collections every year" and risks implying every
-                   collection is included. The Catalog book icon went with the
-                   line it labelled — there is nothing left on this card for it
-                   to be true about, and the cards are meant to stay restrained
-                   while the panel below carries the artwork. -->
+              <!-- FOUR LINES IN THIS ORDER, and the order is the argument
+                   (Patrick, 2026-08-22): the desk count above says what
+                   EXPANDS; "Write between desks at home" is why anyone wants
+                   that, and it is the one line in full ink because it is the
+                   reason to join rather than a quantity; then the catalog
+                   opens; then what the catalog gives you each year. Three and
+                   four have to stay in that sequence - "3 Collections
+                   included" read before "access to the catalog" sounds like
+                   the whole of what Membership holds, which is the
+                   misunderstanding this card has spent two revisions closing.
+                   Never "full everyday catalog", "more stationery" or any
+                   phrase that implies every collection is included: browsing
+                   is the feature, choosing three is the allowance. -->
               <ul class="plan-list">
                 <li><strong>Write between desks at home</strong></li>
-                <li>Choose 3 collections each year</li>
-                <li>Renews yearly</li>
-              </ul></dd>
-        </div>
-        <div class="plan">
-          <dt data-plan-name="membership_plus">Postmello Membership Plus</dt>
-          <dd><p class="plan-desks" aria-hidden="true">
-              <img src="assets/icons/desk-charm.png" alt="" width="159" height="84" loading="lazy" />
-              <img src="assets/icons/desk-charm.png" alt="" width="159" height="84" loading="lazy" />
-              <img src="assets/icons/desk-charm.png" alt="" width="159" height="84" loading="lazy" />
-              <img src="assets/icons/desk-charm.png" alt="" width="159" height="84" loading="lazy" />
-              <img src="assets/icons/desk-charm.png" alt="" width="159" height="84" loading="lazy" />
-              <img src="assets/icons/desk-charm.png" alt="" width="159" height="84" loading="lazy" />
-              <span class="plan-desks-more">+</span>
-          </p>
-              <strong data-plan-desks="membership_plus">Up to 12 desks</strong>
-              <p class="plan-price" data-price="membership_plus">$29.99/year</p>
-              <ul class="plan-list">
-                <!-- Plus RESTATES the collection benefits rather than
-                     saying "Everything in Membership" (Patrick, 2026-08-18).
-                     Someone scanning only this column should not have to read
-                     the card beside it to find out what they get, and the two
-                     cards reading identically apart from desks and price IS
-                     the message: Plus is the same product with more room.
-                     ("with more desks" came off earlier for a different
-                     reason — the headline above already says "Up to 12
-                     desks".) -->
-                <li><strong>Everything in Membership</strong></li>
-                <li>Renews yearly</li>
-              </ul></dd>
+                <li>Access to the Collections catalog</li>
+                <li>3 Collections included each year</li>
+              </ul>
+              <!-- The founding promise moved back ONTO the card (Patrick,
+                   2026-08-22) after a spell as a standalone line under the
+                   whole block, where it had drifted away from the number it
+                   qualifies. It sits under the price, one size down and in
+                   soft ink, because a strike with no caption is ambiguous -
+                   a reader cannot tell a founding rate from a first-year
+                   teaser - and because the moment this line matches the price
+                   for weight it starts selling urgency. No countdown, no
+                   "while Postmello is new", no tester count. When
+                   founding_window closes in pricing.json the strike drops out
+                   on the next apply-pricing.py run and this line comes off by
+                   hand the same day. -->
+              <p class="plan-pricing"><span class="plan-price" data-price="membership"><s>$19.99</s> $14.99/year</span>
+                 <span class="plan-founding">Founding price - yours to keep.</span></p></dd>
         </div>
       </dl>
 
-      <!-- COLLECTIONS: out of the plans list altogether (spec, 2026-08-18).
-           It spent the day as a fourth card, then a part-width card, and the
-           reason neither looked right is that it was never a plan — sitting
-           inside the <dl> of plans was the markup saying something untrue.
-           It is now its own panel: 40% copy, 60% pictures.
+      <!-- MEMBERSHIP PLUS, as a row rather than a rung (Patrick, 2026-08-22).
+           Plus exists for the household that runs out of four desks, and for
+           everyone else it is noise - a third column made every visitor price
+           a plan they will never need before choosing between the two they
+           might. As a closed disclosure it costs one line and is still
+           findable by the person actually looking for it.
 
-           The pictures are the point (Patrick: "those are beautiful prop
-           icons... we could put all of them there"). They are the REAL prop
-           clusters the app prints on each collection's first Catalog page —
-           the same art, not marketing renders — so the panel doubles as proof
-           that a collection is a whole world rather than a texture pack. All
-           eight, because the spec's "3-4 glimpses" undersells a shelf this
-           good, and because eight reads as a catalog while three reads as a
-           sample.
+           It keeps its own <dl> because the price, the name and the desk count
+           are written by scripts/apply-pricing.py, which looks for
+           data-plan-name on a <dt> and data-plan-desks on a <strong>. A lone
+           <dt> outside a list would be invalid markup, so the disclosure holds
+           a one-pair list rather than loose spans.
 
-           $0.99 is deliberately prominent: a reader who has just been asked
-           for an annual subscription needs to see that the add-ons are cheap,
-           not that they are the beginning of a stream. -->
+           The anchoring argument for showing Plus at all survives the demotion
+           (Patrick: people are likelier to take the middle option when a
+           dearer one exists above it) - a ladder that stops at four makes four
+           the ceiling. It just no longer has to shout to do that.
+
+           DIRECTLY UNDER THE CARDS, and no rule above it (Patrick,
+           2026-08-22). It briefly sat below a hairline, with the account-model
+           footnote between - which read as a separate band of small print
+           rather than as the next rung, and put a horizontal line across the
+           one place a reader is still following a progression. Tucked straight
+           under the pair it is obviously about them. The footnote it displaced
+           ("A desk can belong to a child or an adult.") came off in the same
+           pass; if a reviewer ever wants the account model on the homepage,
+           the fuller sentence is "accounts are created and managed by adults"
+           and it already lives on the safety page, the Terms, the Privacy
+           Policy and the sign-in screen. -->
+      <details class="plan-more">
+        <summary>
+          <span class="plan-more-q">Need more desks?</span>
+          <span class="plan-more-a">Membership Plus gives you more desks at home.
+            <span class="plan-more-cue">See details <span aria-hidden="true">&rarr;</span></span></span>
+        </summary>
+        <dl class="plan-more-body">
+          <dt data-plan-name="membership_plus">Postmello Membership Plus</dt>
+          <dd><strong data-plan-desks="membership_plus">Up to 12 desks</strong>
+              <span class="plan-price" data-price="membership_plus">$29.99/year</span>
+              <p>Everything in Membership, with room for a bigger household.</p></dd>
+        </dl>
+      </details>
+
+      <!-- COLLECTIONS: a new idea, not a fourth rung, and the space above it
+           is doing that work (Patrick, 2026-08-22). It sits a full section's
+           breath below the plans instead of the 32px that made it read as one
+           more tinted block in the pricing stack, and its lilac is the only
+           hue in this part of the page that belongs to nothing else.
+
+           FOUR PROPS, not eight. The earlier build argued that eight reads as
+           a catalog while three reads as a sample, and that was true of a
+           panel whose job was to prove the shelf was deep. This panel's job is
+           different: it introduces an idea, and four pieces at nearly twice
+           the size say "these are worlds" where eight small ones said "these
+           are SKUs". They are the real prop clusters the app prints on each
+           collection's first Catalog page - the same art, not marketing
+           renders - and the four are chosen for contrast rather than
+           popularity: a building, a tree, an animal and a mountain, in four
+           unrelated palettes, one of which (Woodland Friends) never appeared
+           in the desk grid further up, so the set implies more than it shows.
+
+           The copy is two lines and stops. A third explaining what a
+           collection contains - desks, mailboxes, papers, envelopes, stamps,
+           stickers - was cut on 2026-08-18 and must not come back: the page
+           has said it twice by this depth and the pictures say it better. -->
       <section class="collections-panel" aria-labelledby="collections-panel-title">
         <div class="collections-panel-copy">
-          <p class="collections-panel-eyebrow" id="collections-panel-title">Collections</p>
-          <h3>New places to write from.</h3>
-          <!-- Five items, and the cut is the point (Patrick, 2026-08-18: "too
-               wordy — we already introduced the concept of the collection").
-               What went was a sentence listing what a collection contains —
-               desk, mailbox, papers, envelopes, stamps, stickers — which the
-               pictures to the right say better and which the page has said
-               twice already by this scroll depth. A panel that explains its
-               own noun is a panel that does not trust its art. -->
-          <!-- "Available with Membership" leads, and the softness is
-               deliberate (Patrick): "Membership required" is a paywall sign,
-               and this section should be clear without being punitive. But it
-               has to come FIRST — "additional collections from $0.99" on its
-               own implies anyone can buy one, which is the exact
-               misunderstanding the Free card's "only" is also closing. -->
-          <p class="collections-avail"><strong>Available with Membership.</strong><br />Additional collections from <strong class="collections-price" data-price="collections">$0.99</strong>.</p>
-          <p class="collections-keep">Yours for good.</p>
+          <h3 id="collections-panel-title">More worlds to discover.</h3>
+          <p class="collections-avail">Membership includes 3 Collections each
+             year, with more available separately.</p>
+          <!-- The figure stays, quietly, and it is not decoration: a reader
+               who has just been shown an annual subscription needs to see that
+               the add-ons are cheap rather than the beginning of a stream.
+               One small line rather than the prominent price it used to be -
+               the sentence above now carries the offer, so this only has to
+               stop the question. "Yours for good" rides along because it is
+               the one place on the page that separates a purchase from a
+               subscription. Written from pricing.json; never typed. -->
+          <p class="collections-price-note">From <span class="collections-price" data-price="collections">$0.99</span> each. Yours for good.</p>
         </div>
         <ul class="collections-props">
           <li><img src="assets/collections/fairy_glen.png" alt="Fairy Glen - a toadstool cottage, a lantern and a jar of fireflies" width="218" height="300" loading="lazy" /><span>Fairy Glen</span></li>
           <li><img src="assets/collections/japanese_garden.png" alt="Japanese Garden - a blossoming bonsai, a koi and a rice ball" width="470" height="298" loading="lazy" /><span>Japanese Garden</span></li>
-          <li><img src="assets/collections/seaside_post.png" alt="Seaside Post - a lighthouse, a crab and a pail" width="168" height="300" loading="lazy" /><span>Seaside Post</span></li>
           <li><img src="assets/collections/woodland_friends.png" alt="Woodland Friends - a fox, an owl and a scatter of acorns" width="445" height="300" loading="lazy" /><span>Woodland Friends</span></li>
-          <li><img src="assets/collections/petit_cafe.png" alt="Petit Café - macarons, an eclair and a coffee cup" width="338" height="300" loading="lazy" /><span>Petit Café</span></li>
           <li><img src="assets/collections/ember_peak.png" alt="Ember Peak - a dragon, a flame and a snowflake" width="287" height="300" loading="lazy" /><span>Ember Peak</span></li>
-          <li><img src="assets/collections/ironhold.png" alt="Ironhold - a castle keep, a crown and a torch" width="332" height="300" loading="lazy" /><span>Ironhold</span></li>
-          <li><img src="assets/collections/baan_naa.png" alt="Baan Naa - a lotus, a water buffalo and a garland" width="364" height="300" loading="lazy" /><span>Baan Naa</span></li>
         </ul>
       </section>
 
-      <!-- The founding PROMISE, once, beneath the pricing rather than
-           inside the Membership card (spec §7): in the card it competed
-           with the benefits, which are what the card is for. Placed
-           here rather than after the business-model statement so it
-           stays attached to the prices it qualifies — a founding-rate
-           note following a sentence about advertising reads as an
-           orphan. -->
-      <p class="plan-founding-note">Founding members keep their rate.</p>
+      <!-- The trust close, immediately after the commercial block rather than
+           adrift at the bottom of the page (Patrick, 2026-08-22). Three parts,
+           each doing a different job.
 
-      <!-- The founding explainer is GONE (2026-08-17, final cut — Patrick:
-           "that join while Postmello is new" made it sound like no one is
-           on it). The strike in Family's price line carries the deal
-           (struck figure = the genuine post-founding regular price, the
-           same rule the morning strike stood on), and the terms line's
-           "Early price, yours to keep" names what the strike means in five
-           words. When founding_window closes in pricing.json, the strike
-           and the suffix drop out on the next apply-pricing.py run. -->
+           The CLAIM gained "Your letters stay yours." - the third absence, and
+           the one a parent is actually turning the page to find. It also picks
+           up the promise Free used to make in a feature line ("Keep your
+           letters forever"), which is a better place for it: a card can only
+           promise it to that tier.
 
+           The REASON comes second and the LINKS last (Patrick, 2026-08-22).
+           Links between the claim and its explanation split one thought in
+           two, and a reader who followed one of them left mid-sentence. Set
+           after the reason they are what they should be: the way out for
+           someone who has finished reading and wants to check the claim. Two
+           words with the header's own middot between them is the smallest way
+           to offer that.
 
-      <!-- This line answers "why is there a price at all", and it took three
-           tries to work out that that was the question (Patrick, 2026-08-18).
-           The two failures are worth keeping, because both failed the same
-           way:
+           The REASON is why there is a price at all, and it took three tries
+           to work out that that was the question. Both failures are worth
+           keeping. "No subscription to write letters" was true and argued with
+           the plans directly above it. "Nothing is ever sold to a child" was a
+           DEFENCE - denying something ugly means naming it, so the reader
+           finished the sentence picturing children being sold to, on a page
+           where the thought had not occurred to anyone. Both were answering
+           "what's the catch". The reader at the bottom of a price list is
+           asking something else: why am I being asked to pay, when every other
+           app for children is free? The honest answer is that those apps are
+           not free either - they are paid for by the child, in attention or in
+           data - and the membership is what buys the absence of that.
 
-           1. "No subscription to write letters" — true, and it argues with the
-              plans directly above it. A closing line whose whole content is
-              "you don't need the thing above" undercuts the page. It was also
-              written when the subscription only bought extra desks, which is
-              no longer what it buys.
-           2. "Nothing is ever sold to a child" — a DEFENCE. Denying something
-              ugly means naming it, so the reader finishes the sentence
-              picturing children being sold to, on a page where the thought had
-              not occurred to anyone.
+           "member-supported" replaces "supported by memberships, so we can" -
+           it drops the only "we" in the section and matches the noun the cards
+           now use. "built for the people using it", never "made for kids": the
+           top of this page deliberately stopped making children the CATEGORY,
+           and the people this is built for include the grandparent writing
+           back and the adult who keeps a desk of their own. It is also the
+           sharper contrast with "advertisers" - the question is WHO the
+           product answers to, and that is about users, not ages.
 
-           Both were answering "what's the catch". The reader at the bottom of
-           a price list is asking something else: WHY AM I BEING ASKED TO PAY,
-           when every other app for children is free? The honest answer is that
-           those apps are not free either — they are paid for by the child, in
-           attention or in data — and the membership is what buys the absence
-           of that. So the line explains a choice instead of defending against
-           an accusation, which is why it can be positive without being coy.
-
-           Two lines on purpose. The first is the claim, at full weight; the
-           second is the reason, one step down in size and colour. A reader who
-           takes only the first line has still got the point.
-
-           Site hyphen, not an em dash (a075cdd).
-
-           "built for the people using it" replaced "made for kids" within the
-           hour (Patrick). The kids phrasing was defensible — 4bb4413 stopped
-           children being the CATEGORY only in the meta description, the OG
-           card and the hero — but defensible is not the same as right, and it
-           was the weaker sentence twice over. It made the closing line of the
-           page re-assert the category the top of the page had deliberately
-           stopped asserting, and it was narrower than the truth: the people
-           this is built for include the grandparent writing back and the
-           adult who keeps a desk of their own. "The people using it" is also
-           the sharper contrast with "advertisers" — the whole point is WHO
-           the product answers to, and that is a question about users, not
-           about ages. -->
-      <p class="reassurance">No ads. No selling data.</p>
-      <p class="reassurance-why">Postmello is supported by memberships, so we can keep it private, mellow, and built for the people using it - not advertisers.</p>
+           Site hyphen, not an em dash (a075cdd). -->
+      <p class="reassurance">No ads. No selling data. Your letters stay yours.</p>
+      <p class="reassurance-why">Postmello is member-supported, so it can stay private, mellow, and built for the people using it - not advertisers.</p>
+      <p class="reassurance-links"><a href="safety.html">Safety</a><span class="dot" aria-hidden="true">&middot;</span><a href="privacy.html">Privacy</a></p>
     </section>
 
   </main>

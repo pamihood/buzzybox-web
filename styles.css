@@ -69,7 +69,7 @@
      else, which is two different brands.
 
      --font-apparatus is DM Mono, for the postal furniture — eyebrows, plan
-     names, the badge, the footer group labels. In THIS subject a monospace
+     names, the hero note, the footer group labels. In THIS subject a monospace
      reads as franking and address labels rather than as code. Never set a
      paragraph in it. DM Mono ships 300/400/500 only, so apparatus text is
      weight 500 and never 600: asking for 600 gets a synthesised bold.
@@ -332,10 +332,22 @@ a:hover { text-decoration-color: var(--navy); }
   display: block;
 }
 
+/* The status row: the badge, and the beta footnote under it. Stacked and
+   tight - 12px, not the 20px a pair of separate statements would take - because
+   these are one thought at two weights, and the footnote has to read as
+   attached to the badge rather than as a third line of hero copy. */
+.hero-status {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--s-2);
+}
 .badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
+  /* inline-BLOCK, not the inline-flex this once was: the pill holds one short
+     phrase and has no children to space, and as ordinary text it breaks
+     between words if it ever has to. */
+  display: inline-block;
   background: var(--card);
   border: 1px solid var(--line);
   color: var(--ink-soft);
@@ -348,6 +360,23 @@ a:hover { text-decoration-color: var(--navy); }
   /* No text-transform here, unlike the other apparatus text: it would render
      Apple's "iPad" as "IPAD". */
   letter-spacing: 0.05em;
+}
+/* The footnote. Same apparatus face and size as the badge, without the pill —
+   which is the whole of the hierarchy between them: one fact is stamped, the
+   other is annotated. Soft ink, NOT faint: the palette note at the top of this
+   file reserves --ink-faint for material nobody has to read, and a visitor
+   about to go looking for a download link has to read this one. */
+.hero-note {
+  font-family: var(--font-apparatus);
+  font-weight: 500;
+  font-size: var(--fs-micro);
+  color: var(--ink-soft);
+  letter-spacing: 0.05em;
+  line-height: 1.5;
+  /* Optically under the badge's text rather than under its border: the pill's
+     20px of padding would otherwise leave the footnote looking indented from
+     nothing. */
+  padding-left: 2px;
 }
 
 /* ---------- Steps ---------- */
@@ -622,14 +651,18 @@ main > .feature:last-child { padding-bottom: var(--s-5); }
   border-radius: var(--radius-media);
 }
 
-/* ---------- The editorial interlude ---------- */
-/* Two ideas, one section, sitting between the calm section and the
-   collections. Compact on purpose — this is an interlude, not a third pillar,
-   so it runs at roughly three-quarters of the page's section rhythm and its
-   headings are a size below every other h2 on the page.
+/* ---------- The editorial voice ---------- */
+/* Two ideas, and since 2026-08-22 two sections: Why Postmello above the
+   collections, Design philosophy below them. Compact on purpose — neither is
+   a third pillar, so both run at roughly three-quarters of the page's section
+   rhythm and their headings stay a size below every other h2 on the page. The
+   smaller heading is what keeps a full-width block of type reading as a breath
+   between the pictures rather than as a new argument starting.
 
    Editorial, not promotional: no cards, no shadows, no illustrations, no
-   buttons. One hairline between the columns is the entire apparatus. */
+   buttons. The two-column rules below are kept intact — the pair may be put
+   back side by side if the page ever wants an interlude again — but nothing
+   uses them today. */
 .editorial-section { padding-block: calc(var(--space-section) * 0.72); }
 .editorial {
   max-width: var(--maxw-page);
@@ -713,6 +746,26 @@ main > .feature:last-child { padding-bottom: var(--s-5); }
     margin-left: 0;
   }
 }
+
+/* One column, centred, at the same measure every other centred lede on this
+   page uses — so the editorial sits on the page's own axis instead of hugging
+   the left edge of a grid whose second column went away.
+   The paragraph's 46ch cap comes off here: a 46ch paragraph centred under a
+   58ch heading reads as two different blocks, and the container is already
+   doing the measure's job. */
+.editorial--solo {
+  grid-template-columns: 1fr;
+  max-width: min(58ch, var(--maxw-read));
+  text-align: center;
+}
+.editorial--solo p:not(.eyebrow) {
+  max-width: none;
+  margin-inline: auto;
+}
+/* The last paragraph runs into the link, so the gap under it is the one that
+   sets how far the doorway sits from the prose. --s-4 is the two-column
+   spacing and reads as a stray line under a centred block; --s-3 attaches it. */
+.editorial--solo p:last-of-type { margin-bottom: var(--s-3); }
 
 /* ---------- The stationery spread ---------- */
 /* Six desks say where you sit; this says what you can make there, which is the
@@ -1138,26 +1191,29 @@ main > .feature:last-child { padding-bottom: var(--s-5); }
    The alternative was hand-tuned min-heights, which is the same idea written
    as numbers that go stale the first time a word changes. */
 .plans {
-  /* Was 980px, while the page's own widest rhythm is 1200 and the desk grid
-     and stationery spread both use it. Narrow cards were the root of the
-     white-space problem: at a third of 980 minus padding, every second
+  /* The page's own widest rhythm. Narrow cards were the root of the old
+     white-space problem: at a third of 980px minus padding, every second
      feature line wrapped, and a shared row that has to fit a wrapped line in
-     one card opens a gap in the other two. Widening does more for the block
-     than any spacing tweak could. */
+     one card opens a gap in the other two. */
   max-width: var(--maxw-page);
   margin: 0 auto;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  /* FOUR shared tracks, not seven (2026-08-18). Only the COMPARABLE rows are
-     worth locking together — eyebrow, charms, desk count, price — because
-     those are what a reader scans across. The feature lists underneath differ
-     in length by design (Plus has two lines where the others have three), and
-     forcing them onto shared tracks reserved an empty row in whichever card
-     was shorter. That reserved emptiness is the "weird vertical white space":
-     alignment applied to things that were never meant to line up.
-     The lists now flow at their natural height inside one final track. */
-  grid-template-rows: repeat(4, auto) auto;
+  /* TWO columns since 2026-08-22, and the second is ~12% wider. That width is
+     the whole of Membership's extra prominence besides its paper - it makes
+     the card larger without moving a single shared row, which is what any
+     extra padding would have done. No badge; see the markup's note. */
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.12fr);
+  /* FIVE shared tracks: eyebrow, charms, desk count, features, price. Only
+     the COMPARABLE rows are worth locking together, and since the price moved
+     to the bottom of both cards it became one of them - two prices at
+     different heights would read as two different kinds of number.
+     The FEATURES row is the 1fr: it absorbs the difference between a two-line
+     card and a three-line one, so the price lands level without an empty
+     track being reserved anywhere. Reserved emptiness is what produced the
+     "weird vertical white space" in the three-card build: alignment applied
+     to things that were never meant to line up. */
+  grid-template-rows: auto auto auto 1fr auto;
   column-gap: var(--s-3);
   /* Doubles as the cards' internal line spacing, so it is a leading value,
      not a gutter. */
@@ -1167,31 +1223,35 @@ main > .feature:last-child { padding-bottom: var(--s-5); }
 .plan > dt { grid-row: 1; }
 .plan > dd { grid-row: 2 / span 4; display: grid; grid-template-rows: subgrid; }
 /* Explicit rows, so every card puts the same thing on the same line whatever
-   its own content does. (There used to be a sixth row here for the founding
-   annotation; it left the card entirely on 2026-08-18.) */
+   its own content does. */
 .plan > dd > .plan-desks { grid-row: 1; }
 .plan > dd > strong { grid-row: 2; }
-.plan > dd > .plan-price { grid-row: 3; margin-top: 2px; }
-/* Plain flow, deliberately: see the note on .plans about what alignment is
-   worth locking and what it is not. */
-.plan > dd > .plan-list { grid-row: 4; }
-/* COLOUR AND EMPHASIS — third revision (2026-08-18, spec §8).
-   History, because each round was a correction of the last and the reasoning
-   still binds. Round one gave the two PAID blocks hue and left free in bare
-   kraft, so the column the page wants you to take became the dullest thing in
-   the row; the lesson taken was "never let the free column lose". Round two
+.plan > dd > .plan-list { grid-row: 3; }
+/* start, NOT end. Bottom-aligning the pricing blocks lined Free's "Free" up
+   with Membership's FOUNDING line instead of with its price — the one row in
+   this block that exists to be compared, comparing the wrong things. Anchored
+   at the top of the track the two prices sit on one line and the founding
+   note hangs below, which is also the order they should be read in. */
+.plan > dd > .plan-pricing { grid-row: 4; align-self: start; }
+/* COLOUR AND EMPHASIS — fourth revision (2026-08-22).
+   History, because each round corrected the last and the reasoning still
+   binds. Round one gave the two PAID blocks hue and left free in bare kraft,
+   so the column the page wants you to take became the dullest thing in the
+   row; the lesson taken was "never let the free column lose". Round two
    over-applied it: free became the only block with chroma — manila fill,
    honey border, a "Start here" tag — sitting in the exact slot a pricing
-   table gives its recommended plan.
-   That is what this round fixes. A stronger free card reads as SELECTED, and
-   telling a visitor the free plan is the recommended one is the wrong signal
-   on a page whose job is to explain a subscription. So all three cards are
-   the same paper and the same border, and the single permitted emphasis goes
-   to Membership as the primary paid option: one step of border strength, no
-   fill change, no badge.
-   "Never let the free column lose" is still honoured — by position, and by a
-   section heading that says the first desk is free before you reach any card.
-   Everything still refused: no buy buttons, no ticks, no shadows. */
+   table gives its recommended plan, which reads as SELECTED. Round three
+   flattened everything and gave Membership one step of border and nothing
+   else, which was correct while there were three columns and too timid with
+   two.
+   This round gives Membership the manila stock. Note what that is NOT: it is
+   not round two's mistake in reverse, because the emphasis is on the PAID
+   option a visitor is being asked to consider, not on the free one they
+   already have. "Never let the free column lose" is still honoured, by
+   position and by a heading that says the first desk is free before you reach
+   either card — and Free keeps a real collection and unlimited everything, so
+   the plainer sheet is not a poorer product.
+   Everything still refused: no buy buttons, no ticks, no shadows, no badge. */
 .plan {
   position: relative;
   text-align: left;
@@ -1201,24 +1261,25 @@ main > .feature:last-child { padding-bottom: var(--s-5); }
   padding: var(--s-4) var(--s-4) calc(var(--s-4) - 4px);
 }
 .plan--membership {
-  border-color: #c9b79c;
+  background-color: var(--paper-card);
+  border-color: #d5bd8f;
 }
-/* Prices (2026-08-17, Patrick: a plan view without prices reads less serious
-   and less real). One line per block, between the desk count and the terms.
-   The desk count stays the LARGEST line — this section's story is still what
-   you get, with what it costs one step below.
 
-   Superseded (evening, 2026-08-17): the strike rule and the Plus "+" went
-   with the annual model's first cut. THEN (same night, third cut + Patrick's
-   call to bring the strike back): under "everyone subscribes" the struck
-   figure is the genuine post-founding regular price — the SAME rule the
-   morning strike stood on — so the `s` rule returned. The founding-note
-   explainer did NOT return ("that join while Postmello is new" read as if
-   nobody was on it); the Family terms line carries "Early price, yours to
-   keep" instead, and prices are written from the app repo's pricing.json
-   (scripts/apply-pricing.py). */
+/* Prices (2026-08-17, Patrick: a plan view without prices reads less serious
+   and less real). LAST line on the card since 2026-08-22, under the benefits
+   rather than under the desk count. Sitting second it made the card a quote;
+   sitting last it reads as the cost of the list above it — and because both
+   cards do it and the features row takes the slack, the two prices still land
+   on the same line across the row.
+
+   The struck figure is the genuine post-founding regular price (pricing.json
+   price_per_year), which is the only condition under which this display's own
+   rule permits a strike. Written by scripts/apply-pricing.py; never typed. */
+.plan-pricing {
+  margin: var(--s-4) 0 0;
+}
 .plan-price {
-  margin: 0;
+  display: block;
   font-size: clamp(1.02rem, 1.25vw, 1.16rem);
   font-weight: 700;
   color: var(--ink);
@@ -1227,40 +1288,54 @@ main > .feature:last-child { padding-bottom: var(--s-5); }
   font-weight: 500;
   color: var(--ink-faint);
 }
-/* Honey at full strength on manila, with ink dark enough to pass AA rather
-   than the white a SaaS badge would use — white on honey is a button, and a
-   button is what this section does not have. */
-.plan-tag {
-  position: absolute;
-  top: var(--s-4);
-  right: var(--s-4);
-  font-family: var(--font-apparatus);
-  font-size: 0.72rem;
-  font-weight: 500;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: #4a3208;
-  background-color: rgba(233, 162, 39, 0.42);
-  border-radius: 999px;
-  padding: 4px 10px;
-  white-space: nowrap;
+/* The founding promise, on the card and deliberately below the price in both
+   size and colour. A strike with no caption is ambiguous — a reader cannot
+   tell a founding rate from a first-year teaser — but the moment this line
+   matches the price for weight it starts selling urgency instead of
+   explaining a number. */
+.plan-founding {
+  display: block;
+  margin-top: 2px;
+  font-size: var(--fs-small);
+  font-style: italic;
+  color: var(--ink-soft);
 }
+/* (A .plan-tag rule lived here — an absolute-positioned honey pill for a
+   "Start here" flag. The two-card build forbids badges outright: "Most
+   popular" and "Best value" are claims about other people's behaviour, and
+   they are the one device that turns a two-way choice back into a sales
+   table. The rule is gone so nobody reaches for it.) */
 /* Plan names are taxonomy, so they keep the monospace — the page's small
    accent vocabulary, used for collection names and plan names and nothing
-   else. 14px semibold: an eyebrow that can still be read. */
-.plans dt {
+   else. Do NOT move them to the voice face to give them weight: that is what
+   would make them compete with the desk count, and it would spend the one
+   typographic signal that says "this is a product name".
+   PROMOTED 2026-08-22 (Patrick: they should be more prominent). 13.6px in
+   --ink-mid was an eyebrow — a label above the card rather than the card's
+   title — and on a two-card choice the NAME is what a reader carries away and
+   repeats. 16px in full --ink is a title. The tracking comes DOWN as the size
+   goes up (0.08 → 0.055em): mono uppercase gains apparent letterspacing with
+   every point, and holding 0.08em at 16px would have set the words drifting
+   apart just as they got heavier.
+   Still under the desk count in size, which keeps this section's story intact:
+   what you get is the largest line, what it is called sits above it, what it
+   costs sits below. */
+.plans dt,
+.plan-more-body dt {
   font-family: var(--font-apparatus);
-  font-size: var(--fs-micro);
+  font-size: 1rem;
   font-weight: 500;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.055em;
   text-transform: uppercase;
-  color: var(--ink-mid);
-  margin-bottom: var(--s-2);
+  color: var(--ink);
+  margin-bottom: var(--s-3);
 }
-.plans dd {
+.plans dd,
+.plan-more-body dd {
   margin: 0;
 }
-.plans dd strong {
+.plans dd strong,
+.plan-more-body dd strong {
   font-size: clamp(1.2rem, 1.7vw, 1.45rem);
   font-weight: 700;
   line-height: 1.3;
@@ -1354,21 +1429,97 @@ main > .feature:last-child { padding-bottom: var(--s-5); }
   font-weight: 600;
   color: var(--ink);
 }
-/* (The in-card founding annotation lived here. It went on 2026-08-18: even
-   at micro size it was one more thing between the price and the benefits, and
-   the promise it stood in for now sits once, quietly, beneath the whole
-   pricing block as .plan-founding-note. The struck price is left to speak for
-   itself, which it does — a crossed-out number beside a lower one needs no
-   caption.) */
-/* The promise, once, under everything. Small and secondary on purpose: it
-   preserves the value of the offer without making it the centrepiece. */
-.plan-founding-note {
-  max-width: 880px;
+/* (The founding note has been in three places and is now back in the first
+   one, so both moves are worth keeping. It started on the Membership card;
+   went out on 2026-08-18 as one more thing between the price and the benefits,
+   on the theory that a crossed-out number beside a lower one needs no caption;
+   spent four days as a standalone line beneath the whole pricing block; and
+   returned to the card on 2026-08-22. What the middle position taught: down
+   there it had drifted a full section away from the number it explains, and a
+   reader who scans the cards and stops never met it at all. What the FIRST
+   move taught still binds, and is why the live rule is .plan-founding rather
+   than a repeat of the original — it sits UNDER the price, not between the
+   price and the benefits, and it is a size and a shade quieter than the
+   figure it qualifies.) */
+
+/* ---------- Membership Plus, as a disclosure ---------- */
+/* One line closed, the facts open. Plus is a real product and a real anchor —
+   a ladder that stops at four makes four the ceiling — but it answers a
+   question most households never ask, and as a third column it made every
+   visitor price a plan they will never need before choosing between the two
+   they might. Closed, it costs a line; open, it says everything a third card
+   said.
+   NO RULE ABOVE IT (2026-08-22). A hairline was tried and it did the opposite
+   of its job: it read as the end of the pricing rather than as the next rung,
+   and it drew a line across the one stretch of the page a reader follows as a
+   progression. Proximity separates it perfectly well — close enough to the
+   cards to be obviously about them, far enough not to be one. */
+.plan-more {
+  max-width: var(--maxw-page);
   margin: var(--s-4) auto 0;
-  font-size: var(--fs-small);
-  font-style: italic;
-  color: var(--ink-soft);
+}
+.plan-more > summary {
+  /* Both, deliberately: Safari reads the shorthand, Firefox the pseudo. */
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: baseline;
+  gap: 0 0.5em;
   text-align: center;
+  font-size: var(--fs-body);
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+.plan-more > summary::-webkit-details-marker { display: none; }
+.plan-more-q {
+  font-weight: 700;
+  color: var(--ink);
+}
+/* The cue is the only thing on the row that looks clickable, and it is the
+   same object as .editorial-link and .hero-action — an arrow that steps the
+   way it points. Open, it points down at what it revealed. */
+.plan-more-cue {
+  font-weight: 650;
+  color: var(--ink);
+  white-space: nowrap;
+}
+.plan-more-cue span {
+  display: inline-block;
+  transition: transform 140ms ease;
+}
+.plan-more[open] .plan-more-cue span { transform: rotate(90deg); }
+.plan-more > summary:hover .plan-more-cue {
+  text-decoration: underline;
+  text-decoration-color: var(--navy);
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 0.22em;
+}
+@media (prefers-reduced-motion: reduce) {
+  .plan-more-cue span { transition: none; }
+}
+/* Open: the same three facts a card carried — name, desks, price — plus the
+   one sentence that says Plus is not a different product. Centred, because
+   the row it belongs to is, and because a left-aligned block under a centred
+   summary reads as a card that lost its border. */
+.plan-more-body {
+  margin: var(--s-3) 0 0;
+  text-align: center;
+}
+.plan-more-body dd {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: baseline;
+  gap: 0 var(--s-3);
+}
+.plan-more-body dd p {
+  flex-basis: 100%;
+  margin: var(--s-1) 0 0;
+  font-size: var(--fs-body);
+  line-height: 1.5;
+  color: var(--ink-soft);
 }
 
 /* ---------- Collections panel ---------- */
@@ -1378,7 +1529,10 @@ main > .feature:last-child { padding-bottom: var(--s-5); }
    says that faster than the sentence above them does. */
 .collections-panel {
   max-width: var(--maxw-page);
-  margin: var(--s-4) auto 0;
+  /* A full breath, not a gutter (2026-08-22). At --s-4 this read as one more
+     tinted block in the pricing stack; Collections is a different idea and the
+     space above it is what says so before the heading gets a chance to. */
+  margin: var(--s-6) auto 0;
   display: grid;
   grid-template-columns: 40% 1fr;
   gap: var(--s-4);
@@ -1388,15 +1542,11 @@ main > .feature:last-child { padding-bottom: var(--s-5); }
   border-radius: var(--radius-media);
   padding: var(--s-4);
 }
-.collections-panel-eyebrow {
-  margin: 0 0 var(--s-2);
-  font-family: var(--font-apparatus);
-  font-size: var(--fs-micro);
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--ink-mid);
-}
+/* (A "COLLECTIONS" eyebrow sat above the heading. It went with the 2026-08-22
+   copy, which is two lines and a heading: an eyebrow labelling a panel that
+   already says "Collections" in its first sentence and again under every
+   picture is the third naming, and the space above the panel is what tells a
+   reader this is a new idea now.) */
 .collections-panel h3 {
   margin: 0;
   font-size: clamp(1.2rem, 1.7vw, 1.45rem);
@@ -1405,35 +1555,32 @@ main > .feature:last-child { padding-bottom: var(--s-5); }
   letter-spacing: -0.02em;
   color: var(--ink);
 }
-/* Two sentences, not a list of facts (2026-08-18). The facts version had
-   "additional collections from $0.99" standing alone, which reads as an offer
-   open to anyone; joining the clauses into one sentence that OPENS with
-   "Available with Membership" makes the price conditional on the thing before
-   it, which is the truth. The sentence that used to sit above these, listing
-   what a collection contains, went earlier: the pictures say it better. */
-.collections-avail,
-.collections-keep {
+/* Two lines and stop. The version that listed what a collection contains —
+   desks, mailboxes, papers, envelopes, stamps, stickers — was cut on
+   2026-08-18 and must not come back: the page has said it twice by this depth
+   and the pictures say it better. What is left is the allowance and the fact
+   that there are more. */
+.collections-avail {
   margin: var(--s-3) 0 0;
   font-size: var(--fs-body);
   line-height: 1.5;
   color: var(--ink-soft);
 }
-.collections-avail strong { font-weight: 700; color: var(--ink); }
-/* The permanence line is the only place on the page that distinguishes a
-   purchase from a subscription, so it carries full ink on its own. */
-.collections-keep {
-  margin-top: var(--s-2);
-  font-weight: 600;
+/* The figure, quietly. It used to be a prominent $0.99 with the whole offer
+   built around it; the sentence above now carries the offer, so this only has
+   to stop the question "and how much are the others" before it is asked —
+   which it does at body scale. "Yours for good" rides along as the one place
+   on the page that separates a purchase from a subscription. */
+.collections-price-note {
+  margin: var(--s-2) 0 0;
+  font-size: var(--fs-small);
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+.collections-price {
+  font-weight: 700;
   color: var(--ink);
 }
-/* $0.99 prominent by instruction, and for a reason: it is the figure that
-   stops an annual subscription reading as the start of an expensive stream.
-   One step up in size is enough — a badge would oversell a number whose whole
-   job is to look small. */
-.collections-price {
-  font-size: clamp(1.02rem, 1.25vw, 1.16rem);
-}
-
 /* The shelf. Transparent cutouts on the panel's own lilac — no cards, no
    frames: these are objects on a surface, the same grammar the desks use. */
 .collections-props {
@@ -1454,7 +1601,10 @@ main > .feature:last-child { padding-bottom: var(--s-5); }
 .collections-props img {
   width: auto;
   max-width: 100%;
-  height: 74px;
+  /* Four pieces, so each can be nearly twice the height eight allowed. That
+     size is the point: four large props read as WORLDS, eight small ones read
+     as a product grid. */
+  height: 124px;
   object-fit: contain;
   filter: drop-shadow(0 4px 8px rgba(60, 42, 20, 0.14));
 }
@@ -1474,7 +1624,7 @@ main > .feature:last-child { padding-bottom: var(--s-5); }
     gap: var(--s-3);
   }
   .collections-props { grid-template-columns: repeat(2, 1fr); }
-  .collections-props img { height: 84px; }
+  .collections-props img { height: 104px; }
 }
 /* Reassurance. Not a headline, but it was nearly invisible at --fs-small in
    --ink-soft, and it is the sentence that answers "so what is the catch". Full
@@ -1495,6 +1645,31 @@ main > .feature:last-child { padding-bottom: var(--s-5); }
    already got the point. Narrower than .reassurance on purpose: it is a
    sentence rather than a slogan, and 880px would run it to a single
    uncomfortably wide line on a desktop. */
+/* The proof, and it comes LAST. Between the claim and its reason it split one
+   thought in two, and a reader who followed a link left mid-sentence; after
+   both, it is the way out for someone who has finished reading and wants to
+   check what they just read. Two words and the header's own middot, small and
+   in soft ink — an offer, not an instruction. */
+.reassurance-links {
+  margin: var(--s-3) auto 0;
+  text-align: center;
+  font-size: var(--fs-small);
+}
+.reassurance-links a {
+  color: var(--ink-soft);
+  text-decoration: none;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 0.22em;
+}
+.reassurance-links a:hover {
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-color: var(--navy);
+}
+.reassurance-links .dot {
+  margin-inline: 0.6em;
+  color: var(--ink-faint);
+}
 .reassurance-why {
   max-width: 620px;
   margin: var(--s-2) auto 0;
@@ -1503,9 +1678,9 @@ main > .feature:last-child { padding-bottom: var(--s-5); }
   color: var(--ink-soft);
   text-align: center;
 }
-/* One column on a phone: three abreast at 340px gives each block eleven
-   characters a line. Stacked, the filled sheet leads and the two outlined
-   ones follow — the same story the row tells, read downward. */
+/* One column on a phone: side by side at 340px gives each card eleven
+   characters a line. Stacked, Free leads and Membership follows — the same
+   progression the row tells, read downward. */
 @media (max-width: 760px) {
   .plans {
     grid-template-columns: 1fr;
@@ -1525,6 +1700,9 @@ main > .feature:last-child { padding-bottom: var(--s-5); }
     grid-template-rows: none;
   }
   .plan-desks { margin-bottom: var(--s-2); }
+  /* The price keeps its air from the features above it now that the shared
+     track that used to supply it is gone. */
+  .plan-pricing { margin-top: var(--s-3); }
   .reassurance, .reassurance-why { max-width: 420px; }
 }
 
@@ -1793,7 +1971,7 @@ footer .foot-groups {
   gap: 4px;
 }
 /* The group labels are furniture, not links, so they take the apparatus face —
-   the same reasoning as the plate names and the badge. Small and faint is right
+   the same reasoning as the plate names and the hero note. Small and faint is right
    HERE (contra the whitespace-not-faint-text rule): nobody needs to read the
    word "Trust", it only has to separate the columns for someone scanning. */
 .foot-label {

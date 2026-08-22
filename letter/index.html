@@ -57,6 +57,7 @@
       padding: 26px 24px;
     }
     .writeback h2 { margin: 0 0 12px; font-size: 20px; }
+    .writeback .lead { margin: 0 0 12px; line-height: 1.6; }
     .writeback ol { margin: 0 0 18px; padding-left: 22px; line-height: 1.7; }
     .code {
       font-size: 34px; font-weight: 700; letter-spacing: 5px;
@@ -123,7 +124,7 @@
         document.title = 'A letter from ' + data.from_name;
         main.innerHTML = '';
         main.appendChild(el('h1', { text: 'You\u2019ve got a letter, ' + data.to_name + '!' }));
-        main.appendChild(el('p', { 'class': 'subtitle', text: 'Handwritten for you by ' + data.from_name }));
+        main.appendChild(el('p', { 'class': 'subtitle', text: 'Written for you by ' + data.from_name }));
         if (data.envelope_url) {
           main.appendChild(el('figure', { 'class': 'envelope' }, [
             el('img', { src: data.envelope_url, alt: 'Envelope from ' + data.from_name }),
@@ -137,6 +138,13 @@
         if (data.connect_code) {
           var section = el('section', { 'class': 'writeback' });
           section.appendChild(el('h2', { text: 'Write back to ' + data.from_name }));
+          if (data.reply_address) {
+            section.appendChild(el('p', { 'class': 'lead',
+              text: 'You can just reply to the email that brought you this letter \u2014 it arrives on '
+                + data.from_name + '\u2019s desk as a typewritten letter.' }));
+            section.appendChild(el('p', { 'class': 'lead',
+              text: 'Or write your letters from a desk of your own in the Postmello app:' }));
+          }
           var ol = el('ol');
           ['On an iPad, download Apple\u2019s TestFlight app from the App Store.',
            'Tap \u201cGet Postmello\u201d below to install Postmello with our TestFlight link.',

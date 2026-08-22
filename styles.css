@@ -394,24 +394,12 @@ a:hover { text-decoration-color: var(--navy); }
   font-weight: 700;
   letter-spacing: -0.018em;
 }
-/* The Grandma section's panels each carry ONE sentence under the label —
-   the only step row that needs it, because its beats are a story rather
-   than an instruction ("Choose your paper." explains itself; "She simply
-   hits Reply." needs its consequence said). Soft ink, capped measure:
-   these are the footnote the figcaption rule above refuses to be. */
-.steps .sub {
-  margin: 6px auto 0;
-  max-width: 34ch;
-  text-align: center;
-  color: var(--ink-soft);
-  font-size: var(--fs-small);
-  line-height: 1.5;
-  text-wrap: pretty;
-}
-/* One line under the row, not a fourth panel: the approval rule and the
-   typewritten-reply rule stated once, together — the section's whole trust
-   story. States the ABSENCE (photos and links can't ride along), per the
-   pillars' rule. */
+/* One line under the Grandma section's row, not a fourth panel: the
+   approval rule and the typewritten-reply rule stated once, together — the
+   section's whole trust story. States the ABSENCE (photos and links can't
+   ride along), per the pillars' rule. It is also the only prose the panels
+   get: per-panel sub-lines were tried and cut the same day they shipped
+   (Patrick, 2026-08-21: too much text) — the captions carry the story. */
 .beyond-closer {
   max-width: 62ch;
   margin: var(--s-5) auto 0;

@@ -796,8 +796,31 @@ button { font: inherit; color: inherit; background: none; border: 0; }
   transition: transform 200ms ease;
 }
 .st-item:hover .st-bed { transform: scale(1.05); }
-.st-bed--cover { aspect-ratio: 3 / 4; }
-.st-bed--cover img { width: 100%; height: 100%; object-fit: cover; }
+/* PAPERS. The sheet is inset inside the rounded tray rather than filling it
+   (2026-08-23, Patrick). Filling it clipped each sheet to the container's
+   12px radius, so nine sheets of stationery read as nine rounded cards - and
+   a sheet of paper has square corners. Inset, the radius belongs to the tray
+   and the corners belong to the paper, which is the same relationship the
+   envelope, stamp and sticker tabs already have.
+   The alternative was dropping the radius from the paper tray instead. It was
+   built and compared: it gives the largest sheet, but it makes papers the one
+   tab out of four with square trays, and the row stops matching the rest of
+   the table.
+   object-fit stays COVER. Contain was tried too and shows each sheet whole,
+   but the collection mixes portrait and landscape papers, so a shared 3:4 tray
+   left the landscape ones as short wide slivers with empty bands above and
+   below - a ragged row, and the thing being shown is the paper's character,
+   which survives the crop. */
+.st-bed--cover {
+  aspect-ratio: 3 / 4;
+  padding: 7px;
+}
+.st-bed--cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0;
+}
 .st-bed--contain {
   display: flex;
   align-items: center;

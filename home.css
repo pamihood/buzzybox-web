@@ -815,15 +815,34 @@ button { font: inherit; color: inherit; background: none; border: 0; }
    shows one orientation because nine designs shown twice is eighteen tiles of
    the same nine pictures. If a landscape row is ever wanted, the files are
    already here alongside the portraits. */
-.st-bed--cover {
-  aspect-ratio: 3 / 4;
-  padding: 7px;
-}
+.st-bed--cover { padding: 7px; }
+/* The RATIO LIVES ON THE IMAGE, not on the tray (2026-08-23, after a report
+   of the papers sitting low in their trays on a phone).
+
+   It used to be `aspect-ratio` on the tray plus `height: 100%` on the image,
+   which asks the browser to resolve a percentage height against a height that
+   was itself derived from an aspect-ratio. Chrome does that correctly - all
+   nine measured L/R/T/B = 8.0 exactly - but it is the classic shape of the
+   iOS Safari percentage-height bug, and when that resolution fails the image
+   falls back to its intrinsic ratio, comes up ~5px short and strands the gap
+   on one side.
+   Sizing the image from its OWN width removes the dependency entirely: the
+   tray's height becomes image + padding + border, so there is no percentage
+   to resolve and no way for the two to disagree. The rendered geometry is
+   identical. */
 .st-bed--cover img {
+  display: block;
   width: 100%;
-  height: 100%;
+  aspect-ratio: 3 / 4;
+  height: auto;
   object-fit: cover;
   border-radius: 0;
+  /* Most of these sheets are cream and so is the tray, so without an edge the
+     inset is invisible on exactly the papers it was added for - and a tile
+     where only the art reads (and this collection keeps its art along the
+     bottom edge) looks bottom-heavy whatever the box is doing. One hairline
+     at 22% ink is enough to find the sheet without drawing a frame. */
+  box-shadow: 0 0 0 1px rgba(120, 100, 80, 0.22);
 }
 .st-bed--contain {
   display: flex;

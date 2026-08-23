@@ -253,14 +253,9 @@ button { font: inherit; color: inherit; background: none; border: 0; }
 .arrow-link span:last-child { display: inline-block; transition: transform 150ms ease; }
 .arrow-link:hover span:last-child { transform: translateX(0.25rem); }
 
-/* Cards. Every card on the page is this plus a modifier: a parchment sheet,
-   a hairline, a large radius. */
-.card {
-  background: var(--parchment-100);
-  border: 1px solid var(--line);
-  border-radius: var(--r-2xl);
-  box-shadow: var(--shadow-2xs);
-}
+/* (A shared .card base lived here. Its last user was the four claims, which
+   stopped being cards on 2026-08-23 — every other card on the page carries its
+   own rules, so nothing was left to share.) */
 
 /* ---------- Header ----------
    Fixed and transparent at the top, then a translucent parchment bar with a
@@ -328,11 +323,23 @@ button { font: inherit; color: inherit; background: none; border: 0; }
   transition: width 200ms ease;
 }
 .site-nav a:hover::after { width: 100%; }
+/* Blog is the only nav item that leaves the page, so it is set apart rather
+   than queued with the four section links: a hairline before it, and no
+   growing underline, because it is a door out rather than a place on this
+   page. */
+.site-nav-utility {
+  margin-left: 0.5rem;
+  padding-left: 1.25rem;
+  border-left: 1px solid var(--parchment-300);
+  color: var(--ink-600);
+}
+.site-nav-utility::after { content: none; }
 
 .header-cta { display: none; align-items: center; gap: 0.875rem; }
 @media (min-width: 640px) { .header-cta { display: flex; } }
 .btn-dark {
   display: inline-block;
+  cursor: pointer;
   padding: 0.5rem 1rem;
   border-radius: var(--r-full);
   background: var(--ink-900);
@@ -388,7 +395,8 @@ button { font: inherit; color: inherit; background: none; border: 0; }
   padding-top: 1rem;
   border-top: 1px solid var(--parchment-300);
 }
-.mobile-nav .mobile-cta a {
+.mobile-nav .mobile-cta a,
+.mobile-nav .mobile-cta button {
   text-align: center;
   padding: 0.625rem 1rem;
   border-radius: var(--r-full);
@@ -396,6 +404,8 @@ button { font: inherit; color: inherit; background: none; border: 0; }
   color: var(--parchment-100);
   font-weight: 700;
   box-shadow: var(--shadow-xs);
+  width: 100%;
+  cursor: pointer;
 }
 
 /* ---------- Hero ----------
@@ -420,7 +430,9 @@ button { font: inherit; color: inherit; background: none; border: 0; }
 .hero-glow--3 { top: 15rem; left: 2.5rem; width: 18rem; height: 18rem; background: color-mix(in srgb, var(--sage-500) 10%, transparent); }
 .hero > .shell { position: relative; z-index: 1; }
 
-.hero-status { display: flex; justify-content: center; margin-bottom: 1.5rem; }
+/* Below the lede now, not above the headline. More room above than below: it
+   belongs to the pitch it qualifies, not to the buttons. */
+.hero-status { display: flex; justify-content: center; margin: 0 0 2rem; }
 .hero-status .pill {
   text-transform: none;
   letter-spacing: 0.025em;
@@ -438,27 +450,23 @@ button { font: inherit; color: inherit; background: none; border: 0; }
 @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
 
 .hero-copy { max-width: 56rem; margin-inline: auto; margin-bottom: 2.5rem; text-align: center; }
+/* One line, and it can afford to be bigger for it — the old headline carried a
+   statement plus an italic aside and had to leave room for both. */
 .hero-copy h1 {
-  font-size: 1.875rem;
-  line-height: 1.25;
-  letter-spacing: -0.025em;
-  margin-bottom: 1.5rem;
+  font-size: 2.25rem;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+  margin-bottom: 1.25rem;
 }
-.hero-copy h1 .line { display: block; }
-/* The second line is the comp's one italic: a serif italic in terracotta at a
-   size below the statement above it, so the pair reads as a sentence and its
-   aside rather than as two headlines. */
-.hero-copy h1 .line--aside {
-  margin-top: 0.5rem;
-  font-style: italic;
-  font-weight: 400;
-  color: var(--terracotta-600);
-  font-size: 1.5rem;
-}
-@media (min-width: 640px)  { .hero-copy h1 { font-size: 2.25rem; } .hero-copy h1 .line--aside { font-size: 1.875rem; } }
-@media (min-width: 768px)  { .hero-copy h1 { font-size: 3rem; }    .hero-copy h1 .line--aside { font-size: 2.25rem; } }
-@media (min-width: 1024px) { .hero-copy h1 { font-size: 3.75rem; } .hero-copy h1 .line--aside { font-size: 3rem; } }
-
+@media (min-width: 640px)  { .hero-copy h1 { font-size: 3rem; } }
+@media (min-width: 768px)  { .hero-copy h1 { font-size: 3.75rem; } }
+@media (min-width: 1024px) { .hero-copy h1 { font-size: 4.5rem; } }
+/* (The headline's two-line treatment lived here — a statement plus an italic
+   terracotta aside. It went with the 2026-08-23 headline change: the tagline is
+   one line now, and the sentence that used to be the aside is the lede below,
+   set as ordinary lede type. If a second line ever returns, the italic is worth
+   reviving; it was the nicest thing in the old hero.) */
 .hero-copy .lede {
   max-width: 48rem;
   margin-inline: auto;
@@ -473,6 +481,7 @@ button { font: inherit; color: inherit; background: none; border: 0; }
 @media (min-width: 640px) { .hero-actions { flex-direction: row; } }
 .btn {
   display: inline-flex;
+  cursor: pointer;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
@@ -509,28 +518,27 @@ button { font: inherit; color: inherit; background: none; border: 0; }
 /* The four claims. Their heading block is a size below a section head — this
    is a coda to the hero, not a new section, and the comp sets it that way. */
 .premise { max-width: var(--shell-6); margin-inline: auto; }
-.premise-head { margin-bottom: 2rem; text-align: center; }
-.premise-head .eyebrow { margin-bottom: 0.25rem; }
-.premise-head h2 { font-size: 1.5rem; }
-@media (min-width: 640px) { .premise-head h2 { font-size: 1.875rem; line-height: 1.2; } }
 
 .claim-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
 @media (min-width: 640px)  { .claim-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (min-width: 1024px) { .claim-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
-.claim { padding: 1.5rem; display: flex; flex-direction: column; justify-content: space-between; transition: box-shadow 200ms ease; }
-.claim:hover { box-shadow: var(--shadow-md); }
+/* NOT CARDS (2026-08-23). These were bordered, filled, shadowed boxes — four
+   conventional product-feature cards, which is the one thing this block should
+   not look like. The illustrations are real objects photographed on a desk;
+   boxing each one turns it into an icon in a grid. Border, fill and shadow are
+   gone from the claim AND from the bed under its object, so what separates
+   them is space. */
+.claim { display: flex; flex-direction: column; justify-content: space-between; }
 /* A fixed-height bed so four objects of four different aspect ratios sit on
    one line. The object scales inside it on hover, not the card. */
+/* The objects stand on a common ground line rather than floating at four
+   heights: flex-end inside a fixed box is what does that. */
 .claim-art {
-  height: 7rem;
+  height: 7.5rem;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
-  margin-bottom: 1.25rem;
-  padding: 0.5rem;
-  background: color-mix(in srgb, var(--parchment-200) 70%, transparent);
-  border: 1px solid var(--parchment-300);
-  border-radius: var(--r-xl);
+  margin-bottom: 1.5rem;
   transition: transform 200ms ease;
 }
 .claim:hover .claim-art { transform: scale(1.05); }
@@ -855,78 +863,102 @@ button { font: inherit; color: inherit; background: none; border: 0; }
   text-overflow: ellipsis;
 }
 
-/* ---------- Email bridge virtues ---------- */
-.bridge { max-width: var(--shell-6); margin-inline: auto; }
-.bridge-head { text-align: center; margin-bottom: 2rem; }
-.bridge-head .pill { margin-bottom: 0.5rem; }
-.bridge-head h3 { font-size: 1.5rem; }
-.virtue-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
-@media (min-width: 768px) { .virtue-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
-.virtue {
-  padding: 1.5rem;
-  background: #fff;
-  border: 1px solid var(--line);
-  border-radius: var(--r-2xl);
-  box-shadow: var(--shadow-2xs);
-  transition: border-color 150ms ease;
+/* ---------- The email-bridge note ----------
+   All that is left of a subsection: a "Safe Email Bridge" pill, a "Pure & Safe
+   Correspondence" heading and three cards (Parent-Approved Whitelist,
+   Child-Appropriate Text Shield, Zero Tech Burden for Elders) came out on
+   2026-08-23 as the most over-marketed block on the page. The two facts a
+   parent needs — who may reply, and what a reply may carry — are one sentence,
+   set under the three pictures where the eye already is. */
+.bridge-note {
+  max-width: min(58ch, var(--shell-3));
+  margin: 3rem auto 0;
+  text-align: center;
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  color: var(--ink-700);
 }
-.virtue:hover { border-color: var(--terracotta-600); }
-.virtue-icon {
-  width: 2.5rem; height: 2.5rem;
-  display: flex; align-items: center; justify-content: center;
-  margin-bottom: 1rem;
-  background: var(--parchment-100);
-  border: 1px solid var(--line);
-  border-radius: var(--r-xl);
-  color: var(--terracotta-600);
-}
-.virtue-icon svg { width: 1.25rem; height: 1.25rem; }
-.virtue h4 { font-size: 1.125rem; margin-bottom: 0.5rem; }
-.virtue p { font-size: 0.75rem; line-height: 1.625; color: var(--ink-700); }
-@media (min-width: 640px) { .virtue p { font-size: 0.875rem; } }
 
-/* ---------- Philosophy: the two columns ----------
-   The only place on the page with two tinted grounds, and the tint IS the
-   argument: a warm anxious blush against a cool settled green. Neither is a
-   card — no shadow — because these are two positions, not two products. */
-.compare { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
+/* ---------- Philosophy: the comparison ----------
+   Two tinted grounds, and the tint IS the argument: a warm anxious blush
+   against a cool settled green. Neither is a card — no shadow — because these
+   are two positions, not two products.
+
+   THE ROWS LINE UP, which is the whole point of the 2026-08-23 rebuild. It was
+   two independent bullet lists that merely sat side by side, so nothing on the
+   left corresponded to anything on the right and the reader had to pair them
+   up unaided. Now .compare owns the row track and each column re-uses it with
+   subgrid, so row 3 is row 3 on both sides however many lines either wraps to.
+   The <ul> is display:contents, which lets its items BE the grid's items — the
+   list stays a list for a screen reader while the grid sees seven rows.
+   Without subgrid support the columns fall back to ordinary blocks: the pairs
+   stop aligning but nothing breaks, and the copy still reads. */
+.compare {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
 @media (min-width: 640px) { .compare { gap: 2rem; } }
-@media (min-width: 768px) { .compare { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 768px) {
+  .compare {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    /* title + five paired rows */
+    grid-template-rows: auto repeat(5, auto);
+  }
+  .compare-col {
+    grid-row: span 6;
+    display: grid;
+    grid-template-rows: subgrid;
+    align-content: start;
+  }
+  .compare-col > ul { display: contents; }
+}
 .compare-col {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
   padding: 1.5rem;
   border-radius: var(--r-3xl);
 }
 @media (min-width: 640px) { .compare-col { padding: 2rem; } }
 .compare-col--bad  { background: color-mix(in srgb, #FAF0E6 50%, transparent); border: 1px solid #E8D0BE; }
 .compare-col--good { background: #EEF4F0; border: 1px solid #C5D9CB; }
-.compare-title { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1.25rem; }
+.compare-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 700;
+}
 .compare-title svg { width: 1.25rem; height: 1.25rem; flex: none; }
-.compare-title span { font-family: var(--font-serif); font-size: 1.25rem; font-weight: 700; }
 .compare-col--bad  .compare-title { color: #A24222; }
 .compare-col--good .compare-title { color: #386644; }
-.compare-list { display: flex; flex-direction: column; gap: 0.875rem; font-size: 0.75rem; line-height: 1.625; }
-@media (min-width: 640px) { .compare-list { font-size: 0.875rem; } }
-.compare-col--bad  .compare-list { color: #6E4F3E; }
-.compare-col--good .compare-list { color: #3E5C46; }
-.compare-list li { display: flex; align-items: flex-start; gap: 0.625rem; }
-/* The bullet is drawn, not a list-marker, so it can sit on the cap height of
-   the first line instead of on the baseline. */
-.compare-list li::before {
+
+/* Each cell is its own grid row, so the padding between pairs has to live on
+   the cell rather than on a list gap — a gap would be invisible to subgrid and
+   the two sides would drift apart. */
+.compare-cell {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.625rem;
+  padding-bottom: 0.875rem;
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+.compare-cell:last-child { padding-bottom: 0; }
+@media (min-width: 640px) { .compare-cell { font-size: 0.9375rem; } }
+.compare-cell--bad  { color: #6E4F3E; }
+.compare-cell--good { color: #3E5C46; }
+/* The bullet is drawn so it can sit on the cap height of the first line
+   instead of on the baseline. */
+.compare-cell::before {
   content: '';
   flex: none;
   width: 0.375rem; height: 0.375rem;
-  margin-top: 0.375rem;
+  margin-top: 0.5rem;
   border-radius: var(--r-full);
-  background: currentColor;
 }
-.compare-col--bad  .compare-list li::before { background: #A24222; }
-.compare-col--good .compare-list li::before { background: #386644; }
-.compare-foot { margin-top: 1.5rem; padding-top: 0.875rem; font-size: 0.75rem; font-weight: 600; }
-.compare-col--bad  .compare-foot { border-top: 1px solid #E8D0BE; color: #A24222; }
-.compare-col--good .compare-foot { border-top: 1px solid #C5D9CB; color: #386644; }
+.compare-cell--bad::before  { background: #A24222; }
+.compare-cell--good::before { background: #386644; }
 .compare-after { margin-top: 3rem; text-align: center; }
 
 /* ---------- Safety ---------- */

@@ -46,6 +46,13 @@ and every footer. Nothing on the site should carry a personal address.
 it rather than hand-editing nine copies, which is how Help and Privacy drifted
 apart before.
 
+**The tagline is written, not typed.** It appears three times — the header,
+the hero headline, the footer — so it lives in `brand.json` and
+`scripts/apply-brand.py` writes it into every element marked
+`data-brand="tagline"`. Same for the beta CTA (`beta_cta`), which changes the
+day the beta ends. `--check` exits nonzero when the HTML disagrees. Edit the
+JSON, run the script; never type either string into the HTML.
+
 **Prices are written, not typed.** `scripts/apply-pricing.py` rewrites the
 plan-card figures, names and desk counts in `index.html` (keyed on their
 `data-price` / `data-plan-name` / `data-plan-desks` markers)

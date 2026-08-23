@@ -24,7 +24,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&amp;family=Fraunces:ital,opsz,wght@0,9..144,400..800;1,9..144,400..700&amp;family=Plus+Jakarta+Sans:wght@400..800&amp;display=swap" />
   <!-- home.css styles THIS PAGE ONLY. Everything else on the site still runs
        styles.css; see the note at the top of home.css. -->
-  <link rel="stylesheet" href="home.css?v=6e9ee312" />
+  <link rel="stylesheet" href="home.css?v=b5d79b43" />
 </head>
 <body>
 
@@ -35,22 +35,29 @@
         <img src="assets/mark.png" alt="" width="36" height="36" />
         <span>
           <span class="brand-name">Postmello</span>
-          <span class="brand-sub">A private desk for digital letters</span>
+          <span class="brand-sub" data-brand="tagline">A quiet place for letters.</span>
         </span>
       </a>
 
+      <!-- FOUR choices, not seven (2026-08-23). Letters by Email, Philosophy
+           and FAQ came out: they are still on the page, and a visitor should
+           not have to make seven decisions from the header of a single-page
+           site. Blog is set apart as a utility link because it is the only one
+           that leaves the page. -->
       <nav class="site-nav" aria-label="Primary">
-        <a href="#how-it-works">How It Works</a>
+        <a href="#how-it-works">How it works</a>
         <a href="#desks">Desks &amp; Collections</a>
-        <a href="#grandparents">Letters by Email</a>
-        <a href="#philosophy">Philosophy</a>
-        <a href="#membership">Membership</a>
         <a href="#safety">Safety</a>
-        <a href="#faq">FAQ</a>
+        <a href="#membership">Membership</a>
+        <a class="site-nav-utility" href="blog/">Blog</a>
       </nav>
 
+      <!-- The button says what it does. "Get Started" was vague and promised
+           something the product cannot do yet; naming the real state is the
+           more credible thing to print. It opens the same dialog every plan
+           card does. Written by scripts/apply-brand.py. -->
       <div class="header-cta">
-        <a class="btn-dark" href="#membership">Get Started</a>
+        <button class="btn-dark" type="button" data-beta="Header" data-brand="beta_cta">Join private beta</button>
       </div>
 
       <button class="nav-toggle" type="button" id="nav-toggle"
@@ -64,15 +71,19 @@
   <div class="mobile-nav" id="mobile-nav">
     <div class="shell">
       <ul>
-        <li><a href="#how-it-works">How It Works</a></li>
+        <!-- The drawer keeps the sections the header dropped: on a phone
+             there is room for a list, and an extra line here costs nothing
+             like a seventh header link does. -->
+        <li><a href="#how-it-works">How it works</a></li>
         <li><a href="#desks">Desks &amp; Collections</a></li>
+        <li><a href="#safety">Safety</a></li>
+        <li><a href="#membership">Membership</a></li>
         <li><a href="#grandparents">Letters by Email</a></li>
         <li><a href="#philosophy">Philosophy</a></li>
-        <li><a href="#membership">Membership</a></li>
-        <li><a href="#safety">Safety</a></li>
         <li><a href="#faq">FAQ</a></li>
+        <li><a href="blog/">Blog</a></li>
       </ul>
-      <div class="mobile-cta"><a href="#membership">View Membership</a></div>
+      <div class="mobile-cta"><button type="button" data-beta="Mobile menu" data-brand="beta_cta">Join private beta</button></div>
     </div>
   </div>
 </header>
@@ -86,26 +97,42 @@
     <div class="hero-glow hero-glow--3" aria-hidden="true"></div>
 
     <div class="shell">
-      <div class="hero-status">
-        <span class="pill pill--sheer">
-          <span class="status-dot" aria-hidden="true"></span>
-          <span>Currently in private beta &bull; Coming first to iPad</span>
-        </span>
-      </div>
+      <!-- Headline, what it is, then its status - in that order (2026-08-23).
+           The status pill used to sit ABOVE the headline, which is the standard
+           announcement-bar pattern and gave the first line of the page to a
+           caveat. It reads better as a footnote to the pitch than a preface.
 
+           THE HEADLINE IS THE TAGLINE, written by scripts/apply-brand.py from
+           brand.json. It went back to "A quiet place for letters." because the
+           redesign's "A private desk for digital letters." says what the thing
+           IS but is not ownable - any stationery app could print it. The
+           private-desk sentence is not lost; it is the line directly below,
+           where saying what it is belongs.
+
+           THE LONG PARAGRAPH IS GONE. It argued about group chats, algorithmic
+           feeds and urgency - which is exactly the argument the Why Postmello
+           section makes properly a screen further down. Making it twice dulled
+           both, and the hero has four seconds. -->
       <div class="hero-copy">
-        <h1>
-          <span class="line">A private desk for digital letters.</span>
-          <span class="line line--aside">Without the rush of messaging.</span>
-        </h1>
-        <p class="lede">A quiet space for friends and families to write, draw, and stay in touch at their own pace. No group chats, no algorithmic feeds, no urgency &mdash; just the quiet, creative joy of making and receiving crafted letters.</p>
+        <h1 data-brand="tagline">A quiet place for letters.</h1>
+        <p class="lede">A private desk for digital letters with friends and
+           family &mdash; without the rush of messaging.</p>
 
+        <p class="hero-status">
+          <span class="pill pill--sheer">
+            <span class="status-dot" aria-hidden="true"></span>
+            <span>Currently in private beta &bull; Coming first to iPad</span>
+          </span>
+        </p>
+
+        <!-- The primary action is the beta, not the price list. "Explore Desks
+             & Membership" pointed a first-time reader at the most commercial
+             idea on the page; this opens the same dialog the cards do. -->
         <div class="hero-actions">
-          <a class="btn btn--primary" href="#membership">
-            <span>Explore Desks &amp; Membership</span>
+          <button class="btn btn--primary" type="button" data-beta="Hero" data-brand="beta_cta">Join private beta</button>
+          <a class="btn btn--ghost" href="#how-it-works"><span>See how it works</span>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
           </a>
-          <a class="btn btn--ghost" href="#how-it-works"><span>See How It Works</span></a>
         </div>
       </div>
 
@@ -122,33 +149,35 @@
       </div>
 
       <div class="premise">
-        <div class="premise-head">
-          <p class="eyebrow">The Core Premise</p>
-          <h2>Thoughtful correspondence by design.</h2>
-        </div>
+        <!-- No eyebrow, no heading (2026-08-23). "The Core Premise /
+             Thoughtful correspondence by design." was pitch-deck language
+             introducing four statements that introduce themselves. -->
         <div class="claim-grid">
-          <article class="card claim">
+          <article class="claim">
             <div>
               <p class="claim-art"><img src="assets/claims/claim-letters.png" alt="" loading="lazy" /></p>
-              <h3>Room to say more.</h3>
+              <!-- "More than a message.", not "Room to say more." - which
+                   repeated the line beneath it ("Room for words...") and said
+                   less. This one names the actual distinction. -->
+              <h3>More than a message.</h3>
               <p>Room for words, drawings and ideas to unfold.</p>
             </div>
           </article>
-          <article class="card claim">
+          <article class="claim">
             <div>
               <p class="claim-art"><img src="assets/claims/claim-imagination.png" alt="" loading="lazy" /></p>
               <h3>A desk for imagination.</h3>
               <p>A little world where ideas have somewhere to go.</p>
             </div>
           </article>
-          <article class="card claim">
+          <article class="claim">
             <div>
               <p class="claim-art"><img src="assets/claims/claim-approved.png" alt="" loading="lazy" /></p>
               <h3>Only people you approve.</h3>
               <p>Every contact is approved before letters can be exchanged.</p>
             </div>
           </article>
-          <article class="card claim">
+          <article class="claim">
             <div>
               <p class="claim-art"><img src="assets/claims/claim-putdown.png" alt="" loading="lazy" /></p>
               <h3>Nothing pulling you back.</h3>
@@ -170,8 +199,14 @@
           <span class="pill pill--solid"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"/><path d="M20 2v4"/><path d="M22 4h-4"/><circle cx="4" cy="20" r="2"/></svg> Why Postmello</span>
           <h2>Staying in touch doesn&rsquo;t have to start with texting.</h2>
           <p>Texting wasn&rsquo;t made for kids. It&rsquo;s built around quick replies, group chats, photos, links, and notifications.</p>
-          <p>Postmello gives kids a place of their own to write, draw, be silly or thoughtful, and stay in touch independently with people you approve.</p>
-          <a class="arrow-link" href="#philosophy"><span>Read the Postmello story</span> <span aria-hidden="true">&rarr;</span></a>
+          <p>Postmello gives kids a room of their own to write, draw, be silly or thoughtful, and stay in touch independently with people you approve.</p>
+          <!-- Points at the ESSAY, not at another section of this page. Both
+               of these links scrolled somewhere else on the homepage - "read
+               the story" landed on the philosophy comparison, "read the
+               philosophy" landed on Safety - which is a link that does not do
+               what it says. The blog posts they promise have existed all
+               along. -->
+          <a class="arrow-link" href="blog/why-i-built-postmello/"><span>Read the Postmello story</span> <span aria-hidden="true">&rarr;</span></a>
         </div>
       </div>
     </div>
@@ -181,7 +216,9 @@
   <section class="section section--band" id="how-it-works">
     <div class="shell">
       <div class="sec-head">
-        <p class="eyebrow">The Postal Ritual</p>
+        <!-- "How it works", not "The Postal Ritual" - charming internally,
+             but on a homepage it is one more concept to parse. -->
+        <p class="eyebrow">How it works</p>
         <h2>Make a letter</h2>
         <p class="lede">See where the page takes you.</p>
       </div>
@@ -190,7 +227,13 @@
           <div class="step-media"><img src="assets/step-paper.jpg" alt="Choose your paper." loading="lazy" /></div>
           <div class="step-body">
             <span class="step-num">Step 01</span>
+            <!-- One short line each, restored 2026-08-23. Removing them
+                 outright went a step too far; what was wrong was
+                 NARRATION - "affix your illustrated postage stamp"
+                 describing what the screenshot already shows. These say
+                 the part the picture cannot. -->
             <h3>Choose your paper.</h3>
+            <p>Pick a page that fits what you want to make.</p>
           </div>
         </article>
         <article class="step-card">
@@ -198,6 +241,7 @@
           <div class="step-body">
             <span class="step-num">Step 02</span>
             <h3>Make it yours.</h3>
+            <p>Write, draw, type, and add stickers.</p>
           </div>
         </article>
         <article class="step-card">
@@ -205,6 +249,7 @@
           <div class="step-body">
             <span class="step-num">Step 03</span>
             <h3>Stamp it and send.</h3>
+            <p>Finish the envelope and send it on its way.</p>
           </div>
         </article>
       </div>
@@ -215,7 +260,8 @@
   <section class="section" id="desks">
     <div class="shell">
       <div class="sec-head">
-        <p class="eyebrow">Atmospheric Writing Spaces</p>
+        <!-- "Atmospheric Writing Spaces" came off (2026-08-23): marketing
+             language over a heading that already says what this is. -->
         <h2>Desks &amp; collections</h2>
         <p class="lede">Pick a desk that inspires you. Each desk is a different place to write from.</p>
       </div>
@@ -426,7 +472,7 @@
       <div class="sec-head">
         <p class="eyebrow">Letters by Email</p>
         <h2>Grandma doesn&rsquo;t need the app.</h2>
-        <p class="lede">She can receive and reply by email. No tablet, login, or special app download required.</p>
+        <p class="lede">She can receive and reply by email. No tablet, app, or account required.</p>
       </div>
 
       <div class="step-grid" style="margin-bottom:4rem">
@@ -441,41 +487,36 @@
           <div class="step-media"><img src="assets/beyond-inbox.jpg" alt="It arrives in standard email." loading="lazy" /></div>
           <div class="step-body">
             <span class="step-num">Step 02</span>
-            <h3>It arrives in standard email.</h3>
+            <!-- Names the mechanism instead of the category: what actually
+                 arrives is an email with a private link, and saying so answers
+                 "but how does she SEE a handwritten page?" before it is asked. -->
+            <h3>Grandma gets an email with a private link to the letter.</h3>
           </div>
         </article>
         <article class="step-card">
           <div class="step-media"><img src="assets/beyond-reply.jpg" alt="She simply hits Reply." loading="lazy" /></div>
           <div class="step-body">
             <span class="step-num">Step 03</span>
-            <h3>She simply hits Reply.</h3>
+            <h3>She hits Reply.</h3>
+            <p>Her words return as a typewritten letter.</p>
           </div>
         </article>
       </div>
 
-      <div class="bridge">
-        <div class="bridge-head">
-          <span class="pill pill--solid"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg> <span>Safe Email Bridge</span></span>
-          <h3>Pure &amp; Safe Correspondence</h3>
-        </div>
-        <div class="virtue-grid">
-          <article class="virtue">
-            <p class="virtue-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg></p>
-            <h4>Parent-Approved Whitelist</h4>
-            <p>A child can only write to authorized addresses, and only approved contacts can reply. Zero stranger access.</p>
-          </article>
-          <article class="virtue">
-            <p class="virtue-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12.531 3H3a1 1 0 0 0-.742 1.67l7.225 7.989A2 2 0 0 1 10 14v6a1 1 0 0 0 .553.895l2 1A1 1 0 0 0 14 21v-7a2 2 0 0 1 .517-1.341l.427-.473"/><path d="m16.5 3.5 5 5"/><path d="m21.5 3.5-5 5"/></svg></p>
-            <h4>Child-Appropriate Text Shield</h4>
-            <p>Web links, photos, attachments, and emoticons are stripped away. Replies return in clean typewritten ink, true to authentic letter writing.</p>
-          </article>
-          <article class="virtue">
-            <p class="virtue-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 5a2 2 0 0 1 2 2v8.526a2 2 0 0 0 .212.897l1.068 2.127a1 1 0 0 1-.9 1.45H3.62a1 1 0 0 1-.9-1.45l1.068-2.127A2 2 0 0 0 4 15.526V7a2 2 0 0 1 2-2z"/><path d="M20.054 15.987H3.946"/></svg></p>
-            <h4>Zero Tech Burden for Elders</h4>
-            <p>Grandparents, aunts, or cousins don&rsquo;t need an iPad or subscription. Any device with standard email works effortlessly.</p>
-          </article>
-        </div>
-      </div>
+      <!-- One line where a whole subsection stood (2026-08-23).
+
+           What went: a "Safe Email Bridge" pill, a "Pure &amp; Safe
+           Correspondence" heading, and three cards - Parent-Approved
+           Whitelist, Child-Appropriate Text Shield, Zero Tech Burden for
+           Elders. It was the most over-marketed block on the page, and the
+           last of those was faintly patronising about the person the section
+           is named after.
+
+           The two facts worth keeping are the two a parent actually needs: who
+           may reply, and what a reply may carry. Both are now in one sentence
+           under the three pictures, which is where the eye already is. -->
+      <p class="bridge-note">Only approved email contacts can reply. Links,
+         photos and attachments are removed before a reply reaches the desk.</p>
     </div>
   </section>
 
@@ -485,51 +526,55 @@
       <div class="sec-head sec-head--tight">
         <p class="eyebrow">Design Philosophy</p>
         <h2>Made to feel like letters.</h2>
-        <p class="lede">One letter at a time. No feeds, read receipts, or pressure to reply. Every detail is crafted to leave room for the person on the other side.</p>
+        <p class="lede">Messaging is built for fast, fluid conversation. Postmello is built for deliberate correspondence.</p>
       </div>
 
+      <!-- A REAL COMPARISON since 2026-08-23: five pairs, each one lining up
+           across the two columns, so the eye reads a row rather than two
+           unrelated lists. It was two independent bullet lists of six that
+           merely sat side by side, and nothing on the left corresponded to
+           anything on the right.
+
+           The alignment is done with subgrid: .compare owns the rows and each
+           column re-uses them, so row 3 is row 3 in both no matter how many
+           lines either side wraps to. The <ul> is display:contents so its
+           items are the grid's items - the list stays a list for a screen
+           reader while the grid sees the rows.
+
+           The headings are just "Messaging" and "Postmello". They were
+           "Hyper-Reactive Messaging" and "Postmello's Quiet Desk", which
+           argued the case in the label before the reader had seen the
+           evidence; the rows are the argument and they do not need help.
+
+           The two footer lines went with them - "Engineered for algorithmic
+           urgency", "Designed for patience, literacy..." - because the lede
+           above now says exactly that in one sentence. -->
       <div class="compare">
         <div class="compare-col compare-col--bad">
-          <div>
-            <p class="compare-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg> <span>Hyper-Reactive Messaging</span></p>
-            <ul class="compare-list">
-              <li><span><strong>Instant reply pressure:</strong> Typing dots, read receipts, and online status demand immediate answers.</span></li>
-              <li><span><strong>Fragmented chat bursts:</strong> Quick 2-word texts and rapid fire messages leave no room for complete thoughts.</span></li>
-              <li><span><strong>Intrusive pings:</strong> Notification sounds constantly pull focus away from schoolwork, creative focus, and family life.</span></li>
-              <li><span><strong>Hyper-reactive forwarding:</strong> Chain forwards, mass shares, and selective group forwarding breed exclusion and peer pressure.</span></li>
-              <li><span><strong>Disposable streams:</strong> Words scroll by in infinite feeds with no sense of physical permanence or keepsakes.</span></li>
-              <li><span><strong>Public discovery &amp; feeds:</strong> Open search and algorithms expose kids to unapproved contacts.</span></li>
-            </ul>
-          </div>
-          <p class="compare-foot">Engineered for algorithmic urgency and constant scrolling.</p>
+          <p class="compare-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg> <span>Messaging</span></p>
+          <ul>
+          <li class="compare-cell compare-cell--bad">Instant back-and-forth with typing indicators, read receipts and notifications</li>
+          <li class="compare-cell compare-cell--bad">Group chats can grow and change as people are added</li>
+          <li class="compare-cell compare-cell--bad">Photos, links and forwarded content move easily from one conversation to another</li>
+          <li class="compare-cell compare-cell--bad">Messages live in an ongoing stream and quickly get buried</li>
+          <li class="compare-cell compare-cell--bad">Forwarding can widen an audience in a tap</li>
+          </ul>
         </div>
 
         <div class="compare-col compare-col--good">
-          <div>
-            <p class="compare-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> <span>Postmello&rsquo;s Quiet Desk</span></p>
-            <ul class="compare-list">
-              <li><span><strong>The Postal Ritual:</strong> Deliberate delivery pacing slows down communication, leaving space to think, compose, and look forward to replies.</span></li>
-              <li><span><strong>Room to express ideas:</strong> Multi-page letters written by finger, stylus, or typewriter encourage thoughtful storytelling and drawings.</span></li>
-              <!-- "All-inclusive forwarding & reply" read like a holiday package, and
-                   "exclusionary partial forwards" was the explanation needing an
-                   explanation. The rule itself is simple and worth stating plainly,
-                   because it is the thing that stops group-chat politics: a reply
-                   goes to the sender alone or to the whole original audience, never
-                   a subset the child picks, and never to anyone who was not already
-                   on the letter (CLAUDE.md, ReplyAudience - all-or-nothing, sender
-                   always included, enforced at envelope and again at send). -->
-              <li><span><strong>A reply can&rsquo;t leave anyone out:</strong> Write back to just the sender, or to everyone who received the letter &mdash; never a hand-picked few, and never to someone who was not already on it.</span></li>
-              <li><span><strong>Write back on the letter itself:</strong> Reply in the margins of the letter you were sent, the way you would with a pen, or add fresh sheets. Their handwriting stays exactly as they drew it.</span></li>
-              <li><span><strong>Quiet ambient arrival:</strong> New mail quietly raises the brass mailbox flag on the wooden desk with zero disruptive audio dings.</span></li>
-              <li><span><strong>Nothing pulls you back:</strong> Once an envelope slides into the brass slot, that letter is finished. There is no feed to return to and nothing waiting to be refreshed.</span></li>
-            </ul>
-          </div>
-          <p class="compare-foot">Designed for patience, literacy, creative expression, and lasting keepsakes.</p>
+          <p class="compare-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> <span>Postmello</span></p>
+          <ul>
+          <li class="compare-cell compare-cell--good">One letter at a time, with no read receipts or pressure to reply</li>
+          <li class="compare-cell compare-cell--good">Every recipient is deliberate and every contact is approved</li>
+          <li class="compare-cell compare-cell--good">Letters are made here &mdash; with words, drawings, typing and stickers</li>
+          <li class="compare-cell compare-cell--good">Letters are things you make, send and keep</li>
+          <li class="compare-cell compare-cell--good">A reply can&rsquo;t be passed along to someone new</li>
+          </ul>
         </div>
       </div>
 
       <p class="compare-after">
-        <a class="arrow-link" href="#safety"><span>Read the Postmello Design Philosophy</span> <span aria-hidden="true">&rarr;</span></a>
+        <a class="arrow-link" href="blog/designing-a-desk-not-an-app/"><span>Read our design philosophy</span> <span aria-hidden="true">&rarr;</span></a>
       </p>
     </div>
   </section>
@@ -842,7 +887,7 @@
             <span>How does Postmello postpone texting for kids?</span>
             <span class="faq-chevron" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></span>
           </summary>
-          <div class="faq-answer">Texting wasn&rsquo;t made for kids. It&rsquo;s built around quick replies, group chats, photos, links, and notifications. Postmello gives kids a place of their own to write, draw, be silly or thoughtful, and stay in touch independently with people you approve &mdash; one letter at a time.</div>
+          <div class="faq-answer">Texting wasn&rsquo;t made for kids. It&rsquo;s built around quick replies, group chats, photos, links, and notifications. Postmello gives kids a room of their own to write, draw, be silly or thoughtful, and stay in touch independently with people you approve &mdash; one letter at a time.</div>
         </details>
         <details class="faq-item" data-cat="safety">
           <summary>
@@ -905,7 +950,7 @@
                  broke the site's own positioning rule - WEBSITE_SPEC 2 says
                  Postmello is not defined as an iPad app; "Coming first to
                  iPad" in the hero badge is the approved form. -->
-            <span class="sub">A private desk for digital letters</span>
+            <span class="sub" data-brand="tagline">A quiet place for letters.</span>
           </span>
         </div>
         <!-- The hero's own first sentence, and deliberately only that. The old

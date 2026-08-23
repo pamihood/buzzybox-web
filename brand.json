@@ -1,0 +1,34 @@
+{
+  "tagline": "A quiet place for letters.",
+  "_tagline_notes": [
+    "THE tagline, and the reason this file exists: it appeared in three places",
+    "(the header, the hero headline, the footer) and changing it meant hunting",
+    "for all three. Now it lives here and scripts/apply-brand.py writes it into",
+    "every element marked data-brand=\"tagline\". Edit the JSON, run the script.",
+    "Never type it into the HTML by hand — apply-brand.py --check will catch it.",
+    "",
+    "It went back to 'A quiet place for letters.' on 2026-08-23. The redesign",
+    "had replaced it with 'A private desk for digital letters.', which says what",
+    "the thing IS but is not ownable — any stationery app could print it. The",
+    "quiet-place line is warmer, more memorable, and the one a person repeats.",
+    "It is not lost work: the private-desk sentence is still the hero's second",
+    "line, where saying what it is belongs, so the pair does both jobs.",
+    "",
+    "The period is part of the string. It reads as a sentence in the hero and as",
+    "a small full stop under the wordmark, and one canonical form beats a rule",
+    "about where punctuation is added."
+  ],
+
+  "beta_cta": "Join private beta",
+  "_beta_cta_notes": [
+    "What the header button says while the beta is the real state of the",
+    "product. It was 'Get Started', which is vague and — worse — promises",
+    "something the product cannot do yet. This is written by the same script,",
+    "so when the beta ends it changes here and nowhere else.",
+    "",
+    "NOT the same string as the plan cards' 'Request a beta invite'. Those open",
+    "the dialog from a card and name what they are asking for because a reader",
+    "can arrive at them straight from the nav; this one sits beside the wordmark",
+    "where the badge has already said 'Currently in private beta'."
+  ]
+}

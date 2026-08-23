@@ -464,6 +464,15 @@ main > .feature:last-child { padding-bottom: var(--s-5); }
   background-color: var(--paper-alt);
   border-block: 1px solid var(--line);
 }
+/* Two banded sections in a row share ONE sheet: both seam hairlines come
+   off - the follower's top here, the leader's bottom via :has below - so each
+   band pair (letter-making + Why, Grandma + design) reads as one chapter on
+   the second paper, and the sheet's outer edges are what separate the brand
+   columns from the cream sections after them (Patrick, 2026-08-22). If :has
+   is unsupported the seam degrades to a single hairline, which is only a
+   quieter version of the same statement. */
+.feature--band + .feature--band { border-top: 0; }
+.feature--band:has(+ .feature--band) { border-bottom: 0; }
 .feature-head {
   max-width: var(--maxw-wide);
   margin: 0 auto var(--s-6);
@@ -654,16 +663,19 @@ main > .feature:last-child { padding-bottom: var(--s-5); }
 /* ---------- The editorial voice ---------- */
 /* Two ideas, and since 2026-08-22 two sections: Why Postmello above the
    collections, Design philosophy below them. Compact on purpose — neither is
-   a third pillar, so both run at roughly three-quarters of the page's section
-   rhythm and their headings stay a size below every other h2 on the page. The
-   smaller heading is what keeps a full-width block of type reading as a breath
-   between the pictures rather than as a new argument starting.
+   a third pillar: reduced rhythm, headings a size below every other h2, and
+   since the same day's style pass a LEFT AXIS (heading beside the prose)
+   instead of one more centred column — see the .editorial--solo comment.
 
    Editorial, not promotional: no cards, no shadows, no illustrations, no
-   buttons. The two-column rules below are kept intact — the pair may be put
-   back side by side if the page ever wants an interlude again — but nothing
-   uses them today. */
-.editorial-section { padding-block: calc(var(--space-section) * 0.72); }
+   buttons. The original two-column rules below are kept intact — the pair may
+   be put back side by side if the page ever wants an interlude again — but
+   nothing uses them today. */
+/* 0.55, down from 0.72 (style pass, 2026-08-22): an interlude that reads as
+   an aside no longer needs a section's air around three lines of type — the
+   old padding left ~400px voids on either side of the shortest blocks on the
+   page, which read as something missing rather than as calm. */
+.editorial-section { padding-block: calc(var(--space-section) * 0.55); }
 .editorial {
   max-width: var(--maxw-page);
   margin: 0 auto;
@@ -747,25 +759,50 @@ main > .feature:last-child { padding-bottom: var(--s-5); }
   }
 }
 
-/* One column, centred, at the same measure every other centred lede on this
-   page uses — so the editorial sits on the page's own axis instead of hugging
-   the left edge of a grid whose second column went away.
-   The paragraph's 46ch cap comes off here: a 46ch paragraph centred under a
-   58ch heading reads as two different blocks, and the container is already
-   doing the measure's job. */
+/* The solo interlude, on a LEFT AXIS (style pass, 2026-08-22, replacing the
+   centred single column). Centred, the two interludes were typographically
+   identical to every section head on the page — ten centred blocks in a row —
+   so a three-line aside wore the same dress as the desk gallery and the page
+   read as a template. Heading beside the prose, with the two-column
+   editorial's own hairline between, makes an interlude LOOK like an interlude:
+   the one shape on the page that is not a centred column is the one voice
+   that is not a product claim.
+   The head column takes 5 of 12 and the prose 7: the headings are two to four
+   short lines and the prose is the longer half, so equal columns left the
+   head floating in its own white. The hairline rides the BODY column
+   (border-left + padding) rather than sitting in a gap, same trick as the old
+   two-column build — a rule centred in a gap reads as attached to neither
+   side. */
 .editorial--solo {
   grid-template-columns: 1fr;
-  max-width: min(58ch, var(--maxw-read));
-  text-align: center;
+  max-width: var(--maxw-wide);
+  text-align: left;
 }
-.editorial--solo p:not(.eyebrow) {
-  max-width: none;
-  margin-inline: auto;
+.editorial--solo .editorial-col {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+}
+.editorial--solo .ed-head { padding-right: clamp(28px, 4.5vw, 64px); }
+.editorial--solo .ed-body {
+  border-left: 1px solid var(--line);
+  padding-left: clamp(28px, 4.5vw, 64px);
 }
 /* The last paragraph runs into the link, so the gap under it is the one that
-   sets how far the doorway sits from the prose. --s-4 is the two-column
-   spacing and reads as a stray line under a centred block; --s-3 attaches it. */
+   sets how far the doorway sits from the prose. */
 .editorial--solo p:last-of-type { margin-bottom: var(--s-3); }
+/* Stacked on a phone, the vertical rule becomes a horizontal one — the same
+   fold the old two-column editorial used at this width. */
+@media (max-width: 760px) {
+  .editorial--solo .editorial-col { grid-template-columns: 1fr; }
+  .editorial--solo .ed-head { padding-right: 0; }
+  .editorial--solo .ed-body {
+    border-left: 0;
+    padding-left: 0;
+    border-top: 1px solid var(--line);
+    padding-top: var(--s-4);
+    margin-top: var(--s-3);
+  }
+}
 
 /* ---------- The stationery spread ---------- */
 /* Six desks say where you sit; this says what you can make there, which is the
@@ -1104,7 +1141,19 @@ main > .feature:last-child { padding-bottom: var(--s-5); }
      are objects with their own baked contact shadows, not glyphs, and set at
      --s-2 each one looked like it was resting ON its heading. */
   margin: 0 0 var(--s-3);
-  height: clamp(72px, 6.6vw, 88px);
+  /* Up a step with the style pass (72-88 → 80-96px, 2026-08-22): once the
+     objects stand on a drawn shelf they are furniture, not glyphs, and the
+     old size read as timid on the line. Still well under the 120px at which
+     the row becomes a second feature strip — the argument below stands. */
+  height: clamp(80px, 7vw, 96px);
+  /* The shelf, drawn. The comment below already argued the row "reads as four
+     objects on a shelf" — this makes the shelf real: one hairline under each
+     object, 74% of the column so the four lines read as four shelves rather
+     than one broken rule. Background, not border: a border spans the full
+     column width and turns the row into tabs. The 12px of padding is the
+     object's clearance above its own contact shadow. */
+  padding-bottom: 12px;
+  background: linear-gradient(var(--line), var(--line)) bottom center / 74% 1px no-repeat;
   display: flex;
   align-items: flex-end;
   /* Centred over the column, even where the type below is left-aligned
@@ -1366,11 +1415,16 @@ main > .feature:last-child { padding-bottom: var(--s-5); }
   margin: 0 0 var(--s-1);
   display: flex;
   align-items: flex-end;
-  gap: 3px;
-  min-height: 22px;
+  gap: 4px;
+  min-height: 32px;
 }
 .plan-desks img {
-  height: 20px;
+  /* 28px, up from 20 (style pass, 2026-08-22). The two-card build keeps the
+     cards the SAME height so they compare (Patrick), which leaves Free with
+     more paper than lines - and at 20px the charms were too small to help
+     hold it. A third larger, the desk still reads as a desk and the row
+     carries real weight on the card. */
+  height: 28px;
   width: auto;
   filter: drop-shadow(0 1px 2px rgba(60, 42, 20, 0.26));
 }

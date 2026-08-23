@@ -18,7 +18,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@500&amp;family=Nunito:wght@400..800&amp;family=Rubik:wght@600&amp;display=swap" />
-  <link rel="stylesheet" href="styles.css?v=021fb251" />
+  <link rel="stylesheet" href="styles.css?v=ea875ebd" />
 </head>
 <body>
   <header class="site-head site-head--wide">
@@ -231,8 +231,30 @@
       </ul>
     </section>
 
-    <section class="feature" id="make">
+    <!-- On the second sheet (style pass, 2026-08-22). The page ran its full
+         10,000px on one flat cream ground - .feature--band existed in the
+         stylesheet and nothing used it - so sections were separated only by
+         identical voids and the scroll had no chapters. TWO chapters take the
+         alt sheet, and each is the same pair: a product beat plus the brand
+         column that answers it - the letter-making row + Why Postmello here,
+         the Grandma story + the design column further down (Patrick,
+         2026-08-22: neither column should share a ground with the section
+         after it). Adjacent bands share one sheet - the seam hairlines
+         collapse in CSS - so each chapter ends on a clean edge just before
+         cream returns for the giants, which are never banded: the desk
+         gallery and the pricing carry themselves. -->
+    <section class="feature feature--band" id="make">
       <div class="feature-head">
+        <!-- Apparatus eyebrows on every major section (style pass,
+             2026-08-22). The two editorial columns always had them; the rest
+             of the page did not, so the postal-apparatus voice appeared twice
+             and vanished. One small mono label over each h2 ties the page
+             together and makes section starts legible in a long scroll.
+             The labels are FURNITURE, not headings - they name the department,
+             the h2 still makes the claim. Keep them to two or three plain
+             words; the moment one editorializes it competes with the line
+             below it. -->
+        <p class="eyebrow">Make a letter</p>
         <h2><span>See where the page takes you.</span></h2>
       </div>
       <div class="steps">
@@ -302,11 +324,18 @@
          can be another starting point. Hence none of the vocabulary that
          would turn this into a wellness pitch: no digital independence, no
          screen time, no mindful anything. -->
-    <section class="feature editorial-section" id="why">
+    <section class="feature feature--band editorial-section" id="why">
       <div class="editorial editorial--solo">
         <article class="editorial-col">
+          <!-- Head and body wrapped for the left axis (style pass,
+               2026-08-22): eyebrow + heading in one column, prose + link in
+               the other, hairline between - see .editorial--solo. The div
+               seams are layout only; the copy and its reasoning above are
+               untouched. -->
+          <div class="ed-head">
           <p class="eyebrow">Why Postmello</p>
-          <h2>Staying in touch doesn’t have to start with texting.</h2>
+          <h2>Staying in touch doesn’t have to start with texting.</h2></div>
+          <div class="ed-body">
           <!-- Patrick's copy, 2026-08-22, third cut. It replaced "Kids are
                getting access to technology earlier…" and then tightened twice
                in one day, and both edits went the same direction.
@@ -356,13 +385,14 @@
           <p>Postmello gives kids a place of their own to write, draw, be silly
              or thoughtful, and stay in touch independently with people you
              approve.</p>
-          <a class="editorial-link" href="blog/why-i-built-postmello/">Read the Postmello story <span aria-hidden="true">→</span></a>
+          <a class="editorial-link" href="blog/why-i-built-postmello/">Read the Postmello story <span aria-hidden="true">→</span></a></div>
         </article>
       </div>
     </section>
 
     <section class="feature" id="collections">
       <div class="feature-head">
+        <p class="eyebrow">Desks &amp; collections</p>
         <h2><span>Pick a desk that inspires you.</span></h2>
         <!-- The nbsp keeps "the mailbox" together: unbound, the line broke
              after "even the", and an article dangling at a line end is the one
@@ -587,8 +617,9 @@
          part of the product is built that way. The middle and right
          panels are baked stills rendered from the letter email's real layout;
          the left is an app capture from the same desk as the hero. -->
-    <section class="feature" id="beyond">
+    <section class="feature feature--band" id="beyond">
       <div class="feature-head">
+        <p class="eyebrow">Letters by email</p>
         <!-- "the app", not "Postmello" (Patrick, 2026-08-22). The old
              heading read two ways and only one of them was meant: "Grandma
              doesn't need Postmello" can land as "Postmello is not for her",
@@ -651,11 +682,13 @@
          Same treatment as its former partner - one centred column at reading
          measure - so the two read as the same editorial voice at two points
          in the page rather than as one interlude that lost a half. -->
-    <section class="feature editorial-section" id="design">
+    <section class="feature feature--band editorial-section" id="design">
       <div class="editorial editorial--solo">
         <article class="editorial-col">
+          <div class="ed-head">
           <p class="eyebrow">Design philosophy</p>
-          <h2>Made to feel like letters.</h2>
+          <h2>Made to feel like letters.</h2></div>
+          <div class="ed-body">
           <!-- Patrick's copy, 2026-08-22, replacing "Designed like a desk, not
                an app." and the paragraph under it. The old heading named the
                CRAFT; this one names the RESULT, and after six desk photographs
@@ -707,7 +740,7 @@
           <p>One letter at a time. No feeds, read receipts, or pressure to
              reply. Every part of Postmello is designed to leave a little more
              room for the person on the other side.</p>
-          <a class="editorial-link" href="blog/designing-a-desk-not-an-app/">Read our design philosophy <span aria-hidden="true">&rarr;</span></a>
+          <a class="editorial-link" href="blog/designing-a-desk-not-an-app/">Read our design philosophy <span aria-hidden="true">&rarr;</span></a></div>
         </article>
       </div>
     </section>
@@ -852,6 +885,7 @@
          before the footer. -->
     <section class="feature" id="household">
       <div class="feature-head">
+        <p class="eyebrow">Membership</p>
         <!-- The heading now states the FIRST STEP rather than the price of it
              (Patrick, 2026-08-22). "Your first desk is free." was a fact about
              the free tier; "Start with one desk, free." is an instruction to

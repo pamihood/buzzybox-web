@@ -24,7 +24,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&amp;family=Fraunces:ital,opsz,wght@0,9..144,400..800;1,9..144,400..700&amp;family=Plus+Jakarta+Sans:wght@400..800&amp;display=swap" />
   <!-- home.css styles THIS PAGE ONLY. Everything else on the site still runs
        styles.css; see the note at the top of home.css. -->
-  <link rel="stylesheet" href="home.css?v=ae5b75e5" />
+  <link rel="stylesheet" href="home.css?v=8536d4d6" />
 </head>
 <body>
 
@@ -612,50 +612,51 @@
   <section class="section section--band" id="safety">
     <div class="shell shell--6">
       <div class="sec-head sec-head--tight">
-        <span class="pill pill--paper"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15.5 7.5 2.3 2.3a1 1 0 0 0 1.4 0l2.1-2.1a1 1 0 0 0 0-1.4L19 4"/><path d="m21 2-9.6 9.6"/><circle cx="7.5" cy="15.5" r="5.5"/></svg> Safety &amp; Governance</span>
-        <h2 style="margin-top:1rem">The Brass Key: Total Parental Peace of Mind</h2>
-        <p class="lede">Childhood should be safe, creative, and protected. Unapproved contact in Postmello is impossible by design.</p>
+        <p class="eyebrow">Safety</p>
+        <h2>Only people you approve can reach the desk.</h2>
       </div>
 
+      <!-- FOUR points, and only two of them can be photographed. That is not a
+           gap in the art - it is what the section is about. The first two name
+           real objects (the key that gates the Admin Portal, the drawers that
+           hold approved contacts); the last two are an ABSENCE and a legal
+           posture, and there is no photograph of "no user search". The old
+           site had this written down as a rule - state the absence, because
+           absence is the differentiator and no photograph can show it - so
+           those two take line marks rather than a strained metaphor.
+
+           The key is the app's own asset (samples/ui/homedesk/key_transparent,
+           trimmed to its bounding box and scaled). The drawers are the claim
+           art that used to sit under the hero captioned "Only people you
+           approve" - which is this section's second point almost word for
+           word, so it moved here rather than being retired.
+
+           What went: three cards with EMOJI in tinted tiles, a "Safety &
+           Governance" pill, "The Brass Key: Total Parental Peace of Mind", and
+           a footer line on each. Emoji were placeholder-grade beside artwork
+           this good, and the heading was three abstractions where the new one
+           is a single checkable claim. COPPA is now its own point rather than
+           a footnote under a card about cloud storage. -->
       <div class="safety-grid">
         <article class="safety-card">
-          <div>
-            <p class="safety-glyph" aria-hidden="true">&#128273;</p>
-            <h3>PIN-Protected Parent Key</h3>
-            <p>The Brass Key sits in the desk corner. Tapping it requires your parent PIN, keeping all settings and controls safely away from the child&rsquo;s writing surface.</p>
-          </div>
-          <p class="safety-foot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg> <span>Zero administrative chrome for kids</span></p>
+          <p class="safety-art safety-art--obj"><img src="assets/safety-key.png" alt="" width="459" height="300" loading="lazy" /></p>
+          <h3>The Brass Key</h3>
+          <p class="safety-body">Adult controls stay behind a PIN.</p>
         </article>
         <article class="safety-card">
-          <div>
-            <p class="safety-glyph" aria-hidden="true">&#128290;</p>
-            <h3>6-Character Connect Codes</h3>
-            <p>Parents exchange private 6-character codes with other families. Both parents must confirm approval before any letters can travel.</p>
-          </div>
-          <p class="safety-foot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg> <span>No user search or public directories</span></p>
+          <p class="safety-art safety-art--obj"><img src="assets/claims/claim-approved.png" alt="" width="483" height="254" loading="lazy" /></p>
+          <h3>Approved contacts only</h3>
+          <p class="safety-body">Both sides approve before letters can be exchanged.</p>
         </article>
-        <!-- "COPPA compliant", and NOT "COPPA & GDPR privacy compliant"
-             (2026-08-23). The GDPR half came off and must not come back on any
-             page until three things are true - the Privacy Policy actually has
-             a GDPR section, an Art 27 representative exists (or EU territories
-             are off in App Store Connect), and Q4/Q5 of the app repo's
-             LEGAL_QUESTIONS.md are closed. The full list is on the "EU legal
-             representative" item in the app repo's docs/TODO.md.
-
-             The COPPA half stands on its own and stayed: KWS Parent
-             Verification is live and enforced, accounts are adult-created
-             behind an Admin PIN, every contact is approved server-side, and
-             nothing is collected from a child but ink. CHILD_SAFETY.md 3 is
-             the record behind the claim. Treat this line as a REPRESENTATION,
-             not decoration - an unsubstantiated compliance claim is its own
-             FTC Act 5 problem - so it moves only when that record does. -->
         <article class="safety-card">
-          <div>
-            <p class="safety-glyph" aria-hidden="true">&#128737;&#65039;</p>
-            <h3>Cloud Keepsakes &amp; Zero Ads</h3>
-            <p>Letters belong exclusively to your family. We never analyze handwriting, track behavioral metrics, or serve ads. All memories stay safely archived in the cloud.</p>
-          </div>
-          <p class="safety-foot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg> <span>COPPA compliant</span></p>
+          <p class="safety-art safety-art--mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m13.5 8.5-5 5"/><path d="m8.5 8.5 5 5"/><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></p>
+          <h3>No public discovery</h3>
+          <p class="safety-body">No public profiles, user search, friend suggestions, or open inboxes.</p>
+        </article>
+        <article class="safety-card">
+          <p class="safety-art safety-art--mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg></p>
+          <h3>COPPA compliant</h3>
+          <p class="safety-body">Parental consent and privacy protections built in.</p>
         </article>
       </div>
     </div>

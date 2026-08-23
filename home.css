@@ -136,21 +136,14 @@ body {
   white-space: nowrap;
   border: 0;
 }
-/* The skip link parks off-screen until focused, then lands as a normal
-   terracotta chip below the fixed header. */
-.skip-link {
-  position: absolute;
-  left: 1rem; top: -100%;
-  z-index: 100;
-  padding: 0.75rem 1rem;
-  border-radius: var(--r-xl);
-  background: var(--terracotta-600);
-  color: var(--parchment-100);
-  font-size: 0.875rem;
-  font-weight: 700;
-  text-decoration: none;
-}
-.skip-link:focus { top: 1rem; }
+/* (A "Skip to content" link lived here. It was hidden off-screen until
+   keyboard focus, which is the standard pattern, but on focus it landed at
+   top-left - directly on top of the mailbox mark - so it read as a glitch
+   rather than as a feature (Patrick, 2026-08-23, who saw it while tabbing).
+   Removed rather than repositioned: no other page on the site has one, the
+   nav is seven links on a single page, so there is very little for it to let
+   anyone bypass. If it ever comes back it needs a home that is not on top of
+   the logo - centred under the header, or inside the header's own row. */
 
 img { display: block; max-width: 100%; }
 h1, h2, h3, h4 { margin: 0; font-family: var(--font-serif); font-weight: 700; color: var(--ink-900); }

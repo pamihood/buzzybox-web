@@ -34,8 +34,15 @@ FONTS = (
 # fonts and nothing else. Both are noindex transactional landings that a
 # Supabase redirect drops someone on once, so a canonical URL and an og:card
 # would be describing a page nobody links to.
+#
+# index.html came OFF this list on 2026-08-23. The homepage was rebuilt on its
+# own design system and loads Fraunces / Plus Jakarta Sans / Courier Prime;
+# this script writes the SHARED trio (Rubik, Nunito, DM Mono), so leaving the
+# homepage here would have added a second, contradictory font link. It stays in
+# PAGES below, because canonical, og:url and the share card are site-wide facts
+# that have nothing to do with which stylesheet a page loads.
 FONT_PAGES = [
-    "index.html", "support.html", "privacy.html", "terms.html", "safety.html",
+    "support.html", "privacy.html", "terms.html", "safety.html",
     "404.html", "parents.html", "confirmed.html", "reset.html", "blog/index.html",
     "blog/why-i-built-postmello/index.html",
     "blog/designing-a-desk-not-an-app/index.html",
@@ -69,9 +76,13 @@ def ensure(html, probe, tag, anchor):
 
 
 def stylesheet_anchor(html):
-    """The site's OWN stylesheet link — never the Google Fonts one, which also
-    matches `rel="stylesheet"` and sits above it once this has run."""
-    return re.search(r'[ \t]*<link rel="stylesheet" href="[^"]*styles\.css[^"]*"[^>]*>',
+    """The page's OWN stylesheet link — never the Google Fonts one, which also
+    matches `rel="stylesheet"` and sits above it once this has run.
+
+    Matches home.css as well as styles.css since 2026-08-23: the homepage is
+    the one page on its own sheet, and without this the search returned None
+    and the script died on it with an AttributeError."""
+    return re.search(r'[ \t]*<link rel="stylesheet" href="[^"]*(?:styles|home)\.css[^"]*"[^>]*>',
                      html).group(0)
 
 

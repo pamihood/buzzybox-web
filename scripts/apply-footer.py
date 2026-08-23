@@ -11,8 +11,13 @@ import pathlib
 ROOT = pathlib.Path(__file__).resolve().parent.parent   # repo root, not scripts/
 
 # page -> (prefix for root-level files, href for the blog index)
+# index.html is NOT in this map (2026-08-23). The homepage was rebuilt on its
+# own design system and carries its own footer - a three-column brand/links/
+# newsletter block that has nothing in common with the shared one. Running this
+# script over it would replace that footer with the legal pages' version and
+# silently undo the redesign. If the rest of the site is ever brought onto the
+# new system, this map is where the homepage comes back.
 PAGES = {
-    "index.html": ("", "blog/"),
     "support.html": ("", "blog/"),
     "privacy.html": ("", "blog/"),
     "terms.html": ("", "blog/"),

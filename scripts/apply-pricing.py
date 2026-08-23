@@ -7,9 +7,10 @@ it. Edit the JSON first, then run this — never hand-edit a number in
 index.html. Each rewritable line carries a data-price marker, so the
 replacement is exact and idempotent:
 
-    <p class="plan-price" data-price="membership"><s>$19.99</s> $14.99/year</p>
+    <span class="amount" data-price="membership">$14.99</span>
 
-Keys: free, membership, membership_plus, collections. The two "-terms" spans
+Keys: free, membership, membership_was, membership_founding,
+membership_plus, collections. The two "-terms" spans
 this once wrote are gone: the monthly-equivalent line went when the cards
 switched to feature lists, and the founding annotation left the Membership
 card on 2026-08-18 (the promise it stood in for is a hand-written line beneath
@@ -104,12 +105,31 @@ def desks_line(plan, key):
 
 
 def expected_lines(pricing):
+    """One key per data-price element on the page.
+
+    REWRITTEN 2026-08-23 with the homepage redesign. The old build put a whole
+    price line in one element ("<s>$19.99</s> $14.99/year"); the new plan card
+    sets the figure, the "/ year" suffix and the struck price at three
+    different sizes, so each is its own leaf element and this map writes leaves
+    rather than markup. The rule that produced the old shape is unchanged and
+    still the reason the strike is allowed at all: the struck figure is the
+    genuine post-founding regular price (pricing.json price_per_year), never an
+    invented was-price.
+
+    The two founding-only keys write an EMPTY STRING once the founding window
+    closes, and home.css hides an empty .was and an empty .note--founding. That
+    is what makes closing the window a pricing.json edit plus one run of this
+    script, with no hand-editing of the page on the day the price moves."""
     plans = pricing["plans"]
     fam, plus = plans["membership"], plans["membership_plus"]
+    fam_now, fam_later = selling_price(pricing, fam), fam["price_per_year"]
+    founding = fam_now != fam_later
     return {
         "free": "Free",
-        "membership": membership_price_line(pricing, fam),
-        "membership_plus": membership_price_line(pricing, plus),
+        "membership": money(fam_now),
+        "membership_was": money(fam_later) if founding else "",
+        "membership_founding": "Founding price &mdash; yours to keep." if founding else "",
+        "membership_plus": money(selling_price(pricing, plus)),
         # The verb rides with the price: this slot is the prominent one, and
         # "Add more from $0.99" is the whole collection economy in four words
         # — cheap, optional, on top of the three that come included.
@@ -182,8 +202,10 @@ def main():
     disagreements = []
     # (attribute, tag alternation, expected map) — one rewrite rule each.
     for attr, tags, expected in (
-        ("data-price", "p|span|dt|strong", expected_lines(pricing)),
-        ("data-plan-name", "dt", expected_names(pricing)),
+        # h3 joined the alternation with the 2026-08-23 redesign: the plan
+        # NAME is a heading on the new card, not a <dt> in a <dl>.
+        ("data-price", "p|span|dt|strong|h3", expected_lines(pricing)),
+        ("data-plan-name", "dt|h3", expected_names(pricing)),
         ("data-plan-desks", "strong", expected_desks(pricing)),
     ):
         for key, want in expected.items():

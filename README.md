@@ -20,7 +20,23 @@ Served via **Cloudflare Pages** at the apex domain `postmello.com`.
 
 ## Editing
 
-Plain HTML + one stylesheet (`styles.css`). No build step. Edit and push to `main`; Cloudflare Pages redeploys automatically.
+Plain HTML, no build step. Edit and push to `main`; Cloudflare Pages redeploys
+automatically.
+
+**TWO stylesheets since 2026-08-23.** `index.html` is on **`home.css`** — a
+different design system (Fraunces / Plus Jakarta Sans / Courier Prime on
+parchment, terracotta accent) that came in with the homepage redesign. Every
+other page is still on **`styles.css`** (Rubik / Nunito / DM Mono). They are
+independent on purpose: a homepage change must not restyle the legal pages.
+Three scripts know about the split, and it is worth knowing why before editing
+them — `apply-footer.py` no longer touches `index.html` (the homepage has its
+own footer), `apply-head-meta.py` skips it for FONTS but still writes its
+canonical and og tags, and `stamp-css-version.sh` hashes the two sheets
+separately.
+
+The homepage also carries ~90 lines of inline vanilla JS for the desk picker,
+the stationery tabs, the FAQ accordion and filter, and the mobile menu. It is
+progressive: with the script blocked the page still reads top to bottom.
 
 **Contact address: `support@postmello.com`** — Help, Privacy, Terms, Safety, 404
 and every footer. Nothing on the site should carry a personal address.
@@ -31,7 +47,8 @@ it rather than hand-editing nine copies, which is how Help and Privacy drifted
 apart before.
 
 **Prices are written, not typed.** `scripts/apply-pricing.py` rewrites the
-plans-block price lines in `index.html` (keyed on their `data-price` markers)
+plan-card figures, names and desk counts in `index.html` (keyed on their
+`data-price` / `data-plan-name` / `data-plan-desks` markers)
 from the app repo's `../posty/pricing.json`, the single ground truth for every
 Postmello number; `--check` exits nonzero when they disagree. A price change
 starts in the JSON, then the script — see the pricing rules below.

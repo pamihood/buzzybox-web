@@ -24,7 +24,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&amp;family=Fraunces:ital,opsz,wght@0,9..144,400..800;1,9..144,400..700&amp;family=Plus+Jakarta+Sans:wght@400..800&amp;display=swap" />
   <!-- home.css styles THIS PAGE ONLY. Everything else on the site still runs
        styles.css; see the note at the top of home.css. -->
-  <link rel="stylesheet" href="home.css?v=f71687f5" />
+  <link rel="stylesheet" href="home.css?v=6e9ee312" />
 </head>
 <body>
 
@@ -665,7 +665,17 @@
               <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> <span>Unlimited letters &amp; approved contacts</span></li>
             </ul>
           </div>
-          <p class="plan-status">Private Beta Active</p>
+          <!-- ALL THREE cards ask the same thing, and that is the fix
+               (Patrick, 2026-08-23: "why can't someone request beta access to
+               the free service?"). Only Membership carried a live-looking
+               "Request Beta Access" while Free and Plus said "Private Beta
+               Active" - which framed the beta as something you get with a
+               PLAN. It is not: the beta gates the product, nobody is buying
+               anything yet, and these cards are showing future prices. The
+               action is identical on all three; the card only supplies which
+               one was clicked, so we learn what people came for without asking
+               a second question. -->
+          <button class="plan-status" type="button" data-beta="Postmello Free">Request an invite</button>
         </article>
 
         <article class="plan plan--featured">
@@ -693,7 +703,7 @@
               <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> <span><strong>3 Collections included</strong> each year</span></li>
             </ul>
           </div>
-          <p class="plan-status plan-status--featured">Request Beta Access</p>
+          <button class="plan-status plan-status--featured" type="button" data-beta="Postmello Membership">Request an invite</button>
         </article>
 
         <article class="plan">
@@ -719,7 +729,7 @@
               <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> <span>Room for all siblings &amp; cousins</span></li>
             </ul>
           </div>
-          <p class="plan-status">Private Beta Active</p>
+          <button class="plan-status" type="button" data-beta="Postmello Membership Plus">Request an invite</button>
         </article>
 
       </div>
@@ -930,9 +940,24 @@
       <div class="footer-journal">
         <div class="journal-card">
           <p class="journal-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg> Join the private beta</p>
-          <p>Postmello is opening up a household at a time. Write to us and we&rsquo;ll add you to the list.</p>
-          <a class="journal-cta" href="mailto:hello@postmello.com?subject=Private%20beta%20request">Ask for an invite</a>
-          <p class="journal-fine">We reply to every letter.</p>
+          <p>Postmello is opening up a household at a time. Leave your email and we&rsquo;ll be in touch.</p>
+          <!-- The same form the dialog uses, inline for anyone who scrolled
+               here rather than clicking a card. One markup pattern, one
+               handler - see the script at the end of the page. -->
+          <form class="beta-form" data-beta-form data-source="Footer" novalidate>
+            <label class="beta-hp" aria-hidden="true">Company
+              <input type="text" name="company" tabindex="-1" autocomplete="off" />
+            </label>
+            <label class="beta-label" for="beta-email-footer">Email address</label>
+            <div class="beta-row">
+              <input class="beta-input" id="beta-email-footer" type="email" name="email"
+                     inputmode="email" autocomplete="email" required
+                     placeholder="you@example.com" />
+              <button class="journal-cta" type="submit">Ask for an invite</button>
+            </div>
+            <p class="beta-msg" data-beta-msg role="status" aria-live="polite"></p>
+          </form>
+          <p class="journal-fine">We reply to every letter. No list, no spam.</p>
         </div>
       </div>
 
@@ -953,6 +978,47 @@
   </div>
 </footer>
 
+<!-- THE INVITE DIALOG. A native <dialog>, so the browser owns focus trapping,
+     Esc-to-close and the backdrop, and no library ships to do it worse.
+
+     It opens where the reader already is. The alternative was scrolling them
+     to the footer form, which from the pricing cards is a ~3,000px journey
+     away from the thing they were reading - and the whole reason this replaced
+     a mailto: is that the moment of highest intent is the worst possible
+     moment to move someone somewhere else.
+
+     It holds the SAME form as the footer, so there is one markup pattern and
+     one handler. Only the source differs, and the opening button supplies it. -->
+<dialog class="beta-dialog" id="beta-dialog" aria-labelledby="beta-dialog-title">
+  <form method="dialog" class="beta-dialog-close">
+    <button type="submit" aria-label="Close">&times;</button>
+  </form>
+  <h2 id="beta-dialog-title">Request an invite</h2>
+  <p class="beta-dialog-lede">Postmello is in private beta and opening up a
+     household at a time. Leave your email and we&rsquo;ll be in touch.</p>
+  <form class="beta-form" data-beta-form data-source="Dialog" novalidate>
+    <label class="beta-hp" aria-hidden="true">Company
+      <input type="text" name="company" tabindex="-1" autocomplete="off" />
+    </label>
+    <label class="beta-label" for="beta-email-dialog">Email address</label>
+    <div class="beta-row">
+      <input class="beta-input" id="beta-email-dialog" type="email" name="email"
+             inputmode="email" autocomplete="email" required
+             placeholder="you@example.com" />
+      <button class="journal-cta" type="submit">Send</button>
+    </div>
+    <p class="beta-msg" data-beta-msg role="status" aria-live="polite"></p>
+  </form>
+  <p class="beta-dialog-fine">We reply to every letter. No list, no spam, and
+     your address is never sold or shared.</p>
+</dialog>
+
+<!-- The dialog is declared ABOVE the script on purpose. It used to sit at the
+     very end of the body, after it, and getElementById returned null when the
+     script ran - so no card ever got a click listener and every "Request an
+     invite" button did nothing. The page looked completely fine; only a probe
+     showed dialog.open staying false. Markup the script reaches for has to be
+     parsed before the script runs. -->
 <script>
 /* Five small behaviours. No framework, no build - if this script never runs,
    the page still reads: the header is simply always transparent, the first
@@ -1017,7 +1083,90 @@
     });
   });
 
-  /* 5 - FAQ: one open at a time, plus the category filter. Filtering closes
+  /* 5 - the beta form, used by the footer and the dialog.
+
+     Posts to a Supabase edge function - the same shape postmello.com/letter/
+     has used for weeks - rather than a form service, because these are the
+     addresses of people interested in a children's product and adding a third
+     party to hold them would be a step backwards from the privacy story the
+     site just tightened.
+
+     NO-JS FALLBACK: the forms carry no action, so without this script the
+     submit does nothing and the page would lie. The <noscript> block below the
+     script restores the mailto for that case - which is what the whole page
+     used before the endpoint existed, so nobody is worse off than they were. */
+  var BETA_ENDPOINT = 'https://jbrxtkedjahpbzrqxeos.supabase.co/functions/v1/beta-request';
+
+  Array.prototype.forEach.call(document.querySelectorAll('[data-beta-form]'), function (form) {
+    var msg = form.querySelector('[data-beta-msg]');
+    var input = form.querySelector('input[name="email"]');
+    var submit = form.querySelector('button[type="submit"]');
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (form.dataset.sending === '1') return;
+
+      var email = (input.value || '').trim();
+      /* Checked here only to save a round trip and give an instant answer; the
+         function validates again and is the one that decides. */
+      if (!/^[^\s@]+@[^\s@.]+(\.[^\s@.]+)+$/.test(email)) {
+        msg.textContent = 'That address looks incomplete — could you check it?';
+        msg.className = 'beta-msg is-error';
+        input.focus();
+        return;
+      }
+
+      form.dataset.sending = '1';
+      submit.disabled = true;
+      msg.textContent = 'Sending…';
+      msg.className = 'beta-msg';
+
+      fetch(BETA_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: email,
+          company: (form.querySelector('input[name="company"]') || {}).value || '',
+          source: form.dataset.source || ''
+        })
+      }).then(function (res) {
+        if (!res.ok) throw new Error(String(res.status));
+        /* The form is replaced by its own confirmation rather than cleared -
+           a form that empties itself looks like it lost the submission. */
+        form.innerHTML = '<p class="beta-msg is-done">Thank you — you\'re on the list. '
+          + 'We\'ll write to you when a place opens.</p>';
+      }).catch(function () {
+        form.dataset.sending = '';
+        submit.disabled = false;
+        msg.innerHTML = 'Something went wrong on our end. '
+          + 'Please write to <a href="mailto:hello@postmello.com">hello@postmello.com</a> '
+          + 'and we\'ll sort it out.';
+        msg.className = 'beta-msg is-error';
+      });
+    });
+  });
+
+  /* 6 - the invite dialog. Every card opens the same one and tells it which
+     card was clicked. showModal() gives focus trapping and Esc for free. */
+  var dialog = document.getElementById('beta-dialog');
+  if (dialog && typeof dialog.showModal === 'function') {
+    Array.prototype.forEach.call(document.querySelectorAll('[data-beta]'), function (btn) {
+      btn.addEventListener('click', function () {
+        var form = dialog.querySelector('[data-beta-form]');
+        if (form) form.dataset.source = btn.dataset.beta || 'Dialog';
+        dialog.showModal();
+        var field = dialog.querySelector('input[name="email"]');
+        if (field) field.focus();
+      });
+    });
+    /* Clicking the backdrop closes it. The dialog element itself is the
+       backdrop's hit area, so compare the target. */
+    dialog.addEventListener('click', function (e) {
+      if (e.target === dialog) dialog.close();
+    });
+  }
+
+  /* 7 - FAQ: one open at a time, plus the category filter. Filtering closes
      whatever it hides, so a hidden panel never keeps a stale open state. */
   var items = document.querySelectorAll('.faq-item');
   Array.prototype.forEach.call(items, function (item) {
@@ -1047,6 +1196,23 @@
   });
 })();
 </script>
+
+<noscript>
+  <!-- Without the script the forms have no action and the card buttons do
+       nothing, so this restores what the page had before the endpoint existed.
+       Nobody ends up worse off than they were, and the page never shows a
+       control that silently fails. -->
+  <style>
+    [data-beta-form], .beta-dialog { display: none !important; }
+    .noscript-beta {
+      max-width: var(--shell-4); margin: 0 auto 3rem; padding: 0 var(--gutter);
+      text-align: center; font-size: 0.875rem; color: var(--ink-700);
+    }
+    .noscript-beta a { color: var(--terracotta-600); font-weight: 700; }
+  </style>
+  <p class="noscript-beta">To ask for a private-beta invite, write to
+     <a href="mailto:hello@postmello.com?subject=Private%20beta%20request">hello@postmello.com</a>.</p>
+</noscript>
 
 </body>
 </html>

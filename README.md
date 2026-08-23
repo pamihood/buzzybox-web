@@ -197,9 +197,21 @@ break by accident:
   a stray footnote and it carried the for-iPad framing the positioning rule
   (§2) already refuses.
 
-- **The beta ask is a `mailto:`, not a form.** Same reason. When the endpoint
-  above exists, `.journal-cta` in `home.css` becomes a submit button and the
-  copy barely changes. Until then it cannot fail silently, which a form can.
+- **The beta form needs its backend deployed before it works.** The form is
+  built and the page posts to
+  `https://jbrxtkedjahpbzrqxeos.supabase.co/functions/v1/beta-request`, but
+  nothing answers there yet. Until the app repo deploys `beta-request` and
+  applies migration `20260823120000_someone_can_ask_to_be_let_in.sql`, every
+  submission shows the error state — which at least names an address to write
+  to, but is not a working form. Steps are on the matching item in the app
+  repo's `docs/TODO.md`. **Do not announce the beta anywhere until a test
+  submission comes back ok.**
+
+- **Spam: honeypot now, Turnstile if needed.** The form carries a hidden
+  `company` field that bots fill and humans never see; the function drops
+  those and answers 200 so a bot learns nothing. If real spam arrives, the
+  site is already behind Cloudflare, so Turnstile is a script tag plus a token
+  check above the insert.
 
 - **Re-cast the contacts in every screenshot** (Patrick, 2026-08-16; halved
   2026-08-17). The drawer cast is currently Iris, Theo, Grandma, Grandpa and

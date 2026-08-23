@@ -1039,19 +1039,32 @@ button { font: inherit; color: inherit; background: none; border: 0; }
 .plan-list strong { color: var(--ink-900); }
 /* Not buttons: the product cannot be bought yet, so these are status, and a
    disabled control is the honest way to show a price with nothing to click. */
+/* Real buttons since 2026-08-23, on all three cards. They were disabled-
+   looking status pills - "Private Beta Active" on two and a live-looking
+   "Request Beta Access" on the third - which said the beta came with a PLAN.
+   It does not; it gates the product. Now every card opens the same dialog,
+   so the pill is a control and is styled like one. */
 .plan-status {
+  display: block;
   width: 100%;
   padding-block: 0.75rem;
   border-radius: var(--r-full);
   text-align: center;
   font-size: 0.875rem;
   font-weight: 700;
-  cursor: not-allowed;
+  cursor: pointer;
   background: var(--parchment-300);
-  color: var(--ink-700);
-  opacity: 0.8;
+  color: var(--ink-800);
+  transition: background-color 150ms ease, box-shadow 150ms ease;
 }
-.plan-status--featured { padding-block: 0.875rem; background: var(--terracotta-600); color: var(--parchment-100); box-shadow: var(--shadow-xs); opacity: 0.9; }
+.plan-status:hover { background: #E0CDBB; }
+.plan-status--featured {
+  padding-block: 0.875rem;
+  background: var(--terracotta-600);
+  color: var(--parchment-100);
+  box-shadow: var(--shadow-xs);
+}
+.plan-status--featured:hover { background: var(--terracotta-700); box-shadow: var(--shadow-md); }
 
 .worlds {
   margin-bottom: 4rem;
@@ -1374,6 +1387,97 @@ button { font: inherit; color: inherit; background: none; border: 0; }
    a beta ask now. Kept nothing behind, since restoring the journal means
    restoring its markup anyway - see the TODO in README.md.) */
 .journal-fine { font-size: 10px; color: var(--ink-600); }
+
+/* ---------- The beta form ----------
+   One component, two homes: inline in the footer card, and inside the invite
+   dialog. Anything that differs between the two lives on .beta-dialog below,
+   never here, so the two can never drift apart. */
+.beta-form { display: flex; flex-direction: column; gap: 0.5rem; }
+/* The honeypot. Off-screen rather than display:none, because some bots skip
+   hidden fields and the point is that they DO fill it. aria-hidden and
+   tabindex=-1 in the markup keep it away from anyone real. */
+.beta-hp {
+  position: absolute;
+  left: -9999px;
+  width: 1px; height: 1px;
+  overflow: hidden;
+}
+.beta-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--ink-700);
+}
+.beta-row { display: flex; align-items: center; gap: 0.5rem; }
+.beta-input {
+  width: 100%;
+  min-width: 0;
+  padding: 0.625rem 0.875rem;
+  border-radius: var(--r-xl);
+  background: #fff;
+  border: 1px solid var(--line);
+  color: var(--ink-900);
+  font-family: inherit;
+  font-size: 0.8125rem;
+}
+.beta-input::placeholder { color: #9C8B7C; }
+.beta-input:focus { outline: none; border-color: var(--terracotta-600); }
+.beta-form .journal-cta { flex: none; align-self: auto; }
+.beta-form button[disabled] { opacity: 0.6; cursor: progress; }
+/* Empty until the form has something to say, so it takes no space at rest. */
+.beta-msg { font-size: 0.75rem; line-height: 1.5; color: var(--ink-600); }
+.beta-msg:empty { display: none; }
+.beta-msg.is-error { color: #A24222; }
+.beta-msg.is-error a { color: inherit; font-weight: 700; }
+.beta-msg.is-done { color: var(--sage-600); font-weight: 600; font-size: 0.8125rem; }
+
+/* ---------- The invite dialog ----------
+   Native <dialog>: the browser owns focus trapping, Esc and the backdrop, so
+   no library ships to do it worse. It opens where the reader already is —
+   from the pricing cards the footer form is ~3,000px away, and moving someone
+   at the moment they decided to act is the whole thing this replaced. */
+.beta-dialog {
+  width: min(26rem, calc(100vw - 2rem));
+  padding: 1.75rem;
+  border: 1px solid var(--line);
+  border-radius: var(--r-3xl);
+  background: var(--parchment-100);
+  color: var(--ink-900);
+  box-shadow: var(--shadow-xl);
+}
+.beta-dialog::backdrop {
+  background: rgba(43, 35, 29, 0.44);
+  backdrop-filter: blur(2px);
+}
+.beta-dialog h2 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+.beta-dialog-lede {
+  font-size: 0.875rem;
+  line-height: 1.625;
+  color: var(--ink-700);
+  margin-bottom: 1.25rem;
+}
+.beta-dialog-fine {
+  margin-top: 1rem;
+  font-size: 0.6875rem;
+  line-height: 1.5;
+  color: var(--ink-600);
+}
+/* The close control is its own method="dialog" form, which closes the dialog
+   with no script at all. */
+.beta-dialog-close { position: absolute; top: 0.75rem; right: 0.875rem; }
+.beta-dialog-close button {
+  width: 1.75rem; height: 1.75rem;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: var(--r-full);
+  font-size: 1.25rem;
+  line-height: 1;
+  color: var(--ink-600);
+  cursor: pointer;
+  transition: background-color 150ms ease, color 150ms ease;
+}
+.beta-dialog-close button:hover { background: var(--parchment-300); color: var(--ink-900); }
+/* The dialog's own field stacks, since it has the width to itself. */
+.beta-dialog .beta-row { flex-direction: column; align-items: stretch; }
+.beta-dialog .journal-cta { text-align: center; }
 
 .footer-bottom {
   display: flex;

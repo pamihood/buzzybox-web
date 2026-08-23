@@ -806,11 +806,15 @@ button { font: inherit; color: inherit; background: none; border: 0; }
    built and compared: it gives the largest sheet, but it makes papers the one
    tab out of four with square trays, and the row stops matching the rest of
    the table.
-   object-fit stays COVER. Contain was tried too and shows each sheet whole,
-   but the collection mixes portrait and landscape papers, so a shared 3:4 tray
-   left the landscape ones as short wide slivers with empty bands above and
-   below - a ragged row, and the thing being shown is the paper's character,
-   which survives the crop. */
+   object-fit stays COVER, and since 2026-08-23 it crops nothing: all nine
+   papers are the PORTRAIT rendition of their design, so each fills the 3:4
+   tray exactly. Six of them used to be the landscape file centre-cropped into
+   a portrait tray, which cut off the left and right edges of the art - the
+   exact edges the sentence above this table promises ("the art keeps to the
+   edges of every sheet"). Every design ships both ways in the app; the site
+   shows one orientation because nine designs shown twice is eighteen tiles of
+   the same nine pictures. If a landscape row is ever wanted, the files are
+   already here alongside the portraits. */
 .st-bed--cover {
   aspect-ratio: 3 / 4;
   padding: 7px;

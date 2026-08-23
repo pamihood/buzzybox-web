@@ -24,7 +24,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&amp;family=Fraunces:ital,opsz,wght@0,9..144,400..800;1,9..144,400..700&amp;family=Plus+Jakarta+Sans:wght@400..800&amp;display=swap" />
   <!-- home.css styles THIS PAGE ONLY. Everything else on the site still runs
        styles.css; see the note at the top of home.css. -->
-  <link rel="stylesheet" href="home.css?v=19831b21" />
+  <link rel="stylesheet" href="home.css?v=d0f5454c" />
 </head>
 <body>
 
@@ -109,14 +109,20 @@
            private-desk sentence is not lost; it is the line directly below,
            where saying what it is belongs.
 
-           THE LONG PARAGRAPH IS GONE. It argued about group chats, algorithmic
-           feeds and urgency - which is exactly the argument the Why Postmello
-           section makes properly a screen further down. Making it twice dulled
-           both, and the hero has four seconds. -->
+           THREE PARTS, and the middle one is the revival of the comp's single
+           italic (Patrick, 2026-08-23). The headline states the mood, the
+           terracotta aside states the promise, and the paragraph below is the
+           only place on the page that says plainly what a person DOES here.
+           The aside is a separate <p>, deliberately: apply-brand.py rewrites
+           the whole inside of the data-brand element, so anything parked in
+           the H1 alongside the tagline would be erased on its next run. -->
       <div class="hero-copy">
         <h1 data-brand="tagline">A quiet place for letters.</h1>
-        <p class="lede">A private desk for digital letters with friends and
-           family &mdash; without the rush of messaging.</p>
+        <p class="hero-aside">Without the rush of messaging.</p>
+        <p class="lede">A private desk for writing, drawing, and sending
+           digital letters to friends and family. No group chats, no
+           algorithmic feeds, no urgency &mdash; just the creative joy of
+           making something and receiving something back.</p>
 
         <p class="hero-status">
           <span class="pill pill--sheer">
@@ -474,35 +480,46 @@
         <p class="lede">She can receive and reply by email. No tablet, app, or account required.</p>
       </div>
 
+      <!-- TITLE PLUS A LINE here, unlike the how-it-works steps above
+           (Patrick, 2026-08-23). Those three carry a title alone because the
+           screenshot beneath each one already shows the action; these three
+           have a mechanism to explain - how a handwritten page reaches someone
+           with no app, and what comes back when she answers - and the previous
+           revision put that explanation IN the title. The result was two
+           full sentences set in 1.25rem Fraunces, each wrapping to two lines:
+           a heading doing a paragraph's work, at a paragraph's length.
+
+           So the sentence splits at its natural seam. The title is the short
+           beat a reader skims down the row; the line under it is the fact.
+           All three carry one, so body copy here is the pattern rather than
+           the exception it was when only step 03 had it. -->
       <div class="step-grid" style="margin-bottom:4rem">
         <article class="step-card">
           <div class="step-media"><img src="assets/beyond-write.jpg" alt="Your child writes on their desk." loading="lazy" /></div>
           <div class="step-body">
             <span class="step-num">Step 01</span>
-            <h3>Your child writes on their desk.</h3>
+            <h3>Your child writes.</h3>
+            <p>A letter made at their own desk, in their own hand.</p>
           </div>
         </article>
         <article class="step-card">
           <div class="step-media"><img src="assets/beyond-inbox.jpg" alt="It arrives in standard email." loading="lazy" /></div>
           <div class="step-body">
             <span class="step-num">Step 02</span>
-            <!-- Names the mechanism instead of the category: what actually
-                 arrives is an email with a private link, and saying so answers
-                 "but how does she SEE a handwritten page?" before it is asked. -->
-            <h3>Grandma gets an email with a private link to the letter.</h3>
+            <!-- The line names the mechanism instead of the category: what
+                 actually arrives is an email with a private link, and saying so
+                 answers "but how does she SEE a handwritten page?" before it is
+                 asked. -->
+            <h3>It arrives by email.</h3>
+            <p>Grandma gets an email with a private link to the letter.</p>
           </div>
         </article>
         <article class="step-card">
           <div class="step-media"><img src="assets/beyond-reply.jpg" alt="She simply hits Reply." loading="lazy" /></div>
           <div class="step-body">
             <span class="step-num">Step 03</span>
-            <!-- One continuous title, not a title plus a line. Splitting it
-                 at the full stop made this the only step card on the page
-                 carrying body copy, and it was never two thoughts — it is one
-                 sentence about what happens when she replies. Title 2 already
-                 runs to two lines at this width, so a two-line title here
-                 matches rather than stands out. -->
-            <h3>She hits Reply. Her words return as a typewritten letter.</h3>
+            <h3>She hits Reply.</h3>
+            <p>Her words come back to the desk as a typewritten letter.</p>
           </div>
         </article>
       </div>
@@ -724,16 +741,17 @@
         <p class="lede">When you want more desks at home, Membership brings everyone together.</p>
       </div>
 
-      <!-- TWO cards, same shape on both: name, desk count at full size, what
-           you get, then the price LAST so the two align across the row. What
-           went (Patrick, 2026-08-23):
+      <!-- TWO cards, same shape on both: name at full size, the desk count
+           beneath it, what you get, then the price LAST so the two align
+           across the row. What went (Patrick, 2026-08-23):
 
            * The kickers. "Introductory" and "Family Membership" labelled cards
              whose own names already said what they were.
            * "Forever for one desk", "for your household", "at home" -
              qualifiers on the figure that is the whole point of the card.
            * The desk count as a TICK. It is the number a reader compares
-             across the row, so it is the headline, not the third bullet.
+             across the row, so it sits directly under the plan name rather
+             than third in a bullet list.
            * The per-card beta buttons. Beta access is a product STATE, not a
              membership benefit, so one action sits below the row and applies
              to everybody - which is also the honest shape, since nobody is
@@ -788,13 +806,14 @@
            because the name and desk count are written by apply-pricing.py,
            which looks for data-plan-name on a dt|h3 and data-plan-desks on a
            strong. The figure lives in the SUMMARY so the closed row carries
-           the number that makes it worth opening, phrased so the script's
-           capitalised "Up to 12 desks" reads correctly where it lands. -->
+           the number that makes it worth opening. This is the one desk count
+           set INSIDE a sentence, so the script lower-cases it here — see
+           MIDSENTENCE_DESKS in apply-pricing.py; do not capitalise it back. -->
       <details class="plan-more">
         <summary>
           <span class="plan-more-q">Need more desks?</span>
           <span class="plan-more-a">Membership Plus supports
-            <strong data-plan-desks="membership_plus">Up to 12 desks</strong>.
+            <strong data-plan-desks="membership_plus">up to 12 desks</strong>.
             <span class="plan-more-cue">See details <span aria-hidden="true">&rarr;</span></span></span>
         </summary>
         <dl class="plan-more-body">

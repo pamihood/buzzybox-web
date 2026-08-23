@@ -87,21 +87,29 @@ def membership_price_line(pricing, plan):
     return f"{money(now)}/year"
 
 
+# The markers whose desk count lands MID-SENTENCE rather than at the head of
+# its own line. Membership Plus is not a card; it is a disclosure row reading
+# "Membership Plus supports up to 12 desks." — and a capital U inside that
+# clause is a typo the page cannot fix at its end, because this script owns
+# the string. The card markers (free, membership) each open a line of their
+# own and keep the capital. Add a key here if a count ever moves into prose.
+MIDSENTENCE_DESKS = {"membership_plus"}
+
+
 def desks_line(plan, key):
     """The desk count, in the block's own voice. Free says what it IS; the
     paid tiers say "up to", because the number is a server-side capability
     (account_capabilities) that is meant to be retunable without a release,
     and "up to" is what keeps that honest.
 
-    Only Free still puts this in the headline. On the paid cards the headline
-    is what the tier is FOR, and the desk figure rides in the terms line
-    below it — see the membership terms."""
+    Case follows the SLOT, not the tier: see MIDSENTENCE_DESKS above."""
     n = plan["max_desks"]
     if key == "free":
         # Numeral, like every other figure in the block. "One desk" was the
         # odd one out the moment the paid cards started saying "Up to 4".
         return f"{n} desk" + ("" if n == 1 else "s")
-    return f"Up to {n} desk" + ("" if n == 1 else "s")
+    lead = "up to" if key in MIDSENTENCE_DESKS else "Up to"
+    return f"{lead} {n} desk" + ("" if n == 1 else "s")
 
 
 def expected_lines(pricing):

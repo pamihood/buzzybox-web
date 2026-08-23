@@ -451,32 +451,63 @@ button { font: inherit; color: inherit; background: none; border: 0; }
 @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
 
 .hero-copy { max-width: 56rem; margin-inline: auto; margin-bottom: 2.5rem; text-align: center; }
-/* One line, and it can afford to be bigger for it — the old headline carried a
-   statement plus an italic aside and had to leave room for both. */
+/* The headline keeps the big size it gained when it became one line; the
+   aside below is a separate element rather than a second line inside the H1,
+   because apply-brand.py rewrites everything between that element's tags. */
 .hero-copy h1 {
   font-size: 2.25rem;
   line-height: 1.1;
   letter-spacing: -0.03em;
   text-wrap: balance;
-  margin-bottom: 1.25rem;
+  margin-bottom: 0.5rem;
 }
 @media (min-width: 640px)  { .hero-copy h1 { font-size: 3rem; } }
 @media (min-width: 768px)  { .hero-copy h1 { font-size: 3.75rem; } }
 @media (min-width: 1024px) { .hero-copy h1 { font-size: 4.5rem; } }
-/* (The headline's two-line treatment lived here — a statement plus an italic
-   terracotta aside. It went with the 2026-08-23 headline change: the tagline is
-   one line now, and the sentence that used to be the aside is the lede below,
-   set as ordinary lede type. If a second line ever returns, the italic is worth
-   reviving; it was the nicest thing in the old hero.) */
+
+/* THE COMP'S ONE ITALIC, revived (Patrick, 2026-08-23) — a serif italic in
+   terracotta at half the headline's size, so the pair reads as a statement
+   and its aside rather than as two headlines. It was the nicest thing in the
+   old hero and it was cut only because the headline had gone down to a single
+   line; a line came back, so it did. Set in Fraunces italic 400 against the
+   headline's 700: the weight difference is doing as much of the work as the
+   colour. */
+.hero-aside {
+  margin: 0 0 1.5rem;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.5rem;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--terracotta-600);
+  text-wrap: balance;
+}
+@media (min-width: 640px)  { .hero-aside { font-size: 1.75rem; } }
+@media (min-width: 768px)  { .hero-aside { font-size: 2rem; } }
+@media (min-width: 1024px) { .hero-aside { font-size: 2.25rem; margin-bottom: 1.75rem; } }
+
+/* A PARAGRAPH AGAIN, not a one-line tagline (Patrick, 2026-08-23). It states
+   what a person actually does here, then names what the page is defined
+   against — group chats, feeds, urgency. That argument is also made at length
+   in Why Postmello a screen down; the earlier revision cut it here to avoid
+   making it twice, and this is the reversal of that call.
+
+   Held NARROWER and a size SMALLER than the old one-line lede. Three centred
+   sentences at 1.25rem across 48rem is ~95 characters a line, which is a
+   paragraph nobody finishes standing up. 42rem at 1.125rem is a readable
+   measure and reads as body copy under the display type, rather than as a
+   third headline competing with the two above it. */
 .hero-copy .lede {
-  max-width: 48rem;
+  max-width: 42rem;
   margin-inline: auto;
   margin-bottom: 2rem;
-  font-size: 1.125rem;
-  line-height: 1.625;
+  font-size: 1rem;
+  line-height: 1.7;
   color: var(--ink-700);
+  text-wrap: pretty;
 }
-@media (min-width: 640px) { .hero-copy .lede { font-size: 1.25rem; } }
+@media (min-width: 640px) { .hero-copy .lede { font-size: 1.125rem; } }
 
 .hero-actions { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1rem; }
 @media (min-width: 640px) { .hero-actions { flex-direction: row; } }
@@ -523,32 +554,55 @@ button { font: inherit; color: inherit; background: none; border: 0; }
 /* THREE, not four (2026-08-23): "Only people you approve." came out from
    under the hero. One column, then three — the two-column step in between went
    with the fourth claim, because three items across two columns strands one of
-   them alone on a second row. */
-.claim-grid { display: grid; grid-template-columns: 1fr; gap: 2rem; }
-@media (min-width: 768px) { .claim-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2.5rem; } }
+   them alone on a second row.
+
+   A TRIPTYCH, RULED RATHER THAN BOXED (Patrick, 2026-08-23). At three the row
+   had gone slack, and for two reasons that compounded. The objects were
+   centred in their columns while the headings started hard left, so no two
+   things in the block lined up with each other; and at a 7.5rem bed, sitting
+   directly under a full-width screenshot, they read as leftovers rather than
+   as the hero's coda.
+
+   Centring the type under the object makes each claim ONE unit. Hairline
+   rules between the columns make the three A SET. Rules are not the boxes the
+   note below rules out: a box closes around an object and turns it into an
+   icon in a grid, a rule only says these three belong together — it is the
+   broadsheet device, and it is what a stationery page should reach for first.
+   The gap becomes PADDING at the breakpoint so the rule lands centred in the
+   channel rather than hard against the left edge of its own column. */
+.claim-grid { display: grid; grid-template-columns: 1fr; gap: 2.5rem; }
+@media (min-width: 768px) {
+  .claim-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; }
+  .claim { padding-inline: 1.5rem; }
+  .claim + .claim { border-left: 1px solid var(--line); }
+}
+@media (min-width: 1024px) { .claim { padding-inline: 2.5rem; } }
 /* NOT CARDS (2026-08-23). These were bordered, filled, shadowed boxes — four
    conventional product-feature cards, which is the one thing this block should
    not look like. The illustrations are real objects photographed on a desk;
    boxing each one turns it into an icon in a grid. Border, fill and shadow are
    gone from the claim AND from the bed under its object, so what separates
    them is space. */
-.claim { display: flex; flex-direction: column; justify-content: space-between; }
+.claim { display: flex; flex-direction: column; justify-content: space-between; text-align: center; }
 /* A fixed-height bed so four objects of four different aspect ratios sit on
    one line. The object scales inside it on hover, not the card. */
 /* The objects stand on a common ground line rather than floating at four
    heights: flex-end inside a fixed box is what does that. */
 .claim-art {
-  height: 7.5rem;
+  height: 10rem;
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.75rem;
   transition: transform 200ms ease;
 }
 .claim:hover .claim-art { transform: scale(1.05); }
 .claim-art img { max-height: 100%; max-width: 100%; width: auto; object-fit: contain; }
-.claim h3 { font-size: 1.125rem; line-height: 1.375; margin-bottom: 0.5rem; }
-.claim p { font-size: 0.875rem; line-height: 1.625; color: var(--ink-700); }
+.claim h3 { font-size: 1.25rem; line-height: 1.3; margin-bottom: 0.5rem; text-wrap: balance; }
+/* A measure of its own, narrower than the column. Centred copy that runs the
+   full column width gives three claims three different ragged shapes; holding
+   it to ~20rem breaks all three at roughly the same place. */
+.claim p { max-width: 20rem; margin-inline: auto; font-size: 0.9375rem; line-height: 1.65; color: var(--ink-700); text-wrap: pretty; }
 
 /* ---------- Why Postmello ----------
    One panel on the second sheet, its copy held to a reading measure on the
@@ -1149,36 +1203,49 @@ button { font: inherit; color: inherit; background: none; border: 0; }
 /* (.plan-kicker was "Introductory" / "Family Membership" / "Larger
    Households" above each card name — three labels on cards whose own names
    already said what they were.) */
+
+/* THE PLAN NAME IS THE HEADLINE (2026-08-23). It was set a size BELOW the
+   desk count, so each card announced "1 desk" in full serif and only then, in
+   smaller grey type, said which plan that was. A reader scanning the row met
+   the figure before the thing it belonged to. The name leads now; the count is
+   the fact that qualifies it. */
 .plan h3 {
-  font-size: 1.25rem;
-  margin-bottom: 0.75rem;
-  color: var(--ink-700);
+  font-size: 1.75rem;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin-bottom: 1rem;
+  color: var(--ink-900);
 }
 
-/* THE DESK COUNT IS THE HEADLINE. It is the one figure a reader compares
-   across the row, and it spent a revision as the third tick in the list where
-   nothing could find it. The charms above it are decoration and aria-hidden:
-   the count is the accessible fact, and a screen reader working through
-   identical images would be worse than silence. */
+/* The charms are decoration and aria-hidden: the count beneath them is the
+   accessible fact, and a screen reader working through identical images would
+   be worse than silence.
+
+   SIZED AS A QUARTER OF THE ROW, not in pixels. Four charms at a fixed height
+   overflow the card at the 768px breakpoint — where two columns first appear
+   and each one is at its narrowest — so a pixel height big enough to read at
+   1280 breaks the layout at 768. A quarter-width charm cannot overflow at any
+   width, and it makes Free's single desk exactly the size of one of
+   Membership's four, which is the comparison the row exists to make. */
 .plan-charms {
   display: flex;
   align-items: flex-end;
-  gap: 4px;
-  min-height: 30px;
-  margin: 0 0 0.5rem;
+  gap: 0.75rem;
+  margin: 0 0 0.875rem;
 }
 .plan-charms img {
-  height: 26px;
-  width: auto;
+  width: calc((100% - 2.25rem) / 4);   /* four charms, three 0.75rem gaps */
+  max-width: 4.75rem;
+  height: auto;
   filter: drop-shadow(0 1px 2px rgba(60, 42, 20, 0.26));
 }
 .plan-count { margin: 0 0 1.5rem; }
 .plan-count strong {
   font-family: var(--font-serif);
-  font-size: 1.875rem;
-  line-height: 1.1;
+  font-size: 1.25rem;
+  line-height: 1.2;
   font-weight: 700;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.01em;
   color: var(--ink-900);
 }
 
@@ -1282,8 +1349,10 @@ button { font: inherit; color: inherit; background: none; border: 0; }
 .plan-more-body .note--founding:empty { display: none; }
 .plan-more-body p { margin-top: 0.75rem; font-size: 0.875rem; line-height: 1.6; color: var(--ink-700); }
 
-/* The one action for the section, centred under both cards. */
-.plans-cta { margin: 2.5rem 0 0; text-align: center; }
+/* The one action for the section, centred under both cards. The bottom margin
+   is the air before the Collections panel, which the button was otherwise
+   sitting directly on the lid of — the section's only two objects touching. */
+.plans-cta { margin: 2.5rem 0 4rem; text-align: center; }
 
 .worlds {
   margin-bottom: 4rem;

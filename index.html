@@ -24,7 +24,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&amp;family=Fraunces:ital,opsz,wght@0,9..144,400..800;1,9..144,400..700&amp;family=Plus+Jakarta+Sans:wght@400..800&amp;display=swap" />
   <!-- home.css styles THIS PAGE ONLY. Everything else on the site still runs
        styles.css; see the note at the top of home.css. -->
-  <link rel="stylesheet" href="home.css?v=b5d79b43" />
+  <link rel="stylesheet" href="home.css?v=ae5b75e5" />
 </head>
 <body>
 
@@ -168,13 +168,6 @@
               <p class="claim-art"><img src="assets/claims/claim-imagination.png" alt="" loading="lazy" /></p>
               <h3>A desk for imagination.</h3>
               <p>A little world where ideas have somewhere to go.</p>
-            </div>
-          </article>
-          <article class="claim">
-            <div>
-              <p class="claim-art"><img src="assets/claims/claim-approved.png" alt="" loading="lazy" /></p>
-              <h3>Only people you approve.</h3>
-              <p>Every contact is approved before letters can be exchanged.</p>
             </div>
           </article>
           <article class="claim">
@@ -560,27 +553,52 @@
            The two footer lines went with them - "Engineered for algorithmic
            urgency", "Designed for patience, literacy..." - because the lede
            above now says exactly that in one sentence. -->
+      <!-- A REAL COMPARISON: five pairs, each lining up across the two
+           columns, so the eye reads a ROW rather than two unrelated lists.
+           Before 2026-08-23 it was two independent bullet lists of six that
+           merely sat side by side, and nothing on the left corresponded to
+           anything on the right.
+
+           The alignment is subgrid: .compare owns seven rows (title, five
+           pairs, footer) and each column re-uses them, so row three is row
+           three on both sides however many lines either wraps to. The <ul> is
+           display:contents, which lets its items BE the grid's items - the
+           list stays a list for a screen reader while the grid sees the rows.
+
+           EACH POINT OPENS WITH A BOLD PHRASE (Patrick, 2026-08-23), and the
+           two in a row answer each other: "Instant pressure" against "One at a
+           time", "Widens in a tap" against "Goes no further". That pairing is
+           what makes the row scannable without reading either sentence - and
+           it is why the lead-ins have to be rewritten in PAIRS if any of them
+           ever changes.
+
+           The headings are plain "Messaging" and "Postmello". They were
+           "Hyper-Reactive Messaging" and "Postmello's Quiet Desk", which
+           argued the case in the label before the reader had seen any
+           evidence; the rows are the argument and do not need help. -->
       <div class="compare">
         <div class="compare-col compare-col--bad">
           <p class="compare-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg> <span>Messaging</span></p>
           <ul>
-          <li class="compare-cell compare-cell--bad">Instant back-and-forth with typing indicators, read receipts and notifications</li>
-          <li class="compare-cell compare-cell--bad">Group chats can grow and change as people are added</li>
-          <li class="compare-cell compare-cell--bad">Photos, links and forwarded content move easily from one conversation to another</li>
-          <li class="compare-cell compare-cell--bad">Messages live in an ongoing stream and quickly get buried</li>
-          <li class="compare-cell compare-cell--bad">Forwarding can widen an audience in a tap</li>
+            <li class="compare-cell compare-cell--bad"><span><strong>Instant pressure:</strong> back-and-forth with typing indicators, read receipts and notifications</span></li>
+            <li class="compare-cell compare-cell--bad"><span><strong>Groups that grow:</strong> a chat can change shape as people are added or removed</span></li>
+            <li class="compare-cell compare-cell--bad"><span><strong>Content passes through:</strong> photos, links and forwarded posts move from one conversation to another</span></li>
+            <li class="compare-cell compare-cell--bad"><span><strong>Buried in a stream:</strong> messages live in a feed and scroll out of reach</span></li>
+            <li class="compare-cell compare-cell--bad"><span><strong>Widens in a tap:</strong> forwarding can hand a message to a new audience</span></li>
           </ul>
+          <p class="compare-foot">Engineered for urgency, and for coming back.</p>
         </div>
 
         <div class="compare-col compare-col--good">
           <p class="compare-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> <span>Postmello</span></p>
           <ul>
-          <li class="compare-cell compare-cell--good">One letter at a time, with no read receipts or pressure to reply</li>
-          <li class="compare-cell compare-cell--good">Every recipient is deliberate and every contact is approved</li>
-          <li class="compare-cell compare-cell--good">Letters are made here &mdash; with words, drawings, typing and stickers</li>
-          <li class="compare-cell compare-cell--good">Letters are things you make, send and keep</li>
-          <li class="compare-cell compare-cell--good">A reply can&rsquo;t be passed along to someone new</li>
+            <li class="compare-cell compare-cell--good"><span><strong>One at a time:</strong> a single letter, with no read receipts and no pressure to reply</span></li>
+            <li class="compare-cell compare-cell--good"><span><strong>Chosen, then approved:</strong> every recipient is deliberate and every contact is approved</span></li>
+            <li class="compare-cell compare-cell--good"><span><strong>Made, not forwarded:</strong> letters are made here &mdash; words, drawings, typing and stickers</span></li>
+            <li class="compare-cell compare-cell--good"><span><strong>Things you keep:</strong> a letter is something you make, send and keep</span></li>
+            <li class="compare-cell compare-cell--good"><span><strong>Goes no further:</strong> a reply can&rsquo;t be passed along to someone new</span></li>
           </ul>
+          <p class="compare-foot">Designed for patience, and for putting down.</p>
         </div>
       </div>
 

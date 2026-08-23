@@ -519,9 +519,12 @@ button { font: inherit; color: inherit; background: none; border: 0; }
    is a coda to the hero, not a new section, and the comp sets it that way. */
 .premise { max-width: var(--shell-6); margin-inline: auto; }
 
-.claim-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
-@media (min-width: 640px)  { .claim-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (min-width: 1024px) { .claim-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+/* THREE, not four (2026-08-23): "Only people you approve." came out from
+   under the hero. One column, then three — the two-column step in between went
+   with the fourth claim, because three items across two columns strands one of
+   them alone on a second row. */
+.claim-grid { display: grid; grid-template-columns: 1fr; gap: 2rem; }
+@media (min-width: 768px) { .claim-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2.5rem; } }
 /* NOT CARDS (2026-08-23). These were bordered, filled, shadowed boxes — four
    conventional product-feature cards, which is the one thing this block should
    not look like. The illustrations are real objects photographed on a desk;
@@ -902,11 +905,11 @@ button { font: inherit; color: inherit; background: none; border: 0; }
 @media (min-width: 768px) {
   .compare {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    /* title + five paired rows */
-    grid-template-rows: auto repeat(5, auto);
+    /* title + five paired rows + footer */
+    grid-template-rows: auto repeat(5, auto) auto;
   }
   .compare-col {
-    grid-row: span 6;
+    grid-row: span 7;
     display: grid;
     grid-template-rows: subgrid;
     align-content: start;
@@ -924,7 +927,7 @@ button { font: inherit; color: inherit; background: none; border: 0; }
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  margin-bottom: 1.25rem;
+  margin-bottom: 1rem;
   font-family: var(--font-serif);
   font-size: 1.25rem;
   font-weight: 700;
@@ -936,16 +939,28 @@ button { font: inherit; color: inherit; background: none; border: 0; }
 /* Each cell is its own grid row, so the padding between pairs has to live on
    the cell rather than on a list gap — a gap would be invisible to subgrid and
    the two sides would drift apart. */
+/* Tighter than it was (2026-08-23, Patrick: too much white space between
+   lines). Alignment costs some air by construction — a row is as tall as the
+   taller of its two cells, so a one-line point opposite a three-line one keeps
+   the difference — but the leading and the gap between points were adding to
+   it unnecessarily. 1.5 and 0.625rem instead of 1.6 and 0.875rem, and the
+   bold lead-ins even the two sides up, which does more for the ragged feel
+   than any spacing value could. */
 .compare-cell {
   display: flex;
   align-items: flex-start;
-  gap: 0.625rem;
-  padding-bottom: 0.875rem;
+  gap: 0.5rem;
+  padding-bottom: 0.625rem;
   font-size: 0.875rem;
-  line-height: 1.6;
+  line-height: 1.5;
 }
-.compare-cell:last-child { padding-bottom: 0; }
 @media (min-width: 640px) { .compare-cell { font-size: 0.9375rem; } }
+/* The opening phrase, and the reason the row scans: the two lead-ins in a row
+   answer each other, so a reader gets the comparison without reading either
+   sentence. Full ink against the cell's softer body colour. */
+.compare-cell strong { font-weight: 700; }
+.compare-col--bad  .compare-cell strong { color: #8C3418; }
+.compare-col--good .compare-cell strong { color: #2C5436; }
 .compare-cell--bad  { color: #6E4F3E; }
 .compare-cell--good { color: #3E5C46; }
 /* The bullet is drawn so it can sit on the cap height of the first line
@@ -954,11 +969,27 @@ button { font: inherit; color: inherit; background: none; border: 0; }
   content: '';
   flex: none;
   width: 0.375rem; height: 0.375rem;
-  margin-top: 0.5rem;
+  margin-top: 0.4375rem;
   border-radius: var(--r-full);
 }
 .compare-cell--bad::before  { background: #A24222; }
 .compare-cell--good::before { background: #386644; }
+/* The footers are back (Patrick, 2026-08-23). They went when the lede was
+   rewritten, on the grounds it said the same thing — but a card wants a last
+   line, and these two are the only place the comparison states its CONCLUSION
+   rather than its evidence. They sit on the seventh shared row, so they land
+   level with each other whatever the points above them do.
+   Rewritten short and parallel: the old pair ran to a dozen words each and
+   read as summaries of the list rather than as a closing beat. */
+.compare-foot {
+  margin-top: 1.25rem;
+  padding-top: 0.875rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  align-self: end;
+}
+.compare-col--bad  .compare-foot { border-top: 1px solid #E8D0BE; color: #A24222; }
+.compare-col--good .compare-foot { border-top: 1px solid #C5D9CB; color: #386644; }
 .compare-after { margin-top: 3rem; text-align: center; }
 
 /* ---------- Safety ---------- */

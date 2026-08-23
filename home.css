@@ -907,6 +907,14 @@ button { font: inherit; color: inherit; background: none; border: 0; }
     grid-template-columns: repeat(2, minmax(0, 1fr));
     /* title + five paired rows + footer */
     grid-template-rows: auto repeat(5, auto) auto;
+    /* ROW-GAP ZERO, and this was the actual cause of the section feeling
+       airy. `gap` on a grid sets both axes, so the 2rem meant to separate the
+       two CARDS was also being inserted between every one of the seven shared
+       rows — 2rem of dead space under each point, on top of the cell's own
+       padding. The columns still get their 2rem; the rows are spaced by
+       .compare-cell's padding-bottom, which is the value worth tuning. */
+    column-gap: 2rem;
+    row-gap: 0;
   }
   .compare-col {
     grid-row: span 7;
@@ -916,11 +924,15 @@ button { font: inherit; color: inherit; background: none; border: 0; }
   }
   .compare-col > ul { display: contents; }
 }
+/* Asymmetric padding: the sides keep their room, the top and bottom give some
+   back (Patrick, 2026-08-23). A card whose content is five short rows does not
+   need the same air above the first as it needs beside it, and the vertical
+   space was reading as a gap rather than as margin. */
 .compare-col {
-  padding: 1.5rem;
+  padding: 1.25rem 1.5rem;
   border-radius: var(--r-3xl);
 }
-@media (min-width: 640px) { .compare-col { padding: 2rem; } }
+@media (min-width: 640px) { .compare-col { padding: 1.5rem 2rem; } }
 .compare-col--bad  { background: color-mix(in srgb, #FAF0E6 50%, transparent); border: 1px solid #E8D0BE; }
 .compare-col--good { background: #EEF4F0; border: 1px solid #C5D9CB; }
 .compare-title {
@@ -950,7 +962,9 @@ button { font: inherit; color: inherit; background: none; border: 0; }
   display: flex;
   align-items: flex-start;
   gap: 0.5rem;
-  padding-bottom: 0.625rem;
+  /* This is now the ONLY thing separating one point from the next, since the
+     grid's row-gap is zero — so it is the value to tune, not the gap. */
+  padding-bottom: 0.75rem;
   font-size: 0.875rem;
   line-height: 1.5;
 }
@@ -982,8 +996,8 @@ button { font: inherit; color: inherit; background: none; border: 0; }
    Rewritten short and parallel: the old pair ran to a dozen words each and
    read as summaries of the list rather than as a closing beat. */
 .compare-foot {
-  margin-top: 1.25rem;
-  padding-top: 0.875rem;
+  margin-top: 0.875rem;
+  padding-top: 0.75rem;
   font-size: 0.8125rem;
   font-weight: 600;
   align-self: end;

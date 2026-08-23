@@ -180,6 +180,27 @@ break by accident:
 
 ## TODO
 
+- **The Quiet Post Journal — parked, not dropped** (Patrick, 2026-08-23). The
+  footer's third column shipped as a newsletter card for a parent-facing
+  dispatch on "screen sanity, handwriting & literacy, and the art of slow
+  correspondence". It came out because there is no list to post to and no
+  endpoint to receive an address, and a signup box that accepts an email and
+  quietly discards it is the one thing that must never happen. The slot is now
+  the private-beta ask.
+
+  To bring it back, in order: pick where addresses land (a real ESP, or a
+  Supabase function writing to a table), then restore the card — a `<form>`
+  with a labelled email input and a Join button, all of which is in the git
+  history at `86fb473^`. Two rules it has to keep: an accessible label for the
+  input, and no claim about frequency the sending side cannot honour. The
+  "Crafted for iPadOS · Calm Tech" foot row does NOT come back with it — it was
+  a stray footnote and it carried the for-iPad framing the positioning rule
+  (§2) already refuses.
+
+- **The beta ask is a `mailto:`, not a form.** Same reason. When the endpoint
+  above exists, `.journal-cta` in `home.css` becomes a submit button and the
+  copy barely changes. Until then it cannot fail silently, which a form can.
+
 - **Re-cast the contacts in every screenshot** (Patrick, 2026-08-16; halved
   2026-08-17). The drawer cast is currently Iris, Theo, Grandma, Grandpa and
   Nana — five contacts, four of them relatives. One change is left:

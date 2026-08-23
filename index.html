@@ -24,7 +24,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&amp;family=Fraunces:ital,opsz,wght@0,9..144,400..800;1,9..144,400..700&amp;family=Plus+Jakarta+Sans:wght@400..800&amp;display=swap" />
   <!-- home.css styles THIS PAGE ONLY. Everything else on the site still runs
        styles.css; see the note at the top of home.css. -->
-  <link rel="stylesheet" href="home.css?v=e793c830" />
+  <link rel="stylesheet" href="home.css?v=f71687f5" />
 </head>
 <body>
 
@@ -869,12 +869,28 @@
           <img src="assets/mark.png" alt="" width="40" height="40" />
           <span>
             <span class="name">Postmello</span>
-            <span class="sub">Quiet Pen Pals for iPad</span>
+            <!-- The same line the header carries. It read "Quiet Pen Pals for
+                 iPad", which was a second tagline for the same product AND
+                 broke the site's own positioning rule - WEBSITE_SPEC 2 says
+                 Postmello is not defined as an iPad app; "Coming first to
+                 iPad" in the hero badge is the approved form. -->
+            <span class="sub">A private desk for digital letters</span>
           </span>
         </div>
-        <p class="footer-blurb">The quiet postal world for iPad. Slow letters, wooden desks, authentic stationery, and intentional family connection&mdash;protected by parent-controlled keycodes.</p>
+        <!-- The hero's own first sentence, and deliberately only that. The old
+             blurb was a third pitch in its own words ("the quiet postal world
+             for iPad", "intentional family connection") and carried the
+             for-iPad framing twice more. Repeating the hero VERBATIM in full
+             would be filler at the bottom of a 12,000px page, but the footer
+             is where a reader who scrolled straight down should meet the
+             one-line promise - so it takes the first sentence and stops. -->
+        <p class="footer-blurb">A quiet space for friends and families to write, draw, and stay in touch at their own pace.</p>
+        <!-- The dark "Join the private beta" button stood here and went with
+             the beta card's arrival (2026-08-23): two calls to the same action
+             in one footer, and this one only scrolled to #membership while the
+             card actually lets someone ask. What is left on this row is the
+             standing reassurance. -->
         <div class="footer-actions">
-          <a class="footer-btn" href="#membership"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 15V3"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/></svg> Join the private beta</a>
           <span class="footer-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg> <span>Zero ads &bull; Private keycodes</span></span>
         </div>
       </div>
@@ -893,26 +909,30 @@
         </ul>
       </div>
 
+      <!-- THE BETA ASK, where the Quiet Post Journal used to be.
+
+           The page invites beta interest three times - the hero badge, the
+           Membership card's "Request Beta Access", the footer button - and
+           until now every one of them was a dead end. This is the only place
+           on the site that actually lets someone act on it.
+
+           A MAILTO, not a form, and that is the honest choice rather than the
+           lazy one: there is no list to post to and no endpoint to receive it,
+           and a form that accepts an address and quietly discards it is the
+           one thing a signup box must never do. mailto cannot fail silently.
+           When there is a real endpoint this becomes a form and the copy
+           barely changes.
+
+           The Quiet Post Journal is parked, not deleted - see the TODO in
+           README.md. Its "Crafted for iPadOS / Calm Tech" foot row went with
+           it (Patrick: weird footnotes), and it was carrying the for-iPad
+           framing a third time. -->
       <div class="footer-journal">
         <div class="journal-card">
-          <p class="journal-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg> The Quiet Post Journal</p>
-          <p>A gentle dispatch for parents on screen sanity, handwriting &amp; literacy, and the art of slow correspondence.</p>
-          <!-- action="" is deliberate: there is no list to post to yet. The
-               field is disabled rather than fake-accepting an address, which
-               is the one thing a newsletter box must never do. Wire it to a
-               real endpoint before enabling. -->
-          <form class="journal-form" action="" method="post">
-            <div class="journal-row">
-              <label class="sr-only" for="journal-email">Parent email address</label>
-              <input id="journal-email" type="email" name="email" placeholder="Parent email address&hellip;" disabled />
-              <button type="submit" disabled>Join</button>
-            </div>
-            <p class="journal-fine">Opening soon. No spam ever, unsubscribe anytime with 1 click.</p>
-          </form>
-          <p class="journal-foot">
-            <span>Crafted for iPadOS</span>
-            <span class="calm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"/><path d="M20 2v4"/><path d="M22 4h-4"/><circle cx="4" cy="20" r="2"/></svg> Calm Tech</span>
-          </p>
+          <p class="journal-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg> Join the private beta</p>
+          <p>Postmello is opening up a household at a time. Write to us and we&rsquo;ll add you to the list.</p>
+          <a class="journal-cta" href="mailto:hello@postmello.com?subject=Private%20beta%20request">Ask for an invite</a>
+          <p class="journal-fine">We reply to every letter.</p>
         </div>
       </div>
 
@@ -928,8 +948,6 @@
         <a href="terms.html">Terms</a>
         <span aria-hidden="true">&bull;</span>
         <a href="support.html">Help</a>
-        <span aria-hidden="true">&bull;</span>
-        <span class="footer-made">Made with <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5"/></svg> for intentional childhoods</span>
       </div>
     </div>
   </div>

@@ -125,17 +125,6 @@ body {
 
 ::selection { background: #F2D06B; color: #1A1410; }
 
-/* Visually hidden but readable by assistive tech — the newsletter label and
-   nothing else so far. */
-.sr-only {
-  position: absolute;
-  width: 1px; height: 1px;
-  padding: 0; margin: -1px;
-  overflow: hidden;
-  clip-path: inset(50%);
-  white-space: nowrap;
-  border: 0;
-}
 /* (A "Skip to content" link lived here. It was hidden off-screen until
    keyboard focus, which is the standard pattern, but on focus it landed at
    top-left - directly on top of the mailbox mark - so it read as a glitch
@@ -272,9 +261,6 @@ button { font: inherit; color: inherit; background: none; border: 0; }
   border-radius: var(--r-2xl);
   box-shadow: var(--shadow-2xs);
 }
-.card--3xl { border-radius: var(--r-3xl); }
-.card--sheet { background: var(--parchment-200); }
-.card--white { background: #fff; }
 
 /* ---------- Header ----------
    Fixed and transparent at the top, then a translucent parchment bar with a
@@ -1344,20 +1330,6 @@ button { font: inherit; color: inherit; background: none; border: 0; }
 .footer-blurb { max-width: 24rem; font-size: 0.75rem; line-height: 1.625; }
 @media (min-width: 640px) { .footer-blurb { font-size: 0.875rem; } }
 .footer-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem; padding-top: 0.5rem; }
-.footer-btn {
-  display: inline-flex; align-items: center; gap: 0.5rem;
-  padding: 0.5rem 1rem;
-  border-radius: var(--r-xl);
-  background: var(--ink-900);
-  color: #fff;
-  font-size: 0.75rem;
-  font-weight: 700;
-  text-decoration: none;
-  box-shadow: var(--shadow-xs);
-  transition: background-color 150ms ease;
-}
-.footer-btn:hover { background: var(--terracotta-600); }
-.footer-btn svg { width: 0.875rem; height: 0.875rem; color: var(--honey-500); }
 .footer-note { display: flex; align-items: center; gap: 0.375rem; font-size: 0.75rem; color: var(--ink-600); }
 .footer-note svg { width: 1rem; height: 1rem; color: var(--sage-500); }
 
@@ -1382,43 +1354,26 @@ button { font: inherit; color: inherit; background: none; border: 0; }
 .journal-title { display: flex; align-items: center; gap: 0.375rem; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--ink-900); }
 .journal-title svg { width: 1rem; height: 1rem; color: var(--terracotta-600); }
 .journal-card p { font-size: 0.75rem; line-height: 1.625; }
-.journal-form { display: flex; flex-direction: column; gap: 0.5rem; }
-.journal-row { display: flex; align-items: center; gap: 0.5rem; }
-.journal-row input {
-  width: 100%;
-  padding: 0.625rem 0.875rem;
-  border-radius: var(--r-xl);
-  background: #fff;
-  border: 1px solid var(--line);
-  color: var(--ink-900);
-  font-family: inherit;
-  font-size: 0.75rem;
-}
-.journal-row input::placeholder { color: #9C8B7C; }
-.journal-row input:focus { outline: none; border-color: var(--terracotta-600); }
-.journal-row button {
-  flex: none;
-  padding: 0.625rem 1rem;
+/* The beta CTA. Same terracotta as the hero's primary button so the two
+   reads of "act on this" match, but at footer scale. */
+.journal-cta {
+  align-self: flex-start;
+  padding: 0.625rem 1.125rem;
   border-radius: var(--r-xl);
   background: var(--terracotta-600);
   color: #fff;
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
   font-weight: 700;
-  cursor: pointer;
+  text-decoration: none;
   box-shadow: var(--shadow-xs);
   transition: background-color 150ms ease;
 }
-.journal-row button:hover { background: #B04C27; }
+.journal-cta:hover { background: #B04C27; }
+/* (The newsletter form's rules stood here - input, Join button, the row that
+   held them. They went with the Quiet Post Journal on 2026-08-23; the card is
+   a beta ask now. Kept nothing behind, since restoring the journal means
+   restoring its markup anyway - see the TODO in README.md.) */
 .journal-fine { font-size: 10px; color: var(--ink-600); }
-.journal-foot {
-  display: flex; align-items: center; justify-content: space-between;
-  padding-top: 0.5rem;
-  border-top: 1px solid color-mix(in srgb, var(--line) 60%, transparent);
-  font-size: 11px;
-  color: var(--ink-600);
-}
-.journal-foot .calm { display: flex; align-items: center; gap: 0.25rem; font-weight: 600; color: var(--terracotta-600); }
-.journal-foot svg { width: 0.75rem; height: 0.75rem; }
 
 .footer-bottom {
   display: flex;
@@ -1434,5 +1389,3 @@ button { font: inherit; color: inherit; background: none; border: 0; }
 .footer-bottom-links { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 1rem; }
 .footer-bottom-links a { text-decoration: none; transition: color 150ms ease; }
 .footer-bottom-links a:hover { color: var(--terracotta-600); }
-.footer-made { display: flex; align-items: center; gap: 0.25rem; color: var(--ink-700); }
-.footer-made svg { width: 0.75rem; height: 0.75rem; color: var(--terracotta-600); fill: currentColor; }

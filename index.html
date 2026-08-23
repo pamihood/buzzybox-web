@@ -665,7 +665,28 @@
               <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> <span>Unlimited letters &amp; approved contacts</span></li>
             </ul>
           </div>
-          <!-- ALL THREE cards ask the same thing, and that is the fix
+          <!-- "Request a beta invite", not "Request an invite" and not
+               "Request private beta" (Patrick asked which, 2026-08-23).
+
+               It has to NAME THE BETA, because the nav links straight to
+               #membership - so people arrive at these cards without ever
+               having seen the hero's "Currently in private beta" badge. At
+               that moment they are looking at three prices they cannot pay,
+               and this button is the only thing on screen that explains why.
+               "Request an invite" left them asking "invite to what?".
+
+               It keeps INVITE rather than "access": an invitation arrives by
+               post, which is the right metaphor for this product, and
+               "Request private beta access" is the most corporate phrase on a
+               page whose voice is "Grandma doesn't need the app". ("Request
+               private beta" on its own is not grammatical - you request access
+               TO a beta, or an invite TO it.)
+
+               And REQUEST rather than "Join": clicking this does not join
+               anyone to anything, it asks. The page does not over-promise
+               elsewhere and should not start here.
+
+               ALL THREE cards ask the same thing, and that is the fix
                (Patrick, 2026-08-23: "why can't someone request beta access to
                the free service?"). Only Membership carried a live-looking
                "Request Beta Access" while Free and Plus said "Private Beta
@@ -675,7 +696,7 @@
                action is identical on all three; the card only supplies which
                one was clicked, so we learn what people came for without asking
                a second question. -->
-          <button class="plan-status" type="button" data-beta="Postmello Free">Request an invite</button>
+          <button class="plan-status" type="button" data-beta="Postmello Free">Request a beta invite</button>
         </article>
 
         <article class="plan plan--featured">
@@ -703,7 +724,7 @@
               <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> <span><strong>3 Collections included</strong> each year</span></li>
             </ul>
           </div>
-          <button class="plan-status plan-status--featured" type="button" data-beta="Postmello Membership">Request an invite</button>
+          <button class="plan-status plan-status--featured" type="button" data-beta="Postmello Membership">Request a beta invite</button>
         </article>
 
         <article class="plan">
@@ -729,7 +750,7 @@
               <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> <span>Room for all siblings &amp; cousins</span></li>
             </ul>
           </div>
-          <button class="plan-status" type="button" data-beta="Postmello Membership Plus">Request an invite</button>
+          <button class="plan-status" type="button" data-beta="Postmello Membership Plus">Request a beta invite</button>
         </article>
 
       </div>
@@ -953,7 +974,7 @@
               <input class="beta-input" id="beta-email-footer" type="email" name="email"
                      inputmode="email" autocomplete="email" required
                      placeholder="you@example.com" />
-              <button class="journal-cta" type="submit">Ask for an invite</button>
+              <button class="journal-cta" type="submit">Send</button>
             </div>
             <p class="beta-msg" data-beta-msg role="status" aria-live="polite"></p>
           </form>

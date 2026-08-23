@@ -560,13 +560,28 @@
           </div>
           <p class="safety-foot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg> <span>No user search or public directories</span></p>
         </article>
+        <!-- "COPPA compliant", and NOT "COPPA & GDPR privacy compliant"
+             (2026-08-23). The GDPR half came off and must not come back on any
+             page until three things are true - the Privacy Policy actually has
+             a GDPR section, an Art 27 representative exists (or EU territories
+             are off in App Store Connect), and Q4/Q5 of the app repo's
+             LEGAL_QUESTIONS.md are closed. The full list is on the "EU legal
+             representative" item in the app repo's docs/TODO.md.
+
+             The COPPA half stands on its own and stayed: KWS Parent
+             Verification is live and enforced, accounts are adult-created
+             behind an Admin PIN, every contact is approved server-side, and
+             nothing is collected from a child but ink. CHILD_SAFETY.md 3 is
+             the record behind the claim. Treat this line as a REPRESENTATION,
+             not decoration - an unsubstantiated compliance claim is its own
+             FTC Act 5 problem - so it moves only when that record does. -->
         <article class="safety-card">
           <div>
             <p class="safety-glyph" aria-hidden="true">&#128737;&#65039;</p>
             <h3>Cloud Keepsakes &amp; Zero Ads</h3>
             <p>Letters belong exclusively to your family. We never analyze handwriting, track behavioral metrics, or serve ads. All memories stay safely archived in the cloud.</p>
           </div>
-          <p class="safety-foot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg> <span>COPPA &amp; GDPR privacy compliant</span></p>
+          <p class="safety-foot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg> <span>COPPA compliant</span></p>
         </article>
       </div>
     </div>
@@ -660,14 +675,14 @@
             <h3 data-plan-name="membership">Postmello Membership</h3>
             <div class="plan-price">
               <span class="row">
-                <span class="amount" data-price="membership">$14.99</span>
+                <span class="amount" data-price="membership">$19.99</span>
                 <span class="per">/ year</span>
                 <!-- The struck price and the founding note are WRITTEN by
                      scripts/apply-pricing.py, and both empty themselves when
                      the founding window closes in pricing.json - the CSS
                      hides an empty .was and an empty .note--founding, so no
                      hand edit is needed on the day the price changes. -->
-                <span class="was" data-price="membership_was">$19.99</span>
+                <span class="was" data-price="membership_was">$29.99</span>
               </span>
               <span class="note note--founding" data-price="membership_founding">Founding price &mdash; yours to keep.</span>
             </div>
@@ -689,8 +704,14 @@
               <span class="row">
                 <span class="amount" data-price="membership_plus">$29.99</span>
                 <span class="per">/ year</span>
+                <!-- Plus gained a founding price on 2026-08-23, so it carries
+                     the same written strike and caption Membership does. What
+                     a household PAYS did not move - the old flat $29.99 became
+                     the founding figure and the regular price went to $39.99 -
+                     so this strike is new information, not a price rise. -->
+                <span class="was" data-price="membership_plus_was">$39.99</span>
               </span>
-              <span class="note">For bigger households</span>
+              <span class="note note--founding" data-price="membership_plus_founding">Founding price &mdash; yours to keep.</span>
             </div>
             <ul class="plan-list">
               <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> <span><strong data-plan-desks="membership_plus">Up to 12 desks</strong> at home</span></li>

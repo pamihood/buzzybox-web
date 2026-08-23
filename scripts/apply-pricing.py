@@ -10,7 +10,7 @@ replacement is exact and idempotent:
     <span class="amount" data-price="membership">$14.99</span>
 
 Keys: free, membership, membership_was, membership_founding,
-membership_plus, collections. The two "-terms" spans
+membership_plus, membership_plus_was, membership_plus_founding, collections. The two "-terms" spans
 this once wrote are gone: the monthly-equivalent line went when the cards
 switched to feature lists, and the founding annotation left the Membership
 card on 2026-08-18 (the promise it stood in for is a hand-written line beneath
@@ -122,14 +122,28 @@ def expected_lines(pricing):
     script, with no hand-editing of the page on the day the price moves."""
     plans = pricing["plans"]
     fam, plus = plans["membership"], plans["membership_plus"]
-    fam_now, fam_later = selling_price(pricing, fam), fam["price_per_year"]
-    founding = fam_now != fam_later
+
+    # Both paid tiers carry a founding price as of 2026-08-23, so the strike and
+    # its caption are generated the same way for each rather than hand-written
+    # for one of them. A tier with no founding_price_per_year simply has
+    # selling == regular and empties both of its founding elements.
+    def tier(plan):
+        now, later = selling_price(pricing, plan), plan["price_per_year"]
+        founding = now != later
+        return (money(now),
+                money(later) if founding else "",
+                "Founding price &mdash; yours to keep." if founding else "")
+
+    fam_now, fam_was, fam_note = tier(fam)
+    plus_now, plus_was, plus_note = tier(plus)
     return {
         "free": "Free",
-        "membership": money(fam_now),
-        "membership_was": money(fam_later) if founding else "",
-        "membership_founding": "Founding price &mdash; yours to keep." if founding else "",
-        "membership_plus": money(selling_price(pricing, plus)),
+        "membership": fam_now,
+        "membership_was": fam_was,
+        "membership_founding": fam_note,
+        "membership_plus": plus_now,
+        "membership_plus_was": plus_was,
+        "membership_plus_founding": plus_note,
         # The verb rides with the price: this slot is the prominent one, and
         # "Add more from $0.99" is the whole collection economy in four words
         # — cheap, optional, on top of the three that come included.

@@ -219,25 +219,25 @@ a:hover { text-decoration-color: var(--navy); }
      did without crowding the wordmark. */
   width: 46px; height: 46px;
 }
-/* THE MARK. Rubik Bold, all caps, positive tracking — the one place on the site
-   that face appears, alongside the footer sign-off. Written "Postmello" in the
-   markup and uppercased here, so screen readers and copy-paste get the name the
-   way it is spoken while the header shows the logo.
+/* THE WORDMARK IS ART, NOT TYPE (Patrick, 2026-08-23), and this stylesheet was
+   the last place still setting it. index.html moved first, onto home.css; these
+   pages kept rendering Rubik SemiBold uppercase, so postmello.com was serving
+   two different wordmarks depending on which page you landed on.
 
-   It used to be the body face at 1.05rem with negative tracking, which is to
-   say: an icon followed by ordinary site text. */
+   It is the same assets/wordmark.png the homepage, the share card and the app's
+   Admin bar use: drawn letterforms, soft flared serifs with upright round
+   counters, the ink twin of the gold lettering on the app's splash. No typeface
+   has that skeleton - the nearest, Fraunces, has inclined stress, and its o
+   read fancier than this brand wants its own name to read.
+
+   Sized by HEIGHT with the width left free: the drawing's aspect is fixed and
+   pinning both axes squashes it. The clamp keeps the old responsive behaviour,
+   just applied to a picture instead of a font size. alt="Postmello" is what
+   keeps the name a spoken word for a screen reader. */
 .site-head .name {
-  font-family: var(--font-mark);
-  /* 600, not 700 (2026-08-15). Rubik's Bold at 27px uppercase was a heavier
-     object than the H1 underneath it; Semibold keeps the authority and gives
-     the counters back. Tracking eased 0.045 → 0.025em to match: the wider
-     letterspacing was compensating for the weight. */
-  font-weight: 600;
-  font-size: clamp(1.35rem, 2vw, 1.72rem);   /* 22 → 27.5px */
-  text-transform: uppercase;
-  letter-spacing: 0.025em;
-  color: var(--ink-mark);
-  line-height: 1;
+  display: block;
+  height: clamp(1.35rem, 2vw, 1.72rem);
+  width: auto;
 }
 /* The wordmark is a link on every page but the home page, and it must not
    pick up the prose underline — it is a logo. */

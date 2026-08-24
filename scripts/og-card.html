@@ -66,20 +66,17 @@
        is not retired, it is demoted to a SECONDARY graphic treatment - stamps,
        the mailbox plate, packaging - where the postal aesthetic is the point.
 
-       Then, face. The title-case mark was briefly set in Rubik, because Rubik
-       was the mark's face under the old spec. That was the wrong direction:
-       Rubik is friendly and readable but it makes Postmello look like an app
-       name, a little generic beside that tactile mailbox. The serif does what
-       the sans cannot - it is warmer and more literary, it complements the
-       physical mailbox instead of competing with it, it connects to "A quiet
-       place for letters." sitting directly beneath it, and it belongs to a
-       brand that could extend into stationery rather than only software.
-       The website header had been setting the mark this way all along; the
-       card was the surface that had drifted, so this is the card coming home
-       rather than a new direction. Rubik is no longer loaded here at all.
-
-       (In the app the mark is still Rubik SemiBold, bundled - moving it takes
-       shipping a Fraunces instance in the binary, which is its own change.)
+       Then, face - and then the realisation that it should not be a face at
+       all. It went Rubik (an app name, generic beside that tactile mailbox),
+       then Fraunces to match the site. Fraunces was closer but wrong in a
+       specific way: it has INCLINED STRESS, so the thin points of its o sit on
+       a diagonal, and the mark read fancier than this brand wants its own name
+       to read. No typeface on Google Fonts has the skeleton this wants -
+       upright round counters with soft flared serifs - so the wordmark is
+       DRAWN. assets/wordmark.png is the same lettering the app's splash and
+       auth screens carry, in ink rather than gold, and it is now the mark on
+       every surface: this card, the site header, the site footer, the app's
+       Admin bar. One drawing, not four approximations of one.
 
        THE LOCKUP IS ~12% LARGER than it was, and that is not decoration: the
        card is a thumbnail in somebody else's feed long before it is a 1200px
@@ -88,14 +85,11 @@
        warm red shape rather than a readable object, which is the right
        division of labour rather than a compromise. */
     .mark { display: flex; align-items: center; gap: 15px; margin-bottom: 30px; }
-    .mark img { width: 61px; height: 61px; }
-    .mark span {
-      font-family: var(--font-serif);
-      font-weight: 700; font-size: 36px;
-      letter-spacing: -0.025em;
-      color: var(--ink-900);
-      line-height: 1;
-    }
+    .mark .glyph { width: 61px; height: 61px; }
+    /* The wordmark is the ARTWORK, the same file the site header uses and the
+       same lettering the app's splash carries in gold. Sized by height, width
+       auto: the aspect is the drawing's, and pinning both would squash it. */
+    .mark .word { height: 42px; width: auto; display: block; }
     /* The page's H1, at the page's weight and tracking. */
     h1 {
       font-family: var(--font-serif);
@@ -145,8 +139,8 @@
 <body>
   <div>
     <div class="mark">
-      <img src="../assets/mark.png" alt="" />
-      <span>Postmello</span>
+      <img class="glyph" src="../assets/mark.png" alt="" />
+      <img class="word" src="../assets/wordmark.png" alt="Postmello" />
     </div>
     <h1>A quiet place<br />for letters.</h1>
     <p class="aside">Without the rush of messaging.</p>

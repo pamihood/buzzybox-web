@@ -24,13 +24,13 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <!-- Three families, not the eleven the comp loaded: it carried a live
-       font-picker widget that is not part of this page. Fraunces is every
+       font-picker widget that is not part of this page. Lora is every
        heading, Plus Jakarta Sans every sentence, Courier Prime the step
        numbers. -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&amp;family=Fraunces:ital,opsz,wght@0,9..144,400..800;1,9..144,400..700&amp;family=Plus+Jakarta+Sans:wght@400..800&amp;display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&amp;family=Lora:ital,wght@0,400..700;1,400..700&amp;family=Plus+Jakarta+Sans:wght@400..800&amp;display=swap" />
   <!-- home.css styles THIS PAGE ONLY. Everything else on the site still runs
        styles.css; see the note at the top of home.css. -->
-  <link rel="stylesheet" href="home.css?v=06f22269" />
+  <link rel="stylesheet" href="home.css?v=1f681e4a" />
 </head>
 <body>
 
@@ -45,8 +45,20 @@
            thousand pixels down, where it is the only place a reader who
            scrolled straight past the hero meets the line at all. -->
       <a class="brand" href="#">
-        <img src="assets/mark.png" alt="" width="36" height="36" />
-        <span class="brand-name">Postmello</span>
+        <img class="brand-mark" src="assets/mark.png" alt="" width="36" height="36" />
+        <!-- THE WORDMARK IS ART, NOT TYPE (Patrick, 2026-08-23). It is the same
+             lettering the app's splash and auth screens carry, in ink instead
+             of gold: soft flared serifs with upright round counters, drawn
+             rather than set. No font on Google Fonts has that skeleton -
+             the heading face has INCLINED STRESS, so the thin
+             points of its o sit on a diagonal and it reads fancier than this
+             brand wants its own name to read. Rather than pick a second
+             typeface that merely approximates the artwork, the artwork IS the
+             wordmark, everywhere.
+             It carries alt text, so the name is still a word to a screen
+             reader, to search, and to anyone with images off. -->
+        <img class="brand-name" src="assets/wordmark.png" alt="Postmello"
+             width="1095" height="174" />
       </a>
 
       <!-- FOUR choices, not seven (2026-08-23). Letters by Email, Philosophy
@@ -511,7 +523,7 @@
            have a mechanism to explain - how a handwritten page reaches someone
            with no app, and what comes back when she answers - and the previous
            revision put that explanation IN the title. The result was two
-           full sentences set in 1.25rem Fraunces, each wrapping to two lines:
+           full sentences set in 1.25rem of the heading face, wrapping to two lines:
            a heading doing a paragraph's work, at a paragraph's length.
 
            So the sentence splits at its natural seam. The title is the short
@@ -955,6 +967,28 @@
           </summary>
           <div class="faq-answer">Texting wasn&rsquo;t made for kids. It&rsquo;s built around quick replies, group chats, photos, links, and notifications. Postmello gives kids room to write, draw, be silly or thoughtful, and stay in touch independently with people you approve - one letter at a time.</div>
         </details>
+        <!-- Sits at #2 because it is a who-is-this-for question and belongs
+             with the positioning, not down in the features cluster: what is
+             it, then who is it for, then is it safe. Deliberately NOT next to
+             "Can adults have their own desk?" - the answer already ends on
+             adult desks, and back-to-back the two read as one thought said
+             twice.
+
+             The 6-14 band is Patrick's call (2026-08-23), written by him.
+             Worth knowing if you are tempted to sharpen it: LEGAL_QUESTIONS.md
+             Q2 (2026-08-18) positions Postmello as all-ages private
+             correspondence and keeps the App Store listing out of the Kids
+             Category, so the number lives HERE and must not migrate into the
+             listing or the hero. "especially" and "around" are load-bearing -
+             they make this a centre of gravity, not a gate, which is also what
+             keeps it honest against the second sentence. -->
+        <details class="faq-item" data-cat="philosophy">
+          <summary>
+            <span>What ages is Postmello for?</span>
+            <span class="faq-chevron" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></span>
+          </summary>
+          <div class="faq-answer">Postmello is designed especially for kids around 6-14, from first letters and drawings to longer handwritten or typed notes. Adults can have a desk too - Postmello is for anyone who wants a quieter way to stay in touch.</div>
+        </details>
         <details class="faq-item" data-cat="safety">
           <summary>
             <span>How is unapproved contact prevented?</span>
@@ -990,6 +1024,22 @@
           </summary>
           <div class="faq-answer">Yes! One family account supports multiple individual desks. Each child gets their own personalized desk style, engraved nameplate, private mailbox, sticker drawer, and friend compartments. Siblings can even write between desks at home.</div>
         </details>
+        <!-- The one mundane "before I try this" question the list was missing
+             (Patrick, 2026-08-23). Every photograph on this page shows ink
+             going onto paper, and a page that beautiful about handwriting can
+             quietly persuade a household it needs hardware it does not have.
+             The answer is a plain no - `drawingPolicy = .anyInput` in
+             PKCanvasRepresentable.swift means a finger draws exactly where a
+             Pencil does, and the desk typewriter is on unless an admin turns
+             it off. Sits beside the family-iPad question because both are the
+             same worry: what do we have to own before this works? -->
+        <details class="faq-item" data-cat="features">
+          <summary>
+            <span>Do we need an Apple Pencil?</span>
+            <span class="faq-chevron" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></span>
+          </summary>
+          <div class="faq-answer">No. A finger draws everywhere an Apple Pencil does, and the desk has a typewriter for kids who would rather type. A Pencil makes the ink feel closest to real handwriting, but Postmello never asks for one.</div>
+        </details>
         <details class="faq-item" data-cat="safety">
           <summary>
             <span>Is my child&rsquo;s data and artwork kept private?</span>
@@ -1017,7 +1067,8 @@
         <div class="footer-mark">
           <img src="assets/mark.png" alt="" width="40" height="40" />
           <span>
-            <span class="name">Postmello</span>
+            <img class="name" src="assets/wordmark.png" alt="Postmello"
+                 width="1095" height="174" loading="lazy" />
             <!-- The same line the header carries. It read "Quiet Pen Pals for
                  iPad", which was a second tagline for the same product AND
                  broke the site's own positioning rule - WEBSITE_SPEC 2 says

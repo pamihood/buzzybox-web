@@ -56,12 +56,12 @@
   --navy-600: #36536D;
   --navy-700: #2B4257;
 
-  /* Faces. Fraunces carries every heading, Plus Jakarta Sans every sentence,
+  /* Faces. Lora carries every heading, Plus Jakarta Sans every sentence,
      Courier Prime the step numbers. The comp loaded eleven families for a
      live font-picker widget that is not part of this page; only these three
      ship. Each keeps a real fallback so a blocked CDN degrades to something
      with the same job rather than to Times. */
-  --font-serif: 'Fraunces', 'Iowan Old Style', Georgia, 'Times New Roman', serif;
+  --font-serif: 'Lora', 'Iowan Old Style', Georgia, 'Times New Roman', serif;
   --font-sans:  'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-mono:  'Courier Prime', ui-monospace, 'SF Mono', Menlo, monospace;
 
@@ -287,16 +287,20 @@ button { font: inherit; color: inherit; background: none; border: 0; }
   height: 5rem;
 }
 .brand { display: flex; align-items: center; gap: 0.875rem; text-decoration: none; }
-.brand img { width: 2.25rem; height: 2.25rem; object-fit: contain; transition: transform 200ms ease; }
-.brand:hover img { transform: scale(1.05); }
+/* .brand-mark, not `.brand img` — the wordmark beside it is an image too now,
+   and a bare descendant selector squashed it into this square box (it out-
+   specifies .brand-name, so the word rendered 36px wide and a few px tall). */
+.brand-mark { width: 2.25rem; height: 2.25rem; object-fit: contain; transition: transform 200ms ease; }
+.brand:hover .brand-mark { transform: scale(1.05); }
+/* An IMAGE now, not type — see the note in index.html. Sized by HEIGHT and
+   left to find its own width: the artwork's aspect is fixed, and pinning the
+   width instead would let a rounding difference squash the letterforms. The
+   height is set so the cap height matches what the old 1.5rem setting drew,
+   which is what keeps the header bar's rhythm unchanged. */
 .brand-name {
   display: block;
-  font-family: var(--font-serif);
-  font-size: 1.5rem;
-  line-height: 1.15;
-  font-weight: 700;
-  letter-spacing: -0.025em;
-  color: var(--ink-900);
+  height: 1.6rem;
+  width: auto;
 }
 /* (.brand-sub was an 11px tagline under the header wordmark. It went on
    2026-08-23: it printed the hero's own H1 a few inches above it. The FOOTER
@@ -471,11 +475,15 @@ button { font: inherit; color: inherit; background: none; border: 0; }
    terracotta at half the headline's size, so the pair reads as a statement
    and its aside rather than as two headlines. It was the nicest thing in the
    old hero and it was cut only because the headline had gone down to a single
-   line; a line came back, so it did. Set in Fraunces italic 400 against the
+   line; a line came back, so it did. Set in the heading italic at 400 against the
    headline's 700: the weight difference is doing as much of the work as the
    colour. */
 .hero-aside {
   margin: 0 0 1.5rem;
+  /* Inherits the heading face, which is the point: the aside is the page's one
+     true italic, so the heading face has to HAVE one. A face without an italic
+     leaves the browser to synthesise an oblique by shearing the roman, which
+     is not the same thing and looks it - that is what ruled Suez One out. */
   font-family: var(--font-serif);
   font-style: italic;
   font-weight: 400;
@@ -1640,7 +1648,9 @@ button { font: inherit; color: inherit; background: none; border: 0; }
 @media (min-width: 768px) { .footer-brand { grid-column: span 5; } }
 .footer-mark { display: flex; align-items: center; gap: 0.75rem; }
 .footer-mark img { width: 2.5rem; height: 2.5rem; object-fit: contain; border-radius: var(--r-xl); box-shadow: var(--shadow-2xs); }
-.footer-mark .name { font-family: var(--font-serif); font-size: 1.5rem; font-weight: 700; letter-spacing: -0.025em; color: var(--ink-900); }
+/* The same artwork as the header, at the same visual size. See the note in
+   index.html for why the wordmark is drawn rather than set. */
+.footer-mark .name { display: block; height: 1.6rem; width: auto; }
 .footer-mark .sub { display: block; margin-top: -0.125rem; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--terracotta-600); }
 .footer-blurb { max-width: 24rem; font-size: 0.75rem; line-height: 1.625; }
 @media (min-width: 640px) { .footer-blurb { font-size: 0.875rem; } }

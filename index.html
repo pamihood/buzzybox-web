@@ -30,7 +30,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&amp;family=Lora:ital,wght@0,400..700;1,400..700&amp;family=Plus+Jakarta+Sans:wght@400..800&amp;display=swap" />
   <!-- home.css styles THIS PAGE ONLY. Everything else on the site still runs
        styles.css; see the note at the top of home.css. -->
-  <link rel="stylesheet" href="home.css?v=7a0dc377" />
+  <link rel="stylesheet" href="home.css?v=5f28c350" />
 </head>
 <body>
 
@@ -1064,18 +1064,16 @@
     <div class="footer-main">
 
       <div class="footer-brand">
+        <!-- NO TAGLINE UNDER THE MARK (Patrick, 2026-08-23), which finishes
+             what taking it out of the header started. Here it was doing visible
+             damage rather than just repeating: set at margin-top:-0.125rem in
+             uppercase terracotta, it collided with the wordmark's baseline and
+             the pair read as one chopped-up block. The line is not lost - it is
+             the hero H1, which is where it belongs. -->
         <div class="footer-mark">
-          <img src="assets/mark.png" alt="" width="40" height="40" />
-          <span>
-            <img class="name" src="assets/wordmark.png" alt="Postmello"
-                 width="1095" height="174" loading="lazy" />
-            <!-- The same line the header carries. It read "Quiet Pen Pals for
-                 iPad", which was a second tagline for the same product AND
-                 broke the site's own positioning rule - WEBSITE_SPEC 2 says
-                 Postmello is not defined as an iPad app; "Coming first to
-                 iPad" in the hero badge is the approved form. -->
-            <span class="sub" data-brand="tagline">A quiet place for letters.</span>
-          </span>
+          <img class="footer-glyph" src="assets/mark.png" alt="" width="40" height="40" />
+          <img class="name" src="assets/wordmark.png" alt="Postmello"
+               width="1095" height="174" loading="lazy" />
         </div>
         <!-- The hero's own first sentence, and deliberately only that. The old
              blurb was a third pitch in its own words ("the quiet postal world

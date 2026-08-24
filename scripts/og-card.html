@@ -60,12 +60,30 @@
       background-image: url("../assets/paper-grain.png");
       background-size: 128px;
     }
-    .mark { display: flex; align-items: center; gap: 13px; margin-bottom: 28px; }
-    .mark img { width: 54px; height: 54px; }
+    /* THE WORDMARK IS "Postmello", NOT "POSTMELLO" (Patrick, 2026-08-23).
+       This supersedes the 2026-08-15 spec, which set the mark uppercase at
+       +0.025em and was recorded as settled. The reasoning for the change:
+       uppercase reads as a postal SERVICE, a label stamped on equipment, a
+       tech company - and the brand has matured past that. Title case reads as
+       a proper name: warmer, quieter, more literary, and the thing you could
+       print on a stationery box, which is where this brand plausibly goes.
+       UPPERCASE survives as a SECONDARY graphic treatment - stamps, mailbox
+       plaques, packaging, and in-product surfaces where the postal aesthetic
+       is the point. It is no longer the wordmark.
+       Tracking goes with it: +0.025em opens uppercase, which needs it, and
+       loosens title case, which does not. Slightly negative instead.
+       The lockup is ~12% larger than it was. This card is a thumbnail in
+       somebody else's feed long before it is a 1200px image, and the mark is
+       the first thing to disappear at 400px wide. The wordmark does the
+       branding work at that size; the postbox is a warm detail that survives
+       as a red shape rather than as a readable object, which is the right
+       division of labour. */
+    .mark { display: flex; align-items: center; gap: 15px; margin-bottom: 30px; }
+    .mark img { width: 61px; height: 61px; }
     .mark span {
       font-family: var(--font-mark);
-      font-weight: 600; font-size: 30px;
-      text-transform: uppercase; letter-spacing: 0.025em;
+      font-weight: 600; font-size: 34px;
+      letter-spacing: -0.01em;
       color: var(--ink-mark);
       line-height: 1;
     }
@@ -86,18 +104,33 @@
       color: var(--terracotta-600);
       margin-bottom: 30px;
     }
+    /* Darker than the page's own pill, on purpose. At full size the lighter
+       treatment was the elegant one; social cards get shrunk aggressively and
+       it was the first thing to wash out. Body ink and a border a step past
+       --line, which is as far as it can go before it starts competing with
+       the headline. */
     .badge {
       display: inline-block;
       font-family: var(--font-mono);
-      font-weight: 400; font-size: 15px; letter-spacing: 0.05em;
-      color: var(--ink-600);
-      border: 1px solid var(--line); border-radius: 999px;
+      font-weight: 400; font-size: 17px; letter-spacing: 0.04em;
+      color: var(--ink-700);
+      border: 1px solid #C7AF98; border-radius: 999px;
       padding: 10px 20px;
     }
-    /* The desk runs to the right edge with a little air, cropped to the device
-       itself - the shot's own surround is the same paper, so there is no seam. */
-    .shot { justify-self: end; padding-right: 40px; }
-    .shot img { width: 620px; height: auto; display: block; }
+    /* NO DEVICE FRAME (Patrick, 2026-08-23). The bezel was doing one job -
+       saying "this is an app" - and charging the card a lot of its width for
+       it: at thumbnail size the frame is a grey border and the screen inside
+       it is what a reader actually sees. Without it the desk is bigger in the
+       same space and the card is about the PLACE rather than the hardware.
+       The radius and shadow are the homepage hero's own (--r-3xl, --shadow-xl),
+       which is what keeps a bare screenshot from reading as a raw crop bleeding
+       into the paper. */
+    .shot { justify-self: end; padding-right: 44px; }
+    .shot img {
+      width: 616px; height: auto; display: block;
+      border-radius: 1.5rem;
+      box-shadow: 0 20px 25px -5px #0000001a, 0 8px 10px -6px #0000001a;
+    }
   </style>
 </head>
 <body>
@@ -111,10 +144,9 @@
     <span class="badge">Coming first to iPad.</span>
   </div>
   <div class="shot">
-    <!-- The BEZELLED capture, not the screen-only crop the homepage hero uses.
-         A share card is a thumbnail in someone else's feed; the device outline
-         is what makes it read as an app at 400px wide. -->
-    <img src="../assets/app-desk.jpg" alt="" />
+    <!-- The screen-only crop, the same file the homepage hero uses. The
+         bezelled app-desk.jpg stays in the repo but nothing renders it now. -->
+    <img src="../assets/app-desk-screen.jpg" alt="" />
   </div>
 </body>
 </html>

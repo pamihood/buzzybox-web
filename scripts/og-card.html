@@ -2,36 +2,52 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Postmello share card — source</title>
+  <title>Postmello share card - source</title>
   <!-- The 1200x630 image a Postmello link unfurls as, authored as a PAGE rather
        than composed in PIL. That is the whole point: the card is rendered by the
-       same browser, with the same three webfonts and the same tokens as the
-       site, so it cannot drift into a different typeface than the page it
-       points at. `make-og-card.py` shoots this file at 2x and downsamples.
+       same browser, with the same webfonts and the same tokens as the site, so
+       it cannot drift into a different typeface than the page it points at.
+       `make-og-card.py` shoots this file at 2x and downsamples.
 
-       Not linked from anywhere and not in the sitemap — it is a source file that
-       happens to be HTML. -->
+       IT DRIFTED ANYWAY (2026-08-23). The homepage moved onto its own design
+       system on the 23rd - Fraunces headings, Plus Jakarta Sans sentences,
+       Courier Prime apparatus - and this file kept rendering the previous
+       one: a Nunito 800 headline in a rounded sans against a page whose H1 is
+       a serif. The card looked like a different product. So the rule the
+       comment above states has to be ACTED on when the site restyles: when
+       home.css changes face or token, change it here and rerun the script.
+
+       Not linked from anywhere and not in the sitemap - it is a source file
+       that happens to be HTML. -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@500&amp;family=Nunito:wght@400..800&amp;family=Rubik:wght@600&amp;display=swap" />
+  <!-- The site's three families, plus Rubik for the wordmark ONLY - the mark
+       is Rubik 600 uppercase at +0.025em in #2C231D wherever it appears, and
+       that is a brand spec rather than a page style. Do not set the headline
+       in it. -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&amp;family=Fraunces:ital,opsz,wght@0,9..144,400..800;1,9..144,400..700&amp;family=Plus+Jakarta+Sans:wght@400..800&amp;family=Rubik:wght@600&amp;display=swap" />
   <style>
+    /* Straight from home.css. If a token moves there, move it here. */
     :root {
-      --ink: #29211b;
-      --ink-mark: #2c231d;
-      --ink-soft: #62564c;
-      --paper: #faf7f2;
+      --ink-900: #2B231D;
+      --ink-600: #746456;
+      --ink-mark: #2C231D;
+      --terracotta-600: #C85A32;
+      --parchment-100: #FAF7F2;
+      --line: #DAC6B4;
+      --font-serif: "Fraunces", Georgia, serif;
+      --font-sans: "Plus Jakarta Sans", system-ui, sans-serif;
+      --font-mono: "Courier Prime", ui-monospace, monospace;
       --font-mark: "Rubik", system-ui, sans-serif;
-      --font-voice: "Nunito", system-ui, sans-serif;
-      --font-apparatus: "DM Mono", ui-monospace, monospace;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       width: 1200px; height: 630px;
-      background: var(--paper);
-      font-family: var(--font-voice);
-      color: var(--ink);
+      background: var(--parchment-100);
+      font-family: var(--font-sans);
+      color: var(--ink-900);
       display: grid;
-      grid-template-columns: 460px 1fr;
+      grid-template-columns: 470px 1fr;
       align-items: center;
       gap: 24px;
       padding: 0 0 0 64px;
@@ -44,7 +60,7 @@
       background-image: url("../assets/paper-grain.png");
       background-size: 128px;
     }
-    .mark { display: flex; align-items: center; gap: 13px; margin-bottom: 30px; }
+    .mark { display: flex; align-items: center; gap: 13px; margin-bottom: 28px; }
     .mark img { width: 54px; height: 54px; }
     .mark span {
       font-family: var(--font-mark);
@@ -53,23 +69,35 @@
       color: var(--ink-mark);
       line-height: 1;
     }
+    /* The page's H1, at the page's weight and tracking. */
     h1 {
-      font-weight: 800; font-size: 60px;
-      line-height: 1.02; letter-spacing: -0.025em;
+      font-family: var(--font-serif);
+      font-weight: 700; font-size: 58px;
+      line-height: 1.05; letter-spacing: -0.03em;
+      margin-bottom: 10px;
+    }
+    /* The hero's one italic, and the reason the card now reads as the same
+       product: a terracotta serif italic at half the headline, so the pair is
+       a statement and its aside rather than two headlines. */
+    .aside {
+      font-family: var(--font-serif);
+      font-style: italic; font-weight: 400;
+      font-size: 29px; line-height: 1.2; letter-spacing: -0.01em;
+      color: var(--terracotta-600);
       margin-bottom: 30px;
     }
     .badge {
       display: inline-block;
-      font-family: var(--font-apparatus);
-      font-weight: 500; font-size: 16px; letter-spacing: 0.05em;
-      color: var(--ink-soft);
-      border: 1px solid #ddd4ca; border-radius: 999px;
+      font-family: var(--font-mono);
+      font-weight: 400; font-size: 15px; letter-spacing: 0.05em;
+      color: var(--ink-600);
+      border: 1px solid var(--line); border-radius: 999px;
       padding: 10px 20px;
     }
     /* The desk runs to the right edge with a little air, cropped to the device
-       itself — the shot's own surround is the same paper, so there is no seam. */
+       itself - the shot's own surround is the same paper, so there is no seam. */
     .shot { justify-self: end; padding-right: 40px; }
-    .shot img { width: 640px; height: auto; display: block; }
+    .shot img { width: 620px; height: auto; display: block; }
   </style>
 </head>
 <body>
@@ -79,9 +107,13 @@
       <span>Postmello</span>
     </div>
     <h1>A quiet place<br />for letters.</h1>
+    <p class="aside">Without the rush of messaging.</p>
     <span class="badge">Coming first to iPad.</span>
   </div>
   <div class="shot">
+    <!-- The BEZELLED capture, not the screen-only crop the homepage hero uses.
+         A share card is a thumbnail in someone else's feed; the device outline
+         is what makes it read as an app at 400px wide. -->
     <img src="../assets/app-desk.jpg" alt="" />
   </div>
 </body>

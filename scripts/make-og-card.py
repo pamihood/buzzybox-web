@@ -4,10 +4,15 @@
 Shoots scripts/og-card.html in headless Chrome at 2x and downsamples, rather
 than composing the card in PIL. PIL would need font FILES; the site's three
 faces come from the Google Fonts CDN, so the only way to guarantee the card is
-set in the same Rubik / Nunito / DM Mono as the page it points at is to let a
-browser render it. It also means the card is authored in the site's own tokens.
+set in the same Fraunces / Plus Jakarta Sans / Courier Prime as the page it
+points at is to let a browser render it. (Rubik is loaded too, for the wordmark
+only — that one is a brand spec, not a page style.) It also means the card is
+authored in the site's own tokens.
 
-Rerun after any change to the H1, the hero shot, or the type system.
+Rerun after any change to the H1, the hero shot, or the type system — and note
+that "the type system" is the failure this file has actually had: the homepage
+restyled on 2026-08-23 and the card kept shipping the previous faces for a
+week, so a shared link unfurled as a different product than it opened.
 Needs network on first run (the CDN); Chrome caches the fonts afterwards.
 """
 import pathlib

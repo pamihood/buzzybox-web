@@ -13,17 +13,23 @@
        system on the 23rd - Fraunces headings, Plus Jakarta Sans sentences,
        Courier Prime apparatus - and this file kept rendering the previous
        one: a Nunito 800 headline in a rounded sans against a page whose H1 is
-       a serif. The card looked like a different product. So the rule the
-       comment above states has to be ACTED on when the site restyles: when
-       home.css changes face or token, change it here and rerun the script.
+       a serif. The card looked like a different product. And then it drifted
+       AGAIN the same day: the headings moved Fraunces -> Lora and this file
+       kept Fraunces for hours. So the rule the comment above states has to be
+       ACTED on when the site restyles: when home.css changes face or token,
+       change it here and rerun the script - nothing fails loudly, the card
+       just quietly advertises the previous brand.
 
        Not linked from anywhere and not in the sitemap - it is a source file
        that happens to be HTML. -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <!-- The site's three families, and ONLY those three. Rubik used to be loaded
-       here for the wordmark; it is not the wordmark any more - see .mark. -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&amp;family=Fraunces:ital,opsz,wght@0,9..144,400..800;1,9..144,400..700&amp;family=Plus+Jakarta+Sans:wght@400..800&amp;display=swap" />
+  <!-- The site's three families, and ONLY those three - which means this line
+       has to MOVE when home.css moves, and it has now failed to twice. Rubik
+       lingered here after the wordmark became artwork, and Fraunces lingered
+       after the headings went to Lora, so the card shipped a face the site had
+       already left. If the check below ever exists, this is what it checks. -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&amp;family=Lora:ital,wght@0,400..700;1,400..700&amp;family=Plus+Jakarta+Sans:wght@400..800&amp;display=swap" />
   <style>
     /* Straight from home.css. If a token moves there, move it here. */
     :root {
@@ -32,7 +38,7 @@
       --terracotta-600: #C85A32;
       --parchment-100: #FAF7F2;
       --line: #DAC6B4;
-      --font-serif: "Fraunces", Georgia, serif;
+      --font-serif: "Lora", Georgia, serif;
       --font-sans: "Plus Jakarta Sans", system-ui, sans-serif;
       --font-mono: "Courier Prime", ui-monospace, monospace;
     }
@@ -56,8 +62,8 @@
       background-image: url("../assets/paper-grain.png");
       background-size: 128px;
     }
-    /* THE WORDMARK IS THE SITE HEADER'S: Fraunces 700, title case, -0.025em,
-       --ink-900. Two decisions landed here on 2026-08-23, in this order.
+    /* THE WORDMARK IS DRAWN - assets/wordmark.png, no typeface at all. Two
+       decisions landed here on 2026-08-23, in this order.
 
        First, case. "POSTMELLO" became "Postmello" - uppercase reads as a postal
        SERVICE, a label stamped on equipment, a tech company, and the brand has

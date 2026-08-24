@@ -21,24 +21,20 @@
        that happens to be HTML. -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <!-- The site's three families, plus Rubik for the wordmark ONLY - the mark
-       is Rubik 600 uppercase at +0.025em in #2C231D wherever it appears, and
-       that is a brand spec rather than a page style. Do not set the headline
-       in it. -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&amp;family=Fraunces:ital,opsz,wght@0,9..144,400..800;1,9..144,400..700&amp;family=Plus+Jakarta+Sans:wght@400..800&amp;family=Rubik:wght@600&amp;display=swap" />
+  <!-- The site's three families, and ONLY those three. Rubik used to be loaded
+       here for the wordmark; it is not the wordmark any more - see .mark. -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&amp;family=Fraunces:ital,opsz,wght@0,9..144,400..800;1,9..144,400..700&amp;family=Plus+Jakarta+Sans:wght@400..800&amp;display=swap" />
   <style>
     /* Straight from home.css. If a token moves there, move it here. */
     :root {
       --ink-900: #2B231D;
       --ink-600: #746456;
-      --ink-mark: #2C231D;
       --terracotta-600: #C85A32;
       --parchment-100: #FAF7F2;
       --line: #DAC6B4;
       --font-serif: "Fraunces", Georgia, serif;
       --font-sans: "Plus Jakarta Sans", system-ui, sans-serif;
       --font-mono: "Courier Prime", ui-monospace, monospace;
-      --font-mark: "Rubik", system-ui, sans-serif;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
@@ -60,31 +56,44 @@
       background-image: url("../assets/paper-grain.png");
       background-size: 128px;
     }
-    /* THE WORDMARK IS "Postmello", NOT "POSTMELLO" (Patrick, 2026-08-23).
-       This supersedes the 2026-08-15 spec, which set the mark uppercase at
-       +0.025em and was recorded as settled. The reasoning for the change:
-       uppercase reads as a postal SERVICE, a label stamped on equipment, a
-       tech company - and the brand has matured past that. Title case reads as
-       a proper name: warmer, quieter, more literary, and the thing you could
-       print on a stationery box, which is where this brand plausibly goes.
-       UPPERCASE survives as a SECONDARY graphic treatment - stamps, mailbox
-       plaques, packaging, and in-product surfaces where the postal aesthetic
-       is the point. It is no longer the wordmark.
-       Tracking goes with it: +0.025em opens uppercase, which needs it, and
-       loosens title case, which does not. Slightly negative instead.
-       The lockup is ~12% larger than it was. This card is a thumbnail in
-       somebody else's feed long before it is a 1200px image, and the mark is
-       the first thing to disappear at 400px wide. The wordmark does the
-       branding work at that size; the postbox is a warm detail that survives
-       as a red shape rather than as a readable object, which is the right
-       division of labour. */
+    /* THE WORDMARK IS THE SITE HEADER'S: Fraunces 700, title case, -0.025em,
+       --ink-900. Two decisions landed here on 2026-08-23, in this order.
+
+       First, case. "POSTMELLO" became "Postmello" - uppercase reads as a postal
+       SERVICE, a label stamped on equipment, a tech company, and the brand has
+       matured past that. Title case reads as a proper name: warmer, quieter,
+       more literary, the thing you could print on a stationery box. UPPERCASE
+       is not retired, it is demoted to a SECONDARY graphic treatment - stamps,
+       the mailbox plate, packaging - where the postal aesthetic is the point.
+
+       Then, face. The title-case mark was briefly set in Rubik, because Rubik
+       was the mark's face under the old spec. That was the wrong direction:
+       Rubik is friendly and readable but it makes Postmello look like an app
+       name, a little generic beside that tactile mailbox. The serif does what
+       the sans cannot - it is warmer and more literary, it complements the
+       physical mailbox instead of competing with it, it connects to "A quiet
+       place for letters." sitting directly beneath it, and it belongs to a
+       brand that could extend into stationery rather than only software.
+       The website header had been setting the mark this way all along; the
+       card was the surface that had drifted, so this is the card coming home
+       rather than a new direction. Rubik is no longer loaded here at all.
+
+       (In the app the mark is still Rubik SemiBold, bundled - moving it takes
+       shipping a Fraunces instance in the binary, which is its own change.)
+
+       THE LOCKUP IS ~12% LARGER than it was, and that is not decoration: the
+       card is a thumbnail in somebody else's feed long before it is a 1200px
+       image, and the mark is the first thing to disappear at 400px wide. The
+       wordmark does the branding work at that size; the postbox survives as a
+       warm red shape rather than a readable object, which is the right
+       division of labour rather than a compromise. */
     .mark { display: flex; align-items: center; gap: 15px; margin-bottom: 30px; }
     .mark img { width: 61px; height: 61px; }
     .mark span {
-      font-family: var(--font-mark);
-      font-weight: 600; font-size: 34px;
-      letter-spacing: -0.01em;
-      color: var(--ink-mark);
+      font-family: var(--font-serif);
+      font-weight: 700; font-size: 36px;
+      letter-spacing: -0.025em;
+      color: var(--ink-900);
       line-height: 1;
     }
     /* The page's H1, at the page's weight and tracking. */

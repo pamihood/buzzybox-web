@@ -35,7 +35,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&amp;family=Lora:ital,wght@0,400..700;1,400..700&amp;family=Plus+Jakarta+Sans:wght@400..800&amp;display=swap" />
   <!-- home.css styles THIS PAGE ONLY. Everything else on the site still runs
        styles.css; see the note at the top of home.css. -->
-  <link rel="stylesheet" href="home.css?v=eaadc01a" />
+  <link rel="stylesheet" href="home.css?v=24e09a41" />
 </head>
 <body>
 
@@ -748,57 +748,43 @@
   </section>
 
   <!-- ======================= FAMILY STORIES =======================
-       THE WHOLE SECTION IS COMMENTED OUT, on purpose, and it is the one place
-       this page departs from the comp.
-
-       The comp shipped four testimonials with five-star ratings: a parent
-       ("Elena R., Parent of two"), a grandfather ("Arthur G., Grandfather in
-       Vermont"), a "Dr. Marcus Vance, Child Development & Literacy Specialist"
-       and an educator ("Sarah Jenkins"). None of those people exist - the tool
-       that drew the comp invented the names, the credentials, the quotes and
-       the ratings. Publishing them on postmello.com would be presenting
-       fabricated reviews as genuine to real parents deciding whether to trust
-       the product with their children.
-
-       The previous homepage carried the same rule in its own reserved
-       social-proof block, and it is worth restating: an empty position is
-       honest, a fake one is the fastest way to lose a parent's trust.
-
-       The markup and styles are complete and tested (.story* in home.css), so
-       restoring this is a paste job the moment there are real quotes with real
-       permission. Keep the header WITH the cards - a "Family Stories" heading
-       above an empty grid reads worse than no section at all, which is why the
-       whole thing is out rather than just the four cards.
-  ============================================================== -->
-  <!--
+       LIVE since 2026-08-23, with ONE quote - and one is the right number
+       until there are more real ones. The section spent its first weeks
+       commented out because the comp's four testimonials were invented by
+       the tool that drew it ("Elena R.", "Arthur G." - those people do not
+       exist). The rule stands: only real quotes from real beta families,
+       with permission, credited how they want. An empty position is honest;
+       a fake one is the fastest way to lose a parent's trust.
+       Design: a simple note card on generated deckle-edged paper (see the
+       .story* block in home.css for the how and the no-stamps rule). Adding
+       a second quote needs no CSS work - the grid makes a row of two and
+       even cards get their own sheet + opposite tilt. -->
   <section class="section" id="testimonials">
-    <div class="shell">
+    <div class="shell shell--5">
       <div class="sec-head">
-        <span class="pill pill--sheer">Family Stories</span>
-        <h2 style="margin-top:1rem">Loved by Parents, Treasured by Kids</h2>
-        <p class="lede">See how households are using Postmello to step away from instant messaging and build real childhood memories.</p>
+        <span class="pill pill--sheer">Shaped with Families in Private Beta</span>
+        <h2 style="margin-top:1rem">A few notes from families who write with us.</h2>
       </div>
       <div class="story-grid">
         <article class="story">
-          <div>
-            <div class="story-top">
-              <span class="story-tag">TAG</span>
-              <span class="story-stars">(five stars)</span>
-            </div>
-            <p class="story-quote">&ldquo;Real quote goes here.&rdquo;</p>
-          </div>
-          <div class="story-author">
-            <span class="story-avatar">AB</span>
-            <span>
-              <span class="story-name">Real Name</span>
-              <span class="story-role">Real role</span>
-            </span>
-          </div>
+          <p class="story-quote"><span class="story-q">&ldquo;</span>I love the whimsical spirit! It is so beautifully done! The entire space and the overall aesthetics are so charming and consistent around the slow, truly creative feel. And my daughter likes the bee! She loves how it sleeps in the little nest and blinks its eyes! The woodland theme is our favorite.<span class="story-q">&rdquo;</span></p>
+          <p class="story-author">
+            <span class="story-name">Carolin</span>
+            <span class="story-sep" aria-hidden="true">&bull;</span>
+            <span class="story-role">Mom of 2</span>
+          </p>
+        </article>
+        <article class="story">
+          <p class="story-quote"><span class="story-q">&ldquo;</span>My daughter says it&rsquo;s &lsquo;Waaaay better - you can add way more stuff and even stickers!!&rsquo; She spent the last half hour writing notes and loved it. And she loves that a bee takes her mail away. They both love using the typewriter, too.<span class="story-q">&rdquo;</span></p>
+          <p class="story-author">
+            <span class="story-name">Ann</span>
+            <span class="story-sep" aria-hidden="true">&bull;</span>
+            <span class="story-role">Mom of 2</span>
+          </p>
         </article>
       </div>
     </div>
   </section>
-  -->
 
   <!-- ========================= MEMBERSHIP ========================= -->
   <section class="section" id="membership">

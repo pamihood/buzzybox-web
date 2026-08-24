@@ -1496,60 +1496,71 @@ button { font: inherit; color: inherit; background: none; border: 0; }
 .trust-links a { text-decoration: underline; text-underline-offset: 4px; transition: color 150ms ease; }
 .trust-links a:hover { color: var(--terracotta-600); }
 
-/* ---------- Testimonials ---------- */
-.story-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
-@media (min-width: 640px) { .story-grid { gap: 1.75rem; } }
-@media (min-width: 768px) { .story-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+/* ---------- Testimonials ----------
+   A simple squarish note card of textured cream paper, edges cleanly cut
+   except a tiny deckle at the bottom (Patrick, 2026-08-23 - torn-all-around
+   was rejected). The sheets are gpt-image-2 renders keyed off neon green
+   (posty scripts/gen-desk-object.py recipe; regen notes in that repo's
+   scratchpad gen_ai_paper.py), one per card so the two bottoms differ,
+   stretched 100%/100% as the card background - near-uniform because the
+   card keeps the sheet's own aspect (a 9-slice was tried first and drew
+   seam lines). The shadow is filter:drop-shadow, which follows the sheet's
+   alpha - box-shadow would draw a rectangle and give the trick away.
+   NO stamps on these (Patrick, 2026-08-23): a stamp implies the note itself
+   travelled through the mail system, which reads as staged - these are notes
+   ABOUT Postmello, not letters sent through it.
+   The quote wears normal opening AND closing curly quotes, orange and bold
+   (.story-q), inline with the text (Patrick, 2026-08-23) - not the comp's
+   floating decorative mark, which opened without ever closing. */
+.story-grid { display: grid; grid-template-columns: 1fr; gap: 2.25rem; justify-items: center; }
+@media (min-width: 768px) { .story-grid { grid-template-columns: repeat(auto-fit, minmax(0, 1fr)); gap: 2.5rem; } }
+
 .story {
+  max-width: 40rem;
+  aspect-ratio: 16 / 15;  /* the sheets are ~1.07; content can still grow it */
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  padding: 1.75rem;
-  background: var(--parchment-200);
-  border: 1px solid var(--line);
-  border-radius: var(--r-3xl);
-  box-shadow: var(--shadow-2xs);
-  transition: border-color 300ms ease, box-shadow 300ms ease;
+  background: url("assets/testimonial-paper.png");
+  background-size: 100% 100%;
+  filter: drop-shadow(0 10px 20px rgba(43, 35, 29, 0.12))
+          drop-shadow(0 3px 6px rgba(43, 35, 29, 0.08));
+  transform: rotate(-0.8deg);
+  padding: 2.75rem 3rem 2.5rem;
 }
-@media (min-width: 640px) { .story { padding: 2.25rem; } }
-.story:hover { border-color: color-mix(in srgb, var(--terracotta-600) 40%, transparent); box-shadow: var(--shadow-md); }
-.story-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem; }
-.story-tag {
-  padding: 0.25rem 0.625rem;
-  border-radius: var(--r-full);
-  background: #fff;
-  border: 1px solid var(--parchment-300);
-  font-size: 10px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--ink-600);
+@media (max-width: 639px) { .story { padding: 2.25rem 1.75rem 2rem; } }
+.story:nth-child(even) {
+  transform: rotate(0.7deg);
+  /* A different sheet: two notes torn from the same pad would still not
+     share an identical tear. */
+  background-image: url("assets/testimonial-paper-2.png");
 }
-.story-stars { display: flex; align-items: center; gap: 0.25rem; color: var(--honey-500); }
-.story-stars svg { width: 0.875rem; height: 0.875rem; }
+
 .story-quote {
+  flex: 1;   /* pins the author line to the bottom of the squarish sheet */
   font-family: var(--font-serif);
   font-style: italic;
-  font-size: 1rem;
-  line-height: 1.625;
-  color: var(--ink-900);
-  margin-bottom: 1.5rem;
+  font-size: 1.125rem;
+  line-height: 1.8;
+  color: var(--ink-800);
+  margin: 0 0 1.5rem;
 }
-@media (min-width: 640px) { .story-quote { font-size: 1.125rem; } }
-.story-author { display: flex; align-items: center; gap: 0.875rem; padding-top: 1rem; border-top: 1px solid var(--parchment-300); }
-.story-avatar {
-  width: 2.25rem; height: 2.25rem;
-  display: flex; align-items: center; justify-content: center;
-  flex: none;
-  border-radius: var(--r-full);
-  background: var(--ink-900);
-  color: var(--honey-400);
-  font-size: 0.75rem;
-  font-weight: 700;
-  box-shadow: var(--shadow-xs);
+@media (min-width: 640px) { .story-quote { font-size: 1.1875rem; } }
+/* Upright, not italic: Lora's ITALIC curly quotes lean into the neighbouring
+   letter and read as a smudged gap (the "spacing" that looked wrong was the
+   slant, not the metrics - A/B tested 2026-08-23). Upright bold marks with a
+   hair of even air on both sides read as deliberate typesetting. */
+.story-q { color: var(--terracotta-600); font-weight: 700; font-style: normal; }
+.story-quote .story-q:first-child { margin-right: 0.04em; }
+.story-quote .story-q:last-child  { margin-left: 0.02em; }
+.story-author {
+  display: flex; align-items: baseline; gap: 0.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line);
+  font-family: var(--font-sans);
 }
-.story-name { font-size: 0.875rem; font-weight: 700; color: var(--ink-900); }
-.story-role { font-size: 0.75rem; color: var(--ink-600); }
+.story-name { font-size: 0.9375rem; font-weight: 700; color: var(--ink-900); }
+.story-sep  { color: var(--terracotta-600); }
+.story-role { font-size: 0.875rem; color: var(--ink-600); }
 
 /* ---------- FAQ ---------- */
 /* (.faq-filters styled five category chips. Six questions do not need

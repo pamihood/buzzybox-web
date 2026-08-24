@@ -15,34 +15,42 @@
      to skim on a laptop, which is how a pricing section ended up invisible.
      Everything a visitor needs to understand is now --ink or --ink-soft;
      --ink-faint is for material nobody has to read. */
-  --ink: #29211b;        /* headlines and anything primary */
+  --ink: #2B231D;        /* headlines and anything primary */
   /* The mark sits a hair warmer and lighter than the headline ink. At Rubik 600
      across eight uppercase letters the wordmark carries more mass than any
      heading on the page, and at full --ink it read as the heaviest thing in the
      header rather than as a logo the page is printed under. */
-  --ink-mark: #2c231d;   /* the wordmark, and only the wordmark */
-  --ink-mid: #453b32;    /* ledes and the hero sentence — one step off black */
-  --ink-soft: #62564c;   /* normal body, notes, nav links */
-  --ink-faint: #918478;  /* TERTIARY ONLY: copyright, dates, separators */
+  --ink-mark: #2B231D;   /* the wordmark, and only the wordmark */
+  --ink-mid: #3E342B;    /* ledes and the hero sentence — one step off black */
+  --ink-soft: #574B40;   /* normal body, notes, nav links */
+  --ink-faint: #968474;  /* TERTIARY ONLY: copyright, dates, separators */
 
   /* ---- Paper ----
      Three surfaces for the whole site, not a colour per section: the canvas,
      a barely-different second sheet, and one warm card. The accent colour IS
      the paper — the desks, stamps, stickers and bee bring every other colour
      on the page, and a standard web accent would only compete with them. */
-  --paper: #faf7f2;      /* writing paper: the canvas */
-  --paper-alt: #f7f2ea;  /* a second sheet — a tonal hair, not a band */
+  --paper: #FAF7F2;      /* writing paper: the canvas */
+  --paper-alt: #F4EFE6;  /* a second sheet — a tonal hair, not a band */
   /* Manila — the kraft-envelope material, and the one place the page's paper
      gets real chroma. The old #f1e8de darkened the ground without warming it
      (chroma ~7%), and darker-without-warmer is the recipe for grey; Patrick
      called it twice, 2026-08-16. Deeper (#eee0c4) read as a highlighted
      callout, paler (#f3e7d0) stayed timid. Soft ink on this passes AA. */
-  --paper-card: #f4e8cc; /* manila card stock: the one emphasised block */
-  --card: #fdfbf8;       /* very light card: secondary information blocks */
-  --line: #ddd4ca;
-  --line-card: #ddd4ca;
-  --navy: #2f4358;   /* link-hover underlines + focus rings (was --red #c8402f, retired 2026-08-18: red read as alarm/error on a quiet paper page) */
-  --honey: #e9a227;
+  --paper-card: #EADBCE; /* manila card stock: the one emphasised block */
+  --card: #FCFAF6;       /* very light card: secondary information blocks */
+  --line: #DAC6B4;
+  --line-card: #E2D5C5;
+  /* TERRACOTTA, the homepage's accent, since these pages joined its design
+     system (2026-08-23). This REVERSES a 2026-08-18 decision that retired red
+     #c8402f here because red read as alarm on a quiet paper page - and the
+     reversal is narrower than it looks: #C85A32 is the muted, orange-leaning
+     terracotta the homepage has used since the redesign, not the old alarm
+     red. The navy did not go anywhere else it lives: the email worker's "Open
+     Your Letter" button and letter/index.html still use it, and those are
+     different surfaces with their own reasons. */
+  --navy: #C85A32;
+  --honey: #E6A23C;
   --sky: #8fc3ee;
 
   /* Every surface carries the same seamless grain tile at 128px (the PNG is
@@ -78,9 +86,16 @@
      an external stylesheet where it previously took none. Every stack keeps its
      old system fallback, in that order, so a blocked or slow CDN degrades to
      what the site looked like yesterday rather than to Times New Roman. */
-  --font-mark: "Rubik", ui-rounded, "SF Pro Rounded", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-voice: "Nunito", ui-rounded, "SF Pro Rounded", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-apparatus: "DM Mono", ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+  /* THE HOMEPAGE'S THREE, since 2026-08-23. These pages ran Rubik / Nunito /
+     DM Mono - the system this site had before index.html moved onto home.css -
+     which meant postmello.com rendered as two different products depending on
+     which page you landed on. The roles are unchanged and the note above still
+     describes them; only the faces moved.
+     --font-mark is GONE rather than remapped: the wordmark is artwork now
+     (assets/wordmark.png), so there is no face to reserve. */
+  --font-serif: "Lora", "Iowan Old Style", Georgia, "Times New Roman", serif;
+  --font-voice: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-apparatus: "Courier Prime", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
 
   /* ---- Scales ----
      Until now this file had a palette and two lengths; every section then
@@ -148,14 +163,26 @@ body {
   font-family: var(--font-voice);
   color: var(--ink);
   line-height: 1.55;
-  /* Nunito's regular is light on a warm ground; 450 is the weight at which body
-     copy reads as ink rather than as grey. */
-  font-weight: 450;
+  /* 400, not the 450 Nunito needed: Nunito's regular reads light on a warm
+     ground, and Plus Jakarta Sans does not have that problem. */
+  font-weight: 400;
   font-size: var(--fs-body);
   background-color: var(--paper);
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
 }
+/* HEADINGS TAKE THE SERIF (2026-08-23). This file never set a heading face at
+   all - h1..h4 simply inherited the body's, which worked while the body face
+   was Nunito and the design had no serif in it. The homepage's system does:
+   Lora carries every heading there, and these pages now match. Weight and
+   colour are stated too, because inheriting them from the body was the other
+   half of the old arrangement. */
+h1, h2, h3, h4, h5 {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  color: var(--ink);
+}
+
 /* The grain goes OVER the whole document rather than under it, and that is the
    difference between "the background has a texture" and "the site is printed
    on paper". It also fixes something a background-only grain broke: the hero
@@ -1983,16 +2010,17 @@ footer .signoff {
   flex-direction: column;
   gap: 3px;
 }
-/* The mark again, and the only other place Rubik is allowed. Same treatment as
-   the header at a size down: uppercased here, "Postmello" in the markup. */
+/* The mark again, at a size down from the header's. Artwork, not type - see
+   .site-head .name above for why the wordmark stopped being a font. */
 footer .signoff-name {
-  font-family: var(--font-mark);
-  font-weight: 600;
-  font-size: 1.32rem;   /* 21px */
-  text-transform: uppercase;
-  letter-spacing: 0.025em;
-  color: var(--ink-mark);
-  line-height: 1.15;
+  display: block;
+  height: 1.32rem;
+  width: auto;
+  /* align-self, and it is load-bearing: .signoff is a COLUMN flex, so the
+     default align-items:stretch sizes a child across the full container width
+     - which beat `width: auto` and rendered the wordmark stretched into a
+     letterbox. A span could not be stretched; an image can. */
+  align-self: center;
 }
 /* Not italic. Italics made the tagline read as a quotation or a decorative
    aside; upright, at nearly body size, it reads as brand copy — which is what

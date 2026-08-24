@@ -1276,8 +1276,13 @@ button { font: inherit; color: inherit; background: none; border: 0; }
   margin: 0 0 0.875rem;
 }
 .plan-charms img {
-  width: calc((100% - 2.25rem) / 4);   /* four charms, three 0.75rem gaps */
-  max-width: 4.75rem;
+  /* 85%, not 100%: four charms and three gaps fill 85% of the row and leave
+     the rest as slack. The quarter-of-the-row logic is what makes overflow
+     impossible at any width, so the size is tuned by moving THAT percentage
+     rather than by capping a pixel width - a cap only bites at the widest
+     breakpoint and leaves every narrower one unchanged. */
+  width: calc((85% - 2.25rem) / 4);   /* four charms, three 0.75rem gaps */
+  max-width: 4rem;
   height: auto;
   filter: drop-shadow(0 1px 2px rgba(60, 42, 20, 0.26));
 }
@@ -1300,7 +1305,7 @@ button { font: inherit; color: inherit; background: none; border: 0; }
 }
 .plan-price {
   font-family: var(--font-serif);
-  font-size: 2.25rem;
+  font-size: 2rem;
   line-height: 1.1;
   font-weight: 700;
   color: var(--ink-900);

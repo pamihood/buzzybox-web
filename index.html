@@ -27,10 +27,15 @@
        font-picker widget that is not part of this page. Lora is every
        heading, Plus Jakarta Sans every sentence, Courier Prime the step
        numbers. -->
+  <!-- Cloudflare Turnstile. It renders the widgets itself from their
+       data-sitekey attributes; appearance="interaction-only" means a visitor
+       sees NOTHING unless Cloudflare actually wants to challenge them, which
+       is the whole reason to prefer it over a checkbox nobody enjoys. -->
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&amp;family=Lora:ital,wght@0,400..700;1,400..700&amp;family=Plus+Jakarta+Sans:wght@400..800&amp;display=swap" />
   <!-- home.css styles THIS PAGE ONLY. Everything else on the site still runs
        styles.css; see the note at the top of home.css. -->
-  <link rel="stylesheet" href="home.css?v=5f28c350" />
+  <link rel="stylesheet" href="home.css?v=342b2dc3" />
 </head>
 <body>
 
@@ -150,11 +155,24 @@
            feeds, or urgency - just the creative joy of making something and
            receiving something back.</p>
 
+        <!-- "Coming first to iPad." alone (Patrick, 2026-08-23). It read
+             "Currently in private beta - Coming first to iPad", and the first
+             half was already said by the button directly beneath it: a page
+             whose primary action is JOIN PRIVATE BETA does not also need to
+             announce that a private beta is what it has. What is left is the
+             one fact the buttons do not carry.
+             The pulsing sage dot went with it, and had to: it existed to say
+             "this is live RIGHT NOW", which was true of an open beta and is
+             not true of a platform. A platform fact that pulses is an
+             animation looking for a reason.
+             The treatment is the SHARE CARD'S, deliberately - Courier Prime,
+             body ink, a hairline pill - so the badge someone meets in a link
+             preview and the badge they meet on the page are the same object.
+             Courier Prime is this site's apparatus face: postal furniture,
+             franking and address labels, which is exactly the register a
+             platform footnote wants. -->
         <p class="hero-status">
-          <span class="pill pill--sheer">
-            <span class="status-dot" aria-hidden="true"></span>
-            <span>Currently in private beta &bull; Coming first to iPad</span>
-          </span>
+          <span class="status-badge">Coming first to iPad.</span>
         </p>
 
         <!-- The primary action is the beta, not the price list. "Explore Desks
@@ -1151,6 +1169,8 @@
                      placeholder="you@example.com" />
               <button class="journal-cta" type="submit">Send</button>
             </div>
+            <div class="cf-turnstile" data-sitekey="0x4AAAAAAEZv2iHGIRqH3RSi"
+                 data-appearance="interaction-only"></div>
             <p class="beta-msg" data-beta-msg role="status" aria-live="polite"></p>
           </form>
           <p class="journal-fine">We reply to every letter. Just beta updates. No spam.</p>
@@ -1203,6 +1223,8 @@
              placeholder="you@example.com" />
       <button class="journal-cta" type="submit">Send</button>
     </div>
+    <div class="cf-turnstile" data-sitekey="0x4AAAAAAEZv2iHGIRqH3RSi"
+         data-appearance="interaction-only"></div>
     <p class="beta-msg" data-beta-msg role="status" aria-live="polite"></p>
   </form>
   <!-- "No list, no spam" was the old line and it was quietly false: this
@@ -1326,7 +1348,11 @@
         body: JSON.stringify({
           email: email,
           company: (form.querySelector('input[name="company"]') || {}).value || '',
-          source: form.dataset.source || ''
+          source: form.dataset.source || '',
+          /* Turnstile writes this hidden input into the form itself. Empty
+             means the widget has not finished, and the function refuses
+             that - which is correct. */
+          turnstileToken: (form.querySelector('[name="cf-turnstile-response"]') || {}).value || ''
         })
       }).then(function (res) {
         if (!res.ok) throw new Error(String(res.status));
@@ -1337,6 +1363,10 @@
       }).catch(function () {
         form.dataset.sending = '';
         submit.disabled = false;
+        /* A Turnstile token is SINGLE-USE, so a retry with the spent one would
+           fail again for a reason the visitor cannot see. Ask for a fresh one. */
+        var widget = form.querySelector('.cf-turnstile');
+        if (widget && window.turnstile) window.turnstile.reset(widget);
         msg.innerHTML = 'Something went wrong on our end. '
           + 'Please write to <a href="mailto:hello@postmello.com">hello@postmello.com</a> '
           + 'and we\'ll sort it out.';

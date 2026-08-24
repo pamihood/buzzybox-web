@@ -32,7 +32,7 @@
      ==========================================
      It used to land on `buzzybox://auth-callback`. Hosted Supabase answers the
      verify request with a 303 to that scheme, and a browser handed a scheme it
-     cannot open renders a blank black tab — which is what a tester saw on
+     cannot open renders a blank black tab - which is what a tester saw on
      2026-08-21, on the laptop where they read their mail. The account WAS
      confirmed; nothing on screen said so.
 
@@ -62,7 +62,7 @@
     <article class="doc">
       <div id="confirmed-state">
         <h1>Your email is confirmed.</h1>
-        <p>That’s the whole thing — nothing else to do here.</p>
+        <p>That’s the whole thing - nothing else to do here.</p>
         <p><strong>Go back to Postmello.</strong> It notices on its own within a
            few seconds. If you’d rather not wait, the same email has a code you
            can type in.</p>
@@ -124,7 +124,7 @@
       document.getElementById('confirmed-state').hidden = true;
       document.getElementById('expired-state').hidden = false;
     } else if (code) {
-      // Only useful on the device that started the sign-up — the PKCE verifier
+      // Only useful on the device that started the sign-up - the PKCE verifier
       // lives there and nowhere else. Offered as a button rather than an
       // automatic redirect: an unexpected "Open in Postmello?" prompt on a
       // stranger's laptop is worse than one extra tap on the right device.

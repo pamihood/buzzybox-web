@@ -140,7 +140,7 @@ def expected_lines(pricing):
         founding = now != later
         return (money(now),
                 money(later) if founding else "",
-                "Founding price &mdash; yours to keep." if founding else "")
+                "Founding rate - yours to keep." if founding else "")
 
     fam_now, fam_was, fam_note = tier(fam)
     plus_now, plus_was, plus_note = tier(plus)

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Postmello &mdash; A quiet place for letters</title>
+  <title>Postmello - A quiet place for letters</title>
   <meta name="description" content="Postmello is a private desk for digital letters with friends and family - without the rush of messaging. Coming first to iPad." />
   <link rel="icon" type="image/png" href="assets/favicon.png" />
   <link rel="apple-touch-icon" href="assets/app-icon.png" />
@@ -24,19 +24,23 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&amp;family=Fraunces:ital,opsz,wght@0,9..144,400..800;1,9..144,400..700&amp;family=Plus+Jakarta+Sans:wght@400..800&amp;display=swap" />
   <!-- home.css styles THIS PAGE ONLY. Everything else on the site still runs
        styles.css; see the note at the top of home.css. -->
-  <link rel="stylesheet" href="home.css?v=d0f5454c" />
+  <link rel="stylesheet" href="home.css?v=06f22269" />
 </head>
 <body>
 
 <header class="site-header" id="site-header">
   <div class="shell">
     <div class="header-bar">
+      <!-- NO TAGLINE UNDER THE WORDMARK (Patrick, 2026-08-23). It carried the
+           same "A quiet place for letters." that is now the hero H1, a couple
+           of inches below it - and a headline read twice within one screen is
+           a headline weakened. In the navigation the brand is just the brand;
+           the tagline belongs to the hero. The FOOTER keeps its copy, twelve
+           thousand pixels down, where it is the only place a reader who
+           scrolled straight past the hero meets the line at all. -->
       <a class="brand" href="#">
         <img src="assets/mark.png" alt="" width="36" height="36" />
-        <span>
-          <span class="brand-name">Postmello</span>
-          <span class="brand-sub" data-brand="tagline">A quiet place for letters.</span>
-        </span>
+        <span class="brand-name">Postmello</span>
       </a>
 
       <!-- FOUR choices, not seven (2026-08-23). Letters by Email, Philosophy
@@ -113,6 +117,10 @@
            italic (Patrick, 2026-08-23). The headline states the mood, the
            terracotta aside states the promise, and the paragraph below is the
            only place on the page that says plainly what a person DOES here.
+           That paragraph is ONE paragraph, unbroken. It was briefly split
+           into two beats with a half-line between them; Patrick asked for it
+           closed back up on 2026-08-23, so the two ideas run together the way
+           a sentence and its follow-up normally do.
            The aside is a separate <p>, deliberately: apply-brand.py rewrites
            the whole inside of the data-brand element, so anything parked in
            the H1 alongside the tagline would be erased on its next run. -->
@@ -120,9 +128,9 @@
         <h1 data-brand="tagline">A quiet place for letters.</h1>
         <p class="hero-aside">Without the rush of messaging.</p>
         <p class="lede">A private desk for writing, drawing, and sending
-           digital letters to friends and family. No group chats, no
-           algorithmic feeds, no urgency &mdash; just the creative joy of
-           making something and receiving something back.</p>
+           digital letters to friends and family. No group chats, algorithmic
+           feeds, or urgency - just the creative joy of making something and
+           receiving something back.</p>
 
         <p class="hero-status">
           <span class="pill pill--sheer">
@@ -198,7 +206,15 @@
           <span class="pill pill--solid"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"/><path d="M20 2v4"/><path d="M22 4h-4"/><circle cx="4" cy="20" r="2"/></svg> Why Postmello</span>
           <h2>Staying in touch doesn&rsquo;t have to start with texting.</h2>
           <p>Texting wasn&rsquo;t made for kids. It&rsquo;s built around quick replies, group chats, photos, links, and notifications.</p>
-          <p>Postmello gives kids a room of their own to write, draw, be silly or thoughtful, and stay in touch independently with people you approve.</p>
+          <!-- "gives kids room to", not "gives kids a room of their own to"
+               (Patrick, 2026-08-23). The product already owns one concrete
+               metaphor - the DESK - and a second, softer one competes with it
+               rather than reinforcing it: a reader has to picture a room and a
+               desk at once, and only one of them is a thing the app actually
+               shows. Plain "room" keeps the space the sentence is promising
+               without spending a metaphor on it. The FAQ carries this sentence
+               verbatim plus "one letter at a time"; keep the two in step. -->
+          <p>Postmello gives kids room to write, draw, be silly or thoughtful, and stay in touch independently with people you approve.</p>
           <!-- Points at the ESSAY, not at another section of this page. Both
                of these links scrolled somewhere else on the homepage - "read
                the story" landed on the philosophy comparison, "read the
@@ -267,7 +283,7 @@
       <div class="sec-head">
         <!-- "Atmospheric Writing Spaces" came off (2026-08-23): marketing
              language over a heading that already says what this is. -->
-        <h2>Desks &amp; collections</h2>
+        <h2>Desks &amp; Collections</h2>
         <p class="lede">Pick a desk that inspires you. Each desk is a different place to write from.</p>
       </div>
 
@@ -317,20 +333,23 @@
         <div class="desk-stage-media">
           <img id="desk-stage-img" src="assets/desk-fairy_glen.jpg" alt="The Fairy Glen desk" />
         </div>
+        <!-- No "Desk Environment" pill, and no "Fairy Glen Collection"
+             eyebrow over the stationery below (Patrick, 2026-08-23). Both were
+             micro-labels naming the category of the thing they sat on, and
+             between them they gave this section the air of a catalog record.
+             The stage already says Fairy Glen in 1.875rem; the tabs below
+             already say papers, envelopes, stamps and stickers. Nothing was
+             being explained that the section was not already showing. -->
         <div class="desk-stage-copy">
-          <span class="pill pill--solid"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22a1 1 0 0 1 0-20 10 9 0 0 1 10 9 5 5 0 0 1-5 5h-2.25a1.75 1.75 0 0 0-1.4 2.8l.3.4a1.75 1.75 0 0 1-1.4 2.8z"/><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"/><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"/><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"/><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"/></svg> <span>Desk Environment</span></span>
           <h3 id="desk-stage-name">Fairy Glen</h3>
           <p class="tagline" id="desk-stage-tagline">Toadstools, glowing lanterns, and dewdrops among mossy roots.</p>
-          <p class="desk-stage-note">Every desk brings its own collection. The art keeps to the edges of every sheet &mdash; the page itself is left for the letter.</p>
+          <p class="desk-stage-note">Every desk brings its own Collection. The art keeps to the edges of every sheet - the page itself is left for the letter.</p>
         </div>
       </div>
 
       <div class="stationery">
         <div class="stationery-head">
-          <div>
-            <span class="eyebrow">Fairy Glen Collection</span>
-            <h3>Papers, envelopes, stamps &amp; stickers</h3>
-          </div>
+          <h3>Papers, envelopes, stamps &amp; stickers</h3>
           <div class="tabs" role="tablist" aria-label="Stationery type">
             <button type="button" role="tab" aria-selected="true"  aria-controls="st-papers"    data-tab="papers">papers</button>
             <button type="button" role="tab" aria-selected="false" aria-controls="st-envelopes" data-tab="envelopes">envelopes</button>
@@ -499,7 +518,7 @@
           <div class="step-body">
             <span class="step-num">Step 01</span>
             <h3>Your child writes.</h3>
-            <p>A letter made at their own desk, in their own hand.</p>
+            <p>A letter made at their own desk, in their own way.</p>
           </div>
         </article>
         <article class="step-card">
@@ -550,26 +569,6 @@
         <p class="lede">Messaging is built for fast, fluid conversation. Postmello is built for deliberate correspondence.</p>
       </div>
 
-      <!-- A REAL COMPARISON since 2026-08-23: five pairs, each one lining up
-           across the two columns, so the eye reads a row rather than two
-           unrelated lists. It was two independent bullet lists of six that
-           merely sat side by side, and nothing on the left corresponded to
-           anything on the right.
-
-           The alignment is done with subgrid: .compare owns the rows and each
-           column re-uses them, so row 3 is row 3 in both no matter how many
-           lines either side wraps to. The <ul> is display:contents so its
-           items are the grid's items - the list stays a list for a screen
-           reader while the grid sees the rows.
-
-           The headings are just "Messaging" and "Postmello". They were
-           "Hyper-Reactive Messaging" and "Postmello's Quiet Desk", which
-           argued the case in the label before the reader had seen the
-           evidence; the rows are the argument and they do not need help.
-
-           The two footer lines went with them - "Engineered for algorithmic
-           urgency", "Designed for patience, literacy..." - because the lede
-           above now says exactly that in one sentence. -->
       <!-- A REAL COMPARISON: five pairs, each lining up across the two
            columns, so the eye reads a ROW rather than two unrelated lists.
            Before 2026-08-23 it was two independent bullet lists of six that
@@ -603,7 +602,18 @@
             <li class="compare-cell compare-cell--bad"><span><strong>Buried in a stream:</strong> messages live in a feed and scroll out of reach</span></li>
             <li class="compare-cell compare-cell--bad"><span><strong>Widens in a tap:</strong> forwarding can hand a message to a new audience</span></li>
           </ul>
-          <p class="compare-foot">Engineered for urgency, and for coming back.</p>
+          <!-- THE TWO FOOTERS ARE ONE SENTENCE SAID TWICE (Patrick, 2026-08-23).
+               Both open "Designed for" on purpose: the same verb with the
+               opposite object is what makes the pair land, and the earlier
+               "Engineered for urgency" against "Designed for patience" gave
+               the two sides different grammar and softened the mirror.
+               NOT "algorithmic urgency", which an older cut used. This card is
+               labelled Messaging, and iMessage, SMS and WhatsApp are not
+               necessarily algorithmically ranked - the word hands a reader an
+               easy reason to dismiss an argument that is otherwise hard to
+               argue with. Urgency is the claim, and it needs no modifier.
+               If either line is ever rewritten, rewrite BOTH. -->
+          <p class="compare-foot">Designed for urgency - and to keep you coming back.</p>
         </div>
 
         <div class="compare-col compare-col--good">
@@ -611,11 +621,11 @@
           <ul>
             <li class="compare-cell compare-cell--good"><span><strong>One at a time:</strong> a single letter, with no read receipts and no pressure to reply</span></li>
             <li class="compare-cell compare-cell--good"><span><strong>Chosen, then approved:</strong> every recipient is deliberate and every contact is approved</span></li>
-            <li class="compare-cell compare-cell--good"><span><strong>Made, not forwarded:</strong> letters are made here &mdash; words, drawings, typing and stickers</span></li>
+            <li class="compare-cell compare-cell--good"><span><strong>Made, not forwarded:</strong> letters are made here - words, drawings, typing and stickers</span></li>
             <li class="compare-cell compare-cell--good"><span><strong>Things you keep:</strong> a letter is something you make, send and keep</span></li>
             <li class="compare-cell compare-cell--good"><span><strong>Goes no further:</strong> a reply can&rsquo;t be passed along to someone new</span></li>
           </ul>
-          <p class="compare-foot">Designed for patience, and for putting down.</p>
+          <p class="compare-foot">Designed for patience - and to be put down.</p>
         </div>
       </div>
 
@@ -633,14 +643,21 @@
         <h2>Only people you approve can reach the desk.</h2>
       </div>
 
-      <!-- FOUR points, and only two of them can be photographed. That is not a
-           gap in the art - it is what the section is about. The first two name
-           real objects (the key that gates the Admin Portal, the drawers that
-           hold approved contacts); the last two are an ABSENCE and a legal
-           posture, and there is no photograph of "no user search". The old
-           site had this written down as a rule - state the absence, because
-           absence is the differentiator and no photograph can show it - so
-           those two take line marks rather than a strained metaphor.
+      <!-- THREE points, and only two of them can be photographed. That is not
+           a gap in the art - it is what the section is about. The first two
+           name real objects (the key that gates the Admin Portal, the drawers
+           that hold approved contacts); the third is an ABSENCE, and there is
+           no photograph of "no user search". The old site had this written
+           down as a rule - state the absence, because absence is the
+           differentiator and no photograph can show it - so it takes a line
+           mark rather than a strained metaphor.
+
+           COPPA IS A BADGE, NOT A FOURTH CARD (Patrick, 2026-08-23). It was
+           briefly a footnote under a card about cloud storage, then a full
+           fourth point - and as an equal card it claimed equal weight with the
+           three things the product actually DOES. It is a compliance posture:
+           worth stating plainly, worth nobody's fourth-most attention. Below
+           the row, at badge scale, it reads as the credential it is.
 
            The key is the app's own asset (samples/ui/homedesk/key_transparent,
            trimmed to its bounding box and scaled). The drawers are the claim
@@ -661,21 +678,37 @@
           <p class="safety-body">Adult controls stay behind a PIN.</p>
         </article>
         <article class="safety-card">
-          <p class="safety-art safety-art--obj"><img src="assets/claims/claim-approved.png" alt="" width="483" height="254" loading="lazy" /></p>
+          <p class="safety-art safety-art--obj safety-art--wide"><img src="assets/safety-drawers.png" alt="" width="483" height="186" loading="lazy" /></p>
           <h3>Approved contacts only</h3>
           <p class="safety-body">Both sides approve before letters can be exchanged.</p>
         </article>
         <article class="safety-card">
-          <p class="safety-art safety-art--mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.733 5.076a10.744 10.744 0 0 1 11.205 6.575 1 1 0 0 1 0 .696 10.747 10.747 0 0 1-1.444 2.49"/><path d="M14.084 14.158a3 3 0 0 1-4.242-4.242"/><path d="M17.479 17.499a10.75 10.75 0 0 1-15.417-5.151 1 1 0 0 1 0-.696 10.75 10.75 0 0 1 4.446-5.143"/><path d="m2 2 20 20"/></svg></p>
+          <!-- A REAL OBJECT, not a line icon (Patrick, 2026-08-23). All three
+               points speak the same physical language now: a brass key, the
+               named drawers, and a box that is shut. The crossed-out eye it
+               replaces was notation sitting among photographs.
+               Why a box and not the mailbox or drawer that were asked for
+               first: see build_closed_box() in scripts/build-safety-art.py,
+               which records what each candidate did on the page. -->
+          <p class="safety-art safety-art--obj safety-art--box"><img src="assets/safety-closed-box.png" alt="" width="316" height="249" loading="lazy" /></p>
           <h3>No public discovery</h3>
           <p class="safety-body">No public profiles, user search, friend suggestions, or open inboxes.</p>
         </article>
-        <article class="safety-card">
-          <p class="safety-art safety-art--mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg></p>
-          <h3>COPPA compliant</h3>
-          <p class="safety-body">Parental consent and privacy protections built in.</p>
-        </article>
       </div>
+
+      <p class="safety-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>
+        <span><strong>COPPA compliant</strong> Parental consent and privacy
+          protections built in.</span>
+      </p>
+
+      <!-- The one place on the homepage that hands a worried reader the whole
+           Safety page. It sits under the badge rather than in the section head
+           because someone who wants to go deeper has by then read the three
+           points and the credential, and that is the moment the offer means
+           something. Quiet on purpose: an arrow link, not a button - the page
+           is reassurance, not a conversion step. -->
+      <p class="safety-more"><a class="arrow-link" href="safety.html"><span>Learn about Safety</span> <span aria-hidden="true">&rarr;</span></a></p>
     </div>
   </section>
 
@@ -779,8 +812,14 @@
           <p class="plan-founding"></p>
         </article>
 
+        <!-- No "Most Popular" flag (Patrick, 2026-08-23). It is the pricing-
+             template device, and on a two-card row it does not describe the
+             product so much as instruct the reader which one to take - which
+             makes Free read as the decoy it is not. Free is a real tier that
+             real households will stay on. The terracotta border is emphasis
+             enough, and it says "this is the one most people want" without
+             saying the other one is a mistake. -->
         <article class="plan plan--featured">
-          <p class="plan-flag">Most Popular</p>
           <h3 data-plan-name="membership">Postmello Membership</h3>
           <p class="plan-charms" aria-hidden="true"><img src="assets/icons/desk-charm.png" alt="" width="159" height="84" loading="lazy" /><img src="assets/icons/desk-charm.png" alt="" width="159" height="84" loading="lazy" /><img src="assets/icons/desk-charm.png" alt="" width="159" height="84" loading="lazy" /><img src="assets/icons/desk-charm.png" alt="" width="159" height="84" loading="lazy" /></p>
           <p class="plan-count"><strong data-plan-desks="membership">Up to 4 desks</strong></p>
@@ -797,7 +836,7 @@
                  the CSS hides an empty .was and an empty .note--founding. -->
             <span class="was" data-price="membership_was">$29.99</span>
           </p>
-          <p class="plan-founding" data-price="membership_founding">Founding price &mdash; yours to keep.</p>
+          <p class="plan-founding" data-price="membership_founding">Founding rate - yours to keep.</p>
         </article>
 
       </div>
@@ -807,7 +846,7 @@
            which looks for data-plan-name on a dt|h3 and data-plan-desks on a
            strong. The figure lives in the SUMMARY so the closed row carries
            the number that makes it worth opening. This is the one desk count
-           set INSIDE a sentence, so the script lower-cases it here — see
+           set INSIDE a sentence, so the script lower-cases it here - see
            MIDSENTENCE_DESKS in apply-pricing.py; do not capitalise it back. -->
       <details class="plan-more">
         <summary>
@@ -822,7 +861,7 @@
             <span class="plan-price" data-price="membership_plus">$29.99</span>
             <span class="per">/ year</span>
             <span class="was" data-price="membership_plus_was">$39.99</span>
-            <span class="note note--founding" data-price="membership_plus_founding">Founding price &mdash; yours to keep.</span>
+            <span class="note note--founding" data-price="membership_plus_founding">Founding rate - yours to keep.</span>
             <p>Everything in Membership, with room for a bigger household.</p>
           </dd>
         </dl>
@@ -865,16 +904,16 @@
 
       <div class="trust">
         <h2>No ads. No selling data. Your letters stay yours.</h2>
-        <p class="trust-why">Postmello is member-supported, so it can stay private, mellow, and built for the people using it &mdash; not advertisers.</p>
+        <p class="trust-why">Postmello is member-supported, so it can stay private, mellow, and built for the people using it - not advertisers.</p>
         <!-- (Four badges stood here: 100% Ad-Free, Safe Cloud Archival, Parent
              Approved, Member Supported, each with an emoji. They repeated the
              two sentences directly above them almost word for word, and the
              emoji treatment undid the elegance of a block whose whole job is
              to be quiet. Patrick, 2026-08-23.) -->
         <p class="trust-links">
-          <a href="safety.html">Safety &amp; Governance</a>
+          <a href="safety.html">Safety</a>
           <span aria-hidden="true">&middot;</span>
-          <a href="privacy.html">Privacy Policy</a>
+          <a href="privacy.html">Privacy</a>
         </p>
       </div>
     </div>
@@ -908,28 +947,35 @@
             <span>How is Postmello different from texting?</span>
             <span class="faq-chevron" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></span>
           </summary>
-          <div class="faq-answer">Texting wasn&rsquo;t made for kids. It&rsquo;s built around quick replies, group chats, photos, links, and notifications. Postmello gives kids a room of their own to write, draw, be silly or thoughtful, and stay in touch independently with people you approve &mdash; one letter at a time.</div>
+          <div class="faq-answer">Texting wasn&rsquo;t made for kids. It&rsquo;s built around quick replies, group chats, photos, links, and notifications. Postmello gives kids room to write, draw, be silly or thoughtful, and stay in touch independently with people you approve - one letter at a time.</div>
         </details>
         <details class="faq-item" data-cat="safety">
           <summary>
             <span>How is unapproved contact prevented?</span>
             <span class="faq-chevron" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></span>
           </summary>
-          <div class="faq-answer">Unapproved mail is impossible by construction. Postmello has no public user search, no usernames, and no algorithmic recommendations. Connection requires a parent to open the PIN-protected Parent Portal behind the Brass Key and exchange a private 6-character Connect Code with another trusted parent.</div>
+          <div class="faq-answer">Unapproved mail is impossible by construction. Postmello has no public user search, no usernames, and no algorithmic recommendations. Connections are made through the PIN-protected controls behind the Brass Key. Both sides approve before letters can be exchanged.</div>
         </details>
         <details class="faq-item" data-cat="family">
           <summary>
             <span>How do grandparents without iPads receive and send letters?</span>
             <span class="faq-chevron" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></span>
           </summary>
-          <div class="faq-answer">Parents can create approved Email Contacts for relatives. When a child sends a letter, the relative gets an email carrying the envelope and a private link; opening it shows the letter as it was made. The relative simply hits Reply from their computer or phone. Replies return as typewritten letters &mdash; no ads, links, or photos can ride along.</div>
+          <div class="faq-answer">Adults can add approved Email Contacts for relatives. When a child sends a letter, the relative gets an email carrying the envelope and a private link; opening it shows the letter as it was made. The relative simply hits Reply from their computer or phone. Replies return as typewritten letters. Links, photos and attachments are removed before replies reach the desk.</div>
         </details>
+        <!-- "Can adults have their own desk?" replaced "How are past letters
+             stored in friend drawers?" (Patrick, 2026-08-23). The storage
+             answer was technically interesting and nowhere near the six
+             biggest things a new household wonders. This one earns its slot
+             for a reason the rest of the page creates: the homepage talks
+             about kids constantly and reasonably, and something has to say
+             out loud that the product is not only for them. -->
         <details class="faq-item" data-cat="features">
           <summary>
-            <span>How are past letters stored in friend drawers?</span>
+            <span>Can adults have their own desk?</span>
             <span class="faq-chevron" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></span>
           </summary>
-          <div class="faq-answer">All letters are safely preserved in the cloud so they stay yours forever. When browsing a friend&rsquo;s desk drawer, recent letters are cached locally for fast offline reading, while your entire history of past correspondence is pageable from the cloud.</div>
+          <div class="faq-answer">Yes. Adults can have a desk of their own and write, draw, send and receive letters just like anyone else.</div>
         </details>
         <details class="faq-item" data-cat="features">
           <summary>
@@ -943,12 +989,12 @@
             <span>Is my child&rsquo;s data and artwork kept private?</span>
             <span class="faq-chevron" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></span>
           </summary>
-          <div class="faq-answer">Absolutely. No ads. No selling data. Your letters stay yours. Postmello is member-supported, so it can stay private, mellow, and built for the people using it &mdash; not advertisers.</div>
+          <div class="faq-answer">Absolutely. No ads. No selling data. Your letters stay yours. Postmello is member-supported, so it can stay private, mellow, and built for the people using it - not advertisers.</div>
         </details>
       </div>
 
       <div class="faq-ask">
-        <h4>Have a question about family setups or school use?</h4>
+        <h4>Have another question?</h4>
         <p>Write to the creators directly at <strong>hello@postmello.com</strong>. We reply to every letter.</p>
       </div>
     </div>
@@ -988,21 +1034,29 @@
              card actually lets someone ask. What is left on this row is the
              standing reassurance. -->
         <div class="footer-actions">
-          <span class="footer-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg> <span>Zero ads &bull; Private keycodes</span></span>
+          <span class="footer-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg> <span>No ads &bull; Approved contacts only</span></span>
         </div>
       </div>
 
       <div class="footer-links">
         <p class="footer-label">Explore</p>
+        <!-- These are the SECTION NAMES, verbatim (Patrick, 2026-08-23).
+             The footer was the last place on the site still running the old
+             nomenclature - The Postal Ritual, Desks & Stationery, Email Bridge
+             for Relatives, Safety & Keycodes - names the page itself stopped
+             using in the same pass that renamed those headings. A footer link
+             that does not match the heading it lands on is a small broken
+             promise, and it is the kind that never gets noticed. If a heading
+             is renamed again, rename it here in the same commit. -->
         <ul>
           <li><a href="#why">Why Postmello</a></li>
-          <li><a href="#how-it-works">The Postal Ritual</a></li>
-          <li><a href="#desks">Desks &amp; Stationery</a></li>
-          <li><a href="#grandparents">Email Bridge for Relatives</a></li>
+          <li><a href="#how-it-works">How it works</a></li>
+          <li><a href="#desks">Desks &amp; Collections</a></li>
+          <li><a href="#grandparents">Letters by Email</a></li>
           <li><a href="#philosophy">Design Philosophy</a></li>
-          <li><a href="#safety">Safety &amp; Keycodes</a></li>
-          <li><a href="#membership">Membership &amp; Collections</a></li>
-          <li><a href="#faq">Frequently Asked Questions</a></li>
+          <li><a href="#safety">Safety</a></li>
+          <li><a href="#membership">Membership</a></li>
+          <li><a href="#faq">FAQ</a></li>
         </ul>
       </div>
 
@@ -1044,7 +1098,7 @@
             </div>
             <p class="beta-msg" data-beta-msg role="status" aria-live="polite"></p>
           </form>
-          <p class="journal-fine">We reply to every letter. No list, no spam.</p>
+          <p class="journal-fine">We reply to every letter. Just beta updates. No spam.</p>
         </div>
       </div>
 
@@ -1096,8 +1150,11 @@
     </div>
     <p class="beta-msg" data-beta-msg role="status" aria-live="polite"></p>
   </form>
-  <p class="beta-dialog-fine">We reply to every letter. No list, no spam, and
-     your address is never sold or shared.</p>
+  <!-- "No list, no spam" was the old line and it was quietly false: this
+     form exists to build a beta list. Saying what the list IS for is both
+     truer and more reassuring than denying it. -->
+<p class="beta-dialog-fine">We reply to every letter. Just beta updates, no
+     spam, and your address is never sold or shared.</p>
 </dialog>
 
 <!-- The dialog is declared ABOVE the script on purpose. It used to sit at the
@@ -1197,7 +1254,7 @@
       /* Checked here only to save a round trip and give an instant answer; the
          function validates again and is the one that decides. */
       if (!/^[^\s@]+@[^\s@.]+(\.[^\s@.]+)+$/.test(email)) {
-        msg.textContent = 'That address looks incomplete — could you check it?';
+        msg.textContent = 'That address looks incomplete - could you check it?';
         msg.className = 'beta-msg is-error';
         input.focus();
         return;
@@ -1220,7 +1277,7 @@
         if (!res.ok) throw new Error(String(res.status));
         /* The form is replaced by its own confirmation rather than cleared -
            a form that empties itself looks like it lost the submission. */
-        form.innerHTML = '<p class="beta-msg is-done">Thank you — you\'re on the list. '
+        form.innerHTML = '<p class="beta-msg is-done">Thank you - you\'re on the list. '
           + 'We\'ll write to you when a place opens.</p>';
       }).catch(function () {
         form.dataset.sending = '';
@@ -1265,7 +1322,7 @@
     });
   });
 
-  /* (The category filter's handler lived here. The chips went on 2026-08-23 —
+  /* (The category filter's handler lived here. The chips went on 2026-08-23 -
      six questions do not need filtering. Without it nothing ever sets
      item.hidden, so all six render open to being opened.) */
 })();

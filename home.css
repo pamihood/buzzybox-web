@@ -298,8 +298,10 @@ button { font: inherit; color: inherit; background: none; border: 0; }
   letter-spacing: -0.025em;
   color: var(--ink-900);
 }
-.brand-sub { display: none; font-size: 11px; color: var(--ink-600); font-weight: 500; }
-@media (min-width: 640px) { .brand-sub { display: block; } }
+/* (.brand-sub was an 11px tagline under the header wordmark. It went on
+   2026-08-23: it printed the hero's own H1 a few inches above it. The FOOTER
+   still uses .sub for the same line - see .footer-mark .sub - which is a
+   different situation, being the far end of the page.) */
 
 /* The nav underline grows from the left on hover — drawn with a pseudo
    element rather than text-decoration so it can animate its width. */
@@ -508,6 +510,10 @@ button { font: inherit; color: inherit; background: none; border: 0; }
   text-wrap: pretty;
 }
 @media (min-width: 640px) { .hero-copy .lede { font-size: 1.125rem; } }
+/* (.lede-turn briefly split this paragraph into two beats, a block span with
+   0.65em above it. Patrick closed it back up the same day: the gap made the
+   second sentence read as a separate statement rather than as the turn in the
+   one it belongs to.) */
 
 .hero-actions { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1rem; }
 @media (min-width: 640px) { .hero-actions { flex-direction: row; } }
@@ -764,7 +770,10 @@ button { font: inherit; color: inherit; background: none; border: 0; }
 .desk-stage-media img { width: 100%; height: auto; object-fit: cover; }
 .desk-stage-copy { display: flex; flex-direction: column; gap: 1rem; }
 @media (min-width: 1024px) { .desk-stage-copy { grid-column: span 5; } }
-.desk-stage-copy .pill { align-self: flex-start; box-shadow: none; }
+/* (.desk-stage-copy .pill styled a "Desk Environment" label above the desk
+   name. It went on 2026-08-23 with the "Fairy Glen Collection" eyebrow below
+   it — two labels naming the category of the thing under them, which is what
+   made the section read like a catalog record.) */
 .desk-stage-copy h3 { font-size: 1.875rem; }
 .desk-stage-copy .tagline { font-size: 1rem; line-height: 1.625; color: var(--ink-700); }
 .desk-stage-note {
@@ -794,7 +803,6 @@ button { font: inherit; color: inherit; background: none; border: 0; }
   margin-bottom: 2rem;
 }
 @media (min-width: 640px) { .stationery-head { flex-direction: row; align-items: center; justify-content: space-between; } }
-.stationery-head .eyebrow { display: block; margin-bottom: 0; }
 .stationery-head h3 { font-size: 1.5rem; }
 @media (min-width: 640px) { .stationery-head h3 { font-size: 1.875rem; } }
 .tabs {
@@ -1062,12 +1070,11 @@ button { font: inherit; color: inherit; background: none; border: 0; }
 .compare-after { margin-top: 3rem; text-align: center; }
 
 /* ---------- Safety ----------
-   Four points across, two of them photographs and two of them marks. The
-   split is the section's own subject: the key and the drawers are real
-   objects in the product, while "no public discovery" and "COPPA compliant"
-   are an absence and a legal posture, and neither has a picture. Rather than
-   strain for a metaphor, those two take line icons — and the shared plinth
-   below is what keeps the row reading as one row. */
+   Three points across, two of them photographs and one a mark. The split is
+   the section's own subject: the key and the drawers are real objects in the
+   product, while "no public discovery" is an ABSENCE and has no picture.
+   Rather than strain for a metaphor it takes a line icon — and the shared
+   plinth below is what keeps the row reading as one row. */
 .safety-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -1075,8 +1082,7 @@ button { font: inherit; color: inherit; background: none; border: 0; }
   max-width: var(--shell-6);
   margin-inline: auto;
 }
-@media (min-width: 640px)  { .safety-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (min-width: 1024px) { .safety-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+@media (min-width: 768px) { .safety-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 
 /* No card. The three that stood here were filled, bordered and shadowed with
    an emoji in a tinted tile; the objects are good enough to sit on the page. */
@@ -1085,7 +1091,7 @@ button { font: inherit; color: inherit; background: none; border: 0; }
 /* One fixed-height stage so an object and an icon carry the same weight in the
    row, and everything stands on one ground line. */
 .safety-art {
-  height: 4rem;
+  height: 5.5rem;
   display: flex;
   align-items: flex-end;
   justify-content: center;
@@ -1097,12 +1103,28 @@ button { font: inherit; color: inherit; background: none; border: 0; }
   width: auto;
   object-fit: contain;
 }
-/* The key is a bold, saturated gold object and was reading twice the weight of
-   everything beside it, so it is capped well under the stage. It only has to
-   be recognisable — the heading names it. */
-.safety-art--key img { max-height: 2.75rem; }
-/* The marks sit a little smaller than the objects and in the accent, so they
-   read as notation rather than as a photograph that failed to load. */
+/* OPTICAL WEIGHT, not height (Patrick, 2026-08-23). The key was capped at
+   2.75rem on a 4rem stage back when its neighbours were thin line icons and it
+   carried twice the weight of anything beside them. All three points are real
+   objects now, on a 5.5rem stage, so the key is used at something like its
+   proper size and the balancing is done per object instead.
+
+   These three numbers were set by measuring the INK — the count of pixels each
+   object actually fills once rendered — and then looking. At the sizes they
+   first shipped at, the key filled 2,486px, the drawers 7,206 and the box
+   9,835: the key is the LIGHTEST of the three despite reading as the boldest,
+   because it is a thin diagonal with an open bow, and what makes it feel big
+   is saturated gold on a pale ground rather than area. So the box, genuinely
+   the heaviest, comes down; the drawers, wide and low and rendering smallest,
+   come up; the key gives back a quarter rem and still leads the row.
+
+   Do not "fix" these by making them equal. They disagree on purpose. */
+.safety-art--key img  { max-height: 4rem; }
+.safety-art--wide img { max-height: 4.5rem; }
+.safety-art--box img  { max-height: 4.75rem; }
+/* (.safety-art--mark styled the two line icons this section used before every
+   point had a real object. The last of them, a crossed-out eye for "no public
+   discovery", became a closed drawer on 2026-08-23.) */
 /* SAGE, not terracotta (Patrick, 2026-08-23: the red icons look a little
    scary). Terracotta is this page's alert-adjacent colour, and on a section
    about safety a red mark reads as a warning rather than as reassurance —
@@ -1111,16 +1133,38 @@ button { font: inherit; color: inherit; background: none; border: 0; }
    The shape changed with the colour: a crossed-out magnifier said ERROR. An
    eye with a line through it says "cannot be found", which is the actual
    claim. */
-.safety-art--mark svg {
-  width: 2.5rem;
-  height: 2.5rem;
-  stroke-width: 1.4;
-  color: var(--sage-500);
-}
 .safety-card h3 {
   font-size: 1.125rem;
   margin-bottom: 0.5rem;
 }
+/* THE COPPA BADGE. Not a fourth column: a compliance posture is worth
+   stating and worth nobody's fourth-most attention, and as an equal card it
+   claimed the same weight as the three things the product actually does.
+   Badge scale, centred under the row, the claim in ink and the gloss beside
+   it in body colour — one line at desktop, wrapping as one block below. The
+   shield keeps the sage every mark on this section uses; terracotta here
+   would read as a warning on a section about safety. */
+.safety-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 3rem auto 0;
+  max-width: 34rem;
+  padding: 0.75rem 1.25rem;
+  border: 1px solid var(--line);
+  border-radius: var(--r-full);
+  background: color-mix(in srgb, var(--sage-500) 6%, transparent);
+  text-align: center;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: var(--ink-700);
+}
+.safety-badge svg { width: 1.125rem; height: 1.125rem; flex: none; color: var(--sage-500); }
+.safety-badge strong { color: var(--ink-900); font-weight: 700; }
+.safety-more { margin: 1.25rem 0 0; text-align: center; }
+
 .safety-body {
   font-size: 0.875rem;
   line-height: 1.6;
@@ -1186,20 +1230,10 @@ button { font: inherit; color: inherit; background: none; border: 0; }
 /* The middle plan takes a 2px terracotta edge and a deep shadow. It is the
    only lifted object on the page, which is the whole of its emphasis. */
 .plan--featured { border: 2px solid var(--terracotta-600); box-shadow: var(--shadow-xl); }
-.plan-flag {
-  position: absolute;
-  top: -0.75rem; left: 50%;
-  transform: translateX(-50%);
-  padding: 0.25rem 0.875rem;
-  border-radius: var(--r-full);
-  background: var(--terracotta-600);
-  color: var(--parchment-100);
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.025em;
-  white-space: nowrap;
-  box-shadow: var(--shadow-xs);
-}
+/* (.plan-flag was the "Most Popular" pill straddling the featured card's top
+   edge. It came off on 2026-08-23: a two-card row does not need to be told
+   which card to take, and a badge that ranks them makes the free tier read as
+   a decoy. .plan--featured's border carries the emphasis alone now.) */
 /* (.plan-kicker was "Introductory" / "Family Membership" / "Larger
    Households" above each card name — three labels on cards whose own names
    already said what they were.) */
@@ -1368,50 +1402,59 @@ button { font: inherit; color: inherit; background: none; border: 0; }
 @media (min-width: 640px) { .worlds-head h3 { font-size: 1.875rem; } }
 .worlds-head p { font-size: 1rem; color: var(--ink-700); margin-bottom: 0.25rem; }
 .worlds-head .from { font-size: 0.875rem; font-weight: 600; color: var(--terracotta-600); }
-.prop-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
-@media (min-width: 640px)  { .prop-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (min-width: 1024px) { .prop-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+/* POSTCARDS, NOT A SECOND CATALOG (Patrick, 2026-08-23).
+   These four were built like the Desks stage above them — white cards, a 12rem
+   bed with its own border, 1.25rem titles — and at that size the section read
+   as a second immersive browse, competing with the one a screen earlier.
+   The two blocks have different jobs. Desks & Collections is where a visitor
+   EXPLORES; this is a glimpse of what Membership opens up, and a glimpse
+   should be smaller than the thing it is glimpsing.
+   So: one object per tile on a tinted ground, the name under it, no inner
+   frame around the art — the tile IS the frame. Four little collectibles
+   someone could imagine owning, at roughly half the height they were, and
+   they can sit four-up from 768px because they no longer need the room. */
+.prop-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+/* Four-up waits for 900px. At 768 the panel's own 3rem padding leaves each
+   card ~113px of content, where a two-word Collection name wraps and the
+   captions go three and four lines ragged. Two-up until there is room. */
+@media (min-width: 900px) { .prop-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1.25rem; } }
 .prop {
   display: flex;
   flex-direction: column;
   height: 100%;
-  padding: 1.5rem;
+  padding: 0.875rem 0.875rem 1.125rem;
   text-align: center;
-  background: #fff;
-  border: 1px solid var(--line);
-  border-radius: var(--r-2xl);
-  transition: border-color 300ms ease, box-shadow 300ms ease;
-}
-.prop:hover { border-color: var(--terracotta-600); box-shadow: var(--shadow-md); }
-/* A generous stage so a fox and a volcano read at the same weight — the art
-   is the argument here and the comp gives it 11rem of room. */
-.prop-stage {
-  width: 100%;
-  height: 11rem;
-  display: flex; align-items: center; justify-content: center;
-  flex: none;
-  overflow: hidden;
-  margin-bottom: 1rem;
-  padding: 1rem;
+  /* parchment-100 on the panel's parchment-200: the card is the LIGHTER
+     object, the same relationship .plan and .virtue keep with their grounds. */
   background: var(--parchment-100);
   border: 1px solid var(--parchment-300);
   border-radius: var(--r-xl);
+  box-shadow: var(--shadow-2xs);
+  transition: transform 300ms ease, box-shadow 300ms ease;
 }
-@media (min-width: 640px) { .prop-stage { height: 12rem; } }
+/* A collectible you picked up, rather than a row that lit up. */
+.prop:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+.prop-stage {
+  width: 100%;
+  height: 6.5rem;
+  display: flex; align-items: center; justify-content: center;
+  flex: none;
+  overflow: hidden;
+  margin-bottom: 0.75rem;
+}
+@media (min-width: 900px) { .prop-stage { height: 7rem; } }
 .prop-stage img {
-  max-height: 9rem;
-  max-width: 90%;
+  max-height: 100%;
+  max-width: 85%;
   width: auto;
   object-fit: contain;
-  filter: drop-shadow(0 4px 10px rgba(43, 35, 29, 0.12));
+  filter: drop-shadow(0 3px 8px rgba(43, 35, 29, 0.14));
   transition: transform 300ms ease;
 }
-.prop:hover .prop-stage img { transform: scale(1.05); }
-.prop h4 { font-size: 1.125rem; margin-bottom: 0.5rem; transition: color 150ms ease; }
-@media (min-width: 640px) { .prop h4 { font-size: 1.25rem; } }
-.prop:hover h4 { color: var(--terracotta-600); }
-.prop p { font-size: 0.75rem; line-height: 1.625; color: var(--ink-700); }
-@media (min-width: 640px) { .prop p { font-size: 0.875rem; } }
+.prop:hover .prop-stage img { transform: scale(1.04); }
+.prop h4 { font-size: 0.9375rem; line-height: 1.3; margin-bottom: 0.25rem; }
+@media (min-width: 900px) { .prop h4 { font-size: 1rem; } }
+.prop p { font-size: 0.75rem; line-height: 1.5; color: var(--ink-600); }
 
 /* White for the same reason as .plan above - it sits on the same unbanded
    section and would otherwise be invisible against it. */

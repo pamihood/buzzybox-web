@@ -118,7 +118,11 @@
       font-weight: 400; font-size: 17px; letter-spacing: 0.04em;
       color: var(--ink-700);
       border: 1px solid #C7AF98; border-radius: 999px;
-      padding: 10px 20px;
+      /* Right padding is 6px SHORTER on purpose. Courier Prime is monospace:
+         the trailing full stop is a dot in a full-width cell (~10px at 17px)
+         and letter-spacing trails the last glyph too, so symmetric padding
+         reads as text shoved left. This evens the OPTICAL margins. */
+      padding: 10px 14px 10px 20px;
     }
     /* NO DEVICE FRAME (Patrick, 2026-08-23). The bezel was doing one job -
        saying "this is an app" - and charging the card a lot of its width for

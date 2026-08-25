@@ -35,7 +35,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&amp;family=Lora:ital,wght@0,400..700;1,400..700&amp;family=Plus+Jakarta+Sans:wght@400..800&amp;display=swap" />
   <!-- home.css styles THIS PAGE ONLY. Everything else on the site still runs
        styles.css; see the note at the top of home.css. -->
-  <link rel="stylesheet" href="home.css?v=72b1816d" />
+  <link rel="stylesheet" href="home.css?v=9d8da040" />
 </head>
 <body>
 
@@ -363,6 +363,17 @@
           <span class="name">Ember Peak</span>
         </button>
       </div>
+
+      <!-- RESTORED 2026-08-25. Six chips with nothing said about them read as
+           the whole catalog, and there are nine Collections. The line first went
+           in on 2026-08-14 for exactly this reason and was dropped by the
+           2026-08-23 port to the new design system, which had no slot for it -
+           so if this section gets recomposed again, MOVE this line, do not let
+           it fall out. It is a note ON the row above it, not a heading for the
+           stage below: it stays close under the chips and roomy above the stage.
+           Deliberately no number - the catalog grows, and a count here would go
+           stale silently the way any hand-typed figure on this page does. -->
+      <p class="collections-note">A few favorites, with more collections to discover.</p>
 
       <div class="desk-stage" id="desk-stage" role="tabpanel" aria-labelledby="tab-fairy-glen">
         <div class="desk-stage-media">

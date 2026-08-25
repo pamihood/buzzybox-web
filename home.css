@@ -1168,7 +1168,15 @@ button { font: inherit; color: inherit; background: none; border: 0; }
   color: var(--ink-700);
 }
 .safety-badge svg { width: 1.125rem; height: 1.125rem; flex: none; color: var(--sage-500); }
-.safety-badge strong { color: var(--ink-900); font-weight: 700; }
+/* The gap after the label is the punctuation (Patrick, 2026-08-25). The two
+   halves are a credential and its gloss, and with only a word space between
+   them they read as one run-on sentence — "COPPA compliant Parental consent".
+   A colon fixes the grammar but makes it a sentence; the wider space keeps it
+   a BADGE, with the claim reading as a separate stamped label. 0.35em rides ON
+   TOP of the word space in the markup, which stays there on purpose: strip it
+   and an unstyled page (see stamp-css-version.sh for how that happens) says
+   "compliantParental", and so does anything that copies the text. */
+.safety-badge strong { color: var(--ink-900); font-weight: 700; margin-right: 0.35em; }
 .safety-more { margin: 1.25rem 0 0; text-align: center; }
 
 .safety-body {

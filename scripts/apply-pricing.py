@@ -10,7 +10,11 @@ replacement is exact and idempotent:
     <span class="amount" data-price="membership">$14.99</span>
 
 Keys: free, membership, membership_was, membership_founding,
-membership_plus, membership_plus_was, membership_plus_founding, collections. The two "-terms" spans
+membership_plus, membership_plus_was, membership_plus_founding, collections,
+collections_discount (the member percentage — "50%" — from
+collections.member_discount, added 2026-08-24 with the collections-for-
+everyone revision: collections sell on every tier and the member benefit is
+the discount). The two "-terms" spans
 this once wrote are gone: the monthly-equivalent line went when the cards
 switched to feature lists, and the founding annotation left the Membership
 card on 2026-08-18 (the promise it stood in for is a hand-written line beneath
@@ -152,16 +156,15 @@ def expected_lines(pricing):
         "membership_plus": plus_now,
         "membership_plus_was": plus_was,
         "membership_plus_founding": plus_note,
-        # The verb rides with the price: this slot is the prominent one, and
-        # "Add more from $0.99" is the whole collection economy in four words
-        # — cheap, optional, on top of the three that come included.
-        # Lives in the Collections panel's figure slot now, with "for
-        # additional collections" as its qualifier underneath — so the verb
-        # that used to ride along here is no longer needed.
-        # The bare figure: the sentence around it ("Additional collections
-        # from …") is hand-written in the panel, so this slot holds only the
-        # number that must not drift.
+        # The bare figures for the Collections panel (2026-08-24, the
+        # collections-for-everyone revision): every tier buys, members save.
+        # The sentence around them ("From … · Members save …") is
+        # hand-written in the panel; these slots hold only the two numbers
+        # that must not drift — the base "from" price and the member
+        # discount percentage.
         "collections": money(pricing["collections"]["price_from"]),
+        "collections_discount":
+            f"{round(pricing['collections']['member_discount'] * 100)}%",
         # The monthly equivalent came OUT (2026-08-18). The spec allows it as
         # supporting copy and it was never the lead, but on a card whose
         # headline is now a promise rather than a number, a second money

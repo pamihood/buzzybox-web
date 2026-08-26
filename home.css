@@ -1834,10 +1834,18 @@ button { font: inherit; color: inherit; background: none; border: 0; }
 .footer-links a { text-decoration: none; transition: color 150ms ease; }
 .footer-links a:hover { color: var(--terracotta-600); }
 
-.footer-journal { display: flex; flex-direction: column; gap: 1rem; }
+/* min-width:0 on both, or the Turnstile widget inflates this whole column.
+   Flexible sizing bottoms out at 300px, and a grid/flex item's default
+   min-width:auto floors it at its content - so at 320px the 300px widget plus
+   the card's 42px of padding made a 342px card sit in a 288px column. It did
+   not show up as page overflow because .site-footer clips (overflow-x:hidden),
+   which is worse than a scrollbar: the card's right edge was simply cut off,
+   and a document-scrollWidth audit reports the page as clean. */
+.footer-journal { display: flex; flex-direction: column; gap: 1rem; min-width: 0; }
 @media (min-width: 768px) { .footer-journal { grid-column: span 4; } }
 .journal-card {
   display: flex; flex-direction: column; gap: 0.875rem;
+  min-width: 0;
   padding: 1.25rem;
   background: var(--parchment-100);
   border: 1px solid var(--line);

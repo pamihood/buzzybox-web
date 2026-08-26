@@ -303,9 +303,11 @@ button { font: inherit; color: inherit; background: none; border: 0; }
   width: auto;
 }
 /* (.brand-sub was an 11px tagline under the header wordmark. It went on
-   2026-08-23: it printed the hero's own H1 a few inches above it. The FOOTER
-   still uses .sub for the same line - see .footer-mark .sub - which is a
-   different situation, being the far end of the page.) */
+   2026-08-23: it printed the hero's own H1 a few inches above it. The footer
+   carried the same line a while longer, on the grounds that the far end of the
+   page is a different situation - and on 2026-08-26 the footer lockup went too,
+   so the hero H1 now appears exactly twice: as itself, and as the footer's
+   .footer-principle.) */
 
 /* The nav underline grows from the left on hover — drawn with a pseudo
    element rather than text-decoration so it can animate its width. */
@@ -927,6 +929,14 @@ button { font: inherit; color: inherit; background: none; border: 0; }
 @media (min-width: 640px) { .stationery-head h3 { font-size: 1.875rem; } }
 .tabs {
   display: inline-flex;
+  /* Four fixed-width buttons in a non-wrapping inline-flex have no way to fit a
+     320px screen: the strip wants ~304px inside a ~272px column, and pushed the
+     whole document 16px wide. Wrapping to two lines is better than a scroller
+     here - a scroller hides tabs, and hidden tabs on a four-tab strip is worse
+     than a slightly taller pill. No effect above ~340px, where all four still
+     sit on one line. */
+  flex-wrap: wrap;
+  max-width: 100%;
   padding: 0.25rem;
   border-radius: var(--r-xl);
   background: color-mix(in srgb, var(--parchment-300) 50%, transparent);
@@ -1795,21 +1805,23 @@ button { font: inherit; color: inherit; background: none; border: 0; }
 @media (min-width: 1024px) { .footer-main { gap: 3rem; } }
 .footer-brand { display: flex; flex-direction: column; gap: 1rem; }
 @media (min-width: 768px) { .footer-brand { grid-column: span 5; } }
-.footer-mark { display: flex; align-items: center; gap: 0.75rem; }
-/* .footer-glyph, not `.footer-mark img` — the wordmark beside it is an image
-   too, and a bare descendant selector handed it the postbox's border-radius and
-   box-shadow. On a transparent PNG a box-shadow draws the IMAGE'S RECTANGLE
-   rather than the letterforms, which is a plate behind the word. Same trap the
-   header hit with `.brand img`; both are scoped to the glyph now. */
-.footer-glyph { width: 2.5rem; height: 2.5rem; object-fit: contain; border-radius: var(--r-xl); box-shadow: var(--shadow-2xs); }
-/* The same artwork as the header, at the same visual size. See the note in
-   index.html for why the wordmark is drawn rather than set. */
-.footer-mark .name { display: block; height: 1.6rem; width: auto; }
-/* (.footer-mark .sub printed the tagline under the wordmark. It went with the
-   header's copy of the same line: here it was set at a negative top margin and
-   overlapped the word's baseline outright.) */
-.footer-blurb { max-width: 24rem; font-size: 0.75rem; line-height: 1.625; }
-@media (min-width: 640px) { .footer-blurb { font-size: 0.875rem; } }
+/* (.footer-mark / .footer-glyph / .footer-mark .name styled the mailbox +
+   wordmark lockup, and .footer-blurb the paragraph under it. All four went on
+   2026-08-26 when the footer stopped repeating the header's logo - see the
+   comment above the brand column in index.html. Nothing else used them.)
+
+   The brand principle that replaced them. Serif and quiet on purpose: it is the
+   hero H1 verbatim, and at heading weight it would read as a second hero rather
+   than as the page settling. */
+.footer-principle {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+  color: var(--ink-800);
+  max-width: 20rem;
+}
+@media (min-width: 640px) { .footer-principle { font-size: 1.375rem; } }
 .footer-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem; padding-top: 0.5rem; }
 .footer-note { display: flex; align-items: center; gap: 0.375rem; font-size: 0.75rem; color: var(--ink-600); }
 .footer-note svg { width: 1rem; height: 1rem; color: var(--sage-500); }

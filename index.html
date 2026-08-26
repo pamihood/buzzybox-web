@@ -35,7 +35,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&amp;family=Lora:ital,wght@0,400..700;1,400..700&amp;family=Plus+Jakarta+Sans:wght@400..800&amp;display=swap" />
   <!-- home.css styles THIS PAGE ONLY. Everything else on the site still runs
        styles.css; see the note at the top of home.css. -->
-  <link rel="stylesheet" href="home.css?v=28745038" />
+  <link rel="stylesheet" href="home.css?v=b5facec9" />
 </head>
 <body>
 
@@ -1141,31 +1141,19 @@
   <div class="shell">
     <div class="footer-main">
 
+      <!-- NO LOGO HERE (Patrick, 2026-08-26). The sticky header carries the
+           mailbox + wordmark lockup and is still on screen at the bottom of the
+           page, so a second one made Postmello introduce itself twice within a
+           few hundred pixels. The airmail stripe above already announces the
+           footer, and it does that job better than another wordmark. Do not put
+           the lockup back to "balance" this column - the principle line is the
+           balance. -->
       <div class="footer-brand">
-        <!-- NO TAGLINE UNDER THE MARK (Patrick, 2026-08-23), which finishes
-             what taking it out of the header started. Here it was doing visible
-             damage rather than just repeating: set at margin-top:-0.125rem in
-             uppercase terracotta, it collided with the wordmark's baseline and
-             the pair read as one chopped-up block. The line is not lost - it is
-             the hero H1, which is where it belongs. -->
-        <div class="footer-mark">
-          <img class="footer-glyph" src="assets/mark.png" alt="" width="40" height="40" />
-          <img class="name" src="assets/wordmark.png" alt="Postmello"
-               width="1095" height="174" loading="lazy" />
-        </div>
-        <!-- The hero's own first sentence, and deliberately only that. The old
-             blurb was a third pitch in its own words ("the quiet postal world
-             for iPad", "intentional family connection") and carried the
-             for-iPad framing twice more. Repeating the hero VERBATIM in full
-             would be filler at the bottom of a 12,000px page, but the footer
-             is where a reader who scrolled straight down should meet the
-             one-line promise - so it takes the first sentence and stops. -->
-        <p class="footer-blurb">A quiet space for friends and families to write, draw, and stay in touch at their own pace.</p>
-        <!-- The dark "Join the private beta" button stood here and went with
-             the beta card's arrival (2026-08-23): two calls to the same action
-             in one footer, and this one only scrolled to #membership while the
-             card actually lets someone ask. What is left on this row is the
-             standing reassurance. -->
+        <!-- Set as a quiet serif line, not a headline: this is the brand
+             principle a reader who scrolled the whole page should land on, and
+             it is the hero H1 verbatim so the page closes on the sentence it
+             opened with. -->
+        <p class="footer-principle">A quiet place for letters.</p>
         <div class="footer-actions">
           <span class="footer-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg> <span>No ads &bull; Approved friends only</span></span>
         </div>
@@ -1182,14 +1170,12 @@
              promise, and it is the kind that never gets noticed. If a heading
              is renamed again, rename it here in the same commit. -->
         <ul>
-          <li><a href="#why">Why Postmello</a></li>
           <li><a href="#how-it-works">How it works</a></li>
           <li><a href="#desks">Desks &amp; Collections</a></li>
           <li><a href="#grandparents">Letters by Email</a></li>
-          <li><a href="#philosophy">Design Philosophy</a></li>
           <li><a href="#safety">Safety</a></li>
           <li><a href="#membership">Membership</a></li>
-          <li><a href="#faq">FAQ</a></li>
+          <li><a href="/blog/">Blog</a></li>
         </ul>
       </div>
 
@@ -1200,12 +1186,11 @@
            until now every one of them was a dead end. This is the only place
            on the site that actually lets someone act on it.
 
-           A MAILTO, not a form, and that is the honest choice rather than the
-           lazy one: there is no list to post to and no endpoint to receive it,
-           and a form that accepts an address and quietly discards it is the
-           one thing a signup box must never do. mailto cannot fail silently.
-           When there is a real endpoint this becomes a form and the copy
-           barely changes.
+           A REAL FORM, posting to the beta-request endpoint (it was a mailto
+           while there was nothing to post to; the endpoint went live and was
+           verified end to end on 2026-08-26). The rule that shaped it still
+           holds: a signup box must never accept an address and quietly discard
+           it, so this one reports what happened in .beta-msg.
 
            The Quiet Post Journal is parked, not deleted - see the TODO in
            README.md. Its "Crafted for iPadOS / Calm Tech" foot row went with
@@ -1214,7 +1199,7 @@
       <div class="footer-journal">
         <div class="journal-card">
           <p class="journal-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg> Join the private beta</p>
-          <p>Postmello is opening up a household at a time. Leave your email and we&rsquo;ll be in touch.</p>
+          <p>Postmello is opening up a household at a time.</p>
           <!-- The same form the dialog uses, inline for anyone who scrolled
                here rather than clicking a card. One markup pattern, one
                handler - see the script at the end of the page. -->
@@ -1227,20 +1212,20 @@
               <input class="beta-input" id="beta-email-footer" type="email" name="email"
                      inputmode="email" autocomplete="email" required
                      placeholder="you@example.com" />
-              <button class="journal-cta" type="submit">Send</button>
+              <button class="journal-cta" type="submit">Join</button>
             </div>
             <div class="cf-turnstile" data-sitekey="0x4AAAAAAEZv2iHGIRqH3RSi"
                  data-appearance="interaction-only"></div>
             <p class="beta-msg" data-beta-msg role="status" aria-live="polite"></p>
           </form>
-          <p class="journal-fine">We reply to every letter. Just beta updates. No spam.</p>
+          <p class="journal-fine">Just beta updates. No spam.</p>
         </div>
       </div>
 
     </div>
 
     <div class="footer-bottom">
-      <div>&copy; 2026 Postmello. iPad is a trademark of Apple Inc.</div>
+      <div>&copy; 2026 Postmello</div>
       <div class="footer-bottom-links">
         <a href="/safety">Safety</a>
         <span aria-hidden="true">&bull;</span>
@@ -1281,7 +1266,7 @@
       <input class="beta-input" id="beta-email-dialog" type="email" name="email"
              inputmode="email" autocomplete="email" required
              placeholder="you@example.com" />
-      <button class="journal-cta" type="submit">Send</button>
+      <button class="journal-cta" type="submit">Join</button>
     </div>
     <div class="cf-turnstile" data-sitekey="0x4AAAAAAEZv2iHGIRqH3RSi"
          data-appearance="interaction-only"></div>

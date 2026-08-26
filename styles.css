@@ -230,6 +230,13 @@ a:hover { text-decoration-color: var(--navy); }
 .site-head {
   display: flex;
   align-items: center;
+  /* WRAP, or this row is 16px wider than a 320px phone. The lockup and the
+     "Blog · Help" nav together want ~302px inside a 276px content box, and a
+     non-wrapping flex row simply overflows - it was the whole document's
+     horizontal scroll on all eight styles.css pages. Below ~350px the nav drops
+     to its own line (margin-left:auto keeps it right-aligned there); above it
+     nothing moves. */
+  flex-wrap: wrap;
   gap: 11px;
   padding: 22px;
   max-width: var(--maxw);

@@ -25,8 +25,13 @@
       display: flex; align-items: center; justify-content: center; gap: 9px;
       padding: 26px 16px 0;
     }
-    .brand img { width: 44px; height: 44px; }
-    .brand span { font-weight: 700; font-size: 16px; letter-spacing: -0.01em; }
+    .brand-mark { width: 44px; height: 44px; }
+    /* The WORDMARK ART, not type. This page used to set the word "Postmello"
+       as a bold system-font span, which rendered in San Francisco / Segoe and
+       so was the one surface on the site not showing the brand face at all.
+       Height is 28px to sit with the 44px mailbox, matching the proportion the
+       header lockup uses elsewhere. */
+    .brand-name { height: 28px; width: auto; }
     h1 { font-size: 26px; text-align: center; margin: 18px 0 6px; letter-spacing: -0.02em; }
     .subtitle { text-align: center; color: #9b8f7e; margin: 0 0 28px; font-size: 15px; }
     figure { margin: 0 0 24px; text-align: center; }
@@ -86,8 +91,8 @@
 </head>
 <body>
   <header class="brand">
-    <img src="/assets/mark.png" alt="" />
-    <span>Postmello</span>
+    <img class="brand-mark" src="/assets/mark.png" alt="" />
+    <img class="brand-name" src="/assets/wordmark.png" alt="Postmello" width="1095" height="174" />
   </header>
   <main id="main">
     <div class="quiet" id="loading">

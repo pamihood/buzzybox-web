@@ -1634,10 +1634,23 @@ button { font: inherit; color: inherit; background: none; border: 0; }
    The quote wears normal opening AND closing curly quotes, orange and bold
    (.story-q), inline with the text (Patrick, 2026-08-23) - not the comp's
    floating decorative mark, which opened without ever closing. */
-.story-grid { display: grid; grid-template-columns: 1fr; gap: 2.25rem; justify-items: center; }
+.story-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 2.25rem; justify-items: center; }
 @media (min-width: 768px) { .story-grid { grid-template-columns: repeat(auto-fit, minmax(0, 1fr)); gap: 2.5rem; } }
 
 .story {
+  /* min-width:0 is the load-bearing line, and it is not obvious why.
+     A grid item defaults to min-width:auto, which floors it at its MIN-CONTENT
+     width - and aspect-ratio makes that min-content enormous here, because the
+     browser resolves it off the card's own text height (a column of quote at
+     343px is ~424px tall, and 424 x 16/15 is ~452px). So the sheet refused to
+     go below ~452px however narrow the screen: on a 375px phone a 343px column
+     held a 459px note that hung off both edges and dragged the whole document's
+     scrollWidth to 472px. width:100% alone does NOT fix it - the automatic
+     minimum outranks it. Releasing the floor is what lets the width apply.
+     max-width still caps the sheet on a wide screen, and .story-grid's
+     justify-items:center still centres a lone card. */
+  width: 100%;
+  min-width: 0;
   max-width: 40rem;
   aspect-ratio: 16 / 15;  /* the sheets are ~1.07; content can still grow it */
   display: flex;

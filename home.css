@@ -1894,6 +1894,22 @@ button { font: inherit; color: inherit; background: none; border: 0; }
    `[hidden] { display: none !important }` because only these two are hidden by
    script. */
 .beta-row[hidden], .cf-turnstile[hidden], .beta-label[hidden] { display: none; }
+/* Turnstile draws a THIRD-PARTY IFRAME at a width Cloudflare picks, and in
+   interaction-only mode the "Verify you are human" box came out wider than the
+   footer's beta card and hung off its right edge. The markup asks for
+   data-size="flexible" so the widget fills its container rather than sitting at
+   a fixed width - but flexible's minimum width is not documented, and no CSS
+   here can reach inside the iframe, so this is the guard that actually holds:
+   whatever Cloudflare renders, it is clipped to the column and scrolls itself
+   instead of widening the page.
+
+   Worth knowing when testing: Turnstile refuses to run on localhost (error
+   110200), so the widget never draws there and a local pass cannot catch this.
+   Check it on the deployed site. */
+.cf-turnstile {
+  max-width: 100%;
+  overflow-x: auto;
+}
 .beta-input {
   width: 100%;
   min-width: 0;

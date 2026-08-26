@@ -1,0 +1,84 @@
+# Response headers, applied by Cloudflare Pages.
+#
+# SYNTAX: a URL pattern at column 0, then its headers INDENTED beneath it.
+# Blank lines separate blocks; lines starting with # are comments. Every
+# matching block contributes, so a page can pick up headers from more than one.
+# This file is parsed by Pages and is never served as a static asset itself.
+
+
+# ---------------------------------------------------------------------------
+# Everything. Four headers, and only two of them are new.
+# ---------------------------------------------------------------------------
+#
+# X-Frame-Options + frame-ancestors are the two that actually change behaviour:
+# before this file, postmello.com could be framed by anyone. It is a site about
+# handing children's mail to the right adult, and the /letter/ viewer renders a
+# real letter from a token in the URL — neither should ever be able to appear
+# inside somebody else's chrome, wrapped in somebody else's claims. DENY, not
+# SAMEORIGIN: nothing here frames anything.
+#
+# Both are set because they are read by different generations of browser.
+# X-Frame-Options is the legacy header; frame-ancestors is the CSP directive
+# that supersedes it and wins where both are understood. They agree here, so
+# there is no ambiguity about which one a given browser obeys.
+#
+# frame-ancestors is deliberately the ONLY CSP directive. Do not grow this into
+# a full policy: index.html and letter/index.html both carry inline <script> and
+# inline styles, and any default-src / script-src worth having would blank them.
+# A real CSP means moving that code to files first — a separate job, not a
+# header tweak. frame-ancestors is safe alone because it constrains nothing
+# about what the page may load, only who may embed it.
+#
+# Referrer-Policy and X-Content-Type-Options are what Cloudflare already sends
+# by default (verified against the live site 2026-08-25). Pinning them here
+# costs nothing and makes them ours: if a CF default ever changes, or the site
+# moves off Pages, the headers travel with the repo instead of quietly
+# disappearing. Referrer-Policy matters most for /letter/ — a letter URL carries
+# its token, and this keeps that token out of the Referer sent to other origins.
+/*
+  X-Frame-Options: DENY
+  Content-Security-Policy: frame-ancestors 'none'
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Content-Type-Options: nosniff
+
+
+# ---------------------------------------------------------------------------
+# The two stylesheets: cache them forever.
+# ---------------------------------------------------------------------------
+#
+# This is only safe because of scripts/stamp-css-version.sh, which writes each
+# stylesheet's md5 into every link that loads it (home.css?v=c086005c,
+# styles.css?v=bbbc6417). Change a byte and the hash changes, the href changes,
+# and the browser is asking for a URL it has never seen — so "immutable" is a
+# true statement about that exact URL rather than a promise we have to break.
+#
+# It also fixes the bug the stamper was written for from the other end. Pages
+# serves CSS with max-age=0, must-revalidate, so every page load spends a
+# round-trip revalidating a file that cannot have changed under its stamped URL.
+# A year of immutable turns that into no request at all.
+#
+# SO: RUN scripts/stamp-css-version.sh BEFORE COMMITTING ANY STYLESHEET CHANGE.
+# It was always the instruction; this file is what makes forgetting it expensive.
+# Ship an edited stylesheet under its OLD ?v= and every visitor who loads the
+# page pins those bytes for a year at a URL that will never change again — they
+# do not get the next fix, and there is no way to flush them. Without these
+# headers the same mistake self-heals in minutes, which is why it has been
+# survivable so far. Check before you commit: the first 8 of `md5 -q home.css`
+# must equal the ?v= in index.html, and likewise styles.css against any of the
+# pages that load it.
+#
+# TWO named rules instead of /*.css, on purpose: this promise is only true for
+# stylesheets the stamper actually rewrites. It stamps exactly these two
+# (home.css into index.html, styles.css into every other page). A wildcard would
+# silently extend a one-year cache to some future stylesheet nobody remembered
+# to add to the stamper — and a wrong "immutable" is not a cache miss, it is a
+# stale stylesheet nobody can flush. If you add a third stylesheet, add it to
+# stamp-css-version.sh FIRST, then name it here.
+#
+# Header matching ignores the query string, so these blocks cover the stamped
+# ?v= URLs as well as the bare paths.
+/home.css
+  Cache-Control: public, max-age=31536000, immutable
+
+/styles.css
+  Cache-Control: public, max-age=31536000, immutable

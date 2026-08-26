@@ -31,7 +31,7 @@ PAGES = {
 
 FOOTER = """  <footer>
     <p class="signoff">
-      <span class="signoff-name">Postmello</span>
+      <img class="signoff-name" src="{p}assets/wordmark.png" alt="Postmello" width="1095" height="174" />
       <span class="signoff-line">Letters at your own pace.</span>
     </p>
     <nav class="foot-groups" aria-label="Footer">
@@ -43,6 +43,7 @@ FOOTER = """  <footer>
       <div class="foot-group">
         <p class="foot-label">Trust</p>
         <a href="{p}safety.html">Safety</a>
+        <a href="{p}parents.html">For parents</a>
         <a href="{p}privacy.html">Privacy Policy</a>
         <a href="{p}terms.html">Terms</a>
       </div>

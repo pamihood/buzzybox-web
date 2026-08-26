@@ -1,0 +1,47 @@
+# Redirects, applied by Cloudflare Pages.
+#
+# SYNTAX: one rule per line, "<from> <to> [status]". 302 if no status is given.
+# Lines starting with # are comments. This file is parsed by Pages and is never
+# served as a static asset itself.
+#
+# These rules work at all because of one documented guarantee: "Redirects are
+# always followed, regardless of whether or not an asset matches the incoming
+# request." A rule therefore takes a path AWAY from a file that really is
+# sitting in the deployment — which is exactly what the two below are for.
+
+
+# ---------------------------------------------------------------------------
+# Build-time inputs that are not site content.
+# ---------------------------------------------------------------------------
+#
+# Pages publishes the whole repo, so every file in it is a URL whether or not
+# it was ever meant to be read. Two were being served in full (checked live,
+# 2026-08-25):
+#
+#   /README.md    200, 18,412 bytes of internal product and launch strategy
+#   /brand.json   200, the tagline/CTA strings apply-brand.py writes into
+#                 index.html
+#
+# Both are inputs to the build, not pages. apply-brand.py reads brand.json off
+# DISK when it runs, so cutting off the public URL costs it nothing — and
+# nothing on the site fetches either file at runtime (the only mention of
+# brand.json in any page is a comment in index.html explaining where the
+# headline comes from). robots.txt cannot help here: it asks crawlers not to
+# look, which is not the same as not serving 18KB to anyone who types the URL.
+#
+# WHY 301 AND NOT 404: Pages does not support a 404 status in this file. Its
+# redirects table lists "Rewrites (other status codes)" as unsupported, with
+# "/blog/* /blog/404.html 404" as the example of what will not work; only 301,
+# 302, 303, 307, 308 (and 200 for proxying) are honoured. A permanent redirect
+# to the site's own error page is the mechanism that is actually available, and
+# it achieves the point of the exercise: the bytes stop being served.
+#
+# The target is /404, not /404.html — Pages strips .html and 308s to the
+# extension-less form, so naming the file would just add a second hop.
+#
+# Caveat worth knowing: the visitor lands on the 404 page with a 200, not a 404
+# (a "soft 404"). That is harmless here because 404.html carries noindex, so
+# there is nothing for a crawler to keep. If a genuine 404 status is ever
+# needed, point these at a path that does not exist instead of at /404.
+/README.md    /404   301
+/brand.json   /404   301

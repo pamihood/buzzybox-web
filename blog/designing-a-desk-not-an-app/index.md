@@ -130,17 +130,11 @@ Children enjoy choosing different desks, papers, stamps and stickers. That makes
 
 I wanted a bright line between the two.
 
-On the child’s desk there are no prices, locks, countdowns, currencies or limited-time offers. Collections appear in a printed catalog, and if something appeals to a child there is one action:
+On the child’s desk there are no prices, locks, countdowns, currencies or limited-time offers. Collections appear in a printed catalog, and a child who finds one they like can choose it. Choosing buys nothing. It opens the door to the adult’s side of the app, where a price appears for the first time and a grown-up decides.
 
-**Make a wish.**
+There is nothing clever about that door. Putting a purchase behind an adult’s PIN is ordinary practice, and I am not going to dress it up as an invention.
 
-Those words carry more weight than they may seem to.
-
-A wish can exist without promising an outcome. It doesn’t require someone to answer yes or no in front of the child, and it doesn’t turn the product into a negotiation between the child and whoever controls the purchase.
-
-Even where the wish goes matters. It goes to the **Postmello Stationery Shop**, not to the bee, a shopkeeper or another smiling character. A character who hears a request and then does nothing can feel as though it has refused you. A place can simply receive a wish.
-
-The household can act on it or quietly leave it alone. The child is not told that a wish was declined, and the desk does not expose the mechanics of the transaction.
+What I did care about is what sits on either side of it. The desk itself never advertises. And a decision not to buy leaves nothing behind — nothing is saved, and nothing on the desk sits there marked as wanted, so there is no place for a child to return to and ask again.
 
 The principle underneath this became simple:
 
@@ -182,7 +176,7 @@ A child should not have to carry that complexity.
 
 But hiding complexity is not the same as lying about it, and that distinction has become central to the design.
 
-The bee has to tell the truth about whether the mail has really left. The wastebasket has to make deletion safe without becoming a warning dialog. A letter has to remain an object rather than slowly turning into a conversation thread. Reply on Top has to preserve the privacy of the letter it carries. A wish has to remain a wish rather than becoming pressure to buy.
+The bee has to tell the truth about whether the mail has really left. The wastebasket has to make deletion safe without becoming a warning dialog. A letter has to remain an object rather than slowly turning into a conversation thread. Reply on Top has to preserve the privacy of the letter it carries. The catalog has to let a child want something without turning that wanting into pressure to buy.
 
 After more than 60 builds, one of the best signs that the design was working was not simply that the children could complete a task. It was that they stopped needing to think very much about the interface at all.
 

@@ -312,6 +312,63 @@
     </div>
   </section>
 
+  <!-- ======================== THE MAIL WALL ========================
+       Four REAL letters, sent by real people through the real app. They sit
+       here, straight after the three steps, because this is the payoff: the
+       steps promise something and these four are the thing itself, before the
+       page goes on to talk about desks and stationery.
+
+       Rules this section lives under, all of them learned the expensive way:
+
+       - NOTHING HERE IS INVENTED. Same rule as #testimonials, and for the same
+         reason. If a letter ever needs replacing, replace it with another real
+         one or take the slot out; do not mock one up.
+       - EVERY NAME IS OBSCURED. Two of these carried names (a greeting, a
+         signature, three names written on mountain peaks, a teacher, a camp)
+         and every one was blurred before export. Two carry no words at all.
+         The full method, and the list of places a name hides, is in the app
+         repo at docs/recipes/WEBSITE_LETTER_RECIPE.md. Never swap in a new
+         letter without reading it.
+       - The PNGs are transparent and carry their own paper shadow, baked at
+         export. That is why there is no CSS box-shadow below: a second shadow
+         doubles the first and draws a hard rectangle through the transparent
+         corners of the fanned stacks.
+       - No captions and no credits under the art (Patrick, 2026-08-26). The
+         letters argue for themselves; a label per tile turns a table of real
+         mail into a product catalogue. The alt text carries the description
+         for anyone who cannot see them. -->
+  <section class="section" id="real-letters">
+    <div class="shell">
+      <!-- No lede under the heading (Patrick, 2026-08-26). The letters are the
+           argument; a sentence explaining them is the section apologising for
+           itself. Note what went with it, in case it needs saying somewhere
+           else one day: the old lede was the only place the page explained the
+           blurred patches on the typewritten letter. -->
+      <div class="sec-head mailwall-head">
+        <p class="eyebrow">Real Letters</p>
+        <h2>What kids make when there&rsquo;s room.</h2>
+      </div>
+      <ul class="mailwall">
+        <li class="mailwall-item">
+          <img src="assets/letters/letter-minty.png" width="1400" height="1078" loading="lazy" decoding="async"
+               alt="A painted mint-green creature sitting in the grass under a yellow sun, with the word minty above it and blue dots falling like rain." />
+        </li>
+        <li class="mailwall-item">
+          <img src="assets/letters/letter-paddleboard.png" width="1400" height="1078" loading="lazy" decoding="async"
+               alt="Two drawn figures on a paddleboard, one standing with a paddle and one sitting, riding the printed blue wave border at the foot of the page." />
+        </li>
+        <li class="mailwall-item mailwall-item--wide">
+          <img src="assets/letters/letter-mountains.png" width="1400" height="769" loading="lazy" decoding="async"
+               alt="Four handwritten pages fanned out to the left, the top one a painted range of green mountains with snow caps, birds and a sun." />
+        </li>
+        <li class="mailwall-item mailwall-item--wide">
+          <img src="assets/letters/letter-typewriter.png" width="1400" height="904" loading="lazy" decoding="async"
+               alt="A typewritten letter on star-and-moon paper, its second page fanned out behind it to the right." />
+        </li>
+      </ul>
+    </div>
+  </section>
+
   <!-- ==================== DESKS &amp; COLLECTIONS ==================== -->
   <section class="section" id="desks">
     <div class="shell">

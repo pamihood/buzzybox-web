@@ -712,6 +712,100 @@ button { font: inherit; color: inherit; background: none; border: 0; }
 .step-body h3:last-child { margin-bottom: 0; }
 .step-body p { font-size: 0.875rem; line-height: 1.625; color: var(--ink-700); }
 
+/* ---------- The mail wall (#real-letters) ----------
+   Four real letters, one per row, alternating left / right / left / right.
+   Everything here exists to keep them reading as paper:
+
+   - NO box-shadow, NO border, NO border-radius, NO background on the tiles.
+     The PNGs are transparent and already carry the paper's own drop shadow,
+     baked in at export. A CSS shadow would double it, and a border or radius
+     would draw a hard rectangle straight through the transparent corners of
+     the fanned stacks, which is the whole illusion.
+   - The tilts are small, and no two are the same. Past about 3deg it stops
+     looking like paper set down by hand and starts looking like a gimmick.
+   - One letter per row, not two (Patrick, 2026-08-26). Sharing a row capped
+     how big any of them could be, and these are the point of the page. Alone
+     on a row each letter is half again as large, and the alternating sides
+     carry the eye down instead of leaving a static grid.
+   - The rows are spaced apart rather than overlapped. They used to pull up
+     into each other for a pile effect, but letters this size need air to be
+     looked at one at a time, and the overlap cropped the corner of whichever
+     stack sat underneath.
+
+   EVERY LETTER'S TOP PAGE RENDERS AT THE SAME WIDTH (--page). This is the one
+   rule here that is not obvious, and getting it wrong is what the first two
+   attempts did. A fanned stack's PNG is much wider than its own top page - the
+   rest is the pages behind it - and by a DIFFERENT factor each time. So sizing
+   tiles by PNG width, or by equal grid columns, silently renders a four-page
+   stack's top page SMALLER than a single sheet beside it, which inverts the
+   hierarchy and makes the richest letters look like the least important ones.
+   Each --k below is that letter's (PNG width / top page width), printed by
+   scripts/letter-showcase-fan.py in the app repo and mirrored into the
+   site-*.meta.json sidecar next to each master. IF A LETTER IS RE-EXPORTED
+   WITH A DIFFERENT FAN, ITS --k CHANGES - read it off the sidecar, do not
+   guess it. The four-page stack has already moved twice (1.4587 -> 1.528 ->
+   1.662) as its fan was opened out to show more of the writing.
+
+   --page is capped against the WIDEST tile, which is that same four-page stack
+   at --k 1.662: --page * 1.662 has to stay inside the shell, or the section is
+   the one thing on the page that scrolls sideways. Open that fan further and
+   this cap comes down. */
+.mailwall {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  row-gap: 3.5rem;
+  justify-items: center;
+  /* 52vw * 1.662 = 86vw, which clears the gutters at 375px. */
+  --page: min(26rem, 52vw);
+}
+.mailwall-item { margin: 0; }
+.mailwall-item img {
+  display: block;
+  width: calc(var(--page) * var(--k, 1));
+  height: auto;
+  transition: transform 350ms ease;
+}
+.mailwall-item:nth-child(1) { --k: 1.088; }   /* minty        - single sheet */
+.mailwall-item:nth-child(2) { --k: 1.088; }   /* paddleboard  - single sheet */
+.mailwall-item:nth-child(3) { --k: 1.662; }   /* mountains    - 4-page fan    */
+.mailwall-item:nth-child(4) { --k: 1.364; }   /* typewriter   - 2-page fan    */
+
+/* "What kids make when there's room." measures ~780px at the shared h2 size,
+   about a dozen past the standard --shell-3 head width, which orphaned "room."
+   onto a line of its own. */
+.mailwall-head { max-width: 52rem; }
+
+@media (min-width: 900px) {
+  .mailwall {
+    justify-items: stretch;
+    row-gap: 4.5rem;
+    /* 53vw keeps the widest tile inside the shell all the way down to the
+       900px breakpoint; 45rem is where it stops growing on a wide screen. */
+    --page: min(45rem, 53vw);
+  }
+  .mailwall-item { width: auto; }
+  .mailwall-item:nth-child(odd)  { justify-self: start; }
+  .mailwall-item:nth-child(even) { justify-self: end; }
+
+  .mailwall-item:nth-child(1) img { transform: rotate(-2.1deg); }
+  .mailwall-item:nth-child(2) img { transform: rotate(1.9deg); }
+  .mailwall-item:nth-child(3) img { transform: rotate(-1.4deg); }
+  .mailwall-item:nth-child(4) img { transform: rotate(1.3deg); }
+
+  /* Lifting a sheet straight is the one bit of motion: it reads as picking a
+     letter up off the table, and it is what makes the tilt feel deliberate. */
+  .mailwall-item:hover { z-index: 9; }
+  .mailwall-item img:hover { transform: rotate(0deg) translateY(-0.5rem) scale(1.02); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mailwall-item img { transition: none; }
+  .mailwall-item img:hover { transform: none; }
+}
+
 /* ---------- Desks & collections ---------- */
 .desk-picker {
   display: grid;
@@ -1680,7 +1774,7 @@ button { font: inherit; color: inherit; background: none; border: 0; }
 .footer-main {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 2.5rem;
+  gap: 3.5rem;
   padding-bottom: 3rem;
   border-bottom: 1px solid var(--line);
 }

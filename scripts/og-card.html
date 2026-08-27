@@ -37,6 +37,7 @@
       --ink-700: #574B40;
       --ink-600: #746456;
       --terracotta-600: #C85A32;
+      --terracotta-700: #B34B25;
       --parchment-100: #FAF7F2;
       --line: #DAC6B4;
       --font-serif: "Lora", Georgia, serif;
@@ -132,13 +133,35 @@
        a statement and its aside rather than two headlines. */
     .aside {
       font-family: var(--font-serif);
-      font-style: italic; font-weight: 400;
-      /* 36px is the largest this sets on ONE line in a 620px column, and one
+      /* WEIGHT 600 AND THE DARKER TERRACOTTA, where the page runs 400 and
+         --terracotta-600. Not drift - the same compensation the badge's ink
+         gets one rule down, and for the same reason. THE SIZE RULE is not the
+         whole story: this line was the hardest thing on the card to read even
+         after the resize, while being LARGER than the sans line below it
+         (36px against 34px). Size was never its problem. Lora's italic at 400
+         is a modulated face with hairline strokes, and a 0.3x downsample eats
+         hairlines - magnified, the words came back broken and furry where the
+         sans came back solid. Terracotta made it worse: #C85A32 on parchment
+         is a 3.96 contrast ratio against the lead's 7.91, so the strokes that
+         did survive were the faintest on the card.
+
+         600 puts real stroke width into the letterforms and #B34B25 takes the
+         ratio to 4.98, which is AA for normal text - and this IS normal text
+         once a feed has shrunk it, whatever it measures here. At 1200px it
+         still reads as an aside: the headline is 62px of 700-weight roman and
+         nothing about this competes with that.
+
+         Do not "restore" this to the page's 400/terracotta-600 for
+         consistency. The page renders it at 36px on a screen; this file
+         renders it at 11px in somebody's message thread.
+
+         36px is the largest this sets on ONE line in a 620px column, and one
          line is the point of it - broken over two it stops being an aside and
-         starts competing with the headline for weight. That caps the column
-         at 620 as firmly as the desk does. */
+         starts competing with the headline. That caps the column at 620 as
+         firmly as the desk does. */
+      font-style: italic; font-weight: 600;
       font-size: 36px; line-height: 1.2; letter-spacing: -0.01em;
-      color: var(--terracotta-600);
+      color: var(--terracotta-700);
       margin-bottom: 22px;
     }
     /* THE PROPOSITION, added 2026-08-27 when the hero gained it. The card is

@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Postmello - A quiet place for letters</title>
-  <meta name="description" content="A private desk for writing, drawing, and sending digital letters to friends and family. No group chats, algorithmic feeds, or urgency. Coming first to iPad." />
+  <meta name="description" content="A private desk for digital letters between friends and family - a more personal, creative way to stay in touch. Coming first to iPad." />
   <link rel="icon" type="image/png" href="assets/favicon.png" />
   <link rel="apple-touch-icon" href="assets/app-icon.png" />
   <meta property="og:title" content="Postmello - A quiet place for letters" />
@@ -12,9 +12,12 @@
        now carries that line as its terracotta aside, so an unfurl printed it
        twice, once in the picture and once in the text directly beneath it -
        the same repetition that took the tagline out from under the header
-       wordmark. This is the hero's FIRST sentence, the definition, which is
-       what the picture does not already say. -->
-  <meta property="og:description" content="A private desk for writing, drawing, and sending digital letters to friends and family." />
+       wordmark. This is the hero paragraph's definition clause, which is what
+       the picture does not already say - and since 2026-08-27 it IS the hero
+       line, whole. That line is one sentence now, and it carries the whole
+       proposition, so an unfurl that quotes it quotes everything the page
+       would have wanted a stranger to read. -->
+  <meta property="og:description" content="A private desk for digital letters between friends and family - a more personal, creative way to stay in touch." />
   <meta property="og:image" content="https://postmello.com/assets/og-card.jpg" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://postmello.com/" />
@@ -35,7 +38,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&amp;family=Lora:ital,wght@0,400..700;1,400..700&amp;family=Plus+Jakarta+Sans:wght@400..800&amp;display=swap" />
   <!-- home.css styles THIS PAGE ONLY. Everything else on the site still runs
        styles.css; see the note at the top of home.css. -->
-  <link rel="stylesheet" href="home.css?v=80e7f408" />
+  <link rel="stylesheet" href="home.css?v=d77e27b9" />
 </head>
 <body>
 
@@ -84,7 +87,7 @@
            more credible thing to print. It opens the same dialog every plan
            card does. Written by scripts/apply-brand.py. -->
       <div class="header-cta">
-        <button class="btn-dark" type="button" data-beta="Header" data-brand="beta_cta">Join private beta</button>
+        <button class="btn-dark" type="button" data-beta="Header" data-brand="beta_cta">Request an invite</button>
       </div>
 
       <button class="nav-toggle" type="button" id="nav-toggle"
@@ -110,7 +113,7 @@
         <li><a href="#faq">FAQ</a></li>
         <li><a href="blog/">Blog</a></li>
       </ul>
-      <div class="mobile-cta"><button type="button" data-beta="Mobile menu" data-brand="beta_cta">Join private beta</button></div>
+      <div class="mobile-cta"><button type="button" data-beta="Mobile menu" data-brand="beta_cta">Request an invite</button></div>
     </div>
   </div>
 </header>
@@ -144,22 +147,68 @@
            into two beats with a half-line between them; Patrick asked for it
            closed back up on 2026-08-23, so the two ideas run together the way
            a sentence and its follow-up normally do.
+
+           IT NO LONGER ARGUES, AND IT IS NO LONGER A PARAGRAPH (Patrick,
+           2026-08-27, two passes). It used to end "No group chats,
+           algorithmic feeds, or urgency - just the creative joy of making
+           something and receiving something back", and all three words were
+           spending the hero's last inches badly. "Algorithmic feeds" is
+           generic anti-social-media language, and the thing Postmello is
+           actually unlike is texting. "Urgency" is the aside one line above,
+           said again. And the same claim is made better a screen down, on its
+           own object: "Nothing pulling you back. No feeds, read receipts,
+           online status or pressure to reply."
+
+           The second pass cut the remaining "- with room to write, draw, and
+           make each one your own" too. The third put a WHY in its place, and
+           that is the sentence standing here.
+
+           THE CHAIN IT IS MAKING (Patrick, 2026-08-27). Postmello is not
+           valuable because letters beat messages. Messaging is optimised for
+           speed and exchange; a desk and a letter make room for expression -
+           handwriting, drawing, typing, decorating, pages, taking your time -
+           and because that expression is made FOR somebody, what comes out
+           the other end is not craft but closeness. Desk and letters, then
+           room for expression, then more of yourself in what you send, then
+           staying in touch that feels more personal. So the word this line
+           had to reach is PERSONAL, and "creative" is what gets it there
+           rather than the point on its own.
+
+           It also completes the hero at the highest level, which is why
+           nothing else is needed here: WHAT is a private desk for digital
+           letters, WHO is friends and family, HOW is without the rush of
+           messaging, WHY is a more personal, creative way to stay in touch.
+           The second half does not re-explain the mechanism - the first half
+           already said it - it says what the mechanism is FOR.
+
+           Considered and not taken: "with more room for personality,
+           imagination and thought", which names the causal benefit one step
+           earlier and is the better line if this one ever starts sounding
+           like a category description.
+
+           So the three lines have one job each - the headline the feeling,
+           the aside the difference, this the whole proposition - and .lede is
+           set as a lead rather than as body copy to match (see home.css). If
+           a fifth idea ever wants in here, it belongs further down the page.
+           Do not bold "private desk", "digital letters" or "personal": the
+           sentence is short enough that emphasis inside it would make it read
+           as marketing rather than as a definition. The &nbsp; binds the dash
+           to "family" so it can never open a line and read as a bullet.
            The aside is a separate <p>, deliberately: apply-brand.py rewrites
            the whole inside of the data-brand element, so anything parked in
            the H1 alongside the tagline would be erased on its next run. -->
       <div class="hero-copy">
         <h1 data-brand="tagline">A quiet place for letters.</h1>
         <p class="hero-aside">Without the rush of messaging.</p>
-        <p class="lede">A private desk for writing, drawing, and sending
-           digital letters to friends and family. No group chats, algorithmic
-           feeds, or urgency - just the creative joy of making something and
-           receiving something back.</p>
+        <p class="lede">A private desk for digital letters between friends
+           and family&nbsp;- a more personal, creative way to stay in
+           touch.</p>
 
         <!-- The primary action is the beta, not the price list. "Explore Desks
              & Membership" pointed a first-time reader at the most commercial
              idea on the page; this opens the same dialog the cards do. -->
         <div class="hero-actions">
-          <button class="btn btn--primary" type="button" data-beta="Hero" data-brand="beta_cta">Join private beta</button>
+          <button class="btn btn--primary" type="button" data-beta="Hero" data-brand="beta_cta">Request an invite</button>
           <a class="btn btn--ghost" href="#how-it-works"><span>See how it works</span>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
           </a>
@@ -168,9 +217,15 @@
         <!-- "Coming first to iPad." alone, BELOW the actions, and NOT a pill
              (Patrick, 2026-08-23, two passes). The line itself was settled in
              the first pass: "Currently in private beta" came off because the
-             button directly beside it already says JOIN PRIVATE BETA, and the
-             pulsing dot went with it - it existed to say "live RIGHT NOW",
-             which is true of an open beta and not of a platform.
+             button directly beside it said JOIN PRIVATE BETA, and the pulsing
+             dot went with it - it existed to say "live RIGHT NOW", which is
+             true of an open beta and not of a platform.
+             That button now says REQUEST AN INVITE (2026-08-27), so the words
+             "private beta" are no longer above the fold at all. Deliberate:
+             the badge does not come back. The hero was cut down to three lines
+             with one job each, and a status caveat is a fourth; the dialog the
+             button opens says it in its first sentence, to the only reader who
+             has asked.
              The second pass killed the pill. Above the buttons, a hairline
              pill read as a third, disabled button in a stack of three - and
              the monospace never sat centred in it: letter-spacing trails the
@@ -216,14 +271,14 @@
             <div>
               <p class="claim-art"><img src="assets/claims/claim-imagination.png" alt="" loading="lazy" /></p>
               <h2>A desk for imagination.</h2>
-              <p>A little world where ideas have somewhere to go.</p>
+              <p>An inviting little world that makes you want to create.</p>
             </div>
           </article>
           <article class="claim">
             <div>
               <p class="claim-art"><img src="assets/claims/claim-putdown.png" alt="" loading="lazy" /></p>
               <h2>Nothing pulling you back.</h2>
-              <p>No feeds, read receipts, online status or attention traps.</p>
+              <p>No feeds, read receipts, online status or pressure to reply.</p>
             </div>
           </article>
         </div>
@@ -985,7 +1040,7 @@
 
       <!-- ONE action for everybody, under the row rather than inside a card. -->
       <p class="plans-cta">
-        <button class="btn btn--primary" type="button" data-beta="Membership" data-brand="beta_cta">Join private beta</button>
+        <button class="btn btn--primary" type="button" data-beta="Membership" data-brand="beta_cta">Request an invite</button>
       </p>
 
       <div class="worlds">
@@ -1215,14 +1270,23 @@
            holds: a signup box must never accept an address and quietly discard
            it, so this one reports what happened in .beta-msg.
 
+           ONE NAME FOR ONE ACTION (Patrick, 2026-08-27). This card said "Join
+           the private beta" over a "Join" button while the dialog it duplicates
+           was titled "Request an invite" - the same flow under two names, and
+           the wrong one of the two. "Join" promises admission; what happens is
+           an ask, answered a household at a time. Heading, both submit buttons
+           and every beta_cta button now say the same thing. The words "private
+           beta" moved down a line into the sentence, which is where they can
+           be explained - see the note in brand.json.
+
            The Quiet Post Journal is parked, not deleted - see the TODO in
            README.md. Its "Crafted for iPadOS / Calm Tech" foot row went with
            it (Patrick: weird footnotes), and it was carrying the for-iPad
            framing a third time. -->
       <div class="footer-journal">
         <div class="journal-card">
-          <p class="journal-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg> Join the private beta</p>
-          <p>Postmello is opening up a household at a time.</p>
+          <p class="journal-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg> Request an invite</p>
+          <p>Postmello is in private beta, opening up a household at a time.</p>
           <!-- The same form the dialog uses, inline for anyone who scrolled
                here rather than clicking a card. One markup pattern, one
                handler - see the script at the end of the page. -->
@@ -1235,7 +1299,7 @@
               <input class="beta-input" id="beta-email-footer" type="email" name="email"
                      inputmode="email" autocomplete="email" required
                      placeholder="you@example.com" />
-              <button class="journal-cta" type="submit">Join</button>
+              <button class="journal-cta" type="submit">Request</button>
             </div>
             <div class="cf-turnstile" data-sitekey="0x4AAAAAAEZv2iHGIRqH3RSi"
                  data-appearance="interaction-only" data-size="flexible"></div>
@@ -1272,7 +1336,9 @@
      moment to move someone somewhere else.
 
      It holds the SAME form as the footer, so there is one markup pattern and
-     one handler. Only the source differs, and the opening button supplies it. -->
+     one handler. Only the source differs, and the opening button supplies it.
+     Its submit says "Request", not "Join" - the button that opened it, this
+     title and this button are one promise said three times. -->
 <dialog class="beta-dialog" id="beta-dialog" aria-labelledby="beta-dialog-title">
   <form method="dialog" class="beta-dialog-close">
     <button type="submit" aria-label="Close">&times;</button>
@@ -1289,7 +1355,7 @@
       <input class="beta-input" id="beta-email-dialog" type="email" name="email"
              inputmode="email" autocomplete="email" required
              placeholder="you@example.com" />
-      <button class="journal-cta" type="submit">Join</button>
+      <button class="journal-cta" type="submit">Request</button>
     </div>
     <div class="cf-turnstile" data-sitekey="0x4AAAAAAEZv2iHGIRqH3RSi"
          data-appearance="interaction-only" data-size="flexible"></div>

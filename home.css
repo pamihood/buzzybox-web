@@ -514,27 +514,62 @@ button { font: inherit; color: inherit; background: none; border: 0; }
 @media (min-width: 768px)  { .hero-aside { font-size: 2rem; } }
 @media (min-width: 1024px) { .hero-aside { font-size: 2.25rem; margin-bottom: 1.75rem; } }
 
-/* A PARAGRAPH AGAIN, not a one-line tagline (Patrick, 2026-08-23). It states
-   what a person actually does here, then names what the page is defined
-   against — group chats, feeds, urgency. That argument is also made at length
-   in Why Postmello a screen down; the earlier revision cut it here to avoid
-   making it twice, and this is the reversal of that call.
+/* NOT A PARAGRAPH ANY MORE - A LEAD (Patrick, 2026-08-27). The history in one
+   line: a one-line tagline, then a three-sentence paragraph on 2026-08-23
+   (what a person does here, then what the page is defined against), then this,
+   one sentence that defines the product and argues with nothing. The argument
+   it used to carry is made better a screen down in the claims and Why
+   Postmello.
 
-   Held NARROWER and a size SMALLER than the old one-line lede. Three centred
-   sentences at 1.25rem across 48rem is ~95 characters a line, which is a
-   paragraph nobody finishes standing up. 42rem at 1.125rem is a readable
-   measure and reads as body copy under the display type, rather than as a
-   third headline competing with the two above it. */
+   Set as a LEAD, not as body copy, and that is the point of this pass. At 1rem
+   the middle of the hero went slack the moment the second sentence left: a
+   line of ordinary paragraph type has nothing to hold the gap between display
+   type above it and two buttons below it. 21px desktop / 19px phone sits
+   ABOVE body copy and far below the 2.25rem aside, so it reads as a
+   substantial calm sentence rather than as a third headline.
+
+   SANS on purpose. The serif belongs to the headline and its italic to the
+   aside; a third face here would give a three-line hero three voices. Weight
+   450, not 400 and not bold - Plus Jakarta Sans is loaded as a variable range
+   (wght@400..800, see the fonts link in index.html), so 450 is a real
+   instance and not a synthesised one, and it is what stops the line looking
+   thin once it is enlarged. Nothing INSIDE the sentence is emphasised: see
+   the note in the hero markup for why.
+
+   37.5rem AND `pretty`, WHICH IS A PAIR - changing either alone gives a worse
+   line. The sentence has a hinge (the dash), and 600px is the measure at
+   which the half before it, 593px at this size and weight, is the widest
+   thing that still fits on one line. So the natural break IS the hinge: what
+   and who on line one, why on line two, which is the sentence's own
+   structure. Nothing forces it - no <br>, no nbsp between words - the measure
+   simply lands there.
+
+   `balance` was here for the one-sentence version and is wrong for this one.
+   It evens the two lines by width, which puts the break after "and" and
+   leaves "friends and / family" split across it: 515/532 instead of 593/454.
+   Even lines are not the goal; breaking where the sentence breaks is. `pretty`
+   still does the job it is for, which is stopping the last line being a stub
+   at phone widths, where this sets as three lines.
+
+   Worth knowing: there is ~7px of headroom in that fit. On a platform whose
+   fallback face measures wider, the break falls back to the after-"and" one -
+   which is the previous behaviour and perfectly readable, not a broken layout.
+   Do not chase the last pixels by widening past 600px; a centred line that
+   stretches across the hero was the thing this measure exists to prevent.
+
+   Colour stays --ink-700 - a step softer than the headline's --ink-900, and
+   warm rather than grey. */
 .hero-copy .lede {
-  max-width: 42rem;
+  max-width: 37.5rem;
   margin-inline: auto;
   margin-bottom: 2rem;
-  font-size: 1rem;
-  line-height: 1.7;
+  font-size: 1.1875rem;
+  font-weight: 450;
+  line-height: 1.45;
   color: var(--ink-700);
   text-wrap: pretty;
 }
-@media (min-width: 640px) { .hero-copy .lede { font-size: 1.125rem; } }
+@media (min-width: 640px) { .hero-copy .lede { font-size: 1.3125rem; } }
 /* (.lede-turn briefly split this paragraph into two beats, a block span with
    0.65em above it. Patrick closed it back up the same day: the gap made the
    second sentence read as a separate statement rather than as the turn in the

@@ -19,16 +19,22 @@
     "about where punctuation is added."
   ],
 
-  "beta_cta": "Join private beta",
+  "beta_cta": "Request an invite",
   "_beta_cta_notes": [
-    "What the header button says while the beta is the real state of the",
-    "product. It was 'Get Started', which is vague and — worse — promises",
-    "something the product cannot do yet. This is written by the same script,",
-    "so when the beta ends it changes here and nowhere else.",
+    "What every button that opens the beta dialog says - header, mobile menu,",
+    "hero and membership panel, four markers written by the same script, so",
+    "when the beta ends it changes here and nowhere else.",
     "",
-    "NOT the same string as the plan cards' 'Request a beta invite'. Those open",
-    "the dialog from a card and name what they are asking for because a reader",
-    "can arrive at them straight from the nav; this one sits beside the wordmark",
-    "where the badge has already said 'Currently in private beta'."
+    "It was 'Join private beta' until 2026-08-27, and 'Get Started' before",
+    "that. 'Get Started' was vague and promised something the product cannot",
+    "do yet; 'Join' has the same fault in a quieter register. It implies",
+    "immediate admission, and what the button opens is a dialog titled",
+    "'Request an invite' saying Postmello is opening up a household at a time.",
+    "The label now describes what actually happens, and asking to be let in is",
+    "still an invitation rather than a queue.",
+    "",
+    "The word 'beta' is not lost with it. The dialog lede, the footer journal",
+    "card and the noscript fallback all still say private beta - the three",
+    "places that have room to explain what it means, which a button does not."
   ]
 }

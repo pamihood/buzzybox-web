@@ -797,12 +797,24 @@ button { font: inherit; color: inherit; background: none; border: 0; }
   }
   .mailwall-item { width: auto; }
 
-  /* Row 1 - the two drawings, one to each edge. */
-  .mailwall-item:nth-child(1) { grid-column: 1 / 7;  grid-row: 1; justify-self: start; }
-  .mailwall-item:nth-child(2) { grid-column: 7 / 13; grid-row: 1; justify-self: end; margin-block-start: 2.5rem; }
-  /* Rows 2 and 3 - a stack each, alternating sides. */
-  .mailwall-item:nth-child(3) { grid-column: 1 / 13; grid-row: 2; justify-self: start; margin-inline-start: 1rem; }
-  .mailwall-item:nth-child(4) { grid-column: 1 / 13; grid-row: 3; justify-self: end;   margin-inline-end: 1rem; }
+  /* DISTRIBUTION. Every tile is narrower than the row it sits in, so the
+     question is where the slack goes. Pinning things to the wall's edges put it
+     all in the middle of row 1 and all on one side of rows 2 and 3, which read
+     as three separate holes rather than as a composition.
+
+     So: the pair on row 1 meets in the middle and is centred as a group, and
+     each stack below is centred in its own row and then nudged off-centre by a
+     fixed amount. The nudge is what keeps the left / right / left rhythm
+     legible; centring first is what keeps the outer whitespace even. A
+     percentage nudge was worse - the two stacks are different widths, so the
+     same percentage leaves visibly different margins. */
+  /* Row 1 - the two drawings, meeting in the middle of the wall. The 1rem
+     margins plus the 1.5rem column gap put 3.5rem of air between them. */
+  .mailwall-item:nth-child(1) { grid-column: 1 / 7;  grid-row: 1; justify-self: end;   margin-inline-end: 1rem; }
+  .mailwall-item:nth-child(2) { grid-column: 7 / 13; grid-row: 1; justify-self: start; margin-inline-start: 1rem; margin-block-start: 2.5rem; }
+  /* Rows 2 and 3 - a stack each, centred then leaned. */
+  .mailwall-item:nth-child(3) { grid-column: 1 / 13; grid-row: 2; justify-self: center; transform: translateX(-2.5rem); }
+  .mailwall-item:nth-child(4) { grid-column: 1 / 13; grid-row: 3; justify-self: center; transform: translateX(2.5rem); }
 
   .mailwall-item:nth-child(1) img { transform: rotate(-2.1deg); }
   .mailwall-item:nth-child(2) img { transform: rotate(1.9deg); }

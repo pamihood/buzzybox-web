@@ -35,7 +35,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&amp;family=Lora:ital,wght@0,400..700;1,400..700&amp;family=Plus+Jakarta+Sans:wght@400..800&amp;display=swap" />
   <!-- home.css styles THIS PAGE ONLY. Everything else on the site still runs
        styles.css; see the note at the top of home.css. -->
-  <link rel="stylesheet" href="home.css?v=61461d23" />
+  <link rel="stylesheet" href="home.css?v=80e7f408" />
 </head>
 <body>
 
@@ -232,7 +232,23 @@
   </section>
 
   <!-- ============================ WHY ============================ -->
-  <section class="section--tight" id="why">
+  <!-- ================= THE BANDING RUN starts here =================
+       There is ONE band tone (see .section--band in home.css) and the page
+       ground. Because there is only one band, no two banded sections may sit
+       next to each other, so the whole run alternates strictly:
+
+         why BAND / how-it-works / real-letters BAND / desks /
+         grandparents BAND / philosophy / safety BAND / testimonials /
+         membership BAND / faq
+
+       #why is banded rather than the hero-adjacent plain it used to be, which
+       is also what stops the hero and #why blending into one another - both sat
+       on the page ground before.
+
+       MOVING OR INSERTING A SECTION BREAKS THIS. The run has no slack: flip one
+       and its neighbour has to flip too, all the way to the end. If a section is
+       added, re-check every boundary rather than just the two beside it. -->
+  <section class="section--tight section--band" id="why">
     <div class="shell shell--5">
       <div class="why-panel">
         <div class="why-glow why-glow--1" aria-hidden="true"></div>
@@ -263,7 +279,7 @@
   </section>
 
   <!-- ====================== THE POSTAL RITUAL ====================== -->
-  <section class="section section--band" id="how-it-works">
+  <section class="section" id="how-it-works">
     <div class="shell">
       <div class="sec-head">
         <!-- "How it works", not "The Postal Ritual" - charming internally,
@@ -337,7 +353,7 @@
          letters argue for themselves; a label per tile turns a table of real
          mail into a product catalogue. The alt text carries the description
          for anyone who cannot see them. -->
-  <section class="section" id="real-letters">
+  <section class="section section--band" id="real-letters">
     <div class="shell">
       <!-- No lede under the heading (Patrick, 2026-08-26). The letters are the
            argument; a sentence explaining them is the section apologising for
@@ -370,7 +386,7 @@
   </section>
 
   <!-- ==================== DESKS &amp; COLLECTIONS ==================== -->
-  <section class="section section--band" id="desks">
+  <section class="section" id="desks">
     <div class="shell">
       <!-- "Atmospheric Writing Spaces" came off (2026-08-23): marketing
            language over a heading that already says what this is. The eyebrow
@@ -606,7 +622,7 @@
   </section>
 
   <!-- ======================= LETTERS BY EMAIL ======================= -->
-  <section class="section section--band section--band-warm" id="grandparents">
+  <section class="section section--band" id="grandparents">
     <div class="shell">
       <div class="sec-head">
         <p class="eyebrow">Letters by Email</p>

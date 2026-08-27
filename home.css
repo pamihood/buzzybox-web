@@ -25,7 +25,7 @@
   --parchment-50:  #FCFAF6;
   --parchment-100: #FAF7F2;   /* the page ground */
   --parchment-200: #F4EFE6;   /* the second sheet: banded sections and cards */
-  --parchment-300: #EADBCE;   /* pills, tab wells, image beds */
+  --parchment-300: #EADBCE;   /* band tint, tab wells, image beds */
   --parchment-400: #D8C6B5;
   --parchment-500: #B8A08C;
 
@@ -177,19 +177,22 @@ button { font: inherit; color: inherit; background: none; border: 0; }
 
 /* The second sheet. Four sections carry it, and the hairline top and bottom
    is what makes it read as a sheet of paper rather than a block of colour. */
+/* ONE band tone, and it is the warm one (Patrick, 2026-08-26). There were
+   briefly three grounds - the page, a cool band, and a warm band used by
+   exactly one section - which is not a system, it is an exception: Letters by
+   Email simply looked different from everything else. The warm tone won and
+   every band now carries it. The border steps up from --line-band to --line to
+   match, because a cool hairline on a warmer ground had almost no edge left.
+
+   With one tone, no two banded sections may touch. The run in index.html is
+   arranged so they alternate strictly - see the note above #why. */
 .section--band {
-  background: var(--parchment-200);
-  border-block: 1px solid var(--line-band);
-}
-/* --band-warm now changes the BACKGROUND, not just the border. It always
-   promised a warmer band and only ever delivered a warmer edge, which meant
-   two banded sections in a row were indistinguishable. Giving it a real tint
-   is what lets the page alternate properly with Grandma's section sitting
-   directly after the banded Desks section - see the run in index.html. */
-.section--band-warm {
   background: color-mix(in srgb, var(--parchment-300) 55%, var(--parchment-100));
-  border-block-color: var(--line);
+  border-block: 1px solid var(--line);
 }
+/* (.section--band-warm is gone. It existed to give ONE section a warmer ground
+   than the others; now every band has that ground, so it had nothing left to
+   modify.) */
 
 /* Section heads: an uppercase terracotta eyebrow, a serif h2, a lede. The
    eyebrow is the page's most repeated element and the one that makes nine

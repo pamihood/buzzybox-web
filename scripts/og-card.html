@@ -34,6 +34,7 @@
     /* Straight from home.css. If a token moves there, move it here. */
     :root {
       --ink-900: #2B231D;
+      --ink-700: #574B40;
       --ink-600: #746456;
       --terracotta-600: #C85A32;
       --parchment-100: #FAF7F2;
@@ -111,7 +112,35 @@
       font-style: italic; font-weight: 400;
       font-size: 29px; line-height: 1.2; letter-spacing: -0.01em;
       color: var(--terracotta-600);
-      margin-bottom: 30px;
+      margin-bottom: 22px;
+    }
+    /* THE PROPOSITION, added 2026-08-27 when the hero gained it. The card is
+       the hero's four lines or it is a different product: headline, aside,
+       this, footnote. Without it the card said how Postmello feels and never
+       what it is, and the og:description was carrying that alone - which only
+       works for the reader whose client shows description text under the
+       picture.
+
+       The page's lead treatment, resized for a card rather than copied from
+       it. 20px against the page's 21px is NOT the h1's 58/72 ratio (that would
+       be 17px): a card is a thumbnail in somebody's feed before it is a
+       1200px image, and the two lines that survive being shrunk are the ones
+       set well above the noise. Same face, same 450 weight, same 1.45, same
+       --ink-700 a step softer than the headline. Three lines in the 470px
+       column, which is the widest this can be before the desk shot gives up
+       room it needs more.
+
+       `balance` here, where the page uses `pretty`. On the page the measure is
+       chosen so the natural break lands on the dash; in a fixed 470px column
+       it cannot, and left alone the third line came out as the two words "in
+       touch." under two full ones. Three even lines is the better shape when
+       the seam is not reachable. */
+    .lead {
+      font-family: var(--font-sans);
+      font-weight: 450; font-size: 20px; line-height: 1.45;
+      color: var(--ink-700);
+      margin-bottom: 26px;
+      text-wrap: balance;
     }
     /* The PAGE'S footnote treatment, matched here after the pill came off the
        hero (Patrick, 2026-08-23): plain Courier Prime, no box. The pill's whole
@@ -152,6 +181,8 @@
     </div>
     <h1>A quiet place<br />for letters.</h1>
     <p class="aside">Without the rush of messaging.</p>
+    <p class="lead">A private desk for digital letters between friends and
+       family&nbsp;- a more personal, creative way to stay in touch.</p>
     <span class="badge">Coming first to iPad.</span>
   </div>
   <div class="shot">

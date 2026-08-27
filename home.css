@@ -715,8 +715,9 @@ button { font: inherit; color: inherit; background: none; border: 0; }
 .step-body p { font-size: 0.875rem; line-height: 1.625; color: var(--ink-700); }
 
 /* ---------- The mail wall (#real-letters) ----------
-   Four real letters, one per row, alternating left / right / left / right.
-   Everything here exists to keep them reading as paper:
+   Four real letters. The two single drawings share the top row; each fanned
+   stack gets a row to itself below, alternating left then right. Everything
+   here exists to keep them reading as paper:
 
    - NO box-shadow, NO border, NO border-radius, NO background on the tiles.
      The PNGs are transparent and already carry the paper's own drop shadow,
@@ -725,33 +726,33 @@ button { font: inherit; color: inherit; background: none; border: 0; }
      the fanned stacks, which is the whole illusion.
    - The tilts are small, and no two are the same. Past about 3deg it stops
      looking like paper set down by hand and starts looking like a gimmick.
-   - One letter per row, not two (Patrick, 2026-08-26). Sharing a row capped
-     how big any of them could be, and these are the point of the page. Alone
-     on a row each letter is half again as large, and the alternating sides
-     carry the eye down instead of leaving a static grid.
-   - The rows are spaced apart rather than overlapped. They used to pull up
-     into each other for a pile effect, but letters this size need air to be
-     looked at one at a time, and the overlap cropped the corner of whichever
-     stack sat underneath.
+   - The rows are spaced apart rather than overlapped. Overlapping them for a
+     pile effect cropped the corner of whichever stack sat underneath.
 
-   EVERY LETTER'S TOP PAGE RENDERS AT THE SAME WIDTH (--page). This is the one
-   rule here that is not obvious, and getting it wrong is what the first two
-   attempts did. A fanned stack's PNG is much wider than its own top page - the
-   rest is the pages behind it - and by a DIFFERENT factor each time. So sizing
-   tiles by PNG width, or by equal grid columns, silently renders a four-page
-   stack's top page SMALLER than a single sheet beside it, which inverts the
-   hierarchy and makes the richest letters look like the least important ones.
-   Each --k below is that letter's (PNG width / top page width), printed by
-   scripts/letter-showcase-fan.py in the app repo and mirrored into the
-   site-*.meta.json sidecar next to each master. IF A LETTER IS RE-EXPORTED
-   WITH A DIFFERENT FAN, ITS --k CHANGES - read it off the sidecar, do not
-   guess it. The four-page stack has already moved twice (1.4587 -> 1.528 ->
-   1.662) as its fan was opened out to show more of the writing.
+   SIZING IS TWO-TIER, and it is measured on each letter's TOP PAGE rather than
+   on its PNG. Those are two separate ideas and both matter:
 
-   --page is capped against the WIDEST tile, which is that same four-page stack
-   at --k 1.662: --page * 1.662 has to stay inside the shell, or the section is
-   the one thing on the page that scrolls sideways. Open that fan further and
-   this cap comes down. */
+   1. Top page, not PNG. A fanned stack's PNG is much wider than its own top
+      page - the rest is the pages behind it - and by a DIFFERENT factor each
+      time. Sizing tiles by PNG width, or by equal grid columns, silently
+      renders a four-page stack's top page SMALLER than a single sheet beside
+      it, which inverts the hierarchy. Each --k below is that letter's
+      (PNG width / top page width), printed by scripts/letter-showcase-fan.py
+      in the app repo and mirrored into the site-*.meta.json sidecar next to
+      each master. IF A LETTER IS RE-EXPORTED WITH A DIFFERENT FAN, ITS --k
+      CHANGES - read it off the sidecar, do not guess. The four-page stack has
+      already moved 1.4587 -> 1.528 -> 1.662 as its fan was opened out.
+
+   2. Two tiers, not one (Patrick, 2026-08-26). Every top page used to render
+      at one shared width. That was right while each letter had a row to
+      itself, but it made the section enormous, and it forced the two single
+      drawings to be as large as a four-page stack when they carry a fraction
+      of the content. The drawings now sit at --page-drawing, a little under
+      the stacks' --page, and share a row.
+
+   --page is capped against the WIDEST tile, the four-page stack at --k 1.662,
+   and against the top row holding two drawings side by side. Open that fan
+   further, or put a third thing on the top row, and these caps come down. */
 .mailwall {
   list-style: none;
   margin: 0;
@@ -761,19 +762,22 @@ button { font: inherit; color: inherit; background: none; border: 0; }
   row-gap: 3.5rem;
   justify-items: center;
   /* 52vw * 1.662 = 86vw, which clears the gutters at 375px. */
-  --page: min(26rem, 52vw);
+  --page: min(23rem, 52vw);
+  --page-drawing: calc(var(--page) * 0.85);
 }
 .mailwall-item { margin: 0; }
 .mailwall-item img {
   display: block;
-  width: calc(var(--page) * var(--k, 1));
+  width: calc(var(--w) * var(--k, 1));
   height: auto;
   transition: transform 350ms ease;
 }
-.mailwall-item:nth-child(1) { --k: 1.088; }   /* minty        - single sheet */
-.mailwall-item:nth-child(2) { --k: 1.088; }   /* paddleboard  - single sheet */
-.mailwall-item:nth-child(3) { --k: 1.662; }   /* mountains    - 4-page fan    */
-.mailwall-item:nth-child(4) { --k: 1.364; }   /* typewriter   - 2-page fan    */
+/* --k = PNG width / top page width, from the exporter's sidecar.
+   --w = which size tier this letter belongs to. */
+.mailwall-item:nth-child(1) { --k: 1.088; --w: var(--page-drawing); }  /* minty       - single sheet */
+.mailwall-item:nth-child(2) { --k: 1.088; --w: var(--page-drawing); }  /* paddleboard - single sheet */
+.mailwall-item:nth-child(3) { --k: 1.662; --w: var(--page); }          /* mountains   - 4-page fan   */
+.mailwall-item:nth-child(4) { --k: 1.364; --w: var(--page); }          /* typewriter  - 2-page fan   */
 
 /* "What kids make when there's room." measures ~780px at the shared h2 size,
    about a dozen past the standard --shell-3 head width, which orphaned "room."
@@ -782,15 +786,23 @@ button { font: inherit; color: inherit; background: none; border: 0; }
 
 @media (min-width: 900px) {
   .mailwall {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: 1.5rem;
+    row-gap: 4rem;
+    align-items: start;
     justify-items: stretch;
-    row-gap: 4.5rem;
-    /* 53vw keeps the widest tile inside the shell all the way down to the
-       900px breakpoint; 45rem is where it stops growing on a wide screen. */
-    --page: min(45rem, 53vw);
+    /* Two drawings plus the gap have to fit the shell, which is what caps this
+       rather than the stacks: 2 x (--page * 0.85 * 1.088) + 1.5rem. */
+    --page: min(36rem, 44vw);
   }
   .mailwall-item { width: auto; }
-  .mailwall-item:nth-child(odd)  { justify-self: start; }
-  .mailwall-item:nth-child(even) { justify-self: end; }
+
+  /* Row 1 - the two drawings, one to each edge. */
+  .mailwall-item:nth-child(1) { grid-column: 1 / 7;  grid-row: 1; justify-self: start; }
+  .mailwall-item:nth-child(2) { grid-column: 7 / 13; grid-row: 1; justify-self: end; margin-block-start: 2.5rem; }
+  /* Rows 2 and 3 - a stack each, alternating sides. */
+  .mailwall-item:nth-child(3) { grid-column: 1 / 13; grid-row: 2; justify-self: start; margin-inline-start: 1rem; }
+  .mailwall-item:nth-child(4) { grid-column: 1 / 13; grid-row: 3; justify-self: end;   margin-inline-end: 1rem; }
 
   .mailwall-item:nth-child(1) img { transform: rotate(-2.1deg); }
   .mailwall-item:nth-child(2) img { transform: rotate(1.9deg); }

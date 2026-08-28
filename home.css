@@ -316,6 +316,12 @@ button { font: inherit; color: inherit; background: none; border: 0; }
    second ink would scan faster and would put emphasis inside a lede, which is
    the thing the hero turned down. */
 .lede--cases > span:nth-child(2) { margin-top: 0.625rem; }
+/* A CONTINUATION, not a beat. Where a case is too long for the measure, it is
+   split at its own hinge - the dash bound to the word before it - so the break
+   is the one the sentence wants rather than the one the box picks. The two
+   halves are one sentence, so no gap between them; a gap would say they are
+   two. */
+.lede--pair > .lede-cont { margin-top: 0; }
 /* (.lede--pair > .lede-note set a third line one step down in size and ink,
    for a condition sitting under two examples of one benefit. Its only user was
    the email section's "No app or account required", which went on 2026-08-27

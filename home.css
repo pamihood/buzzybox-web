@@ -320,9 +320,8 @@ button { font: inherit; color: inherit; background: none; border: 0; }
    it at its own hinge - the dash bound to the word before it by a &nbsp; - so
    the break is the one the sentence wants rather than the one the box picks,
    and give the second half no top margin, because the two halves are one
-   sentence and a gap would say they were two. Unused since 2026-08-27, when
-   the case that needed it was rewritten short enough to fit; kept because the
-   next long line will want it. */
+   sentence and a gap would say they were two. The hinge is whatever punctuation
+   the sentence already owns - a dash, a comma - never a point the box picked. */
 .lede--pair > .lede-cont { margin-top: 0; }
 /* THE LINE THAT CLOSES A PAIR, rather than joining it: what is true of both
    cases above, set apart by air alone - 10px against the 4px between peers -

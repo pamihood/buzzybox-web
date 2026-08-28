@@ -43,7 +43,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&amp;family=Lora:ital,wght@0,400..700;1,400..700&amp;family=Plus+Jakarta+Sans:wght@400..800&amp;display=swap" />
   <!-- home.css styles THIS PAGE ONLY. Everything else on the site still runs
        styles.css; see the note at the top of home.css. -->
-  <link rel="stylesheet" href="home.css?v=1c8ef0d1" />
+  <link rel="stylesheet" href="home.css?v=f6f45795" />
 </head>
 <body>
 
@@ -824,27 +824,34 @@
              letter can come from, so the lede gives the two reasons a reader
              would care and then closes on the thing that is true of both:
              wherever it was written, it lands on the desk. That last line is
-             what makes the pair a lane rather than two anecdotes.
+             what makes the pair a lane rather than two anecdotes, and it is
+             set apart by AIR alone - 10px above it against the 4px between
+             the two peers - so it reads as a conclusion, not a third example.
 
              The rule line that used to open this ("A desk can exchange
              letters with approved friends through Postmello or email") went
-             on 2026-08-27 - it was the H2 again in longer words. What it
+             on 2026-08-27: it was the H2 again in longer words. What it
              carried that the heading cannot, "approved friends" and
              "exchange", is stated in the FAQ and on the Safety page, where a
              reader goes to check a guarantee rather than be sold one.
 
-             A LINE EACH, and all three fit: 383px, 645 and 516 in the 768px
-             box at 19px. Measure before rewriting - the previous version of
-             the second case ran to 910 and wrapped after "even if", parting a
-             conjunction from its clause, which is what made the block read as
-             a paragraph. Nothing here may exceed the box.
+             THE SECOND CASE IS SPLIT AT ITS COMMA, and the reason is a
+             measurement: whole, it is 864px in a 768px box, so it wraps, and
+             left to itself a wrap lands wherever the box runs out. Split at
+             the comma it is 560 and 300 - the condition on one line, what
+             follows from it on the next, which is the break the sentence
+             already has. .lede-cont carries no top margin because those two
+             spans are one sentence and a gap would say they were two. (The
+             same device held "...can use email too -" to its dash an hour
+             ago; it was kept in the stylesheet unused on the grounds that the
+             next long line would want it, and the next long line is this one.)
 
-             The closing line takes 10px above it against the 4px between the
-             two cases, so it reads as the conclusion rather than as a third
-             example. Spacing only: a second ink or a bolded subject is the
-             emphasis the hero turned down. -->
+             MEASURE BEFORE REWRITING. Nothing in this lede may exceed 768px
+             at 19px, and a line that does must be split at a hinge the
+             sentence owns - a dash, a comma - never left to the box. The
+             first and third lines are 383 and 516 and fit as they are. -->
         <h2>Write from Postmello or email.</h2>
-        <p class="lede lede--pair"><span>Grandma can use her inbox without joining.</span> <span>And when a parent is away from home, they can write from email instead.</span> <span class="lede-close">Either way, the letter arrives on the child&rsquo;s Postmello desk.</span></p>
+        <p class="lede lede--pair"><span>Grandma can use her inbox without joining.</span> <span>And when a parent who uses Postmello is away from their desk,</span> <span class="lede-cont">they can write from email instead.</span> <span class="lede-close">Either way, the letter arrives on the child&rsquo;s Postmello desk.</span></p>
       </div>
 
       <!-- TITLE PLUS A LINE here, unlike the how-it-works steps above

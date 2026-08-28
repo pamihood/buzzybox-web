@@ -1352,11 +1352,22 @@ button { font: inherit; color: inherit; background: none; border: 0; }
 .compare-cell--good { color: #3E5C46; }
 /* The bullet is drawn so it can sit on the cap height of the first line
    instead of on the baseline. */
+/* CENTRED ON ITS LINE, not nudged onto it (Patrick, 2026-08-27). The 7px
+   margin-top was hand-tuned when the points were multi-line and set smaller;
+   at 17px on a 1.6 leading it left every dot sitting up at cap height, which
+   reads as a bullet floating above its text rather than beside it.
+
+   The calc centres the dot inside the FIRST line box - half the leading minus
+   half the dot - and it is written in em so it re-solves itself at the 16px
+   mobile size and at any future size, instead of being a pixel that has to be
+   re-tuned. flex-start is deliberate rather than align-items:center: today
+   every point is one line, but a point that ever wraps must keep its dot on
+   the first line and not float to the middle of the block. */
 .compare-cell::before {
   content: '';
   flex: none;
   width: 0.375rem; height: 0.375rem;
-  margin-top: 0.4375rem;
+  margin-top: calc((1.6em - 0.375rem) / 2);
   border-radius: var(--r-full);
 }
 .compare-cell--bad::before  { background: #A24222; }
@@ -1708,6 +1719,18 @@ button { font: inherit; color: inherit; background: none; border: 0; }
 .plan-more-body .note--founding { display: block; margin-top: 0.25rem; font-size: 0.75rem; font-weight: 600; color: var(--terracotta-600); }
 .plan-more-body .note--founding:empty { display: none; }
 .plan-more-body p { margin-top: 0.75rem; font-size: 1rem; line-height: 1.6; color: var(--ink-700); }
+/* The founding-rate terms, under the disclosure's <dl> rather than inside it:
+   the rule covers both tiers, not the Plus row it sits beneath. A step down
+   from .plan-more-body p in ink but NOT in size - it is the one place on the
+   page that qualifies a price, so it has to be readable, not fine print. */
+.plan-more-terms {
+  margin-top: 1rem;
+  padding-top: 0.875rem;
+  border-top: 1px solid var(--line);
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--ink-600);
+}
 
 /* The one action for the section, centred under both cards. The bottom margin
    is the air before the Collections panel, which the button was otherwise

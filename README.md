@@ -223,6 +223,30 @@ these are the rules that are easiest to break by accident:
 
 ## TODO
 
+- **Decide whether the COPPA badge goes back on the homepage** (taken down
+  2026-08-27, at Patrick's request, "for now"). It read *"COPPA compliant —
+  Parental consent and privacy protections built in"* and sat below the three
+  safety cards, above the "Learn about Safety" arrow. Nothing about the claim
+  changed: `privacy.html` still states the mechanism in full and
+  `parents.html` walks a parent through it. What came off was the compact
+  homepage BADGE — a compliance claim standing next to nothing that qualifies
+  it.
+
+  **What to weigh when reassessing.** COPPA compliance is not a certification
+  anybody issues, so the badge asserts its own conclusion; that is defensible
+  when the flow behind it is live and load-bearing, and thin when it is not.
+  So the question is really: is verifiable parental consent enforced for every
+  under-13 desk on the shipping build, and is the app-side story stable enough
+  that a homepage claim will not need walking back? The app repo's
+  `docs/INVARIANTS.md` and the KWS parental-verification work are where that
+  is actually true or not. Reassess before the App Store listing goes public,
+  because the same claim will need deciding for the listing anyway.
+
+  **Putting it back** is markup only: `.safety-badge` is still styled in
+  `home.css`, and the element was a shield `<svg>` plus a `<span>` with a
+  `<strong>` lead-in and one sentence. The removed markup is quoted verbatim
+  in the comment left at the removal site in `index.html`.
+
 - **Re-cast the friends in every screenshot** (Patrick, 2026-08-16; halved
   2026-08-17). The drawer cast is currently Iris, Theo, Grandma, Grandpa and
   Nana — five friends, four of them relatives. One change is left:

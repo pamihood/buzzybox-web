@@ -43,7 +43,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&amp;family=Lora:ital,wght@0,400..700;1,400..700&amp;family=Plus+Jakarta+Sans:wght@400..800&amp;display=swap" />
   <!-- home.css styles THIS PAGE ONLY. Everything else on the site still runs
        styles.css; see the note at the top of home.css. -->
-  <link rel="stylesheet" href="home.css?v=3c5f8412" />
+  <link rel="stylesheet" href="home.css?v=40f3a82b" />
 </head>
 <body>
 
@@ -353,8 +353,13 @@
                rather than reinforcing it: a reader has to picture a room and a
                desk at once, and only one of them is a thing the app actually
                shows. Plain "room" keeps the space the sentence is promising
-               without spending a metaphor on it. The FAQ carries this sentence
-               verbatim plus "one letter at a time"; keep the two in step. -->
+               without spending a metaphor on it.
+               The FAQ used to carry this sentence verbatim plus "one letter at
+               a time". It does not any more (2026-08-27): repeating the panel
+               an FAQ-length below it made the argument sound rehearsed, so
+               "How is Postmello different from texting?" answers mechanically
+               instead. This sentence is now unique to this panel - do not
+               re-sync them. -->
           <p>Postmello gives kids room to write, draw, be silly or thoughtful, and stay in touch independently with people you approve.</p>
           <!-- The signature, and the smallest thing that makes the paragraph
                above it a person's rather than a company's. It carries the
@@ -957,11 +962,24 @@
         </article>
       </div>
 
-      <p class="safety-badge">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>
-        <span><strong>COPPA compliant</strong> Parental consent and privacy
-          protections built in.</span>
-      </p>
+      <!-- THE COPPA BADGE IS OFF, not deleted (Patrick, 2026-08-27). It read
+           "COPPA compliant - Parental consent and privacy protections built
+           in", under the three safety cards. Taken down for now, to be
+           reassessed rather than abandoned - see the TODO in README.md, which
+           records what has to be true before it goes back up.
+
+           The claim itself is not in doubt and is not gone from the site:
+           privacy.html states the mechanism in full (verifiable parental
+           consent under COPPA, how a child desk is gated until consent and
+           adult verification are complete) and parents.html walks a reader
+           through it. This was the homepage BADGE, which is a different
+           thing - a compact compliance claim standing on its own next to
+           nothing that qualifies it.
+
+           If it returns: .safety-badge is still styled in home.css, and the
+           markup was a shield <svg> plus a <span> holding a <strong> lead-in
+           and one sentence. Put it back below the safety grid and above the
+           "Learn about Safety" arrow, which is where it sat. -->
 
       <!-- The one place on the homepage that hands a worried reader the whole
            Safety page. It sits under the badge rather than in the section head
@@ -988,12 +1006,21 @@
   <section class="section" id="testimonials">
     <div class="shell shell--5">
       <div class="sec-head">
-        <p class="eyebrow">Shaped with Families in Private Beta</p>
-        <h2 style="margin-top:1rem">A few notes from families who write with us.</h2>
+        <!-- THE PAIRING (Patrick, 2026-08-27). The eyebrow says what the beta
+             IS - families shaping the product, not an audience being tested on
+             - and the H2 says what this section therefore contains. "A few
+             notes from families who write with us" described the format; this
+             describes the relationship, and the two halves now depend on each
+             other the way an eyebrow and a heading should.
+             Sentence case in the source like every other eyebrow: .eyebrow
+             uppercases it in CSS, and no eyebrow on the page carries a full
+             stop. -->
+        <p class="eyebrow">Shaped with families in private beta</p>
+        <h2 style="margin-top:1rem">What we&rsquo;re hearing from families.</h2>
       </div>
       <div class="story-grid">
         <article class="story">
-          <p class="story-quote"><span class="story-q">&ldquo;</span>I love the whimsical spirit! It is so beautifully done! The entire space and the overall aesthetics are so charming and consistent around the slow, truly creative feel. And my daughter likes the bee! She loves how it sleeps in the little nest and blinks its eyes! The woodland theme is our favorite.<span class="story-q">&rdquo;</span></p>
+          <p class="story-quote"><span class="story-q">&ldquo;</span>I love the whimsical spirit! It is so beautifully done! The entire space and the overall aesthetics are so charming and consistent around the slow, truly creative feel.<span class="story-q">&rdquo;</span></p>
           <p class="story-author">
             <span class="story-name">Carolin</span>
             <span class="story-sep" aria-hidden="true">&bull;</span>
@@ -1001,7 +1028,7 @@
           </p>
         </article>
         <article class="story">
-          <p class="story-quote"><span class="story-q">&ldquo;</span>My daughter says it&rsquo;s &lsquo;Waaaay better - you can add way more stuff and even stickers!!&rsquo; She spent the last half hour writing notes and loved it. And she loves that a bee takes her mail away. They both love using the typewriter, too.<span class="story-q">&rdquo;</span></p>
+          <p class="story-quote"><span class="story-q">&ldquo;</span>She spent the last half hour writing notes and loved it. And she loves that a bee takes her mail away.<span class="story-q">&rdquo;</span></p>
           <p class="story-author">
             <span class="story-name">Ann</span>
             <span class="story-sep" aria-hidden="true">&bull;</span>
@@ -1111,6 +1138,29 @@
             <p>Everything in Membership, with room for a bigger household.</p>
           </dd>
         </dl>
+        <!-- WHAT "YOURS TO KEEP" MEANS, and the reason this line exists
+             (Patrick, 2026-08-27). The founding note under each price is
+             deliberately short and stays short - a price does not want
+             legalistic copy directly beneath it - but on its own "yours to
+             keep" can be read as "cancel for three years, come back at this
+             rate", which is not the policy. pricing.json's founding_window
+             notes say it plainly: when the window closes the App Store price
+             rises with "preserve price for existing subscribers", so founding
+             households keep the price WHILE SUBSCRIBED.
+
+             It sits here because this disclosure is the section's one place
+             for detail, and it covers BOTH tiers rather than the Plus row it
+             happens to sit under - which is why it is outside the <dl> and
+             not inside that <dd>.
+
+             THIS SENTENCE IS HAND-WRITTEN, not generated: apply-pricing.py
+             writes the two founding NOTES from pricing.json and empties them
+             when the window closes. The CSS cannot hide this one, so when
+             that day comes, delete it here by hand in the same pass. -->
+        <p class="plan-more-terms">A founding rate holds for as long as the
+           membership stays active - each year renews at the founding price,
+           not the regular one. If it lapses, rejoining is at whatever the
+           price is then.</p>
       </details>
 
       <!-- ONE action for everybody, under the row rather than inside a card. -->
@@ -1151,7 +1201,7 @@
 
       <div class="trust">
         <h2>No ads. No selling data. Your letters stay yours.</h2>
-        <p class="trust-why">Postmello is member-supported, so it can stay private, mellow, and built for the people using it - not advertisers.</p>
+        <p class="trust-why">Postmello is supported by the people who use it, so it can stay private, mellow, and built for them - not advertisers.</p>
         <!-- (Four badges stood here: 100% Ad-Free, Safe Cloud Archival, Parent
              Approved, Member Supported, each with an emoji. They repeated the
              two sentences directly above them almost word for word, and the
@@ -1194,7 +1244,16 @@
             <span>How is Postmello different from texting?</span>
             <span class="faq-chevron" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></span>
           </summary>
-          <div class="faq-answer">Texting wasn&rsquo;t made for kids. It&rsquo;s built around quick replies, group chats, photos, links, and notifications. Postmello gives kids room to write, draw, be silly or thoughtful, and stay in touch independently with people you approve - one letter at a time.</div>
+          <!-- MATTER-OF-FACT, and deliberately NOT the Why Postmello copy
+               (Patrick, 2026-08-27). This answer used to repeat that panel
+               almost word for word, "with people you approve" included. The
+               panel now opens in Patrick's own voice, and an FAQ that quotes
+               it back at a reader who has just scrolled past it says the
+               argument twice and makes the second one sound rehearsed. Down
+               here the useful answer is mechanical: what the product does
+               instead of chatting. Keep it that way - if this ever starts
+               sounding persuasive again, it has drifted back. -->
+          <div class="faq-answer">There is no chat. A letter is made on a desk - handwritten, drawn or typed - addressed to one person, and sent as a whole. Nothing shows who is online or whether a letter has been read, and a letter can&rsquo;t be passed along to someone new.</div>
         </details>
         <!-- Sits at #2 because it is a who-is-this-for question and belongs
              with the positioning, not down in the features cluster: what is
@@ -1248,7 +1307,7 @@
         </details>
         <details class="faq-item" data-cat="features">
           <summary>
-            <span>Can siblings share one family iPad?</span>
+            <span>Can siblings share one iPad?</span>
             <span class="faq-chevron" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></span>
           </summary>
           <div class="faq-answer">Yes! A Membership supports multiple individual desks on one device. Each person gets their own personalized desk style, engraved nameplate, private mailbox, sticker drawer, and friend drawers. Siblings can even write between desks at home.</div>
@@ -1276,7 +1335,14 @@
             <span>Is my child&rsquo;s data and artwork kept private?</span>
             <span class="faq-chevron" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></span>
           </summary>
-          <div class="faq-answer">Absolutely. No ads. No selling data. Your letters stay yours. Postmello is member-supported, so it can stay private, mellow, and built for the people using it - not advertisers.</div>
+          <!-- "Yes", not "Absolutely" (Patrick, 2026-08-27). "Absolutely" is
+               rhetorically stronger than anything an online service can
+               literally promise, and an over-claim is the wrong note in the
+               one answer a reader is checking for over-claims. A plain yes
+               followed by properties somebody could hold us to is the more
+               trustworthy shape. "Personal data", not "data": letters are
+               data too, and the promise is about what is sold. -->
+          <div class="faq-answer">Yes. No ads, no selling personal data, and letters travel only between friends both sides have approved. Postmello is supported by the people who use it, so it can stay private, mellow, and built for them - not advertisers.</div>
         </details>
       </div>
 

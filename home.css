@@ -309,6 +309,17 @@ button { font: inherit; color: inherit; background: none; border: 0; }
    two paragraphs. */
 .lede--pair > span { display: block; }
 .lede--pair > span + span { margin-top: 0.25rem; }
+/* A THIRD LINE THAT IS NOT A THIRD SENTENCE. Where the pair is two examples of
+   one benefit, the condition on them belongs under both rather than beside
+   either - so it steps down ONE level, in size and in ink, and takes a little
+   more air above it than the examples take between themselves. One level:
+   at two it would be a caption, and this page spent a whole pass proving that
+   an explanation set as apparatus stops being read. */
+.lede--pair > .lede-note {
+  margin-top: 0.5rem;
+  font-size: 0.9375em;
+  color: var(--ink-600);
+}
 
 /* (.pill / .pill--solid / .pill--sheer / .pill svg styled a rounded badge used
    by three section heads - Why Postmello, the testimonials credential and the

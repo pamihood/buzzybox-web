@@ -1482,24 +1482,43 @@ button { font: inherit; color: inherit; background: none; border: 0; }
    it in body colour — one line at desktop, wrapping as one block below. The
    shield keeps the sage every mark on this section uses; terracotta here
    would read as a warning on a section about safety. */
+/* RESHAPED for a longer line (2026-08-27). This held one short compliance
+   claim, so a centred wrap-anywhere pill worked: the shield and the text sat
+   on one row and the flex-wrap never fired. The claim it holds now is a
+   sentence, and centred wrapping put the shield alone on a line above it,
+   floating over its own text.
+
+   So: the shield is a fixed-width first column and the text a block beside
+   it, left-aligned, top-aligned to the first line. Not a pill any more
+   either - a full-radius border around two lines of text bows out at the
+   ends. And 15px, not 13: under THE DESCRIPTIVE SCALE this stopped being
+   apparatus the moment it became a specific claim a parent is meant to read
+   and check. */
 .safety-badge {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 0.5rem;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: start;
+  gap: 0.625rem;
   margin: 3rem auto 0;
   max-width: 34rem;
-  padding: 0.75rem 1.25rem;
+  padding: 0.875rem 1.25rem;
   border: 1px solid var(--line);
-  border-radius: var(--r-full);
+  border-radius: var(--r-2xl);
   background: color-mix(in srgb, var(--sage-500) 6%, transparent);
-  text-align: center;
-  font-size: 0.8125rem;
+  text-align: left;
+  font-size: 0.9375rem;
   line-height: 1.5;
   color: var(--ink-700);
 }
-.safety-badge svg { width: 1.125rem; height: 1.125rem; flex: none; color: var(--sage-500); }
+.safety-badge strong { color: var(--ink-900); }
+/* margin-top nudges the shield onto the first line's optical centre rather
+   than its box top - the same problem, and the same calc, as the Design
+   Philosophy bullets. */
+.safety-badge svg {
+  width: 1.125rem; height: 1.125rem; flex: none;
+  margin-top: calc((1.5em - 1.125rem) / 2);
+  color: var(--sage-500);
+}
 /* The gap after the label is the punctuation (Patrick, 2026-08-25). The two
    halves are a credential and its gloss, and with only a word space between
    them they read as one run-on sentence — "COPPA compliant Parental consent".

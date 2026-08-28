@@ -223,29 +223,46 @@ these are the rules that are easiest to break by accident:
 
 ## TODO
 
-- **Decide whether the COPPA badge goes back on the homepage** (taken down
-  2026-08-27, at Patrick's request, "for now"). It read *"COPPA compliant —
-  Parental consent and privacy protections built in"* and sat below the three
-  safety cards, above the "Learn about Safety" arrow. Nothing about the claim
-  changed: `privacy.html` still states the mechanism in full and
-  `parents.html` walks a parent through it. What came off was the compact
-  homepage BADGE — a compliance claim standing next to nothing that qualifies
-  it.
+- **Revisit a categorical COPPA claim only against this checklist** (decided
+  2026-08-27). The homepage badge that read *"COPPA compliant — Parental
+  consent and privacy protections built in"* is gone for good in that form,
+  replaced by the concrete claim it was standing in for: **"Verified parental
+  consent — An under-13 desk can't send or receive letters until an adult has
+  approved it and been verified."** That is checkable, is what a parent
+  actually wants to know, and is the same fact the regulation is about.
 
-  **What to weigh when reassessing.** COPPA compliance is not a certification
-  anybody issues, so the badge asserts its own conclusion; that is defensible
-  when the flow behind it is live and load-bearing, and thin when it is not.
-  So the question is really: is verifiable parental consent enforced for every
-  under-13 desk on the shipping build, and is the app-side story stable enough
-  that a homepage claim will not need walking back? The app repo's
-  `docs/INVARIANTS.md` and the KWS parental-verification work are where that
-  is actually true or not. Reassess before the App Store listing goes public,
-  because the same claim will need deciding for the listing anyway.
+  **Why not the categorical claim.** Nobody issues a "COPPA compliant"
+  certification. The FTC runs an approved **Safe Harbor** programme — PRIVO,
+  kidSAFE, ESRB, CARU — and a seal from one of those means an outside body
+  assessed us. A badge we design ourselves is our own legal conclusion printed
+  in a shield. If a recognisable seal is ever wanted, that programme is the
+  route, not a homepage element.
 
-  **Putting it back** is markup only: `.safety-badge` is still styled in
-  `home.css`, and the element was a shield `<svg>` plus a `<span>` with a
-  `<strong>` lead-in and one sentence. The removed markup is quoted verbatim
-  in the comment left at the removal site in `index.html`.
+  **What would have to be true first**, if the question is ever reopened. Four
+  things, and only the first is close to done:
+
+  1. **The pilot cohort goes through the gate.** The app repo's decision log
+     grandfathered the pre-existing pilot desks — no retroactive consent
+     chase. Any of those belonging to under-13s are then an intentional
+     exception sitting underneath a public claim, which is exactly the shape
+     of problem worth a dozen households' inconvenience to remove. Being
+     migrated in the app repo now (2026-08-27); the shipping gate itself is
+     built, enforced server-side, and cannot be self-granted by a client.
+  2. **A written information-security programme**, which the 2025 amended Rule
+     requires explicitly rather than by implication.
+  3. **Written assurances from service providers** that handle children's
+     information, and a **complete written retention schedule** — purpose,
+     business need, deletion timeframe. The public retention copy is good;
+     "routine backups that are overwritten in time" is not a retention
+     schedule.
+  4. **The parental-deletion path is implemented.** Ordinary account deletion
+     leaves delivered letters in the recipient's mailbox, and a statutory
+     deletion request may require erasing those copies. The Parent Notice
+     already promises this where the law requires it; the mechanism needs to
+     exist before anything categorical is claimed.
+
+  None of this touches what the site says today: `privacy.html` and
+  `parents.html` state the mechanism in full and are unchanged.
 
 - **Re-cast the friends in every screenshot** (Patrick, 2026-08-16; halved
   2026-08-17). The drawer cast is currently Iris, Theo, Grandma, Grandpa and

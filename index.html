@@ -43,7 +43,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&amp;family=Lora:ital,wght@0,400..700;1,400..700&amp;family=Plus+Jakarta+Sans:wght@400..800&amp;display=swap" />
   <!-- home.css styles THIS PAGE ONLY. Everything else on the site still runs
        styles.css; see the note at the top of home.css. -->
-  <link rel="stylesheet" href="home.css?v=b6921624" />
+  <link rel="stylesheet" href="home.css?v=f568c2d1" />
 </head>
 <body>
 
@@ -962,24 +962,45 @@
         </article>
       </div>
 
-      <!-- THE COPPA BADGE IS OFF, not deleted (Patrick, 2026-08-27). It read
-           "COPPA compliant - Parental consent and privacy protections built
-           in", under the three safety cards. Taken down for now, to be
-           reassessed rather than abandoned - see the TODO in README.md, which
-           records what has to be true before it goes back up.
+      <!-- WHAT THE PRODUCT DOES, NOT WHICH LAW IT SATISFIES (Patrick,
+           2026-08-27). This slot read "COPPA compliant - Parental consent and
+           privacy protections built in". Two problems with that, and only the
+           first is legal.
 
-           The claim itself is not in doubt and is not gone from the site:
-           privacy.html states the mechanism in full (verifiable parental
-           consent under COPPA, how a child desk is gated until consent and
-           adult verification are complete) and parents.html walks a reader
-           through it. This was the homepage BADGE, which is a different
-           thing - a compact compliance claim standing on its own next to
-           nothing that qualifies it.
+           NOBODY ISSUES A "COPPA COMPLIANT" CERTIFICATION. The FTC runs an
+           approved Safe Harbor programme - PRIVO, kidSAFE, ESRB, CARU - and a
+           seal from one of those means an outside body assessed you. A badge
+           we designed ourselves is our own legal conclusion printed in a
+           shield, which is the weakest possible form of a strong claim. If a
+           recognisable seal is ever wanted, that is the route, not this
+           element.
 
-           If it returns: .safety-badge is still styled in home.css, and the
-           markup was a shield <svg> plus a <span> holding a <strong> lead-in
-           and one sentence. Put it back below the safety grid and above the
-           "Learn about Safety" arrow, which is where it sat. -->
+           The second problem is that the categorical claim is WEAKER COPY. A
+           parent does not want to know which federal rule we believe we meet;
+           they want to know what happens on the desk their child is using.
+           "An under-13 desk can't send or receive letters until an adult has
+           approved it and been verified" is checkable, specific, and the same
+           fact the regulation is about. Read with the three cards above it,
+           the section now says: adult controls behind a PIN, approved friends
+           only, verified parental consent.
+
+           ACCURACY, and do not loosen it: this sentence must not outrun
+           privacy.html ("Postmello requires parental consent and adult
+           verification before that desk can communicate with other people")
+           or parents.html. BOTH halves are required - consent AND
+           verification - so the badge names both. It describes under-13 desks
+           only, which is also what the product gates; an adult's own desk and
+           a grandparent's do not go through it.
+
+           README.md carries the conditions under which a categorical COPPA
+           claim could be revisited, including the pilot cohort still being
+           migrated through this gate in the app repo. -->
+      <p class="safety-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>
+        <span><strong>Verified parental consent</strong> An under-13 desk
+          can&rsquo;t send or receive letters until an adult has approved it
+          and been verified.</span>
+      </p>
 
       <!-- The one place on the homepage that hands a worried reader the whole
            Safety page. It sits under the badge rather than in the section head

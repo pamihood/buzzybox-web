@@ -279,6 +279,26 @@ button { font: inherit; color: inherit; background: none; border: 0; }
   color: var(--ink-700);
 }
 @media (min-width: 640px) { .sec-head .lede { font-size: 1.1875rem; } }
+/* Balanced, like every other short centred block on this page. A section lede
+   is one or two lines; left to wrap it set the Collections line as a 765px
+   line over a 198px one, which reads as a sentence that overflowed rather
+   than as a sentence that was placed. */
+.sec-head .lede { text-wrap: balance; }
+
+/* A SENTENCE A LINE. Used where a lede is two sentences that are PARALLEL or
+   independent - the philosophy antithesis, the two email-lane guarantees, the
+   two facts about Grandma. Not for a sentence and its follow-up: the hero's
+   paragraph was split like this on 2026-08-23 and closed back up the same day,
+   because there the second sentence was the TURN in the first and a break made
+   it read as a separate statement. The test is whether the two could be
+   swapped without damage; if they could, they are a pair.
+
+   Blocks rather than a <br>, so each sentence still wraps on its own terms at
+   a phone width instead of breaking at a point chosen for a desktop. The gap
+   is a quarter of a line - enough to show they are two, too little to read as
+   two paragraphs. */
+.lede--pair > span { display: block; }
+.lede--pair > span + span { margin-top: 0.25rem; }
 
 /* (.pill / .pill--solid / .pill--sheer / .pill svg styled a rounded badge used
    by three section heads - Why Postmello, the testimonials credential and the
@@ -1146,6 +1166,29 @@ button { font: inherit; color: inherit; background: none; border: 0; }
 }
 
 .tab-panel[hidden] { display: none; }
+/* THE TABS STOP MOVING THE PAGE (Patrick, 2026-08-27: the container changes
+   height when we cycle through the tabs). The four panels are genuinely
+   different heights and should be: each artefact has its own bed aspect -
+   papers 3:4, envelopes 4:3, stamps and stickers 1:1 - at its own column
+   count, so at 1280 they measure 172, 155, 199 and 175. Equalising the grids
+   would mean distorting three of the four shapes to match one.
+
+   So the WRAPPER is held at the tallest instead, and it cannot be a number in
+   this file: the column counts step at 640, 768 and 1024 and the bed heights
+   are a fraction of the container width, so which panel is tallest - and by
+   how much - changes with the viewport. The script at the end of index.html
+   measures the four once and on resize and sets min-height here. Aspect-ratio
+   is what makes that honest: a bed's height does not depend on its image, so
+   the measurement is right before a single picture has loaded.
+
+   Why not stack all four in one grid cell and let the tallest size the box,
+   which needs no script at all: `visibility: hidden` keeps a panel in the
+   layout, and a panel in the layout loads its images. That would pull all 29
+   stationery pictures on arrival instead of the nine a visitor asked for.
+
+   With the script blocked there is nothing to fix - the tabs do not switch, so
+   the first panel is the only one ever shown. */
+.stationery-panels { min-height: 0; }
 .st-grid { display: grid; gap: 0.75rem; }
 .st-grid--papers   { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .st-grid--envelopes { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }

@@ -43,7 +43,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&amp;family=Lora:ital,wght@0,400..700;1,400..700&amp;family=Plus+Jakarta+Sans:wght@400..800&amp;display=swap" />
   <!-- home.css styles THIS PAGE ONLY. Everything else on the site still runs
        styles.css; see the note at the top of home.css. -->
-  <link rel="stylesheet" href="home.css?v=30822b98" />
+  <link rel="stylesheet" href="home.css?v=b16d1ca8" />
 </head>
 <body>
 
@@ -630,6 +630,10 @@
           </div>
         </div>
 
+        <!-- The four panels share a wrapper so their height can be held at
+             the tallest of them - see .stationery-panels in home.css and the
+             stationery block in the script at the end of this page. -->
+        <div class="stationery-panels">
         <div class="tab-panel" id="st-papers" role="tabpanel">
           <div class="st-grid st-grid--papers">
             <div class="st-item">
@@ -758,6 +762,7 @@
             </div>
           </div>
         </div>
+        </div><!-- /.stationery-panels -->
       </div>
     </div>
   </section>
@@ -768,7 +773,7 @@
       <div class="sec-head">
         <p class="eyebrow">Letters by Email</p>
         <h2>Grandma doesn&rsquo;t need the app.</h2>
-        <p class="lede">She can receive and reply by email. No tablet, app, or account required.</p>
+        <p class="lede lede--pair"><span>She can receive and reply by email.</span> <span>No tablet, app, or account required.</span></p>
       </div>
 
       <!-- TITLE PLUS A LINE here, unlike the how-it-works steps above
@@ -827,8 +832,10 @@
            The two facts worth keeping are the two a parent actually needs: who
            may reply, and what a reply may carry. Both are now in one sentence
            under the three pictures, which is where the eye already is. -->
-      <p class="bridge-note">Only approved email addresses can reply. Links,
-         photos and attachments never reach the desk.</p>
+      <!-- Two independent guarantees, so a line each - and it fixes the
+           orphan this had, which was the single word "desk." under a full
+           line. See .lede--pair for the rule. -->
+      <p class="bridge-note lede--pair"><span>Only approved email addresses can reply.</span> <span>Links, photos and attachments never reach the desk.</span></p>
     </div>
   </section>
 
@@ -838,7 +845,19 @@
       <div class="sec-head sec-head--tight">
         <p class="eyebrow">Design Philosophy</p>
         <h2>Made to feel like letters.</h2>
-        <p class="lede">Messaging is built for fast, fluid conversation. Postmello is built for deliberate correspondence.</p>
+        <!-- A SENTENCE A LINE (Patrick, 2026-08-27). Wrapped as prose this
+             set as a 684px line over the single word "correspondence." - but
+             the orphan is the symptom, not the reason. These two sentences are
+             an ANTITHESIS, the same construction as the two closing lines in
+             the columns below, and a mirror only reads as a mirror when its
+             halves sit one above the other.
+
+             The rule, since this is now done in three places: split when the
+             sentences are PARALLEL or independent; keep them running together
+             when the second continues the first. That is why the hero's
+             paragraph was closed back up on 2026-08-23 and this one is opened
+             out - there, the second sentence was the turn in the first. -->
+        <p class="lede lede--pair"><span>Messaging is built for fast, fluid conversation.</span> <span>Postmello is built for deliberate correspondence.</span></p>
       </div>
 
       <!-- FOUR PAIRS, AND NO SENTENCES (Patrick, 2026-08-27). It was five
@@ -1700,6 +1719,55 @@
     tab.addEventListener('click', function () { showStationery(tab); });
   });
   wireTabs(tabs, showStationery);
+
+  /* HOLD THE PANEL BOX AT THE TALLEST TAB, so switching tabs does not resize
+     the page under the reader's cursor. The four panels are legitimately
+     different heights (see .stationery-panels in home.css for why equalising
+     the grids would be worse), and which one is tallest changes with the
+     viewport, so the number has to be measured rather than written down.
+
+     Measuring a hidden panel means showing it, so each is unhidden inside a
+     position:absolute + visibility:hidden clamp: it is laid out, it is never
+     painted, and the visible panel never moves. Restored in a finally-ish
+     sweep so an exception cannot leave a panel stranded on screen.
+
+     Aspect-ratio on the beds is what makes this trustworthy before the images
+     arrive - a bed's height is a fraction of its column width, not a function
+     of its picture - so the first measurement is already the right one. */
+  var stationeryPanels = document.querySelector('.stationery-panels');
+  function sizeStationery() {
+    if (!stationeryPanels) return;
+    var panels = stationeryPanels.querySelectorAll('.tab-panel');
+    var tallest = 0;
+    Array.prototype.forEach.call(panels, function (panel) {
+      var hidden = panel.hidden;
+      if (hidden) {
+        panel.style.position = 'absolute';
+        panel.style.visibility = 'hidden';
+        panel.style.left = '0';
+        panel.style.right = '0';
+        panel.hidden = false;
+      }
+      tallest = Math.max(tallest, panel.getBoundingClientRect().height);
+      if (hidden) {
+        panel.hidden = true;
+        panel.style.position = '';
+        panel.style.visibility = '';
+        panel.style.left = '';
+        panel.style.right = '';
+      }
+    });
+    stationeryPanels.style.minHeight = tallest ? Math.ceil(tallest) + 'px' : '';
+  }
+  sizeStationery();
+  /* Re-measure when the column counts step at 640/768/1024, and after the web
+     fonts land, since the caption under each tile is a line of type. */
+  var stationeryResize;
+  window.addEventListener('resize', function () {
+    clearTimeout(stationeryResize);
+    stationeryResize = setTimeout(sizeStationery, 150);
+  });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(sizeStationery);
 
   /* 5 - the beta form, used by the footer and the dialog.
 

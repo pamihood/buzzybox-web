@@ -756,7 +756,45 @@ button { font: inherit; color: inherit; background: none; border: 0; }
   margin-bottom: 1.5rem;
 }
 @media (min-width: 640px) { .why-inner p:not(.eyebrow) { font-size: 1.1875rem; } }
-.why-inner .arrow-link { margin-top: 0.5rem; }
+/* THE SIGNATURE. Deliberately the smallest move that turns the paragraph
+   above it from a position into a person: one line, at the size of a caption
+   rather than of the copy, with the name the only thing in heading ink. A
+   founder who needs a card, a portrait and a pull-quote is running a founder
+   SECTION, which is what this is not - see the note in the markup.
+
+   It sits on the .why-sign line rather than under it, because the arrow link
+   was already the last thing in this panel and stacking a signature above it
+   would have given the panel two endings. Wraps to two lines under ~420px,
+   where the middot goes with it.
+
+   The name and role are ONE span on purpose: they are flex items here, and as
+   separate children the 0.5rem gap opened between "Patrick" and its comma. */
+.why-sign {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin-top: -0.25rem;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: var(--ink-600);
+}
+.why-sign strong { font-weight: 700; color: var(--ink-900); }
+.why-sign-dot { color: var(--parchment-500); }
+/* Below ~520px the one-line form does not fit - it needs 347px and a 390px
+   phone gives the panel 292 - and the flex wrap left the separator stranded
+   at the end of the first line with nothing after it to separate. A dot that
+   ends a line is punctuation for a sentence that is not there, so the line
+   stacks instead and the dot goes away with the thing it was dividing. */
+@media (max-width: 519px) {
+  .why-sign { display: block; }
+  .why-sign-dot { display: none; }
+  .why-sign .arrow-link { margin-top: 0.375rem; }
+}
+/* The link keeps its own size and colour; only the margin goes, since the
+   signature line is now supplying the space. */
+.why-inner .why-sign .arrow-link { margin-top: 0; }
+.why-inner > .arrow-link { margin-top: 0.5rem; }
 
 /* ---------- Step cards ----------
    One component, two sections: the postal ritual and the email bridge. Image

@@ -245,13 +245,30 @@ button { font: inherit; color: inherit; background: none; border: 0; }
   letter-spacing: 0.1em;
   color: var(--terracotta-600);
 }
+/* A DISPLAY HEADING KEEPS ITS LEADING ACROSS BREAKPOINTS - only the SIZE
+   steps. This was the one rule in the file that broke that (it set
+   line-height: 1 at 640px alongside the 3rem), and it survived because eight
+   of the nine section headings are a single line, where leading is invisible.
+   The ninth is Safety's "Only people you approve can reach the desk.", which
+   wraps - and at 48px on a 48px leading the descenders of "people you
+   approve" came down onto the ascenders of "the desk." (Patrick, 2026-08-27:
+   the title looks overlapping.)
+
+   1.2 is not a new number: it is what .why-inner h2 and .hero-aside already
+   use, and .hero-copy h1 runs 1.1 for the same reason at a bigger size. Lora
+   spans roughly 1.28em from ascender to descender, so a leading of 1.0 is
+   less than the glyphs themselves need and any wrap collides - it is only
+   ever safe on a line that cannot wrap.
+
+   Practical test before tightening a heading again: give it enough text to
+   wrap at 1280 and look. A single-line heading proves nothing. */
 .sec-head h2 {
   font-size: 1.875rem;
   line-height: 1.2;
   letter-spacing: -0.025em;
   margin-bottom: 1rem;
 }
-@media (min-width: 640px) { .sec-head h2 { font-size: 3rem; line-height: 1; } }
+@media (min-width: 640px) { .sec-head h2 { font-size: 3rem; } }
 /* Section intro - THE DESCRIPTIVE SCALE. Three of the sentences Patrick named
    as doing real conceptual work are this one class: the Collections line, the
    by-email line and the Design Philosophy line. */

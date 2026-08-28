@@ -43,7 +43,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&amp;family=Lora:ital,wght@0,400..700;1,400..700&amp;family=Plus+Jakarta+Sans:wght@400..800&amp;display=swap" />
   <!-- home.css styles THIS PAGE ONLY. Everything else on the site still runs
        styles.css; see the note at the top of home.css. -->
-  <link rel="stylesheet" href="home.css?v=21af1fe1" />
+  <link rel="stylesheet" href="home.css?v=3c5f8412" />
 </head>
 <body>
 
@@ -81,7 +81,7 @@
            that leaves the page. -->
       <nav class="site-nav" aria-label="Primary">
         <a href="#how-it-works">How it works</a>
-        <a href="#desks">Desks &amp; Collections</a>
+        <a href="#desks">Collections</a>
         <a href="#safety">Safety</a>
         <a href="#membership">Membership</a>
         <a class="site-nav-utility" href="blog/">Blog</a>
@@ -110,7 +110,7 @@
              there is room for a list, and an extra line here costs nothing
              like a seventh header link does. -->
         <li><a href="#how-it-works">How it works</a></li>
-        <li><a href="#desks">Desks &amp; Collections</a></li>
+        <li><a href="#desks">Collections</a></li>
         <li><a href="#safety">Safety</a></li>
         <li><a href="#membership">Membership</a></li>
         <li><a href="#grandparents">Letters by Email</a></li>
@@ -409,7 +409,7 @@
           <div class="step-media"><img src="assets/step-writing.jpg" alt="A sheet of star-and-moon paper open on the writing canvas, with pens and ink colors along the bottom" loading="lazy" /></div>
           <div class="step-body">
             <span class="step-num">Step 02</span>
-            <h3>Make it yours.</h3>
+            <h3>Write, draw and make it yours.</h3>
           </div>
         </article>
         <article class="step-card">
@@ -492,9 +492,17 @@
            copy put there sounded like marketing. Name above, sentence below,
            and the lede drops the half the h2 now says. -->
       <div class="sec-head">
-        <p class="eyebrow">Desks &amp; Collections</p>
+        <p class="eyebrow">Collections</p>
         <h2>Pick a place to write from.</h2>
-        <p class="lede">Each desk belongs to a Collection, with papers, envelopes, stamps and stickers to match.</p>
+        <!-- COLLECTION-FIRST (Patrick, 2026-08-27). It read "Each desk
+             belongs to a Collection, with papers, envelopes, stamps and
+             stickers to match", which made the desk the subject and the
+             Collection a property of it - backwards, now that the section,
+             the nav link and the eyebrow are all called Collections. The desk
+             is the first thing IN the world rather than the thing that owns
+             it, and naming the mailbox too is what stops the list reading as
+             stationery alone. -->
+        <p class="lede">Each Collection is its own little world, with a desk, mailbox, papers, envelopes, stamps and stickers to match.</p>
       </div>
 
       <!-- The picker is a real tablist: six buttons that swap the stage below.
@@ -575,7 +583,25 @@
 
       <div class="stationery">
         <div class="stationery-head">
-          <h3>Papers, envelopes, stamps &amp; stickers</h3>
+          <!-- SAYING WHICH COLLECTION (restored 2026-08-27). The "Fairy Glen
+               Collection" eyebrow came off on 2026-08-23 as a micro-label
+               naming the category of the thing it sat on, and the reasoning
+               was that "the stage already says Fairy Glen in 1.875rem". True
+               of the stage - but this is a separate card two blocks further
+               down, past the desk chips and the more-Collections line, and by
+               the time a reader arrives the name is gone from the screen.
+
+               It matters more than tidiness: the grid below is ALWAYS Fairy
+               Glen. The chips swap the stage image, name and tagline and do
+               not touch this stationery (every src here is
+               assets/stationery/fairy-glen/...), so somebody who clicked
+               Ember Peak and scrolled was being shown nine fairy papers with
+               nothing saying whose they were. A caption, not an eyebrow: it
+               names the example rather than labelling the category. -->
+          <div class="stationery-head-titles">
+            <h3>Papers, envelopes, stamps &amp; stickers</h3>
+            <p class="st-from">Shown here: the <strong>Fairy Glen</strong> Collection.</p>
+          </div>
           <div class="tabs" role="tablist" aria-label="Stationery type">
             <button type="button" role="tab" aria-selected="true"  aria-controls="st-papers"    data-tab="papers">papers</button>
             <button type="button" role="tab" aria-selected="false" aria-controls="st-envelopes" data-tab="envelopes">envelopes</button>
@@ -782,7 +808,7 @@
            may reply, and what a reply may carry. Both are now in one sentence
            under the three pictures, which is where the eye already is. -->
       <p class="bridge-note">Only approved email addresses can reply. Links,
-         photos and attachments are removed before a reply reaches the desk.</p>
+         photos and attachments never reach the desk.</p>
     </div>
   </section>
 
@@ -795,24 +821,35 @@
         <p class="lede">Messaging is built for fast, fluid conversation. Postmello is built for deliberate correspondence.</p>
       </div>
 
-      <!-- A REAL COMPARISON: five pairs, each lining up across the two
-           columns, so the eye reads a ROW rather than two unrelated lists.
-           Before 2026-08-23 it was two independent bullet lists of six that
-           merely sat side by side, and nothing on the left corresponded to
-           anything on the right.
+      <!-- FOUR PAIRS, AND NO SENTENCES (Patrick, 2026-08-27). It was five
+           pairs of "Bold lead-in: explanation", and at that length the
+           section stopped reading as a philosophy and started reading as a
+           case being prosecuted against messaging. "Groups that grow",
+           "Content passes through", "Buried in a stream", "Widens in a tap" -
+           several were interesting design principles and none of them was a
+           reason somebody wants Postmello.
 
-           The alignment is subgrid: .compare owns seven rows (title, five
-           pairs, footer) and each column re-uses them, so row three is row
-           three on both sides however many lines either wraps to. The <ul> is
-           display:contents, which lets its items BE the grid's items - the
-           list stays a list for a screen reader while the grid sees the rows.
+           Gone with them: "Things you keep: a letter is something you make,
+           send and keep". Keeping is not a primary benefit of the product, so
+           it does not get elevated to one of four rows.
 
-           EACH POINT OPENS WITH A BOLD PHRASE (Patrick, 2026-08-23), and the
-           two in a row answer each other: "Instant pressure" against "One at a
-           time", "Widens in a tap" against "Goes no further". That pairing is
-           what makes the row scannable without reading either sentence - and
-           it is why the lead-ins have to be rewritten in PAIRS if any of them
-           ever changes.
+           What is left is four fundamental contrasts, each a PHRASE rather
+           than a claim with evidence attached. The bold lead-ins went with
+           the explanations they were leading into: with nothing after the
+           colon there is nothing to lead. Short phrases also fix the raggedness
+           the lead-ins were compensating for - every row is now one line on
+           both sides.
+
+           THE ROWS STILL ANSWER EACH OTHER, and that is the one thing to
+           preserve: fast back-and-forth against one letter at a time, a
+           stream against its own space, availability against no pressure to
+           reply, passing things along against the people you chose. Rewrite
+           them in PAIRS or not at all, and if the count changes, change
+           grid-template-rows and the .compare-col span in home.css with it -
+           subgrid does not count for you.
+
+           The two closing lines are untouched. They are the best writing in
+           the section and they are the reason it can afford to be short.
 
            The headings are plain "Messaging" and "Postmello". They were
            "Hyper-Reactive Messaging" and "Postmello's Quiet Desk", which
@@ -822,11 +859,10 @@
         <div class="compare-col compare-col--bad">
           <p class="compare-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg> <span>Messaging</span></p>
           <ul>
-            <li class="compare-cell compare-cell--bad"><span><strong>Instant pressure:</strong> back-and-forth with typing indicators, read receipts and notifications</span></li>
-            <li class="compare-cell compare-cell--bad"><span><strong>Groups that grow:</strong> a chat can change shape as people are added or removed</span></li>
-            <li class="compare-cell compare-cell--bad"><span><strong>Content passes through:</strong> photos, links and forwarded posts move from one conversation to another</span></li>
-            <li class="compare-cell compare-cell--bad"><span><strong>Buried in a stream:</strong> messages live in a feed and scroll out of reach</span></li>
-            <li class="compare-cell compare-cell--bad"><span><strong>Widens in a tap:</strong> forwarding can hand a message to a new audience</span></li>
+            <li class="compare-cell compare-cell--bad"><span>Fast back-and-forth</span></li>
+            <li class="compare-cell compare-cell--bad"><span>A continuous stream</span></li>
+            <li class="compare-cell compare-cell--bad"><span>Built around availability and response</span></li>
+            <li class="compare-cell compare-cell--bad"><span>Easy to pass things along</span></li>
           </ul>
           <!-- THE TWO FOOTERS ARE ONE SENTENCE SAID TWICE (Patrick, 2026-08-23).
                Both open "Designed for" on purpose: the same verb with the
@@ -845,11 +881,10 @@
         <div class="compare-col compare-col--good">
           <p class="compare-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> <span>Postmello</span></p>
           <ul>
-            <li class="compare-cell compare-cell--good"><span><strong>One at a time:</strong> a single letter, with no read receipts and no pressure to reply</span></li>
-            <li class="compare-cell compare-cell--good"><span><strong>Chosen, then approved:</strong> every recipient is deliberate and every friend is approved</span></li>
-            <li class="compare-cell compare-cell--good"><span><strong>Made, not forwarded:</strong> letters are made here - words, drawings, typing and stickers</span></li>
-            <li class="compare-cell compare-cell--good"><span><strong>Things you keep:</strong> a letter is something you make, send and keep</span></li>
-            <li class="compare-cell compare-cell--good"><span><strong>Goes no further:</strong> a reply can&rsquo;t be passed along to someone new</span></li>
+            <li class="compare-cell compare-cell--good"><span>One letter at a time</span></li>
+            <li class="compare-cell compare-cell--good"><span>Each letter gets its own space</span></li>
+            <li class="compare-cell compare-cell--good"><span>No presence, read receipts or pressure to reply</span></li>
+            <li class="compare-cell compare-cell--good"><span>Made for the people you chose</span></li>
           </ul>
           <p class="compare-foot">Designed for patience - and to be put down.</p>
         </div>
@@ -1289,7 +1324,7 @@
              is renamed again, rename it here in the same commit. -->
         <ul>
           <li><a href="#how-it-works">How it works</a></li>
-          <li><a href="#desks">Desks &amp; Collections</a></li>
+          <li><a href="#desks">Collections</a></li>
           <li><a href="#grandparents">Letters by Email</a></li>
           <li><a href="#safety">Safety</a></li>
           <li><a href="#membership">Membership</a></li>

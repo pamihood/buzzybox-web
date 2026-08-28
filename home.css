@@ -1086,8 +1086,18 @@ button { font: inherit; color: inherit; background: none; border: 0; }
   margin-bottom: 2rem;
 }
 @media (min-width: 640px) { .stationery-head { flex-direction: row; align-items: center; justify-content: space-between; } }
+/* The heading and its caption are ONE flex child, because the head is a
+   space-between row: as three children the caption would have been pushed
+   into the middle of the gap between the title and the tabs. */
+.stationery-head-titles { display: flex; flex-direction: column; gap: 0.25rem; }
 .stationery-head h3 { font-size: 1.5rem; }
 @media (min-width: 640px) { .stationery-head h3 { font-size: 1.875rem; } }
+/* A caption, not an eyebrow - it names the example rather than labelling the
+   category, which is why it sits UNDER the title in sentence case instead of
+   over it in small caps. The name carries the ink; the frame around it stays
+   at caption weight. */
+.st-from { font-size: 0.9375rem; line-height: 1.5; color: var(--ink-600); }
+.st-from strong { font-weight: 700; color: var(--ink-900); }
 .tabs {
   display: inline-flex;
   /* Four fixed-width buttons in a non-wrapping inline-flex have no way to fit a
@@ -1247,7 +1257,7 @@ button { font: inherit; color: inherit; background: none; border: 0; }
    up unaided. Now .compare owns the row track and each column re-uses it with
    subgrid, so row 3 is row 3 on both sides however many lines either wraps to.
    The <ul> is display:contents, which lets its items BE the grid's items — the
-   list stays a list for a screen reader while the grid sees seven rows.
+   list stays a list for a screen reader while the grid sees six rows.
    Without subgrid support the columns fall back to ordinary blocks: the pairs
    stop aligning but nothing breaks, and the copy still reads. */
 .compare {
@@ -1259,8 +1269,11 @@ button { font: inherit; color: inherit; background: none; border: 0; }
 @media (min-width: 768px) {
   .compare {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    /* title + five paired rows + footer */
-    grid-template-rows: auto repeat(5, auto) auto;
+    /* title + four paired rows + footer. THIS NUMBER IS NOT AUTOMATIC:
+       subgrid re-uses the track list it is given, so adding or removing a
+       point means changing the repeat() here AND the span below, or the two
+       columns quietly stop lining up. */
+    grid-template-rows: auto repeat(4, auto) auto;
     /* ROW-GAP ZERO, and this was the actual cause of the section feeling
        airy. `gap` on a grid sets both axes, so the 2rem meant to separate the
        two CARDS was also being inserted between every one of the seven shared
@@ -1271,7 +1284,7 @@ button { font: inherit; color: inherit; background: none; border: 0; }
     row-gap: 0;
   }
   .compare-col {
-    grid-row: span 7;
+    grid-row: span 6;
     display: grid;
     grid-template-rows: subgrid;
     align-content: start;
@@ -1307,11 +1320,11 @@ button { font: inherit; color: inherit; background: none; border: 0; }
    the two sides would drift apart. */
 /* Tighter than it was (2026-08-23, Patrick: too much white space between
    lines). Alignment costs some air by construction — a row is as tall as the
-   taller of its two cells, so a one-line point opposite a three-line one keeps
-   the difference — but the leading and the gap between points were adding to
-   it unnecessarily. 1.5 and 0.625rem instead of 1.6 and 0.875rem, and the
-   bold lead-ins even the two sides up, which does more for the ragged feel
-   than any spacing value could. */
+   taller of its two cells, so a one-line point opposite a two-line one keeps
+   the difference. Since 2026-08-27 that costs nothing: every point is a short
+   phrase and every row is one line on both sides, which is what the bold
+   lead-ins had been approximating. If longer points ever come back, this
+   padding is the value to tune, not the grid gap. */
 .compare-cell {
   display: flex;
   align-items: flex-start;
@@ -1330,9 +1343,11 @@ button { font: inherit; color: inherit; background: none; border: 0; }
 /* The opening phrase, and the reason the row scans: the two lead-ins in a row
    answer each other, so a reader gets the comparison without reading either
    sentence. Full ink against the cell's softer body colour. */
-.compare-cell strong { font-weight: 700; }
-.compare-col--bad  .compare-cell strong { color: #8C3418; }
-.compare-col--good .compare-cell strong { color: #2C5436; }
+/* (.compare-cell strong and its two colour variants styled the bold lead-in
+   that opened each point - "Instant pressure:", "One at a time:". The points
+   became bare phrases on 2026-08-27 and there is nothing left to lead into,
+   so the rules went with them. Restoring lead-ins means restoring these, and
+   the darker inks are #8C3418 on the warm side and #2C5436 on the cool.) */
 .compare-cell--bad  { color: #6E4F3E; }
 .compare-cell--good { color: #3E5C46; }
 /* The bullet is drawn so it can sit on the cap height of the first line

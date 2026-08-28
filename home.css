@@ -1076,13 +1076,10 @@ button { font: inherit; color: inherit; background: none; border: 0; }
    made the section read like a catalog record.) */
 .desk-stage-copy h3 { font-size: 1.875rem; }
 .desk-stage-copy .tagline { font-size: 1.0625rem; line-height: 1.625; color: var(--ink-700); }
-.desk-stage-note {
-  padding-top: 1rem;
-  border-top: 1px solid color-mix(in srgb, var(--line) 60%, transparent);
-  font-size: 0.75rem;
-  line-height: 1.625;
-  color: var(--ink-600);
-}
+/* (.desk-stage-note styled a two-sentence footnote under the tagline - a
+   hairline rule, 12px, ink-600. Its copy went on 2026-08-27 and the rule went
+   with it; see the note at the removal site in index.html for what it said
+   and why. Nothing else used the class.) */
 
 /* The stationery table. Its own sheet inside the section, with a tab well on
    the right of the heading — the one place the page uses a segmented control,

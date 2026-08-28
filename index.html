@@ -43,7 +43,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&amp;family=Lora:ital,wght@0,400..700;1,400..700&amp;family=Plus+Jakarta+Sans:wght@400..800&amp;display=swap" />
   <!-- home.css styles THIS PAGE ONLY. Everything else on the site still runs
        styles.css; see the note at the top of home.css. -->
-  <link rel="stylesheet" href="home.css?v=f568c2d1" />
+  <link rel="stylesheet" href="home.css?v=30822b98" />
 </head>
 <body>
 
@@ -360,7 +360,7 @@
                "How is Postmello different from texting?" answers mechanically
                instead. This sentence is now unique to this panel - do not
                re-sync them. -->
-          <p>Postmello gives kids room to write, draw, be silly or thoughtful, and stay in touch independently with people you approve.</p>
+          <p>Postmello gives kids room to write, draw, be silly or thoughtful, and stay in touch independently.</p>
           <!-- The signature, and the smallest thing that makes the paragraph
                above it a person's rather than a company's. It carries the
                link, which points at the ESSAY, not at another section of this
@@ -566,7 +566,22 @@
         <div class="desk-stage-copy">
           <h3 id="desk-stage-name">Fairy Glen</h3>
           <p class="tagline" id="desk-stage-tagline">Toadstools, glowing lanterns, and dewdrops among mossy roots.</p>
-          <p class="desk-stage-note">Every desk brings its own Collection. The art keeps to the edges of every sheet - the page itself is left for the letter.</p>
+          <!-- (.desk-stage-note was here: "Every desk brings its own
+               Collection. The art keeps to the edges of every sheet - the
+               page itself is left for the letter." Both sentences went on
+               2026-08-27. The first said the desk brings the Collection,
+               which is the relationship backwards - the section head three
+               blocks up now says a Collection is the world and the desk is
+               the first thing in it, and a reader does not need it stated
+               twice, least of all in reverse. The second explains where the
+               art sits on a sheet: a real and deliberate design rule, and
+               not one worth this position, directly under the desk the whole
+               section is selling. The stage goes straight from the Fairy Glen
+               tagline into "A few favorites, with more Collections to
+               discover." The .desk-stage-note rule went from home.css in the
+               same pass. NOTE the tagline above stays: #desk-stage-tagline is
+               written by the desk picker, and removing it breaks switching
+               desks.) -->
         </div>
       </div>
 
@@ -946,7 +961,15 @@
         <article class="safety-card">
           <p class="safety-art safety-art--obj safety-art--wide"><img src="assets/safety-drawers.png" alt="" width="483" height="186" loading="lazy" /></p>
           <h3>Approved friends only</h3>
-          <p class="safety-body">Both sides approve before letters can be exchanged.</p>
+          <!-- THE GUARANTEE, NOT THE WORKFLOW (Patrick, 2026-08-27). It said
+               "Both sides approve before letters can be exchanged", which
+               describes how a Postmello friendship is set up and is not true
+               of the email lane in the same literal way - an email friend
+               never runs an approval of their own, the adult approves the
+               address. What holds across BOTH lanes is the outcome: nothing
+               reaches the desk from anyone unapproved. State the outcome, and
+               the card stays true whichever way the friend arrived. -->
+          <p class="safety-body">Only approved friends can send letters or replies to the desk.</p>
         </article>
         <article class="safety-card">
           <!-- A REAL OBJECT, not a line icon (Patrick, 2026-08-23). All three
@@ -1339,7 +1362,14 @@
             <span>Can siblings share one iPad?</span>
             <span class="faq-chevron" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></span>
           </summary>
-          <div class="faq-answer">Yes! A Membership supports multiple individual desks on one device. Each person gets their own personalized desk style, engraved nameplate, private mailbox, sticker drawer, and friend drawers. Siblings can even write between desks at home.</div>
+          <!-- "mailbox", not "private mailbox" (Patrick, 2026-08-27). A desk
+               PIN is OPTIONAL, so "private" promises something the product
+               does not guarantee: it implies one sibling literally cannot
+               open another's desk, and on a device where neither desk has a
+               PIN set, they can. "Their own" at the head of the sentence
+               already carries the possession, which is the true part. Do not
+               put the adjective back without making the PIN mandatory. -->
+          <div class="faq-answer">Yes! A Membership supports multiple individual desks on one device. Each person gets their own personalized desk style, engraved nameplate, mailbox, sticker drawer, and friend drawers. Siblings can even write between desks at home.</div>
         </details>
         <!-- The one mundane "before I try this" question the list was missing
              (Patrick, 2026-08-23). Every photograph on this page shows ink
@@ -1371,7 +1401,7 @@
                followed by properties somebody could hold us to is the more
                trustworthy shape. "Personal data", not "data": letters are
                data too, and the promise is about what is sold. -->
-          <div class="faq-answer">Yes. No ads, no selling personal data, and letters travel only between friends both sides have approved. Postmello is supported by the people who use it, so it can stay private, mellow, and built for them - not advertisers.</div>
+          <div class="faq-answer">Yes. No ads, no selling personal data, and letters travel only between approved friends. Postmello is supported by the people who use it, so it can stay private, mellow, and built for them - not advertisers.</div>
         </details>
       </div>
 

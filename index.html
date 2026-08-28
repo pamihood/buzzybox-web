@@ -43,7 +43,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&amp;family=Lora:ital,wght@0,400..700;1,400..700&amp;family=Plus+Jakarta+Sans:wght@400..800&amp;display=swap" />
   <!-- home.css styles THIS PAGE ONLY. Everything else on the site still runs
        styles.css; see the note at the top of home.css. -->
-  <link rel="stylesheet" href="home.css?v=dff0c688" />
+  <link rel="stylesheet" href="home.css?v=90e2b3ef" />
 </head>
 <body>
 
@@ -793,8 +793,30 @@
              requirement then steps down in size and ink underneath, where a
              condition belongs. Not caption-sized: one step, not two - the
              descriptive scale is what this page just fixed. -->
-        <h2>Stay close, even without the app.</h2>
-        <p class="lede lede--pair"><span>Grandma can receive and reply by email.</span> <span>A parent away from home can, too.</span> <span class="lede-note">No app or account required.</span></p>
+        <!-- EMAIL IS A ROUTE, NOT A FALLBACK (Patrick, 2026-08-27, third
+             pass and the one that got it right). Every earlier heading here -
+             "Grandma doesn't need the app", "Stay close, even without the
+             app" - framed the lane as an accommodation for people who lack
+             Postmello. It is broader than that: an admin approves an ADDRESS
+             on a desk, and nothing checks that address against existing
+             accounts, so somebody who writes from their own desk at home can
+             be reached at their inbox while away. The app repo's
+             docs/ARCHITECTURE.md now records this under "The email lane is a
+             ROUTE"; it was not written down anywhere, which is how a session
+             reasoned the opposite from the claimed/unclaimed material and
+             nearly shipped it.
+
+             So the heading names the capability and the lede teaches it: the
+             rule first, then the two reasons a reader would care. It is the
+             one H2 on the page that is a mechanism rather than a claim, which
+             was the argument against it - but the mechanism IS the news here,
+             and the eyebrow above it says the same words for a reason.
+
+             "an inbox", not "her inbox": the same rule that took the pronouns
+             out of Step 03 an hour ago. A name says nothing about pronouns,
+             so copy uses the name or nobody. -->
+        <h2>Write from Postmello or email.</h2>
+        <p class="lede lede--pair"><span>A desk can exchange letters with approved friends through Postmello or email.</span> <span>Grandma can use an inbox without joining.</span> <span>A parent away from home can use email too, even if they normally write from their own Postmello desk.</span></p>
       </div>
 
       <!-- TITLE PLUS A LINE here, unlike the how-it-works steps above
@@ -1018,7 +1040,23 @@
         <article class="safety-card">
           <p class="safety-art safety-art--obj safety-art--wide"><img src="assets/safety-drawers.png" alt="" width="483" height="186" loading="lazy" /></p>
           <h3>Approved friends only</h3>
-          <!-- THE GUARANTEE, NOT THE WORKFLOW (Patrick, 2026-08-27). It said
+          <!-- THE GENERAL RULE, ONCE, SO IT STOPS DRIFTING: no one can reach
+               a child's desk unless the adult managing that desk has approved
+               them. That is the only sentence that is true of every lane, and
+               it is what this card and the Safety page's short version both
+               say now.
+
+               NEVER "both sides approve" as the universal statement. It
+               describes ONE mechanism - the cross-household Postmello
+               connection - and is false of the others: an email friend is
+               approved by the desk's adult for a specific address and
+               approves nothing themselves, a person may use both lanes, and
+               desks inside one household are a case of their own. Explain
+               bilateral approval only where cross-household connections are
+               specifically the subject, which on this site is the Safety
+               page and nowhere else.
+
+               THE GUARANTEE, NOT THE WORKFLOW (Patrick, 2026-08-27). It said
                "Both sides approve before letters can be exchanged", which
                describes how a Postmello friendship is set up and is not true
                of the email lane in the same literal way - an email friend
@@ -1421,10 +1459,16 @@
         </details>
         <details class="faq-item" data-cat="family">
           <summary>
-            <span>How do grandparents without iPads receive and send letters?</span>
+            <span>Can someone write to a Postmello desk by email?</span>
             <span class="faq-chevron" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></span>
           </summary>
-          <div class="faq-answer">Adults can add a relative as a friend by email. When a child sends a letter, the relative gets an email carrying the envelope and a private link; opening it shows the letter as it was made. The relative simply hits Reply from their computer or phone. Replies return as typewritten letters. Links, photos and attachments are removed before replies reach the desk.</div>
+          <!-- BROADENED (Patrick, 2026-08-27). It asked "How do grandparents
+               without iPads receive and send letters?", which is one use of
+               the lane described as if it were the whole lane. This is the
+               place the site says out loud that having Postmello does not
+               stop somebody using email - the homepage section states it, and
+               a reader who wants it confirmed comes here. -->
+          <div class="faq-answer">Yes. An adult can approve an email address for a desk. Once approved, that person can exchange letters with the desk from their regular inbox - whether or not they also use Postmello. Their words arrive as a typewritten letter; links, photos and attachments never reach the desk.</div>
         </details>
         <!-- "Can adults have their own desk?" replaced "How are past letters
              stored in friend drawers?" (Patrick, 2026-08-23). The storage

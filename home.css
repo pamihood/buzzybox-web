@@ -261,12 +261,22 @@ button { font: inherit; color: inherit; background: none; border: 0; }
    ever safe on a line that cannot wrap.
 
    Practical test before tightening a heading again: give it enough text to
-   wrap at 1280 and look. A single-line heading proves nothing. */
+   wrap at 1280 and look. A single-line heading proves nothing.
+
+   BALANCED, for the same reason and found by the same heading. Safety's is
+   the only section head that wraps, and left alone it set nearly a full line
+   over the two words "the desk." Balanced it breaks after "approve", which is
+   where the sentence bends anyway. This is the rule .hero-copy h1 and
+   .claim h2 already follow - .sec-head h2 was the odd one out here exactly as
+   it was for line-height - and it stays responsive because nothing is
+   hard-coded: at a phone width the same rule evens three lines instead of
+   two, with no <br> to go stale at a size nobody tested. */
 .sec-head h2 {
   font-size: 1.875rem;
   line-height: 1.2;
   letter-spacing: -0.025em;
   margin-bottom: 1rem;
+  text-wrap: balance;
 }
 @media (min-width: 640px) { .sec-head h2 { font-size: 3rem; } }
 /* Section intro - THE DESCRIPTIVE SCALE. Three of the sentences Patrick named
@@ -1187,8 +1197,34 @@ button { font: inherit; color: inherit; background: none; border: 0; }
    stationery pictures on arrival instead of the nine a visitor asked for.
 
    With the script blocked there is nothing to fix - the tabs do not switch, so
-   the first panel is the only one ever shown. */
-.stationery-panels { min-height: 0; }
+   the first panel is the only one ever shown.
+
+   POSITION: RELATIVE IS LOAD-BEARING, and its absence was a real bug for one
+   commit. The measurement takes each hidden panel out of flow with
+   `position: absolute; left: 0; right: 0`, which resolves against the nearest
+   POSITIONED ancestor - and with this box static, that was the initial
+   containing block. Every panel was being measured at 1272px instead of the
+   1126px it actually gets, so the columns came out wider, the beds taller (a
+   bed's height is a fraction of its column), and the box was held 25px above
+   the tallest panel: visible as dead air under the row of art. Anything that
+   measures a child by taking it out of flow has to own the frame it is
+   measured in.
+
+   CENTRED IN THE BOX, not hanging from the top of it. Holding the height at
+   the tallest means the shorter tabs have slack by definition - 44px on
+   envelopes, the shortest, against stamps, the tallest. Left at the top all
+   44 of it pools under the row of art and reads as a mistake (Patrick,
+   2026-08-27: a lot of spacing between the row of art and the bottom of the
+   container). Split above and below it is 22 and 22, and a row sitting in the
+   middle of its box reads as placed rather than as fallen short. The
+   alternative was shrinking the stamps to close the gap at source, which
+   trades dead space for smaller art in the one tab that has none. */
+.stationery-panels {
+  position: relative;
+  display: grid;
+  align-content: center;
+  min-height: 0;
+}
 .st-grid { display: grid; gap: 0.75rem; }
 .st-grid--papers   { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .st-grid--envelopes { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }

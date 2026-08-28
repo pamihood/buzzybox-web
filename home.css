@@ -309,13 +309,13 @@ button { font: inherit; color: inherit; background: none; border: 0; }
    two paragraphs. */
 .lede--pair > span { display: block; }
 .lede--pair > span + span { margin-top: 0.25rem; }
-/* A RULE AND ITS EXAMPLES, where .lede--pair alone is a set of peers. The
-   extra air goes under the FIRST line only, so the two cases below it group
-   against each other and read as two of a kind rather than as three
-   statements in a row. Spacing does the whole job: a bolder subject or a
-   second ink would scan faster and would put emphasis inside a lede, which is
-   the thing the hero turned down. */
-.lede--cases > span:nth-child(2) { margin-top: 0.625rem; }
+/* (.lede--cases put extra air under the FIRST line of a lede, for the shape
+   where a rule is followed by its examples: the cases grouped against each
+   other instead of reading as three statements in a row. Its one user was the
+   email section, whose rule line went on 2026-08-27 - the H2 was already
+   saying it. Kept as a note because the shape will recur: 0.625rem on
+   :nth-child(2), and spacing rather than a second ink or a bolded subject,
+   which is the emphasis the hero turned down.) */
 /* A CONTINUATION, not a beat. Where a case is too long for the measure, it is
    split at its own hinge - the dash bound to the word before it - so the break
    is the one the sentence wants rather than the one the box picks. The two

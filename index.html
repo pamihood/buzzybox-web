@@ -1225,7 +1225,20 @@
           <h3>Collections</h3>
           <p>New places to write from.</p>
           <p class="from">From <span data-price="collections">$1.99</span> &middot; Members save <span data-price="collections_discount">50%</span></p>
-          <p>Yours for good.</p>
+          <!-- THE SHELF CAP, said out loud (Patrick, 2026-08-27). "Yours for
+               good" was true and incomplete: a household owns every
+               collection it buys, permanently and through a lapse, but a desk
+               SHOWS a limited number at once - everything on a desk is wholly
+               on device, which is what makes the offline guarantee true. A
+               commerce panel that names the price and the permanence and not
+               the cap leaves a buyer to find it out after paying.
+
+               The number is WRITTEN by scripts/apply-pricing.py from
+               pricing.json (collections.max_active_per_household), like every
+               other figure in this block. Never type it here: it is copied
+               into app code too, and that script's --check now fails if the
+               two disagree. -->
+          <p>Yours for good - show up to <span data-price="collections_shelf">8</span> at a time, and swap whenever you like.</p>
         </div>
         <div class="prop-grid">
           <article class="prop">

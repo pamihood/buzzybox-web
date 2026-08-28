@@ -14,7 +14,8 @@ membership_plus, membership_plus_was, membership_plus_founding, collections,
 collections_discount (the member percentage — "50%" — from
 collections.member_discount, added 2026-08-24 with the collections-for-
 everyone revision: collections sell on every tier and the member benefit is
-the discount). The two "-terms" spans
+the discount), collections_shelf (how many a household SHOWS at once, from
+collections.max_active_per_household, added 2026-08-27). The two "-terms" spans
 this once wrote are gone: the monthly-equivalent line went when the cards
 switched to feature lists, and the founding annotation left the Membership
 card on 2026-08-18 (the promise it stood in for is a hand-written line beneath
@@ -165,6 +166,16 @@ def expected_lines(pricing):
         "collections": money(pricing["collections"]["price_from"]),
         "collections_discount":
             f"{round(pricing['collections']['member_discount'] * 100)}%",
+        # THE SHELF CAP, on the site for the first time on 2026-08-27. A
+        # household owns every collection it buys, permanently and through a
+        # lapse — but it SHOWS up to this many at once, because everything on
+        # a desk is wholly on device and that is what makes the offline
+        # guarantee true. A commerce panel that says "Yours for good" and
+        # nothing else leaves a buyer to discover the cap after paying.
+        # Generated rather than typed for the obvious reason: it is a number
+        # that can change, and the website was the copy most likely to be
+        # forgotten when it did.
+        "collections_shelf": str(pricing["collections"]["max_active_per_household"]),
         # The monthly equivalent came OUT (2026-08-18). The spec allows it as
         # supporting copy and it was never the lead, but on a card whose
         # headline is now a promise rather than a number, a second money
@@ -203,6 +214,58 @@ def expected_names(pricing):
 
 def expected_desks(pricing):
     return {key: desks_line(plan, key) for key, plan in pricing["plans"].items()}
+
+
+SHELF_COPIES = [
+    # (path relative to the app repo root, regex with one capture group, what it is)
+    ("Buzzybox/Buzzybox/Services/PackEntitlementStore.swift",
+     r"static let maxActiveCollections\s*=\s*(\d+)",
+     "the client's shelf cap"),
+]
+
+
+def check_shelf_copies(pricing, pricing_path):
+    """pricing.json is the ground truth; the app HAND-COPIES this one number.
+
+    Every other figure this script writes exists in pricing.json and nowhere
+    else, so "edit the JSON, run the script" is the whole contract. The shelf
+    cap is different: `collections.max_active_per_household` is also written
+    out as a Swift constant and, since 2026-08-26, enforced inside the
+    `activate_pack` RPC - three copies of one number, and changing the JSON
+    alone would leave a site advertising a cap the app does not keep.
+
+    So --check reads the Swift constant back and fails on a mismatch. It is a
+    cross-repo check on purpose: this script already reaches into the app repo
+    for pricing.json, and the drift it is guarding against is exactly the kind
+    nobody notices until a household is told it can show eight and can't.
+
+    NOT checked here, and deliberately: the SERVER copy. The number sits in an
+    `activate_pack` body, and migrations are immutable, so the newest
+    definition is the only one that counts - reading the migration trail
+    under-reports, and reading the live function needs the network and a
+    token, which a pre-commit check must not require. Verify that one against
+    the live database when the cap changes.
+
+    Returns a list of human-readable problems; empty means agreement (or that
+    the app repo is not next to this one, which is not an error - the website
+    still builds fine on a machine that only has the website)."""
+    want = int(pricing["collections"]["max_active_per_household"])
+    root = pricing_path.resolve().parent
+    problems = []
+    for rel, pattern, what in SHELF_COPIES:
+        f = root / rel
+        if not f.exists():
+            continue
+        m = re.search(pattern, f.read_text(encoding="utf-8"))
+        if not m:
+            problems.append(f"{rel}: could not find {what} "
+                            f"(pattern {pattern!r}) - has it been renamed?")
+        elif int(m.group(1)) != want:
+            problems.append(
+                f"{rel}: {what} is {m.group(1)}, pricing.json says {want}. "
+                f"One of the two is wrong, and the website now prints the "
+                f"pricing.json figure to the public.")
+    return problems
 
 
 def main():
@@ -247,16 +310,24 @@ def main():
             disagreements.append((f'{attr}="{key}"', have, want))
             html = (html[: m.start(2)] + want + html[m.end(2):])
 
+    shelf_problems = check_shelf_copies(pricing, pricing_path)
+
     if args.check:
-        if disagreements:
-            print(f"!! index.html disagrees with {pricing_path}:")
-            for key, have, want in disagreements:
-                print(f"   {key}")
-                print(f"     - {have}")
-                print(f"     + {want}")
+        if disagreements or shelf_problems:
+            if disagreements:
+                print(f"!! index.html disagrees with {pricing_path}:")
+                for key, have, want in disagreements:
+                    print(f"   {key}")
+                    print(f"     - {have}")
+                    print(f"     + {want}")
+            for problem in shelf_problems:
+                print(f"!! {problem}")
             sys.exit(1)
         print(f"[pricing] index.html agrees with {pricing_path}")
         return
+
+    for problem in shelf_problems:
+        print(f"!! {problem}")
 
     if disagreements:
         INDEX.write_text(html, encoding="utf-8")

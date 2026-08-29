@@ -2025,5 +2025,36 @@
      <a href="mailto:hello@postmello.com?subject=Private%20beta%20request">hello@postmello.com</a>.</p>
 </noscript>
 
+<script>
+// An auth redirect that names no `redirect_to` falls back to Supabase's
+// site_url, which is THIS page. That is not hypothetical: a password reset
+// triggered from the Supabase dashboard sends no redirect_to, so the adult
+// lands on the marketing homepage with the real answer sitting unread in the
+// URL fragment (2026-08-28 — "I only saw the website").
+//
+// The app itself always names a landing page, so a reset started IN Postmello
+// already arrives at /reset and a confirmation at /confirmed. This is the
+// backstop for the links that do not.
+//
+// Deliberately narrow: it forwards only when the fragment carries an actual
+// auth ERROR, and it never guesses at a bare `code` — a code with no `type` is
+// ambiguous between recovery and signup, and sending someone to the wrong
+// instructions is worse than leaving them here. Those pages own the wording;
+// this only hands the fragment to whichever one owns it.
+(function () {
+  try {
+    var q = new URLSearchParams(window.location.search);
+    var f = new URLSearchParams((window.location.hash || '').replace(/^#/, ''));
+    var get = function (name) { return q.get(name) || f.get(name); };
+    if (!get('error') && !get('error_code')) return;
+    var type = (get('type') || '').toLowerCase();
+    var page = (type === 'signup' || type === 'email') ? '/confirmed' : '/reset';
+    window.location.replace(page + window.location.search + window.location.hash);
+  } catch (e) {
+    // A broken backstop must never take the homepage with it.
+  }
+})();
+</script>
+
 </body>
 </html>

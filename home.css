@@ -22,12 +22,17 @@
    the accents. Terracotta does nearly all the accent work — it is the one
    colour that says "this is a link, a price, or a heading you should read". */
 :root {
-  --parchment-50:  #FCFAF6;
-  --parchment-100: #FAF7F2;   /* the page ground */
-  --parchment-200: #F4EFE6;   /* the second sheet: banded sections and cards */
-  --parchment-300: #EADBCE;   /* band tint, tab wells, image beds */
-  --parchment-400: #D8C6B5;
-  --parchment-500: #B8A08C;
+  /* Warmed toward the new hero's apricot-cream wall (2026-08-30): the ramp
+     keeps the same five steps and the same ground/band contrast, it just
+     leans peach instead of grey-beige, so the hero and the page read as one
+     paper. The hero wall itself is deeper (#F8DFC7) - the page ground stays
+     quieter than the scene it sits under. */
+  --parchment-50:  #FDF9F1;
+  --parchment-100: #FAF3E9;   /* the page ground */
+  --parchment-200: #F6EBDB;   /* the second sheet: banded sections and cards */
+  --parchment-300: #F0D9BE;   /* band tint, tab wells, image beds */
+  --parchment-400: #DEC3A2;
+  --parchment-500: #BE9F7E;
 
   /* --line is the comp's #DAC6B4, used on nearly every border. The two
      variants exist because the comp bands some sections with a slightly
@@ -411,12 +416,19 @@ button { font: inherit; color: inherit; background: none; border: 0; }
 .brand:hover .brand-mark { transform: scale(1.05); }
 /* An IMAGE now, not type — see the note in index.html. Sized by HEIGHT and
    left to find its own width: the artwork's aspect is fixed, and pinning the
-   width instead would let a rounding difference squash the letterforms. The
-   height is set so the cap height matches what the old 1.5rem setting drew,
-   which is what keeps the header bar's rhythm unchanged. */
+   width instead would let a rounding difference squash the letterforms.
+
+   1.6rem -> 1.4rem when the wordmark became ALL CAPS (2026-08-29), and the
+   number had to move even though nothing about the layout did. The old mark
+   was title case, so 1.6rem was its ASCENDER height and most of its letters
+   sat around 1.13rem of x-height. The new mark has no lowercase at all, so
+   the same 1.6rem would put every letter at the height only the P and the two
+   l's used to reach — the lockup read a size larger overnight beside an
+   unchanged 2.25rem mailbox. 1.4rem lands the caps at ~62% of the mailbox,
+   which is where the old mark's mass sat. */
 .brand-name {
   display: block;
-  height: 1.6rem;
+  height: 1.4rem;
   width: auto;
 }
 /* (.brand-sub was an 11px tagline under the header wordmark. It went on
@@ -982,7 +994,7 @@ button { font: inherit; color: inherit; background: none; border: 0; }
 }
 /* --k = PNG width / top page width, from the exporter's sidecar.
    --w = which size tier this letter belongs to. */
-.mailwall-item:nth-child(1) { --k: 1.088; --w: var(--page-drawing); }  /* minty       - single sheet */
+.mailwall-item:nth-child(1) { --k: 1.088; --w: var(--page-drawing); }  /* leafy       - single sheet */
 .mailwall-item:nth-child(2) { --k: 1.088; --w: var(--page-drawing); }  /* paddleboard - single sheet */
 .mailwall-item:nth-child(3) { --k: 1.662; --w: var(--page); }          /* mountains   - 4-page fan   */
 .mailwall-item:nth-child(4) { --k: 1.364; --w: var(--page); }          /* typewriter  - 2-page fan   */

@@ -30,15 +30,15 @@
      a barely-different second sheet, and one warm card. The accent colour IS
      the paper — the desks, stamps, stickers and bee bring every other colour
      on the page, and a standard web accent would only compete with them. */
-  --paper: #FAF7F2;      /* writing paper: the canvas */
-  --paper-alt: #F4EFE6;  /* a second sheet — a tonal hair, not a band */
+  --paper: #FAF3E9;      /* writing paper: the canvas */
+  --paper-alt: #F6EBDB;  /* a second sheet — a tonal hair, not a band */
   /* Manila — the kraft-envelope material, and the one place the page's paper
      gets real chroma. The old #f1e8de darkened the ground without warming it
      (chroma ~7%), and darker-without-warmer is the recipe for grey; Patrick
      called it twice, 2026-08-16. Deeper (#eee0c4) read as a highlighted
      callout, paler (#f3e7d0) stayed timid. Soft ink on this passes AA. */
   --paper-card: #EADBCE; /* manila card stock: the one emphasised block */
-  --card: #FCFAF6;       /* very light card: secondary information blocks */
+  --card: #FDF9F1;       /* very light card: secondary information blocks */
   --line: #DAC6B4;
   --line-card: #E2D5C5;
   /* TERRACOTTA, the homepage's accent, since these pages joined its design
@@ -268,9 +268,12 @@ a:hover { text-decoration-color: var(--navy); }
    pinning both axes squashes it. The clamp keeps the old responsive behaviour,
    just applied to a picture instead of a font size. alt="Postmello" is what
    keeps the name a spoken word for a screen reader. */
+/* Stepped down by the same factor as .brand-name when the mark went ALL CAPS
+   (2026-08-29) — see the note there for why an unchanged number would have
+   grown the lockup. */
 .site-head .name {
   display: block;
-  height: clamp(1.35rem, 2vw, 1.72rem);
+  height: clamp(1.18rem, 1.75vw, 1.5rem);
   width: auto;
 }
 /* The wordmark is a link on every page but the home page, and it must not
@@ -2021,7 +2024,8 @@ footer .signoff {
    .site-head .name above for why the wordmark stopped being a font. */
 footer .signoff-name {
   display: block;
-  height: 1.32rem;
+  /* 1.32rem before the all-caps mark landed (2026-08-29). */
+  height: 1.16rem;
   width: auto;
   /* align-self, and it is load-bearing: .signoff is a COLUMN flex, so the
      default align-items:stretch sizes a child across the full container width

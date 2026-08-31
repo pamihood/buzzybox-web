@@ -27,19 +27,26 @@
      leans peach instead of grey-beige, so the hero and the page read as one
      paper. The hero wall itself is deeper (#F8DFC7) - the page ground stays
      quieter than the scene it sits under. */
-  /* Deepened onto the APP'S OWN CREAM (2026-08-30, second pass). The first
-     warming leaned peach but kept a near-white ground, so the page paled out
-     the moment the hero's apricot wall ended - the desk sat on one cream and
-     the page on another. The ground is now the hero wall's own mid tone, and
-     the rest of the ramp steps from it: cards lift ABOVE the ground, bands
-     sit below it, and the ground/band contrast is the same size it always
-     was, just deeper in the family. Body ink still clears AA on all three. */
-  --parchment-50:  #FDF6EC;   /* cards: the sheet that lifts off the ground */
-  --parchment-100: #F8E4CE;   /* the page ground = the hero wall's cream */
-  --parchment-200: #F4DBC0;   /* the second sheet */
-  --parchment-300: #EBC9A4;   /* band tint, tab wells, image beds */
-  --parchment-400: #D9B68C;
-  --parchment-500: #B99672;
+  /* THE HERO IS DEEP; THE PAGE IS NOT (2026-08-30, third pass). Putting the
+     hero wall's apricot on --parchment-100 made every section inherit it,
+     and nine sections of dark peach is a different site than one warm scene
+     at the top. So the deep tone is scoped to the hero unit alone
+     (--hero-ground, below) and the page ramp goes back to a LIGHT warm cream
+     - warmer than the pre-redesign paper, nowhere near as deep as the wall.
+     The hero keeps its wall gradient either way; only the ground under and
+     after it changed. */
+  --parchment-50:  #FEFBF6;   /* cards: the sheet that lifts off the ground */
+  --parchment-100: #FCF6EC;   /* the page ground */
+  --parchment-200: #F8EEE0;   /* the second sheet */
+  --parchment-300: #F0DDC6;   /* band tint, tab wells, image beds */
+  --parchment-400: #DCC4A6;
+  --parchment-500: #BCA184;
+
+  /* The hero unit's own ground - the wall's lower cream. It carries the wedge
+     below the desk's slanted rim and the app-shot section behind it, so the
+     scene reads as one continuous surface. Deliberately NOT --parchment-100:
+     nothing after the app shot should inherit this. */
+  --hero-ground:   #F1D5B7;
 
   /* --line is the comp's #DAC6B4, used on nearly every border. The two
      variants exist because the comp bands some sections with a slightly
@@ -51,9 +58,9 @@
   --ink-900: #2B231D;   /* headings */
   --ink-800: #3E342B;
   --ink-700: #574B40;   /* body copy */
-  /* Darkened with the ground (2026-08-30): at #746456 this cleared AA on
-     the old near-white paper but only reached 4.04:1 on the deepened band.
-     #6B5B4D restores it to 4.63:1 there, 5.26:1 on the page ground. */
+  /* Darkened 2026-08-30 when the ground briefly went deep. The ground came
+     back up, so this now has more headroom than it strictly needs - kept
+     because captions were the one role that ever ran close to AA. */
   --ink-600: #6B5B4D;   /* captions, meta */
   --ink-500: #968474;
 
@@ -237,6 +244,20 @@ button { font: inherit; color: inherit; background: none; border: 0; }
   background: color-mix(in srgb, var(--parchment-300) 55%, var(--parchment-100));
   border-block: 1px solid var(--line);
 }
+
+/* A CARD ON A BAND USES THE LIGHTEST SHEET, NOT THE SECOND ONE (2026-08-30).
+   --parchment-200 is the "second sheet": it reads as a tonal hair on the page
+   GROUND, which is what it was drawn for. On a BAND it is three, six and nine
+   points of RGB away from its own background - the Why panel had effectively
+   disappeared into the section behind it. Cards inside a band step up to
+   --parchment-50 instead, which is the same relationship (a sheet laid on a
+   surface) carried onto the darker surface. Scoped to .section--band so a
+   card keeps its second-sheet tone wherever it sits on the ground - .faq-item
+   in #faq and .desk-stage in #desks are unchanged. */
+.section--band .why-panel,
+.section--band .worlds,
+.section--band .plan-more-body,
+.section--band .faq-item { background: var(--parchment-50); }
 /* (.section--band-warm is gone. It existed to give ONE section a warmer ground
    than the others; now every band has that ground, so it had nothing left to
    modify.) */
@@ -606,7 +627,7 @@ button { font: inherit; color: inherit; background: none; border: 0; }
    hero CSS and its decision history live in git before this commit.
    The fixed site-header floats over the hero wall; the hero's own
    padding-top is its headroom. */
-.hero-band { background: color-mix(in srgb, var(--parchment-300) 55%, var(--parchment-100)); }
+.hero-band { background: var(--hero-ground); }
 
 :root {
   --ink:        #2B231D;
@@ -928,7 +949,7 @@ button { font: inherit; color: inherit; background: none; border: 0; }
 
 
 .appshot {
-  background: color-mix(in srgb, var(--parchment-300) 55%, var(--parchment-100));
+  background: var(--hero-ground);
   border-bottom: 1px solid #DAC6B4;
   padding: clamp(3rem, 6vw, 5.5rem) 1.5rem clamp(3.5rem, 7vw, 6.5rem);
   text-align: center;

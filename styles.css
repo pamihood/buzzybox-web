@@ -30,15 +30,15 @@
      a barely-different second sheet, and one warm card. The accent colour IS
      the paper — the desks, stamps, stickers and bee bring every other colour
      on the page, and a standard web accent would only compete with them. */
-  --paper: #F8E4CE;      /* writing paper: the canvas */
-  --paper-alt: #F4DBC0;  /* a second sheet — a tonal hair, not a band */
+  --paper: #FCF6EC;      /* writing paper: the canvas */
+  --paper-alt: #F8EEE0;  /* a second sheet — a tonal hair, not a band */
   /* Manila — the kraft-envelope material, and the one place the page's paper
      gets real chroma. The old #f1e8de darkened the ground without warming it
      (chroma ~7%), and darker-without-warmer is the recipe for grey; Patrick
      called it twice, 2026-08-16. Deeper (#eee0c4) read as a highlighted
      callout, paler (#f3e7d0) stayed timid. Soft ink on this passes AA. */
   --paper-card: #EADBCE; /* manila card stock: the one emphasised block */
-  --card: #FDF6EC;       /* very light card: secondary information blocks */
+  --card: #FEFBF6;       /* very light card: secondary information blocks */
   --line: #DAC6B4;
   --line-card: #E2D5C5;
   /* TERRACOTTA, the homepage's accent, since these pages joined its design

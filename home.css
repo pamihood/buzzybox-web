@@ -1551,27 +1551,49 @@ body::after {
 .stationery-panels {
   position: relative;
   display: grid;
-  align-content: center;
+  align-content: start;
   min-height: 0;
 }
+/* Papers are now several times the height of the stamp and sticker grids, and
+   the wrapper holds every panel at the tallest of them (see the stationery
+   block in index.html's script). Letting the section grow is the trade this
+   change is: Collections is a peak of the page, and the stationery is worth
+   the scroll. */
+/* THE FOUR TABS DO NOT SHARE A DENSITY (2026-08-31). They used to converge on
+   one - nine papers across at 1024, beside six envelopes and six stamps - and
+   at nine across a sheet of stationery is a thumbnail in a picker. On a
+   marketing page this row's job is not efficient browsing; it is to make
+   somebody want to write on one of these.
+
+   So density now follows the OBJECT. A sheet of paper is the largest thing in
+   the stationery drawer and gets the most room: three across on desktop, which
+   is roughly four times the area it had, enough to read the edge art, the
+   paper texture and - the part that actually sells it - the inviting blank
+   middle. Envelopes are smaller objects and sit four across; stamps and
+   stickers are small and numerous by nature and stay dense. The row reads more
+   physical for the disagreement: a stamp SHOULD occupy less of the table than
+   a sheet of paper. */
 .st-grid { display: grid; gap: 0.75rem; }
-.st-grid--papers   { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.st-grid--papers    { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
 .st-grid--envelopes { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
-.st-grid--stamps   { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
-.st-grid--stickers { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.st-grid--stamps    { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+.st-grid--stickers  { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 @media (min-width: 640px) {
-  .st-grid--papers    { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .st-grid--papers    { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem; }
   .st-grid--envelopes { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-  .st-grid--stamps    { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+  .st-grid--stamps    { grid-template-columns: repeat(5, minmax(0, 1fr)); }
   .st-grid--stickers  { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 }
 @media (min-width: 768px) {
-  .st-grid--papers    { grid-template-columns: repeat(6, minmax(0, 1fr)); }
-  .st-grid--envelopes { grid-template-columns: repeat(6, minmax(0, 1fr)); }
-  .st-grid--stickers  { grid-template-columns: repeat(7, minmax(0, 1fr)); }
+  .st-grid--envelopes { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .st-grid--stamps    { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+  .st-grid--stickers  { grid-template-columns: repeat(6, minmax(0, 1fr)); }
 }
 @media (min-width: 1024px) {
-  .st-grid--papers { grid-template-columns: repeat(9, minmax(0, 1fr)); }
+  /* three across, and deliberately not four: nine papers land as 3x3, which
+     is a full drawer rather than a row with two orphans under it */
+  .st-grid--papers    { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.5rem; }
+  .st-grid--stickers  { grid-template-columns: repeat(7, minmax(0, 1fr)); }
 }
 .st-item { text-align: center; }
 .st-bed {
@@ -1642,15 +1664,14 @@ body::after {
 .st-bed--env { aspect-ratio: 4 / 3; }
 .st-bed--sq  { aspect-ratio: 1 / 1; padding: 0.75rem; }
 .st-bed--stk { aspect-ratio: 1 / 1; padding: 0.625rem; }
-.st-item span {
-  display: block;
-  font-size: 11px;
-  font-weight: 500;
-  color: var(--ink-700);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
+/* NO NAMES UNDER THE ART (2026-08-31). "Wisteria", "Lily Pond", "Dewdrops"
+   are not what sells a sheet - seeing the sheet is - and at 11px under every
+   tile they added a row of small grey text competing with the thing it
+   labelled. The tiles are decoration here, not a catalogue: nothing is
+   clickable and no name is referenced anywhere else on the page. The names
+   still ship in the app, where choosing one is the point.
+   (.st-item span was the caption's rule; the spans are gone from the markup.) */
+
 
 /* ---------- The email-bridge note ----------
    All that is left of a subsection: a "Safe Email Bridge" pill, a "Pure & Safe

@@ -102,7 +102,12 @@
     /* The wordmark is the ARTWORK, the same file the site header uses and the
        same lettering the app's splash carries in gold. Sized by height, width
        auto: the aspect is the drawing's, and pinning both would squash it. */
-    .mark .word { height: 42px; width: auto; display: block; }
+    /* 42px until the wordmark went ALL CAPS (2026-08-29). The old mark was
+       title case, so 42px was its ascender height and its lowercase sat well
+       below that; at the same number every letter of the new one would reach
+       the old P's height and outweigh the 61px glyph. Same 0.875 step the
+       site header took. */
+    .mark .word { height: 37px; width: auto; display: block; }
     /* THE SIZE RULE - read this before changing any font-size here.
        Nothing on this card is sized against the other things on this card. It
        is sized against what it becomes in a feed, because this image is almost

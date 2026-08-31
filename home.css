@@ -553,149 +553,8 @@ button { font: inherit; color: inherit; background: none; border: 0; }
   cursor: pointer;
 }
 
-/* ---------- Hero ----------
-   Sits under the fixed header, so its top padding carries the header's height
-   plus the section's own air. The gradient is a three-stop wash that lifts the
-   middle of the first screen a hair warmer than the page. */
-.hero {
-  position: relative;
-  overflow: hidden;
-  padding-top: 7rem;
-  padding-bottom: 4rem;
-  background: linear-gradient(to bottom, var(--parchment-100), #F7F2E9, var(--parchment-100));
-}
-@media (min-width: 1024px) { .hero { padding-top: 9rem; padding-bottom: 6rem; } }
-
-/* Three blurred colour fields behind the type. They are decoration and are
-   aria-hidden in the markup; at this blur radius they read as warmth in the
-   paper rather than as shapes. */
-.hero-glow { position: absolute; border-radius: var(--r-full); filter: blur(64px); pointer-events: none; z-index: 0; }
-.hero-glow--1 { top: 3rem; left: 50%; transform: translateX(-50%); width: 800px; height: 350px; background: color-mix(in srgb, var(--parchment-300) 30%, transparent); }
-.hero-glow--2 { top: 10rem; right: 2.5rem; width: 18rem; height: 18rem; background: color-mix(in srgb, var(--honey-400) 10%, transparent); }
-.hero-glow--3 { top: 15rem; left: 2.5rem; width: 18rem; height: 18rem; background: color-mix(in srgb, var(--sage-500) 10%, transparent); }
-.hero > .shell { position: relative; z-index: 1; }
-
-/* Below the ACTIONS now, as a plain line — see the note in index.html for why
-   the pill came off (it read as a third, disabled button, and monospace never
-   centres in a box: trailing letter-spacing plus a full stop that is a dot in
-   an empty cell). Courier Prime stays: it is the apparatus face, and franking
-   is the register a platform footnote wants. ink-600 because this is meta,
-   not body copy. */
-.hero-status { margin: 1.5rem 0 0; text-align: center; }
-.status-badge {
-  font-family: var(--font-mono);
-  font-size: 0.8125rem;
-  letter-spacing: 0.04em;
-  color: var(--ink-600);
-}
-/* (.status-dot was a pulsing sage dot in front of "Currently in private beta".
-   It went with that half of the line on 2026-08-23: the dot pulsed to say the
-   fact was LIVE, which an open beta is and a platform is not.) */
-
-.hero-copy { max-width: 56rem; margin-inline: auto; margin-bottom: 2.5rem; text-align: center; }
-/* The headline keeps the big size it gained when it became one line; the
-   aside below is a separate element rather than a second line inside the H1,
-   because apply-brand.py rewrites everything between that element's tags. */
-.hero-copy h1 {
-  font-size: 2.25rem;
-  line-height: 1.1;
-  letter-spacing: -0.03em;
-  text-wrap: balance;
-  margin-bottom: 0.5rem;
-}
-@media (min-width: 640px)  { .hero-copy h1 { font-size: 3rem; } }
-@media (min-width: 768px)  { .hero-copy h1 { font-size: 3.75rem; } }
-@media (min-width: 1024px) { .hero-copy h1 { font-size: 4.5rem; } }
-
-/* THE COMP'S ONE ITALIC, revived (Patrick, 2026-08-23) — a serif italic in
-   terracotta at half the headline's size, so the pair reads as a statement
-   and its aside rather than as two headlines. It was the nicest thing in the
-   old hero and it was cut only because the headline had gone down to a single
-   line; a line came back, so it did. Set in the heading italic at 400 against the
-   headline's 700: the weight difference is doing as much of the work as the
-   colour. */
-.hero-aside {
-  margin: 0 0 1.5rem;
-  /* Inherits the heading face, which is the point: the aside is the page's one
-     true italic, so the heading face has to HAVE one. A face without an italic
-     leaves the browser to synthesise an oblique by shearing the roman, which
-     is not the same thing and looks it - that is what ruled Suez One out. */
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-weight: 400;
-  font-size: 1.5rem;
-  line-height: 1.2;
-  letter-spacing: -0.01em;
-  color: var(--terracotta-600);
-  text-wrap: balance;
-}
-@media (min-width: 640px)  { .hero-aside { font-size: 1.75rem; } }
-@media (min-width: 768px)  { .hero-aside { font-size: 2rem; } }
-@media (min-width: 1024px) { .hero-aside { font-size: 2.25rem; margin-bottom: 1.75rem; } }
-
-/* NOT A PARAGRAPH ANY MORE - A LEAD (Patrick, 2026-08-27). The history in one
-   line: a one-line tagline, then a three-sentence paragraph on 2026-08-23
-   (what a person does here, then what the page is defined against), then this,
-   one sentence that defines the product and argues with nothing. The argument
-   it used to carry is made better a screen down in the claims and Why
-   Postmello.
-
-   Set as a LEAD, not as body copy, and that is the point of this pass. At 1rem
-   the middle of the hero went slack the moment the second sentence left: a
-   line of ordinary paragraph type has nothing to hold the gap between display
-   type above it and two buttons below it. 21px desktop / 19px phone sits
-   ABOVE body copy and far below the 2.25rem aside, so it reads as a
-   substantial calm sentence rather than as a third headline.
-
-   SANS on purpose. The serif belongs to the headline and its italic to the
-   aside; a third face here would give a three-line hero three voices. Weight
-   450, not 400 and not bold - Plus Jakarta Sans is loaded as a variable range
-   (wght@400..800, see the fonts link in index.html), so 450 is a real
-   instance and not a synthesised one, and it is what stops the line looking
-   thin once it is enlarged. Nothing INSIDE the sentence is emphasised: see
-   the note in the hero markup for why.
-
-   37.5rem AND `pretty`, WHICH IS A PAIR - changing either alone gives a worse
-   line. The sentence has a hinge (the dash), and 600px is the measure at
-   which the half before it, 593px at this size and weight, is the widest
-   thing that still fits on one line. So the natural break IS the hinge: what
-   and who on line one, why on line two, which is the sentence's own
-   structure. Nothing forces it - no <br>, no nbsp between words - the measure
-   simply lands there.
-
-   `balance` was here for the one-sentence version and is wrong for this one.
-   It evens the two lines by width, which puts the break after "and" and
-   leaves "friends and / family" split across it: 515/532 instead of 593/454.
-   Even lines are not the goal; breaking where the sentence breaks is. `pretty`
-   still does the job it is for, which is stopping the last line being a stub
-   at phone widths, where this sets as three lines.
-
-   Worth knowing: there is ~7px of headroom in that fit. On a platform whose
-   fallback face measures wider, the break falls back to the after-"and" one -
-   which is the previous behaviour and perfectly readable, not a broken layout.
-   Do not chase the last pixels by widening past 600px; a centred line that
-   stretches across the hero was the thing this measure exists to prevent.
-
-   Colour stays --ink-700 - a step softer than the headline's --ink-900, and
-   warm rather than grey. */
-.hero-copy .lede {
-  max-width: 37.5rem;
-  margin-inline: auto;
-  margin-bottom: 2rem;
-  font-size: 1.1875rem;
-  font-weight: 450;
-  line-height: 1.45;
-  color: var(--ink-700);
-  text-wrap: pretty;
-}
-@media (min-width: 640px) { .hero-copy .lede { font-size: 1.3125rem; } }
-/* (.lede-turn briefly split this paragraph into two beats, a block span with
-   0.65em above it. Patrick closed it back up the same day: the gap made the
-   second sentence read as a separate statement rather than as the turn in the
-   one it belongs to.) */
-
-.hero-actions { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1rem; }
-@media (min-width: 640px) { .hero-actions { flex-direction: row; } }
+/* The button family - shared by the hero and every section below it.
+   (It lived inside the old hero block and nearly left with it.) */
 .btn {
   display: inline-flex;
   cursor: pointer;
@@ -728,9 +587,370 @@ button { font: inherit; color: inherit; background: none; border: 0; }
 }
 .btn--ghost:hover { background: var(--parchment-200); }
 
-.hero-shot { max-width: var(--shell-5); margin-inline: auto; margin-top: 2rem; margin-bottom: 5rem; }
-.hero-shot img { width: 100%; height: auto; border-radius: var(--r-2xl); box-shadow: var(--shadow-xl); }
-@media (min-width: 640px) { .hero-shot img { border-radius: var(--r-3xl); } }
+/* ============================== THE HERO SCENE (redesign, 2026-08-30)
+   The desk is composed, not photographed: two skewed CSS planes carry a
+   generated drawer tile that repeats to any width, and every prop is a
+   re-rendered cut-out in the render's own camera (assets/hero/p-*).
+   The numbers come from scripts/build-web-hero.py in the app repo -
+   fitted lines of the original render, not free-hand values. The old
+   hero CSS and its decision history live in git before this commit.
+   The fixed site-header floats over the hero wall; the hero's own
+   padding-top is its headroom. */
+.hero-band { background: color-mix(in srgb, var(--parchment-300) 55%, var(--parchment-100)); }
+
+:root {
+  --ink:        #2B231D;
+  --ink-mid:    #3E342B;
+  --ink-soft:   #574B40;
+  --terracotta: #BF4A22;
+
+  --font-serif: "Lora", "Iowan Old Style", Georgia, serif;
+  --font-voice: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-apparatus: "Courier Prime", ui-monospace, Menlo, monospace;
+
+  /* ---- the scene scale ----
+     ONE number: how big the desk furniture is. Everything physical - drawer
+     pitch, desk depth, every prop - multiplies --scene, so the furniture can
+     never disagree with itself about its own size. It is fluid WITHIN a band
+     and art-directed at the breaks (below): between breakpoints the scene
+     scales smoothly; at ~1024 and ~640 the composition itself changes,
+     because no single formula is careful at every width.
+
+     The numbers' coordinate system is still the original render's 1672px
+     frame - scripts/build-web-hero.py prints them - but nothing on the page
+     IS that render any more; it is just the frame the fractions were
+     measured in.
+
+     The vh term keeps a short wide window from growing a hero taller than
+     itself; the px clamps keep props believable at the extremes. */
+  --scene:      clamp(760px, min(104vw, 125vh), 1560px);
+  --scene-h:    calc(var(--scene) * 0.562799);
+  --scene-drop: calc(-10.1339vw - 24px);
+  --hero-h:     calc(var(--scene) * 0.745 + 10.1339vw + 24px);
+  --scene-x:    calc(var(--scene) * -0.008);   /* ghost-calibrated 2026-08-30 */
+
+  --mint-skew: 4.2156deg;
+  --mint-top:  calc(var(--scene) * 0.221836);
+  --wood-skew: 5.7866deg;
+  --wood-top:  calc(var(--scene) * 0.386567);
+  --wood-h:    calc(var(--scene) * 0.174738);
+  --tile-w:    calc(var(--scene) * 0.476675);
+  --tile-phase: calc(var(--scene) * -0.048445);
+
+  --wall-hi:  #FBE9D7;
+  --wall-mid: #F8DFC7;
+  --wall-lo:  #EDC9A2;
+}
+
+
+
+
+
+/* ============================================================== the hero */
+.hero {
+  position: relative;
+  overflow: hidden;
+  /* min-height, not height: the copy is in normal flow, so if it ever grows
+     past the formula (long translations, huge fonts) it pushes the hero
+     TALLER and the bottom-anchored desk moves down with it - a gap opens
+     rather than a collision. The scene formula is the floor, not a cage. */
+  min-height: var(--hero-h);
+  padding-top: clamp(5rem, 9.5vw, 8.5rem);
+  padding-bottom: calc(var(--scene) * 0.225 + 14.2vw + 90px);
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 calc(100% - 10.1339vw));
+  background:
+    radial-gradient(96% 58% at 46% 0%,  rgba(255,247,235,.80), rgba(255,247,235,0) 66%),
+    radial-gradient(70% 60% at 92% 86%, rgba(216,161,106,.30), rgba(216,161,106,0) 72%),
+    linear-gradient(163deg, var(--wall-hi) 0%, var(--wall-mid) 46%, var(--wall-lo) 100%);
+}
+.hero::after {
+  content: ""; position: absolute; inset: 0; z-index: 4; pointer-events: none;
+  background-image: url("assets/paper-grain.png");
+  background-size: 128px;
+  opacity: .5;
+  mix-blend-mode: multiply;
+}
+
+/* ============================================================== the desk */
+.hero__desk {
+  position: absolute;
+  left: 50%;
+  bottom: calc(var(--scene-drop) * -1);
+  width: var(--scene);
+  height: var(--scene-h);
+  transform: translateX(calc(-50% + var(--scene-x)));
+  z-index: 1;
+}
+.desk__mint, .desk__wood {
+  position: absolute;
+  left: -100vw; right: -100vw;
+  transform-origin: 100vw 0;
+}
+.desk__mint {
+  top: var(--mint-top);
+  height: calc(var(--scene) * 0.30);
+  transform: skewY(var(--mint-skew));
+  background:
+    linear-gradient(to bottom, rgba(82,88,58,.26), rgba(82,88,58,.06) 7%, rgba(82,88,58,0) 17%),
+    linear-gradient(to right, #DBE1CE 0%, #D3DAC6 42%, #CBD3BF 100%);
+}
+.desk__wood {
+  top: var(--wood-top);
+  height: var(--wood-h);
+  transform: skewY(var(--wood-skew));
+  background-image: url("assets/hero/desk-drawer-tile.png");
+  background-repeat: repeat-x;
+  background-size: var(--tile-w) 100%;
+  background-position: calc(100vw + var(--tile-phase)) 0;
+}
+.desk__wood::after {
+  content: ""; position: absolute; left: 0; right: 0; top: 100%;
+  height: 42px;
+  /* the tile now ends the desk itself - bottom rim, no legs (Patrick) - so
+     below it there is only the wall, and this is the desk's soft ground
+     shadow against it */
+  background: linear-gradient(to bottom, rgba(102, 68, 32, .22), rgba(102, 68, 32, 0));
+}
+
+/* ============================================================ the objects
+   Positions are fractions of the old render's frame, so v2 and v3 put each
+   object in the same place. Each .obj is a wrapper: the ::before is the
+   ground ellipse, the img carries a soft drop-shadow, and both are throwaway
+   once shadows are baked into the art. The light is upper right (the app's
+   own desk lighting rule), so shadows fall down-left. */
+.obj { position: absolute; }
+/* The painted ground ellipses are GONE (Patrick, 2026-08-30: "weird shadow
+   on desk") - a radial blob wider than its object reads as a stain, not a
+   shadow. Each prop casts only its own silhouette, tight and low. */
+.obj img {
+  position: relative; z-index: 1;
+  width: 100%; height: auto;
+  filter: drop-shadow(-6px 7px 8px rgba(96, 78, 44, .22));
+}
+
+.obj--mailbox {
+  left: calc(50% - 50vw + clamp(14px, 2vw, 36px));
+  bottom: calc(var(--scene-h) * 0.385);
+  width: calc(var(--scene) * 0.29);
+}
+.obj--stack {
+  left: max(calc(var(--scene) * 0.26), calc(50% - 50vw + var(--scene) * 0.29 + clamp(14px, 2vw, 36px) + 26px));
+  bottom: calc(var(--scene-h) * 0.29);
+  width: calc(var(--scene) * 0.28);
+}
+
+
+/* The rack is one re-rendered image: three sheets whose lean and mutual
+   occlusion the regeneration preserved, so nothing here to choreograph. */
+.obj--rack {
+  right: calc(50% - 50vw + var(--scene) * 0.014);
+  bottom: calc(var(--scene-h) * 0.235);
+  width: calc(var(--scene) * 0.325);
+}
+
+/* Stamps lie flat on the desk. v3 foreshortened and scattered square art
+   with transforms; the re-rendered stamps carry the scene's own perspective
+   and tilt IN the art, so no transform - a transform here double-applies. */
+.obj--stamp { width: calc(var(--scene) * 0.064); }
+.obj--stamp img {
+  filter: drop-shadow(-1px 2px 2px rgba(96, 78, 44, .35));
+  /* lying ON the desk: edges follow the desk's recession, slightly
+     foreshortened - without this the baked tilts read as hovering */
+  transform: rotate(2.2deg) scaleY(.94);
+}
+.obj--stamp1 { left: calc(var(--scene) * 0.575); bottom: calc(var(--scene-h) * 0.235); }
+.obj--stamp2 { left: calc(var(--scene) * 0.652); bottom: calc(var(--scene-h) * 0.221); }
+.obj--stamp3 { left: calc(var(--scene) * 0.729); bottom: calc(var(--scene-h) * 0.206); }
+.obj--stamp4 { left: calc(var(--scene) * 0.806); bottom: calc(var(--scene-h) * 0.190); }
+
+/* the bee, hung off the top of the frame - identical to v2 */
+:root { --skep-w: clamp(78px, 8.6vw, 150px); --skep-r: clamp(1.5rem, 5vw, 6rem); }
+.hero__skep {
+  position: absolute;
+  z-index: 2;
+  right: var(--skep-r);
+  top: calc(var(--scene) * 0.022);
+  width: var(--skep-w);
+  filter: drop-shadow(-7px 15px 17px rgba(122, 79, 40, .20));
+}
+.hero__skep-cord {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  right: calc(var(--skep-r) + var(--skep-w) * 0.5 - 1.5px);
+  width: 3px;
+  height: calc(var(--scene) * 0.022);
+  border-radius: 0 0 2px 2px;
+  background: linear-gradient(to bottom, #D6AC63, #B98B3F);
+}
+
+/* ============================================================== the copy */
+.hero__copy {
+  position: relative; z-index: 3;
+  text-align: center;
+  padding: clamp(1rem, 3.6vw, 3.4rem) 1.25rem 0;
+  max-width: 62rem; margin-inline: auto;
+}
+.hero__copy h1 {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: clamp(2.4rem, 5.16vw, 5.4rem);
+  line-height: 1.06;
+  letter-spacing: -0.012em;
+  margin: 0;
+  color: var(--ink);
+}
+.hero__second {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-style: italic;
+  font-size: clamp(2rem, 4.3vw, 4.5rem);
+  line-height: 1.06;
+  letter-spacing: -0.008em;
+  margin: .14em 0 0;
+  color: #7A5A3C;
+}
+.hero__lede {
+  font-size: clamp(1.02rem, 1.32vw, 1.42rem);
+  line-height: 1.5;
+  color: var(--ink-mid);
+  margin: clamp(1rem, 1.9vw, 1.65rem) auto 0;
+  max-width: 34em;
+}
+.hero__actions {
+  display: flex; flex-wrap: wrap; justify-content: center;
+  gap: .85rem;
+  margin-top: clamp(1.3rem, 2.5vw, 2.2rem);
+}
+
+
+.hero__status {
+  /* the comp sets this line in the voice face with leafy sprigs either side
+     - matched here; the monospace-apparatus convention belongs to the live
+     site's postal furniture, not to this line in this design */
+  font-family: var(--font-voice);
+  font-weight: 500;
+  font-size: clamp(.92rem, 1.1vw, 1.12rem);
+  color: #2E4425;
+  margin: clamp(.9rem, 1.7vw, 1.5rem) 0 0;
+  display: flex; align-items: center; justify-content: center; gap: .8rem;
+}
+.hero__status::before, .hero__status::after {
+  content: ""; width: 26px; height: 26px;
+  background: no-repeat center / contain url("data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%2030%2030%22%3E%3Cpath%20d=%22M27%2028%20Q%2018%2023%206.5%206.5%22%20fill=%22none%22%20stroke=%22%237A701F%22%20stroke-width=%221.6%22%20stroke-linecap=%22round%22/%3E%3Cg%20fill=%22%238E8433%22%3E%3Cpath%20d=%22M0%200%20C%202.2%20-2.6%206.2%20-3%208.6%20-0.6%20C%206.4%202.2%202.4%202.4%200%200%20Z%22%20transform=%22translate%2821.6,22.2%29%20rotate%28-97%29%22/%3E%3Cpath%20d=%22M0%200%20C%202.2%20-2.6%206.2%20-3%208.6%20-0.6%20C%206.4%202.2%202.4%202.4%200%200%20Z%22%20transform=%22translate%2818.3,18.9%29%20rotate%28-167%29%22/%3E%3Cpath%20d=%22M0%200%20C%202.2%20-2.6%206.2%20-3%208.6%20-0.6%20C%206.4%202.2%202.4%202.4%200%200%20Z%22%20transform=%22translate%2814.4,14.7%29%20rotate%28-97%29%22/%3E%3Cpath%20d=%22M0%200%20C%202.2%20-2.6%206.2%20-3%208.6%20-0.6%20C%206.4%202.2%202.4%202.4%200%200%20Z%22%20transform=%22translate%2810.6,11%29%20rotate%28-167%29%22/%3E%3C/g%3E%3Cg%20fill=%22%23A9A04B%22%3E%3Cpath%20d=%22M0%200%20C%202.2%20-2.6%206.2%20-3%208.6%20-0.6%20C%206.4%202.2%202.4%202.4%200%200%20Z%22%20transform=%22translate%2816.5,17.0%29%20rotate%28-132%29%22/%3E%3Cpath%20d=%22M0%200%20C%202.2%20-2.6%206.2%20-3%208.6%20-0.6%20C%206.4%202.2%202.4%202.4%200%200%20Z%22%20transform=%22translate%287.3,7.4%29%20rotate%28-132%29%22/%3E%3C/g%3E%3C/svg%3E");
+}
+.hero__status::after { transform: scaleX(-1); }
+
+
+
+/* ==================================================== art direction breaks
+   Within each band the scene is fluid; AT the breaks the composition is
+   re-decided by hand. Wide first, then tablet, then phone.
+
+   >=1560: the scene is at its cap and the viewport keeps growing - the desk
+   just gets longer, which is the whole point. The one collision at this
+   size: the rack's tallest sheet grazes the lede, so it steps down a hair
+   and the stamps follow it. */
+@media (min-width: 1560px) {
+  :root { --hero-h: calc(var(--scene) * 0.762 + 10.1339vw + 24px); }
+}
+
+/* 1024-1400: the copy column narrows faster than the scene - the mailbox
+   dome was reaching the headline's first glyph, so it shrinks and tucks
+   further off the left edge */
+@media (max-width: 1400px) and (min-width: 1024px) {
+  .obj--mailbox { width: calc(var(--scene) * 0.26); left: calc(50% - 50vw + clamp(12px, 1.6vw, 28px)); bottom: calc(var(--scene-h) * 0.36); }
+  /* the buttons sit closer to the scene here; the rack steps down so its
+     purple corner stays clear of See-how-it-works (pixel-checked) */
+  .obj--rack    { bottom: calc(var(--scene-h) * 0.20); }
+}
+
+/* <=1023 (tablet): everything still present, but tighter - the mailbox and
+   rack step in from the edges and down, the stamps shrink, so the copy keeps
+   its air. The scene floor drops with it: cropping a 760px scene into an
+   800px window is not a composition. */
+@media (max-width: 1023px) {
+  :root { --scene: clamp(580px, min(100vw, 143vh), 1560px); }
+  .obj--mailbox { width: calc(var(--scene) * 0.215); left: calc(var(--scene) * 0.012); bottom: calc(var(--scene-h) * 0.34); }
+  .obj--stack   { width: calc(var(--scene) * 0.26); left: max(calc(var(--scene) * 0.30), calc(50% - 50vw + var(--scene) * 0.235 + 38px)); bottom: calc(var(--scene-h) * 0.30); }
+  .obj--rack    { width: calc(var(--scene) * 0.305); bottom: calc(var(--scene-h) * 0.205); }
+  .obj--stamp   { width: calc(var(--scene) * 0.058); }
+  .obj--stamp1  { left: calc(var(--scene) * 0.565); bottom: calc(var(--scene-h) * 0.230); }
+  .obj--stamp2  { left: calc(var(--scene) * 0.638); bottom: calc(var(--scene-h) * 0.217); }
+  .obj--stamp3  { left: calc(var(--scene) * 0.711); bottom: calc(var(--scene-h) * 0.203); }
+  .obj--stamp4  { left: calc(var(--scene) * 0.784); bottom: calc(var(--scene-h) * 0.188); }
+}
+
+/* <=639 (phone): a different composition, not a smaller one. The desk is a
+   bottom band; mailbox and stack carry the scene; the rack - the tallest
+   prop, and the one that fights a stacked copy column - goes away, and two
+   stamps stand in for four. */
+@media (max-width: 639px) {
+  :root {
+    --scene: clamp(440px, 136vw, 620px); --hero-h: auto;
+    --skep-w: 64px; --skep-r: 0.9rem;
+  }
+  .hero { padding-bottom: calc(var(--scene) * 0.225 + 14.2vw + 150px); }
+  .hero__skep { top: 6px; }
+  .obj--mailbox { width: calc(var(--scene) * 0.21); left: calc(50% - 50vw + 8px); bottom: calc(var(--scene-h) * 0.35); }
+  .obj--stack   { width: calc(var(--scene) * 0.26); left: calc(50% - 50vw + var(--scene) * 0.21 + 24px); bottom: calc(var(--scene-h) * 0.27); }
+  .obj--stamp1, .obj--stamp4 { display: none; }
+  .obj--rack    { right: calc(50% - 50vw + 14vw - 90px); bottom: calc(var(--scene-h) * 0.27); width: calc(var(--scene) * 0.25); }
+  .obj--stamp2  { left: auto; right: calc(50% - 50vw + 15vw); bottom: calc(var(--scene-h) * 0.225); }
+  .obj--stamp3  { left: auto; right: calc(50% - 50vw + 19vw); bottom: calc(var(--scene-h) * 0.245); }
+  .hero__copy h1, .hero__second { font-size: clamp(2.05rem, 5.16vw, 5.4rem); }
+}
+
+/* <=430 (small phones): only here does the desk bow out - the scene reduces
+   to its two protagonists, sized by the VIEWPORT so they scale with the
+   screen rather than with the clamped scene (the pile at scene-fractions
+   overflowed a 375px screen - Patrick, 2026-08-30). */
+@media (max-width: 430px) {
+  .desk__mint, .desk__wood { display: none; }
+  .hero { clip-path: none; padding-bottom: calc(58vw + 24px); }
+  .obj--mailbox { width: 28vw; left: calc(50% - 50vw + 6vw); bottom: calc(4vw + 8px); }
+  .obj--stack   { width: 50vw; left: auto; right: calc(50% - 50vw + 4vw); bottom: 14px; }
+  .obj--stamp2, .obj--stamp3, .obj--rack { display: none; }
+}
+
+/* ---- ghost overlay: Patrick's reference comp at half opacity, for
+   calibrating sizes against the original. Prototype furniture. */
+
+
+.appshot {
+  background: color-mix(in srgb, var(--parchment-300) 55%, var(--parchment-100));
+  border-bottom: 1px solid #DAC6B4;
+  padding: clamp(3rem, 6vw, 5.5rem) 1.5rem clamp(3.5rem, 7vw, 6.5rem);
+  text-align: center;
+}
+
+.appshot__title {
+  font-family: var(--font-serif); font-weight: 500;
+  font-size: clamp(1.8rem, 3.2vw, 2.8rem); color: var(--ink); margin: 0;
+}
+.appshot__lede {
+  color: var(--ink-mid); font-size: clamp(.98rem, 1.2vw, 1.15rem);
+  max-width: 36em; margin: .8rem auto 2.2rem;
+}
+.appshot__frame img { width: 100%; height: auto; display: block; }
+.appshot__frame {
+  max-width: 62rem; margin: 0 auto;
+  border-radius: 18px; overflow: hidden;
+  box-shadow: 0 24px 60px -28px rgba(96, 68, 34, .45);
+  border: 1px solid rgba(120, 90, 50, .18);
+}
+
+/* Below 880px the header collapses to the burger toggle, which lives in the
+   hero's top-right corner - exactly where the skep hangs. The skep steps
+   left of it. (Declared after the scene's own media blocks so it wins their
+   --skep-r at every small width.) */
+@media (max-width: 880px) {
+  :root { --skep-r: 4.6rem; }
+}
+
+
+
+
 
 /* The four claims. Their heading block is a size below a section head — this
    is a coda to the hero, not a new section, and the comp sets it that way. */

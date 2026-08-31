@@ -31,7 +31,7 @@ PAGES = {
 
 FOOTER = """  <footer>
     <p class="signoff">
-      <img class="signoff-name" src="{p}assets/wordmark.png" alt="Postmello" width="1095" height="174" />
+      <img class="signoff-name" src="{p}assets/wordmark.png" alt="Postmello" width="1106" height="200" />
       <span class="signoff-line">Letters at your own pace.</span>
     </p>
     <nav class="foot-groups" aria-label="Footer">

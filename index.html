@@ -43,7 +43,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&amp;family=Lora:ital,wght@0,400..700;1,400..700&amp;family=Plus+Jakarta+Sans:wght@400..800&amp;display=swap" />
   <!-- home.css styles THIS PAGE ONLY. Everything else on the site still runs
        styles.css; see the note at the top of home.css. -->
-  <link rel="stylesheet" href="home.css?v=f6f45795" />
+  <link rel="stylesheet" href="home.css?v=30638b7b" />
 </head>
 <body>
 
@@ -71,7 +71,7 @@
              It carries alt text, so the name is still a word to a screen
              reader, to search, and to anyone with images off. -->
         <img class="brand-name" src="assets/wordmark.png" alt="Postmello"
-             width="1095" height="174" />
+             width="1106" height="200" />
       </a>
 
       <!-- FOUR choices, not seven (2026-08-23). Letters by Email, Philosophy
@@ -125,139 +125,79 @@
 
 <main id="main">
 
-  <!-- ============================ HERO ============================ -->
+  <!-- ============================ HERO ============================
+       Redesigned 2026-08-30: the desk is a composed SCENE - CSS planes, a
+       repeating generated drawer tile, and re-rendered props - not a
+       screenshot. The old hero, its comment history included, is in git
+       before this commit; the geometry's source of truth is
+       scripts/build-web-hero.py in the app repo. The copy keeps its jobs:
+       H1 = the tagline (apply-brand.py rewrites it), the aside is the
+       difference, the lede says what a person does here. The fixed header
+       floats over the hero wall; .hero-band carries the band cream that
+       continues under the desk's slanted bottom edge into the app-shot
+       section, one unbroken surface. -->
+  <div class="hero-band">
   <section class="hero">
-    <div class="hero-glow hero-glow--1" aria-hidden="true"></div>
-    <div class="hero-glow hero-glow--2" aria-hidden="true"></div>
-    <div class="hero-glow hero-glow--3" aria-hidden="true"></div>
+    <div class="hero__desk">
+    <div class="desk__mint"></div>
+    <div class="desk__wood"></div>
 
-    <div class="shell">
-      <!-- Headline, what it is, then its status - in that order (2026-08-23).
-           The status pill used to sit ABOVE the headline, which is the standard
-           announcement-bar pattern and gave the first line of the page to a
-           caveat. It reads better as a footnote to the pitch than a preface.
+    <div class="obj obj--mailbox">
+      <img src="assets/hero/p-mailbox.webp" width="723" height="863"
+           alt="A mint mailbox with letters waiting inside and its flag up" />
+    </div>
 
-           THE HEADLINE IS THE TAGLINE, written by scripts/apply-brand.py from
-           brand.json. It went back to "A quiet place for letters." because the
-           redesign's "A private desk for digital letters." says what the thing
-           IS but is not ownable - any stationery app could print it. The
-           private-desk sentence is not lost; it is the line directly below,
-           where saying what it is belongs.
+    <div class="obj obj--rack">
+      <img src="assets/hero/p-rack.webp" width="972" height="944"
+           alt="Three sheets of decorated writing paper standing on the desk" />
+    </div>
 
-           THREE PARTS, and the middle one is the revival of the comp's single
-           italic (Patrick, 2026-08-23). The headline states the mood, the
-           terracotta aside states the promise, and the paragraph below is the
-           only place on the page that says plainly what a person DOES here.
-           That paragraph is ONE paragraph, unbroken. It was briefly split
-           into two beats with a half-line between them; Patrick asked for it
-           closed back up on 2026-08-23, so the two ideas run together the way
-           a sentence and its follow-up normally do.
+    <div class="obj obj--stack">
+      <img src="assets/hero/p-stack.webp" width="1200" height="527"
+           alt="A stack of writing paper with a pen resting on top" />
+    </div>
 
-           IT NO LONGER ARGUES, AND IT IS NO LONGER A PARAGRAPH (Patrick,
-           2026-08-27, two passes). It used to end "No group chats,
-           algorithmic feeds, or urgency - just the creative joy of making
-           something and receiving something back", and all three words were
-           spending the hero's last inches badly. "Algorithmic feeds" is
-           generic anti-social-media language, and the thing Postmello is
-           actually unlike is texting. "Urgency" is the aside one line above,
-           said again. And the same claim is made better a screen down, on its
-           own object: "Nothing pulling you back. No feeds, read receipts,
-           online status or pressure to reply."
+    <div class="obj obj--stamp obj--stamp1"><img src="assets/hero/p-stamp-sprig.webp" width="200" height="200" alt="" /></div>
+    <div class="obj obj--stamp obj--stamp2"><img src="assets/hero/p-stamp-ladybug.webp" width="200" height="200" alt="" /></div>
+    <div class="obj obj--stamp obj--stamp3"><img src="assets/hero/p-stamp-lighthouse.webp" width="200" height="200" alt="" /></div>
+    <div class="obj obj--stamp obj--stamp4"><img src="assets/hero/p-stamp-rainbow.webp" width="200" height="200" alt="" /></div>
+  </div>
 
-           The second pass cut the remaining "- with room to write, draw, and
-           make each one your own" too. The third put a WHY in its place, and
-           that is the sentence standing here.
+  <div class="hero__skep-cord" aria-hidden="true"></div>
+  <img class="hero__skep" src="assets/hero/skep.png" alt="" aria-hidden="true" />
 
-           THE CHAIN IT IS MAKING (Patrick, 2026-08-27). Postmello is not
-           valuable because letters beat messages. Messaging is optimised for
-           speed and exchange; a desk and a letter make room for expression -
-           handwriting, drawing, typing, decorating, pages, taking your time -
-           and because that expression is made FOR somebody, what comes out
-           the other end is not craft but closeness. Desk and letters, then
-           room for expression, then more of yourself in what you send, then
-           staying in touch that feels more personal. So the word this line
-           had to reach is PERSONAL, and "creative" is what gets it there
-           rather than the point on its own.
-
-           It also completes the hero at the highest level, which is why
-           nothing else is needed here: WHAT is a private desk for digital
-           letters, WHO is friends and family, HOW is without the rush of
-           messaging, WHY is a more personal, creative way to stay in touch.
-           The second half does not re-explain the mechanism - the first half
-           already said it - it says what the mechanism is FOR.
-
-           Considered and not taken: "with more room for personality,
-           imagination and thought", which names the causal benefit one step
-           earlier and is the better line if this one ever starts sounding
-           like a category description.
-
-           So the three lines have one job each - the headline the feeling,
-           the aside the difference, this the whole proposition - and .lede is
-           set as a lead rather than as body copy to match (see home.css). If
-           a fifth idea ever wants in here, it belongs further down the page.
-           Do not bold "private desk", "digital letters" or "personal": the
-           sentence is short enough that emphasis inside it would make it read
-           as marketing rather than as a definition. The &nbsp; binds the dash
-           to "family" so it can never open a line and read as a bullet.
-           The aside is a separate <p>, deliberately: apply-brand.py rewrites
-           the whole inside of the data-brand element, so anything parked in
-           the H1 alongside the tagline would be erased on its next run. -->
-      <div class="hero-copy">
-        <h1 data-brand="tagline">A quiet place for letters.</h1>
-        <p class="hero-aside">Without the rush of messaging.</p>
-        <p class="lede">A private desk for digital letters between friends
-           and family&nbsp;- a more personal, creative way to stay in
-           touch.</p>
-
-        <!-- The primary action is the beta, not the price list. "Explore Desks
-             & Membership" pointed a first-time reader at the most commercial
-             idea on the page; this opens the same dialog the cards do. -->
-        <div class="hero-actions">
-          <button class="btn btn--primary" type="button" data-beta="Hero" data-brand="beta_cta">Request an invite</button>
-          <a class="btn btn--ghost" href="#how-it-works"><span>See how it works</span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-          </a>
-        </div>
-
-        <!-- "Coming first to iPad." alone, BELOW the actions, and NOT a pill
-             (Patrick, 2026-08-23, two passes). The line itself was settled in
-             the first pass: "Currently in private beta" came off because the
-             button directly beside it said JOIN PRIVATE BETA, and the pulsing
-             dot went with it - it existed to say "live RIGHT NOW", which is
-             true of an open beta and not of a platform.
-             That button now says REQUEST AN INVITE (2026-08-27), so the words
-             "private beta" are no longer above the fold at all. Deliberate:
-             the badge does not come back. The hero was cut down to three lines
-             with one job each, and a status caveat is a fourth; the dialog the
-             button opens says it in its first sentence, to the only reader who
-             has asked.
-             The second pass killed the pill. Above the buttons, a hairline
-             pill read as a third, disabled button in a stack of three - and
-             the monospace never sat centred in it: letter-spacing trails the
-             final glyph and a monospace full stop is a dot in an otherwise
-             empty cell, so the right side carried half a character of air the
-             left did not. No box, no centring problem. Plain apparatus text
-             under the actions is the App Store badge convention: statement,
-             actions, then the platform footnote. The share card KEEPS its
-             pill - it has no buttons to be mistaken for. -->
-        <p class="hero-status">
-          <span class="status-badge">Coming first to iPad.</span>
-        </p>
+    <div class="hero__copy">
+      <h1 data-brand="tagline">A quiet place for letters.</h1>
+      <p class="hero__second">Texting can wait.</p>
+      <p class="hero__lede">Write and draw digital letters with friends
+         and&nbsp;family.</p>
+      <div class="hero__actions">
+        <button class="btn btn--primary" type="button" data-beta="Hero" data-brand="beta_cta">Request an invite</button>
+        <a class="btn btn--ghost" href="#how-it-works"><span>See how it works</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
       </div>
+      <p class="hero__status">Coming first to iPad.</p>
+    </div>
+  </section>
 
-      <div class="hero-shot">
-        <!-- The SCREEN, not the device. assets/app-desk.jpg is the same
-             capture composited into Apple's iPad Air 13" product bezel;
-             app-desk-screen.jpg is that bezel's screen hole cropped back out
-             (the hole's aspect matched the 2732x2048 capture exactly, then an
-             18px inset to clear the rounded corner arc). The framed original
-             stays in the repo because scripts/og-card.html still shoots the
-             share card with it. -->
-        <img src="assets/app-desk-screen.jpg" width="1613" height="1200" fetchpriority="high"
-             alt="A Postmello desk - a mailbox holding mail, a stack of writing paper and a pen, and a row of drawers named for each friend" />
-      </div>
+  <!-- The proof shot: the only real capture of the APP on the page. The
+       scene above promises; this shows the promise kept. -->
+  <section class="appshot">
+    <p class="eyebrow">The desk itself</p>
+    <h2 class="appshot__title">Step inside the desk.</h2>
+    <p class="appshot__lede">Everything above is real - this is your desk in
+       the app, mailbox, drawers, paper and all.</p>
+    <div class="appshot__frame">
+      <img src="assets/app-desk-screen.jpg" width="1613" height="1200" fetchpriority="high"
+           alt="A Postmello desk - a mailbox holding mail, a stack of writing paper and a pen, and a row of drawers named for each friend" />
+    </div>
+  </section>
+  </div>
 
-      <div class="premise">
+  <!-- The claims stay the hero's coda, now on the page ground after the
+       app shot rather than inside the hero section. -->
+  <section class="section"><div class="shell"><div class="premise">
         <!-- No eyebrow, no heading (2026-08-23). "The Core Premise /
              Thoughtful correspondence by design." was pitch-deck language
              introducing four statements that introduce themselves. -->
@@ -288,8 +228,8 @@
           </article>
         </div>
       </div>
-    </div>
-  </section>
+    </div></div></section>
+
 
   <!-- ============================ WHY ============================ -->
   <!-- ================= THE BANDING RUN starts here =================
@@ -441,7 +381,9 @@
          one or take the slot out; do not mock one up.
        - EVERY NAME IS OBSCURED. Two of these carried names (a greeting, a
          signature, three names written on mountain peaks, a teacher, a camp)
-         and every one was blurred before export. Two carry no words at all.
+         and every one was blurred before export. The other two carry no name:
+         one has no words at all, and the words on the first are the names of
+         two drawn creatures, Leafy and Minty, which is why they ship whole.
          The full method, and the list of places a name hides, is in the app
          repo at docs/recipes/WEBSITE_LETTER_RECIPE.md. Never swap in a new
          letter without reading it.
@@ -466,8 +408,8 @@
       </div>
       <ul class="mailwall">
         <li class="mailwall-item">
-          <img src="assets/letters/letter-minty.png" width="1400" height="1078" loading="lazy" decoding="async"
-               alt="A painted mint-green creature sitting in the grass under a yellow sun, with the word minty above it and blue dots falling like rain." />
+          <img src="assets/letters/letter-leafy.png" width="1400" height="1078" loading="lazy" decoding="async"
+               alt="A page washed in blues with a small green creature at the bottom, the words she is leafy painted in green above it and I love her, is she minty? in yellow." />
         </li>
         <li class="mailwall-item">
           <img src="assets/letters/letter-paddleboard.png" width="1400" height="1078" loading="lazy" decoding="async"

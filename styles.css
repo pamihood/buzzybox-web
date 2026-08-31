@@ -258,11 +258,18 @@ a:hover { text-decoration-color: var(--navy); }
    pages kept rendering Rubik SemiBold uppercase, so postmello.com was serving
    two different wordmarks depending on which page you landed on.
 
-   It is the same assets/wordmark.png the homepage, the share card and the app's
-   Admin bar use: drawn letterforms, soft flared serifs with upright round
-   counters, the ink twin of the gold lettering on the app's splash. No typeface
-   has that skeleton - the nearest, Fraunces, has inclined stress, and its o
-   read fancier than this brand wants its own name to read.
+   It is the same assets/wordmark.png the homepage, the share card, the app and
+   the email letterhead use - one drawing everywhere rather than five
+   approximations of one.
+
+   WHICH drawing changed on 2026-08-30 and this note described the old one until
+   2026-08-31. It was title case with soft flared serifs and upright round
+   counters, and it was the ink twin of the gold lettering on the app's splash.
+   It is now the ALL-CAPS felt mark: heavy geometric letterforms, flat #EBC54C,
+   no bevel, aspect 5.12 against the old 6.29. The app takes THIS file and
+   recolours it for its Admin bar (scripts/install-felt-wordmark.py over in the
+   posty repo), so the ink twin is now derived from the gold rather than drawn
+   beside it - which is why there is only one wordmark file here to keep in step.
 
    Sized by HEIGHT with the width left free: the drawing's aspect is fixed and
    pinning both axes squashes it. The clamp keeps the old responsive behaviour,

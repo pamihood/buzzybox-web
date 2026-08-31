@@ -973,16 +973,21 @@ body::after {
   .hero__copy h1, .hero__second { font-size: clamp(2.05rem, 5.16vw, 5.4rem); }
 }
 
-/* <=430 (small phones): only here does the desk bow out - the scene reduces
-   to its two protagonists, sized by the VIEWPORT so they scale with the
-   screen rather than with the clamped scene (the pile at scene-fractions
-   overflowed a 375px screen - Patrick, 2026-08-30). */
+/* <=430 (small phones): THE DESK STAYS. It used to bow out here, leaving the
+   mailbox and the paper pile as a still life on the wall - and without the
+   desk under them the hero reads weak on a phone, which is the size most
+   people will meet it at (Patrick, 2026-08-31). The desk is the thing the
+   whole page is about; a phone is the last place to drop it.
+
+   What changes instead is the CROWD. Two props on a 375px-wide desk is a
+   scene; four is a shelf. The rack and the stamps go, the mailbox and the
+   pile stay and grow, and both are sized from the VIEWPORT rather than the
+   clamped scene - at these widths --scene is pinned to its 440px floor, so
+   scene-fractions stop shrinking while the screen keeps going. */
 @media (max-width: 430px) {
-  .desk__mint, .desk__wood { display: none; }
-  .hero { clip-path: none; padding-bottom: calc(58vw + 24px); }
-  .obj--mailbox { width: 28vw; left: calc(50% - 50vw + 6vw); bottom: calc(4vw + 8px); }
-  .obj--stack   { width: 50vw; left: auto; right: calc(50% - 50vw + 4vw); bottom: 14px; }
-  .obj--stamp2, .obj--stamp3, .obj--rack { display: none; }
+  .obj--rack, .obj--stamp2, .obj--stamp3 { display: none; }
+  .obj--mailbox { width: 30vw; left: calc(50% - 50vw + 3vw); bottom: calc(var(--scene-h) * 0.335); }
+  .obj--stack   { width: 44vw; left: calc(50% - 50vw + 40vw); bottom: calc(var(--scene-h) * 0.265); }
 }
 
 /* The hero hands off with a fade, because the section that used to do it is

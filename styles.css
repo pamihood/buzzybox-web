@@ -2019,6 +2019,26 @@ footer .fine { display: block; margin-top: 10px; font-size: 0.875rem; font-weigh
    Edit it in scripts/apply-footer.py, never in a page: that script owns the
    whole <footer> block on all twelve, and index.html is deliberately not
    among them - the homepage carries its own. */
+/* Added 2026-08-31 with the Explore links and the invite CTA. The trust line
+   is the one the homepage carries under its own sign-off; it is fine print, so
+   it is set as fine print - a step down in size and ink from the tagline it
+   sits under, not another tagline. */
+footer .signoff-trust {
+  margin-top: 6px;
+  font-size: 0.8125rem;
+  font-weight: 450;
+  color: var(--ink-faint);
+}
+/* The only link in the footer with a job rather than a destination. It stays a
+   link, not a button - the shared footer has no form and no handler - but it
+   is the one thing in here somebody might have come looking for. */
+footer .foot-cta {
+  display: inline-block;
+  margin-top: 4px;
+  font-weight: 600;
+  color: var(--navy);
+}
+
 footer .signoff {
   margin: 0 0 var(--s-3);
   display: flex;

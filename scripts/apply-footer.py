@@ -4,6 +4,14 @@
 One source of truth for the site's sign-off, so the next link cannot land on
 five pages and miss the sixth (which is how Help and Privacy drifted apart in
 the first place).
+
+NOT the homepage's footer, which is a different object on a different
+stylesheet - three columns with a live beta form in one of them. This one
+cannot carry that form: it needs the homepage's handler, its dialog and
+Turnstile. What it can do, and now does, is reach the same places. Explore
+links back into the homepage's own sections, and the invite CTA is a link to
+#request-an-invite rather than a form, because before this every inner page -
+Safety, the blog posts, the legal pages - ended with no call to action at all.
 """
 import re
 import pathlib
@@ -42,10 +50,15 @@ FOOTER = """  <footer>
     <p class="signoff">
       <img class="signoff-name" src="{p}assets/wordmark.png" alt="Postmello" width="1100" height="215" />
       <span class="signoff-line">A quiet place for letters.</span>
+      <span class="signoff-trust">No ads <span class="dot" aria-hidden="true">&bull;</span> Approved friends only</span>
     </p>
     <nav class="foot-groups" aria-label="Footer">
       <div class="foot-group">
         <p class="foot-label">Explore</p>
+        <a href="{home}#how-it-works">How it works</a>
+        <a href="{home}#desks">Collections</a>
+        <a href="{home}#grandparents">Letters by Email</a>
+        <a href="{home}#membership">Membership</a>
         <a href="{blog}">Blog</a>
         <a href="{p}support.html">Help</a>
       </div>
@@ -59,6 +72,7 @@ FOOTER = """  <footer>
       <div class="foot-group">
         <p class="foot-label">Contact</p>
         <a href="mailto:support@postmello.com">support@postmello.com</a>
+        <a class="foot-cta" href="{home}#request-an-invite">Request an invite</a>
       </div>
     </nav>
     <span class="fine">© 2026 Postmello</span>
@@ -72,7 +86,11 @@ pattern = re.compile(r"[ \t]*<footer\b[^>]*>.*?</footer>", re.S)
 for rel, (prefix, blog) in PAGES.items():
     path = ROOT / rel
     html = path.read_text(encoding="utf-8")
-    new = FOOTER.format(p=prefix, blog=blog)
+    # "/" pages are root-absolute (404 and the auth landing pages, served at
+    # any depth); "/" IS the homepage there, and "/index.html" would only
+    # redirect to it. Everywhere else the homepage is a file beside or above.
+    home = "/" if prefix == "/" else prefix + "index.html"
+    new = FOOTER.format(p=prefix, blog=blog, home=home)
     html, n = pattern.subn(lambda _m: new, html, count=1)
     if n != 1:
         raise SystemExit(f"!! {rel}: expected one <footer>, replaced {n}")

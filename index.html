@@ -1472,7 +1472,11 @@
            README.md. Its "Crafted for iPadOS / Calm Tech" foot row went with
            it (Patrick: weird footnotes), and it was carrying the for-iPad
            framing a third time. -->
-      <div class="footer-journal">
+      <!-- id added 2026-08-31 so the other eleven pages have somewhere to send
+           "Request an invite". Their footer cannot carry the form itself - it
+           needs this page's handler, its dialog and Turnstile, and they are on
+           the older stylesheet - so they link here instead. -->
+      <div class="footer-journal" id="request-an-invite">
         <div class="journal-card">
           <p class="journal-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg> Request an invite</p>
           <p>Postmello is in private beta, opening up a household at a time.</p>

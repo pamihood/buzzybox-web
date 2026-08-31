@@ -691,8 +691,20 @@ button { font: inherit; color: inherit; background: none; border: 0; }
   clip-path: polygon(0 0, 100% 0, 100% 100%, 0 calc(100% - 10.1339vw));
   background:
     radial-gradient(96% 58% at 46% 0%,  rgba(255,247,235,.80), rgba(255,247,235,0) 66%),
-    radial-gradient(70% 60% at 92% 86%, rgba(216,161,106,.30), rgba(216,161,106,0) 72%),
-    linear-gradient(163deg, var(--wall-hi) 0%, var(--wall-mid) 46%, var(--wall-lo) 100%);
+    /* The warm pool sat at 86% down, which is BELOW the desk - so it darkened
+       the strip of wall the desk does not cover and read as a band, worse on
+       the right where the pool is centred. Lifted to 54%, where it warms the
+       wall a reader can actually see, and softened. */
+    radial-gradient(70% 55% at 92% 54%, rgba(216,161,106,.22), rgba(216,161,106,0) 72%),
+    /* The wall ends on the hero unit's own cream, not on --wall-lo. 95px of
+       wall shows below the desk's rim (the band and the clip line are
+       parallel, so it is 95px at both ends), and ending on #EDC9A2 there put
+       a darker slab under the desk against the lighter cream below it.
+       Ending on --hero-ground makes that strip continuous with the app-shot
+       section, so the desk sits on one surface. --wall-lo still exists for
+       the deeper tones above. */
+    linear-gradient(163deg, var(--wall-hi) 0%, var(--wall-mid) 46%,
+                    var(--wall-lo) 78%, var(--hero-ground) 100%);
 }
 .hero::after {
   content: ""; position: absolute; inset: 0; z-index: 4; pointer-events: none;

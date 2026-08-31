@@ -736,11 +736,11 @@ button { font: inherit; color: inherit; background: none; border: 0; }
 }
 .desk__wood::after {
   content: ""; position: absolute; left: 0; right: 0; top: 100%;
-  height: 42px;
+  height: 22px;
   /* the tile now ends the desk itself - bottom rim, no legs (Patrick) - so
      below it there is only the wall, and this is the desk's soft ground
      shadow against it */
-  background: linear-gradient(to bottom, rgba(102, 68, 32, .22), rgba(102, 68, 32, 0));
+  background: linear-gradient(to bottom, rgba(102, 68, 32, .12), rgba(102, 68, 32, 0));
 }
 
 /* ============================================================ the objects
@@ -795,12 +795,16 @@ button { font: inherit; color: inherit; background: none; border: 0; }
 .obj--stamp4 { left: calc(var(--scene) * 0.806); bottom: calc(var(--scene-h) * 0.190); }
 
 /* the bee, hung off the top of the frame - identical to v2 */
-:root { --skep-w: clamp(78px, 8.6vw, 150px); --skep-r: clamp(1.5rem, 5vw, 6rem); }
+:root {
+  --skep-w: clamp(78px, 8.6vw, 150px);
+  --skep-r: clamp(1.5rem, 5vw, 6rem);
+  --skep-top: calc(var(--scene) * 0.022);
+}
 .hero__skep {
   position: absolute;
   z-index: 2;
   right: var(--skep-r);
-  top: calc(var(--scene) * 0.022);
+  top: var(--skep-top);
   width: var(--skep-w);
   filter: drop-shadow(-7px 15px 17px rgba(122, 79, 40, .20));
 }
@@ -810,7 +814,12 @@ button { font: inherit; color: inherit; background: none; border: 0; }
   top: 0;
   right: calc(var(--skep-r) + var(--skep-w) * 0.5 - 1.5px);
   width: 3px;
-  height: calc(var(--scene) * 0.022);
+  /* The art has 18px of transparent margin above the hanging loop (18/544 of
+     its height, and it renders 1.0625x as tall as it is wide), so a cord that
+     stops at the image's BOX top stops ~4px short of the loop and the hive
+     hangs from nothing. The cord runs to the visible loop plus 5px, and the
+     hive paints over the overlap - it is later in the DOM at the same z. */
+  height: calc(var(--skep-top) + var(--skep-w) * 0.037 + 5px);
   border-radius: 0 0 2px 2px;
   background: linear-gradient(to bottom, #D6AC63, #B98B3F);
 }
@@ -922,7 +931,7 @@ button { font: inherit; color: inherit; background: none; border: 0; }
     --skep-w: 64px; --skep-r: 0.9rem;
   }
   .hero { padding-bottom: calc(var(--scene) * 0.225 + 14.2vw + 150px); }
-  .hero__skep { top: 6px; }
+  :root { --skep-top: 6px; }
   .obj--mailbox { width: calc(var(--scene) * 0.21); left: calc(50% - 50vw + 8px); bottom: calc(var(--scene-h) * 0.35); }
   .obj--stack   { width: calc(var(--scene) * 0.26); left: calc(50% - 50vw + var(--scene) * 0.21 + 24px); bottom: calc(var(--scene-h) * 0.27); }
   .obj--stamp1, .obj--stamp4 { display: none; }
@@ -949,8 +958,15 @@ button { font: inherit; color: inherit; background: none; border: 0; }
 
 
 .appshot {
-  background: var(--hero-ground);
-  border-bottom: 1px solid #DAC6B4;
+  /* The hero's cream at the top, where it continues the wedge under the
+     desk's rim, brightening the whole way down to the page ground so the
+     section is a transition rather than a dark slab - and so it hands off to
+     whatever follows with no seam. That is also why there is no border here:
+     the gradient IS the boundary. */
+  background: linear-gradient(to bottom,
+              var(--hero-ground) 0%,
+              color-mix(in srgb, var(--hero-ground) 45%, var(--parchment-100)) 42%,
+              var(--parchment-100) 100%);
   padding: clamp(3rem, 6vw, 5.5rem) 1.5rem clamp(3.5rem, 7vw, 6.5rem);
   text-align: center;
 }

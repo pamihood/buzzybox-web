@@ -985,39 +985,33 @@ body::after {
   .obj--stamp2, .obj--stamp3, .obj--rack { display: none; }
 }
 
-/* ---- ghost overlay: Patrick's reference comp at half opacity, for
-   calibrating sizes against the original. Prototype furniture. */
-
-
-.appshot {
-  /* The hero's cream at the top, where it continues the wedge under the
-     desk's rim, brightening the whole way down to the page ground so the
-     section is a transition rather than a dark slab - and so it hands off to
-     whatever follows with no seam. That is also why there is no border here:
-     the gradient IS the boundary. */
-  background: linear-gradient(to bottom,
-              var(--hero-ground) 0%,
-              color-mix(in srgb, var(--hero-ground) 45%, var(--parchment-100)) 42%,
-              var(--parchment-100) 100%);
-  padding: clamp(3rem, 6vw, 5.5rem) 1.5rem clamp(3.5rem, 7vw, 6.5rem);
-  text-align: center;
+/* The hero hands off with a fade, because the section that used to do it is
+   gone. "Step inside the desk." carried the app screenshot AND the gradient
+   from the hero's cream down to the page ground; the screenshot moved into
+   How it works and the section went with it, so this strip inherits the one
+   job worth keeping - no hard edge where the hero's deep cream meets the
+   page. It sits inside .hero-band, so it starts on exactly the tone the
+   hero's own wall ends on. */
+.hero-fade {
+  height: clamp(88px, 12vw, 190px);
+  background: linear-gradient(to bottom, var(--hero-ground) 0%, var(--parchment-100) 100%);
 }
 
-.appshot__title {
-  font-family: var(--font-serif); font-weight: 500;
-  font-size: clamp(1.8rem, 3.2vw, 2.8rem); color: var(--ink); margin: 0;
+/* The full desk capture, demoted from its own section to evidence inside the
+   walkthrough - so it is smaller than it was and carries no chrome of its own
+   beyond the frame. */
+.desk-shot {
+  max-width: var(--shell-5);
+  margin: 0 auto clamp(3rem, 6vw, 5rem);
+  border-radius: var(--r-2xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-xl);
 }
-.appshot__lede {
-  color: var(--ink-mid); font-size: clamp(.98rem, 1.2vw, 1.15rem);
-  max-width: 36em; margin: .8rem auto 2.2rem;
-}
-.appshot__frame img { width: 100%; height: auto; display: block; }
-.appshot__frame {
-  max-width: 62rem; margin: 0 auto;
-  border-radius: 18px; overflow: hidden;
-  box-shadow: 0 24px 60px -28px rgba(96, 68, 34, .45);
-  border: 1px solid rgba(120, 90, 50, .18);
-}
+.desk-shot img { width: 100%; height: auto; display: block; }
+/* The walkthrough's second beat: a heading mid-section, so it needs the space
+   a section head gets from above rather than the margin a first one does. */
+.sec-head--mid { margin-top: clamp(1rem, 3vw, 2.5rem); }
+
 
 /* Below 880px the header collapses to the burger toggle, which lives in the
    hero's top-right corner - exactly where the skep hangs. The skep steps

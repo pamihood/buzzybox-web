@@ -2010,10 +2010,15 @@ footer .fine { display: block; margin-top: 10px; font-size: 0.875rem; font-weigh
    name-and-tagline block, then the links — so it kept looking finished and
    then continuing. Name, tagline, links and copyright are one tight block now.
 
-   "Letters at your own pace." replaces "One letter at a time." It names the
-   distinction (letters rather than messages, and no clock) where the old line
-   was gentle but unownable, and it holds for a grandparent as well as a
-   nine-year-old. */
+   The line is the homepage's own headline: "A quiet place for letters."
+   (2026-08-31). It has been "One letter at a time." and then "Letters at your
+   own pace." - each named the distinction well enough, and each was a
+   DIFFERENT sentence from the one the hero opens with, so the site introduced
+   itself one way and signed off another. Same words in both places now.
+
+   Edit it in scripts/apply-footer.py, never in a page: that script owns the
+   whole <footer> block on all twelve, and index.html is deliberately not
+   among them - the homepage carries its own. */
 footer .signoff {
   margin: 0 0 var(--s-3);
   display: flex;

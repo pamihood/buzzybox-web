@@ -27,12 +27,21 @@ PAGES = {
     "blog/index.html": ("../", "./"),
     "blog/why-i-built-postmello/index.html": ("../../", "../"),
     "blog/designing-a-desk-not-an-app/index.html": ("../../", "../"),
+    # Added 2026-08-31. All three carried a hand-kept copy of this footer and
+    # were simply missing from the map - which is the drift the script exists
+    # to stop, and it had already happened: a tagline change reached nine
+    # pages and missed these. reset and confirmed are root-absolute for the
+    # same reason 404 is; they are auth landing pages and may be served from
+    # a path this file cannot predict.
+    "parents.html": ("", "blog/"),
+    "reset.html": ("/", "/blog/"),
+    "confirmed.html": ("/", "/blog/"),
 }
 
 FOOTER = """  <footer>
     <p class="signoff">
-      <img class="signoff-name" src="{p}assets/wordmark.png" alt="Postmello" width="1106" height="200" />
-      <span class="signoff-line">Letters at your own pace.</span>
+      <img class="signoff-name" src="{p}assets/wordmark.png" alt="Postmello" width="1100" height="215" />
+      <span class="signoff-line">A quiet place for letters.</span>
     </p>
     <nav class="foot-groups" aria-label="Footer">
       <div class="foot-group">
@@ -55,7 +64,10 @@ FOOTER = """  <footer>
     <span class="fine">© 2026 Postmello</span>
   </footer>"""
 
-pattern = re.compile(r"[ \t]*<footer>.*?</footer>", re.S)
+# <footer\b[^>]*> rather than <footer>: parents.html carried
+# class="site-foot" - inert, styled nowhere, but enough to make the old
+# pattern miss the page and the script exit rather than write it.
+pattern = re.compile(r"[ \t]*<footer\b[^>]*>.*?</footer>", re.S)
 
 for rel, (prefix, blog) in PAGES.items():
     path = ROOT / rel

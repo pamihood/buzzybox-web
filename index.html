@@ -43,7 +43,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&amp;family=Lora:ital,wght@0,400..700;1,400..700&amp;family=Plus+Jakarta+Sans:wght@400..800&amp;display=swap" />
   <!-- home.css styles THIS PAGE ONLY. Everything else on the site still runs
        styles.css; see the note at the top of home.css. -->
-  <link rel="stylesheet" href="home.css?v=de38e861" />
+  <link rel="stylesheet" href="home.css?v=0fda6c90" />
 </head>
 <body>
 
@@ -852,6 +852,15 @@
           </figure>
         </div>
 
+        <!-- A KEY, ON PHONES ONLY (Patrick, 2026-08-31). Side by side the
+             columns say who is speaking; stacked, they do not - the titles
+             are stranded up beside the pictures, and by the time the reader
+             reaches the words the pairs are six alternating lines with
+             nothing saying which voice owns which. This states the
+             convention once, in the same arrow the pairs use: top line
+             messaging, arrow, Postmello's answer. Once, not per row. -->
+        <p class="spread-key"><span>Messaging</span><span class="spread-key__arrow" aria-hidden="true">&darr;</span><span>Postmello</span></p>
+
         <dl class="spread-rows">
           <div class="spread-row">
             <dt>Fast back-and-forth</dt>
@@ -874,8 +883,13 @@
              same idea in flatter words BEFORE the section had shown anything,
              so it came out and these two lines carry it alone. -->
         <div class="spread-foot">
-          <p class="spread-foot__msg">Designed for immediacy, and to keep conversation moving.</p>
-          <p class="spread-foot__post">Designed for patience, and to be put down.</p>
+          <!-- The two halves carry their own tag on phones. They are the one
+               pair with no arrow between them - two full sentences, one under
+               the other, separated only by a change of face and ink - so
+               stacked they read as a single paragraph of two sentences rather
+               than as two opposed positions. -->
+          <p class="spread-foot__msg"><span class="side-tag">Messaging</span>Designed for immediacy, and to keep conversation moving.</p>
+          <p class="spread-foot__post"><span class="side-tag">Postmello</span>Designed for patience, and to be put down.</p>
         </div>
       </div>
 

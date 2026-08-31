@@ -1937,6 +1937,31 @@ body::after {
    sentences read one after another. Now each idea sits directly against its
    answer with an arrow between them, the three sit close together as one
    block, and every rule is gone. */
+/* THE STACKED VIEW HAS TO SAY WHO IS SPEAKING (2026-08-31). Side by side the
+   two column titles do that job; stacked, they sit far above beside the
+   pictures and the pairs become six alternating lines with no owner. Both of
+   these appear on phones ONLY, and neither repeats per row - the key states
+   the convention once, and the two tags go on the punchline because it is the
+   one pair with no arrow to imply direction. */
+.spread-key {
+  display: flex; align-items: center; justify-content: center;
+  gap: 0.5rem;
+  margin: 0 auto 1.25rem;
+  font-family: var(--font-apparatus);
+  font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--ink-600);
+}
+.spread-key__arrow { color: var(--terracotta-600); letter-spacing: 0; }
+.side-tag {
+  display: block;
+  margin-bottom: 0.3rem;
+  font-family: var(--font-apparatus);
+  font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase;
+  font-style: normal; font-weight: 400;
+  color: var(--ink-600);
+}
+.spread-foot__post .side-tag { color: var(--terracotta-600); }
+
 .spread-rows { margin: 0 auto; display: grid; gap: 0.55rem; max-width: 40rem; }
 .spread-row {
   display: grid;
@@ -1997,6 +2022,7 @@ body::after {
   }
   .spread-rows dd { grid-column: 3; }
   .spread-rows dd::before { content: none; }
+  .spread-key, .side-tag { display: none; }
 
   /* Same centre line as the arrows above, so the conclusion sits on the axis
      the three pairs established. */

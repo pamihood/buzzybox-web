@@ -879,7 +879,10 @@ body::after {
   font-size: clamp(2rem, 4.3vw, 4.5rem);
   line-height: 1.06;
   letter-spacing: -0.008em;
-  margin: .14em 0 0;
+  /* .14em set the two lines almost solid - 4px apart on a phone, where the
+     first line has already wrapped to two of its own. They are two separate
+     thoughts, not a couplet, so the second one gets room to be one. */
+  margin: .28em 0 0;
   color: #7A5A3C;
 }
 .hero__lede {
@@ -971,6 +974,12 @@ body::after {
   .obj--stamp2  { left: auto; right: calc(50% - 50vw + 15vw); bottom: calc(var(--scene-h) * 0.225); }
   .obj--stamp3  { left: auto; right: calc(50% - 50vw + 19vw); bottom: calc(var(--scene-h) * 0.245); }
   .hero__copy h1, .hero__second { font-size: clamp(2.05rem, 5.16vw, 5.4rem); }
+  /* .btn goes full width below 640 - right for a form button, too heavy for
+     this one: 335x56 of solid terracotta directly under the two serif lines,
+     which made the hero's loudest object a rectangle. Sized to its words
+     here only; every other button on the page keeps the full-width rule. */
+  .hero__actions .btn { width: auto; }
+  .hero__actions .btn--primary { padding: .85rem 1.9rem; font-size: .95rem; }
 }
 
 /* <=430 (small phones): THE DESK STAYS. It used to bow out here, leaving the
@@ -988,6 +997,13 @@ body::after {
   .obj--rack, .obj--stamp2, .obj--stamp3 { display: none; }
   .obj--mailbox { width: 30vw; left: calc(50% - 50vw + 3vw); bottom: calc(var(--scene-h) * 0.335); }
   .obj--stack   { width: 44vw; left: calc(50% - 50vw + 40vw); bottom: calc(var(--scene-h) * 0.265); }
+  /* The hive goes too, and for the same reason the rack did - but its problem
+     is collision rather than clutter. It hangs in the top-right corner, which
+     below 880 is also where the burger lives; it steps left to clear it, and
+     at these widths that lands it on the wordmark instead. There is no room
+     left to step into, so it leaves. Its cord goes with it or it hangs from
+     a thread attached to nothing. */
+  .hero__skep, .hero__skep-cord { display: none; }
 }
 
 /* The hero hands off with a fade, because the section that used to do it is

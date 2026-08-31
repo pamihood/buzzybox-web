@@ -1685,14 +1685,137 @@ body::after {
    2026-08-23 as the most over-marketed block on the page. The two facts a
    parent needs — who may reply, and what a reply may carry — are one sentence,
    set under the three pictures where the eye already is. */
+/* ---------- Letters by email: the convergence ----------
+   Two routes, one destination, drawn rather than listed. The routes are pure
+   type - they are ways of writing, and there is nothing to photograph - while
+   the destination carries the hero's own mailbox, because the desk is a real
+   object in the product. Two lines of type converging on one thing says
+   "these both end up here" before a word is read. */
+.converge {
+  display: grid; gap: 1.6rem;
+  max-width: var(--shell-6); margin: 0 auto 3.5rem;
+  text-align: center;
+}
+.beat-label {
+  font-family: var(--font-apparatus);
+  font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--ink-600); margin: 0 0 0.45rem;
+}
+.beat-text { margin: 0; color: var(--ink-900); font-size: 1.0625rem; line-height: 1.5; }
+.converge-dest img {
+  display: block; height: auto;
+  width: clamp(92px, 11vw, 128px);
+  margin: 0 auto 0.9rem;
+}
+/* Stacked, the diagram still has to read as an arrival rather than a third
+   item, so a short rule drops into the destination. */
+.converge-dest { position: relative; padding-top: 2.4rem; }
+.converge-dest::before {
+  content: ""; position: absolute; top: 0; left: 50%;
+  width: 1px; height: 1.6rem;
+  background: color-mix(in srgb, var(--line) 70%, transparent);
+}
+.converge-lines { display: none; }
+
+@media (min-width: 768px) {
+  .converge {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: "a b" "lines lines" "dest dest";
+    gap: 0;
+  }
+  .converge-route--a { grid-area: a; }
+  .converge-route--b { grid-area: b; }
+  /* preserveAspectRatio="none" lets the curves stretch to whatever width the
+     section is; non-scaling-stroke keeps the line a hairline while they do. */
+  .converge-lines {
+    grid-area: lines; display: block;
+    width: 100%; height: clamp(52px, 7vw, 88px);
+    margin-top: 1.1rem;
+  }
+  .converge-lines path {
+    fill: none;
+    stroke: color-mix(in srgb, var(--line) 80%, transparent);
+    stroke-width: 1;
+    vector-effect: non-scaling-stroke;
+  }
+  .converge-dest { grid-area: dest; padding-top: 0.4rem; }
+  .converge-dest::before { content: none; }
+}
+
+/* ---------- Letters by email: the timeline ----------
+   A SEQUENCE, not a list, so it gets its own component rather than .step-card
+   - which belongs to the "Make a letter" row above and stays exactly as it is.
+   No fill, no shadow, no card: the pictures sit on the page behind a hairline,
+   joined by a rail with a dot at each step, so the three read left to right as
+   one story. */
+.timeline {
+  --tl-gap: clamp(1.25rem, 3vw, 2.5rem);
+  list-style: none; margin: 0 auto; padding: 0;
+  max-width: var(--shell-6);
+  display: grid; grid-template-columns: 1fr; gap: 2.75rem;
+}
+.tl-step { display: flex; flex-direction: column; text-align: center; }
+.tl-num {
+  font-family: var(--font-mono);
+  font-size: 0.75rem; font-weight: 700; letter-spacing: 0.05em;
+  color: var(--terracotta-600); margin: 0 0 0.7rem;
+}
+.tl-rail { display: none; }
+.tl-dot { width: 9px; height: 9px; border-radius: var(--r-full); background: var(--terracotta-600); }
+.tl-media {
+  margin: 0 0 1.15rem;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--line) 75%, transparent);
+  border-radius: var(--r-2xl);
+}
+.tl-media img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.tl-title { font-size: 1.25rem; margin: 0; }
+
+@media (min-width: 768px) {
+  .timeline { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--tl-gap); }
+  .tl-rail {
+    display: flex; position: relative;
+    align-items: center; justify-content: center;
+    height: 9px; margin-bottom: 1.5rem;
+  }
+  /* Each half of the rail reaches a full gap past its own column, so the line
+     crosses the space between columns instead of stopping at their edges. */
+  .tl-rail::before, .tl-rail::after {
+    content: ""; position: absolute; top: 50%; height: 1px;
+    background: color-mix(in srgb, var(--line) 75%, transparent);
+  }
+  .tl-rail::before { left: calc(-1 * var(--tl-gap)); right: 50%; }
+  .tl-rail::after { left: 50%; right: calc(-1 * var(--tl-gap)); }
+  .tl-step:first-child .tl-rail::before,
+  .tl-step:last-child .tl-rail::after { content: none; }
+  .tl-dot { position: relative; z-index: 1; }
+}
+
+/* The two guarantees are the trust payoff for everything above them, so they
+   are banded rather than left trailing under the pictures: one line between
+   two hairlines on desktop, split at the dot on a phone. */
 .bridge-note {
-  max-width: min(58ch, var(--shell-3));
-  margin: 3rem auto 0;
+  max-width: var(--shell-6);
+  margin: 3.5rem auto 0;
+  padding-block: 1.35rem;
+  border-top: 1px solid color-mix(in srgb, var(--line) 55%, transparent);
+  border-bottom: 1px solid color-mix(in srgb, var(--line) 55%, transparent);
+  display: flex; flex-direction: column; align-items: center; gap: 0.35rem;
   text-align: center;
   font-size: 1.0625rem;
-  line-height: 1.7;
+  line-height: 1.6;
   color: var(--ink-700);
 }
+@media (min-width: 768px) {
+  .bridge-note { flex-direction: row; justify-content: center; gap: 0; }
+  .bridge-note span + span::before {
+    content: "\00B7";
+    margin-inline: 0.95rem;
+    color: color-mix(in srgb, var(--ink-600) 60%, transparent);
+  }
+}
+
 
 /* ---------- Philosophy: the comparison ----------
    Two tinted grounds, and the tint IS the argument: a warm anxious blush
@@ -1708,135 +1831,211 @@ body::after {
    list stays a list for a screen reader while the grid sees six rows.
    Without subgrid support the columns fall back to ordinary blocks: the pairs
    stop aligning but nothing breaks, and the copy still reads. */
-.compare {
+/* ---------- Designed differently: one comparison SPREAD ----------
+   It used to be two bordered columns of four bullets each. Two problems, and
+   the second is the one that mattered: boxed halves read as pricing tiers,
+   and four bullets under one heading then four under another asks the reader
+   to work out for themselves which line answers which. Pairing them in ROWS
+   does that work for them, and the pictures carry the argument before any of
+   it is read - a dense continuous stream against one letter with room around
+   it. 42/58, because messaging is the context and Postmello is the point. */
+.spread {
+  max-width: var(--shell-6);
+  margin-inline: auto;
+}
+.spread-art {
+  display: grid; grid-template-columns: 1fr;
+  justify-items: center; align-items: center;
+  gap: 1.1rem; margin-bottom: 2.75rem;
+}
+/* Titles now, not eyebrows. They name the two things being set against each
+   other, so they carry the weight of a column head rather than a label. */
+.spread-label {
+  font-family: var(--font-apparatus);
+  font-size: 0.95rem; letter-spacing: 0.13em; text-transform: uppercase;
+  color: var(--ink-600); margin: 0 0 0.9rem; text-align: center;
+}
+.spread-side { margin: 0; }
+.spread-side--post .spread-label { color: var(--terracotta-600); }
+/* The word that makes it a comparison instead of two pictures. Serif italic
+   and unhurried, sized to sit between the two without competing with either. */
+.spread-vs {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(1.5rem, 3.4vw, 2.4rem);
+  line-height: 1;
+  color: color-mix(in srgb, var(--ink-600) 60%, transparent);
+}
+/* The two pictures are cropped to the SAME height so the pair reads as one
+   spread. The messaging stream is deliberately cut off top and bottom - it is
+   supposed to look like it continues past the frame, because it does. */
+.spread-img { border-radius: var(--r-2xl); overflow: hidden; }
+.spread-img img { display: block; width: 100%; height: 100%; object-fit: cover; }
+/* THE TWO SIDES ARE SHAPED LIKE WHAT THEY ARE. Messaging lives in a phone, so
+   it gets a phone's screen - the aspect and the corner radius of one, with no
+   hardware drawn around it, because the bezel is not the point and a rendered
+   handset would date the page. The stream is cropped by that screen and runs
+   off the top and bottom of it, which is the whole argument: it continues
+   whether or not you are looking.
+
+   The letter gets no container at all. It sits on the band on its own shadow,
+   with room around it - one thing given space, against many things that do not
+   stop. Giving it a bed too would have made the pair read as two tiles. */
+.spread-img--msg {
+  width: clamp(150px, 44vw, 190px);
+  /* 9:17, not a true 9:19.5 (2026-08-31). At the real proportion a contained
+     2:3 picture left about 15% of the screen empty at each end; this keeps the
+     shape unmistakably a phone while the conversation fills more of it. */
+  aspect-ratio: 9 / 17;
+  margin-inline: auto;
+  border-radius: clamp(20px, 2.6vw, 30px);
+  background: #FFFFFF;
+  box-shadow: 0 18px 40px -20px rgba(70, 50, 30, .45),
+              0 0 0 1px color-mix(in srgb, var(--line) 60%, transparent);
+}
+/* CONTAIN, not cover (2026-08-31). Cropping the stream to a 9:19.5 screen cut
+   most of the conversation off at the sides. Contained, the whole picture sits
+   inside the screen - and because the art's own ground is white and so is the
+   screen's, the letterboxing above and below is invisible: it reads as a
+   screenshot filling a phone, not as a picture placed on one. */
+.spread-img--msg img { object-fit: contain; object-position: 50% 50%; }
+.spread-img--post {
+  border-radius: 0;
+  overflow: visible;
+  display: flex; align-items: center; justify-content: center;
+}
+.spread-img--post img {
+  object-fit: contain;
+  width: 100%; height: auto;
+  max-height: clamp(200px, 46vw, 300px);
+}
+
+/* THREE PAIRS, NOT A TABLE (2026-08-31). Each idea had a hairline under it
+   and a vertical rule down the middle of the section, which is a table - and a
+   table gets SCANNED, column by column, when what is wanted is three short
+   sentences read one after another. Now each idea sits directly against its
+   answer with an arrow between them, the three sit close together as one
+   block, and every rule is gone. */
+.spread-rows { margin: 0 auto; display: grid; gap: 0.55rem; max-width: 40rem; }
+.spread-row {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 1.5rem;
+  gap: 0.2rem;
+  padding: 0;
 }
-@media (min-width: 640px) { .compare { gap: 2rem; } }
-@media (min-width: 768px) {
-  .compare {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    /* title + four paired rows + footer. THIS NUMBER IS NOT AUTOMATIC:
-       subgrid re-uses the track list it is given, so adding or removing a
-       point means changing the repeat() here AND the span below, or the two
-       columns quietly stop lining up. */
-    grid-template-rows: auto repeat(4, auto) auto;
-    /* ROW-GAP ZERO, and this was the actual cause of the section feeling
-       airy. `gap` on a grid sets both axes, so the 2rem meant to separate the
-       two CARDS was also being inserted between every one of the seven shared
-       rows — 2rem of dead space under each point, on top of the cell's own
-       padding. The columns still get their 2rem; the rows are spaced by
-       .compare-cell's padding-bottom, which is the value worth tuning. */
-    column-gap: 2rem;
-    row-gap: 0;
-  }
-  .compare-col {
-    grid-row: span 6;
-    display: grid;
-    grid-template-rows: subgrid;
-    align-content: start;
-  }
-  .compare-col > ul { display: contents; }
+.spread-row::before { content: "\2192"; display: none; }
+.spread-rows dt { color: var(--ink-600); font-size: 1rem; }
+.spread-rows dd { margin: 0; color: var(--ink-900); font-weight: 600; font-size: 1.05rem; }
+/* On a phone the pair is stacked, so it needs to be obvious that the second
+   line ANSWERS the first rather than continuing it. */
+.spread-rows dd::before {
+  content: "\2193";
+  display: inline-block;
+  margin-right: 0.5rem;
+  color: var(--terracotta-600);
+  font-weight: 400;
 }
-/* Asymmetric padding: the sides keep their room, the top and bottom give some
-   back (Patrick, 2026-08-23). A card whose content is five short rows does not
-   need the same air above the first as it needs beside it, and the vertical
-   space was reading as a gap rather than as margin. */
-.compare-col {
-  padding: 1.25rem 1.5rem;
-  border-radius: var(--r-3xl);
+
+.spread-foot {
+  margin-top: 2.75rem;
+  max-width: 46rem;
+  margin-inline: auto;
+  display: grid; grid-template-columns: 1fr; gap: 1rem;
 }
-@media (min-width: 640px) { .compare-col { padding: 1.5rem 2rem; } }
-.compare-col--bad  { background: color-mix(in srgb, #FAF0E6 50%, transparent); border: 1px solid #E8D0BE; }
-.compare-col--good { background: #EEF4F0; border: 1px solid #C5D9CB; }
-.compare-title {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin-bottom: 1rem;
+.spread-foot p { margin: 0; }
+/* THE SAME SIZE, BOTH HALVES (2026-08-31). Postmello's line was set a full
+   step larger, which made it shout the conclusion rather than land it - and
+   the pair is a pair, so an asymmetry in SIZE reads as one of them mattering
+   less. The distinction is carried by the serif and the ink instead, which is
+   enough. Together they stay the largest copy in the section after the
+   heading, because they are its conclusion and not a fourth point. */
+.spread-foot__msg,
+.spread-foot__post { font-size: clamp(1.1rem, 2vw, 1.45rem); line-height: 1.3; }
+.spread-foot__msg { color: var(--ink-600); }
+.spread-foot__post {
+  color: var(--ink-900);
   font-family: var(--font-serif);
-  font-size: 1.25rem;
-  font-weight: 700;
+  font-weight: 500;
 }
-.compare-title svg { width: 1.25rem; height: 1.25rem; flex: none; }
-.compare-col--bad  .compare-title { color: #A24222; }
-.compare-col--good .compare-title { color: #386644; }
 
-/* Each cell is its own grid row, so the padding between pairs has to live on
-   the cell rather than on a list gap — a gap would be invisible to subgrid and
-   the two sides would drift apart. */
-/* Tighter than it was (2026-08-23, Patrick: too much white space between
-   lines). Alignment costs some air by construction — a row is as tall as the
-   taller of its two cells, so a one-line point opposite a two-line one keeps
-   the difference. Since 2026-08-27 that costs nothing: every point is a short
-   phrase and every row is one line on both sides, which is what the bold
-   lead-ins had been approximating. If longer points ever come back, this
-   padding is the value to tune, not the grid gap. */
-.compare-cell {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.5rem;
-  /* This is now the ONLY thing separating one point from the next, since the
-     grid's row-gap is zero — so it is the value to tune, not the gap. */
-  padding-bottom: 0.75rem;
-  /* THE DESCRIPTIVE SCALE. Ten points across two columns is the longest read
-     on the page and it was set the smallest thing on it; if this text is
-     small people simply do not read it. Led generously to match. */
-  font-size: 1rem;
-  font-weight: 450;
-  line-height: 1.6;
-}
-@media (min-width: 640px) { .compare-cell { font-size: 1.0625rem; } }
-/* The opening phrase, and the reason the row scans: the two lead-ins in a row
-   answer each other, so a reader gets the comparison without reading either
-   sentence. Full ink against the cell's softer body colour. */
-/* (.compare-cell strong and its two colour variants styled the bold lead-in
-   that opened each point - "Instant pressure:", "One at a time:". The points
-   became bare phrases on 2026-08-27 and there is nothing left to lead into,
-   so the rules went with them. Restoring lead-ins means restoring these, and
-   the darker inks are #8C3418 on the warm side and #2C5436 on the cool.) */
-.compare-cell--bad  { color: #6E4F3E; }
-.compare-cell--good { color: #3E5C46; }
-/* The bullet is drawn so it can sit on the cap height of the first line
-   instead of on the baseline. */
-/* CENTRED ON ITS LINE, not nudged onto it (Patrick, 2026-08-27). The 7px
-   margin-top was hand-tuned when the points were multi-line and set smaller;
-   at 17px on a 1.6 leading it left every dot sitting up at cap height, which
-   reads as a bullet floating above its text rather than beside it.
+@media (min-width: 768px) {
+  .spread-rows { gap: 0.85rem; max-width: 46rem; }
+  .spread-row {
+    grid-template-columns: 1fr auto 1fr;
+    align-items: baseline;
+    column-gap: 1rem;
+  }
+  /* Placed explicitly into the middle column - a ::before is otherwise auto
+     placed FIRST, in source order, which would put the arrow before the idea
+     it points from. */
+  .spread-rows dt { grid-column: 1; text-align: right; }
+  .spread-row::before {
+    display: block;
+    grid-column: 2; grid-row: 1;
+    color: var(--terracotta-600);
+  }
+  .spread-rows dd { grid-column: 3; }
+  .spread-rows dd::before { content: none; }
 
-   The calc centres the dot inside the FIRST line box - half the leading minus
-   half the dot - and it is written in em so it re-solves itself at the 16px
-   mobile size and at any future size, instead of being a pixel that has to be
-   re-tuned. flex-start is deliberate rather than align-items:center: today
-   every point is one line, but a point that ever wraps must keep its dot on
-   the first line and not float to the middle of the block. */
-.compare-cell::before {
-  content: '';
-  flex: none;
-  width: 0.375rem; height: 0.375rem;
-  margin-top: calc((1.6em - 0.375rem) / 2);
-  border-radius: var(--r-full);
+  /* Same centre line as the arrows above, so the conclusion sits on the axis
+     the three pairs established. */
+  .spread-foot { grid-template-columns: 1fr 1fr; column-gap: 2.9rem; }
+  .spread-foot__msg { text-align: right; }
 }
-.compare-cell--bad::before  { background: #A24222; }
-.compare-cell--good::before { background: #386644; }
-/* The footers are back (Patrick, 2026-08-23). They went when the lede was
-   rewritten, on the grounds it said the same thing — but a card wants a last
-   line, and these two are the only place the comparison states its CONCLUSION
-   rather than its evidence. They sit on the seventh shared row, so they land
-   level with each other whatever the points above them do.
-   Rewritten short and parallel: the old pair ran to a dozen words each and
-   read as summaries of the list rather than as a closing beat. */
-.compare-foot {
-  margin-top: 0.875rem;
-  padding-top: 0.75rem;
-  font-size: 0.9375rem;
-  font-weight: 600;
-  align-self: end;
+
+/* THE PICTURES GO SIDE BY SIDE ONLY AT 1024 (2026-08-31). Setting them
+   against each other from 768 squeezed both into a 211px band - a letter that
+   small is a lavender rectangle, and the handwriting that carries the whole
+   argument stops being legible. Below this width they stack, each at full
+   size, with the "vs" between them; the three pairs of words go horizontal
+   from 768 regardless, because text fits where pictures do not. */
+@media (min-width: 1024px) {
+  /* EQUAL COLUMNS, EACH PICTURE PUSHED TOWARDS THE MIDDLE (Patrick,
+     2026-08-31). Two things had to be true at once, and only this arrangement
+     gives both: the "vs" sits on the page centre, exactly the axis the arrows
+     below use, AND the two pictures are packed against it instead of drifting
+     apart. Centring each picture in its own column satisfied the first and
+     opened a canyon; content-sizing the columns satisfied the second and
+     dragged the "vs" ~180px off the arrows' line.
+
+     So the columns stay equal - which is what pins the "vs" to the centre -
+     and the pictures are pushed to their INNER edges: the phone to the right
+     of its column, the letter filling its own from the left. The outer
+     whitespace is then uneven by construction, because a phone is a third the
+     width of a letter at the same height. That asymmetry is the comparison,
+     and it sits outside the composition where it costs nothing.
+
+     Heights match without a magic number: the letter's box carries the
+     letter's own aspect ratio, and the phone's box carries the SAME ratio as
+     an invisible frame with the phone flush to its inner edge at full height.
+     Equal heights fall out of the geometry and stay equal at every width. */
+  .spread-art {
+    grid-template-columns: 1fr auto 1fr;
+    gap: clamp(1rem, 2.4vw, 2rem);
+  }
+  .spread-side { width: 100%; }
+  /* Each title sits on its picture's inner edge, framing the "vs" rather than
+     floating over the empty half of a column. */
+  .spread-side--msg .spread-label { text-align: right; }
+  .spread-side--post .spread-label { text-align: left; }
+  .spread-img--msg {
+    width: 100%; aspect-ratio: 2400 / 1458;
+    display: flex; align-items: center; justify-content: flex-end;
+    background: none; box-shadow: none; border-radius: 0; overflow: visible;
+  }
+  .spread-img--msg img {
+    height: 100%; width: auto; aspect-ratio: 9 / 17;
+    background: #FFFFFF;
+    border-radius: clamp(16px, 2.2vw, 26px);
+    box-shadow: 0 18px 40px -20px rgba(70, 50, 30, .45),
+                0 0 0 1px color-mix(in srgb, var(--line) 60%, transparent);
+  }
+  .spread-img--post { width: 100%; aspect-ratio: 2400 / 1458; }
+  .spread-img--post img { width: 100%; height: 100%; max-height: none; }
 }
-.compare-col--bad  .compare-foot { border-top: 1px solid #E8D0BE; color: #A24222; }
-.compare-col--good .compare-foot { border-top: 1px solid #C5D9CB; color: #386644; }
-.compare-after { margin-top: 3rem; text-align: center; }
+
+.compare-after { margin: 2.25rem 0 0; text-align: center; }
 
 /* ---------- Safety ----------
    Three points across, two of them photographs and one a mark. The split is

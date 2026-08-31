@@ -1864,11 +1864,15 @@ body::after {
   justify-items: center; align-items: center;
   gap: 1.1rem; margin-bottom: 2.75rem;
 }
-/* Titles now, not eyebrows. They name the two things being set against each
-   other, so they carry the weight of a column head rather than a label. */
+/* Titles, but on the page's own label scale (2026-08-31). They were bumped to
+   0.95rem to read as column heads rather than eyebrows, which worked in
+   isolation and made them the only small-caps label on the site above 12px -
+   .eyebrow, .step-num, .tl-num and .beat-label all sit at 11.5-12. Position
+   and colour make these read as titles; size was borrowing authority from a
+   scale the rest of the page does not use. */
 .spread-label {
   font-family: var(--font-apparatus);
-  font-size: 0.95rem; letter-spacing: 0.13em; text-transform: uppercase;
+  font-size: 0.75rem; letter-spacing: 0.16em; text-transform: uppercase;
   color: var(--ink-600); margin: 0 0 0.9rem; text-align: center;
 }
 .spread-side { margin: 0; }

@@ -14,7 +14,9 @@ membership_plus, membership_plus_was, membership_plus_founding, collections,
 collections_discount (the member percentage — "50%" — from
 collections.member_discount, added 2026-08-24 with the collections-for-
 everyone revision: collections sell on every tier and the member benefit is
-the discount), collections_shelf (how many a household SHOWS at once, from
+the discount), collections_shelf (how many a household SHOWS at once - it
+sits in the FAQ since 2026-08-31, not the commerce panel; this script rewrites
+the element wherever it lives, and refuses to run if it is gone), from
 collections.max_active_per_household, added 2026-08-27). The two "-terms" spans
 this once wrote are gone: the monthly-equivalent line went when the cards
 switched to feature lists, and the founding annotation left the Membership
@@ -145,7 +147,11 @@ def expected_lines(pricing):
         founding = now != later
         return (money(now),
                 money(later) if founding else "",
-                "Founding rate - yours to keep." if founding else "")
+                # "yours to keep." overpromised: the founding rate is tied to
+                # the subscription staying alive, not to the account forever.
+                # (Patrick, 2026-08-31.)
+                "Founding rate stays while your Membership remains active."
+                if founding else "")
 
     fam_now, fam_was, fam_note = tier(fam)
     plus_now, plus_was, plus_note = tier(plus)

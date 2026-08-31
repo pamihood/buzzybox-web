@@ -43,7 +43,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&amp;family=Lora:ital,wght@0,400..700;1,400..700&amp;family=Plus+Jakarta+Sans:wght@400..800&amp;display=swap" />
   <!-- home.css styles THIS PAGE ONLY. Everything else on the site still runs
        styles.css; see the note at the top of home.css. -->
-  <link rel="stylesheet" href="home.css?v=8447600a" />
+  <link rel="stylesheet" href="home.css?v=5feaad68" />
 </head>
 <body>
 
@@ -980,100 +980,36 @@
            a footnote under a card about cloud storage. -->
       <div class="safety-grid">
         <article class="safety-card">
-          <p class="safety-art safety-art--obj safety-art--key"><img src="assets/safety-key.png" alt="" width="459" height="300" loading="lazy" /></p>
+          <p class="safety-art safety-art--key"><img src="assets/safety-key.png" alt="" width="459" height="300" loading="lazy" /></p>
           <h3>The Brass Key</h3>
           <p class="safety-body">Adult controls stay behind a PIN.</p>
         </article>
         <article class="safety-card">
-          <p class="safety-art safety-art--obj safety-art--wide"><img src="assets/safety-drawers.png" alt="" width="483" height="186" loading="lazy" /></p>
+          <p class="safety-art safety-art--wide"><img src="assets/safety-drawers.png" alt="" width="483" height="186" loading="lazy" /></p>
           <h3>Approved friends only</h3>
-          <!-- THE GENERAL RULE, ONCE, SO IT STOPS DRIFTING: no one can reach
-               a child's desk unless the adult managing that desk has approved
-               them. That is the only sentence that is true of every lane, and
-               it is what this card and the Safety page's short version both
-               say now.
-
-               NEVER "both sides approve" as the universal statement. It
-               describes ONE mechanism - the cross-household Postmello
-               connection - and is false of the others: an email friend is
-               approved by the desk's adult for a specific address and
-               approves nothing themselves, a person may use both lanes, and
-               desks inside one household are a case of their own. Explain
-               bilateral approval only where cross-household connections are
-               specifically the subject, which on this site is the Safety
-               page and nowhere else.
-
-               THE GUARANTEE, NOT THE WORKFLOW (Patrick, 2026-08-27). It said
-               "Both sides approve before letters can be exchanged", which
-               describes how a Postmello friendship is set up and is not true
-               of the email lane in the same literal way - an email friend
-               never runs an approval of their own, the adult approves the
-               address. What holds across BOTH lanes is the outcome: nothing
-               reaches the desk from anyone unapproved. State the outcome, and
-               the card stays true whichever way the friend arrived. -->
           <p class="safety-body">Only approved friends can send letters or replies to the desk.</p>
         </article>
         <article class="safety-card">
-          <!-- A REAL OBJECT, not a line icon (Patrick, 2026-08-23). All three
-               points speak the same physical language now: a brass key, the
-               named drawers, and a box that is shut. The crossed-out eye it
-               replaces was notation sitting among photographs.
-               Why a box and not the mailbox or drawer that were asked for
-               first: see build_closed_box() in scripts/build-safety-art.py,
-               which records what each candidate did on the page. -->
-          <p class="safety-art safety-art--obj safety-art--box"><img src="assets/safety-closed-box.png" alt="" width="316" height="249" loading="lazy" /></p>
+          <p class="safety-art safety-art--box"><img src="assets/safety-closed-box.png" alt="" width="316" height="249" loading="lazy" /></p>
           <h3>No public discovery</h3>
-          <p class="safety-body">No public profiles, user search, friend suggestions, or open inboxes.</p>
+          <p class="safety-body">No public profiles, search, suggestions or open inboxes.</p>
+        </article>
+        <!-- Consent was small print under the row until 2026-08-31, which is
+             the wrong weight for what it says: it is the section's most
+             concrete commitment and the only one that is a legal fact rather
+             than a product behaviour. It gets a card like the rest. Its art is
+             the shield the footnote already carried - the other three are real
+             objects in the product, and a verification has no object, so the
+             mark stands in. -->
+        <article class="safety-card">
+          <p class="safety-art safety-art--mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg></p>
+          <h3>Verified parental consent</h3>
+          <p class="safety-body">An under-13 desk can&rsquo;t send or receive
+             until an adult has approved the desk and been verified.</p>
         </article>
       </div>
 
-      <!-- WHAT THE PRODUCT DOES, NOT WHICH LAW IT SATISFIES (Patrick,
-           2026-08-27). This slot read "COPPA compliant - Parental consent and
-           privacy protections built in". Two problems with that, and only the
-           first is legal.
-
-           NOBODY ISSUES A "COPPA COMPLIANT" CERTIFICATION. The FTC runs an
-           approved Safe Harbor programme - PRIVO, kidSAFE, ESRB, CARU - and a
-           seal from one of those means an outside body assessed you. A badge
-           we designed ourselves is our own legal conclusion printed in a
-           shield, which is the weakest possible form of a strong claim. If a
-           recognisable seal is ever wanted, that is the route, not this
-           element.
-
-           The second problem is that the categorical claim is WEAKER COPY. A
-           parent does not want to know which federal rule we believe we meet;
-           they want to know what happens on the desk their child is using.
-           "An under-13 desk can't send or receive letters until an adult has
-           approved the desk and been verified" is checkable, specific, and
-           the same fact the regulation is about.
-
-           IT SAYS "THE DESK", NOT "IT" (Patrick, 2026-08-27). With a pronoun
-           there, the nearest noun in front of it is "letters", so the sentence
-           read as an adult approving the MAIL - which is a different product
-           and one nobody is offering. Naming the desk costs one repetition
-           and removes the only ambiguity in the line. Anything rewritten here
-           has the same trap: the sentence contains two nouns a reader could
-           approve, and only one of them is right. Read with the three cards above it,
-           the section now says: adult controls behind a PIN, approved friends
-           only, verified parental consent.
-
-           ACCURACY, and do not loosen it: this sentence must not outrun
-           privacy.html ("Postmello requires parental consent and adult
-           verification before that desk can communicate with other people")
-           or parents.html. BOTH halves are required - consent AND
-           verification - so the badge names both. It describes under-13 desks
-           only, which is also what the product gates; an adult's own desk and
-           a grandparent's do not go through it.
-
-           README.md carries the conditions under which a categorical COPPA
-           claim could be revisited, including the pilot cohort still being
-           migrated through this gate in the app repo. -->
-      <p class="safety-badge">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>
-        <span><strong>Verified parental consent</strong> An under-13 desk
-          can&rsquo;t send or receive letters until an adult has approved the
-          desk and been verified.</span>
-      </p>
+      
 
       <!-- The one place on the homepage that hands a worried reader the whole
            Safety page. It sits under the badge rather than in the section head

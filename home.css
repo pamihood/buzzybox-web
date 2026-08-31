@@ -1821,15 +1821,29 @@ body::after {
 .safety-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 2.5rem 2rem;
+  gap: 1.25rem;
   max-width: var(--shell-6);
   margin-inline: auto;
 }
-@media (min-width: 768px) { .safety-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (min-width: 768px) { .safety-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 
-/* No card. The three that stood here were filled, bordered and shadowed with
-   an emoji in a tinted tile; the objects are good enough to sit on the page. */
-.safety-card { text-align: center; }
+/* CARDS AGAIN, AND NOT THE ONES THAT WENT (2026-08-31). The note here used to
+   read "no card": the three that stood here once were filled, bordered and
+   shadowed with an emoji in a tinted tile, and stripping them was right. What
+   returns is a different object. Those were feature tiles selling benefits;
+   these are four protections that are built in, so they are drawn as
+   structure - the second sheet, a hairline, a modest radius, no shadow at all,
+   and enough padding that the illustration still leads. The reason to enclose
+   them now is that there are FOUR: consent joined the row, and four facts
+   floating on a page read as a list of things that happen to be true, while
+   four bounded panels read as a system. */
+.safety-card {
+  text-align: center;
+  background: var(--parchment-200);
+  border: 1px solid color-mix(in srgb, var(--line) 50%, transparent);
+  border-radius: var(--r-2xl);
+  padding: clamp(1.75rem, 3.2vw, 2.5rem) clamp(1.25rem, 2.6vw, 2rem);
+}
 
 /* One fixed-height stage so an object and an icon carry the same weight in the
    row, and everything stands on one ground line. */
@@ -1865,6 +1879,12 @@ body::after {
 .safety-art--key img  { max-height: 4rem; }
 .safety-art--wide img { max-height: 4.5rem; }
 .safety-art--box img  { max-height: 4.75rem; }
+/* The consent card's mark, on the same 5.5rem stage as the three objects. It
+   is deliberately the lightest thing in the row: a stroked icon at this size
+   reads as a note beside three photographed objects, which is the right
+   hierarchy - the objects are the product, the shield is a promise about it. */
+.safety-art--mark { color: var(--sage-600, #7E9463); }
+.safety-art--mark svg { width: 3.25rem; height: 3.25rem; stroke-width: 1.4; }
 /* (.safety-art--mark styled the two line icons this section used before every
    point had a real object. The last of them, a crossed-out eye for "no public
    discovery", became a closed drawer on 2026-08-23.) */
@@ -1899,40 +1919,7 @@ body::after {
    ends. And 15px, not 13: under THE DESCRIPTIVE SCALE this stopped being
    apparatus the moment it became a specific claim a parent is meant to read
    and check. */
-.safety-badge {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  align-items: start;
-  gap: 0.625rem;
-  margin: 3rem auto 0;
-  max-width: 34rem;
-  padding: 0.875rem 1.25rem;
-  border: 1px solid var(--line);
-  border-radius: var(--r-2xl);
-  background: color-mix(in srgb, var(--sage-500) 6%, transparent);
-  text-align: left;
-  font-size: 0.9375rem;
-  line-height: 1.5;
-  color: var(--ink-700);
-}
-.safety-badge strong { color: var(--ink-900); }
-/* margin-top nudges the shield onto the first line's optical centre rather
-   than its box top - the same problem, and the same calc, as the Design
-   Philosophy bullets. */
-.safety-badge svg {
-  width: 1.125rem; height: 1.125rem; flex: none;
-  margin-top: calc((1.5em - 1.125rem) / 2);
-  color: var(--sage-500);
-}
-/* The gap after the label is the punctuation (Patrick, 2026-08-25). The two
-   halves are a credential and its gloss, and with only a word space between
-   them they read as one run-on sentence — "COPPA compliant Parental consent".
-   A colon fixes the grammar but makes it a sentence; the wider space keeps it
-   a BADGE, with the claim reading as a separate stamped label. 0.35em rides ON
-   TOP of the word space in the markup, which stays there on purpose: strip it
-   and an unstyled page (see stamp-css-version.sh for how that happens) says
-   "compliantParental", and so does anything that copies the text. */
-.safety-badge strong { color: var(--ink-900); font-weight: 700; margin-right: 0.35em; }
+
 .safety-more { margin: 1.25rem 0 0; text-align: center; }
 
 .safety-body {

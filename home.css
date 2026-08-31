@@ -168,6 +168,7 @@ html {
 
 body {
   margin: 0;
+  position: relative;   /* the grain below is absolute against this */
   background: var(--parchment-100);
   color: var(--ink-900);
   font-family: var(--font-sans);
@@ -618,6 +619,28 @@ button { font: inherit; color: inherit; background: none; border: 0; }
 }
 .btn--ghost:hover { background: var(--parchment-200); }
 
+/* THE GRAIN GOES OVER THE WHOLE DOCUMENT, not over the hero (2026-08-30).
+   styles.css has printed the subpages this way for a while, and its note
+   says exactly why: a grain that covers only part of the page makes the rest
+   read as "a bare rectangle". On the hero alone that is precisely what it
+   did - the tooth stopped at the hero's bottom edge and at its slanted clip,
+   drawing a visible diagonal under the desk that survived three other fixes,
+   because the seam was never the colour, it was the texture.
+   Absolute, not fixed: paper does not slide under the words as you scroll.
+   Below the fixed header (z 50) and click-through, so it changes nothing but
+   the surface. */
+body::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background-image: url("assets/paper-grain.png");
+  background-size: 128px;
+  opacity: .5;
+  mix-blend-mode: multiply;
+}
+
 /* ============================== THE HERO SCENE (redesign, 2026-08-30)
    The desk is composed, not photographed: two skewed CSS planes carry a
    generated drawer tile that repeats to any width, and every prop is a
@@ -695,24 +718,21 @@ button { font: inherit; color: inherit; background: none; border: 0; }
        the strip of wall the desk does not cover and read as a band, worse on
        the right where the pool is centred. Lifted to 54%, where it warms the
        wall a reader can actually see, and softened. */
-    radial-gradient(70% 55% at 92% 54%, rgba(216,161,106,.22), rgba(216,161,106,0) 72%),
-    /* The wall ends on the hero unit's own cream, not on --wall-lo. 95px of
-       wall shows below the desk's rim (the band and the clip line are
-       parallel, so it is 95px at both ends), and ending on #EDC9A2 there put
-       a darker slab under the desk against the lighter cream below it.
-       Ending on --hero-ground makes that strip continuous with the app-shot
-       section, so the desk sits on one surface. --wall-lo still exists for
-       the deeper tones above. */
-    linear-gradient(163deg, var(--wall-hi) 0%, var(--wall-mid) 46%,
-                    var(--wall-lo) 78%, var(--hero-ground) 100%);
+    radial-gradient(66% 40% at 92% 46%, rgba(216,161,106,.20), rgba(216,161,106,0) 70%),
+    /* The wall REACHES --hero-ground at 66% and holds it (a gradient's last
+       stop extends to the end), so the whole bottom of the hero - including
+       the 95px of wall below the desk's rim and the slanted clip edge - is
+       exactly the cream that .hero-band paints behind it. Ending on
+       --hero-ground at 100% was not enough: the clip line crosses the
+       gradient well before its final stop, so the wall was still a shade
+       darker there and the clip edge drew a crisp diagonal under the desk.
+       Going flat early is what makes that edge disappear. --wall-lo is no
+       longer used here; it stays a token for anything that wants the deeper
+       tone deliberately. */
+    linear-gradient(163deg, var(--wall-hi) 0%, var(--wall-mid) 42%,
+                    var(--hero-ground) 66%);
 }
-.hero::after {
-  content: ""; position: absolute; inset: 0; z-index: 4; pointer-events: none;
-  background-image: url("assets/paper-grain.png");
-  background-size: 128px;
-  opacity: .5;
-  mix-blend-mode: multiply;
-}
+
 
 /* ============================================================== the desk */
 .hero__desk {

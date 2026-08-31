@@ -743,6 +743,17 @@ body::after {
   height: var(--scene-h);
   transform: translateX(calc(-50% + var(--scene-x)));
   z-index: 1;
+
+  /* THE ONE KNOB, AND THERE IS ONLY THIS ONE. The cast is 1.3796 scenes wide
+     as composed; the cap keeps it inside the window at square and tall
+     aspects, where --scene outgrows the viewport (scene/vw reaches 1.04).
+     Three graded versions of this line were written first, one per
+     breakpoint - tabulated against each other they were identical above
+     1440 and never more than 8% apart anywhere else, because below ~1400 it
+     is the CAP that binds and the multiplier never gets a vote. Both
+     branches scale the picture uniformly and neither can deform it, so this
+     is safe to tune by eye. */
+  --cast: min(calc(var(--scene) * 1.3796), 99vw);
 }
 .desk__mint, .desk__wood {
   position: absolute;
@@ -791,40 +802,100 @@ body::after {
   filter: drop-shadow(-6px 7px 8px rgba(96, 78, 44, .22));
 }
 
-.obj--mailbox {
-  left: calc(50% - 50vw + clamp(14px, 2vw, 36px));
-  bottom: calc(var(--scene-h) * 0.385);
-  width: calc(var(--scene) * 0.29);
-}
-.obj--stack {
-  left: max(calc(var(--scene) * 0.26), calc(50% - 50vw + var(--scene) * 0.29 + clamp(14px, 2vw, 36px) + 26px));
-  bottom: calc(var(--scene-h) * 0.29);
-  width: calc(var(--scene) * 0.28);
+/* ====================================================================
+   THE CAST - ONE RIGID GROUP, NOT THIRTEEN PLACEMENTS
+
+   Every collision this hero ever had came from one cause: the props were
+   anchored in TWO coordinate systems at once. The desk is a fixed box driven
+   by --scene (measured: scene-h/scene 0.5628 and the front lip at 0.687 of
+   the height, both constant to four decimals at every window shape). But
+   sixteen declarations ALSO anchored props with "50% - 50vw", which is the
+   viewport's system. The two slide against each other by scene/vw, and that
+   ratio runs 0.61 -> 1.04 across the range: a 1.7x swing. Two props written
+   in different systems drift apart by up to 70% of the scene as the window
+   resizes. That is why no amount of tuning ever held - --grid-right,
+   --pile-off, --stamp-off, --rack-edge and six aspect-ratio blocks were all
+   machinery for re-deriving at runtime a spacing that should have been
+   constant.
+
+   So the cast is ONE box and every prop is a PERCENTAGE OF IT. Percentages
+   of a shared box are a similarity transform, and a similarity transform
+   cannot create an overlap: props that do not touch at the design size
+   cannot touch at any size. Non-overlap stops being something to verify at
+   33 viewports and becomes something the structure guarantees.
+
+   It also means --cast may be ANY expression - viewport, scene, a min() of
+   both - with no risk at all. It is one length; moving it scales the picture
+   and changes nothing else. The percentages below ARE the composition as it
+   was art-directed at 1600x900, measured off the layout boxes and frozen.
+
+   NEVER add a media query for an individual prop. Move --cast. */
+.hero__cast {
+  position: absolute;
+  left: 50%;
+  /* THE FOOTING. The lowest prop sits at the cast's own bottom edge, so this
+     is where the composition meets the desk. The second term is the only
+     coupling in the whole system, and it earns its place: the front lip
+     RISES to the left, so a cast squeezed by its cap pulls the right-hand
+     props inward into shallower desk and their clearance falls (26px down to
+     5px across the range). The term is exactly zero while the cast is at its
+     natural 1.3796 scenes and lifts the picture only by how much the cap has
+     taken - it moves the whole cast as one, so it cannot deform anything. */
+  bottom: calc(var(--scene-h) * 0.166
+               + (var(--scene) - var(--cast) * 0.7249) * 0.09);
+  width: var(--cast);
+  aspect-ratio: 2.9394;
+  transform: translateX(-50%);
 }
 
+.obj--mailbox { left:  0;       bottom: 26.326%; width: 21.005%; }
+.obj--stack   { left: 32.087%;  bottom: 14.962%; width: 20.296%; }
 
 /* The rack is one re-rendered image: three sheets whose lean and mutual
    occlusion the regeneration preserved, so nothing here to choreograph. */
-.obj--rack {
-  right: calc(50% - 50vw + var(--scene) * 0.014);
-  bottom: calc(var(--scene-h) * 0.235);
-  width: calc(var(--scene) * 0.325);
+.obj--rack    { left: 76.418%;  bottom:  8.333%; width: 23.582%; }
+
+/* Stamps lie flat on the desk. LYING ON IT, not standing on it: rotate()
+   turns a stamp, it never lays one down - a thing flat on this desk has its
+   horizontal edges on the desk's own recession line, which is a SHEAR. The
+   staircase descends to the right because the front lip does, and uniform
+   scaling preserves both angles, so they stay parallel at every size. */
+.obj--stamp   { width: 3.286%; }
+.obj--stamp1  { left: 75.967%;  bottom:  2.461%; }
+.obj--stamp2  { left: 80.348%;  bottom:  1.137%; }
+.obj--stamp3  { left: 84.665%;  bottom:  0; }
+.obj--stamp img {
+  filter: drop-shadow(-1px 1.5px 1.5px rgba(96, 78, 44, .32));
+  transform: skewY(var(--mint-skew)) scaleY(.7);
 }
 
-/* Stamps lie flat on the desk. v3 foreshortened and scattered square art
-   with transforms; the re-rendered stamps carry the scene's own perspective
-   and tilt IN the art, so no transform - a transform here double-applies. */
-.obj--stamp { width: calc(var(--scene) * 0.064); }
-.obj--stamp img {
-  filter: drop-shadow(-1px 2px 2px rgba(96, 78, 44, .35));
-  /* lying ON the desk: edges follow the desk's recession, slightly
-     foreshortened - without this the baked tilts read as hovering */
-  transform: rotate(2.2deg) scaleY(.94);
+/* Four columns, two ranks, lying in FRONT of the paper pile - lower on the
+   desk is nearer the viewer, so a rank whose top sits below the pile's foot
+   reads as in front of it and may share its x-range freely. Tipped towards
+   the viewer at scaleY .94 - cos(19deg) against the .72 = cos(44deg) the
+   stamps lie at. */
+.obj--stickers { display: contents; }
+.obj--stickers img {
+  position: absolute;
+  width: 2.191%;
+  height: auto;
+  filter: drop-shadow(-1px 1.5px 1.5px rgba(96, 78, 44, .30));
+  /* right to left: turned in its own plane, then tipped, then sheared onto
+     the desk's line. Rotating after the squash would turn a square oval. */
+  transform: skewY(var(--mint-skew)) scaleY(.94) rotate(var(--turn, 0deg));
 }
-.obj--stamp1 { left: calc(var(--scene) * 0.575); bottom: calc(var(--scene-h) * 0.235); }
-.obj--stamp2 { left: calc(var(--scene) * 0.652); bottom: calc(var(--scene-h) * 0.221); }
-.obj--stamp3 { left: calc(var(--scene) * 0.729); bottom: calc(var(--scene-h) * 0.206); }
-.obj--stamp4 { left: calc(var(--scene) * 0.806); bottom: calc(var(--scene-h) * 0.190); }
+.obj--stickers img:nth-child(4n + 1) { --turn: -11deg; left: 58.763%; }
+.obj--stickers img:nth-child(4n + 2) { --turn:  -4deg; left: 61.662%; }
+.obj--stickers img:nth-child(4n + 3) { --turn:   4deg; left: 64.562%; }
+.obj--stickers img:nth-child(4n + 4) { --turn:  11deg; left: 67.461%; }
+.obj--stickers img:nth-child(1) { bottom: 12.310%; }
+.obj--stickers img:nth-child(2) { bottom: 11.552%; }
+.obj--stickers img:nth-child(3) { bottom: 10.795%; }
+.obj--stickers img:nth-child(4) { bottom: 10.038%; }
+.obj--stickers img:nth-child(5) { bottom: 19.507%; }
+.obj--stickers img:nth-child(6) { bottom: 18.561%; }
+.obj--stickers img:nth-child(7) { bottom: 17.993%; }
+.obj--stickers img:nth-child(8) { bottom: 17.235%; }
 
 /* the bee, hung off the top of the frame - identical to v2 */
 :root {
@@ -951,30 +1022,12 @@ body::after {
   :root { --hero-h: calc(var(--scene) * 0.762 + 10.1339vw + 24px); }
 }
 
-/* 1024-1400: the copy column narrows faster than the scene - the mailbox
-   dome was reaching the headline's first glyph, so it shrinks and tucks
-   further off the left edge */
-@media (max-width: 1400px) and (min-width: 1024px) {
-  .obj--mailbox { width: calc(var(--scene) * 0.26); left: calc(50% - 50vw + clamp(12px, 1.6vw, 28px)); bottom: calc(var(--scene-h) * 0.36); }
-  /* the buttons sit closer to the scene here; the rack steps down so its
-     purple corner stays clear of See-how-it-works (pixel-checked) */
-  .obj--rack    { bottom: calc(var(--scene-h) * 0.20); }
-}
-
 /* <=1023 (tablet): everything still present, but tighter - the mailbox and
    rack step in from the edges and down, the stamps shrink, so the copy keeps
    its air. The scene floor drops with it: cropping a 760px scene into an
    800px window is not a composition. */
 @media (max-width: 1023px) {
   :root { --scene: clamp(580px, min(100vw, 143vh), 1560px); }
-  .obj--mailbox { width: calc(var(--scene) * 0.215); left: calc(var(--scene) * 0.012); bottom: calc(var(--scene-h) * 0.34); }
-  .obj--stack   { width: calc(var(--scene) * 0.26); left: max(calc(var(--scene) * 0.30), calc(50% - 50vw + var(--scene) * 0.235 + 38px)); bottom: calc(var(--scene-h) * 0.30); }
-  .obj--rack    { width: calc(var(--scene) * 0.305); bottom: calc(var(--scene-h) * 0.205); }
-  .obj--stamp   { width: calc(var(--scene) * 0.058); }
-  .obj--stamp1  { left: calc(var(--scene) * 0.565); bottom: calc(var(--scene-h) * 0.230); }
-  .obj--stamp2  { left: calc(var(--scene) * 0.638); bottom: calc(var(--scene-h) * 0.217); }
-  .obj--stamp3  { left: calc(var(--scene) * 0.711); bottom: calc(var(--scene-h) * 0.203); }
-  .obj--stamp4  { left: calc(var(--scene) * 0.784); bottom: calc(var(--scene-h) * 0.188); }
 }
 
 /* <=639 (phone): a different composition, not a smaller one. The desk is a
@@ -988,12 +1041,7 @@ body::after {
   }
   .hero { padding-bottom: calc(var(--scene) * 0.225 + 14.2vw + 150px); }
   :root { --skep-top: 6px; }
-  .obj--mailbox { width: calc(var(--scene) * 0.21); left: calc(50% - 50vw + 8px); bottom: calc(var(--scene-h) * 0.35); }
-  .obj--stack   { width: calc(var(--scene) * 0.26); left: calc(50% - 50vw + var(--scene) * 0.21 + 24px); bottom: calc(var(--scene-h) * 0.27); }
-  .obj--stamp1, .obj--stamp4 { display: none; }
-  .obj--rack    { right: calc(50% - 50vw + 14vw - 90px); bottom: calc(var(--scene-h) * 0.27); width: calc(var(--scene) * 0.25); }
-  .obj--stamp2  { left: auto; right: calc(50% - 50vw + 15vw); bottom: calc(var(--scene-h) * 0.225); }
-  .obj--stamp3  { left: auto; right: calc(50% - 50vw + 19vw); bottom: calc(var(--scene-h) * 0.245); }
+
   /* Restate the headline only. .hero__second is a fraction of it, so the
      aside follows without this block knowing the ratio - which is what the
      old rule got wrong by naming both selectors and making them equal. */
@@ -1006,21 +1054,22 @@ body::after {
   .hero__actions .btn--primary { padding: .85rem 1.9rem; font-size: .95rem; }
 }
 
-/* <=430 (small phones): THE DESK STAYS. It used to bow out here, leaving the
-   mailbox and the paper pile as a still life on the wall - and without the
-   desk under them the hero reads weak on a phone, which is the size most
-   people will meet it at (Patrick, 2026-08-31). The desk is the thing the
-   whole page is about; a phone is the last place to drop it.
+/* <=430 (small phones): THE DESK STAYS, AND SO DOES EVERYTHING ON IT. It
+   used to bow out here, leaving the mailbox and the pile as a still life on
+   the wall - and without the desk under them the hero reads weak on a phone,
+   which is the size most people will meet it at (Patrick, 2026-08-31).
 
-   What changes instead is the CROWD. Two props on a 375px-wide desk is a
-   scene; four is a shelf. The rack and the stamps go, the mailbox and the
-   pile stay and grow, and both are sized from the VIEWPORT rather than the
-   clamped scene - at these widths --scene is pinned to its 440px floor, so
-   scene-fractions stop shrinking while the screen keeps going. */
+   The crowd used to thin out here too: rack, stamps and stickers all left,
+   on the reasoning that two props on a 375px desk is a scene and more is a
+   shelf. That turned out to be a symptom, not a judgement. The props were
+   not too small - the CAST was too big, at 150vw, which pushed the rack
+   (76-100% of the cast) clean off the right edge and then made the small
+   props look like the problem. With the cast at its ordinary size the whole
+   composition lands inside a 375px window with 6px to spare, so nothing has
+   to go. The phone now shows the same eleven objects as a 2560px monitor.
+
+   Only the hive still leaves, and for a genuine collision. */
 @media (max-width: 430px) {
-  .obj--rack, .obj--stamp2, .obj--stamp3 { display: none; }
-  .obj--mailbox { width: 30vw; left: calc(50% - 50vw + 3vw); bottom: calc(var(--scene-h) * 0.335); }
-  .obj--stack   { width: 44vw; left: calc(50% - 50vw + 40vw); bottom: calc(var(--scene-h) * 0.265); }
   /* The hive goes too, and for the same reason the rack did - but its problem
      is collision rather than clutter. It hangs in the top-right corner, which
      below 880 is also where the burger lives; it steps left to clear it, and

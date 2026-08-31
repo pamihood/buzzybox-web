@@ -43,7 +43,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&amp;family=Lora:ital,wght@0,400..700;1,400..700&amp;family=Plus+Jakarta+Sans:wght@400..800&amp;display=swap" />
   <!-- home.css styles THIS PAGE ONLY. Everything else on the site still runs
        styles.css; see the note at the top of home.css. -->
-  <link rel="stylesheet" href="home.css?v=4bcdcc01" />
+  <link rel="stylesheet" href="home.css?v=16ed7af4" />
 </head>
 <body>
 
@@ -136,25 +136,48 @@
     <div class="desk__mint"></div>
     <div class="desk__wood"></div>
 
-    <div class="obj obj--mailbox">
-      <img src="assets/hero/p-mailbox.webp" width="723" height="863"
-           alt="A mint mailbox with letters waiting inside and its flag up" />
-    </div>
+    <!-- ONE RIGID CAST, not thirteen placements. Every prop inside is
+         positioned as a PERCENTAGE OF THIS BOX, so the whole composition is
+         a single similarity transform - it can be scaled but never deformed,
+         and two props that do not touch at the design size cannot touch at
+         any size. See home.css "THE CAST" for why that replaced sixteen
+         viewport-anchored offsets. -->
+    <div class="hero__cast">
+      <div class="obj obj--mailbox">
+        <img src="assets/hero/p-mailbox.webp" width="723" height="863"
+             alt="A mint mailbox with letters waiting inside and its flag up" />
+      </div>
 
-    <div class="obj obj--rack">
-      <img src="assets/hero/p-rack.webp" width="972" height="944"
-           alt="Three sheets of decorated writing paper standing on the desk" />
-    </div>
+      <div class="obj obj--rack">
+        <img src="assets/hero/p-rack.webp" width="917" height="876"
+             alt="Three sheets of writing paper standing on the desk: a wildflower meadow in front, a cherry-blossom branch behind it, and a moonlit night sky at the back" />
+      </div>
 
-    <div class="obj obj--stack">
-      <img src="assets/hero/p-stack.webp" width="1200" height="527"
-           alt="A stack of writing paper with a pen resting on top" />
-    </div>
+      <div class="obj obj--stack">
+        <img src="assets/hero/p-stack.webp" width="1200" height="527"
+             alt="A stack of writing paper with a pen resting on top" />
+      </div>
 
-    <div class="obj obj--stamp obj--stamp1"><img src="assets/hero/p-stamp-sprig.webp" width="200" height="200" alt="" /></div>
-    <div class="obj obj--stamp obj--stamp2"><img src="assets/hero/p-stamp-ladybug.webp" width="200" height="200" alt="" /></div>
-    <div class="obj obj--stamp obj--stamp3"><img src="assets/hero/p-stamp-lighthouse.webp" width="200" height="200" alt="" /></div>
-    <div class="obj obj--stamp obj--stamp4"><img src="assets/hero/p-stamp-rainbow.webp" width="200" height="200" alt="" /></div>
+      <div class="obj obj--stamp obj--stamp1"><img src="assets/hero/p-stamp-bluebell.webp" width="200" height="207" alt="" /></div>
+      <div class="obj obj--stamp obj--stamp2"><img src="assets/hero/p-stamp-lighthouse.webp" width="200" height="209" alt="" /></div>
+      <div class="obj obj--stamp obj--stamp3"><img src="assets/hero/p-stamp-rainbow.webp" width="200" height="207" alt="" /></div>
+      <!-- Eight fixed placements, and that is now the CORRECT answer. The
+           earlier note here said hand-placed lefts "cannot be right at more
+           than one size" - true while the band around them moved, which is
+           exactly the fault the cast removed. Inside a rigid box the eight
+           are placed once and scale with everything else. Tilt is baked into
+           each PNG; the CSS only shears them onto the desk's line. -->
+      <div class="obj obj--stickers">
+        <img src="assets/hero/p-sticker-toadstoolhouse.webp" width="190" height="182" alt="" />
+        <img src="assets/hero/p-sticker-butterfly.webp" width="190" height="136" alt="" />
+        <img src="assets/hero/p-sticker-gull.webp" width="190" height="161" alt="" />
+        <img src="assets/hero/p-sticker-shell.webp" width="190" height="168" alt="" />
+        <img src="assets/hero/p-sticker-sakura.webp" width="190" height="178" alt="" />
+        <img src="assets/hero/p-sticker-koi.webp" width="190" height="168" alt="" />
+        <img src="assets/hero/p-sticker-onigiri.webp" width="190" height="182" alt="" />
+        <img src="assets/hero/p-sticker-frangipani.webp" width="190" height="162" alt="" />
+      </div>
+    </div>
   </div>
 
   <div class="hero__skep-cord" aria-hidden="true"></div>

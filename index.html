@@ -43,7 +43,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&amp;family=Lora:ital,wght@0,400..700;1,400..700&amp;family=Plus+Jakarta+Sans:wght@400..800&amp;display=swap" />
   <!-- home.css styles THIS PAGE ONLY. Everything else on the site still runs
        styles.css; see the note at the top of home.css. -->
-  <link rel="stylesheet" href="home.css?v=30638b7b" />
+  <link rel="stylesheet" href="home.css?v=f1896d8a" />
 </head>
 <body>
 
@@ -86,14 +86,6 @@
         <a href="#membership">Membership</a>
         <a class="site-nav-utility" href="blog/">Blog</a>
       </nav>
-
-      <!-- The button says what it does. "Get Started" was vague and promised
-           something the product cannot do yet; naming the real state is the
-           more credible thing to print. It opens the same dialog every plan
-           card does. Written by scripts/apply-brand.py. -->
-      <div class="header-cta">
-        <button class="btn-dark" type="button" data-beta="Header" data-brand="beta_cta">Request an invite</button>
-      </div>
 
       <button class="nav-toggle" type="button" id="nav-toggle"
               aria-expanded="false" aria-controls="mobile-nav" aria-label="Toggle navigation menu">
@@ -171,11 +163,14 @@
       <p class="hero__second">Texting can wait.</p>
       <p class="hero__lede">Write and draw digital letters with friends
          and&nbsp;family.</p>
+      <!-- ONE action (2026-08-30). The ghost "See how it works" pointed at
+           #how-it-works, which the primary nav already links to - a second
+           door to the same room, sitting beside the only action that matters.
+           The header's own invite button went at the same time: with the hero
+           CTA a screen-width away from it, the page asked twice before it had
+           said anything. Every later section still offers the invite. -->
       <div class="hero__actions">
         <button class="btn btn--primary" type="button" data-beta="Hero" data-brand="beta_cta">Request an invite</button>
-        <a class="btn btn--ghost" href="#how-it-works"><span>See how it works</span>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-        </a>
       </div>
       <p class="hero__status">Coming first to iPad.</p>
     </div>

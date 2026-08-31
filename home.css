@@ -27,12 +27,19 @@
      leans peach instead of grey-beige, so the hero and the page read as one
      paper. The hero wall itself is deeper (#F8DFC7) - the page ground stays
      quieter than the scene it sits under. */
-  --parchment-50:  #FDF9F1;
-  --parchment-100: #FAF3E9;   /* the page ground */
-  --parchment-200: #F6EBDB;   /* the second sheet: banded sections and cards */
-  --parchment-300: #F0D9BE;   /* band tint, tab wells, image beds */
-  --parchment-400: #DEC3A2;
-  --parchment-500: #BE9F7E;
+  /* Deepened onto the APP'S OWN CREAM (2026-08-30, second pass). The first
+     warming leaned peach but kept a near-white ground, so the page paled out
+     the moment the hero's apricot wall ended - the desk sat on one cream and
+     the page on another. The ground is now the hero wall's own mid tone, and
+     the rest of the ramp steps from it: cards lift ABOVE the ground, bands
+     sit below it, and the ground/band contrast is the same size it always
+     was, just deeper in the family. Body ink still clears AA on all three. */
+  --parchment-50:  #FDF6EC;   /* cards: the sheet that lifts off the ground */
+  --parchment-100: #F8E4CE;   /* the page ground = the hero wall's cream */
+  --parchment-200: #F4DBC0;   /* the second sheet */
+  --parchment-300: #EBC9A4;   /* band tint, tab wells, image beds */
+  --parchment-400: #D9B68C;
+  --parchment-500: #B99672;
 
   /* --line is the comp's #DAC6B4, used on nearly every border. The two
      variants exist because the comp bands some sections with a slightly
@@ -44,7 +51,10 @@
   --ink-900: #2B231D;   /* headings */
   --ink-800: #3E342B;
   --ink-700: #574B40;   /* body copy */
-  --ink-600: #746456;   /* captions, meta */
+  /* Darkened with the ground (2026-08-30): at #746456 this cleared AA on
+     the old near-white paper but only reached 4.04:1 on the deepened band.
+     #6B5B4D restores it to 4.63:1 there, 5.26:1 on the page ground. */
+  --ink-600: #6B5B4D;   /* captions, meta */
   --ink-500: #968474;
 
   --honey-400: #F5B955;
@@ -390,6 +400,7 @@ button { font: inherit; color: inherit; background: none; border: 0; }
 }
 .site-header .shell { display: block; }
 .header-bar {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -399,14 +410,15 @@ button { font: inherit; color: inherit; background: none; border: 0; }
   gap: 0.875rem;
   height: 5rem;
 }
-/* Below 1024 the primary nav is display:none, so space-between was left with
-   three visible children and spread the CTA into the middle of the bar,
-   floating between the wordmark and the menu button. Pushing it right makes
-   the CTA and the toggle one right-hand group. Above 1024 the nav is back and
-   space-between centres it, which is the intended desktop header - so this is
-   deliberately scoped rather than applied to .header-cta outright. */
-@media (max-width: 1023.98px) {
-  .header-cta { margin-left: auto; }
+/* The nav CENTRES ON THE BAR, it is not distributed by it (2026-08-30). The
+   header CTA used to be the third child that made space-between land the nav
+   in the middle; without it, space-between pushed the nav flush right, where
+   it collided with the skep hanging in the hero's corner (88x29px of it).
+   Absolute centring is independent of how many siblings the bar has, so the
+   nav stays put whatever else joins or leaves the header. Only above 1024,
+   where the nav is visible at all. */
+@media (min-width: 1024px) {
+  .site-nav { position: absolute; left: 50%; transform: translateX(-50%); }
 }
 .brand { display: flex; align-items: center; gap: 0.875rem; text-decoration: none; }
 /* .brand-mark, not `.brand img` — the wordmark beside it is an image too now,
@@ -473,8 +485,6 @@ button { font: inherit; color: inherit; background: none; border: 0; }
 }
 .site-nav-utility::after { content: none; }
 
-.header-cta { display: none; align-items: center; gap: 0.875rem; }
-@media (min-width: 640px) { .header-cta { display: flex; } }
 .btn-dark {
   display: inline-block;
   cursor: pointer;

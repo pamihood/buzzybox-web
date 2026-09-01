@@ -874,22 +874,23 @@ body::after {
    rack 1.29x, the stamps 1.47x. The cast's bounding box in that render is
    1660x604, hence the 2.7495 aspect above. */
 .obj--mailbox { left:  0;       bottom: 29.814%; width: 21.386%; }
-/* SMALLER AND FURTHER BACK THAN THE REFERENCE, and it has to be both.
-   At the reference's own 33.735% the pile broke two things at once on a
-   wide desktop: its art ran 4-6px past the front lip, and its back corner
-   rose into "Coming first to iPad." by up to 29px at 1920. Those pull in
-   opposite directions - raising it off the lip pushes it further into the
-   line - so the only move that fixes both is size.
+/* SIZED AGAINST THE DESK BAND, not against the frame - and that is the
+   correction. Reading the reference I compared each prop to the VIEWPORT
+   and concluded the pile was 1.70x too small. Measured the right way, it
+   never was: our old 20.296% filled 82% of the desk band (back edge to
+   front lip) and the reference's pile fills 80% of ITS band. The two were
+   already the same composition.
 
-   Solved at the worst case (1920, where the pile is 276px tall): the top
-   has to drop 31px to clear the line and the bottom rise 9px to clear the
-   lip, so 40px of height comes out. 28.5% is that, and it is still 40%
-   larger than the 20.296% we shipped before the reference pass.
+   What differs is the DESK. Our band is 10.6% of the viewport's width; the
+   reference's is 16.7% - a camera 1.6x deeper. That is the whole reason its
+   pile looks bigger, and why enlarging ours to match put 136% of a band's
+   worth of paper into the band: past the front lip at the bottom, into
+   "Coming first to iPad." at the top.
 
-   Our desk is shallower than the render's and our copy sits lower over it,
-   which is why the reference's own number does not survive here: in that
-   image the status line clears the pile's top corner by 46px. */
-.obj--stack   { left: 24.000%;  bottom: 13.000%; width: 28.500%; }
+   So the pile goes back to the proportion this desk supports. Anyone
+   wanting the reference's pile should deepen --wood-top / --mint-top, not
+   grow this number. */
+.obj--stack   { left: 26.000%;  bottom: 13.900%; width: 20.500%; }
 
 /* The rack is one re-rendered image: three sheets whose lean and mutual
    occlusion the regeneration preserved, so nothing here to choreograph. */

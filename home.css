@@ -1035,8 +1035,22 @@ body::after {
    prop, and the one that fights a stacked copy column - goes away, and two
    stamps stand in for four. */
 @media (max-width: 639px) {
+  /* 96vw, not 136. The desk was sized for a composition that needed a wide
+     one, and the cast is capped at 99vw regardless - so the desk was 36%
+     wider than the window while the props were not, and the surplus showed
+     as empty mint. Vertical fill is castH/sceneH, which is a flat 83%
+     wherever the cast runs at its natural size and 0.5985*(vw/scene) once
+     the cap binds: 136vw put it at 44% here against 83% on a monitor.
+
+     Shrinking the DESK rather than growing the props is what costs nothing.
+     The cast is already 371px in a 375px window, so it cannot grow without
+     cropping - measured at a 108vw cap, 18px comes off the mailbox's left
+     and 12px off the rack, and the mailbox reads as sliding off the edge.
+     This leaves every prop exactly the size it was and takes the desk from
+     287px deep to 203, which is 62% fill. 88vw reaches 68% and is too thin:
+     the props crowd the lip and the mint stops reading as a surface. */
   :root {
-    --scene: clamp(440px, 136vw, 620px); --hero-h: auto;
+    --scene: clamp(280px, 96vw, 620px); --hero-h: auto;
     --skep-w: 64px; --skep-r: 0.9rem;
   }
   .hero { padding-bottom: calc(var(--scene) * 0.225 + 14.2vw + 150px); }

@@ -687,7 +687,15 @@ body::after {
      desk the phone just got. Continuous everywhere. */
   --scene:      clamp(280px, min(80vw, 125vh), 1560px);
   --scene-h:    calc(var(--scene) * 0.562799);
-  --scene-drop: calc(-10.1339vw - 24px);
+  /* The last 0.034 lifts the DESK off the hero's bottom edge without moving
+     the lip: the hero's padding-bottom grows by the same amount below, so
+     the desk stays where it is and the hero simply ends lower. That buys
+     back the drawers' bottom rail, which the deeper --wood-top had pushed
+     under .hero's overflow:hidden - and only at the right-hand end, where
+     the skewed wood dips furthest below a horizontal clip. 81% of the tile
+     survived there against 100% everywhere else, and the rail lives in the
+     last 15%. */
+  --scene-drop: calc(-10.1339vw - 24px - var(--scene) * 0.034);
   --hero-h:     calc(var(--scene) * 0.745 + 10.1339vw + 24px);
   --scene-x:    calc(var(--scene) * -0.008);   /* ghost-calibrated 2026-08-30 */
 
@@ -733,7 +741,7 @@ body::after {
   /* 82px, not 90: this and the phone's own padding are the two halves of the
      desk's distance from the copy, and they have to MEET at 640 or the desk
      steps. They now agree there to within a pixel - see the phone block. */
-  padding-bottom: calc(var(--scene) * 0.225 + 14.2vw + 82px);
+  padding-bottom: calc(var(--scene) * 0.259 + 14.2vw + 82px);
   clip-path: polygon(0 0, 100% 0, 100% 100%, 0 calc(100% - 10.1339vw));
   background:
     radial-gradient(96% 58% at 46% 0%,  rgba(255,247,235,.80), rgba(255,247,235,0) 66%),
@@ -1133,7 +1141,7 @@ body::after {
      than to taste, because a mismatch there IS the step. The two now land
      within a pixel of each other, and the desktop constant came down 8px to
      meet this one halfway. */
-  .hero { padding-bottom: calc(37.5vw + 49px); }
+  .hero { padding-bottom: calc(37.5vw + var(--scene) * 0.034 + 49px); }
   :root { --skep-top: 6px; }
 
   /* Restate the headline only. .hero__second is a fraction of it, so the

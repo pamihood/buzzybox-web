@@ -694,7 +694,19 @@ body::after {
   --mint-skew: 4.2156deg;
   --mint-top:  calc(var(--scene) * 0.221836);
   --wood-skew: 5.7866deg;
-  --wood-top:  calc(var(--scene) * 0.386567);
+  /* 0.459, not 0.386567. This is the desk's CAMERA, and ours was shallower
+     than the reference render's: its surface band is 16.7% of the frame's
+     width against our 11.6%, which is why its front edge dives out of the
+     bottom of the frame two thirds across while ours never left the
+     viewport at all. Measured, we showed 10.9% of the viewport's height in
+     drawer fronts at 1600x900 against the reference's 3.9%.
+
+     Moving the lip DOWN rather than moving the desk down is what makes this
+     free: the back edge does not move, so no cream appears above it - the
+     surface grows downward and the drawer is pushed off the bottom edge. It
+     is also what gives the paper pile a band deep enough to be the size the
+     reference draws it, which is the same fault seen from the other side. */
+  --wood-top:  calc(var(--scene) * 0.459);
   --wood-h:    calc(var(--scene) * 0.174738);
   --tile-w:    calc(var(--scene) * 0.476675);
   --tile-phase: calc(var(--scene) * -0.048445);
@@ -858,7 +870,7 @@ body::after {
      5px across the range). The term is exactly zero while the cast is at its
      natural 1.3796 scenes and lifts the picture only by how much the cap has
      taken - it moves the whole cast as one, so it cannot deform anything. */
-  bottom: calc(var(--scene-h) * 0.166
+  bottom: calc(var(--scene-h) * 0.037
                + (var(--scene) - var(--cast) * 0.7249) * 0.09);
   width: var(--cast);
   aspect-ratio: 2.7495;
@@ -890,7 +902,7 @@ body::after {
    So the pile goes back to the proportion this desk supports. Anyone
    wanting the reference's pile should deepen --wood-top / --mint-top, not
    grow this number. */
-.obj--stack   { left: 26.000%;  bottom: 13.900%; width: 20.500%; }
+.obj--stack   { left: 25.000%;  bottom: 14.600%; width: 29.000%; }
 
 /* The rack is one re-rendered image: three sheets whose lean and mutual
    occlusion the regeneration preserved, so nothing here to choreograph. */

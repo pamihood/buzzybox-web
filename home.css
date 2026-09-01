@@ -832,7 +832,13 @@ body::after {
    NEVER add a media query for an individual prop. Move --cast. */
 .hero__cast {
   position: absolute;
-  left: 50%;
+  /* CENTRED ON THE WINDOW, not on the desk. The desk carries --scene-x, a
+     ghost-calibrated nudge of -0.008 scenes, and a cast centred inside it
+     inherits that shift - which lands on the mailbox, because the mailbox is
+     the prop at 0%. At 768px that put its left edge 6px past the window.
+     Subtracting --scene-x here cancels the desk's nudge for the cast alone,
+     so the composition is centred on what the reader actually sees. */
+  left: calc(50% - var(--scene-x));
   /* THE FOOTING. The lowest prop sits at the cast's own bottom edge, so this
      is where the composition meets the desk. The second term is the only
      coupling in the whole system, and it earns its place: the front lip
@@ -1046,11 +1052,20 @@ body::after {
      The cast is already 371px in a 375px window, so it cannot grow without
      cropping - measured at a 108vw cap, 18px comes off the mailbox's left
      and 12px off the rack, and the mailbox reads as sliding off the edge.
-     This leaves every prop exactly the size it was and takes the desk from
-     287px deep to 203, which is 62% fill. 88vw reaches 68% and is too thin:
-     the props crowd the lip and the mint stops reading as a surface. */
+     This leaves every prop exactly the size it was. The number that matters
+     is the MINT YOU CAN SEE - the strip between the desk's back edge and the
+     wood front - because the rest of --scene-h is the wood's face. At 375px
+     that strip runs 74px at 136vw, 49px at 96vw and 39px at 80vw, so 96 was
+     a 25px change that was fair to call invisible (Patrick did). 80vw halves
+     it, and the desk finally reads as the long shallow counter it is at
+     1600px rather than a slab seen end-on.
+
+     80 is the floor, not a preference. Below ~74vw the cast is taller than
+     the desk box it sits in, and the front lip - which rises as the desk
+     shrinks - closes on the lowest stamps: 8px of clearance here against 20
+     at the original depth. */
   :root {
-    --scene: clamp(280px, 96vw, 620px); --hero-h: auto;
+    --scene: clamp(280px, 80vw, 620px); --hero-h: auto;
     --skep-w: 64px; --skep-r: 0.9rem;
   }
   .hero { padding-bottom: calc(var(--scene) * 0.225 + 14.2vw + 150px); }

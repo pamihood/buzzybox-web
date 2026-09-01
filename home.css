@@ -677,7 +677,15 @@ body::after {
 
      The vh term keeps a short wide window from growing a hero taller than
      itself; the px clamps keep props believable at the extremes. */
-  --scene:      clamp(760px, min(104vw, 125vh), 1560px);
+  /* ONE EXPRESSION, NO STEPS. This was three: 104vw/125vh here, 100vw/143vh
+     below 1024, and a phone value below 640 - and they did not meet. --scene
+     jumped 511 -> 640 across the 640px breakpoint, taking the desk 57px up
+     the screen with it (Patrick saw the desk "suddenly jump").
+     80vw binds on anything squarer than 1.5625, 125vh on anything wider, so
+     every desktop shape lands exactly where it did before (1125 at 1600x900,
+     1560 at 2560x1440) while tablets and square windows get the shallower
+     desk the phone just got. Continuous everywhere. */
+  --scene:      clamp(280px, min(80vw, 125vh), 1560px);
   --scene-h:    calc(var(--scene) * 0.562799);
   --scene-drop: calc(-10.1339vw - 24px);
   --hero-h:     calc(var(--scene) * 0.745 + 10.1339vw + 24px);
@@ -710,7 +718,10 @@ body::after {
      rather than a collision. The scene formula is the floor, not a cage. */
   min-height: var(--hero-h);
   padding-top: clamp(5rem, 9.5vw, 8.5rem);
-  padding-bottom: calc(var(--scene) * 0.225 + 14.2vw + 90px);
+  /* 82px, not 90: this and the phone's own padding are the two halves of the
+     desk's distance from the copy, and they have to MEET at 640 or the desk
+     steps. They now agree there to within a pixel - see the phone block. */
+  padding-bottom: calc(var(--scene) * 0.225 + 14.2vw + 82px);
   clip-path: polygon(0 0, 100% 0, 100% 100%, 0 calc(100% - 10.1339vw));
   background:
     radial-gradient(96% 58% at 46% 0%,  rgba(255,247,235,.80), rgba(255,247,235,0) 66%),
@@ -1033,7 +1044,6 @@ body::after {
    its air. The scene floor drops with it: cropping a 760px scene into an
    800px window is not a composition. */
 @media (max-width: 1023px) {
-  :root { --scene: clamp(580px, min(100vw, 143vh), 1560px); }
 }
 
 /* <=639 (phone): a different composition, not a smaller one. The desk is a
@@ -1065,10 +1075,22 @@ body::after {
      shrinks - closes on the lowest stamps: 8px of clearance here against 20
      at the original depth. */
   :root {
-    --scene: clamp(280px, 80vw, 620px); --hero-h: auto;
+    --hero-h: auto;
     --skep-w: 64px; --skep-r: 0.9rem;
   }
-  .hero { padding-bottom: calc(var(--scene) * 0.225 + 14.2vw + 150px); }
+  /* THE DESK WAS FLOATING. This padding sets the hero's bottom, and the desk
+     hangs a fixed 10.1339vw + 24px above it - so an over-large padding does
+     not push the desk down the page, it pushes it AWAY FROM THE COPY. The
+     gap from "Coming first to iPad." to the desk's back edge measured 123px
+     at 320, 119 at 375 and 86 at 639, against 11px at 640 and less above:
+     on a phone the desk read as a separate object floating low, which is
+     what Patrick meant by "too far down".
+     37.5vw is the slope that holds the gap steady as the phone widens; the
+     constant is then set so this meets the desktop formula at 640 rather
+     than to taste, because a mismatch there IS the step. The two now land
+     within a pixel of each other, and the desktop constant came down 8px to
+     meet this one halfway. */
+  .hero { padding-bottom: calc(37.5vw + 49px); }
   :root { --skep-top: 6px; }
 
   /* Restate the headline only. .hero__second is a fraction of it, so the

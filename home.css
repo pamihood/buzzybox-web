@@ -861,26 +861,44 @@ body::after {
   bottom: calc(var(--scene-h) * 0.166
                + (var(--scene) - var(--cast) * 0.7249) * 0.09);
   width: var(--cast);
-  aspect-ratio: 2.9394;
+  aspect-ratio: 2.7495;
   transform: translateX(-50%);
 }
 
-.obj--mailbox { left:  0;       bottom: 26.326%; width: 21.005%; }
-.obj--stack   { left: 32.087%;  bottom: 14.962%; width: 20.296%; }
+/* SIZES COME FROM THE REFERENCE RENDER, not from taste. Read off
+   "ChatGPT Image Aug 30, 2026, 10_23_39 AM" with a 100px grid laid over it,
+   heights derived from each PNG's own aspect rather than by eye. As a share
+   of a 16:9 viewport that render has the mailbox at 21.2%, the pile at
+   33.5%, the rack at 29.6% and a stamp at 4.7%. We shipped 20.4 / 19.7 /
+   22.9 / 3.2 - the mailbox was right and the PILE WAS 1.70x TOO SMALL, the
+   rack 1.29x, the stamps 1.47x. The cast's bounding box in that render is
+   1660x604, hence the 2.7495 aspect above. */
+.obj--mailbox { left:  0;       bottom: 29.814%; width: 21.386%; }
+/* The pile sits FURTHER BACK than the reference puts it, and has to: our
+   desk is shallower than that render's, so a pile this size at the
+   reference's depth hung 6.1% of the cast's height past the front lip -
+   measured as -34px at 1600 and -48 at 2560, the same fraction both times.
+   11.5% clears it with room. */
+.obj--stack   { left: 22.892%;  bottom: 11.500%; width: 33.735%; }
 
 /* The rack is one re-rendered image: three sheets whose lean and mutual
    occlusion the regeneration preserved, so nothing here to choreograph. */
-.obj--rack    { left: 76.418%;  bottom:  8.333%; width: 23.582%; }
+.obj--rack    { left: 70.181%;  bottom: 13.251%; width: 29.819%; }
 
 /* Stamps lie flat on the desk. LYING ON IT, not standing on it: rotate()
    turns a stamp, it never lays one down - a thing flat on this desk has its
    horizontal edges on the desk's own recession line, which is a SHEAR. The
    staircase descends to the right because the front lip does, and uniform
    scaling preserves both angles, so they stay parallel at every size. */
-.obj--stamp   { width: 3.286%; }
-.obj--stamp1  { left: 75.967%;  bottom:  2.461%; }
-.obj--stamp2  { left: 80.348%;  bottom:  1.137%; }
-.obj--stamp3  { left: 84.665%;  bottom:  0; }
+/* IN FRONT OF THE RACK, which is where the reference puts them - its rack
+   stands at the back with the stamps lying on the desk before it. That only
+   reads if a stamp's TOP clears the rack's BASE: a stamp is 4.699 * 1.035 *
+   0.7 * 2.7495 = 9.4% of the cast's height, so the tallest sits at 11.8%
+   against the rack's 13.25%. */
+.obj--stamp   { width: 4.699%; }
+.obj--stamp1  { left: 70.600%;  bottom:  2.400%; }
+.obj--stamp2  { left: 76.000%;  bottom:  1.200%; }
+.obj--stamp3  { left: 81.400%;  bottom:  0; }
 .obj--stamp img {
   filter: drop-shadow(-1px 1.5px 1.5px rgba(96, 78, 44, .32));
   transform: skewY(var(--mint-skew)) scaleY(.7);
@@ -894,25 +912,27 @@ body::after {
 .obj--stickers { display: contents; }
 .obj--stickers img {
   position: absolute;
-  width: 2.191%;
+  width: 2.400%;
   height: auto;
   filter: drop-shadow(-1px 1.5px 1.5px rgba(96, 78, 44, .30));
   /* right to left: turned in its own plane, then tipped, then sheared onto
      the desk's line. Rotating after the squash would turn a square oval. */
   transform: skewY(var(--mint-skew)) scaleY(.94) rotate(var(--turn, 0deg));
 }
-.obj--stickers img:nth-child(4n + 1) { --turn: -11deg; left: 58.763%; }
-.obj--stickers img:nth-child(4n + 2) { --turn:  -4deg; left: 61.662%; }
-.obj--stickers img:nth-child(4n + 3) { --turn:   4deg; left: 64.562%; }
-.obj--stickers img:nth-child(4n + 4) { --turn:  11deg; left: 67.461%; }
-.obj--stickers img:nth-child(1) { bottom: 12.310%; }
-.obj--stickers img:nth-child(2) { bottom: 11.552%; }
-.obj--stickers img:nth-child(3) { bottom: 10.795%; }
-.obj--stickers img:nth-child(4) { bottom: 10.038%; }
-.obj--stickers img:nth-child(5) { bottom: 19.507%; }
-.obj--stickers img:nth-child(6) { bottom: 18.561%; }
-.obj--stickers img:nth-child(7) { bottom: 17.993%; }
-.obj--stickers img:nth-child(8) { bottom: 17.235%; }
+/* The reference has no stickers, so they take the band it leaves empty
+   between the pile's right edge (56.6%) and the stamps (70.6%). */
+.obj--stickers img:nth-child(4n + 1) { --turn: -11deg; left: 58.200%; }
+.obj--stickers img:nth-child(4n + 2) { --turn:  -4deg; left: 61.100%; }
+.obj--stickers img:nth-child(4n + 3) { --turn:   4deg; left: 64.000%; }
+.obj--stickers img:nth-child(4n + 4) { --turn:  11deg; left: 66.900%; }
+.obj--stickers img:nth-child(1) { bottom:  7.500%; }
+.obj--stickers img:nth-child(2) { bottom:  6.900%; }
+.obj--stickers img:nth-child(3) { bottom:  6.300%; }
+.obj--stickers img:nth-child(4) { bottom:  5.700%; }
+.obj--stickers img:nth-child(5) { bottom: 15.400%; }
+.obj--stickers img:nth-child(6) { bottom: 14.800%; }
+.obj--stickers img:nth-child(7) { bottom: 14.200%; }
+.obj--stickers img:nth-child(8) { bottom: 13.600%; }
 
 /* the bee, hung off the top of the frame - identical to v2 */
 :root {
@@ -1103,6 +1123,16 @@ body::after {
      here only; every other button on the page keeps the full-width rule. */
   .hero__actions .btn { width: auto; }
   .hero__actions .btn--primary { padding: .85rem 1.9rem; font-size: .95rem; }
+  /* The sprigs go. At reference size the mailbox and the rack rise either
+     side of this line, and on a 375px screen the sprigs are what they land
+     on - the right one sits 10px INSIDE the rack, the left clears the
+     mailbox by 4. Clearing them by moving the desk needs 27px of extra gap,
+     which is the "too far down" complaint coming straight back; narrowing
+     the line cannot work either, because the text alone needs more width
+     than the space between the two props. They are decoration and they are
+     the only thing that does not fit, so on a phone they leave and the line
+     stands on its own. */
+  .hero__status::before, .hero__status::after { display: none; }
 }
 
 /* <=430 (small phones): THE DESK STAYS, AND SO DOES EVERYTHING ON IT. It

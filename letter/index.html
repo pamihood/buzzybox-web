@@ -148,66 +148,65 @@
             el('img', { src: url, alt: 'Letter page ' + (i + 1) }),
           ]));
         });
-        if (data.connect_code) {
+        // Mirrors letter-page/index.ts renderLetterPage: a connect code means
+        // the desk is unclaimed and gets the full card; a reply address alone
+        // (a copy to a claimed desk) still gets the zero-install way back.
+        if (data.connect_code || data.reply_address) {
           var section = el('section', { 'class': 'writeback' });
           section.appendChild(el('h2', { text: 'Write back to ' + data.from_name }));
           if (data.reply_address) {
             section.appendChild(el('p', { 'class': 'lead',
-              text: 'You can just reply to the email that brought you this letter \u2014 it arrives on '
+              text: (data.connect_code ? 'You can just reply' : 'Just reply')
+                + ' to the email that brought you this letter \u2014 it arrives on '
                 + data.from_name + '\u2019s desk as a typewritten letter.' }));
-            section.appendChild(el('p', { 'class': 'lead',
-              text: 'Or write your letters from a desk of your own in the Postmello app:' }));
+            if (data.connect_code) {
+              section.appendChild(el('p', { 'class': 'lead',
+                text: 'Or write your letters from a desk of your own in the Postmello app:' }));
+            }
           }
-          var ol = el('ol');
-          ['On an iPad, download Apple\u2019s TestFlight app from the App Store.',
-           'Tap \u201cGet Postmello\u201d below to install Postmello with our TestFlight link.',
-           'Open Postmello and create or pick a desk.',
-           'Enter ' + data.from_name + '\u2019s connect code below.',
-           'Wait for ' + data.from_name + '\u2019s side to approve.'
-          ].forEach(function (step) { ol.appendChild(el('li', { text: step })); });
-          section.appendChild(ol);
-          var code = el('div', { 'class': 'code', id: 'connect-code', text: data.connect_code });
-          section.appendChild(code);
-          var copy = el('button', { type: 'button', id: 'copy-code', text: 'Copy ' + data.from_name + '\u2019s Code' });
-          var testflightUrl = 'https://testflight.apple.com/join/mUq9G292';
-          var appUrl = data.get_app_url || testflightUrl;
-          section.appendChild(el('div', { 'class': 'actions' }, [
-            copy,
-            el('a', { 'class': 'get-app', href: appUrl, text: 'Get Postmello' }),
-          ]));
-          section.appendChild(el('p', { 'class': 'hint',
-            text: 'Entering the code only asks to connect \u2014 ' + data.from_name + '\u2019s side still approves it.' }));
-          if (appUrl === testflightUrl) {
-            // The QR asset encodes exactly this URL; hide it if the env
-            // ever repoints the button (e.g. App Store launch).
-            section.appendChild(el('p', { 'class': 'hint',
-              text: 'Not on the iPad right now? Open this letter on the iPad and tap \u201cGet Postmello\u201d there \u2014 or point the iPad\u2019s camera at this code:' }));
-            section.appendChild(el('div', { 'class': 'qr' }, [
-              el('img', { src: '/assets/testflight-qr.png', width: '156', height: '156',
-                alt: 'QR code that opens the Postmello TestFlight invite' }),
+          if (data.connect_code) {
+            var ol = el('ol');
+            ['Get Postmello from the App Store on an iPad \u2014 the button below takes you there.',
+             'Open Postmello and set up your own desk.',
+             'Open the Admin Portal \u2014 the brass key on the desk \u2014 tap \u201cAdd friends,\u201d then \u201cUse a connect code\u201d and \u201cEnter a code,\u201d and enter ' + data.from_name + '\u2019s code below.',
+             'Wait for ' + data.from_name + '\u2019s side to approve.'
+            ].forEach(function (step) { ol.appendChild(el('li', { text: step })); });
+            section.appendChild(ol);
+            var code = el('div', { 'class': 'code', id: 'connect-code', text: data.connect_code });
+            section.appendChild(code);
+            var copy = el('button', { type: 'button', id: 'copy-code', text: 'Copy ' + data.from_name + '\u2019s Code' });
+            // TODO(App Store launch): the service's get_app_url (hosted secret
+            // POSTMELLO_GET_APP_URL) and this fallback both become the real
+            // App Store link. Until then the button lands on the site.
+            var appUrl = data.get_app_url || 'https://postmello.com';
+            section.appendChild(el('div', { 'class': 'actions' }, [
+              copy,
+              el('a', { 'class': 'get-app', href: appUrl, text: 'Get Postmello on the App Store' }),
             ]));
+            section.appendChild(el('p', { 'class': 'hint',
+              text: 'Entering the code only asks to connect \u2014 ' + data.from_name + '\u2019s side still approves it.' }));
+            copy.addEventListener('click', function () {
+              var value = code.textContent.trim();
+              function done() {
+                var original = copy.textContent;
+                copy.textContent = 'Copied!';
+                setTimeout(function () { copy.textContent = original; }, 1600);
+              }
+              if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(value).then(done, done);
+              } else {
+                var range = document.createRange();
+                range.selectNodeContents(code);
+                var selection = window.getSelection();
+                selection.removeAllRanges();
+                selection.addRange(range);
+                try { document.execCommand('copy'); } catch (_) { /* best effort */ }
+                selection.removeAllRanges();
+                done();
+              }
+            });
           }
           main.appendChild(section);
-          copy.addEventListener('click', function () {
-            var value = code.textContent.trim();
-            function done() {
-              var original = copy.textContent;
-              copy.textContent = 'Copied!';
-              setTimeout(function () { copy.textContent = original; }, 1600);
-            }
-            if (navigator.clipboard && navigator.clipboard.writeText) {
-              navigator.clipboard.writeText(value).then(done, done);
-            } else {
-              var range = document.createRange();
-              range.selectNodeContents(code);
-              var selection = window.getSelection();
-              selection.removeAllRanges();
-              selection.addRange(range);
-              try { document.execCommand('copy'); } catch (_) { /* best effort */ }
-              selection.removeAllRanges();
-              done();
-            }
-          });
         }
         main.appendChild(el('p', { 'class': 'privacy',
           text: 'This private page is just for you and expires 30 days after delivery.' }));

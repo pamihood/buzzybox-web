@@ -114,7 +114,7 @@ Without that rule, Reply on Top could quietly become a forwarding feature. A chi
 
 I would rather make that state impossible than show a warning and ask a child to reason through the privacy consequences.
 
-That principle applies more broadly in Postmello. Correspondence can only happen between approved contacts, and that boundary is enforced by the system rather than merely suggested by the interface.
+That principle applies more broadly in Postmello. Correspondence can only happen between approved friends, and that boundary is enforced by the system rather than merely suggested by the interface.
 
 A warning asks someone to understand a risk and choose correctly.
 

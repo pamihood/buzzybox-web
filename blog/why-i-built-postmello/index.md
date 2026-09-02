@@ -78,7 +78,7 @@ There was another part of my daughter’s request I wanted to preserve: independ
 
 I didn’t want her to need us to compose every message for her or stand over her shoulder while she communicated. But independence for a child doesn’t have to mean being opened up to everyone.
 
-In Postmello, correspondence happens with approved contacts. A connection has to exist before letters can move between people.
+In Postmello, correspondence happens with approved friends. A connection has to exist before letters can move between people.
 
 There is no public audience to discover. No stranger can simply appear in a child’s inbox. The wider internet isn’t waiting on the other side of the desk.
 

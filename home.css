@@ -2341,6 +2341,10 @@ body::after {
    hierarchy - the objects are the product, the shield is a promise about it. */
 .safety-art--mark { color: var(--sage-600, #7E9463); }
 .safety-art--mark svg { width: 3.25rem; height: 3.25rem; stroke-width: 1.4; }
+/* The shield became an OBJECT on 2026-09-01 - wood and brass like the key
+   and the box - so it sits on the stage at object weight, a hair under the
+   box. .safety-art--mark stays for the day a line icon is wanted again. */
+.safety-art--shield img { max-height: 4.6rem; }
 /* (.safety-art--mark styled the two line icons this section used before every
    point had a real object. The last of them, a crossed-out eye for "no public
    discovery", became a closed drawer on 2026-08-23.) */

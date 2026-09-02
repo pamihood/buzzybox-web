@@ -43,7 +43,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&amp;family=Lora:ital,wght@0,400..700;1,400..700&amp;family=Plus+Jakarta+Sans:wght@400..800&amp;display=swap" />
   <!-- home.css styles THIS PAGE ONLY. Everything else on the site still runs
        styles.css; see the note at the top of home.css. -->
-  <link rel="stylesheet" href="home.css?v=dcc10b1e" />
+  <link rel="stylesheet" href="home.css?v=42a5e73c" />
 </head>
 <body>
 
@@ -844,6 +844,10 @@
       <div class="sec-head sec-head--tight">
         <p class="eyebrow">Designed differently</p>
         <h2>Made to feel like letters.</h2>
+        <!-- The lede is back (Patrick, 2026-09-01), as the same three-beat
+             line the App Store screenshot carries: one claim per beat, no
+             explanation, and the spread below shows each of them. -->
+        <p class="lede">One letter at a time. No photos or links. No pressure to reply.</p>
       </div>
 
       <!-- ONE SPREAD, NOT TWO CARDS. Boxing each half made them read as
@@ -891,9 +895,13 @@
             <dt>Fast back-and-forth</dt>
             <dd>One letter at a time</dd>
           </div>
+          <!-- The middle pair names what a letter carries, not how it is
+               laid out (Patrick, 2026-09-01). "A continuous stream / Each
+               letter gets its own space" restated the first pair; this one
+               is the design decision the other two do not cover. -->
           <div class="spread-row">
-            <dt>A continuous stream</dt>
-            <dd>Each letter gets its own space</dd>
+            <dt>Photos and links</dt>
+            <dd>Words, drawings and imagination</dd>
           </div>
           <div class="spread-row">
             <dt>Built around availability</dt>
@@ -984,7 +992,13 @@
              objects in the product, and a verification has no object, so the
              mark stands in. -->
         <article class="safety-card">
-          <p class="safety-art safety-art--mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg></p>
+          <!-- A Postmello object, not a generic security icon (Patrick,
+               2026-09-01): a small wooden shield with a brass rim and a brass
+               check, rendered in the same material language as the key and
+               the lockbox beside it. Shared with the App Store screenshots;
+               built by scripts/build-safety-art.py from the app repo's
+               samples/desk_objects. -->
+          <p class="safety-art safety-art--shield"><img src="assets/safety-shield.png" alt="" width="300" height="300" loading="lazy" /></p>
           <h3>Verified parental consent</h3>
           <p class="safety-body">Under-13 desks stay closed until an adult approves the desk and completes verification.</p>
         </article>

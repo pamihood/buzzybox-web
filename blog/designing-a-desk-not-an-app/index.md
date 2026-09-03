@@ -16,7 +16,7 @@ Those principles have shaped Postmello far more than the wood grain.
 
 ## The design had to work for children, not for designers
 
-Postmello took shape over more than 60 builds, with my children and their friends using it as it changed.
+Postmello took shape over more than 90 builds, with my children and their friends using it as it changed.
 
 That process taught me how unreliable my own idea of “obvious” could be.
 
@@ -176,7 +176,7 @@ But hiding complexity is not the same as lying about it, and that distinction ha
 
 The bee has to tell the truth about whether the mail has really left. The wastebasket has to make deletion safe without becoming a warning dialog. A letter has to remain an object rather than slowly turning into a conversation thread. Reply on Top has to preserve the privacy of the letter it carries. The catalog has to let a child want something without turning that wanting into pressure to buy.
 
-After more than 60 builds, one of the best signs that the design was working was not simply that the children could complete a task. It was that they stopped needing to think very much about the interface at all.
+After more than 90 builds, one of the best signs that the design was working was not simply that the children could complete a task. It was that they stopped needing to think very much about the interface at all.
 
 They trusted what the desk would do.
 

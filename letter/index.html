@@ -76,7 +76,16 @@
       display: inline-block;
     }
     #copy-code { background: #fbf8f3; border: 1px solid rgba(42,33,24,0.14); color: #2a2118; }
-    .get-app { background: #2f4358; color: #fff; }
+    /* (.get-app was a navy pill reading "Get Postmello on the App Store".
+       It is Apple's badge now - their artwork, which may not be recoloured or
+       reset in this page's type, so the shared .actions padding and radius
+       above are all unset here and the clear space Apple asks for - a quarter
+       of the badge's height - becomes the padding instead. 44px matches the
+       height of the Copy Code button it stands beside. */
+    .actions .get-app {
+      background: none; padding: 11px; line-height: 0; border-radius: 0;
+    }
+    .actions .get-app img { display: block; height: 44px; width: auto; }
     .hint { color: #9b8f7e; font-size: 13px; text-align: center; margin: 16px 0 0; }
     .qr { text-align: center; margin-top: 12px; }
     .qr img {
@@ -166,7 +175,7 @@
           }
           if (data.connect_code) {
             var ol = el('ol');
-            ['Get Postmello from the App Store on an iPad \u2014 the button below takes you there.',
+            ['Get Postmello from the App Store on an iPad \u2014 the badge below takes you there.',
              'Open Postmello and set up your own desk.',
              'Open the Admin Portal \u2014 the brass key on the desk \u2014 tap \u201cAdd friends,\u201d then \u201cUse a connect code\u201d and \u201cEnter a code,\u201d and enter ' + data.from_name + '\u2019s code below.',
              'Wait for ' + data.from_name + '\u2019s side to approve.'
@@ -175,13 +184,23 @@
             var code = el('div', { 'class': 'code', id: 'connect-code', text: data.connect_code });
             section.appendChild(code);
             var copy = el('button', { type: 'button', id: 'copy-code', text: 'Copy ' + data.from_name + '\u2019s Code' });
-            // TODO(App Store launch): the service's get_app_url (hosted secret
-            // POSTMELLO_GET_APP_URL) and this fallback both become the real
-            // App Store link. Until then the button lands on the site.
-            var appUrl = data.get_app_url || 'https://postmello.com';
+            // The service still supplies get_app_url (hosted secret
+            // POSTMELLO_GET_APP_URL) and still wins when it is set, so the
+            // link can be changed without a site deploy. The FALLBACK is now
+            // the real App Store link rather than the homepage.
+            //
+            // TWO HALVES, and this is only one of them: the page a real
+            // recipient reads is rendered server-side by letter-page/index.ts
+            // in ../posty, and this file mirrors it. Shipping this without
+            // the edge function is shipping nothing.
+            var appUrl = data.get_app_url || 'https://apps.apple.com/app/id6806487006';
             section.appendChild(el('div', { 'class': 'actions' }, [
               copy,
-              el('a', { 'class': 'get-app', href: appUrl, text: 'Get Postmello on the App Store' }),
+              el('a', { 'class': 'get-app', href: appUrl }, [
+                el('img', { src: '/assets/app-store-badge.svg',
+                            width: '120', height: '40',
+                            alt: 'Download Postmello on the App Store' }),
+              ]),
             ]));
             section.appendChild(el('p', { 'class': 'hint',
               text: 'Entering the code only asks to connect \u2014 ' + data.from_name + '\u2019s side still approves it.' }));

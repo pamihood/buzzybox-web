@@ -2039,11 +2039,34 @@ footer .signoff-trust {
 /* The only link in the footer with a job rather than a destination. It stays a
    link, not a button - the shared footer has no form and no handler - but it
    is the one thing in here somebody might have come looking for. */
+/* THE FOOT CTA IS NOW APPLE'S BADGE (2026-09-03). It was a text link reading
+   "Request an invite", pointing at the homepage's beta form ~a page away;
+   both the invite and the form ended with the private beta, and a badge is
+   just an <a> around an <img>, so this footer carries the real action instead
+   of a link to where the action used to live.
+
+   Apple's identity guidelines come with it, and two of them shape this rule:
+   the artwork may not be altered - so nothing here touches the <img> and the
+   hover is a translate rather than a tint - and the badge needs clear space
+   on all four sides of one quarter its height. At the 40px minimum that is
+   10px; the Contact column's gap already covers the vertical, so the padding
+   here is the horizontal half plus a little air. */
 footer .foot-cta {
   display: inline-block;
-  margin-top: 4px;
-  font-weight: 600;
-  color: var(--navy);
+  margin-top: 8px;
+  padding: 10px 10px 10px 0;
+  line-height: 0;
+  transition: transform 200ms ease;
+}
+footer .foot-cta img {
+  display: block;
+  height: 40px;   /* Apple's minimum. Do not go under it. */
+  width: auto;
+}
+footer .foot-cta:hover { transform: translateY(-2px); }
+@media (prefers-reduced-motion: reduce) {
+  footer .foot-cta { transition: none; }
+  footer .foot-cta:hover { transform: none; }
 }
 
 footer .signoff {

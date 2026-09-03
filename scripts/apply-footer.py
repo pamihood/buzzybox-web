@@ -6,17 +6,28 @@ five pages and miss the sixth (which is how Help and Privacy drifted apart in
 the first place).
 
 NOT the homepage's footer, which is a different object on a different
-stylesheet - three columns with a live beta form in one of them. This one
-cannot carry that form: it needs the homepage's handler, its dialog and
-Turnstile. What it can do, and now does, is reach the same places. Explore
-links back into the homepage's own sections, and the invite CTA is a link to
-#request-an-invite rather than a form, because before this every inner page -
-Safety, the blog posts, the legal pages - ended with no call to action at all.
+stylesheet - three columns, the third of which held the beta form and now
+holds the App Store badge. This footer used to link to that column
+(#request-an-invite) because it could not carry the form itself: the form
+needed the homepage's handler, its dialog and Turnstile.
+
+That constraint died with the form (2026-09-03). A badge is an <a> around an
+<img>, so this footer can carry the REAL action rather than a link to where
+the action lives - which is better on every one of these pages, and much
+better on the three served from an unpredictable depth. Explore still links
+back into the homepage's own sections.
+
+The store URL is read from brand.json rather than typed here, for the reason
+that file exists: it is also in four places on the homepage, and a link typed
+in two files is a link that will be updated in one of them.
 """
+import json
 import re
 import pathlib
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent   # repo root, not scripts/
+APP_STORE_URL = json.loads(
+    (ROOT / "brand.json").read_text(encoding="utf-8"))["app_store_url"]
 
 # page -> (prefix for root-level files, href for the blog index)
 # index.html is NOT in this map (2026-08-23). The homepage was rebuilt on its
@@ -72,7 +83,10 @@ FOOTER = """  <footer>
       <div class="foot-group">
         <p class="foot-label">Contact</p>
         <a href="mailto:support@postmello.com">support@postmello.com</a>
-        <a class="foot-cta" href="{home}#request-an-invite">Request an invite</a>
+        <a class="foot-cta" href="{app_store_url}">
+          <img src="{p}assets/app-store-badge.svg" width="120" height="40"
+               alt="Download Postmello on the App Store" />
+        </a>
       </div>
     </nav>
     <span class="fine">© 2026 Postmello</span>
@@ -90,7 +104,8 @@ for rel, (prefix, blog) in PAGES.items():
     # any depth); "/" IS the homepage there, and "/index.html" would only
     # redirect to it. Everywhere else the homepage is a file beside or above.
     home = "/" if prefix == "/" else prefix + "index.html"
-    new = FOOTER.format(p=prefix, blog=blog, home=home)
+    new = FOOTER.format(p=prefix, blog=blog, home=home,
+                        app_store_url=APP_STORE_URL)
     html, n = pattern.subn(lambda _m: new, html, count=1)
     if n != 1:
         raise SystemExit(f"!! {rel}: expected one <footer>, replaced {n}")

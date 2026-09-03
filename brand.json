@@ -19,22 +19,41 @@
     "about where punctuation is added."
   ],
 
-  "beta_cta": "Request an invite",
+  "app_store_url": "https://apps.apple.com/app/id6806487006",
+  "_app_store_url_notes": [
+    "The App Store product page, written into the href of every element marked",
+    "data-brand-href=\"app_store_url\" — the four badges (mobile menu, hero,",
+    "membership row, footer card) and the footer CTA on the other eleven pages.",
+    "It is the successor to beta_cta, whose note said it 'changes the day the",
+    "beta ends'. This is that day's file.",
+    "",
+    "NO SLUG, and that is deliberate. The full form is",
+    "apps.apple.com/<country>/app/<slug>/id<id>, and both the country and the",
+    "slug are things this repo would be GUESSING before the listing is live.",
+    "The bare /app/id<id> form is Apple's own canonical link: it redirects to",
+    "the reader's own storefront, which is the right answer for a site whose",
+    "visitors are not all in one country. Add a slug only from a URL that was",
+    "copied off the live listing.",
+    "",
+    "6806487006 is the LLC account's `Postmello` record (bundle app.postmello),",
+    "NOT the personal account's `Buzzybox Pilot` 6776100559 — see the two-account",
+    "table in ../posty/docs/TESTFLIGHT.md. Linking the old record would send",
+    "every visitor to the rollback app.",
+    "",
+    "The link is LIVE ONLY ONCE REVIEW APPROVES. Until then it 404s, which is",
+    "the whole reason this branch is a prototype and not a deploy."
+  ],
+
   "_beta_cta_notes": [
-    "What every button that opens the beta dialog says - header, mobile menu,",
-    "hero and membership panel, four markers written by the same script, so",
-    "when the beta ends it changes here and nowhere else.",
+    "RETIRED with the private beta. It read 'Request an invite', and before",
+    "that 'Join private beta' and 'Get Started'; its note always said it would",
+    "change 'the day the beta ends'. What replaced it is not another string but",
+    "an OBJECT — Apple's App Store badge, whose artwork may not be modified or",
+    "relettered, so there is no longer a label for a script to write. The four",
+    "buttons it fed became badge links; what varies between them is the href,",
+    "which is app_store_url above.",
     "",
-    "It was 'Join private beta' until 2026-08-27, and 'Get Started' before",
-    "that. 'Get Started' was vague and promised something the product cannot",
-    "do yet; 'Join' has the same fault in a quieter register. It implies",
-    "immediate admission, and what the button opens is a dialog titled",
-    "'Request an invite' saying Postmello is opening up a household at a time.",
-    "The label now describes what actually happens, and asking to be let in is",
-    "still an invitation rather than a queue.",
-    "",
-    "The word 'beta' is not lost with it. The dialog lede, the footer journal",
-    "card and the noscript fallback all still say private beta - the three",
-    "places that have room to explain what it means, which a button does not."
+    "Kept as a note rather than deleted so the next person to read this file",
+    "learns where the four data-brand=\"beta_cta\" markers went."
   ]
 }

@@ -143,7 +143,7 @@
    Line height 1.5-1.6 for anything that runs past one line: the trade this
    scale makes is slightly larger text with more air, never compressed copy.
 
-   NOT promoted, on purpose: .eyebrow, .step-num, .footer-label, .journal-title
+   NOT promoted, on purpose: .eyebrow, .step-num, .footer-label, .footer-get-line
    and the legal/meta lines. They are 12px because being 12px is the only job
    they have, and the fix here was never "make everything bigger". */
 
@@ -566,13 +566,31 @@ button { font: inherit; color: inherit; background: none; border: 0; }
   text-decoration: none;
 }
 .mobile-nav a:hover { background: var(--parchment-200); }
+/* ...except the badge, which is a piece of ARTWORK sitting in a list of link
+   rows, and inherits three things from that list it must not have.
+
+   All three come from specificity, and it is worth naming because the bug it
+   caused was invisible in the markup: `.mobile-nav a` is (0,1,1) and the
+   component's own `.appstore-badge` is (0,1,0), so the row rules won. The
+   badge went `display: block`, stretched to the full 311px of the drawer, and
+   took the row's 0.5rem/0.75rem padding in place of its own clear space -
+   a lockup floating in a full-width box, 60px tall instead of 66. These
+   selectors are (0,3,0) and (0,3,1), which is what it takes to win here. */
+.mobile-nav .mobile-cta { text-align: center; }
+.mobile-nav .mobile-cta .appstore-badge {
+  display: inline-block;
+  padding: calc(var(--badge-h) / 4);
+  border-radius: 0;
+}
+/* A parchment plate appearing behind Apple's black lockup on hover reads as a
+   rendering fault, so the row's hover is unset too. */
+.mobile-nav .mobile-cta .appstore-badge:hover { background: none; }
 .mobile-nav .mobile-cta {
   display: block;
   margin-top: 1rem;
   padding-top: 1rem;
   border-top: 1px solid var(--parchment-300);
 }
-.mobile-nav .mobile-cta a,
 .mobile-nav .mobile-cta button {
   text-align: center;
   padding: 0.625rem 1rem;
@@ -618,6 +636,59 @@ button { font: inherit; color: inherit; background: none; border: 0; }
   box-shadow: var(--shadow-2xs);
 }
 .btn--ghost:hover { background: var(--parchment-200); }
+
+/* THE APP STORE BADGE (2026-09-03) - what "Request an invite" became on all
+   four of the sites the beta CTA held.
+
+   The artwork is Apple's, downloaded from Apple Marketing Tools and COMMITTED
+   to assets/ rather than hotlinked, which their identity guidelines require.
+   Three of those guidelines are the only reason this block is longer than a
+   height declaration, and each is a rule the rest of this stylesheet would
+   otherwise break out of habit:
+
+     * The badge may not be modified. No recolour, no corner radius, no
+       border, no opacity fade, no filter. So NOTHING here touches the image
+       itself - every rule sits on the <a> wrapped around it. The hover is a
+       translate for the same reason: it is the one affordance available that
+       does not alter a pixel of the artwork.
+     * Minimum height 40px. --badge-h floors there; the hero raises it.
+     * Clear space on all four sides is one QUARTER of the badge's height.
+       That is the padding, written against --badge-h so it stays correct at
+       whatever size a given site sets rather than being a number that was
+       right once.
+
+   The <img> carries width/height attributes to reserve its box before the SVG
+   loads. They are 120x40 where the artwork is 119.66x40 - a 0.3% difference
+   that never paints, because the CSS sets height and leaves width auto, so
+   the file's own viewBox decides the ratio. The attributes reserve space; the
+   SVG draws itself. */
+.appstore-badge {
+  --badge-h: 2.75rem;
+  display: inline-block;
+  padding: calc(var(--badge-h) / 4);
+  line-height: 0;
+  transition: transform 200ms ease;
+}
+.appstore-badge img {
+  display: block;
+  height: var(--badge-h);
+  width: auto;
+}
+.appstore-badge:hover { transform: translateY(-2px); }
+.appstore-badge:focus-visible {
+  outline: 2px solid var(--ink-900);
+  outline-offset: 2px;
+  border-radius: var(--r-lg);
+}
+@media (prefers-reduced-motion: reduce) {
+  .appstore-badge { transition: none; }
+  .appstore-badge:hover { transform: none; }
+}
+/* The hero's badge is the page's primary action and scales with the hero the
+   way the pill before it did. It stops growing at 3.5rem: past that the
+   lockup starts competing with the mailbox and the paper rack either side of
+   it, and the desk is meant to be the loudest thing here. */
+.appstore-badge--hero { --badge-h: clamp(2.75rem, 3.4vw, 3.5rem); }
 
 /* THE GRAIN GOES OVER THE WHOLE DOCUMENT, not over the hero (2026-08-30).
    styles.css has printed the subpages this way for a while, and its note
@@ -1148,12 +1219,13 @@ body::after {
      aside follows without this block knowing the ratio - which is what the
      old rule got wrong by naming both selectors and making them equal. */
   :root { --hero-h1: clamp(2.05rem, 5.16vw, 5.4rem); }
-  /* .btn goes full width below 640 - right for a form button, too heavy for
-     this one: 335x56 of solid terracotta directly under the two serif lines,
-     which made the hero's loudest object a rectangle. Sized to its words
-     here only; every other button on the page keeps the full-width rule. */
-  .hero__actions .btn { width: auto; }
-  .hero__actions .btn--primary { padding: .85rem 1.9rem; font-size: .95rem; }
+  /* (.btn went full width below 640 - right for a form button, too heavy for
+     the hero's: 335x56 of solid terracotta directly under the two serif
+     lines, which made the hero's loudest object a rectangle. Those two
+     overrides went with the button on 2026-09-03. The badge that replaced it
+     is an inline-block sized by its own artwork, so it was never at risk of
+     going full width, and at 2.75rem tall on a phone it is a quarter of the
+     area the complaint was about.) */
   /* The sprigs go. At reference size the mailbox and the rack rise either
      side of this line, and on a 375px screen the sprigs are what they land
      on - the right one sits 10px INSIDE the rack, the left clears the
@@ -2929,160 +3001,83 @@ body::after {
 .footer-links a { text-decoration: none; transition: color 150ms ease; }
 .footer-links a:hover { color: var(--terracotta-600); }
 
-/* min-width:0 on both, or the Turnstile widget inflates this whole column.
-   Flexible sizing bottoms out at 300px, and a grid/flex item's default
-   min-width:auto floors it at its content - so at 320px the 300px widget plus
-   the card's 42px of padding made a 342px card sit in a 288px column. It did
-   not show up as page overflow because .site-footer clips (overflow-x:hidden),
-   which is worse than a scrollbar: the card's right edge was simply cut off,
-   and a document-scrollWidth audit reports the page as clean. */
-.footer-journal { display: flex; flex-direction: column; gap: 1rem; min-width: 0; }
-@media (min-width: 768px) { .footer-journal { grid-column: span 4; } }
-.journal-card {
-  display: flex; flex-direction: column; gap: 0.875rem;
-  min-width: 0;
-  padding: 1.25rem;
-  background: var(--parchment-100);
-  border: 1px solid var(--line);
-  border-radius: var(--r-2xl);
-  box-shadow: var(--shadow-2xs);
-}
-.journal-title { display: flex; align-items: center; gap: 0.375rem; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--ink-900); }
-.journal-title svg { width: 1rem; height: 1rem; color: var(--terracotta-600); }
-.journal-card p { font-size: 0.75rem; line-height: 1.625; }
-/* The beta CTA. Same terracotta as the hero's primary button so the two
-   reads of "act on this" match, but at footer scale. */
-.journal-cta {
-  align-self: flex-start;
-  padding: 0.625rem 1.125rem;
-  border-radius: var(--r-xl);
-  background: var(--terracotta-600);
-  color: #fff;
-  font-size: 0.8125rem;
-  font-weight: 700;
-  text-decoration: none;
-  box-shadow: var(--shadow-xs);
-  transition: background-color 150ms ease;
-}
-.journal-cta:hover { background: #B04C27; }
-/* (The newsletter form's rules stood here - input, Join button, the row that
-   held them. They went with the Quiet Post Journal on 2026-08-23; the card is
-   a beta ask now. Kept nothing behind, since restoring the journal means
-   restoring its markup anyway - see the TODO in README.md.) */
-.journal-fine { font-size: 10px; color: var(--ink-600); }
+/* THE APP STORE COLUMN, third of the footer's three (span 5 + 3 + 4 of 12).
 
-/* ---------- The beta form ----------
-   One component, two homes: inline in the footer card, and inside the invite
-   dialog. Anything that differs between the two lives on .beta-dialog below,
-   never here, so the two can never drift apart. */
-.beta-form { display: flex; flex-direction: column; gap: 0.5rem; }
-/* The honeypot. Off-screen rather than display:none, because some bots skip
-   hidden fields and the point is that they DO fill it. aria-hidden and
-   tabindex=-1 in the markup keep it away from anyone real. */
-.beta-hp {
-  position: absolute;
-  left: -9999px;
-  width: 1px; height: 1px;
-  overflow: hidden;
+   (.footer-journal and .journal-* styled a bordered, shadowed CARD that held
+   the Quiet Post Journal's newsletter form and then the beta ask. Both were
+   forms, and a form wants a container; a store badge does not, so the box
+   went with the form on 2026-09-03 - see the markup note.
+
+   One thing from those rules is worth carrying forward, because it was a
+   REAL bug and not a preference: the card carried min-width:0 because a grid
+   item's default min-width:auto floors it at its content, and the Turnstile
+   widget bottomed out at 300px - so at a 320px viewport a 342px card sat in a
+   288px column, and .site-footer's overflow-x:hidden CLIPPED the right edge
+   rather than reporting overflow, so a document-scrollWidth audit called the
+   page clean. Turnstile is gone, but the clip is not, and neither is the
+   floor. It is kept below for the next wide child.) */
+.footer-get {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  /* NO GAP, and that is the whole trick to this pair reading as one object.
+
+     The badge already carries 11px of bottom padding - a quarter of its
+     height, which is the clear space Apple requires and the one measurement
+     here that cannot be reduced. A flex gap on top of it made the real
+     distance 21px, and at 21px the line stopped belonging to the badge and
+     started reading as the next item in the column. Zero here leaves exactly
+     the 11px minimum: as close as the lockup is allowed to be held, which is
+     also as associated as it can look. */
+  gap: 0;
+  min-width: 0;
 }
-.beta-label {
+/* AT DESKTOP THE COLUMN GOES RIGHT, and it is the footer that decides this
+   rather than taste. This footer already HAS a right edge: the divider above
+   the bottom row ends on it, and Safety / Privacy / Terms / Help are set to
+   it. Left-aligned inside a 4-of-12 column the badge lined up with nothing
+   and left ~130px of unexplained gutter beside it; on the edge, the badge,
+   its line and the bottom row's links all share one. Ragged-right small print
+   under a right-set badge would undo that, so the line goes with it - which
+   also gives the pair a second shared edge, and a shared edge is what makes
+   two objects read as one.
+
+   Below 768 the footer is a single stacked column and every other block in it
+   is left-set, so this stays out of that layout entirely. */
+@media (min-width: 768px) {
+  .footer-get { grid-column: span 4; align-items: flex-end; text-align: right; }
+}
+/* The badge's own rule pads all four sides by a quarter of its height to hold
+   Apple's clear space. Here the footer's 3rem column gap and 3.5rem row gap
+   already exceed that many times over, so the horizontal half is dropped and
+   the lockup starts on the column's own left edge, level with the Explore
+   label opposite it. */
+.footer-get .appstore-badge { padding-left: 0; padding-right: 0; }
+/* The line under the badge, matched to .footer-note across the footer rather
+   than to the badge: these two are the footer's small print and they should
+   read as one register. */
+.footer-get-line {
   font-size: 0.75rem;
-  font-weight: 700;
-  color: var(--ink-700);
-}
-.beta-row { display: flex; align-items: center; gap: 0.5rem; }
-/* An explicit `display` beats the `hidden` attribute's UA `display: none`, so
-   without this the input and Send button stay on screen underneath the "you're
-   on the list" confirmation. Scoped selectors rather than a global
-   `[hidden] { display: none !important }` because only these two are hidden by
-   script. */
-.beta-row[hidden], .cf-turnstile[hidden], .beta-label[hidden] { display: none; }
-/* Turnstile draws a THIRD-PARTY IFRAME at a width Cloudflare picks, and in
-   interaction-only mode the "Verify you are human" box came out wider than the
-   footer's beta card and hung off its right edge. The markup asks for
-   data-size="flexible" so the widget fills its container rather than sitting at
-   a fixed width - but flexible's minimum width is not documented, and no CSS
-   here can reach inside the iframe, so this is the guard that actually holds:
-   whatever Cloudflare renders, it is clipped to the column and scrolls itself
-   instead of widening the page.
-
-   Worth knowing when testing: Turnstile refuses to run on localhost (error
-   110200), so the widget never draws there and a local pass cannot catch this.
-   Check it on the deployed site. */
-.cf-turnstile {
-  max-width: 100%;
-  overflow-x: auto;
-}
-.beta-input {
-  width: 100%;
-  min-width: 0;
-  padding: 0.625rem 0.875rem;
-  border-radius: var(--r-xl);
-  background: #fff;
-  border: 1px solid var(--line);
-  color: var(--ink-900);
-  font-family: inherit;
-  font-size: 0.8125rem;
-}
-.beta-input::placeholder { color: #9C8B7C; }
-.beta-input:focus { outline: none; border-color: var(--terracotta-600); }
-.beta-form .journal-cta { flex: none; align-self: auto; }
-.beta-form button[disabled] { opacity: 0.6; cursor: progress; }
-/* Empty until the form has something to say, so it takes no space at rest. */
-.beta-msg { font-size: 0.75rem; line-height: 1.5; color: var(--ink-600); }
-.beta-msg:empty { display: none; }
-.beta-msg.is-error { color: #A24222; }
-.beta-msg.is-error a { color: inherit; font-weight: 700; }
-.beta-msg.is-done { color: var(--sage-600); font-weight: 600; font-size: 0.8125rem; }
-
-/* ---------- The invite dialog ----------
-   Native <dialog>: the browser owns focus trapping, Esc and the backdrop, so
-   no library ships to do it worse. It opens where the reader already is —
-   from the pricing cards the footer form is ~3,000px away, and moving someone
-   at the moment they decided to act is the whole thing this replaced. */
-.beta-dialog {
-  width: min(26rem, calc(100vw - 2rem));
-  padding: 1.75rem;
-  border: 1px solid var(--line);
-  border-radius: var(--r-3xl);
-  background: var(--parchment-100);
-  color: var(--ink-900);
-  box-shadow: var(--shadow-xl);
-}
-.beta-dialog::backdrop {
-  background: rgba(43, 35, 29, 0.44);
-  backdrop-filter: blur(2px);
-}
-.beta-dialog h2 { font-size: 1.5rem; margin-bottom: 0.5rem; }
-.beta-dialog-lede {
-  font-size: 0.9375rem;
-  line-height: 1.625;
-  color: var(--ink-700);
-  margin-bottom: 1.25rem;
-}
-.beta-dialog-fine {
-  margin-top: 1rem;
-  font-size: 0.6875rem;
   line-height: 1.5;
   color: var(--ink-600);
+  margin: 0;
 }
-/* The close control is its own method="dialog" form, which closes the dialog
-   with no script at all. */
-.beta-dialog-close { position: absolute; top: 0.75rem; right: 0.875rem; }
-.beta-dialog-close button {
-  width: 1.75rem; height: 1.75rem;
-  display: flex; align-items: center; justify-content: center;
-  border-radius: var(--r-full);
-  font-size: 1.25rem;
-  line-height: 1;
-  color: var(--ink-600);
-  cursor: pointer;
-  transition: background-color 150ms ease, color 150ms ease;
-}
-.beta-dialog-close button:hover { background: var(--parchment-300); color: var(--ink-900); }
-/* The dialog's own field stacks, since it has the width to itself. */
-.beta-dialog .beta-row { flex-direction: column; align-items: stretch; }
-.beta-dialog .journal-cta { text-align: center; }
+
+/* (~90 lines stood here: THE BETA FORM and THE INVITE DIALOG.
+
+   The form was one component in two homes - inline in the footer card and
+   inside the dialog - with everything that differed between them scoped to
+   .beta-dialog so the two could not drift. The dialog was a native <dialog>,
+   so the browser owned focus trapping, Esc and the backdrop.
+
+   Both went with the private beta on 2026-09-03, and the rules go with them
+   rather than being left as dead selectors: the two stylesheets here are
+   long enough that an unused block reads as a component someone has yet to
+   find the markup for. git has all of it if a mailing list ever comes back.
+
+   The min-width:0 that guarded against Turnstile inflating the footer column
+   moved to .footer-get with its story; the widget came with this form, but
+   .site-footer still clips, so the floor is still worth having.) */
 
 .footer-bottom {
   display: flex;

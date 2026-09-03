@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Postmello - A quiet place for letters</title>
-  <meta name="description" content="A private desk for digital letters between friends and family - a more personal, creative way to stay in touch. Coming first to iPad." />
+  <meta name="description" content="A private desk for digital letters between friends and family - a more personal, creative way to stay in touch. On the App Store for iPad." />
   <link rel="icon" type="image/png" href="assets/favicon.png" />
   <link rel="apple-touch-icon" href="assets/app-icon.png" />
   <meta property="og:title" content="Postmello - A quiet place for letters" />
@@ -35,15 +35,15 @@
        font-picker widget that is not part of this page. Lora is every
        heading, Plus Jakarta Sans every sentence, Courier Prime the step
        numbers. -->
-  <!-- Cloudflare Turnstile. It renders the widgets itself from their
-       data-sitekey attributes; appearance="interaction-only" means a visitor
-       sees NOTHING unless Cloudflare actually wants to challenge them, which
-       is the whole reason to prefer it over a checkbox nobody enjoys. -->
-  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+  <!-- (Cloudflare Turnstile stood here. It guarded the beta form's two
+       widgets, and both went with the private beta on 2026-09-03. There is
+       now no form on this page to submit, so the third-party script is a
+       request every visitor pays for and nothing uses. It comes back with
+       the next form, not before.) -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&amp;family=Lora:ital,wght@0,400..700;1,400..700&amp;family=Plus+Jakarta+Sans:wght@400..800&amp;display=swap" />
   <!-- home.css styles THIS PAGE ONLY. Everything else on the site still runs
        styles.css; see the note at the top of home.css. -->
-  <link rel="stylesheet" href="home.css?v=42a5e73c" />
+  <link rel="stylesheet" href="home.css?v=5feacabb" />
 </head>
 <body>
 
@@ -112,7 +112,13 @@
         <li><a href="#faq">FAQ</a></li>
         <li><a href="blog/">Blog</a></li>
       </ul>
-      <div class="mobile-cta"><button type="button" data-beta="Mobile menu" data-brand="beta_cta">Request an invite</button></div>
+      <div class="mobile-cta">
+        <a class="appstore-badge" data-brand-href="app_store_url"
+           href="https://apps.apple.com/app/id6806487006">
+          <img src="assets/app-store-badge.svg" width="120" height="40"
+               alt="Download Postmello on the App Store" />
+        </a>
+      </div>
     </div>
   </div>
 </header>
@@ -193,11 +199,32 @@
            door to the same room, sitting beside the only action that matters.
            The header's own invite button went at the same time: with the hero
            CTA a screen-width away from it, the page asked twice before it had
-           said anything. Every later section still offers the invite. -->
+           said anything. Every later section still offers the same action.
+
+           THE ACTION IS NOW AN OBJECT (2026-09-03). The terracotta pill said
+           "Request an invite" and opened a dialog; the app is on the App Store
+           and the honest action is to go there. Apple's badge replaces it
+           rather than a restyled pill, because a reader recognises the badge
+           faster than they read any button, and its artwork may not be
+           reproduced in the page's own type anyway.
+
+           It is also QUIETER than what it replaces, which this hero wanted.
+           The CSS note under .hero__actions records the complaint the pill
+           earned on a phone - "335x56 of solid terracotta directly under the
+           two serif lines, which made the hero's loudest object a rectangle".
+           The badge is a third of that area and black rather than brand
+           colour, so the desk stays the loudest thing on the page. -->
       <div class="hero__actions">
-        <button class="btn btn--primary" type="button" data-beta="Hero" data-brand="beta_cta">Request an invite</button>
+        <a class="appstore-badge appstore-badge--hero" data-brand-href="app_store_url"
+           href="https://apps.apple.com/app/id6806487006">
+          <img src="assets/app-store-badge.svg" width="120" height="40"
+               alt="Download Postmello on the App Store" />
+        </a>
       </div>
-      <p class="hero__status">Coming first to iPad.</p>
+      <!-- The status line keeps carrying the word the badge cannot: Apple's
+           lockup says "App Store" and never says which device. "Free to start"
+           is the free tier's one desk, not a trial - see the plan cards. -->
+      <p class="hero__status">On iPad. Free to start.</p>
     </div>
   </section>
 
@@ -1040,7 +1067,13 @@
              Sentence case in the source like every other eyebrow: .eyebrow
              uppercases it in CSS, and no eyebrow on the page carries a full
              stop. -->
-        <p class="eyebrow">Shaped with families in private beta</p>
+        <!-- The beta ended on 2026-09-03 and the eyebrow went past tense
+             with it. What the note above wants it to say is the RELATIONSHIP
+             - families shaping the product rather than an audience being
+             tested on - and that survives the beta intact; only the tense
+             had to move. "Who wrote first" also does something the old line
+             could not: it says these people are still here. -->
+        <p class="eyebrow">Shaped with the families who wrote first</p>
         <h2 style="margin-top:1rem">What we&rsquo;re hearing from families.</h2>
       </div>
       <!-- ANN FIRST (Patrick, 2026-08-31). Carolin's is about the aesthetic,
@@ -1183,19 +1216,42 @@
              happens to sit under - which is why it is outside the <dl> and
              not inside that <dd>.
 
+             THE LAPSE CLAUSE MOVED TO THE TERMS (Patrick, 2026-09-03). It
+             read "If it lapses, rejoining is at whatever the price is then",
+             which is true of a cancel-and-return but reads as a threat about
+             a failed card - and a failed payment that succeeds inside Apple's
+             retry period costs nobody their rate. That is a distinction a
+             pricing panel cannot make in one clause without becoming the
+             legal copy it is deliberately not; Terms can, and now does, under
+             "Founding rates" - which also closed a real gap, since the Terms
+             had said nothing about founding rates at all while this panel was
+             making the promise.
+
+             What stays here is the half that stops a MISREADING rather than
+             the half that states a policy, which is the right division: this
+             sentence exists because "yours to keep" alone can be read as
+             "cancel for three years, come back at this rate".
+
              THIS SENTENCE IS HAND-WRITTEN, not generated: apply-pricing.py
              writes the two founding NOTES from pricing.json and empties them
              when the window closes. The CSS cannot hide this one, so when
              that day comes, delete it here by hand in the same pass. -->
         <p class="plan-more-terms">A founding rate holds for as long as the
            membership stays active - each year renews at the founding price,
-           not the regular one. If it lapses, rejoining is at whatever the
-           price is then.</p>
+           not the regular one. The <a href="/terms">Terms</a> have the rest.</p>
       </details>
 
-      <!-- ONE action for everybody, under the row rather than inside a card. -->
+      <!-- ONE action for everybody, under the row rather than inside a card.
+           The note in the card block above says why it is not per-card: beta
+           access was a product STATE rather than a membership benefit. That
+           reasoning survives the beta - downloading is not a tier's benefit
+           either, and both plans start from the same free app. -->
       <p class="plans-cta">
-        <button class="btn btn--primary" type="button" data-beta="Membership" data-brand="beta_cta">Request an invite</button>
+        <a class="appstore-badge" data-brand-href="app_store_url"
+           href="https://apps.apple.com/app/id6806487006">
+          <img src="assets/app-store-badge.svg" width="120" height="40"
+               alt="Download Postmello on the App Store" />
+        </a>
       </p>
 
       <div class="worlds">
@@ -1485,60 +1541,39 @@
         </ul>
       </div>
 
-      <!-- THE BETA ASK, where the Quiet Post Journal used to be.
+      <!-- THE APP STORE COLUMN. Deliberately NOT a card.
 
-           The page invites beta interest three times - the hero badge, the
-           Membership card's "Request Beta Access", the footer button - and
-           until now every one of them was a dead end. This is the only place
-           on the site that actually lets someone act on it.
+           A card stood here through two occupants - the Quiet Post Journal,
+           then the beta ask - and both earned it: each held a form, and a
+           form wants a container. When the form went the box stayed, and a
+           bordered panel around a store badge makes the badge look like it
+           needs framing. It does not. A badge and one line, in a footer
+           column beside the others, is the ordinary shape.
 
-           A REAL FORM, posting to the beta-request endpoint (it was a mailto
-           while there was nothing to post to; the endpoint went live and was
-           verified end to end on 2026-08-26). The rule that shaped it still
-           holds: a signup box must never accept an address and quietly discard
-           it, so this one reports what happened in .beta-msg.
+           WHAT ELSE WENT WITH THE BOX: a "GET POSTMELLO" heading (the badge
+           says that), and a fine-print line reading "No ads. No account
+           needed to look around." The second was simply FALSE - Postmello
+           has no anonymous mode, there is nothing to look around without an
+           account, and the trust note in the brand column already carries
+           the no-ads half. Never restate a benefit in the footer that the
+           brand column has already made.
 
-           ONE NAME FOR ONE ACTION (Patrick, 2026-08-27). This card said "Join
-           the private beta" over a "Join" button while the dialog it duplicates
-           was titled "Request an invite" - the same flow under two names, and
-           the wrong one of the two. "Join" promises admission; what happens is
-           an ask, answered a household at a time. Heading, both submit buttons
-           and every beta_cta button now say the same thing. The words "private
-           beta" moved down a line into the sentence, which is where they can
-           be explained - see the note in brand.json.
-
-           The Quiet Post Journal is parked, not deleted - see the TODO in
-           README.md. Its "Crafted for iPadOS / Calm Tech" foot row went with
-           it (Patrick: weird footnotes), and it was carrying the for-iPad
-           framing a third time. -->
-      <!-- id added 2026-08-31 so the other eleven pages have somewhere to send
-           "Request an invite". Their footer cannot carry the form itself - it
-           needs this page's handler, its dialog and Turnstile, and they are on
-           the older stylesheet - so they link here instead. -->
-      <div class="footer-journal" id="request-an-invite">
-        <div class="journal-card">
-          <p class="journal-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg> Request an invite</p>
-          <p>Postmello is in private beta, opening up a household at a time.</p>
-          <!-- The same form the dialog uses, inline for anyone who scrolled
-               here rather than clicking a card. One markup pattern, one
-               handler - see the script at the end of the page. -->
-          <form class="beta-form" data-beta-form data-source="Footer" novalidate>
-            <label class="beta-hp" aria-hidden="true">Company
-              <input type="text" name="company" tabindex="-1" autocomplete="off" />
-            </label>
-            <label class="beta-label" for="beta-email-footer">Email address</label>
-            <div class="beta-row">
-              <input class="beta-input" id="beta-email-footer" type="email" name="email"
-                     inputmode="email" autocomplete="email" required
-                     placeholder="you@example.com" />
-              <button class="journal-cta" type="submit">Request</button>
-            </div>
-            <div class="cf-turnstile" data-sitekey="0x4AAAAAAEZv2iHGIRqH3RSi"
-                 data-appearance="interaction-only" data-size="flexible"></div>
-            <p class="beta-msg" data-beta-msg role="status" aria-live="polite"></p>
-          </form>
-          <p class="journal-fine">Just beta updates. No spam.</p>
-        </div>
+           THE #request-an-invite ANCHOR ALSO WENT, and its absence is the
+           right answer rather than a regression. Nothing on the site links to
+           it any more - the other eleven footers point at the store directly -
+           so its only callers are old beta emails, and a fragment that
+           matches nothing simply lands the reader at the top of the page.
+           That top is now a hero whose one action is this same badge, which
+           is a better destination than the footer ever was. It was also, as
+           an empty <span> among the grid children, silently eating a cell of
+           .footer-main and pushing this column onto its own row. -->
+      <div class="footer-get">
+        <a class="appstore-badge" data-brand-href="app_store_url"
+           href="https://apps.apple.com/app/id6806487006">
+          <img src="assets/app-store-badge.svg" width="120" height="40"
+               alt="Download Postmello on the App Store" />
+        </a>
+        <p class="footer-get-line">Postmello is on the App Store for iPad.</p>
       </div>
 
     </div>
@@ -1558,47 +1593,15 @@
   </div>
 </footer>
 
-<!-- THE INVITE DIALOG. A native <dialog>, so the browser owns focus trapping,
-     Esc-to-close and the backdrop, and no library ships to do it worse.
+<!-- (THE INVITE DIALOG stood here until 2026-09-03. A native <dialog>
+     holding the same form as the footer card, opened by four buttons that
+     told it which one was clicked, so nobody was scrolled ~3,000px from the
+     pricing cards to a form. Both the dialog and the form went with the
+     private beta; the four buttons are App Store badges now, and a badge
+     goes straight to the store rather than opening anything.
 
-     It opens where the reader already is. The alternative was scrolling them
-     to the footer form, which from the pricing cards is a ~3,000px journey
-     away from the thing they were reading - and the whole reason this replaced
-     a mailto: is that the moment of highest intent is the worst possible
-     moment to move someone somewhere else.
-
-     It holds the SAME form as the footer, so there is one markup pattern and
-     one handler. Only the source differs, and the opening button supplies it.
-     Its submit says "Request", not "Join" - the button that opened it, this
-     title and this button are one promise said three times. -->
-<dialog class="beta-dialog" id="beta-dialog" aria-labelledby="beta-dialog-title">
-  <form method="dialog" class="beta-dialog-close">
-    <button type="submit" aria-label="Close">&times;</button>
-  </form>
-  <h2 id="beta-dialog-title">Request an invite</h2>
-  <p class="beta-dialog-lede">Postmello is in private beta and opening up a
-     household at a time. Leave your email and we&rsquo;ll be in touch.</p>
-  <form class="beta-form" data-beta-form data-source="Dialog" novalidate>
-    <label class="beta-hp" aria-hidden="true">Company
-      <input type="text" name="company" tabindex="-1" autocomplete="off" />
-    </label>
-    <label class="beta-label" for="beta-email-dialog">Email address</label>
-    <div class="beta-row">
-      <input class="beta-input" id="beta-email-dialog" type="email" name="email"
-             inputmode="email" autocomplete="email" required
-             placeholder="you@example.com" />
-      <button class="journal-cta" type="submit">Request</button>
-    </div>
-    <div class="cf-turnstile" data-sitekey="0x4AAAAAAEZv2iHGIRqH3RSi"
-         data-appearance="interaction-only" data-size="flexible"></div>
-    <p class="beta-msg" data-beta-msg role="status" aria-live="polite"></p>
-  </form>
-  <!-- "No list, no spam" was the old line and it was quietly false: this
-     form exists to build a beta list. Saying what the list IS for is both
-     truer and more reassuring than denying it. -->
-<p class="beta-dialog-fine">We reply to every letter. Just beta updates, no
-     spam, and your address is never sold or shared.</p>
-</dialog>
+     The note below about declaration order outlived it, and is left because
+     the next person to add markup a script reaches for needs it.) -->
 
 <!-- The dialog is declared ABOVE the script on purpose. It used to sit at the
      very end of the body, after it, and getElementById returned null when the
@@ -1720,109 +1723,15 @@
      control the reader just clicked does not move - only the content below
      reflows, which is what a set of tabs is expected to do. */
 
-  /* 5 - the beta form, used by the footer and the dialog.
+  /* (5 and 6 - the beta form's fetch handler and the invite dialog's
+     opener - were removed on 2026-09-03 with the private beta. Between them
+     they were roughly a third of this script: a POST to the beta-request
+     edge function, its five reply states, a Turnstile token reset on retry
+     because a token is single-use, and the dialog wiring.
 
-     Posts to a Supabase edge function - the same shape postmello.com/letter/
-     has used for weeks - rather than a form service, because these are the
-     addresses of people interested in a children's product and adding a third
-     party to hold them would be a step backwards from the privacy story the
-     site just tightened.
-
-     NO-JS FALLBACK: the forms carry no action, so without this script the
-     submit does nothing and the page would lie. The <noscript> block below the
-     script restores the mailto for that case - which is what the whole page
-     used before the endpoint existed, so nobody is worse off than they were. */
-  var BETA_ENDPOINT = 'https://jbrxtkedjahpbzrqxeos.supabase.co/functions/v1/beta-request';
-
-  Array.prototype.forEach.call(document.querySelectorAll('[data-beta-form]'), function (form) {
-    var msg = form.querySelector('[data-beta-msg]');
-    var input = form.querySelector('input[name="email"]');
-    var submit = form.querySelector('button[type="submit"]');
-    var row = form.querySelector('.beta-row');
-    var label = form.querySelector('.beta-label');
-
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      if (form.dataset.sending === '1') return;
-
-      var email = (input.value || '').trim();
-      /* Checked here only to save a round trip and give an instant answer; the
-         function validates again and is the one that decides. */
-      if (!/^[^\s@]+@[^\s@.]+(\.[^\s@.]+)+$/.test(email)) {
-        msg.textContent = 'That address looks incomplete - could you check it?';
-        msg.className = 'beta-msg is-error';
-        input.focus();
-        return;
-      }
-
-      form.dataset.sending = '1';
-      submit.disabled = true;
-      msg.textContent = 'Sending…';
-      msg.className = 'beta-msg';
-
-      fetch(BETA_ENDPOINT, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          email: email,
-          company: (form.querySelector('input[name="company"]') || {}).value || '',
-          source: form.dataset.source || '',
-          /* Turnstile writes this hidden input into the form itself. Empty
-             means the widget has not finished, and the function refuses
-             that - which is correct. */
-          turnstileToken: (form.querySelector('[name="cf-turnstile-response"]') || {}).value || ''
-        })
-      }).then(function (res) {
-        if (!res.ok) throw new Error(String(res.status));
-        /* The confirmation is written INTO the existing live region rather
-           than replacing the form's innerHTML. Replacing it destroyed the
-           `role="status"` node and built a new one, and a live region has to
-           pre-exist for a screen reader to announce a change to it - so the
-           confirmation was silent for exactly the people who most needed it,
-           and focus fell to <body> because the focused Send button vanished.
-           Hiding the row leaves the announcement and the focus order intact,
-           and still stops a second submission. */
-        row.hidden = true;
-        if (label) label.hidden = true;
-        var widgetDone = form.querySelector('.cf-turnstile');
-        if (widgetDone) widgetDone.hidden = true;
-        msg.textContent = 'Thank you - you\'re on the list. '
-          + 'We\'ll write to you when a place opens.';
-        msg.className = 'beta-msg is-done';
-      }).catch(function () {
-        form.dataset.sending = '';
-        submit.disabled = false;
-        /* A Turnstile token is SINGLE-USE, so a retry with the spent one would
-           fail again for a reason the visitor cannot see. Ask for a fresh one. */
-        var widget = form.querySelector('.cf-turnstile');
-        if (widget && window.turnstile) window.turnstile.reset(widget);
-        msg.innerHTML = 'Something went wrong on our end. '
-          + 'Please write to <a href="mailto:hello@postmello.com">hello@postmello.com</a> '
-          + 'and we\'ll sort it out.';
-        msg.className = 'beta-msg is-error';
-      });
-    });
-  });
-
-  /* 6 - the invite dialog. Every card opens the same one and tells it which
-     card was clicked. showModal() gives focus trapping and Esc for free. */
-  var dialog = document.getElementById('beta-dialog');
-  if (dialog && typeof dialog.showModal === 'function') {
-    Array.prototype.forEach.call(document.querySelectorAll('[data-beta]'), function (btn) {
-      btn.addEventListener('click', function () {
-        var form = dialog.querySelector('[data-beta-form]');
-        if (form) form.dataset.source = btn.dataset.beta || 'Dialog';
-        dialog.showModal();
-        var field = dialog.querySelector('input[name="email"]');
-        if (field) field.focus();
-      });
-    });
-    /* Clicking the backdrop closes it. The dialog element itself is the
-       backdrop's hit area, so compare the target. */
-    dialog.addEventListener('click', function (e) {
-      if (e.target === dialog) dialog.close();
-    });
-  }
+     The numbering below is left alone deliberately. Renumbering 7 to 5 would
+     make every earlier note in this file, and every commit message that cites
+     a section by number, point at the wrong block. The gap is the record.) */
 
   /* 7 - FAQ: one open at a time, plus the category filter. Filtering closes
      whatever it hides, so a hidden panel never keeps a stale open state. */
@@ -1842,22 +1751,11 @@
 })();
 </script>
 
-<noscript>
-  <!-- Without the script the forms have no action and the card buttons do
-       nothing, so this restores what the page had before the endpoint existed.
-       Nobody ends up worse off than they were, and the page never shows a
-       control that silently fails. -->
-  <style>
-    [data-beta-form], .beta-dialog { display: none !important; }
-    .noscript-beta {
-      max-width: var(--shell-4); margin: 0 auto 3rem; padding: 0 var(--gutter);
-      text-align: center; font-size: 0.875rem; color: var(--ink-700);
-    }
-    .noscript-beta a { color: var(--terracotta-600); font-weight: 700; }
-  </style>
-  <p class="noscript-beta">To ask for a private-beta invite, write to
-     <a href="mailto:hello@postmello.com?subject=Private%20beta%20request">hello@postmello.com</a>.</p>
-</noscript>
+<!-- (A <noscript> block stood here. It hid the beta forms and offered a
+     mailto instead, because a form with no action would have silently failed
+     without the script. Nothing on this page needs it now: the badges are
+     plain links, and a link works with every script on the page blocked. That
+     is a better fallback than the one it replaces.) -->
 
 <script>
 // An auth redirect that names no `redirect_to` falls back to Supabase's

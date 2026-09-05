@@ -1,0 +1,14 @@
+/* Additive prototype styles. Production stylesheets remain untouched. */
+:root { --hero-aside:.65; }
+.concept-return { position:fixed; z-index:1000; bottom:14px; left:14px; background:#243c39; color:#fff; font:600 13px/1.2 system-ui,sans-serif; padding:12px 16px; border-radius:30px; box-shadow:0 3px 20px #0002; text-decoration:none; }
+.hero__lede { max-width:36em; text-wrap:pretty; }
+.section { padding-block:clamp(3.5rem,7vw,6rem); }
+#why { padding-top:2rem; }
+#why .why-panel { border-radius:12px; box-shadow:none; }
+#why .why-glow { display:none; }
+#safety { background:#f0f1e9; border-block:1px solid #d6d9cc; }
+#safety h2 { max-width:20ch; margin-inline:auto; }
+#testimonials { padding-block:4rem; }
+#philosophy { padding-block:4rem; }
+a:focus-visible,button:focus-visible,summary:focus-visible { outline:3px solid #42634b; outline-offset:5px; }
+@media (prefers-reduced-motion:reduce) { *,*::before,*::after { scroll-behavior:auto!important; animation:none!important; transition:none!important; } }

@@ -1,0 +1,1793 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Postmello · Evolved direction</title>
+  <meta name="description" content="A private desk for digital letters between friends and family - a more personal, creative way to stay in touch. On the App Store for iPad." />
+  <link rel="icon" type="image/png" href="/assets/favicon.png" />
+  <link rel="apple-touch-icon" href="/assets/app-icon.png" />
+  <meta property="og:title" content="Postmello - A quiet place for letters" />
+  <!-- The hero's lead sentence, whole. The old rule here was "say what the
+       picture does not already say": the card gained the terracotta aside on
+       2026-08-23 and this line stopped repeating it, the same repetition that
+       took the tagline out from under the header wordmark.
+
+       The rule still holds, and the split is now decided by legibility
+       rather than by taste. The card carries the DEFINITION half at a size a
+       feed can render - "A private desk for digital letters between friends
+       and family." - because the whole sentence at that size is four lines of
+       sans that swamp the card (see THE SIZE RULE in scripts/og-card.html).
+       So the picture says what, and this says what AND why: the second half
+       of the sentence, the part the picture had to give up, reaches a reader
+       only from here. Keep this line whole. If the card ever grows the why
+       back, shorten this one rather than printing the same words twice. -->
+  <meta property="og:description" content="A private desk for digital letters between friends and family - a more personal, creative way to stay in touch." />
+  <meta property="og:image" content="https://postmello.com/assets/og-card.jpg" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://postmello.com/" />
+  <meta property="og:site_name" content="Postmello" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="canonical" href="https://postmello.com/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <!-- Three families, not the eleven the comp loaded: it carried a live
+       font-picker widget that is not part of this page. Lora is every
+       heading, Plus Jakarta Sans every sentence, Courier Prime the step
+       numbers. -->
+  <!-- (Cloudflare Turnstile stood here. It guarded the beta form's two
+       widgets, and both went with the private beta on 2026-09-03. There is
+       now no form on this page to submit, so the third-party script is a
+       request every visitor pays for and nothing uses. It comes back with
+       the next form, not before.) -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&amp;family=Lora:ital,wght@0,400..700;1,400..700&amp;family=Plus+Jakarta+Sans:wght@400..800&amp;display=swap" />
+  <!-- home.css styles THIS PAGE ONLY. Everything else on the site still runs
+       styles.css; see the note at the top of home.css. -->
+  <link rel="stylesheet" href="/home.css?v=5feacabb" />
+<meta name="robots" content="noindex, nofollow"><link rel="stylesheet" href="./evolution.css"></head>
+<body><a class="concept-return" href="/_concepts/">↖ Compare directions</a>
+
+<header class="site-header" id="site-header">
+  <div class="shell">
+    <div class="header-bar">
+      <!-- NO TAGLINE UNDER THE WORDMARK (Patrick, 2026-08-23). It carried the
+           same "A quiet place for letters." that is now the hero H1, a couple
+           of inches below it - and a headline read twice within one screen is
+           a headline weakened. In the navigation the brand is just the brand;
+           the tagline belongs to the hero. The FOOTER keeps its copy, twelve
+           thousand pixels down, where it is the only place a reader who
+           scrolled straight past the hero meets the line at all. -->
+      <a class="brand" href="#">
+        <img class="brand-mark" src="/assets/mark.png" alt="" width="36" height="36" />
+        <!-- THE WORDMARK IS ART, NOT TYPE (Patrick, 2026-08-23). Rather than
+             pick a typeface that merely approximates the artwork, the artwork
+             IS the wordmark, everywhere.
+             THE DRAWING CHANGED on 2026-08-30: it was title-case lettering with
+             soft flared serifs and upright round counters, carried in ink here
+             and in gold on the app's splash. It is now the ALL-CAPS FELT mark -
+             heavy geometric letterforms, flat #EBC54C, no bevel. This file is
+             the source for every surface: the app bakes it into its splash and
+             auth art and recolours it to ink for the Admin bar, and the email
+             letterhead hotlinks it straight off this domain. Change it here and
+             you have changed it for the inboxes too, immediately.
+             It carries alt text, so the name is still a word to a screen
+             reader, to search, and to anyone with images off. -->
+        <img class="brand-name" src="/assets/wordmark.png" alt="Postmello"
+             width="1100" height="215" />
+      </a>
+
+      <!-- FOUR choices, not seven (2026-08-23). Letters by Email, Philosophy
+           and FAQ came out: they are still on the page, and a visitor should
+           not have to make seven decisions from the header of a single-page
+           site. Blog is set apart as a utility link because it is the only one
+           that leaves the page. -->
+      <nav class="site-nav" aria-label="Primary">
+        <a href="#how-it-works">How it works</a>
+        <a href="#desks">Collections</a>
+        <a href="#safety">Safety</a>
+        <a href="#membership">Membership</a>
+        <a class="site-nav-utility" href="/blog/">Blog</a>
+      </nav>
+
+      <button class="nav-toggle" type="button" id="nav-toggle"
+              aria-expanded="false" aria-controls="mobile-nav" aria-label="Toggle navigation menu">
+        <svg class="icon-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16"/><path d="M4 12h16"/><path d="M4 19h16"/></svg>
+        <svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="mobile-nav" id="mobile-nav">
+    <div class="shell">
+      <ul>
+        <!-- The drawer keeps the sections the header dropped: on a phone
+             there is room for a list, and an extra line here costs nothing
+             like a seventh header link does. -->
+        <li><a href="#how-it-works">How it works</a></li>
+        <li><a href="#desks">Collections</a></li>
+        <li><a href="#safety">Safety</a></li>
+        <li><a href="#membership">Membership</a></li>
+        <li><a href="#grandparents">Letters by Email</a></li>
+        <li><a href="#philosophy">Philosophy</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="/blog/">Blog</a></li>
+      </ul>
+      <div class="mobile-cta">
+        <a class="appstore-badge" data-brand-href="/app_store_url"
+           href="https://apps.apple.com/app/id6806487006">
+          <img src="/assets/app-store-badge.svg" width="120" height="40"
+               alt="Download Postmello on the App Store" />
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ============================ HERO ============================
+       Redesigned 2026-08-30: the desk is a composed SCENE - CSS planes, a
+       repeating generated drawer tile, and re-rendered props - not a
+       screenshot. The old hero, its comment history included, is in git
+       before this commit; the geometry's source of truth is
+       scripts/build-web-hero.py in the app repo. The copy keeps its jobs:
+       H1 = the tagline (apply-brand.py rewrites it), the aside is the
+       difference, the lede says what a person does here. The fixed header
+       floats over the hero wall; .hero-band carries the band cream that
+       continues under the desk's slanted bottom edge into the app-shot
+       section, one unbroken surface. -->
+  <div class="hero-band">
+  <section class="hero">
+    <div class="hero__desk">
+    <div class="desk__mint"></div>
+    <div class="desk__wood"></div>
+
+    <!-- ONE RIGID CAST, not thirteen placements. Every prop inside is
+         positioned as a PERCENTAGE OF THIS BOX, so the whole composition is
+         a single similarity transform - it can be scaled but never deformed,
+         and two props that do not touch at the design size cannot touch at
+         any size. See home.css "THE CAST" for why that replaced sixteen
+         viewport-anchored offsets. -->
+    <div class="hero__cast">
+      <div class="obj obj--mailbox">
+        <img src="/assets/hero/p-mailbox.webp" width="723" height="863"
+             alt="A mint mailbox with letters waiting inside and its flag up" />
+      </div>
+
+      <div class="obj obj--rack">
+        <img src="/assets/hero/p-rack.webp" width="917" height="876"
+             alt="Three sheets of writing paper standing on the desk: a wildflower meadow in front, a cherry-blossom branch behind it, and a moonlit night sky at the back" />
+      </div>
+
+      <div class="obj obj--stack">
+        <img src="/assets/hero/p-stack.webp" width="1200" height="527"
+             alt="A stack of writing paper with a pen resting on top" />
+      </div>
+
+      <div class="obj obj--stamp obj--stamp1"><img src="/assets/hero/p-stamp-bluebell.webp" width="200" height="207" alt="" /></div>
+      <div class="obj obj--stamp obj--stamp2"><img src="/assets/hero/p-stamp-lighthouse.webp" width="200" height="209" alt="" /></div>
+      <div class="obj obj--stamp obj--stamp3"><img src="/assets/hero/p-stamp-rainbow.webp" width="200" height="207" alt="" /></div>
+      <!-- Eight fixed placements, and that is now the CORRECT answer. The
+           earlier note here said hand-placed lefts "cannot be right at more
+           than one size" - true while the band around them moved, which is
+           exactly the fault the cast removed. Inside a rigid box the eight
+           are placed once and scale with everything else. Tilt is baked into
+           each PNG; the CSS only shears them onto the desk's line. -->
+      <div class="obj obj--stickers">
+        <img src="/assets/hero/p-sticker-toadstoolhouse.webp" width="190" height="182" alt="" />
+        <img src="/assets/hero/p-sticker-butterfly.webp" width="190" height="136" alt="" />
+        <img src="/assets/hero/p-sticker-gull.webp" width="190" height="161" alt="" />
+        <img src="/assets/hero/p-sticker-shell.webp" width="190" height="168" alt="" />
+        <img src="/assets/hero/p-sticker-sakura.webp" width="190" height="178" alt="" />
+        <img src="/assets/hero/p-sticker-koi.webp" width="190" height="168" alt="" />
+        <img src="/assets/hero/p-sticker-onigiri.webp" width="190" height="182" alt="" />
+        <img src="/assets/hero/p-sticker-frangipani.webp" width="190" height="162" alt="" />
+      </div>
+    </div>
+  </div>
+
+  <div class="hero__skep-cord" aria-hidden="true"></div>
+  <img class="hero__skep" src="/assets/hero/skep.png" alt="" aria-hidden="true" />
+
+    <div class="hero__copy">
+      <h1 data-brand="tagline">A quiet place for letters.</h1>
+      <p class="hero__second">Texting can wait.</p>
+      <p class="hero__lede">An iPad app where kids write and draw letters to friends you approve. A little independence, without a phone of their own.</p>
+      <!-- ONE action (2026-08-30). The ghost "See how it works" pointed at
+           #how-it-works, which the primary nav already links to - a second
+           door to the same room, sitting beside the only action that matters.
+           The header's own invite button went at the same time: with the hero
+           CTA a screen-width away from it, the page asked twice before it had
+           said anything. Every later section still offers the same action.
+
+           THE ACTION IS NOW AN OBJECT (2026-09-03). The terracotta pill said
+           "Request an invite" and opened a dialog; the app is on the App Store
+           and the honest action is to go there. Apple's badge replaces it
+           rather than a restyled pill, because a reader recognises the badge
+           faster than they read any button, and its artwork may not be
+           reproduced in the page's own type anyway.
+
+           It is also QUIETER than what it replaces, which this hero wanted.
+           The CSS note under .hero__actions records the complaint the pill
+           earned on a phone - "335x56 of solid terracotta directly under the
+           two serif lines, which made the hero's loudest object a rectangle".
+           The badge is a third of that area and black rather than brand
+           colour, so the desk stays the loudest thing on the page. -->
+      <div class="hero__actions">
+        <a class="appstore-badge appstore-badge--hero" data-brand-href="/app_store_url"
+           href="https://apps.apple.com/app/id6806487006">
+          <img src="/assets/app-store-badge.svg" width="120" height="40"
+               alt="Download Postmello on the App Store" />
+        </a>
+      </div>
+      <!-- The status line keeps carrying the word the badge cannot: Apple's
+           lockup says "App Store" and never says which device. "Free to start"
+           is the free tier's one desk, not a trial - see the plan cards. -->
+      <p class="hero__status">On iPad. One desk, free. No ads.</p>
+    </div>
+  </section>
+
+    <div class="hero-fade" aria-hidden="true"></div>
+
+  
+  </div>
+
+  
+
+
+  <!-- ============================ WHY ============================ -->
+  
+
+  <!-- ====================== THE POSTAL RITUAL ====================== -->
+  <section class="section" id="how-it-works">
+    <div class="shell">
+      <!-- Two beats, not one (2026-08-31). The section opens where the
+           product opens - at the desk - and the full capture does the one job
+           the hero's composed scene cannot: verify that these objects really
+           are the interface. It used to be a section of its own, "Step inside
+           the desk.", which existed to answer "what has this artwork to do
+           with the app?" - a question the decomposed hero no longer raises,
+           so it is demoted to evidence inside the walkthrough.
+           "Start AT your desk": you start at a desk, you write on it. The
+           section's old lede line went with it - after this hero, another
+           lyrical line is a third voice where the step cards already tell the
+           story. -->
+      <div class="sec-head">
+        <p class="eyebrow">How it works</p>
+        <h2>Start at your desk.</h2>
+      </div>
+      <div class="desk-shot">
+        <img src="/assets/app-desk-screen.jpg" width="1613" height="1200" loading="lazy"
+           alt="A Postmello desk - a mailbox holding mail, a stack of writing paper and a pen, and a row of drawers named for each friend" />
+      </div>
+      <div class="sec-head sec-head--mid">
+        <h2>Make a letter.</h2>
+      </div>
+      <div class="step-grid">
+        <article class="step-card">
+          <div class="step-media"><img src="/assets/step-paper.jpg" alt="A grid of writing papers laid out on the desk to choose from - plain, lined, and painted skies" loading="lazy" /></div>
+          <div class="step-body">
+            <span class="step-num">Step 01</span>
+            <!-- TITLE ONLY, and it made a full round trip to get here.
+                 The step cards shipped with a paragraph each; Patrick cut
+                 them as unnecessary; a review argued for one short line each
+                 instead of none; Patrick cut them again (2026-08-23). His
+                 call both times, so treat it as settled.
+
+                 What the round trip established: the pictures are whole
+                 screenshots of the real thing, and they already show the
+                 paper being chosen, the page being drawn on and the stamp
+                 going onto the envelope. A caption under a picture that
+                 shows the action is narration, and the shorter the caption
+                 got the more obviously redundant it read. The step number
+                 and the title carry the sequence; the screenshot carries
+                 everything else. -->
+            <h3>Choose your paper.</h3>
+          </div>
+        </article>
+        <article class="step-card">
+          <div class="step-media"><img src="/assets/step-writing.jpg" alt="A sheet of star-and-moon paper open on the writing canvas, with pens and ink colors along the bottom" loading="lazy" /></div>
+          <div class="step-body">
+            <span class="step-num">Step 02</span>
+            <h3>Write, draw and make it yours.</h3>
+          </div>
+        </article>
+        <article class="step-card">
+          <div class="step-media"><img src="/assets/step-stamp.jpg" alt="A pink envelope addressed with name stickers for Maya and Grandma, a star stamp in its corner, and a rail of stamps below" loading="lazy" /></div>
+          <div class="step-body">
+            <span class="step-num">Step 03</span>
+            <h3>Stamp it and send.</h3>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+<section class="section--band section--tight" id="why">
+    <div class="shell shell--5">
+      <div class="why-panel">
+        <div class="why-glow why-glow--1" aria-hidden="true"></div>
+        <div class="why-glow why-glow--2" aria-hidden="true"></div>
+        <div class="why-inner">
+          <p class="eyebrow">Why Postmello</p>
+          <h2>Staying in touch doesn&rsquo;t have to start with texting.</h2>
+          <!-- ONE PARAGRAPH IN THE FIRST PERSON (Patrick, 2026-08-27), and the
+               only place on the site that has a voice rather than a position.
+               It replaces "Texting wasn't made for kids. It's built around
+               quick replies, group chats, photos, links, and notifications",
+               which was the same argument stated as a critique - and the page
+               already makes that argument twice, in the comparison and in the
+               FAQ, where that sentence still lives verbatim.
+
+               The section answers "why is this better"; nothing on the page
+               answered "why did somebody care enough to build it", which is
+               the question a parent actually has about a product this
+               opinionated. This origin is worth telling because it is not
+               brand mythology: it happened.
+
+               WHAT IT MUST NOT BECOME: "I was worried about screens / social
+               media / technology". Fear-driven is a different, worse product.
+               The founding thought is that a daughter wanted independence and
+               connection and got offered them through a different medium -
+               the same thing the desk gives anybody.
+
+               NOT a founder section: no photo, no biography, no "a note from
+               our founder". A large personal block would make Postmello read
+               as somebody's personal project rather than a product with its
+               own world. One paragraph, signed, inside the section that was
+               already here.
+
+               The "her" is deliberate and is not the CLAUDE.md pronoun rule
+               being broken: that rule is about never assuming a pronoun for a
+               USER. This is Patrick writing about his own daughter in his own
+               voice, and he wrote this sentence. -->
+          <p>I built Postmello because my daughter wanted to stay in touch with her friends over the summer. I wanted to say yes to that independence, without handing her a phone or opening the door to always-on messaging.</p>
+          <!-- "gives kids room to", not "gives kids a room of their own to"
+               (Patrick, 2026-08-23). The product already owns one concrete
+               metaphor - the DESK - and a second, softer one competes with it
+               rather than reinforcing it: a reader has to picture a room and a
+               desk at once, and only one of them is a thing the app actually
+               shows. Plain "room" keeps the space the sentence is promising
+               without spending a metaphor on it.
+               The FAQ used to carry this sentence verbatim plus "one letter at
+               a time". It does not any more (2026-08-27): repeating the panel
+               an FAQ-length below it made the argument sound rehearsed, so
+               "How is Postmello different from texting?" answers mechanically
+               instead. This sentence is now unique to this panel - do not
+               re-sync them. -->
+          <p>Postmello gives kids room to write, draw, be silly or thoughtful, and stay in touch independently.</p>
+          <!-- The signature, and the smallest thing that makes the paragraph
+               above it a person's rather than a company's. It carries the
+               link, which points at the ESSAY, not at another section of this
+               page: both of these links used to scroll somewhere else on the
+               homepage - "read the story" landed on the philosophy
+               comparison, "read the philosophy" landed on Safety - which is a
+               link that does not do what it says. It says "Read the story"
+               rather than "Read the Postmello story" only because the name
+               is already in the same line, two words earlier. -->
+          <p class="why-sign"><span><strong>Patrick</strong>, founder of Postmello</span>
+             <span class="why-sign-dot" aria-hidden="true">&middot;</span>
+             <a class="arrow-link" href="/blog/why-i-built-postmello/"><span>Read the story</span> <span aria-hidden="true">&rarr;</span></a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+<section class="section" id="safety">
+    <div class="shell shell--6">
+      <div class="sec-head sec-head--tight">
+        <p class="eyebrow">Safety</p>
+        <h2>Only people you approve can reach the desk.</h2>
+      </div>
+
+      <!-- THREE points, and only two of them can be photographed. That is not
+           a gap in the art - it is what the section is about. The first two
+           name real objects (the key that gates the Admin Portal, the drawers
+           that hold approved friends); the third is an ABSENCE, and there is
+           no photograph of "no user search". The old site had this written
+           down as a rule - state the absence, because absence is the
+           differentiator and no photograph can show it - so it takes a line
+           mark rather than a strained metaphor.
+
+           COPPA IS A BADGE, NOT A FOURTH CARD (Patrick, 2026-08-23). It was
+           briefly a footnote under a card about cloud storage, then a full
+           fourth point - and as an equal card it claimed equal weight with the
+           three things the product actually DOES. It is a compliance posture:
+           worth stating plainly, worth nobody's fourth-most attention. Below
+           the row, at badge scale, it reads as the credential it is.
+
+           The key is the app's own asset (samples/ui/homedesk/key_transparent,
+           trimmed to its bounding box and scaled). The drawers are the claim
+           art that used to sit under the hero captioned "Only people you
+           approve" - which is this section's second point almost word for
+           word, so it moved here rather than being retired.
+
+           What went: three cards with EMOJI in tinted tiles, a "Safety &
+           Governance" pill, "The Brass Key: Total Parental Peace of Mind", and
+           a footer line on each. Emoji were placeholder-grade beside artwork
+           this good, and the heading was three abstractions where the new one
+           is a single checkable claim. COPPA is now its own point rather than
+           a footnote under a card about cloud storage. -->
+      <div class="safety-grid">
+        <article class="safety-card">
+          <p class="safety-art safety-art--key"><img src="/assets/safety-key.png" alt="" width="459" height="300" loading="lazy" /></p>
+          <h3>Controls behind a PIN</h3>
+          <p class="safety-body">Adult settings, approvals and purchases stay behind the Postmello Key.</p>
+        </article>
+        <article class="safety-card">
+          <p class="safety-art safety-art--wide"><img src="/assets/safety-drawers.png" alt="" width="483" height="186" loading="lazy" /></p>
+          <h3>Approved friends only</h3>
+          <p class="safety-body">Every friend is approved before letters can be exchanged.</p>
+        </article>
+        <article class="safety-card">
+          <p class="safety-art safety-art--box"><img src="/assets/safety-closed-box.png" alt="" width="316" height="249" loading="lazy" /></p>
+          <h3>No public discovery</h3>
+          <p class="safety-body">No public profiles, search, suggestions or open inboxes.</p>
+        </article>
+        <!-- Consent was small print under the row until 2026-08-31, which is
+             the wrong weight for what it says: it is the section's most
+             concrete commitment and the only one that is a legal fact rather
+             than a product behaviour. It gets a card like the rest. Its art is
+             the shield the footnote already carried - the other three are real
+             objects in the product, and a verification has no object, so the
+             mark stands in. -->
+        <article class="safety-card">
+          <!-- A Postmello object, not a generic security icon (Patrick,
+               2026-09-01): a small wooden shield with a brass rim and a brass
+               check, rendered in the same material language as the key and
+               the lockbox beside it. Shared with the App Store screenshots;
+               built by scripts/build-safety-art.py from the app repo's
+               samples/desk_objects. -->
+          <p class="safety-art safety-art--shield"><img src="/assets/safety-shield.png" alt="" width="300" height="300" loading="lazy" /></p>
+          <h3>Verified parental consent</h3>
+          <p class="safety-body">Under-13 desks stay closed until an adult approves the desk and completes verification.</p>
+        </article>
+      </div>
+
+      
+
+      <!-- The one place on the homepage that hands a worried reader the whole
+           Safety page. It sits under the badge rather than in the section head
+           because someone who wants to go deeper has by then read the three
+           points and the credential, and that is the moment the offer means
+           something. Quiet on purpose: an arrow link, not a button - the page
+           is reassurance, not a conversion step. -->
+      <p class="safety-more"><a class="arrow-link" href="/safety.html"><span>Learn about Safety</span> <span aria-hidden="true">&rarr;</span></a></p>
+    </div>
+  </section>
+
+  <!-- ======================== THE MAIL WALL ========================
+       Four REAL letters, sent by real people through the real app. They sit
+       here, straight after the three steps, because this is the payoff: the
+       steps promise something and these four are the thing itself, before the
+       page goes on to talk about desks and stationery.
+
+       Rules this section lives under, all of them learned the expensive way:
+
+       - NOTHING HERE IS INVENTED. Same rule as #testimonials, and for the same
+         reason. If a letter ever needs replacing, replace it with another real
+         one or take the slot out; do not mock one up.
+       - EVERY NAME IS OBSCURED. Two of these carried names (a greeting, a
+         signature, three names written on mountain peaks, a teacher, a camp)
+         and every one was blurred before export. The other two carry no name:
+         one has no words at all, and the words on the first are the names of
+         two drawn creatures, Leafy and Minty, which is why they ship whole.
+         The full method, and the list of places a name hides, is in the app
+         repo at docs/recipes/WEBSITE_LETTER_RECIPE.md. Never swap in a new
+         letter without reading it.
+       - The PNGs are transparent and carry their own paper shadow, baked at
+         export. That is why there is no CSS box-shadow below: a second shadow
+         doubles the first and draws a hard rectangle through the transparent
+         corners of the fanned stacks.
+       - No captions and no credits under the art (Patrick, 2026-08-26). The
+         letters argue for themselves; a label per tile turns a table of real
+         mail into a product catalogue. The alt text carries the description
+         for anyone who cannot see them. -->
+  <section class="section section--band" id="real-letters">
+    <div class="shell">
+      <!-- No lede under the heading (Patrick, 2026-08-26). The letters are the
+           argument; a sentence explaining them is the section apologising for
+           itself. Note what went with it, in case it needs saying somewhere
+           else one day: the old lede was the only place the page explained the
+           blurred patches on the typewritten letter. -->
+      <div class="sec-head mailwall-head">
+        <p class="eyebrow">Real Letters</p>
+        <h2>What kids make when there&rsquo;s room.</h2>
+      </div>
+      <ul class="mailwall">
+        <li class="mailwall-item">
+          <img src="/assets/letters/letter-leafy.png" width="1400" height="1078" loading="lazy" decoding="async"
+               alt="A page washed in blues with a small green creature at the bottom, the words she is leafy painted in green above it and I love her, is she minty? in yellow." />
+        </li>
+        <li class="mailwall-item">
+          <img src="/assets/letters/letter-paddleboard.png" width="1400" height="1078" loading="lazy" decoding="async"
+               alt="Two drawn figures on a paddleboard, one standing with a paddle and one sitting, riding the printed blue wave border at the foot of the page." />
+        </li>
+        <li class="mailwall-item mailwall-item--wide">
+          <img src="/assets/letters/letter-mountains.png" width="1400" height="769" loading="lazy" decoding="async"
+               alt="Four handwritten pages fanned out to the left, the top one a painted range of green mountains with snow caps, birds and a sun." />
+        </li>
+        <li class="mailwall-item mailwall-item--wide">
+          <img src="/assets/letters/letter-typewriter.png" width="1400" height="904" loading="lazy" decoding="async"
+               alt="A typewritten letter on star-and-moon paper, its second page fanned out behind it to the right." />
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ==================== DESKS &amp; COLLECTIONS ==================== -->
+  <section class="section" id="desks">
+    <div class="shell">
+      <!-- "Atmospheric Writing Spaces" came off (2026-08-23): marketing
+           language over a heading that already says what this is. The eyebrow
+           came back on 2026-08-26 once the heading stopped being a label: every
+           other section here is EYEBROW = the section's name, matching the nav
+           link, and H2 = a sentence. Desks was the only one whose h2 was a
+           name, which is why an eyebrow over it had nowhere to stand and any
+           copy put there sounded like marketing. Name above, sentence below,
+           and the lede drops the half the h2 now says. -->
+      <div class="sec-head">
+        <p class="eyebrow">Collections</p>
+        <h2>Pick a place to write from.</h2>
+        <!-- COLLECTION-FIRST (Patrick, 2026-08-27). It read "Each desk
+             belongs to a Collection, with papers, envelopes, stamps and
+             stickers to match", which made the desk the subject and the
+             Collection a property of it - backwards, now that the section,
+             the nav link and the eyebrow are all called Collections. The desk
+             is the first thing IN the world rather than the thing that owns
+             it, and naming the mailbox too is what stops the list reading as
+             stationery alone. -->
+        <p class="lede">Each Collection is its own little world, with a desk, mailbox, papers, envelopes, stamps and stickers to match.</p>
+      </div>
+
+      <!-- The picker is a real tablist: six buttons that swap the stage below.
+           Without script the first desk stays shown and all six thumbnails are
+           still visible, so the section never depends on JS to make sense. -->
+      <div class="desk-picker" role="tablist" aria-label="Choose a desk">
+        <button class="desk-chip" type="button" role="tab" id="tab-fairy-glen"
+                aria-selected="true" aria-controls="desk-stage"
+                data-desk="fairy-glen" data-name="Fairy Glen" data-tagline="Toadstools, glowing lanterns, and dewdrops among mossy roots." data-img="/assets/desk-fairy_glen.jpg">
+          <span class="thumb"><img src="/assets/desk-fairy_glen.jpg" alt="" loading="lazy" /></span>
+          <span class="name">Fairy Glen</span>
+        </button>
+        <button class="desk-chip" type="button" role="tab" id="tab-seaside-post"
+                aria-selected="false" aria-controls="desk-stage"
+                data-desk="seaside-post" data-name="Seaside Post" data-tagline="Salty breeze, lighthouses, sea glass, and rhythmic ocean tides." data-img="/assets/desk-seaside_post.jpg">
+          <span class="thumb"><img src="/assets/desk-seaside_post.jpg" alt="" loading="lazy" /></span>
+          <span class="name">Seaside Post</span>
+        </button>
+        <button class="desk-chip" type="button" role="tab" id="tab-petit-cafe"
+                aria-selected="false" aria-controls="desk-stage"
+                data-desk="petit-cafe" data-name="Petit Caf&eacute;" data-tagline="Warm croissants, porcelain teacups, and morning sidewalk tables." data-img="/assets/desk-petit_cafe.jpg">
+          <span class="thumb"><img src="/assets/desk-petit_cafe.jpg" alt="" loading="lazy" /></span>
+          <span class="name">Petit Caf&eacute;</span>
+        </button>
+        <button class="desk-chip" type="button" role="tab" id="tab-japanese-garden"
+                aria-selected="false" aria-controls="desk-stage"
+                data-desk="japanese-garden" data-name="Sakura Post" data-tagline="Blossoming bonsai, calm koi ponds, and stone stepping lanterns." data-img="/assets/desk-japanese_garden.jpg">
+          <span class="thumb"><img src="/assets/desk-japanese_garden.jpg" alt="" loading="lazy" /></span>
+          <span class="name">Sakura Post</span>
+        </button>
+        <button class="desk-chip" type="button" role="tab" id="tab-baan-naa"
+                aria-selected="false" aria-controls="desk-stage"
+                data-desk="baan-naa" data-name="Baan Naa" data-tagline="Sunlit terrace, lush tropical greens, and peaceful countryside air." data-img="/assets/desk-baan_naa.jpg">
+          <span class="thumb"><img src="/assets/desk-baan_naa.jpg" alt="" loading="lazy" /></span>
+          <span class="name">Baan Naa</span>
+        </button>
+        <button class="desk-chip" type="button" role="tab" id="tab-ember-peak"
+                aria-selected="false" aria-controls="desk-stage"
+                data-desk="ember-peak" data-name="Ember Peak" data-tagline="Crackling hearth, friendly dragons, and snowy mountain peaks." data-img="/assets/desk-ember_peak.jpg">
+          <span class="thumb"><img src="/assets/desk-ember_peak.jpg" alt="" loading="lazy" /></span>
+          <span class="name">Ember Peak</span>
+        </button>
+      </div>
+
+      <div class="desk-stage" id="desk-stage" role="tabpanel" aria-labelledby="tab-fairy-glen">
+        <div class="desk-stage-media">
+          <img id="desk-stage-img" src="/assets/desk-fairy_glen.jpg" alt="The Fairy Glen desk" />
+        </div>
+        <!-- No "Desk Environment" pill, and no "Fairy Glen Collection"
+             eyebrow over the stationery below (Patrick, 2026-08-23). Both were
+             micro-labels naming the category of the thing they sat on, and
+             between them they gave this section the air of a catalog record.
+             The stage already says Fairy Glen in 1.875rem; the tabs below
+             already say papers, envelopes, stamps and stickers. Nothing was
+             being explained that the section was not already showing. -->
+        <div class="desk-stage-copy">
+          <h3 id="desk-stage-name">Fairy Glen</h3>
+          <p class="tagline" id="desk-stage-tagline">Toadstools, glowing lanterns, and dewdrops among mossy roots.</p>
+          <!-- (.desk-stage-note was here: "Every desk brings its own
+               Collection. The art keeps to the edges of every sheet - the
+               page itself is left for the letter." Both sentences went on
+               2026-08-27. The first said the desk brings the Collection,
+               which is the relationship backwards - the section head three
+               blocks up now says a Collection is the world and the desk is
+               the first thing in it, and a reader does not need it stated
+               twice, least of all in reverse. The second explains where the
+               art sits on a sheet: a real and deliberate design rule, and
+               not one worth this position, directly under the desk the whole
+               section is selling. The stage goes straight from the Fairy Glen
+               tagline into "A few favorites, with more Collections to
+               discover." The .desk-stage-note rule went from home.css in the
+               same pass. NOTE the tagline above stays: #desk-stage-tagline is
+               written by the desk picker, and removing it breaks switching
+               desks.) -->
+        </div>
+      </div>
+
+      <!-- RESTORED 2026-08-25. Six chips with nothing said about them read as
+           the whole catalog, and there are nine Collections. The line first went
+           in on 2026-08-14 for exactly this reason and was dropped by the
+           2026-08-23 port to the new design system, which had no slot for it -
+           so if this section gets recomposed again, MOVE this line, do not let
+           it fall out.
+
+           BELOW the stage, not between the chips and the stage (Patrick,
+           2026-08-25: disruptive there). Sat in that gap it interrupted a
+           tablist and the panel it drives, mid-gesture; down here the desks
+           have finished making their case and the line closes them off before
+           the stationery starts. Deliberately no number - the catalog grows,
+           and a count here would go stale silently the way any hand-typed
+           figure on this page does. -->
+      <p class="collections-note">A few favorites, with more Collections to discover.</p>
+
+      <div class="stationery">
+        <div class="stationery-head">
+          <!-- SAYING WHICH COLLECTION (restored 2026-08-27). The "Fairy Glen
+               Collection" eyebrow came off on 2026-08-23 as a micro-label
+               naming the category of the thing it sat on, and the reasoning
+               was that "the stage already says Fairy Glen in 1.875rem". True
+               of the stage - but this is a separate card two blocks further
+               down, past the desk chips and the more-Collections line, and by
+               the time a reader arrives the name is gone from the screen.
+
+               It matters more than tidiness: the grid below is ALWAYS Fairy
+               Glen. The chips swap the stage image, name and tagline and do
+               not touch this stationery (every src here is
+               /assets/stationery/fairy-glen/...), so somebody who clicked
+               Ember Peak and scrolled was being shown nine fairy papers with
+               nothing saying whose they were. A caption, not an eyebrow: it
+               names the example rather than labelling the category. -->
+          <div class="stationery-head-titles">
+            <h3>Papers, envelopes, stamps &amp; stickers</h3>
+            <p class="st-from">Shown here: the <strong>Fairy Glen</strong> Collection.</p>
+          </div>
+          <div class="tabs" role="tablist" aria-label="Stationery type">
+            <button type="button" role="tab" aria-selected="true"  aria-controls="st-papers"    data-tab="papers">papers</button>
+            <button type="button" role="tab" aria-selected="false" aria-controls="st-envelopes" data-tab="envelopes">envelopes</button>
+            <button type="button" role="tab" aria-selected="false" aria-controls="st-stamps"    data-tab="stamps">stamps</button>
+            <button type="button" role="tab" aria-selected="false" aria-controls="st-stickers"  data-tab="stickers">stickers</button>
+          </div>
+        </div>
+
+        <!-- The four panels share a wrapper so their height can be held at
+             the tallest of them - see .stationery-panels in home.css and the
+             stationery block in the script at the end of this page. -->
+        <div class="stationery-panels">
+        <div class="tab-panel" id="st-papers" role="tabpanel">
+          <div class="st-grid st-grid--papers">
+            <div class="st-item">
+              <div class="st-bed  st-bed--cover"><img src="/assets/stationery/fairy-glen/paper-wisteria-portrait.jpg" alt="" loading="lazy" /></div>
+            </div>
+            <div class="st-item">
+              <div class="st-bed  st-bed--cover"><img src="/assets/stationery/fairy-glen/paper-lily-pond-portrait.jpg" alt="" loading="lazy" /></div>
+            </div>
+            <div class="st-item">
+              <div class="st-bed  st-bed--cover"><img src="/assets/stationery/fairy-glen/paper-dewdrops-portrait.jpg" alt="" loading="lazy" /></div>
+            </div>
+            <div class="st-item">
+              <div class="st-bed  st-bed--cover"><img src="/assets/stationery/fairy-glen/paper-sparkle-portrait.jpg" alt="" loading="lazy" /></div>
+            </div>
+            <div class="st-item">
+              <div class="st-bed  st-bed--cover"><img src="/assets/stationery/fairy-glen/paper-bluebells-portrait.jpg" alt="" loading="lazy" /></div>
+            </div>
+            <div class="st-item">
+              <div class="st-bed  st-bed--cover"><img src="/assets/stationery/fairy-glen/paper-glen-meadow-portrait.jpg" alt="" loading="lazy" /></div>
+            </div>
+            <div class="st-item">
+              <div class="st-bed  st-bed--cover"><img src="/assets/stationery/fairy-glen/paper-firefly-night-portrait.jpg" alt="" loading="lazy" /></div>
+            </div>
+            <div class="st-item">
+              <div class="st-bed  st-bed--cover"><img src="/assets/stationery/fairy-glen/paper-fairy-ring-portrait.jpg" alt="" loading="lazy" /></div>
+            </div>
+            <div class="st-item">
+              <div class="st-bed  st-bed--cover"><img src="/assets/stationery/fairy-glen/paper-fairy-door-portrait.jpg" alt="" loading="lazy" /></div>
+            </div>
+          </div>
+        </div>
+        <div class="tab-panel" id="st-envelopes" role="tabpanel" hidden>
+          <div class="st-grid st-grid--envelopes">
+            <div class="st-item">
+              <div class="st-bed st-bed--env st-bed--contain"><img src="/assets/stationery/fairy-glen/envelope-twilight.png" alt="" loading="lazy" /></div>
+            </div>
+            <div class="st-item">
+              <div class="st-bed st-bed--env st-bed--contain"><img src="/assets/stationery/fairy-glen/envelope-sparkle.png" alt="" loading="lazy" /></div>
+            </div>
+            <div class="st-item">
+              <div class="st-bed st-bed--env st-bed--contain"><img src="/assets/stationery/fairy-glen/envelope-petals.png" alt="" loading="lazy" /></div>
+            </div>
+            <div class="st-item">
+              <div class="st-bed st-bed--env st-bed--contain"><img src="/assets/stationery/fairy-glen/envelope-bluebell.png" alt="" loading="lazy" /></div>
+            </div>
+            <div class="st-item">
+              <div class="st-bed st-bed--env st-bed--contain"><img src="/assets/stationery/fairy-glen/envelope-moon.png" alt="" loading="lazy" /></div>
+            </div>
+            <div class="st-item">
+              <div class="st-bed st-bed--env st-bed--contain"><img src="/assets/stationery/fairy-glen/envelope-toadstool.png" alt="" loading="lazy" /></div>
+            </div>
+          </div>
+        </div>
+        <div class="tab-panel" id="st-stamps" role="tabpanel" hidden>
+          <div class="st-grid st-grid--stamps">
+            <div class="st-item">
+              <div class="st-bed st-bed--sq st-bed--contain"><img src="/assets/stationery/fairy-glen/stamp-bluebell.png" alt="" loading="lazy" /></div>
+            </div>
+            <div class="st-item">
+              <div class="st-bed st-bed--sq st-bed--contain"><img src="/assets/stationery/fairy-glen/stamp-toadstool-house.png" alt="" loading="lazy" /></div>
+            </div>
+            <div class="st-item">
+              <div class="st-bed st-bed--sq st-bed--contain"><img src="/assets/stationery/fairy-glen/stamp-moon.png" alt="" loading="lazy" /></div>
+            </div>
+            <div class="st-item">
+              <div class="st-bed st-bed--sq st-bed--contain"><img src="/assets/stationery/fairy-glen/stamp-fairy-door.png" alt="" loading="lazy" /></div>
+            </div>
+            <div class="st-item">
+              <div class="st-bed st-bed--sq st-bed--contain"><img src="/assets/stationery/fairy-glen/stamp-lantern.png" alt="" loading="lazy" /></div>
+            </div>
+            <div class="st-item">
+              <div class="st-bed st-bed--sq st-bed--contain"><img src="/assets/stationery/fairy-glen/stamp-wings.png" alt="" loading="lazy" /></div>
+            </div>
+          </div>
+        </div>
+        <div class="tab-panel" id="st-stickers" role="tabpanel" hidden>
+          <div class="st-grid st-grid--stickers">
+            <div class="st-item">
+              <div class="st-bed st-bed--stk st-bed--contain"><img src="/assets/stationery/fairy-glen/sticker-butterfly.png" alt="" loading="lazy" /></div>
+            </div>
+            <div class="st-item">
+              <div class="st-bed st-bed--stk st-bed--contain"><img src="/assets/stationery/fairy-glen/sticker-toadstoolhouse.png" alt="" loading="lazy" /></div>
+            </div>
+            <div class="st-item">
+              <div class="st-bed st-bed--stk st-bed--contain"><img src="/assets/stationery/fairy-glen/sticker-wand.png" alt="" loading="lazy" /></div>
+            </div>
+            <div class="st-item">
+              <div class="st-bed st-bed--stk st-bed--contain"><img src="/assets/stationery/fairy-glen/sticker-flowercrown.png" alt="" loading="lazy" /></div>
+            </div>
+            <div class="st-item">
+              <div class="st-bed st-bed--stk st-bed--contain"><img src="/assets/stationery/fairy-glen/sticker-moon.png" alt="" loading="lazy" /></div>
+            </div>
+            <div class="st-item">
+              <div class="st-bed st-bed--stk st-bed--contain"><img src="/assets/stationery/fairy-glen/sticker-lantern.png" alt="" loading="lazy" /></div>
+            </div>
+            <div class="st-item">
+              <div class="st-bed st-bed--stk st-bed--contain"><img src="/assets/stationery/fairy-glen/sticker-flyingletter.png" alt="" loading="lazy" /></div>
+            </div>
+          </div>
+        </div>
+        </div><!-- /.stationery-panels -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= THE BANDING RUN starts here =================
+       There is ONE band tone (see .section--band in home.css) and the page
+       ground. Because there is only one band, no two banded sections may sit
+       next to each other, so the whole run alternates strictly:
+
+         why BAND / how-it-works / real-letters BAND / desks /
+         grandparents BAND / philosophy / safety BAND / testimonials /
+         membership BAND / faq
+
+       #why is banded rather than the hero-adjacent plain it used to be, which
+       is also what stops the hero and #why blending into one another - both sat
+       on the page ground before.
+
+       MOVING OR INSERTING A SECTION BREAKS THIS. The run has no slack: flip one
+       and its neighbour has to flip too, all the way to the end. If a section is
+       added, re-check every boundary rather than just the two beside it. -->
+  
+
+  <!-- ======================= LETTERS BY EMAIL ======================= -->
+  <section class="section" id="grandparents">
+    <div class="shell">
+      <!-- THREE BEATS, NOT A PARAGRAPH (Patrick, 2026-08-31). The section was
+           saying the same simple thing three times over: a lede that explained
+           the whole feature, three pictures that each explained themselves
+           again in a title AND a caption, and two sentences explaining the
+           boundary. Three layers of explanation for one small idea, which is
+           what made an easy feature feel complicated.
+
+           So the lede is now three short statements across one line, scannable
+           in about two seconds. What each one has to carry:
+
+           1. NO APP NEEDED - "her regular inbox" is more concrete than the old
+              "without joining", and says the same thing. "Her" is correct and
+              an earlier pass wrongly neutered it to "an inbox", which reads as
+              nobody's: the rule is never a pronoun for a USER, because a name
+              says nothing about pronouns - and Grandma is a kinship term that
+              already entails a grandmother, so it assumes nothing.
+           2. EMAIL WHEN IT IS EASIER - the one that keeps getting lost. Email
+              is a ROUTE, not a fallback for people who lack Postmello: an
+              admin approves an ADDRESS on a desk, and nothing checks it
+              against existing accounts, so somebody who writes from their own
+              desk at home can be reached at their inbox while away. Every
+              earlier version of this section framed the lane as an
+              accommodation, and a session once reasoned the opposite from the
+              claimed/unclaimed material and nearly shipped it. The app repo's
+              docs/ARCHITECTURE.md records it under "The email lane is a ROUTE".
+           3. SAME DESK - what is true of both, which is what makes them one
+              lane rather than two anecdotes.
+
+           Not boxes and not cards: three typographic columns with a hairline
+           between them. -->
+      <div class="sec-head sec-head--tight">
+        <p class="eyebrow">Letters by Email</p>
+        <h2>Write from Postmello or email.</h2>
+      </div>
+
+      <!-- A CONVERGENCE, NOT THREE COLUMNS (Patrick, 2026-08-31). These are
+           not three parallel facts, which is what three typographic columns
+           claimed they were - and worse, three labelled columns sitting
+           directly above three pictures read as captions for them. They
+           describe a RELATIONSHIP: two ways in, one place they land. So the
+           page draws that instead of listing it.
+
+           Only the destination gets an object. The two routes are ways of
+           writing - abstractions, with nothing to photograph - while the desk
+           is a real thing in the product, and the mailbox is the same prop
+           the hero uses. The asymmetry is the point: two lines of type
+           converging on one object says "these both end up here" before a
+           word is read.
+
+           THE LABELS NAME THE PERSON, NOT THE BENEFIT (Patrick, 2026-08-31),
+           and that is what finally made the diagram legible. They read "No app
+           needed" and "Email when it's easier" - two descriptions of EMAIL,
+           which is the one thing both branches have in common, so there were
+           no branches, only one idea said twice. "Without the app" against
+           "Already use Postmello" are genuinely different categories, and the
+           logic falls out of them: does not use Postmello, email works; does
+           use Postmello, email works too; both land on the same desk.
+
+           They name the SETUP, not the person (2026-08-31, second pass).
+           "Without the app" against "Already use Postmello" was legible but
+           mismatched in kind - one is the absence of a tool, the other is a
+           description of a person, so the two sides were not the same sort of
+           thing. "Email only" against "Postmello + email" are two setups,
+           which is what a branch of a diagram should be.
+
+           Branch two is the one that keeps getting lost: email is a ROUTE, not
+           an accommodation for people who lack Postmello. An admin approves an
+           ADDRESS on a desk, and nothing checks it against existing accounts,
+           so somebody who writes from their own desk at home can be reached at
+           their inbox while away. A session once reasoned the opposite from
+           the claimed/unclaimed material and nearly shipped it; the app repo's
+           docs/ARCHITECTURE.md records it under "The email lane is a ROUTE".
+
+           "Her inbox" is correct, and an earlier pass wrongly changed it to
+           "an inbox", which reads as nobody's. The rule is never a pronoun for
+           a USER, because a name says nothing about pronouns - and Grandma is
+           a kinship term that already entails a grandmother. -->
+      <div class="converge">
+        <div class="converge-route converge-route--a">
+          <p class="beat-label">Email only</p>
+          <p class="beat-text">Grandma can write from her regular inbox.</p>
+        </div>
+        <div class="converge-route converge-route--b">
+          <p class="beat-label">Postmello + email</p>
+          <p class="beat-text">You can still write by email when it&rsquo;s easier.</p>
+        </div>
+        <svg class="converge-lines" viewBox="0 0 100 34" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+          <path d="M25 0 C25 15 50 21 50 34" />
+          <path d="M75 0 C75 15 50 21 50 34" />
+        </svg>
+        <div class="converge-dest">
+          <img src="/assets/hero/c-mailbox.webp" alt="" width="1000" height="1105" loading="lazy" />
+          <p class="beat-label">Same desk</p>
+          <p class="beat-text">Either way, the letter arrives on the Postmello desk.</p>
+        </div>
+      </div>
+
+      <!-- ONE STORY MOVING LEFT TO RIGHT (Patrick, 2026-08-31). These were
+           .step-card - filled, bordered, shadowed boxes, the same component
+           the "Make a letter" row uses. But that row is a LIST of three
+           things you can do, and this one is a SEQUENCE: write, arrive,
+           reply. Identical components said they were the same kind of thing.
+
+           So the containers go and the pictures sit on the page itself behind
+           a hairline, joined by a rail with a dot at each step. .step-card is
+           deliberately untouched: it still belongs to the row upstairs, and
+           restyling it there to suit this section is how one change becomes
+           two regressions.
+
+           An ordered list, because the order is the meaning; the rail is drawn per
+           column and bridges the grid gap on either side, so the outermost
+           halves are suppressed rather than left hanging off the ends. -->
+      <ol class="timeline">
+        <li class="tl-step">
+          <p class="tl-num">01</p>
+          <div class="tl-rail"><span class="tl-dot"></span></div>
+          <figure class="tl-media"><img src="/assets/beyond-write.jpg" alt="Your child writes on their desk." loading="lazy" /></figure>
+          <h3 class="tl-title">Your child writes.</h3>
+        </li>
+        <li class="tl-step">
+          <p class="tl-num">02</p>
+          <div class="tl-rail"><span class="tl-dot"></span></div>
+          <figure class="tl-media"><img src="/assets/beyond-inbox.jpg" alt="An email headed &quot;Maya sent you a letter&quot;, showing the pink envelope with its Maya and Grandma stickers and a star stamp, above a button reading Open Your Letter" loading="lazy" /></figure>
+          <h3 class="tl-title">It arrives by email.</h3>
+        </li>
+        <li class="tl-step">
+          <p class="tl-num">03</p>
+          <div class="tl-rail"><span class="tl-dot"></span></div>
+          <!-- "YOUR INBOX", NOT "ANY INBOX" (Patrick, 2026-08-31). "Any" was
+               chosen to keep the step person-neutral, and it did - but on a
+               page whose whole promise is that unapproved mail cannot arrive,
+               "any inbox" reads as ANYONE MAY REPLY. It contradicted the
+               guarantee printed two blocks below it. "Your" carries the same
+               no-app-no-account meaning while saying the inbox belongs to
+               somebody already known. The alt text follows: the picture shows
+               a reply written from Grandma's own email, which is the point. -->
+          <figure class="tl-media"><img src="/assets/beyond-reply.jpg" alt="A reply written from Grandma&rsquo;s own email, and the same words below it, typewritten onto letter paper as they arrive on the desk" loading="lazy" /></figure>
+          <h3 class="tl-title">Reply from your inbox.</h3>
+        </li>
+      </ol>
+
+      <!-- THE TRUST PAYOFF, GIVEN ITS OWN BAND (2026-08-31). These two used
+           to trail under the pictures as leftover sentences. They are the
+           reason a parent is comfortable with everything above them, so they
+           now sit between two hairlines: one line on desktop, split at the
+           dot on a phone.
+
+           What went, long before that: a "Safe Email Bridge" pill, a "Pure &amp;
+           Safe Correspondence" heading, and three cards - Parent-Approved
+           Whitelist, Child-Appropriate Text Shield, Zero Tech Burden for
+           Elders. The last was faintly patronising about the person this
+           section is named after. The two facts worth keeping are the two a
+           parent actually needs: who may reply, and what a reply may carry. -->
+      <p class="bridge-note"><span>Only approved email addresses can reply.</span><span>Links, photos and attachments never reach the desk.</span></p>
+    </div>
+  </section>
+
+  <!-- ======================== PHILOSOPHY ======================== -->
+  <section class="section--band section" id="philosophy">
+    <div class="shell shell--6">
+      <!-- "Designed differently", not "Design Philosophy" (2026-08-31): the
+           old eyebrow read like a link in a design-system document. -->
+      <div class="sec-head sec-head--tight">
+        <p class="eyebrow">Designed differently</p>
+        <h2>Made to feel like letters.</h2>
+        <!-- The lede is back (Patrick, 2026-09-01), as the same three-beat
+             line the App Store screenshot carries: one claim per beat, no
+             explanation, and the spread below shows each of them. -->
+        <p class="lede">One letter at a time. No photos or links. No pressure to reply.</p>
+      </div>
+
+      <!-- ONE SPREAD, NOT TWO CARDS. Boxing each half made them read as
+           pricing tiers, and stacking four bullets under each heading made
+           the eye work out for itself which line answered which. Every idea
+           is now a PAIR with an arrow to its counterpart, and the pictures
+           make the argument before the words do: many small things flowing
+           continuously, against one thing given room.
+
+           The two sides are titled and set against each other across a "vs"
+           (2026-08-31). They are matched in HEIGHT rather than in width, so
+           the phone stands narrow beside a letter three times as wide - which
+           is the comparison stated in the geometry, without either half
+           needing a box around it. -->
+      <div class="spread">
+        <div class="spread-art">
+          <figure class="spread-side spread-side--msg">
+            <p class="spread-label">Messaging</p>
+            <div class="spread-img spread-img--msg">
+              <img src="/assets/compare/messaging-stream.webp" width="1200" height="1800"
+                   alt="A dense, continuous stream of small chat bubbles, reactions and read receipts, running off the top and bottom of the frame" loading="lazy" />
+            </div>
+          </figure>
+          <p class="spread-vs">vs</p>
+          <figure class="spread-side spread-side--post">
+            <p class="spread-label">Postmello</p>
+            <div class="spread-img spread-img--post">
+              <img src="/assets/compare/postmello-letter.webp" width="2400" height="1458"
+                   alt="A four-page handwritten letter in a loose pile, the top page face-up and the others sliding out to either side, the last one a crayon drawing of a mountain" loading="lazy" />
+            </div>
+          </figure>
+        </div>
+
+        <!-- A KEY, ON PHONES ONLY (Patrick, 2026-08-31). Side by side the
+             columns say who is speaking; stacked, they do not - the titles
+             are stranded up beside the pictures, and by the time the reader
+             reaches the words the pairs are six alternating lines with
+             nothing saying which voice owns which. This states the
+             convention once, in the same arrow the pairs use: top line
+             messaging, arrow, Postmello's answer. Once, not per row. -->
+        <p class="spread-key"><span>Messaging</span><span class="spread-key__arrow" aria-hidden="true">&darr;</span><span>Postmello</span></p>
+
+        <dl class="spread-rows">
+          <div class="spread-row">
+            <dt>Fast back-and-forth</dt>
+            <dd>One letter at a time</dd>
+          </div>
+          <!-- The middle pair names what a letter carries, not how it is
+               laid out (Patrick, 2026-09-01). "A continuous stream / Each
+               letter gets its own space" restated the first pair; this one
+               is the design decision the other two do not cover. -->
+          <div class="spread-row">
+            <dt>Photos and links</dt>
+            <dd>Words, drawings and imagination</dd>
+          </div>
+          <div class="spread-row">
+            <dt>Built around availability</dt>
+            <dd>No presence or pressure to reply</dd>
+          </div>
+        </dl>
+
+        <!-- THE PUNCHLINE, and the largest copy in the section after the
+             heading (2026-08-31). It is not another row of information; it is
+             the conclusion, and it was previously set smaller than the thing
+             it concludes. The lede that used to sit under the heading said the
+             same idea in flatter words BEFORE the section had shown anything,
+             so it came out and these two lines carry it alone. -->
+        <div class="spread-foot">
+          <!-- The two halves carry their own tag on phones. They are the one
+               pair with no arrow between them - two full sentences, one under
+               the other, separated only by a change of face and ink - so
+               stacked they read as a single paragraph of two sentences rather
+               than as two opposed positions. -->
+          <p class="spread-foot__msg"><span class="side-tag">Messaging</span>Designed for immediacy, and to keep conversation moving.</p>
+          <p class="spread-foot__post"><span class="side-tag">Postmello</span>Designed for patience, and to be put down.</p>
+        </div>
+      </div>
+
+      <p class="compare-after">
+        <a class="arrow-link" href="/blog/designing-a-desk-not-an-app/"><span>Read our design philosophy</span> <span aria-hidden="true">&rarr;</span></a>
+      </p>
+    </div>
+  </section>
+
+  <!-- ========================== SAFETY ========================== -->
+  
+
+  <!-- ======================= FAMILY STORIES =======================
+       LIVE since 2026-08-23, with ONE quote - and one is the right number
+       until there are more real ones. The section spent its first weeks
+       commented out because the comp's four testimonials were invented by
+       the tool that drew it ("Elena R.", "Arthur G." - those people do not
+       exist). The rule stands: only real quotes from real beta families,
+       with permission, credited how they want. An empty position is honest;
+       a fake one is the fastest way to lose a parent's trust.
+       Design: a simple note card on generated deckle-edged paper (see the
+       .story* block in home.css for the how and the no-stamps rule). Adding
+       a second quote needs no CSS work - the grid makes a row of two and
+       even cards get their own sheet + opposite tilt. -->
+  <section class="section--band section" id="testimonials">
+    <div class="shell shell--5">
+      <div class="sec-head">
+        <!-- THE PAIRING (Patrick, 2026-08-27). The eyebrow says what the beta
+             IS - families shaping the product, not an audience being tested on
+             - and the H2 says what this section therefore contains. "A few
+             notes from families who write with us" described the format; this
+             describes the relationship, and the two halves now depend on each
+             other the way an eyebrow and a heading should.
+             Sentence case in the source like every other eyebrow: .eyebrow
+             uppercases it in CSS, and no eyebrow on the page carries a full
+             stop. -->
+        <!-- The beta ended on 2026-09-03 and the eyebrow went past tense
+             with it. What the note above wants it to say is the RELATIONSHIP
+             - families shaping the product rather than an audience being
+             tested on - and that survives the beta intact; only the tense
+             had to move. "Who wrote first" also does something the old line
+             could not: it says these people are still here. -->
+        <p class="eyebrow">Shaped with the families who wrote first</p>
+        <h2 style="margin-top:1rem">What we&rsquo;re hearing from families.</h2>
+      </div>
+      <!-- ANN FIRST (Patrick, 2026-08-31). Carolin's is about the aesthetic,
+           which the page has spent every section above this one demonstrating;
+           Ann's is a child who wrote for half an hour and liked that a bee
+           took the mail. The second is evidence the thing WORKS, and evidence
+           leads. -->
+      <div class="story-grid">
+        <article class="story">
+          <p class="story-quote"><span class="story-q">&ldquo;</span>She spent the last half hour writing notes and loved it. And she loves that a bee takes her mail away.<span class="story-q">&rdquo;</span></p>
+          <p class="story-author">
+            <span class="story-name">Ann</span>
+            <span class="story-sep" aria-hidden="true">&bull;</span>
+            <span class="story-role">Mom of 2</span>
+          </p>
+        </article>
+        <article class="story">
+          <p class="story-quote"><span class="story-q">&ldquo;</span>I love the whimsical spirit! It is so beautifully done! The entire space and the overall aesthetics are so charming and consistent around the slow, truly creative feel.<span class="story-q">&rdquo;</span></p>
+          <p class="story-author">
+            <span class="story-name">Carolin</span>
+            <span class="story-sep" aria-hidden="true">&bull;</span>
+            <span class="story-role">Mom of 2</span>
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= MEMBERSHIP ========================= -->
+  <section class="section" id="membership">
+    <div class="shell">
+      <div class="sec-head">
+        <p class="eyebrow">Membership</p>
+        <h2>Start with one desk, free.</h2>
+        <p class="lede">When you want more desks at home, Membership brings everyone together.</p>
+      </div>
+
+      <!-- TWO cards, same shape on both: name at full size, the desk count
+           beneath it, what you get, then the price LAST so the two align
+           across the row. What went (Patrick, 2026-08-23):
+
+           * The kickers. "Introductory" and "Family Membership" labelled cards
+             whose own names already said what they were.
+           * "Forever for one desk", "for your household", "at home" -
+             qualifiers on the figure that is the whole point of the card.
+           * The desk count as a TICK. It is the number a reader compares
+             across the row, so it sits directly under the plan name rather
+             than third in a bullet list.
+           * The per-card beta buttons. Beta access is a product STATE, not a
+             membership benefit, so one action sits below the row and applies
+             to everybody - which is also the honest shape, since nobody is
+             buying a tier today.
+           * The whole Membership Plus card, back to the disclosure it was
+             before. It answers a question most households never ask, and as a
+             third column it made every visitor price a plan they will never
+             need. "Room for all siblings & cousins" went with it. -->
+      <div class="plan-grid">
+
+        <article class="plan">
+          <h3 data-plan-name="free">Postmello Free</h3>
+          <!-- The charms are DECORATION and aria-hidden: the count beneath is
+               the accessible fact, and a screen reader counting identical
+               images would be worse than silence. -->
+          <p class="plan-charms" aria-hidden="true"><img src="/assets/icons/desk-charm.png" alt="" width="159" height="84" loading="lazy" /></p>
+          <p class="plan-count"><strong data-plan-desks="free">1 desk</strong></p>
+          <ul class="plan-list">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> <span>Starter Collection included</span></li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> <span>Unlimited letters &amp; friends</span></li>
+          </ul>
+          <p class="plan-pricing"><span class="plan-price" data-price="free">Free</span></p>
+          <!-- Empty on purpose: it holds Free's place on the shared
+               founding-note row so the two PRICES line up. -->
+          <p class="plan-founding"></p>
+        </article>
+
+        <!-- No "Most Popular" flag (Patrick, 2026-08-23). It is the pricing-
+             template device, and on a two-card row it does not describe the
+             product so much as instruct the reader which one to take - which
+             makes Free read as the decoy it is not. Free is a real tier that
+             real households will stay on. The terracotta border is emphasis
+             enough, and it says "this is the one most people want" without
+             saying the other one is a mistake. -->
+        <article class="plan plan--featured">
+          <h3 data-plan-name="membership">Postmello Membership</h3>
+          <p class="plan-charms" aria-hidden="true"><img src="/assets/icons/desk-charm.png" alt="" width="159" height="84" loading="lazy" /><img src="/assets/icons/desk-charm.png" alt="" width="159" height="84" loading="lazy" /><img src="/assets/icons/desk-charm.png" alt="" width="159" height="84" loading="lazy" /><img src="/assets/icons/desk-charm.png" alt="" width="159" height="84" loading="lazy" /></p>
+          <p class="plan-count"><strong data-plan-desks="membership">Up to 4 desks</strong></p>
+          <ul class="plan-list">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> <span>Write between desks at home</span></li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> <span><strong>50% off</strong> Collections</span></li>
+          </ul>
+          <p class="plan-pricing">
+            <span class="plan-price" data-price="membership">$19.99</span>
+            <span class="per">/ year</span>
+            <!-- Both written by scripts/apply-pricing.py, and both empty
+                 themselves when the founding window closes in pricing.json -
+                 the CSS hides an empty .was and an empty .note--founding. -->
+            <span class="was" data-price="membership_was">$29.99</span>
+          </p>
+          <p class="plan-founding" data-price="membership_founding">Founding rate stays while your Membership remains active.</p>
+        </article>
+
+      </div>
+
+      <!-- MEMBERSHIP PLUS, a row rather than a rung. It keeps its own <dl>
+           because the name and desk count are written by apply-pricing.py,
+           which looks for data-plan-name on a dt|h3 and data-plan-desks on a
+           strong. The figure lives in the SUMMARY so the closed row carries
+           the number that makes it worth opening. This is the one desk count
+           set INSIDE a sentence, so the script lower-cases it here - see
+           MIDSENTENCE_DESKS in apply-pricing.py; do not capitalise it back. -->
+      <details class="plan-more">
+        <summary>
+          <span class="plan-more-q">Need more desks?</span>
+          <span class="plan-more-a">Membership Plus supports
+            <strong data-plan-desks="membership_plus">up to 12 desks</strong>.
+            <span class="plan-more-cue">See details <span aria-hidden="true">&rarr;</span></span></span>
+        </summary>
+        <dl class="plan-more-body">
+          <dt data-plan-name="membership_plus">Postmello Membership Plus</dt>
+          <dd>
+            <span class="plan-price" data-price="membership_plus">$29.99</span>
+            <span class="per">/ year</span>
+            <span class="was" data-price="membership_plus_was">$39.99</span>
+            <span class="note note--founding" data-price="membership_plus_founding">Founding rate stays while your Membership remains active.</span>
+            <p>Everything in Membership, with room for a bigger household.</p>
+          </dd>
+        </dl>
+        <!-- WHAT "YOURS TO KEEP" MEANS, and the reason this line exists
+             (Patrick, 2026-08-27). The founding note under each price is
+             deliberately short and stays short - a price does not want
+             legalistic copy directly beneath it - but on its own "yours to
+             keep" can be read as "cancel for three years, come back at this
+             rate", which is not the policy. pricing.json's founding_window
+             notes say it plainly: when the window closes the App Store price
+             rises with "preserve price for existing subscribers", so founding
+             households keep the price WHILE SUBSCRIBED.
+
+             It sits here because this disclosure is the section's one place
+             for detail, and it covers BOTH tiers rather than the Plus row it
+             happens to sit under - which is why it is outside the <dl> and
+             not inside that <dd>.
+
+             THE LAPSE CLAUSE MOVED TO THE TERMS (Patrick, 2026-09-03). It
+             read "If it lapses, rejoining is at whatever the price is then",
+             which is true of a cancel-and-return but reads as a threat about
+             a failed card - and a failed payment that succeeds inside Apple's
+             retry period costs nobody their rate. That is a distinction a
+             pricing panel cannot make in one clause without becoming the
+             legal copy it is deliberately not; Terms can, and now does, under
+             "Founding rates" - which also closed a real gap, since the Terms
+             had said nothing about founding rates at all while this panel was
+             making the promise.
+
+             What stays here is the half that stops a MISREADING rather than
+             the half that states a policy, which is the right division: this
+             sentence exists because "yours to keep" alone can be read as
+             "cancel for three years, come back at this rate".
+
+             THIS SENTENCE IS HAND-WRITTEN, not generated: apply-pricing.py
+             writes the two founding NOTES from pricing.json and empties them
+             when the window closes. The CSS cannot hide this one, so when
+             that day comes, delete it here by hand in the same pass. -->
+        <p class="plan-more-terms">A founding rate holds for as long as the
+           membership stays active - each year renews at the founding price,
+           not the regular one. The <a href="/terms.html">Terms</a> have the rest.</p>
+      </details>
+
+      <!-- ONE action for everybody, under the row rather than inside a card.
+           The note in the card block above says why it is not per-card: beta
+           access was a product STATE rather than a membership benefit. That
+           reasoning survives the beta - downloading is not a tier's benefit
+           either, and both plans start from the same free app. -->
+      <p class="plans-cta">
+        <a class="appstore-badge" data-brand-href="/app_store_url"
+           href="https://apps.apple.com/app/id6806487006">
+          <img src="/assets/app-store-badge.svg" width="120" height="40"
+               alt="Download Postmello on the App Store" />
+        </a>
+      </p>
+
+      <div class="worlds">
+        <div class="worlds-head">
+          <h3>Collections</h3>
+          <p>New places to write from.</p>
+          <p class="from">From <span data-price="collections">$1.99</span> &middot; Members save <span data-price="collections_discount">50%</span></p>
+          <!-- THE SHELF CAP MOVED TO THE FAQ (Patrick, 2026-08-31). It was
+               put here on 2026-08-27 for a good reason - a household owns
+               every collection it buys, permanently and through a lapse, but
+               a desk SHOWS a limited number at once, because everything on a
+               desk is wholly on device, which is what makes the offline
+               guarantee true, and a panel that names the price and the
+               permanence but not the cap leaves a buyer to find it out after
+               paying.
+
+               That reason survives; the placement did not. It is
+               implementation detail at the moment somebody is deciding
+               whether to buy, and it crowded the one thing that matters here,
+               which is that a collection is bought once and kept. So the
+               sentence moved to the FAQ, where a buyer looking for the limit
+               finds it and a buyer deciding is not detained by it. The number
+               went WITH its data-price marker: apply-pricing.py rewrites that
+               element wherever it lives, so nothing about the pricing
+               contract changed - and it hard-fails if the marker disappears,
+               which is the check that would have caught a plain deletion. -->
+          <p>Yours for good.</p>
+        </div>
+        <div class="prop-grid">
+          <article class="prop">
+            <div class="prop-stage"><img src="/assets/collections/fairy_glen.png" alt="" loading="lazy" /></div>
+            <h4>Fairy Glen</h4>
+            <p>A toadstool cottage, a lantern and a jar of fireflies</p>
+          </article>
+          <article class="prop">
+            <div class="prop-stage"><img src="/assets/collections/japanese_garden.png" alt="" loading="lazy" /></div>
+            <h4>Sakura Post</h4>
+            <p>A blossoming bonsai, a koi and a rice ball</p>
+          </article>
+          <article class="prop">
+            <div class="prop-stage"><img src="/assets/collections/woodland_friends.png" alt="" loading="lazy" /></div>
+            <h4>Woodland Friends</h4>
+            <p>A fox, an owl and a scatter of acorns</p>
+          </article>
+          <article class="prop">
+            <div class="prop-stage"><img src="/assets/collections/ember_peak.png" alt="" loading="lazy" /></div>
+            <h4>Ember Peak</h4>
+            <p>A dragon, a flame and a snowflake</p>
+          </article>
+        </div>
+      </div>
+
+      <div class="trust">
+        <h2>No ads. No selling data. Your letters stay yours.</h2>
+        <p class="trust-why">Postmello is supported by the people who use it, so it can stay private, mellow, and built for them - not advertisers.</p>
+        <!-- (Four badges stood here: 100% Ad-Free, Safe Cloud Archival, Parent
+             Approved, Member Supported, each with an emoji. They repeated the
+             two sentences directly above them almost word for word, and the
+             emoji treatment undid the elegance of a block whose whole job is
+             to be quiet. Patrick, 2026-08-23.) -->
+        <p class="trust-links">
+          <a href="/safety.html">Safety</a>
+          <span aria-hidden="true">&middot;</span>
+          <a href="/privacy.html">Privacy</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ FAQ ============================ -->
+  <section class="section--band section" id="faq">
+    <div class="shell shell--4">
+      <div class="sec-head">
+        <p class="eyebrow">Frequently Asked Questions</p>
+        <h2 style="margin-top:1rem">Answers for Families</h2>
+        <!-- ("Everything parents, educators, and grandparents need to know
+             about the Postmello experience." stood here. "Answers for Families"
+             already says it.) -->
+
+        <!-- (Five filter chips stood here: All Questions, Philosophy, Safety &
+             Key, Grandparents & Email, App Features. Six questions do not need
+             filtering - the control was longer than the thing it controlled,
+             and every filter left at most three items on screen. Patrick,
+             2026-08-23. The data-cat attributes stay on the items: they cost
+             nothing and are what a filter would need if the list ever grows.) -->
+      </div>
+
+      <div class="faq-list">
+        <details class="faq-item" data-cat="philosophy" open>
+          <summary>
+            <!-- Not "How does Postmello postpone texting for kids?" - that
+                 promises a parenting OUTCOME the product cannot deliver and
+                 nobody here wants to claim. The real argument is narrower and
+                 stronger: a different first medium, not a delay. -->
+            <span>How is Postmello different from texting?</span>
+            <span class="faq-chevron" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></span>
+          </summary>
+          <!-- MATTER-OF-FACT, and deliberately NOT the Why Postmello copy
+               (Patrick, 2026-08-27). This answer used to repeat that panel
+               almost word for word, "with people you approve" included. The
+               panel now opens in Patrick's own voice, and an FAQ that quotes
+               it back at a reader who has just scrolled past it says the
+               argument twice and makes the second one sound rehearsed. Down
+               here the useful answer is mechanical: what the product does
+               instead of chatting. Keep it that way - if this ever starts
+               sounding persuasive again, it has drifted back. -->
+          <div class="faq-answer">There is no chat. A letter is made on a desk - handwritten, drawn or typed - addressed to one person, and sent as a whole. Nothing shows who is online or whether a letter has been read, and a letter can&rsquo;t be passed along to someone new.</div>
+        </details>
+        <!-- Sits at #2 because it is a who-is-this-for question and belongs
+             with the positioning, not down in the features cluster: what is
+             it, then who is it for, then is it safe. Deliberately NOT next to
+             "Can adults have their own desk?" - the answer already ends on
+             adult desks, and back-to-back the two read as one thought said
+             twice.
+
+             THE NUMBER IS GONE (Patrick, 2026-08-29), and this answer is his
+             words. It used to read "designed especially for kids around 6-14",
+             hedged with "especially" and "around" so the band was a centre of
+             gravity rather than a gate - which is a lot of work for a number
+             that a reader still meets as a gate, and that the product does not
+             enforce anywhere. What replaces it says the same thing by
+             describing what actually differs with age: younger kids draw,
+             older ones write or type. LEGAL_QUESTIONS.md Q2 (2026-08-18)
+             positions Postmello as all-ages private correspondence and keeps
+             the App Store listing out of the Kids Category; the copy now
+             matches that instead of quietly contradicting it. Do not
+             reintroduce a band here or anywhere else - this page was the only
+             place one existed. -->
+        <details class="faq-item" data-cat="philosophy">
+          <summary>
+            <span>What ages is Postmello for?</span>
+            <span class="faq-chevron" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></span>
+          </summary>
+          <div class="faq-answer">There&rsquo;s no fixed age. Younger kids might mostly draw, older kids might write or type, and adults can have desks of their own. If someone enjoys making and receiving letters, Postmello is for them.</div>
+        </details>
+        <details class="faq-item" data-cat="safety">
+          <summary>
+            <span>How is unapproved contact prevented?</span>
+            <span class="faq-chevron" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></span>
+          </summary>
+          <!-- The last sentence used to be "Both sides approve before letters
+               can be exchanged", the same workflow claim the safety card
+               dropped on 2026-08-27 and for the same reason: it describes how
+               a Postmello friendship is set up and is not literally true of
+               the email lane, where the adult approves an address and the
+               person at the other end never approves anything. The guarantee
+               is what holds across both.
+
+               Worded differently from the card on purpose. The card says
+               "Only approved friends can send letters or replies to the
+               desk"; this answers "how is it prevented", so it ends on the
+               adult doing the approving. Same fact, two registers - if either
+               is rewritten, check the other still agrees. -->
+          <div class="faq-answer">Unapproved mail is impossible by construction. Postmello has no public user search, no usernames, and no algorithmic recommendations. Friends are added through the PIN-protected controls behind the Postmello Key. No letter or reply reaches a desk from anyone an adult hasn&rsquo;t approved.</div>
+        </details>
+        <details class="faq-item" data-cat="family">
+          <summary>
+            <span>Can someone write to a Postmello desk by email?</span>
+            <span class="faq-chevron" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></span>
+          </summary>
+          <!-- BROADENED (Patrick, 2026-08-27). It asked "How do grandparents
+               without iPads receive and send letters?", which is one use of
+               the lane described as if it were the whole lane. This is the
+               place the site says out loud that having Postmello does not
+               stop somebody using email - the homepage section states it, and
+               a reader who wants it confirmed comes here. -->
+          <div class="faq-answer">Yes. An adult can approve an email address for a desk. Once approved, that person exchanges letters with the desk from their regular inbox - whether or not they also use Postmello. Their words arrive as a typewritten letter; links, photos and attachments never reach the desk. If they get Postmello later, every letter is waiting for them there.</div>
+        </details>
+        <!-- "Can adults have their own desk?" replaced "How are past letters
+             stored in friend drawers?" (Patrick, 2026-08-23). The storage
+             answer was technically interesting and nowhere near the six
+             biggest things a new household wonders. This one earns its slot
+             for a reason the rest of the page creates: the homepage talks
+             about kids constantly and reasonably, and something has to say
+             out loud that the product is not only for them. -->
+        <details class="faq-item" data-cat="features">
+          <summary>
+            <span>How many collections can a desk show at once?</span>
+            <span class="faq-chevron" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></span>
+          </summary>
+          <div class="faq-answer">A collection is yours for good once you buy it, including if a Membership lapses. A desk shows up to <span data-price="collections_shelf">8</span> at a time and you can swap which ones whenever you like &mdash; everything on a desk is stored on the device itself, which is what lets it work with no connection at all.</div>
+        </details>
+        <details class="faq-item" data-cat="features">
+          <summary>
+            <span>Can adults have their own desk?</span>
+            <span class="faq-chevron" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></span>
+          </summary>
+          <div class="faq-answer">Yes. Adults can have a desk of their own and write, draw, send and receive letters just like anyone else.</div>
+        </details>
+        <details class="faq-item" data-cat="features">
+          <summary>
+            <span>Can siblings share one iPad?</span>
+            <span class="faq-chevron" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></span>
+          </summary>
+          <!-- "mailbox", not "private mailbox" (Patrick, 2026-08-27). A desk
+               PIN is OPTIONAL, so "private" promises something the product
+               does not guarantee: it implies one sibling literally cannot
+               open another's desk, and on a device where neither desk has a
+               PIN set, they can. "Their own" at the head of the sentence
+               already carries the possession, which is the true part. Do not
+               put the adjective back without making the PIN mandatory. -->
+          <div class="faq-answer">Yes! A Membership supports multiple individual desks on one device. Each person gets their own personalized desk style, engraved nameplate, mailbox, sticker drawer, and friend drawers. Siblings can even write between desks at home.</div>
+        </details>
+        <!-- The one mundane "before I try this" question the list was missing
+             (Patrick, 2026-08-23). Every photograph on this page shows ink
+             going onto paper, and a page that beautiful about handwriting can
+             quietly persuade a household it needs hardware it does not have.
+             The answer is a plain no - `drawingPolicy = .anyInput` in
+             PKCanvasRepresentable.swift means a finger draws exactly where a
+             Pencil does, and the desk typewriter is an opt-in an admin
+             switches on (default OFF for new desks since 2026-08-24 - this
+             answer said the opposite until then). Sits beside the
+             family-iPad question because both are the
+             same worry: what do we have to own before this works? -->
+        <details class="faq-item" data-cat="features">
+          <summary>
+            <span>Do we need an Apple Pencil?</span>
+            <span class="faq-chevron" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></span>
+          </summary>
+          <div class="faq-answer">No. A finger draws everywhere an Apple Pencil does, and a typewriter can be switched on for kids who would rather type. A Pencil makes the ink feel closest to real handwriting, but Postmello never asks for one.</div>
+        </details>
+        <details class="faq-item" data-cat="safety">
+          <summary>
+            <span>Is my child&rsquo;s data and artwork kept private?</span>
+            <span class="faq-chevron" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></span>
+          </summary>
+          <!-- "Yes", not "Absolutely" (Patrick, 2026-08-27). "Absolutely" is
+               rhetorically stronger than anything an online service can
+               literally promise, and an over-claim is the wrong note in the
+               one answer a reader is checking for over-claims. A plain yes
+               followed by properties somebody could hold us to is the more
+               trustworthy shape. "Personal data", not "data": letters are
+               data too, and the promise is about what is sold. -->
+          <div class="faq-answer">Yes. No ads, no selling personal data, and letters travel only between approved friends. Postmello is supported by the people who use it, so it can stay private, mellow, and built for them - not advertisers.</div>
+        </details>
+      </div>
+
+      <div class="faq-ask">
+        <h3>Have another question?</h3>
+        <p>Write to the creators directly at <strong>hello@postmello.com</strong>. We reply to every letter.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="airmail" aria-hidden="true"></div>
+  <div class="shell">
+    <div class="footer-main">
+
+      <!-- NO LOGO HERE (Patrick, 2026-08-26). The sticky header carries the
+           mailbox + wordmark lockup and is still on screen at the bottom of the
+           page, so a second one made Postmello introduce itself twice within a
+           few hundred pixels. The airmail stripe above already announces the
+           footer, and it does that job better than another wordmark. Do not put
+           the lockup back to "balance" this column - the principle line is the
+           balance. -->
+      <div class="footer-brand">
+        <!-- Set as a quiet serif line, not a headline: this is the brand
+             principle a reader who scrolled the whole page should land on, and
+             it is the hero H1 verbatim so the page closes on the sentence it
+             opened with. -->
+        <p class="footer-principle">A quiet place for letters.</p>
+        <div class="footer-actions">
+          <span class="footer-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg> <span>No ads &bull; Approved friends only</span></span>
+        </div>
+      </div>
+
+      <div class="footer-links">
+        <p class="footer-label">Explore</p>
+        <!-- These are the SECTION NAMES, verbatim (Patrick, 2026-08-23).
+             The footer was the last place on the site still running the old
+             nomenclature - The Postal Ritual, Desks & Stationery, Email Bridge
+             for Relatives, Safety & Keycodes - names the page itself stopped
+             using in the same pass that renamed those headings. A footer link
+             that does not match the heading it lands on is a small broken
+             promise, and it is the kind that never gets noticed. If a heading
+             is renamed again, rename it here in the same commit. -->
+        <ul>
+          <li><a href="#how-it-works">How it works</a></li>
+          <li><a href="#desks">Collections</a></li>
+          <li><a href="#grandparents">Letters by Email</a></li>
+          <li><a href="#safety">Safety</a></li>
+          <li><a href="#membership">Membership</a></li>
+          <li><a href="/blog/">Blog</a></li>
+        </ul>
+      </div>
+
+      <!-- THE APP STORE COLUMN. Deliberately NOT a card.
+
+           A card stood here through two occupants - the Quiet Post Journal,
+           then the beta ask - and both earned it: each held a form, and a
+           form wants a container. When the form went the box stayed, and a
+           bordered panel around a store badge makes the badge look like it
+           needs framing. It does not. A badge and one line, in a footer
+           column beside the others, is the ordinary shape.
+
+           WHAT ELSE WENT WITH THE BOX: a "GET POSTMELLO" heading (the badge
+           says that), and a fine-print line reading "No ads. No account
+           needed to look around." The second was simply FALSE - Postmello
+           has no anonymous mode, there is nothing to look around without an
+           account, and the trust note in the brand column already carries
+           the no-ads half. Never restate a benefit in the footer that the
+           brand column has already made.
+
+           THE #request-an-invite ANCHOR ALSO WENT, and its absence is the
+           right answer rather than a regression. Nothing on the site links to
+           it any more - the other eleven footers point at the store directly -
+           so its only callers are old beta emails, and a fragment that
+           matches nothing simply lands the reader at the top of the page.
+           That top is now a hero whose one action is this same badge, which
+           is a better destination than the footer ever was. It was also, as
+           an empty <span> among the grid children, silently eating a cell of
+           .footer-main and pushing this column onto its own row. -->
+      <div class="footer-get">
+        <a class="appstore-badge" data-brand-href="/app_store_url"
+           href="https://apps.apple.com/app/id6806487006">
+          <img src="/assets/app-store-badge.svg" width="120" height="40"
+               alt="Download Postmello on the App Store" />
+        </a>
+        <p class="footer-get-line">Postmello is on the App Store for iPad.</p>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <div>&copy; 2026 Postmello</div>
+      <div class="footer-bottom-links">
+        <a href="/safety.html">Safety</a>
+        <span aria-hidden="true">&bull;</span>
+        <a href="/privacy.html">Privacy</a>
+        <span aria-hidden="true">&bull;</span>
+        <a href="/terms.html">Terms</a>
+        <span aria-hidden="true">&bull;</span>
+        <a href="/support.html">Help</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- (THE INVITE DIALOG stood here until 2026-09-03. A native <dialog>
+     holding the same form as the footer card, opened by four buttons that
+     told it which one was clicked, so nobody was scrolled ~3,000px from the
+     pricing cards to a form. Both the dialog and the form went with the
+     private beta; the four buttons are App Store badges now, and a badge
+     goes straight to the store rather than opening anything.
+
+     The note below about declaration order outlived it, and is left because
+     the next person to add markup a script reaches for needs it.) -->
+
+<!-- The dialog is declared ABOVE the script on purpose. It used to sit at the
+     very end of the body, after it, and getElementById returned null when the
+     script ran - so no card ever got a click listener and every "Request an
+     invite" button did nothing. The page looked completely fine; only a probe
+     showed dialog.open staying false. Markup the script reaches for has to be
+     parsed before the script runs. -->
+<script>
+/* Five small behaviours. No framework, no build - if this script never runs,
+   the page still reads: the header is simply always transparent, the first
+   desk stays on the stage, papers stay on top of the stationery table, every
+   FAQ can be opened, and the mobile menu link list is reachable from the
+   footer's own Explore column. */
+(function () {
+  'use strict';
+
+  /* 1 - the header gains its bar once the page moves. */
+  var header = document.getElementById('site-header');
+  var onScroll = function () {
+    header.classList.toggle('is-scrolled', window.scrollY > 20);
+  };
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  /* 2 - mobile menu. */
+  var toggle = document.getElementById('nav-toggle');
+  var drawer = document.getElementById('mobile-nav');
+  toggle.addEventListener('click', function () {
+    var open = toggle.getAttribute('aria-expanded') === 'true';
+    toggle.setAttribute('aria-expanded', String(!open));
+    drawer.classList.toggle('is-open', !open);
+  });
+  drawer.addEventListener('click', function (e) {
+    if (e.target.closest('a')) {
+      toggle.setAttribute('aria-expanded', 'false');
+      drawer.classList.remove('is-open');
+    }
+  });
+
+  /* 3 - the desk stage. The chips carry their own copy in data attributes, so
+     swapping desks is a text swap and never a fetch. */
+  var chips = document.querySelectorAll('.desk-chip');
+  var stageImg = document.getElementById('desk-stage-img');
+  var stageName = document.getElementById('desk-stage-name');
+  var stageTag = document.getElementById('desk-stage-tagline');
+  var stage = document.getElementById('desk-stage');
+  /* Both pickers below call themselves ARIA tabs, so they owe the tabs
+     keyboard contract: arrows move within the group, Home/End jump to its
+     ends, and only the selected tab sits in the page's tab order (a roving
+     tabindex) so Tab steps past the group instead of walking all six desks.
+     Claiming the role without the keys is worse than plain buttons - a screen
+     reader tells the visitor to press arrows, and nothing happens. */
+  function wireTabs(list, activate) {
+    var items = Array.prototype.slice.call(list);
+    if (!items.length) return;
+    function roving() {
+      items.forEach(function (t) {
+        t.tabIndex = t.getAttribute('aria-selected') === 'true' ? 0 : -1;
+      });
+    }
+    items.forEach(function (item, i) {
+      item.addEventListener('keydown', function (e) {
+        var to = null;
+        if (e.key === 'ArrowRight' || e.key === 'ArrowDown') to = items[(i + 1) % items.length];
+        else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') to = items[(i - 1 + items.length) % items.length];
+        else if (e.key === 'Home') to = items[0];
+        else if (e.key === 'End') to = items[items.length - 1];
+        if (!to) return;
+        e.preventDefault();
+        activate(to);
+        roving();
+        to.focus();
+      });
+      /* Runs after the click handler that changed aria-selected. */
+      item.addEventListener('click', roving);
+    });
+    roving();
+  }
+
+  function showDesk(chip) {
+    Array.prototype.forEach.call(chips, function (c) {
+      c.setAttribute('aria-selected', String(c === chip));
+    });
+    stageImg.src = chip.dataset.img;
+    stageImg.alt = 'The ' + chip.dataset.name + ' desk';
+    stageName.innerHTML = chip.dataset.name;
+    stageTag.innerHTML = chip.dataset.tagline;
+    stage.setAttribute('aria-labelledby', chip.id);
+  }
+  Array.prototype.forEach.call(chips, function (chip) {
+    chip.addEventListener('click', function () { showDesk(chip); });
+  });
+  wireTabs(chips, showDesk);
+
+  /* 4 - stationery tabs. */
+  var tabs = document.querySelectorAll('.tabs [data-tab]');
+  function showStationery(tab) {
+    Array.prototype.forEach.call(tabs, function (t) {
+      var on = t === tab;
+      t.setAttribute('aria-selected', String(on));
+      document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
+    });
+  }
+  Array.prototype.forEach.call(tabs, function (tab) {
+    tab.addEventListener('click', function () { showStationery(tab); });
+  });
+  wireTabs(tabs, showStationery);
+
+  /* THE PANEL BOX NO LONGER HOLDS AT THE TALLEST TAB (2026-08-31). It used
+     to: the four panels were within a couple of hundred pixels of each other,
+     and locking the box stopped the page resizing under the reader's cursor.
+     Once papers went to three across, that stopped being a kindness - nine
+     large sheets are around 1200px while six stamps in one row are about 150,
+     so the lock would have parked every small tab in a mostly empty box of
+     paper-sized whitespace.
+
+     Letting each panel take its own height is the better trade here, and it
+     costs less than it sounds: the tab strip sits ABOVE the panels, so the
+     control the reader just clicked does not move - only the content below
+     reflows, which is what a set of tabs is expected to do. */
+
+  /* (5 and 6 - the beta form's fetch handler and the invite dialog's
+     opener - were removed on 2026-09-03 with the private beta. Between them
+     they were roughly a third of this script: a POST to the beta-request
+     edge function, its five reply states, a Turnstile token reset on retry
+     because a token is single-use, and the dialog wiring.
+
+     The numbering below is left alone deliberately. Renumbering 7 to 5 would
+     make every earlier note in this file, and every commit message that cites
+     a section by number, point at the wrong block. The gap is the record.) */
+
+  /* 7 - FAQ: one open at a time, plus the category filter. Filtering closes
+     whatever it hides, so a hidden panel never keeps a stale open state. */
+  var items = document.querySelectorAll('.faq-item');
+  Array.prototype.forEach.call(items, function (item) {
+    item.addEventListener('toggle', function () {
+      if (!item.open) return;
+      Array.prototype.forEach.call(items, function (other) {
+        if (other !== item) other.open = false;
+      });
+    });
+  });
+
+  /* (The category filter's handler lived here. The chips went on 2026-08-23 -
+     six questions do not need filtering. Without it nothing ever sets
+     item.hidden, so all six render open to being opened.) */
+})();
+</script>
+
+<!-- (A <noscript> block stood here. It hid the beta forms and offered a
+     mailto instead, because a form with no action would have silently failed
+     without the script. Nothing on this page needs it now: the badges are
+     plain links, and a link works with every script on the page blocked. That
+     is a better fallback than the one it replaces.) -->
+
+<script>
+// An auth redirect that names no `redirect_to` falls back to Supabase's
+// site_url, which is THIS page. That is not hypothetical: a password reset
+// triggered from the Supabase dashboard sends no redirect_to, so the adult
+// lands on the marketing homepage with the real answer sitting unread in the
+// URL fragment (2026-08-28 — "I only saw the website").
+//
+// The app itself always names a landing page, so a reset started IN Postmello
+// already arrives at /reset and a confirmation at /confirmed. This is the
+// backstop for the links that do not.
+//
+// Deliberately narrow: it forwards only when the fragment carries an actual
+// auth ERROR, and it never guesses at a bare `code` — a code with no `type` is
+// ambiguous between recovery and signup, and sending someone to the wrong
+// instructions is worse than leaving them here. Those pages own the wording;
+// this only hands the fragment to whichever one owns it.
+(function () {
+  try {
+    var q = new URLSearchParams(window.location.search);
+    var f = new URLSearchParams((window.location.hash || '').replace(/^#/, ''));
+    var get = function (name) { return q.get(name) || f.get(name); };
+    if (!get('error') && !get('error_code')) return;
+    var type = (get('type') || '').toLowerCase();
+    var page = (type === 'signup' || type === 'email') ? '/confirmed' : '/reset';
+    window.location.replace(page + window.location.search + window.location.hash);
+  } catch (e) {
+    // A broken backstop must never take the homepage with it.
+  }
+})();
+</script>
+
+</body>
+</html>

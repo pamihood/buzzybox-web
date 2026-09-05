@@ -1,0 +1,36 @@
+/* Third-pass prototype only. The production website and first pass are untouched. */
+:root { --hero-aside:.63; }
+.concept-return { position:fixed; z-index:1000; bottom:14px; left:14px; background:#fcf6ec; color:#493b2e; border:1px solid #c9b69c; font:600 .8125rem/1.2 system-ui,sans-serif; padding:12px 16px; border-radius:30px; box-shadow:0 3px 20px #493b2e15; text-decoration:none; }
+.hero__lede { max-width:29em; text-wrap:pretty; }
+.hero-fade { height:clamp(44px,6vw,88px); }
+.section { padding-block:clamp(3.5rem,6.5vw,6rem); }
+.parent-invitation { padding:clamp(2rem,4vw,4rem) 0 clamp(3.5rem,6vw,6rem); }
+.invitation-grid { display:grid; grid-template-columns:1fr 1fr; gap:clamp(2.5rem,7vw,7rem); align-items:start; max-width:72rem; }
+.invitation-heading .eyebrow { margin-bottom:1.1rem; }
+.invitation-heading h2 { font-family:var(--font-serif); font-size:clamp(2rem,3.4vw,3.15rem); line-height:1.2; font-weight:500; letter-spacing:-.035em; }
+.invitation-heading h2 em { font-weight:400; color:#87664b; }
+.invitation-copy { padding-top:1.9rem; }
+.invitation-copy p { font-size:1.0625rem; line-height:1.7; color:var(--ink-700); margin-bottom:1.25rem; text-wrap:pretty; }
+.invitation-copy .invitation-lead { font-size:1.2rem; color:var(--ink-900); line-height:1.6; }
+.invitation-copy .arrow-link { font-size:.9375rem; margin-top:.25rem; }
+#how-it-works { padding-top:clamp(2rem,4vw,4rem); }
+#how-it-works>.shell { border-top:1px solid var(--line); padding-top:clamp(3rem,6vw,5rem); }
+.desk-shot { max-width:58rem; border-radius:14px; box-shadow:0 18px 32px -18px #66462740; }
+.step-card { box-shadow:none; }
+#real-letters { background:var(--parchment-200); }
+#philosophy .sec-head { max-width:49rem; }
+#philosophy .sec-head h2 { font-size:clamp(2rem,3.8vw,3rem); }
+#safety { background:transparent; padding-block:clamp(3rem,5vw,4.5rem); }
+#safety .sec-head { margin-bottom:2.5rem; }
+#safety .sec-head h2 { font-size:clamp(1.875rem,3vw,2.5rem); max-width:25ch; margin-inline:auto; }
+#safety .safety-art { height:5rem; }
+#safety .safety-card h3 { font-size:1.125rem; }
+#testimonials { padding-block:4rem; }
+#philosophy { padding-block:4.5rem; }
+#membership .plan { box-shadow:none; }
+a:focus-visible,button:focus-visible,summary:focus-visible { outline:3px solid #795939; outline-offset:5px; }
+@media(max-width:767px) { .invitation-grid { grid-template-columns:1fr; gap:1.4rem; } .invitation-copy { padding-top:0; } .invitation-heading h2 { font-size:clamp(1.875rem,6vw,2.8rem); } .invitation-copy .invitation-lead { font-size:1.125rem; } .parent-invitation { padding-bottom:2.5rem; } }
+@media(prefers-reduced-motion:reduce) { *,*::before,*::after { scroll-behavior:auto!important; animation:none!important; transition:none!important; } }
+
+.hero__copy h1 { text-wrap:balance; }
+.hero__lede { max-width:32em; }

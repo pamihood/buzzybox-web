@@ -1,0 +1,95 @@
+/* Shared presentation of original Postmello artwork, scoped to pass four. */
+.header .brand,.footer .brand { display:flex; align-items:center; gap:12px; text-decoration:none; }
+.header .brand .brand-mark { width:46px; height:46px; object-fit:contain; }
+.header .brand .brand-wordmark { width:177px; height:auto; }
+.footer .brand .brand-mark { width:36px; height:36px; object-fit:contain; }
+.footer .brand .brand-wordmark { width:150px; height:auto; }
+.site-header .brand-mark { width:2.625rem; height:2.625rem; }
+.header { gap:26px; }
+.header nav { gap:26px; }
+.opening .hero h1 { font-size:clamp(2.8rem,4.95vw,4.25rem); }
+.fairy-showcase { margin-block:20px; color:#44392e; }
+#desks .fairy-showcase { border-top:1px solid #d4c1a7; padding-top:64px; margin-top:65px; }
+.fairy-heading { display:flex; justify-content:space-between; align-items:flex-end; gap:45px; margin-bottom:46px; }
+.fairy-eyebrow { color:#806a55; font:600 .75rem/1.5 var(--font-sans,'DM Sans',sans-serif); letter-spacing:.13em; text-transform:uppercase; margin:0 0 18px; }
+.fairy-heading h2 { font-family:var(--font-serif,Lora,Georgia,serif); font-size:clamp(2.2rem,3.7vw,3.25rem); line-height:1.2; letter-spacing:-.035em; font-weight:400; margin:0; }
+.fairy-heading h2 em { font-weight:400; color:#80634e; }
+.fairy-heading>p { max-width:360px; margin:0 0 4px; font-size:1rem; line-height:1.7; color:#6e6255; }
+.fairy-spread { display:grid; grid-template-columns:1.1fr 1fr; gap:48px; align-items:center; }
+.fairy-spread figure { margin:0; min-width:0; }
+.fairy-paper-pair { display:flex; align-items:center; gap:4%; padding:12px 12px 24px; }
+.fairy-paper-pair img { width:48%; aspect-ratio:3/4; height:auto; object-fit:contain; box-shadow:0 11px 18px #67573920; }
+.fairy-paper-pair img:first-child { transform:rotate(-5deg); }
+.fairy-paper-pair img:last-child { transform:rotate(4deg); }
+.fairy-spread figcaption { text-align:center; color:#6e6255; font-size:.875rem; line-height:1.5; margin-top:15px; }
+.fairy-small-goods { display:grid; grid-template-columns:1fr 1fr; gap:32px 30px; }
+.fairy-envelopes { grid-column:1/-1; }
+.fairy-envelopes>div { display:flex; align-items:center; gap:5%; padding:4px 8px; }
+.fairy-envelopes img { width:47.5%; height:auto; filter:drop-shadow(0 7px 7px #6757391c); }
+.fairy-envelopes img:first-child { transform:rotate(-5deg); }
+.fairy-envelopes img:last-child { transform:rotate(5deg); }
+.fairy-stamps>div,.fairy-stickers>div { display:flex; gap:10px; align-items:center; justify-content:center; min-height:92px; }
+.fairy-stamps img,.fairy-stickers img { width:calc((100% - 20px)/3); max-height:85px; object-fit:contain; filter:drop-shadow(0 3px 3px #67573918); }
+.fairy-note { text-align:center; color:#806a55; font-size:.8125rem; line-height:1.6; margin:36px 0 0; }
+.stationery-section { padding-block:82px 60px; }
+.collection-gallery { max-width:1040px; margin:42px auto 0; border-top:1px solid #d4c1a7; padding-top:40px; }
+.collection-gallery-heading { display:flex; justify-content:space-between; align-items:flex-end; gap:38px; }
+.collection-gallery-heading h3 { font-family:Lora,Georgia,serif; font-size:2.25rem; line-height:1.2; letter-spacing:-.035em; }
+.collection-gallery-heading p { font-size:1rem; margin:0 0 9px; }
+.collection-gallery-heading .fairy-eyebrow { font-size:.75rem; margin-bottom:16px; }
+.collection-gallery-heading .collection-price { color:#73583c; font-size:.9375rem; font-weight:600; }
+.collection-gallery-heading .collection-permanent { font-size:.8125rem; color:#6e6255; }
+.collection-icon-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:28px; margin-top:35px; }
+.collection-icon-grid figure { margin:0; text-align:center; }
+.collection-icon-grid img { width:100%; height:175px; object-fit:contain; filter:drop-shadow(0 7px 7px #6757391a); }
+.collection-icon-grid figcaption { margin-top:20px; font-family:Lora,Georgia,serif; font-size:1.125rem; }
+.collection-gallery>.text-link { margin-top:34px; }
+.family-voices { padding-block:80px 24px; }
+.voices-heading { text-align:center; margin-bottom:38px; }
+.voices-heading h2 { font-size:clamp(2.2rem,3.5vw,3rem); }
+.voices-grid { display:grid; grid-template-columns:1fr 1fr; gap:36px; max-width:1050px; margin:auto; }
+.family-note { margin:0; min-width:0; padding:38px; display:flex; flex-direction:column; justify-content:space-between; min-height:310px; background:url('/assets/testimonial-paper.png') center/100% 100% no-repeat; filter:drop-shadow(0 8px 10px #67573916); }
+.family-note:nth-child(2) { background-image:url('/assets/testimonial-paper-2.png'); }
+.family-note blockquote { margin:0; }
+.family-note blockquote p { font:400 1.3rem/1.65 Lora,Georgia,serif; letter-spacing:-.015em; margin:0 0 28px; }
+.family-note figcaption { display:flex; align-items:center; gap:12px; font-size:.875rem; }
+.family-note figcaption span { color:#6e6255; }
+@media(max-width:1100px) {
+  .header nav { gap:20px; }
+  .header .brand { gap:9px; }
+  .header .brand .brand-wordmark { width:150px; }
+  .header .brand .brand-mark { width:42px; height:42px; }
+  .fairy-spread { gap:30px; }
+  .fairy-small-goods { gap:25px 20px; }
+  .collection-icon-grid { gap:20px; }
+  .collection-icon-grid img { height:145px; }
+}
+@media(max-width:760px) {
+  .header { flex-wrap:wrap; gap:18px; }
+  .header nav { width:100%; justify-content:space-between; gap:15px; }
+  .header .brand .brand-mark { width:42px; height:42px; }
+  .header .brand .brand-wordmark { width:158px; }
+  .opening .hero h1 { font-size:clamp(2.5rem,8.4vw,3.6rem); }
+  .fairy-heading { display:block; margin-bottom:32px; }
+  .fairy-heading h2 { font-size:2.3rem; }
+  .fairy-heading>p { margin-top:20px; }
+  .fairy-spread { grid-template-columns:1fr; gap:30px; }
+  .fairy-paper-pair { max-width:430px; margin:auto; }
+  .fairy-small-goods { max-width:470px; width:100%; margin:auto; gap:25px; }
+  .fairy-envelopes>div { padding-inline:10px; }
+  .fairy-spread figcaption { margin-top:10px; }
+  .fairy-stamps img,.fairy-stickers img { max-height:74px; }
+  .fairy-note { margin-top:25px; }
+  .stationery-section { padding-block:55px 35px; }
+  #desks .fairy-showcase { margin-top:40px; padding-top:40px; }
+  .collection-gallery { margin-top:28px; padding-top:28px; }
+  .collection-gallery-heading { display:block; }
+  .collection-gallery-heading h3 { font-size:2rem; margin-bottom:25px; }
+  .collection-icon-grid { grid-template-columns:1fr 1fr; gap:30px 18px; margin-top:26px; }
+  .collection-icon-grid img { height:145px; }
+  .collection-icon-grid figcaption { font-size:1rem; margin-top:12px; }
+  .family-voices { padding-block:55px 0; }
+  .voices-grid { grid-template-columns:1fr; gap:26px; }
+  .family-note { padding:30px; min-height:260px; }
+  .family-note blockquote p { font-size:1.1875rem; }
+}

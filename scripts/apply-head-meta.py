@@ -14,34 +14,18 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent   # repo root, not scripts
 ORIGIN = "https://postmello.com"          # flip here at the domain move
 CARD = f"{ORIGIN}/assets/og-card.jpg"
 
-# Rubik for the mark, Nunito for the voice, DM Mono for the apparatus.
-# Families must be listed ALPHABETICALLY or the css2 API 400s. Nunito is
-# requested as a range so one variable file covers 450 through 800; the other
-# two are single weights, which ship as smaller static instances.
-# display=swap: the fallback stack renders immediately and is replaced when the
-# webfont lands, so a slow CDN costs a reflow rather than invisible text.
+# The selected design uses Lora and DM Sans; code examples retain Courier Prime.
 FONTS = (
     '<link rel="preconnect" href="https://fonts.googleapis.com" />\n'
     '{i}<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />\n'
     '{i}<link rel="stylesheet" href="https://fonts.googleapis.com/css2?'
-    'family=DM+Mono:wght@500&amp;family=Nunito:wght@400..800&amp;'
-    'family=Rubik:wght@600&amp;display=swap" />'
+    'family=Courier+Prime:wght@400;700&amp;family=DM+Sans:wght@400;500;600;700&amp;'
+    'family=Lora:ital,wght@0,400;0,500;1,400;1,500&amp;display=swap" />'
 )
 
-# Every page takes the fonts, including 404 (which takes nothing else — it is
-# noindex and served at any depth, so canonical and og:url are meaningless).
-# `confirmed` and `reset` are here for the same reason 404 is: they take the
-# fonts and nothing else. Both are noindex transactional landings that a
-# Supabase redirect drops someone on once, so a canonical URL and an og:card
-# would be describing a page nobody links to.
-#
-# index.html came OFF this list on 2026-08-23. The homepage was rebuilt on its
-# own design system and loads Fraunces / Plus Jakarta Sans / Courier Prime;
-# this script writes the SHARED trio (Rubik, Nunito, DM Mono), so leaving the
-# homepage here would have added a second, contradictory font link. It stays in
-# PAGES below, because canonical, og:url and the share card are site-wide facts
-# that have nothing to do with which stylesheet a page loads.
+# Public and account pages share fonts. Private letters keep local-only assets.
 FONT_PAGES = [
+    "index.html",
     "support.html", "privacy.html", "terms.html", "safety.html",
     "404.html", "parents.html", "confirmed.html", "reset.html", "blog/index.html",
     "blog/why-i-built-postmello/index.html",
@@ -91,12 +75,10 @@ for rel in FONT_PAGES:
     html = f.read_text(encoding="utf-8")
     anchor = stylesheet_anchor(html)
     indent = " " * (len(anchor) - len(anchor.lstrip()))
-    if "fonts.googleapis.com" in html:
-        print(f"[font] {rel:48} (already linked)")
-        continue
+    html = re.sub(r'<link\b[^>]*href="https://fonts\.(?:googleapis|gstatic)\.com[^>]*>\s*', '', html)
     html = html.replace(anchor, indent + FONTS.format(i=indent) + "\n" + anchor, 1)
     f.write_text(html, encoding="utf-8")
-    print(f"[font] {rel:48} + Rubik, Nunito, DM Mono")
+    print(f"[font] {rel}: Lora, DM Sans, Courier Prime")
 
 for rel, (path, prefix) in PAGES.items():
     f = ROOT / rel

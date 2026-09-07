@@ -6,18 +6,6 @@ options.forEach(button => button.addEventListener('click', () => {
   image.alt = button.dataset.alt;
 }));
 
-const heroKey = new URLSearchParams(window.location.search).get('hero');
-const heroChoice = window.POSTMELLO_HERO_OPTIONS.find(option => option.key === heroKey);
-if (heroChoice) {
-  const title = document.getElementById('hero-title');
-  const emphasis = document.createElement('em');
-  emphasis.textContent = heroChoice.lines[1];
-  title.replaceChildren(document.createTextNode(heroChoice.lines[0]), document.createElement('br'), emphasis);
-  document.getElementById('hero-description').textContent = heroChoice.description;
-  document.title = 'Postmello — ' + heroChoice.lines.join(' ');
-}
-
-
 // The opening header scrolls away naturally. Reuse the same navigation as a
 // fixed white bar only after the entire hero has passed.
 const headerPosition = document.querySelector('.header-position');
@@ -36,7 +24,7 @@ if (headerPosition && opening) {
 const menuButton = document.querySelector('.menu-toggle');
 const mainNavigation = document.getElementById('main-navigation');
 if (menuButton && mainNavigation) {
-  const header = menuButton.closest('.header');
+  const header = menuButton.closest('.header, .site-head');
   const setMenuOpen = (open) => {
     header.classList.toggle('is-menu-open', open);
     menuButton.setAttribute('aria-expanded', String(open));
@@ -61,4 +49,10 @@ if (menuButton && mainNavigation) {
     if (!header.contains(event.relatedTarget)) setMenuOpen(false);
   });
   window.matchMedia('(max-width:760px)').addEventListener('change', () => setMenuOpen(false));
+}
+
+// Keep previously shared homepage section links useful after the redesign.
+if (opening) {
+  const aliases = {'#how-it-works':'#experience', '#desks':'#desk', '#membership':'#pricing', '#grandparents':'#family', '#safety':'#parents', '#request-an-invite':'#pricing'};
+  if (aliases[location.hash]) location.replace(aliases[location.hash]);
 }

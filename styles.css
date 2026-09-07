@@ -2153,3 +2153,56 @@ footer .foot-group a {
   .doc, .card { padding: 26px 20px; }
   .site-head nav { gap: 14px; }
 }
+
+/* Selected Postmello design: supporting pages keep their reading layouts and
+   functional components, with the homepage's paper, ink, and typography. */
+:root {
+  --ink:#443c32; --ink-mark:#443c32; --ink-mid:#51483d;
+  --ink-soft:#706454; --ink-faint:#807568;
+  --paper:#fbf4e7; --paper-alt:#fff9ed; --paper-card:#efe1cb;
+  --card:#fffdf6; --line:#d5c9b7; --line-card:#d1c5b1; --navy:#766049;
+  --font-voice:'DM Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --font-serif:'Lora',Georgia,serif;
+}
+body { font-family:var(--font-voice); font-weight:400; }
+.doc h1,.post h1,.blog-index h1 { font-family:var(--font-serif); font-weight:400; font-size:clamp(2.25rem,4.2vw,3.5rem); line-height:1.17; letter-spacing:-.045em; text-wrap:balance; }
+.doc h2,.post h2,.post-list h2 { font-family:var(--font-serif); font-weight:400; font-size:clamp(1.5rem,2.4vw,2rem); line-height:1.3; letter-spacing:-.03em; }
+.doc h3,.post h3 { font-family:var(--font-serif); font-weight:400; }
+.doc p,.doc li,.post p,.post li,.blog-index>p { font-weight:400; font-size:1.0625rem; line-height:1.75; }
+.post-deck,.post-list-deck { font-weight:400; }
+.doc { border-radius:4px; border-color:var(--line); }
+.post blockquote { border-color:var(--line); font-family:var(--font-serif); font-weight:400; color:var(--ink); }
+.site-head { position:sticky; top:0; z-index:100; width:100%; max-width:none; margin:0; padding:23px max(32px,calc((100% - 1200px)/2)); background:#fffdf9; box-shadow:0 2px 14px #44392e0b; flex-wrap:nowrap; justify-content:space-between; gap:28px; }
+.site-head .site-brand { display:flex; align-items:center; gap:9px; flex-shrink:0; }
+.site-head .site-brand>img { display:block; width:42px; height:42px; }
+.site-head .site-brand>.name { width:158px; height:auto; }
+.site-head nav { gap:26px; margin:0; }
+.site-head nav a { font-size:.875rem; font-weight:500; color:var(--ink); white-space:nowrap; text-decoration:none; }
+.site-head nav a:hover { text-decoration:underline; }
+.site-footer { width:calc(100% - 64px); max-width:1200px; margin:0 auto; padding:32px 0 48px; border:0; background:transparent; box-shadow:none; text-align:center; }
+.site-footer nav { display:flex; align-items:center; justify-content:center; flex-wrap:wrap; gap:16px 30px; }
+.site-footer nav a { display:inline-flex; align-items:center; min-height:44px; margin:0; font-size:.875rem; font-weight:400; color:var(--ink); }
+.site-footer>span { display:block; margin-top:14px; font-size:.75rem; color:var(--ink-soft); }
+.menu-toggle { display:none; }
+a:focus-visible,button:focus-visible,summary:focus-visible { outline:3px solid #937247; outline-offset:5px; }
+@media(max-width:960px) { .site-head { gap:16px; } .site-head nav { gap:15px; } }
+@media(max-width:760px) {
+  .site-head { padding:22px 20px; flex-wrap:wrap; gap:12px; }
+  .site-head nav { width:100%; flex-wrap:wrap; justify-content:space-between; }
+  .site-head.has-menu { flex-wrap:nowrap; }
+  .has-menu .menu-toggle { display:inline-flex; align-items:center; justify-content:center; width:44px; height:44px; padding:10px; border:0; background:transparent; color:var(--ink); cursor:pointer; }
+  .menu-icon { position:relative; display:block; width:22px; height:18px; }
+  .menu-icon span { position:absolute; left:0; width:22px; height:2px; border-radius:2px; background:currentColor; }
+  .menu-icon span:nth-child(1) { top:1px; }
+  .menu-icon span:nth-child(2) { top:8px; }
+  .menu-icon span:nth-child(3) { top:15px; }
+  .is-menu-open .menu-icon span:nth-child(1) { top:8px; transform:rotate(45deg); }
+  .is-menu-open .menu-icon span:nth-child(2) { opacity:0; }
+  .is-menu-open .menu-icon span:nth-child(3) { top:8px; transform:rotate(-45deg); }
+  .site-head.has-menu nav { display:none; position:absolute; top:calc(100% - 8px); right:20px; width:min(280px,calc(100% - 40px)); padding:10px; border:1px solid var(--line); border-radius:12px; background:#fffdf9; box-shadow:0 12px 30px #44392e20; }
+  .site-head.is-menu-open nav { display:flex; flex-direction:column; align-items:stretch; gap:0; }
+  .site-head.has-menu nav a { display:block; padding:13px 14px; border-radius:6px; }
+  .site-head.has-menu nav a:hover { background:var(--paper); }
+  .doc p,.doc li,.post p,.post li { font-size:1rem; }
+  .site-footer { width:calc(100% - 40px); }
+}

@@ -1,113 +1,14 @@
 #!/usr/bin/env python3
-"""Replace the <footer> block on every page with the grouped footer.
-
-One source of truth for the site's sign-off, so the next link cannot land on
-five pages and miss the sixth (which is how Help and Privacy drifted apart in
-the first place).
-
-NOT the homepage's footer, which is a different object on a different
-stylesheet - three columns, the third of which held the beta form and now
-holds the App Store badge. This footer used to link to that column
-(#request-an-invite) because it could not carry the form itself: the form
-needed the homepage's handler, its dialog and Turnstile.
-
-That constraint died with the form (2026-09-03). A badge is an <a> around an
-<img>, so this footer can carry the REAL action rather than a link to where
-the action lives - which is better on every one of these pages, and much
-better on the three served from an unpredictable depth. Explore still links
-back into the homepage's own sections.
-
-The store URL is read from brand.json rather than typed here, for the reason
-that file exists: it is also in four places on the homepage, and a link typed
-in two files is a link that will be updated in one of them.
-"""
-import json
+"""Apply the selected design's compact footer to public and account pages."""
+from pathlib import Path
 import re
-import pathlib
-
-ROOT = pathlib.Path(__file__).resolve().parent.parent   # repo root, not scripts/
-APP_STORE_URL = json.loads(
-    (ROOT / "brand.json").read_text(encoding="utf-8"))["app_store_url"]
-
-# page -> (prefix for root-level files, href for the blog index)
-# index.html is NOT in this map (2026-08-23). The homepage was rebuilt on its
-# own design system and carries its own footer - a three-column brand/links/
-# newsletter block that has nothing in common with the shared one. Running this
-# script over it would replace that footer with the legal pages' version and
-# silently undo the redesign. If the rest of the site is ever brought onto the
-# new system, this map is where the homepage comes back.
-PAGES = {
-    "support.html": ("", "blog/"),
-    "privacy.html": ("", "blog/"),
-    "terms.html": ("", "blog/"),
-    "safety.html": ("", "blog/"),
-    # 404 is served at ANY depth, so its links must be root-absolute.
-    "404.html": ("/", "/blog/"),
-    "blog/index.html": ("../", "./"),
-    "blog/why-i-built-postmello/index.html": ("../../", "../"),
-    "blog/designing-a-desk-not-an-app/index.html": ("../../", "../"),
-    # Added 2026-08-31. All three carried a hand-kept copy of this footer and
-    # were simply missing from the map - which is the drift the script exists
-    # to stop, and it had already happened: a tagline change reached nine
-    # pages and missed these. reset and confirmed are root-absolute for the
-    # same reason 404 is; they are auth landing pages and may be served from
-    # a path this file cannot predict.
-    "parents.html": ("", "blog/"),
-    "reset.html": ("/", "/blog/"),
-    "confirmed.html": ("/", "/blog/"),
-}
-
-FOOTER = """  <footer>
-    <p class="signoff">
-      <img class="signoff-name" src="{p}assets/wordmark.png" alt="Postmello" width="1100" height="215" />
-      <span class="signoff-line">A quiet place for letters.</span>
-      <span class="signoff-trust">No ads <span class="dot" aria-hidden="true">&bull;</span> Approved friends only</span>
-    </p>
-    <nav class="foot-groups" aria-label="Footer">
-      <div class="foot-group">
-        <p class="foot-label">Explore</p>
-        <a href="{home}#how-it-works">How it works</a>
-        <a href="{home}#desks">Collections</a>
-        <a href="{home}#grandparents">Letters by Email</a>
-        <a href="{home}#membership">Membership</a>
-        <a href="{blog}">Blog</a>
-        <a href="{p}support.html">Help</a>
-      </div>
-      <div class="foot-group">
-        <p class="foot-label">Trust</p>
-        <a href="{p}safety.html">Safety</a>
-        <a href="{p}parents.html">For parents</a>
-        <a href="{p}privacy.html">Privacy Policy</a>
-        <a href="{p}terms.html">Terms</a>
-      </div>
-      <div class="foot-group">
-        <p class="foot-label">Contact</p>
-        <a href="mailto:support@postmello.com">support@postmello.com</a>
-        <a class="foot-cta" href="{app_store_url}">
-          <img src="{p}assets/app-store-badge.svg" width="120" height="40"
-               alt="Download Postmello on the App Store" />
-        </a>
-      </div>
-    </nav>
-    <span class="fine">© 2026 Postmello</span>
-  </footer>"""
-
-# <footer\b[^>]*> rather than <footer>: parents.html carried
-# class="site-foot" - inert, styled nowhere, but enough to make the old
-# pattern miss the page and the script exit rather than write it.
-pattern = re.compile(r"[ \t]*<footer\b[^>]*>.*?</footer>", re.S)
-
-for rel, (prefix, blog) in PAGES.items():
-    path = ROOT / rel
-    html = path.read_text(encoding="utf-8")
-    # "/" pages are root-absolute (404 and the auth landing pages, served at
-    # any depth); "/" IS the homepage there, and "/index.html" would only
-    # redirect to it. Everywhere else the homepage is a file beside or above.
-    home = "/" if prefix == "/" else prefix + "index.html"
-    new = FOOTER.format(p=prefix, blog=blog, home=home,
-                        app_store_url=APP_STORE_URL)
-    html, n = pattern.subn(lambda _m: new, html, count=1)
-    if n != 1:
-        raise SystemExit(f"!! {rel}: expected one <footer>, replaced {n}")
-    path.write_text(html, encoding="utf-8")
-    print(f"[footer] {rel}")
+ROOT = Path(__file__).resolve().parent.parent
+PAGES = ['index.html', 'support.html', 'privacy.html', 'terms.html', 'safety.html', 'parents.html', '404.html', 'confirmed.html', 'reset.html', 'blog/index.html', 'blog/why-i-built-postmello/index.html', 'blog/designing-a-desk-not-an-app/index.html']
+FOOTER = '<footer class="wrap footer site-footer"><nav aria-label="Footer"><a href="/privacy.html">Privacy</a><a href="/safety.html">Safety</a><a href="/terms.html">Terms</a><a href="/support.html">Support</a><a href="/blog/">Blog</a></nav><span>© 2026 Postmello</span></footer>'
+for rel in PAGES:
+    p = ROOT / rel
+    html, count = re.subn(r'<footer\b[^>]*>.*?</footer>', lambda _: FOOTER, p.read_text(), count=1, flags=re.S)
+    if count != 1:
+        raise SystemExit(f'{rel}: expected one footer')
+    p.write_text(html)
+    print(f'[footer] {rel}')

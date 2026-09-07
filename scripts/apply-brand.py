@@ -47,7 +47,7 @@ TAGS = "span|p|h1|h2|a|button"
 
 def normalize(text):
     """Collapse whitespace, so a hand-wrapped line still counts as equal."""
-    return " ".join(text.split())
+    return " ".join(re.sub(r"<[^>]+>", " ", text).split())
 
 
 def main():
@@ -93,6 +93,17 @@ def main():
             disagreements.append((key, have, want))
             html = html[: match.start(2)] + want + html[match.end(2):]
             written += 1
+
+    letter_path = ROOT / "letter" / "index.html"
+    letter_html = letter_path.read_text(encoding="utf-8")
+    fallback = re.compile(r"(var appUrl = data\.get_app_url \|\| ')([^']*)(')")
+    match = fallback.search(letter_html)
+    if not match:
+        raise SystemExit("!! letter/index.html: missing App Store fallback")
+    if match.group(2) != brand["app_store_url"]:
+        disagreements.append(("letter App Store fallback", match.group(2), brand["app_store_url"]))
+        if not args.check:
+            letter_path.write_text(fallback.sub(lambda m: m.group(1) + brand["app_store_url"] + m.group(3), letter_html), encoding="utf-8")
 
     if args.check:
         if disagreements:

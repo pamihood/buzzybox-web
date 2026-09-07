@@ -5,7 +5,7 @@ window.POSTMELLO_HERO_OPTIONS = [
       "A quiet place",
       "for letters."
     ],
-    "description": "Write and draw letters to friends you approve. A space of their own, while texting can wait.",
+    "description": "Write and draw digital letters with friends and family. Keep in touch, while texting and social media can wait.",
     "note": "My recommendation: the creative offer first, followed by the parent’s reason to care."
   },
   {

@@ -4,7 +4,6 @@ options.forEach(button => button.addEventListener('click', () => {
   const image = document.getElementById('desk-image');
   image.src = button.dataset.image;
   image.alt = button.dataset.alt;
-  document.getElementById('desk-label').textContent = button.dataset.label;
 }));
 
 const heroKey = new URLSearchParams(window.location.search).get('hero');

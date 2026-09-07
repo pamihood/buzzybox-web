@@ -27,6 +27,7 @@ em { color:var(--accent); font-weight:400; }
 .brand img { width:185px; }
 .header nav,.footer nav { display:flex; align-items:center; gap:32px; }
 .header nav a,.footer nav a { font-size:.875rem; text-decoration:none; }
+.header nav a { font-weight:500; }
 .header nav a:hover,.footer nav a:hover { text-decoration:underline; }
 .hero { display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:center; padding-block:38px 60px; }
 .hero-copy { padding-block:32px; }
@@ -44,7 +45,6 @@ em { color:var(--accent); font-weight:400; }
 .intro { display:grid; grid-template-columns:1fr 1fr; gap:9%; border-top:1px solid var(--line); padding-top:70px; }
 .intro h2 { font-size:clamp(2.1rem,3.7vw,3.2rem); }
 .intro-copy { padding-top:38px; }
-.intro-copy p:first-child { font-size:1.25rem; line-height:1.6; }
 .text-link { font-size:.9375rem; font-weight:500; display:inline-flex; align-items:center; gap:25px; text-decoration:none; border-bottom:1px solid #b6a18b; padding-bottom:6px; margin-top:10px; }
 .text-link:hover { border-color:var(--ink); }
 .text-link span { font-size:1.125rem; }
@@ -55,17 +55,12 @@ em { color:var(--accent); font-weight:400; }
 .desk-description p { margin:0; }
 .desk-display { margin:0 auto; max-width:960px; }
 .desk-display>img { width:100%; height:auto; aspect-ratio:auto; object-fit:contain; border-radius:7px; box-shadow:0 17px 30px -14px #73543445; }
-.desk-display figcaption { display:flex; justify-content:space-between; gap:20px; font-size:.75rem; margin-top:20px; color:var(--muted); }
 .desk-options { display:flex; justify-content:center; gap:24px; flex-wrap:wrap; margin-top:32px; }
 .desk-options button { cursor:pointer; color:var(--muted); background:none; border:0; border-bottom:2px solid transparent; padding:0 0 10px; display:flex; align-items:center; gap:12px; font-size:.875rem; }
 .desk-options button img { width:58px; height:43px; object-fit:cover; border-radius:2px; box-shadow:0 2px 5px #604c3220; }
 .desk-options button[aria-pressed=true] { color:var(--ink); border-color:#816b50; }
 .desk-options button:hover { color:var(--ink); }
 .collection-note { font-size:.75rem; color:var(--muted); text-align:center; margin-top:20px; }
-.ritual { display:grid; grid-template-columns:repeat(3,1fr); gap:42px; border-top:1px solid #cabba6; margin-top:48px; padding-top:34px; }
-.ritual article>span { font-size:.75rem; letter-spacing:.08em; color:var(--muted); }
-.ritual h3 { font-family:Lora,Georgia,serif; font-size:1.3rem; margin:16px 0 14px; }
-.ritual p { font-size:1rem; color:var(--muted); }
 .breathing { display:grid; grid-template-columns:1fr 1fr; gap:8%; align-items:center; }
 .breathing h2 { font-size:clamp(2.1rem,3.8vw,3.3rem); margin-bottom:28px; }
 .breathing-art { padding:45px 10px 25px; }
@@ -104,8 +99,6 @@ em { color:var(--accent); font-weight:400; }
 .price-card ul { padding:22px 0 0; margin:24px 0 0; list-style:none; border-top:1px solid var(--line); }
 .price-card li { padding-left:24px; position:relative; font-size:1rem; line-height:1.5; margin-bottom:14px; }
 .price-card li:before { content:'✓'; position:absolute; left:0; color:#68745a; }
-.pricing-details { max-width:960px; margin:24px auto 0; display:grid; grid-template-columns:1fr 1fr; gap:36px; }
-.pricing-details p { font-size:.875rem; line-height:1.7; color:var(--muted); }
 .faq { max-width:1000px; padding-bottom:90px; }
 .faq details { border-bottom:1px solid var(--line); }
 .faq summary { display:flex; justify-content:space-between; align-items:center; gap:20px; list-style:none; cursor:pointer; font-size:1.125rem; padding:23px 0; }
@@ -155,18 +148,13 @@ a:focus-visible,button:focus-visible,summary:focus-visible { outline:3px solid #
   .intro,.breathing,.family { grid-template-columns:1fr; gap:28px; }
   .intro-copy { padding-top:0; }
   .intro h2 { font-size:clamp(2rem,6.7vw,2.75rem); }
-  .intro-copy p:first-child { font-size:1.1875rem; }
   .desk-section { padding-top:55px; }
   .desk-heading { display:block; margin-bottom:30px; }
   .desk-heading h2 { font-size:2.5rem; }
   .desk-description { margin-top:26px; max-width:100%; }
-  .desk-display figcaption { font-size:.75rem; gap:15px; line-height:1.5; }
   .desk-options { display:grid; grid-template-columns:1fr 1fr; gap:18px; max-width:450px; margin-inline:auto; }
   .desk-options button { min-width:0; font-size:.875rem; padding-bottom:12px; }
   .collection-note { max-width:28em; margin-inline:auto; }
-  .ritual { grid-template-columns:1fr; gap:20px; margin-top:30px; }
-  .ritual article { border-bottom:1px solid var(--line); padding-bottom:5px; }
-  .ritual h3 { margin-top:10px; }
   .breathing-art { width:94%; margin:auto; padding-top:20px; }
   .breathing h2 { font-size:2.25rem; }
   .family>img { width:97%; margin:10px auto 0; }
@@ -180,10 +168,9 @@ a:focus-visible,button:focus-visible,summary:focus-visible { outline:3px solid #
   .safety-grid { grid-template-columns:1fr; gap:16px; margin-top:30px; }
   .safety-bottom { display:block; margin-top:8px; }
   .safety-bottom a { margin-top:20px; }
-  .price-grid,.pricing-details { grid-template-columns:1fr; }
+  .price-grid { grid-template-columns:1fr; }
   .price-card { padding:28px; }
   .pricing-heading { text-align:left; }
-  .pricing-details { gap:0; }
   .faq { padding-bottom:50px; }
   .faq summary { font-size:1rem; }
   .closing { padding-block:50px; }
@@ -380,11 +367,8 @@ html { scroll-padding-top:calc(var(--nav-height,92px) + 20px); }
 .desk-description { max-width:365px; }
 .desk-display { max-width:1020px; }
 .desk-display>img { border-radius:6px; box-shadow:0 16px 32px -15px #39462c60; }
-.desk-display figcaption { font-size:.875rem; }
 .desk-options button[aria-pressed=true] { border-color:#66735b; }
 .collection-note { font-size:.8125rem; }
-.ritual { border-color:#bfcbb7; }
-.ritual article>span { font-size:.8125rem; }
 .surface { display:flow-root; background-image:var(--grain); background-size:128px; }
 .surface--stationery { background-color:#eddbbc; background-image:url('./assets/maple-wood.jpg'); background-size:cover; background-position:center; background-repeat:no-repeat; border-block:1px solid #d3bc98; }
 .stationery-section { padding-block:82px 78px; }
@@ -477,8 +461,6 @@ html { scroll-padding-top:calc(var(--nav-height,92px) + 20px); }
   .intro-copy { padding-top:0; }
   .desk-section { padding-block:58px 34px; }
   .desk-description { max-width:none; }
-  .desk-display figcaption { font-size:.8125rem; }
-  .ritual article { border-color:#bfcbb7; }
   .stationery-section { padding-block:55px; }
   .fairy-spread { gap:30px; }
   .breathing { padding-block:60px; }
@@ -556,4 +538,54 @@ html { scroll-padding-top:calc(var(--nav-height,92px) + 20px); }
   .is-menu-open .menu-icon span:nth-child(1) { top:8px; transform:rotate(45deg); }
   .is-menu-open .menu-icon span:nth-child(2) { opacity:0; }
   .is-menu-open .menu-icon span:nth-child(3) { top:8px; transform:rotate(-45deg); }
+}
+
+/* Desk capacity is the primary difference between plans. */
+.price-card { display:flex; flex-direction:column; }
+.price-card h3 { font-size:clamp(2rem,3vw,2.75rem); letter-spacing:-.035em; }
+.plan-cost { margin-top:auto; padding-top:20px; }
+.price-card .plan-price { margin:0; font:2rem/1.2 Lora,Georgia,serif; }
+.plan-price span { font:1rem 'DM Sans',sans-serif; }
+.founding-note { max-width:960px; margin:14px auto 0; text-align:right; font-size:.75rem; line-height:1.5; color:var(--muted); }
+@media(max-width:760px) {
+  .founding-note { text-align:left; }
+  .desk-options button:last-child { grid-column:1 / -1; justify-self:center; }
+}
+
+/* Slim device bezel restored from the original new-direction concept. */
+.desk-display>img {
+  box-sizing:border-box;
+  border:9px solid #253532;
+  border-radius:22px;
+  box-shadow:0 25px 42px -26px #172c3680;
+}
+@media(max-width:760px) {
+  .desk-display>img { border-width:5px; border-radius:13px; }
+}
+
+.desk-keepsake { max-width:38em; margin:26px auto 0; text-align:center; font-size:1rem; line-height:1.6; }
+.desk-keepsake + .collection-note { margin-top:10px; }
+
+.membership-plus { max-width:960px; margin:24px auto 0; border-bottom:1px solid var(--line); }
+.membership-plus summary { display:flex; align-items:center; justify-content:space-between; gap:20px; padding:14px 0; min-height:44px; cursor:pointer; list-style:none; font-size:.9375rem; font-weight:500; }
+.membership-plus summary::-webkit-details-marker { display:none; }
+.membership-plus summary span { width:8px; height:8px; flex-shrink:0; margin-right:4px; border-right:1.5px solid currentColor; border-bottom:1.5px solid currentColor; transform:rotate(45deg); }
+.membership-plus[open] summary span { transform:rotate(225deg); }
+.membership-plus p { max-width:56em; margin:0 0 18px; color:var(--muted); font-size:.875rem; line-height:1.7; }
+
+/* A paper note using the page’s serif/italic headings and two-column rhythm. */
+.membership-promise {
+  display:grid; grid-template-columns:1fr 1fr; align-items:center; gap:36px;
+  max-width:1040px; margin:42px auto 0; padding:32px 36px;
+  border:1px solid #d1c5b1; border-radius:4px;
+  background:var(--grain) repeat,#fff9ed; background-size:128px;
+  box-shadow:0 5px 16px #6e53380b;
+}
+.membership-promise h3 { margin:0; font:400 clamp(1.5rem,2.7vw,2rem)/1.3 Lora,Georgia,serif; letter-spacing:-.035em; text-wrap:balance; }
+.promise-copy p { margin:0; font-size:1rem; line-height:1.65; color:var(--muted); }
+.membership-promise nav { display:flex; align-items:center; gap:18px; margin-top:10px; font-size:.875rem; }
+.membership-promise nav a { display:inline-flex; align-items:center; min-height:44px; font-weight:500; text-underline-offset:4px; }
+@media(max-width:760px) {
+  .membership-promise { grid-template-columns:1fr; gap:18px; margin-top:32px; padding:24px; }
+  .promise-copy p { font-size:.9375rem; }
 }

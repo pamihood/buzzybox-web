@@ -45,6 +45,7 @@
 # needed, point these at a path that does not exist instead of at /404.
 /README.md    /404   301
 /brand.json   /404   301
+/blog/posts.json /404 301
 
 /docs/* /404 301
 /_concepts/* / 302

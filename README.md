@@ -19,6 +19,9 @@ Open http://127.0.0.1:8765/. The production files are served directly.
 - `assets/site.js`: desk choices, header behavior, mobile navigation, old anchor aliases.
 - `styles.css`: blog, support, legal, parental-consent, and account pages. The last
   section applies the selected design to their existing reading and form layouts.
+- `blog/*/index.md`: maintained article prose. `blog/posts.json` owns ordering,
+  descriptions, selected figures and related links. `scripts/render-blog.py`
+  renders the nine articles and index; `assets/blog.css` adds reading details.
 - `letter/index.html`: private letter viewer with its own CSS and behavior. It
   stays noindex, no-referrer, and outside the sitemap. No marketing navigation or
   third-party font requests are added to this private surface.
@@ -55,6 +58,8 @@ python3 scripts/apply-navigation.py
 python3 scripts/apply-footer.py
 python3 scripts/apply-head-meta.py
 bash scripts/stamp-css-version.sh
+python3 scripts/render-blog.py
+python3 scripts/render-blog.py --check
 python3 scripts/apply-brand.py --check
 python3 scripts/apply-pricing.py --check
 python3 scripts/check-site.py
@@ -64,6 +69,16 @@ Header/footer/metadata edits belong in their scripts so a later refresh doesn't
 undo them. Preserve legal text and transactional scripts when restyling pages.
 The app's Supabase-backed consent, confirmation, password-reset, and private
 letter behavior must remain intact.
+
+For a prose-only blog edit, run `python3 scripts/render-blog.py` followed by its
+`--check` mode and `python3 scripts/check-site.py`. The renderer uses paragraphs,
+headings, links, emphasis and strong text; it deliberately needs no package
+installation. New posts need an inventory entry and a sitemap URL. The two
+original URLs stay stable even when an article's title changes.
+
+The accepted seven essays use “tablet” instead of “iPad” in their prose. Keep
+actual platform availability specific on download and compatibility surfaces;
+the editorial wording does not announce Android availability.
 
 ## Hosting and launch hold
 

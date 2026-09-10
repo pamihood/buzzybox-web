@@ -37,7 +37,7 @@ for p,doc in parsed.items():
         if not target.exists(): errors.append(f'{p.relative_to(ROOT)}: missing {kind} {ref}'); continue
         if fragment and target in parsed and fragment not in parsed[target].ids:
             if not (target==ROOT/'index.html' and fragment in ALIASES): errors.append(f'{p.relative_to(ROOT)}: missing anchor {ref}')
-for css in [ROOT/'home.css',ROOT/'styles.css']:
+for css in [ROOT/'home.css',ROOT/'styles.css',ROOT/'assets/blog.css']:
     text=css.read_text()
     clean=re.sub(r'/\*.*?\*/','',text,flags=re.S)
     if clean.count('{')!=clean.count('}'): errors.append(f'{css.name}: unbalanced braces')

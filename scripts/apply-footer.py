@@ -3,7 +3,7 @@
 from pathlib import Path
 import re
 ROOT = Path(__file__).resolve().parent.parent
-PAGES = ['index.html', 'support.html', 'privacy.html', 'terms.html', 'safety.html', 'parents.html', '404.html', 'confirmed.html', 'reset.html', 'blog/index.html', 'blog/why-i-built-postmello/index.html', 'blog/designing-a-desk-not-an-app/index.html']
+PAGES = ['index.html', 'support.html', 'privacy.html', 'terms.html', 'safety.html', 'parents.html', '404.html', 'confirmed.html', 'reset.html', 'blog/index.html'] + [str(p.relative_to(ROOT)) for p in sorted((ROOT / 'blog').glob('*/index.html'))]
 FOOTER = '<footer class="wrap footer site-footer"><nav aria-label="Footer"><a href="/privacy.html">Privacy</a><a href="/safety.html">Safety</a><a href="/terms.html">Terms</a><a href="/support.html">Support</a><a href="/blog/">Blog</a></nav><span>© 2026 Postmello</span></footer>'
 for rel in PAGES:
     p = ROOT / rel

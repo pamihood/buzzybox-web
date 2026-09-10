@@ -28,9 +28,7 @@ FONT_PAGES = [
     "index.html",
     "support.html", "privacy.html", "terms.html", "safety.html",
     "404.html", "parents.html", "confirmed.html", "reset.html", "blog/index.html",
-    "blog/why-i-built-postmello/index.html",
-    "blog/designing-a-desk-not-an-app/index.html",
-]
+] + [str(p.relative_to(ROOT)) for p in sorted((ROOT / "blog").glob("*/index.html"))]
 
 # page -> (canonical path, asset prefix)
 #
@@ -47,9 +45,11 @@ PAGES = {
     "safety.html": ("/safety", ""),
     "parents.html": ("/parents", ""),
     "blog/index.html": ("/blog/", "../"),
-    "blog/why-i-built-postmello/index.html": ("/blog/why-i-built-postmello/", "../../"),
-    "blog/designing-a-desk-not-an-app/index.html": ("/blog/designing-a-desk-not-an-app/", "../../"),
 }
+PAGES.update({
+    str(p.relative_to(ROOT)): (f"/blog/{p.parent.name}/", "../../")
+    for p in sorted((ROOT / "blog").glob("*/index.html"))
+})
 
 
 def ensure(html, probe, tag, anchor):

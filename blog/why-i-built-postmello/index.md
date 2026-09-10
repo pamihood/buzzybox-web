@@ -1,167 +1,67 @@
 # Why I Built Postmello
 
-## Staying in touch doesn’t have to start with texting.
-
 *By Patrick Amihood, Creator of Postmello*
 
-One summer, my nine-year-old daughter asked my wife if she could borrow our phone to text her best friend.
+One summer, my older daughter, then nine, asked my wife to borrow our phone to text a best friend.
 
-There was nothing wrong with what she wanted. She missed her friend, wanted to talk to her without asking us to arrange it, and was getting old enough to want a little independence in her friendships.
+It was a small request, and a reasonable one. School was out. My daughter missed a friend and wanted a way to stay in touch without asking us to arrange every exchange. That wish for a little independence was something I wanted to encourage.
 
-I wanted to encourage that.
+What gave me pause was how much seemed to come bundled with the answer. Borrowing our phones meant stepping into a text conversation. A phone of my daughter's own would make that conversation available throughout the day, alongside everything else a personal device brings.
 
-But I hesitated at the obvious solution.
+I wanted another way to say yes.
 
-Handing her a phone and opening a text conversation felt like giving her much more than the thing she was actually asking for. She wanted a way to stay close to her friend. What we had available was an adult form of communication built around immediacy: short messages, quick replies, notifications, and a conversation that is always ready to continue.
+## Friendship during the waiting years
 
-Texting is useful. I use it every day, and I don’t think there is anything inherently wrong with it.
+The decision about a first smartphone is often discussed as a question of timing. How long should we wait? What changes when school friends start getting phones? How do we hold a boundary without making someone feel left out?
 
-I just wasn’t convinced it had to be the first shape digital communication took for a child.
+Organizations such as [Wait Until 8th](https://www.waituntil8th.org/faqs) help people navigate that decision together. Its pledge concerns delaying a smartphone until at least the end of eighth grade; it explicitly leaves room for communication through simpler devices.
 
-## I didn’t want the answer to be “not yet”
+That distinction matters to me. The wish to delay a smartphone does not make the need for friendship disappear. A friend moves away. School ends for the summer. Someone wants to share a drawing, remember a joke, or tell a person about the day.
 
-It would have been easy to say no: you’re too young, wait until you have your own phone, we can arrange a playdate, you’ll see her when school starts again.
+My daughter's request made the gap very concrete. Saying “you'll see each other when school starts” would have left the actual wish unanswered. I wanted a way for those friendships to have a life between visits.
 
-But none of those answers really responded to what she was asking for.
+Postmello grew from that question: what would digital correspondence look like if it began with making a letter for someone you know?
 
-She wanted to maintain a relationship herself.
+## A reason to sit down and make something
 
-And this clearly wasn’t going to be a one-time question. Children around us were getting access to technology earlier, and their friendships were extending beyond the times when they happened to be physically together.
+Letters offered a useful starting point. A page gives you room to decide what to say and how to say it. Words can sit beside a drawing. A short note can occupy a whole sheet. Choosing paper, an envelope and a stamp gives the act a beginning and a finish.
 
-Simply postponing communication because I didn’t like the tools available didn’t feel like much of a solution.
+Digital delivery removes the days in transit while keeping that opportunity to make something. The other person receives the page as it was composed, rather than a succession of messages appearing in a stream.
 
-So I started wondering whether there could be another one.
+That difference became central to Postmello. I wanted the experience on the screen to be worth the time spent there: writing, drawing, arranging, thinking about a friend. There is no requirement to produce an impressive letter. A ridiculous picture and a few words belong just as much as a careful account of a whole week.
 
-## Letters, without waiting for the mail
+The tablet gives that activity somewhere to happen. It can be a shared device at home, with a separate desk for each person. Someone comes to the desk to write or check the mailbox, then puts the device down. Where and when that happens remains a decision for the people using it.
 
-The obvious alternative was a letter.
+The desk does not follow with push notifications. Opening a letter does not send a read receipt, and nobody sees whether someone is online or halfway through a reply. A letter can arrive quickly and still wait patiently. We built [three kinds of quiet](/blog/three-kinds-of-quiet/) around that idea.
 
-A letter asks something different of you. You sit down and decide what you want to say. You might draw something, decorate the page, or take your time over it.
+## Independence inside known relationships
 
-You make the page your own, then send it off.
+I also wanted my daughters to be able to write without us composing every message or operating the app for every exchange.
 
-The other person receives it, reads it, and perhaps sits down later to make something back. There is a beginning and an end to the act, and that felt much closer to what I wanted for my daughter.
+In Postmello, admins approve the friends who exchange letters. There are no public profiles to browse, no audience to build and no stranger discovery. Those decisions give the person at the desk room to act independently within relationships already agreed upon.
 
-The problem, of course, is that physical mail can take days to arrive. That can be wonderful in its own way, but it isn’t always practical for two children who simply want to stay in touch over the summer.
+Inside that boundary, the space is personal. A nameplate, a nickname, a hero icon and a chosen desk help make it feel like somewhere that belongs to its writer. The familiar name stays visible beneath a different sender nickname, so expression still has a recognizable person behind it.
 
-So the question became:
+This should have room to grow. A younger writer might mainly draw. An older writer might fill pages, invent a comic, or send a short note that would make sense to only one friend. Adults have desks too. The point is to offer a form of correspondence with its own appeal through those changes, including for people who already have phones.
 
-**What if you could preserve more of what makes a letter a letter, but deliver it digitally?**
+The people worth writing to will not all use the same software. That is why [email correspondence](/blog/a-friend-does-not-need-another-app/) matters: an approved friend can answer from an inbox, and those words arrive at the desk as a letter. Joining Postmello later preserves the relationship and its letters.
 
-Not a chat dressed up with stationery.
+## Then the letters started moving
 
-A letter.
+I built the first version over the summer, and my older daughter and that best friend began exchanging letters almost every other day.
 
-## A page, not a message box
+We traveled that summer, and people we knew were traveling too. The letters kept moving even when the writers were in different towns or countries. We also met people whose friendships began during a few days together and continued through Postmello after everyone went home.
 
-That distinction became increasingly important as I worked on Postmello.
+Those experiences made the purpose much clearer than my original idea had been. The valuable part was the continuity: someone had a way to reach a particular friend, independently, after the shared afternoon or holiday was over.
 
-I didn’t want a small text field with a Send button. I wanted a child to begin with a blank page: choose the paper, write by hand, draw, type where appropriate, add stickers, choose an envelope and a stamp, address it to someone they know, and send the finished thing.
+Across roughly a hundred builds, my two daughters, friends and other early users helped shape how that worked. I watched which interactions made sense and which ones needed another attempt. People took to choosing their spaces and stationery, and those choices became part of the pleasure of writing.
 
-The recipient would receive that page as it was made.
+The letters themselves remained wonderfully varied: drawings, jokes, stickers, brief messages and longer ones. The medium left room for all of them.
 
-Postmello letters are digital-to-digital. Nothing is automatically printed or put into the physical mail — though that may come later. But the experience deliberately borrows from correspondence rather than instant messaging.
+## What I want to make room for
 
-That gives children something messaging often doesn’t:
+Postmello began with my older daughter's request, but the question has grown with the product. How much independence can a digital space offer while staying quiet, personal and bounded? How can it make creation inviting and leaving easy? How can people keep writing to one another as circumstances and devices change?
 
-**space to make something.**
+I want Postmello to make those possibilities ordinary. A person sits down at a desk, makes something for a friend, sends it, and gets on with the day.
 
-That doesn’t mean every letter has to be profound. Children will write silly things, invent jokes, draw pictures, use too many stickers, and sometimes write three words across an entire page.
-
-They should.
-
-The point is simply that the medium leaves room for more.
-
-## A little independence, inside known relationships
-
-There was another part of my daughter’s request I wanted to preserve: independence.
-
-I didn’t want her to need us to compose every message for her or stand over her shoulder while she communicated. But independence for a child doesn’t have to mean being opened up to everyone.
-
-In Postmello, correspondence happens with approved friends. A connection has to exist before letters can move between people.
-
-There is no public audience to discover. No stranger can simply appear in a child’s inbox. The wider internet isn’t waiting on the other side of the desk.
-
-That boundary matters to me because it changes what independence can mean: a child can have a space that feels like theirs while the relationships themselves remain ones the household knows about and has approved.
-
-## The pace matters too
-
-The more I thought about it, the more I realized that the difference wasn’t only what children could send.
-
-It was also the pace the product encouraged.
-
-Instant messaging is designed around continuity. One reply invites another, then another, and even when nobody explicitly demands an answer, the structure itself can create a feeling that the conversation is active and waiting.
-
-I wanted Postmello to feel different.
-
-A letter arrives. The mailbox flag goes up. And the letter waits.
-
-There are no typing indicators telling you someone is composing a response, no read receipt telling the sender you have seen something, and no presence indicator showing that somebody is online.
-
-You can read a letter, think about it, and answer later. That might mean five minutes later, tomorrow, or over the weekend.
-
-Postmello isn’t trying to make communication artificially slow.
-
-It is trying to make **immediacy optional**.
-
-## This isn’t about keeping kids away from technology
-
-That distinction is important.
-
-Postmello did not come from a desire to recreate a childhood without screens. Technology is already part of my children’s lives, and it will become more so as they grow.
-
-The question that interests me is what kinds of experiences we choose to build for them.
-
-When a child first starts communicating independently through technology, does the experience automatically need to inherit the conventions adults have settled on? Does it have to begin with chat bubbles? Does every exchange need to feel like a conversation happening right now?
-
-Does software for children need to be a simplified version of software designed for adults?
-
-I don’t think it does.
-
-Postmello is an attempt to design another first form of digital correspondence — something built around writing, making, sending and waiting.
-
-Something that gives a child more independence without immediately giving them the pace and structure of instant messaging.
-
-## Then they started writing
-
-I built the first version of Postmello over the summer.
-
-Then something happened that mattered much more than whether the idea made sense on paper: my daughter and her best friend started using it.
-
-They now write to each other almost every other day.
-
-We spent much of the summer traveling, and other families we knew were traveling too. The children weren’t necessarily in the same town — or even the same country — but the letters kept moving between them.
-
-We also met families along the way whose children became friends for only a few days. Some of those friendships continued through Postmello after everyone went home.
-
-That has been one of my favorite things to watch.
-
-Along the way, I started creating collections — different desks, mailboxes, papers, stamps and stickers, each with its own character. The kids took to those too.
-
-Choosing where to write from, picking the paper and decorating the page became part of making the letter.
-
-The desk wasn’t just a background. It seemed to give them a place to start.
-
-And the letters themselves aren’t all thoughtful essays. They aren’t supposed to be. There are drawings and jokes, stickers, short notes and long ones.
-
-What matters to me is that the children are making something for one another, sending it, and coming back later to see what arrived.
-
-It is starting to feel less like an alternative I imagined for my daughter and more like something children naturally take to.
-
-## The question that became Postmello
-
-My daughter’s original request was very small.
-
-She wanted to talk to her friend.
-
-But it exposed a much bigger question for me:
-
-**How could I say yes to the connection without automatically saying yes to the only digital form of communication that happened to be available?**
-
-Postmello grew out of trying to answer that question: a private desk, a blank page, people you know, and letters that arrive quickly without demanding an immediate reply.
-
-A place for children to write, draw, make something, and send it to someone they care about.
-
-Not because texting is bad.
-
-**Because staying in touch doesn’t have to start with texting.**
+The next letter will be there when it is time to return.

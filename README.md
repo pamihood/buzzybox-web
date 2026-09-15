@@ -91,9 +91,13 @@ The selected website went live on 2026-09-15, after Apple approved 1.0 (build
 95) for manual release. The App Store badges point at the listing's Apple id
 `6806487006` (`brand.json`); the link answers 404 until the version is released
 in App Store Connect and resolves as-is once it is. A work-in-progress branch may
-prefix its save commits with `[CF-Pages-Skip]` to avoid preview deployments;
-bring such a branch to `main` with a merge commit whose own message carries no
-prefix, never a fast-forward, or Cloudflare skips the production build as well.
+prefix its save commits with `[CF-Pages-Skip]` to avoid preview deployments.
+Bring such a branch to `main` with a merge commit, never a fast-forward, and
+keep that token out of the merge commit's message entirely, body included: on
+2026-09-15 the merge commit and the notes commit after it both quoted the
+token while explaining this rule, Cloudflare built from neither push, and the
+GitHub Pages standby had deployed in 21 seconds. A commit whose message never
+mentions the token is what fetches the Cloudflare build.
 Archive tags preserve the original and all explorations.
 
 `_headers` maintains security and immutable CSS caching. The cache versions must

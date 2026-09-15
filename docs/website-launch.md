@@ -4,17 +4,19 @@ The desk-and-letters exploration is the chosen design. It now lives in
 `index.html`, `home.css`, and `assets/site/`. Supporting pages use `styles.css`
 with the same fonts, palette, navigation, and footer.
 
-## Publishing is on hold
+## Published 2026-09-15
 
-Apple review is pending. The iPad download link must be confirmed after approval.
-Update `brand.json` (`app_store_url`), run `python3 scripts/apply-brand.py`, and
-verify the destination before publishing. The private letter viewer may receive
-a `get_app_url` from the service; confirm that value alongside its local fallback.
+Apple approved 1.0 (build 95) on 2026-09-15, manual release; App Store Connect
+reads the version as Pending Developer Release. Patrick authorized pushing the
+site the same day, ahead of the release, to see it on production.
+`launch-badge-prototype` was merged into `main` with a merge commit, because
+its save commits carry the `[CF-Pages-Skip]` prefix and a fast-forward would
+have skipped the production build.
 
-This work is saved on `launch-badge-prototype`, not merged to `main`. The save
-commit begins with `[CF-Pages-Skip]` to skip Cloudflare preview deployment.
-Cloudflare and the GitHub Pages standby deploy on pushes to `main`; do not merge,
-trigger a manual workflow, or deploy until launch is authorized.
+The App Store link, `https://apps.apple.com/app/id6806487006`, is the
+listing's Apple id read from App Store Connect (`brand.json`, applied to both
+homepage badges and the private letter viewer's fallback). It returns 404 until
+the version is released and then resolves with no change to the site.
 
 ## Archives
 

@@ -80,17 +80,21 @@ The accepted seven essays use “tablet” instead of “iPad” in their prose.
 actual platform availability specific on download and compatibility surfaces;
 the editorial wording does not announce Android availability.
 
-## Hosting and launch hold
+## Hosting
 
 Cloudflare Pages project `postmello-web` serves postmello.com and www. Pushes to
 `main` deploy automatically. The GitHub Pages workflow is a deliberate standby
 and holds the domain claim; keep `.github/workflows/pages.yml`, `CNAME`, and
 `.nojekyll` together.
 
-The selected website is waiting for Apple review and download-link verification.
-Keep it on the working branch and prefix save commits with `[CF-Pages-Skip]` to
-avoid preview deployments. Do not merge to main or trigger a manual deployment
-until authorized. Archive tags preserve the original and all explorations.
+The selected website went live on 2026-09-15, after Apple approved 1.0 (build
+95) for manual release. The App Store badges point at the listing's Apple id
+`6806487006` (`brand.json`); the link answers 404 until the version is released
+in App Store Connect and resolves as-is once it is. A work-in-progress branch may
+prefix its save commits with `[CF-Pages-Skip]` to avoid preview deployments;
+bring such a branch to `main` with a merge commit whose own message carries no
+prefix, never a fast-forward, or Cloudflare skips the production build as well.
+Archive tags preserve the original and all explorations.
 
 `_headers` maintains security and immutable CSS caching. The cache versions must
 be refreshed after stylesheet edits. `_redirects` excludes operational documents

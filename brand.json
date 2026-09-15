@@ -20,7 +20,7 @@
   ],
   "app_store_url": "https://apps.apple.com/app/id6806487006",
   "_app_store_url_notes": [
-    "Pending Apple review. Confirm and update this URL after approval, then run scripts/apply-brand.py. It updates both homepage badges and the private letter viewer fallback. Do not deploy the selected design until that link is verified and launch is authorized."
+    "Confirmed 2026-09-15 against App Store Connect: the Postmello record's Apple id is 6806487006, so this is the listing's URL. It answers 404 until the version is released (manual release) and resolves as-is afterwards. scripts/apply-brand.py writes it into both homepage badges and the private letter viewer fallback."
   ],
   "_beta_cta_notes": [
     "RETIRED with the private beta. It read 'Request an invite', and before",

@@ -1,0 +1,142 @@
+[
+  {
+    "slug": "why-i-built-postmello",
+    "title": "Why I Built Postmello",
+    "deck": "Friendship deserves room to grow, before and beyond a first phone.",
+    "description": "A request to borrow a phone became a place for independent friendships, creative letters and time away from the screen.",
+    "kind": "overview",
+    "related": [
+      "designing-a-desk-not-an-app",
+      "three-kinds-of-quiet"
+    ]
+  },
+  {
+    "slug": "designing-a-desk-not-an-app",
+    "title": "A World Built for Childhood",
+    "deck": "A complete world for imagination, independence and real friendship.",
+    "description": "A desk to explore, a world to make their own, and real friends to create for. The design choices that make Postmello a place built for children.",
+    "kind": "overview",
+    "related": [
+      "why-i-built-postmello",
+      "what-the-bee-knows"
+    ],
+    "figure": {
+      "src": "/assets/site/desk.png",
+      "alt": "The Postmello desk with a painted mountain letter, a mailbox, paper and named friend drawers.",
+      "caption": "The desk is the interface. Every friend has a drawer; every letter has a place.",
+      "after_paragraph": 2,
+      "width": 2732,
+      "height": 2048
+    }
+  },
+  {
+    "slug": "three-kinds-of-quiet",
+    "title": "Three Kinds of Quiet",
+    "deck": "Time to make something. Time to answer. Time away.",
+    "description": "How sound, the postal ritual and the absence of presence signals protect the space around a letter.",
+    "kind": "essay",
+    "related": [
+      "designing-a-desk-not-an-app",
+      "why-i-built-postmello"
+    ],
+    "figure": {
+      "src": "/assets/step-writing.jpg",
+      "alt": "A blank moon-and-stars writing page with drawing tools along its edge.",
+      "caption": "The page has room for whatever the letter becomes.",
+      "after_paragraph": 5,
+      "width": 900,
+      "height": 675
+    }
+  },
+  {
+    "slug": "a-letter-keeps-its-audience",
+    "title": "A Letter Keeps Its Audience",
+    "deck": "Writing back respects the people a letter was meant for.",
+    "description": "Why Postmello has no forwarding action, and why a reply goes to the sender or the original group.",
+    "kind": "essay",
+    "related": [
+      "designing-a-desk-not-an-app",
+      "why-i-built-postmello"
+    ]
+  },
+  {
+    "slug": "the-name-on-the-desk",
+    "title": "The Name on the Desk",
+    "deck": "Room for expression, with a familiar name underneath.",
+    "description": "Nicknames, hero icons and the names we give our friends make the desk personal while keeping its writer recognizable.",
+    "kind": "essay",
+    "related": [
+      "designing-a-desk-not-an-app",
+      "why-i-built-postmello"
+    ]
+  },
+  {
+    "slug": "what-the-bee-knows",
+    "title": "What the Bee Knows",
+    "deck": "A small courier makes the waiting understandable.",
+    "description": "How the mailbox, waking bee and connection notes tell the truth about a letter’s journey.",
+    "kind": "essay",
+    "related": [
+      "designing-a-desk-not-an-app",
+      "why-i-built-postmello"
+    ],
+    "figure": {
+      "src": "/assets/blog/bee-at-home.png",
+      "alt": "The courier bee asleep inside the hanging hive.",
+      "caption": "The resting courier is part of the desk’s explanation of waiting mail.",
+      "after_paragraph": 5,
+      "width": 512,
+      "height": 544,
+      "compact": true
+    }
+  },
+  {
+    "slug": "learning-the-desk-through-its-objects",
+    "title": "Learning the Desk Through Its Objects",
+    "deck": "The objects explain the actions.",
+    "description": "Paper, drawers, envelopes and a mailbox give correspondence a place and each touch a consequence.",
+    "kind": "essay",
+    "related": [
+      "designing-a-desk-not-an-app",
+      "why-i-built-postmello"
+    ]
+  },
+  {
+    "slug": "a-friend-does-not-need-another-app",
+    "title": "A Friend Does Not Need Another App",
+    "deck": "The correspondence continues across devices and inboxes.",
+    "description": "Email in both directions, shared addresses and careful merging keep letters and friendships together.",
+    "kind": "essay",
+    "related": [
+      "designing-a-desk-not-an-app",
+      "why-i-built-postmello"
+    ],
+    "figure": {
+      "src": "/assets/beyond-reply.jpg",
+      "alt": "An example email message and the same words set on a Postmello letter.",
+      "caption": "Words from an inbox arrive at the desk on paper. Example correspondence.",
+      "after_paragraph": 4,
+      "width": 900,
+      "height": 675
+    }
+  },
+  {
+    "slug": "a-space-of-your-own",
+    "title": "A Space of Your Own",
+    "deck": "How a practical edge became a place with a view.",
+    "description": "The evolution from one desk to personal spaces, with familiar objects and room for imagination.",
+    "kind": "essay",
+    "related": [
+      "designing-a-desk-not-an-app",
+      "why-i-built-postmello"
+    ],
+    "figure": {
+      "src": "/assets/blog/space-with-a-view.jpg",
+      "alt": "The Baan Na desk background with ricefields beyond the wooden back rail.",
+      "caption": "Baan Na background art: the writing surface has a view beyond its edge.",
+      "after_paragraph": 8,
+      "width": 1536,
+      "height": 1024
+    }
+  }
+]

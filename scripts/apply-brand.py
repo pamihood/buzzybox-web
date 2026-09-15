@@ -11,8 +11,20 @@ and idempotent:
 
     <span class="brand-sub" data-brand="tagline">A quiet place for letters.</span>
 
-Keys: tagline, beta_cta. Anything in brand.json whose name starts with an
-underscore is a note for a human and is skipped.
+A brand string can also be an ADDRESS rather than words. Those carry
+data-brand-href and are written into the href instead of the element body:
+
+    <a class="appstore-badge" data-brand-href="app_store_url" href="...">
+
+That second form arrived with the App Store badge (2026-09-03). The badge is
+Apple artwork that may not be relettered, so the thing that repeats across the
+four call-to-action sites is no longer a LABEL but a LINK - and a link typed
+four times drifts exactly the way the tagline did. A key may use either form or
+both; it fails only when neither marker exists anywhere.
+
+Keys: tagline, app_store_url. (beta_cta was the third until the private beta
+ended - see the note in brand.json.) Anything in brand.json whose name starts
+with an underscore is a note for a human and is skipped.
 
 Usage:
     python3 scripts/apply-brand.py            # rewrite index.html in place
@@ -35,7 +47,7 @@ TAGS = "span|p|h1|h2|a|button"
 
 def normalize(text):
     """Collapse whitespace, so a hand-wrapped line still counts as equal."""
-    return " ".join(text.split())
+    return " ".join(re.sub(r"<[^>]+>", " ", text).split())
 
 
 def main():
@@ -57,18 +69,41 @@ def main():
             r'(<(?:' + TAGS + r')\b[^>]*data-brand="' + re.escape(key) + r'"[^>]*>)'
             r"(.*?)(</(?:" + TAGS + r")>)", re.S)
         found = list(pattern.finditer(html))
-        if not found:
-            raise SystemExit(f'!! index.html: no data-brand="{key}" element to write')
+        # The href form. Note the marker is data-brand-HREF, which the pattern
+        # above cannot match: it requires the quote immediately after
+        # data-brand, so the two markers never collide on one key name.
+        href_pattern = re.compile(
+            r'(<(?:' + TAGS + r')\b[^>]*data-brand-href="' + re.escape(key)
+            + r'"[^>]*\bhref=")([^"]*)(")')
+        href_found = list(href_pattern.finditer(html))
+        if not found and not href_found:
+            raise SystemExit(
+                f'!! index.html: no data-brand="{key}" or '
+                f'data-brand-href="{key}" element to write')
         # Rewrite every occurrence — the whole point is that there are several
         # and they must not drift. Walk backwards so earlier spans keep their
-        # offsets as later ones are replaced.
-        for match in reversed(found):
+        # offsets as later ones are replaced. Both marker kinds are collected
+        # first and replaced in one descending pass, because they are offsets
+        # into the SAME string and interleave in document order.
+        for match in sorted(found + href_found,
+                            key=lambda m: m.start(2), reverse=True):
             have = normalize(match.group(2))
             if have == normalize(want):
                 continue
             disagreements.append((key, have, want))
             html = html[: match.start(2)] + want + html[match.end(2):]
             written += 1
+
+    letter_path = ROOT / "letter" / "index.html"
+    letter_html = letter_path.read_text(encoding="utf-8")
+    fallback = re.compile(r"(var appUrl = data\.get_app_url \|\| ')([^']*)(')")
+    match = fallback.search(letter_html)
+    if not match:
+        raise SystemExit("!! letter/index.html: missing App Store fallback")
+    if match.group(2) != brand["app_store_url"]:
+        disagreements.append(("letter App Store fallback", match.group(2), brand["app_store_url"]))
+        if not args.check:
+            letter_path.write_text(fallback.sub(lambda m: m.group(1) + brand["app_store_url"] + m.group(3), letter_html), encoding="utf-8")
 
     if args.check:
         if disagreements:
@@ -80,8 +115,9 @@ def main():
             sys.exit(1)
         parts = []
         for key in expected:
-            marker = 'data-brand="' + key + '"'
-            parts.append("%s x%d" % (key, html.count(marker)))
+            n = (html.count('data-brand="' + key + '"')
+                 + html.count('data-brand-href="' + key + '"'))
+            parts.append("%s x%d" % (key, n))
         print("[brand] index.html agrees with %s  (%s)"
               % (BRAND.name, ", ".join(parts)))
         return

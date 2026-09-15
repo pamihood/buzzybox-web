@@ -62,3 +62,16 @@ check_syntax styles.css
 stamp home.css index.html
 stamp styles.css support.html privacy.html terms.html safety.html parents.html \
       confirmed.html reset.html 404.html blog/index.html blog/*/index.html
+
+# The shared navigation/desk script is versioned on every page that loads it.
+python3 - <<'PYJS'
+from pathlib import Path
+import hashlib, re
+script = Path('assets/site.js')
+version = hashlib.md5(script.read_bytes()).hexdigest()[:8]
+for page in [*Path('.').glob('*.html'), *Path('blog').rglob('*.html')]:
+    html = page.read_text()
+    html = re.sub(r'(/assets/site\.js)(?:\?v=[^" ]+)?', lambda m: m.group(1) + '?v=' + version, html)
+    page.write_text(html)
+print('[js] site.js v=' + version)
+PYJS

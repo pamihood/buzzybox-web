@@ -1,49 +1,10 @@
 #!/usr/bin/env python3
-"""Write the plans-block prices in index.html from the app repo's pricing.json.
+"""Sync the homepage's marked prices, plan names, desk counts, and discounts.
 
-pricing.json is THE ground truth for every Postmello price (adopted 2026-08-17
-with the Family subscription revision); this script is how the website obeys
-it. Edit the JSON first, then run this — never hand-edit a number in
-index.html. Each rewritable line carries a data-price marker, so the
-replacement is exact and idempotent:
-
-    <span class="amount" data-price="membership">$14.99</span>
-
-Keys: free, membership, membership_was, membership_founding,
-membership_plus, membership_plus_was, membership_plus_founding, collections,
-collections_discount (the member percentage — "50%" — from
-collections.member_discount, added 2026-08-24 with the collections-for-
-everyone revision: collections sell on every tier and the member benefit is
-the discount), collections_shelf (how many a household SHOWS at once - it
-sits in the FAQ since 2026-08-31, not the commerce panel; this script rewrites
-the element wherever it lives, and refuses to run if it is gone), from
-collections.max_active_per_household, added 2026-08-27). The two "-terms" spans
-this once wrote are gone: the monthly-equivalent line went when the cards
-switched to feature lists, and the founding annotation left the Membership
-card on 2026-08-18 (the promise it stood in for is a hand-written line beneath
-the whole pricing block).
-
-Since the 2026-08-18 Membership revision this script also owns two things
-that used to be typed by hand, both because they had drifted: the plan NAMES
-(data-plan-name="<key>", written from public_name — the rename from Family to
-Membership is exactly the kind of change that survives in one file and not
-another) and the DESK COUNTS (data-plan-desks="<key>", written from
-max_desks). The plan keys stay `family`/`family_plus` in the markup for the
-RENAMED 2026-08-18 from family/family_plus: the identifiers now match the
-public names, because nothing outside the repo was holding the old ones.
-
-While the founding
-window is open, Membership renders the struck regular price beside the founding
-selling price — honest by the site's own rule because the struck figure is
-the genuine post-founding price (pricing.json price_per_year), and the
-"Early price, yours to keep" terms suffix names what the strike means.
-
-Usage:
-    python3 scripts/apply-pricing.py            # rewrite index.html in place
-    python3 scripts/apply-pricing.py --check    # exit 1 if HTML disagrees; write nothing
-
-pricing.json is found at ../posty/pricing.json by default; override with
---pricing PATH or the POSTY_PRICING_JSON environment variable (flag wins).
+The app's ../posty/pricing.json is the source of truth. All occurrences of each
+marker are updated, including repeated member discounts. Founding annotations
+empty themselves when the founding window closes. Use --check to validate
+without writing; --pricing PATH or POSTY_PRICING_JSON can override the source.
 """
 import argparse
 import json
@@ -120,89 +81,21 @@ def desks_line(plan, key):
 
 
 def expected_lines(pricing):
-    """One key per data-price element on the page.
-
-    REWRITTEN 2026-08-23 with the homepage redesign. The old build put a whole
-    price line in one element ("<s>$19.99</s> $14.99/year"); the new plan card
-    sets the figure, the "/ year" suffix and the struck price at three
-    different sizes, so each is its own leaf element and this map writes leaves
-    rather than markup. The rule that produced the old shape is unchanged and
-    still the reason the strike is allowed at all: the struck figure is the
-    genuine post-founding regular price (pricing.json price_per_year), never an
-    invented was-price.
-
-    The two founding-only keys write an EMPTY STRING once the founding window
-    closes, and home.css hides an empty .was and an empty .note--founding. That
-    is what makes closing the window a pricing.json edit plus one run of this
-    script, with no hand-editing of the page on the day the price moves."""
-    plans = pricing["plans"]
-    fam, plus = plans["membership"], plans["membership_plus"]
-
-    # Both paid tiers carry a founding price as of 2026-08-23, so the strike and
-    # its caption are generated the same way for each rather than hand-written
-    # for one of them. A tier with no founding_price_per_year simply has
-    # selling == regular and empties both of its founding elements.
-    def tier(plan):
-        now, later = selling_price(pricing, plan), plan["price_per_year"]
-        founding = now != later
-        return (money(now),
-                money(later) if founding else "",
-                # "yours to keep." overpromised: the founding rate is tied to
-                # the subscription staying alive, not to the account forever.
-                # (Patrick, 2026-08-31.)
-                "Founding rate stays while your Membership remains active."
-                if founding else "")
-
-    fam_now, fam_was, fam_note = tier(fam)
-    plus_now, plus_was, plus_note = tier(plus)
+    """Leaf values used by the selected homepage; keep founding copy conditional."""
+    fam = pricing["plans"]["membership"]
+    plus = pricing["plans"]["membership_plus"]
+    founding = pricing["founding_window"]["active"]
     return {
-        "free": "Free",
-        "membership": fam_now,
-        "membership_was": fam_was,
-        "membership_founding": fam_note,
-        "membership_plus": plus_now,
-        "membership_plus_was": plus_was,
-        "membership_plus_founding": plus_note,
-        # The bare figures for the Collections panel (2026-08-24, the
-        # collections-for-everyone revision): every tier buys, members save.
-        # The sentence around them ("From … · Members save …") is
-        # hand-written in the panel; these slots hold only the two numbers
-        # that must not drift — the base "from" price and the member
-        # discount percentage.
+        "free": "$0",
+        "membership": money(selling_price(pricing, fam)),
+        "membership_context": f"Founding rate · Regularly {money(fam['price_per_year'])}/year" if founding else "",
+        "membership_founding": "Founding rate stays while subscribed." if founding else "",
+        "membership_more": f"Need more than {fam['max_desks']} desks?",
+        "membership_plus": money(selling_price(pricing, plus)),
+        "membership_plus_context": f" at the founding rate (regularly {money(plus['price_per_year'])}/year)" if founding else "",
         "collections": money(pricing["collections"]["price_from"]),
-        "collections_discount":
-            f"{round(pricing['collections']['member_discount'] * 100)}%",
-        # THE SHELF CAP, on the site for the first time on 2026-08-27. A
-        # household owns every collection it buys, permanently and through a
-        # lapse — but it SHOWS up to this many at once, because everything on
-        # a desk is wholly on device and that is what makes the offline
-        # guarantee true. A commerce panel that says "Yours for good" and
-        # nothing else leaves a buyer to discover the cap after paying.
-        # Generated rather than typed for the obvious reason: it is a number
-        # that can change, and the website was the copy most likely to be
-        # forgotten when it did.
+        "collections_discount": f"{round(pricing['collections']['member_discount'] * 100)}%",
         "collections_shelf": str(pricing["collections"]["max_active_per_household"]),
-        # The monthly equivalent came OUT (2026-08-18). The spec allows it as
-        # supporting copy and it was never the lead, but on a card whose
-        # headline is now a promise rather than a number, a second money
-        # figure competes with the price line for no gain. The desk count took
-        # its slot instead: it is the fact a large household needs and the
-        # headline no longer carries it.
-        #
-        # "Early price, yours to keep" survives the spec's suggested copy on
-        # purpose. The spec forgot the founding discount, and a struck $19.99
-        # with nothing explaining it is worse than no strike at all.
-        # One job now: explain the strike. The spec's card table moved the
-        # desk count back into the headline and "Renews yearly" into the
-        # feature list, which leaves this line saying the only thing neither
-        # of those can — that the struck price is not a first-year teaser.
-        # When founding_window closes, selling == regular, the strike drops,
-        # and this line empties itself.
-        # No membership-terms key any more: the founding annotation left the
-        # card on 2026-08-18 and the promise it stood in for is a hand-written
-        # line beneath the whole pricing block. Nothing generated explains the
-        # strike now, and nothing needs to — a crossed-out number beside a
-        # lower one is self-evident.
     }
 
 
@@ -299,22 +192,22 @@ def main():
         # h3 joined the alternation with the 2026-08-23 redesign: the plan
         # NAME is a heading on the new card, not a <dt> in a <dl>.
         ("data-price", "p|span|dt|strong|h3", expected_lines(pricing)),
-        ("data-plan-name", "dt|h3", expected_names(pricing)),
-        ("data-plan-desks", "strong", expected_desks(pricing)),
+        ("data-plan-name", "p|span|dt|h3", expected_names(pricing)),
+        ("data-plan-desks", "h3|span|strong", expected_desks(pricing)),
     ):
         for key, want in expected.items():
             pat = re.compile(
                 r'(<(?:' + tags + r')\b[^>]*' + attr + r'="' + re.escape(key) + r'"[^>]*>)'
                 r"(.*?)(</(?:" + tags + r")>)", re.S)
-            m = pat.search(html)
-            if not m:
-                raise SystemExit(
-                    f'!! index.html: no {attr}="{key}" element to rewrite')
-            have = normalize(m.group(2))
-            if have == normalize(want):
-                continue
-            disagreements.append((f'{attr}="{key}"', have, want))
-            html = (html[: m.start(2)] + want + html[m.end(2):])
+            matches = list(pat.finditer(html))
+            if not matches:
+                raise SystemExit(f'!! index.html: no {attr}="{key}" element to rewrite')
+            for m in reversed(matches):
+                have = normalize(m.group(2))
+                if have == normalize(want):
+                    continue
+                disagreements.append((f'{attr}="{key}"', have, want))
+                html = html[:m.start(2)] + want + html[m.end(2):]
 
     shelf_problems = check_shelf_copies(pricing, pricing_path)
 

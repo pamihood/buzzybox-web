@@ -59,45 +59,39 @@
        comfortably. Test, do not estimate: render, downsample to 300px and
        360px, and look. A line that is illegible there is not on the card. */
     .copy {
-      position: absolute; left: 64px; top: 54px; width: 540px; z-index: 1;
+      position: absolute; left: 72px; top: 76px; width: 560px; z-index: 1;
     }
     /* THE WORDMARK IS DRAWN - assets/wordmark.png, the same file the site
        header uses, no typeface at all. Sized by height, width auto: the aspect
        is the drawing's. The lockup leads because the card is a thumbnail in
        somebody else's feed long before it is a 1200px image, and the mark is
-       what does the branding at 300px. */
-    .mark { display: flex; align-items: center; gap: 14px; margin-bottom: 26px; }
-    .mark .glyph { width: 58px; height: 58px; }
-    .mark .word { height: 35px; width: auto; display: block; }
+       what does the branding at 300px. On the site the lockup is a header
+       above the hero, not part of it, so it gets a header's distance here. */
+    .mark { display: flex; align-items: center; gap: 13px; margin-bottom: 34px; }
+    .mark .glyph { width: 52px; height: 52px; }
+    .mark .word { height: 32px; width: auto; display: block; }
     /* The hero's headline: Lora at the site's 500 (it loads no 700, and
        font-synthesis is off there too), the second line italic in the hero's
-       brown. Two lines, as the page breaks it. */
+       brown. Two lines, as the page breaks it. 80px: at 88 the word "place"
+       ran into the mailbox, whose visible left edge sits near x=535. */
     h1 {
       font-family: var(--font-serif);
-      font-weight: 500; font-size: 66px;
-      line-height: 1.1; letter-spacing: -0.04em;
+      font-weight: 500; font-size: 80px;
+      line-height: 1.06; letter-spacing: -0.04em;
       color: var(--ink);
     }
     h1 em { font-style: italic; font-weight: 500; color: var(--hero-em); }
-    /* The hero's first sentence only. The page says two ("Staying in touch
-       doesn't have to start with texting." follows), and both at a feed-legible
-       size is four lines of sans fighting the serif for ink. The picture
-       carries WHAT; the why stays on the page and in og:description, which
-       every client sets at its own readable size. */
-    .lead {
-      margin-top: 20px;
-      font-size: 32px; line-height: 1.3; font-weight: 400;
-      color: var(--hero-detail);
-      text-wrap: balance;
-    }
-    /* The hero's status line ("For iPad / One desk, free."), on one line. NOT
-       Apple's badge: this card is an image in a timeline with nothing to
-       click, and a download badge here would be a button that does nothing. */
-    .status {
-      margin-top: 22px;
-      font-size: 28px; line-height: 1.3; font-weight: 500;
-      color: var(--muted);
-    }
+    /* NO SENTENCE UNDER THE HEADLINE (Patrick, 2026-09-15: "clean everything
+       up"). The first render carried the hero's first sentence at 32px, and
+       beside a 66px headline it flattened the ramp to 2:1 and crowded the
+       desk's rear edge. The card is the drawn wordmark, the headline and the
+       desk; og:description carries "Write and draw digital letters with
+       friends and family..." and every client sets it at its own readable
+       size under the picture. */
+    /* NO STATUS LINE (Patrick, 2026-09-15). "For iPad. One desk, free." is the
+       caption beside the App Store badge on the site; with no badge on the
+       card it read as a stray sentence, and it landed on the desk's rear edge
+       above the paper stack. The platform is on the page and in the listing. */
     /* .desk-objects, verbatim from home.css: positions are percentages of the
        box, so the card's 1200x630 lays them out as the hero's 1320x650 does. */
     .objects { position: absolute; inset: 0; }
@@ -126,8 +120,6 @@
       <img class="word" src="../assets/wordmark.png" alt="Postmello" />
     </div>
     <h1>A quiet place<br /><em>for letters.</em></h1>
-    <p class="lead">Write and draw digital letters with friends and family.</p>
-    <p class="status">For iPad. One desk, free.</p>
   </div>
   <div class="objects">
     <img class="mailbox" src="../assets/hero/p-mailbox.webp" alt="" />

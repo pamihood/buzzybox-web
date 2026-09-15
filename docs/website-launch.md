@@ -92,7 +92,7 @@ sections explain the desk as the interface, whole worlds for expression, the bee
 real friendships and quiet. Technical mechanisms and the abstract argument about
 power and responsibility are left out of the publication copy. The essay
 links to all seven focused posts. Ann's existing homepage quote is reused
-verbatim; the image is the unchanged homepage desk artwork (`assets/site/desk.png`),
+verbatim; the image is the unchanged homepage desk artwork (`assets/site/desk.webp`),
 which includes a painted letter. No new testimonial, anecdote or outcome is invented.
 Implementation research remains in the app repository's `docs/BLOG_SERIES_PLAN.md`.
 Title, deck, description, image placement, index and related links were updated

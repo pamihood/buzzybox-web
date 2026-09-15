@@ -536,7 +536,10 @@ html { scroll-padding-top:calc(var(--nav-height,92px) + 20px); }
 .founding-note { max-width:960px; margin:14px auto 0; text-align:right; font-size:.75rem; line-height:1.5; color:var(--muted); }
 @media(max-width:760px) {
   .founding-note { text-align:left; }
-  .desk-options button:last-child { grid-column:1 / -1; justify-self:center; }
+  /* A two-column grid leaves the last button alone only when the count is
+     ODD — then it spans and centres. With an even count (six desks since
+     2026-09-15) it must stay in its column, beside its neighbour. */
+  .desk-options button:last-child:nth-child(odd) { grid-column:1 / -1; justify-self:center; }
 }
 
 /* Slim device bezel restored from the original new-direction concept. */

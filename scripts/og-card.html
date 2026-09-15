@@ -72,11 +72,13 @@
     .mark .word { height: 32px; width: auto; display: block; }
     /* The hero's headline: Lora at the site's 500 (it loads no 700, and
        font-synthesis is off there too), the second line italic in the hero's
-       brown. Two lines, as the page breaks it. 80px: at 88 the word "place"
-       ran into the mailbox, whose visible left edge sits near x=535. */
+       brown. Two lines, as the page breaks it. 72px: the mailbox's visible
+       left edge sits near x=535, and "place" needs real air before it - at
+       88 the word ran into the mailbox, at 80 it stopped 24px short and still
+       read as touching (Patrick, 2026-09-15). 72 leaves about 70px. */
     h1 {
       font-family: var(--font-serif);
-      font-weight: 500; font-size: 80px;
+      font-weight: 500; font-size: 72px;
       line-height: 1.06; letter-spacing: -0.04em;
       color: var(--ink);
     }

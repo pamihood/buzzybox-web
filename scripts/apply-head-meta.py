@@ -12,7 +12,13 @@ import pathlib
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent   # repo root, not scripts/
 ORIGIN = "https://postmello.com"          # flip here at the domain move
-CARD = f"{ORIGIN}/assets/og-card.jpg"
+# Versioned by content: Slack, iMessage, X and Facebook cache a preview image by
+# URL for hours to days, so a new card at the old URL kept unfurling as the old
+# card. A hash in the query makes a changed card a new URL; the file itself
+# is untouched, and the query is ignored by Pages.
+import hashlib
+CARD_HASH = hashlib.md5((ROOT / "assets" / "og-card.jpg").read_bytes()).hexdigest()[:8]
+CARD = f"{ORIGIN}/assets/og-card.jpg?v={CARD_HASH}"
 
 # The selected design uses Lora and DM Sans; code examples retain Courier Prime.
 FONTS = (

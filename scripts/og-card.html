@@ -4,260 +4,140 @@
   <meta charset="utf-8" />
   <title>Postmello share card - source</title>
   <!-- The 1200x630 image a Postmello link unfurls as, authored as a PAGE rather
-       than composed in PIL. That is the whole point: the card is rendered by the
-       same browser, with the same webfonts and the same tokens as the site, so
-       it cannot drift into a different typeface than the page it points at.
-       `make-og-card.py` shoots this file at 2x and downsamples.
+       than composed in PIL: the same browser, the same webfonts and the same
+       tokens as the site render it, so it cannot quietly drift into a typeface
+       the page has left. `make-og-card.py` shoots this file at 2x and
+       downsamples.
 
-       IT DRIFTED ANYWAY (2026-08-23). The homepage moved onto its own design
-       system on the 23rd - Fraunces headings, Plus Jakarta Sans sentences,
-       Courier Prime apparatus - and this file kept rendering the previous
-       one: a Nunito 800 headline in a rounded sans against a page whose H1 is
-       a serif. The card looked like a different product. And then it drifted
-       AGAIN the same day: the headings moved Fraunces -> Lora and this file
-       kept Fraunces for hours. So the rule the comment above states has to be
-       ACTED on when the site restyles: when home.css changes face or token,
-       change it here and rerun the script - nothing fails loudly, the card
-       just quietly advertises the previous brand.
+       It HAS drifted, three times (2026-08-23 twice, then from 2026-09-10 to
+       2026-09-15, when the homepage became the desk-and-letters design and the
+       card kept advertising the previous hero for five days). Nothing fails
+       loudly. When home.css changes a face, a token or the hero, change it
+       here and rerun the script.
+
+       REBUILT 2026-09-15 as the new hero: the painted desk room as the ground,
+       the mailbox, paper rack, pen on its stack, stamps and stickers placed by
+       the same percentages home.css uses (.desk-mailbox and friends), and the
+       hero's own words. The desk-room rule and the object positions below are
+       copied from home.css; if those move, move these.
 
        Not linked from anywhere and not in the sitemap - it is a source file
        that happens to be HTML. -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <!-- The site's three families, and ONLY those three - which means this line
-       has to MOVE when home.css moves, and it has now failed to twice. Rubik
-       lingered here after the wordmark became artwork, and Fraunces lingered
-       after the headings went to Lora, so the card shipped a face the site had
-       already left. If the check below ever exists, this is what it checks. -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&amp;family=Lora:ital,wght@0,400..700;1,400..700&amp;family=Plus+Jakarta+Sans:wght@400..800&amp;display=swap" />
+  <!-- The site's families, exactly the line index.html loads. -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&amp;family=DM+Sans:wght@400;500;600;700&amp;family=Lora:ital,wght@0,400;0,500;1,400;1,500&amp;display=swap" />
   <style>
-    /* Straight from home.css. If a token moves there, move it here. */
+    /* Straight from home.css (the second :root block wins there) and the
+       .opening hero rules. If a token moves there, move it here. */
     :root {
-      --ink-900: #2B231D;
-      --ink-700: #574B40;
-      --ink-600: #746456;
-      --terracotta-600: #C85A32;
-      --terracotta-700: #B34B25;
-      --parchment-100: #FAF7F2;
-      --line: #DAC6B4;
+      --paper: #fbf4e7;
+      --ink: #443c32;
+      --muted: #706454;
+      --hero-em: #7b644c;
+      --hero-detail: #635748;
       --font-serif: "Lora", Georgia, serif;
-      --font-sans: "Plus Jakarta Sans", system-ui, sans-serif;
-      --font-mono: "Courier Prime", ui-monospace, monospace;
+      --font-sans: "DM Sans", system-ui, sans-serif;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       width: 1200px; height: 630px;
-      background: var(--parchment-100);
+      position: relative; overflow: hidden;
       font-family: var(--font-sans);
-      color: var(--ink-900);
-      display: grid;
-      /* 620/1fr, not the 470/1fr this card ran until 2026-08-27. See THE
-         SIZE RULE below: every line but the headline was being set for the
-         1200px image and read at 300-550px, and the column had to grow before
-         any of them could. The desk pays for it and survives - at a 360px
-         unfurl it is 141px of mailbox, drawers and paper, which is a desk. */
-      grid-template-columns: 620px 1fr;
-      align-items: center;
-      gap: 24px;
-      padding: 0 0 0 64px;
-      overflow: hidden;
-      position: relative;
+      color: var(--ink);
+      font-synthesis: none;
+      /* .desk-room, verbatim: the wall and the mint desk, the desk's rear edge
+         at 62% of the height and its front lip from 96%. */
+      background: #f5e8cf url("../assets/site/desk-backdrop.png") center 53.42% / 100% 157.48% no-repeat;
     }
-    /* The site's own grain, at the site's own cadence. */
-    body::after {
-      content: ""; position: absolute; inset: 0; pointer-events: none;
-      background-image: url("../assets/paper-grain.png");
-      background-size: 128px;
-    }
-    /* THE WORDMARK IS DRAWN - assets/wordmark.png, no typeface at all. Two
-       decisions landed here on 2026-08-23, in this order.
-
-       First, case. "POSTMELLO" became "Postmello" - uppercase reads as a postal
-       SERVICE, a label stamped on equipment, a tech company, and the brand has
-       matured past that. Title case reads as a proper name: warmer, quieter,
-       more literary, the thing you could print on a stationery box. UPPERCASE
-       is not retired, it is demoted to a SECONDARY graphic treatment - stamps,
-       the mailbox plate, packaging - where the postal aesthetic is the point.
-
-       Then, face - and then the realisation that it should not be a face at
-       all. It went Rubik (an app name, generic beside that tactile mailbox),
-       then Fraunces to match the site. Fraunces was closer but wrong in a
-       specific way: it has INCLINED STRESS, so the thin points of its o sit on
-       a diagonal, and the mark read fancier than this brand wants its own name
-       to read. So the wordmark is DRAWN, and assets/wordmark.png is that
-       drawing on every surface: this card, the site header, the site footer,
-       the app's splash, auth and Admin bar, the email letterhead. One drawing,
-       not five approximations of one.
-
-       WHICH drawing changed on 2026-08-30, and the paragraph above described
-       the old one until 2026-08-31: title case, soft flared serifs, upright
-       round counters, carried in ink on the site and gold in the app. It is now
-       the ALL-CAPS FELT mark - heavy geometric letterforms, flat #EBC54C, no
-       bevel, aspect 5.12 against the old 6.29. The card picks it up for free
-       because it references the file rather than a copy; if the sizing below
-       ever looks wrong after a swap, the aspect is the first thing to check.
-
-       THE LOCKUP IS ~12% LARGER than it was, and that is not decoration: the
-       card is a thumbnail in somebody else's feed long before it is a 1200px
-       image, and the mark is the first thing to disappear at 400px wide. The
-       wordmark does the branding work at that size; the postbox survives as a
-       warm red shape rather than a readable object, which is the right
-       division of labour rather than a compromise. */
-    .mark { display: flex; align-items: center; gap: 15px; margin-bottom: 30px; }
-    .mark .glyph { width: 61px; height: 61px; }
-    /* The wordmark is the ARTWORK, the same file the site header uses and the
-       same lettering the app's splash carries in gold. Sized by height, width
-       auto: the aspect is the drawing's, and pinning both would squash it. */
-    /* 42px until the wordmark went ALL CAPS (2026-08-29). The old mark was
-       title case, so 42px was its ascender height and its lowercase sat well
-       below that; at the same number every letter of the new one would reach
-       the old P's height and outweigh the 61px glyph. Same 0.875 step the
-       site header took. */
-    .mark .word { height: 37px; width: auto; display: block; }
     /* THE SIZE RULE - read this before changing any font-size here.
        Nothing on this card is sized against the other things on this card. It
-       is sized against what it becomes in a feed, because this image is almost
-       never seen at 1200px: iMessage and WhatsApp render it near 300px wide,
-       Slack near 360, X and Discord near 500, LinkedIn and Facebook near 550.
-       That is a 0.25x-0.46x scale, so ~36px here is the floor for a line
-       somebody comfortably reads, and ~30px is the least you can set a line
-       that has to survive a phone.
-
-       Measured on 2026-08-27, when the hero's proposition was added at 20px
-       and turned out to be 5px at iMessage size and 6px at Slack - three grey
-       bars. The aside was 8.7px and the footnote 5.1px, so the card had been
-       shipping two lines nobody could read long before that. Everything below
-       is set from that table, and the whole ramp moved: h1 58->62, aside
-       29->36, lead 20->34, badge 17->30.
-
-       Test, do not estimate: render the card, downsample it to 300px and 360px
-       and look. A line that is illegible there is not on the card, whatever it
-       looks like in this file. */
+       is sized against what it becomes in a feed: iMessage and WhatsApp render
+       it near 300px wide, Slack near 360, X and Discord near 500, LinkedIn and
+       Facebook near 550. That is 0.25x-0.46x, so ~30px here is the least a
+       line can be set and survive a phone, and ~36px is where it reads
+       comfortably. Test, do not estimate: render, downsample to 300px and
+       360px, and look. A line that is illegible there is not on the card. */
+    .copy {
+      position: absolute; left: 64px; top: 54px; width: 540px; z-index: 1;
+    }
+    /* THE WORDMARK IS DRAWN - assets/wordmark.png, the same file the site
+       header uses, no typeface at all. Sized by height, width auto: the aspect
+       is the drawing's. The lockup leads because the card is a thumbnail in
+       somebody else's feed long before it is a 1200px image, and the mark is
+       what does the branding at 300px. */
+    .mark { display: flex; align-items: center; gap: 14px; margin-bottom: 26px; }
+    .mark .glyph { width: 58px; height: 58px; }
+    .mark .word { height: 35px; width: auto; display: block; }
+    /* The hero's headline: Lora at the site's 500 (it loads no 700, and
+       font-synthesis is off there too), the second line italic in the hero's
+       brown. Two lines, as the page breaks it. */
     h1 {
       font-family: var(--font-serif);
-      font-weight: 700; font-size: 62px;
-      line-height: 1.05; letter-spacing: -0.03em;
-      margin-bottom: 10px;
+      font-weight: 500; font-size: 66px;
+      line-height: 1.1; letter-spacing: -0.04em;
+      color: var(--ink);
     }
-    /* The hero's one italic, and the reason the card now reads as the same
-       product: a terracotta serif italic at half the headline, so the pair is
-       a statement and its aside rather than two headlines. */
-    .aside {
-      font-family: var(--font-serif);
-      /* WEIGHT 600 AND THE DARKER TERRACOTTA, where the page runs 400 and
-         --terracotta-600. Not drift - the same compensation the badge's ink
-         gets one rule down, and for the same reason. THE SIZE RULE is not the
-         whole story: this line was the hardest thing on the card to read even
-         after the resize, while being LARGER than the sans line below it
-         (36px against 34px). Size was never its problem. Lora's italic at 400
-         is a modulated face with hairline strokes, and a 0.3x downsample eats
-         hairlines - magnified, the words came back broken and furry where the
-         sans came back solid. Terracotta made it worse: #C85A32 on parchment
-         is a 3.96 contrast ratio against the lead's 7.91, so the strokes that
-         did survive were the faintest on the card.
-
-         600 puts real stroke width into the letterforms and #B34B25 takes the
-         ratio to 4.98, which is AA for normal text - and this IS normal text
-         once a feed has shrunk it, whatever it measures here. At 1200px it
-         still reads as an aside: the headline is 62px of 700-weight roman and
-         nothing about this competes with that.
-
-         Do not "restore" this to the page's 400/terracotta-600 for
-         consistency. The page renders it at 36px on a screen; this file
-         renders it at 11px in somebody's message thread.
-
-         36px is the largest this sets on ONE line in a 620px column, and one
-         line is the point of it - broken over two it stops being an aside and
-         starts competing with the headline. That caps the column at 620 as
-         firmly as the desk does. */
-      font-style: italic; font-weight: 600;
-      font-size: 36px; line-height: 1.2; letter-spacing: -0.01em;
-      color: var(--terracotta-700);
-      margin-bottom: 22px;
-    }
-    /* THE PROPOSITION, added 2026-08-27 when the hero gained it. The card is
-       the hero's four lines or it is a different product: headline, aside,
-       this, footnote. Without it the card said how Postmello feels and never
-       what it is, and the og:description was carrying that alone - which only
-       works for the reader whose client shows description text under the
-       picture.
-
-       THE DEFINITION HALF ONLY, not the hero's whole sentence. The page
-       says "...between friends and family - a more personal, creative way to
-       stay in touch", and 110 characters cannot be both present and readable
-       here. Set large enough for a feed, the full sentence is four lines of
-       sans that rival the serif headline for ink and the card stops being a
-       card. So the picture carries WHAT, legibly, and the why stays on the
-       page and in og:description, which every client renders at its own
-       readable size.
-
-       Same face, weight and ink as the page's lead; the SIZE comes from the
-       rule above, not from the page. `balance` here where the page uses
-       `pretty`: the page's measure is chosen so the natural break lands on
-       the dash, which a fixed column cannot reach, and evening the two lines
-       is the better shape when the seam is out of reach. */
+    h1 em { font-style: italic; font-weight: 500; color: var(--hero-em); }
+    /* The hero's first sentence only. The page says two ("Staying in touch
+       doesn't have to start with texting." follows), and both at a feed-legible
+       size is four lines of sans fighting the serif for ink. The picture
+       carries WHAT; the why stays on the page and in og:description, which
+       every client sets at its own readable size. */
     .lead {
-      font-family: var(--font-sans);
-      font-weight: 450; font-size: 34px; line-height: 1.3;
-      color: var(--ink-700);
-      margin-bottom: 26px;
+      margin-top: 20px;
+      font-size: 32px; line-height: 1.3; font-weight: 400;
+      color: var(--hero-detail);
       text-wrap: balance;
     }
-    /* The PAGE'S footnote treatment, matched here after the pill came off the
-       hero (Patrick, 2026-08-23): plain Courier Prime, no box. The pill's whole
-       remaining defence on this card was that there were no buttons to be
-       mistaken for - true, but two treatments of one line is drift, and the
-       box was also what made monospace look off-centre (a full stop is a dot
-       in an empty cell; letter-spacing trails the last glyph). No box, no
-       optical problem, one treatment everywhere.
-       ink-700 rather than the page's ink-600: cards get shrunk aggressively
-       in feeds, and the lighter meta ink was the first thing to wash out. */
-    .badge {
-      display: inline-block;
-      font-family: var(--font-mono);
-      /* 30px, up from 17. Courier Prime is thin and this is the smallest line
-         on the card, so it was the first to vanish - "I can't see that"
-         (Patrick, 2026-08-27) was true at every width a client renders. */
-      font-weight: 400; font-size: 30px; letter-spacing: 0.04em;
-      color: var(--ink-700);
+    /* The hero's status line ("For iPad / One desk, free."), on one line. NOT
+       Apple's badge: this card is an image in a timeline with nothing to
+       click, and a download badge here would be a button that does nothing. */
+    .status {
+      margin-top: 22px;
+      font-size: 28px; line-height: 1.3; font-weight: 500;
+      color: var(--muted);
     }
-    /* NO DEVICE FRAME (Patrick, 2026-08-23). The bezel was doing one job -
-       saying "this is an app" - and charging the card a lot of its width for
-       it: at thumbnail size the frame is a grey border and the screen inside
-       it is what a reader actually sees. Without it the desk is bigger in the
-       same space and the card is about the PLACE rather than the hardware.
-       The radius and shadow are the homepage hero's own (--r-3xl, --shadow-xl),
-       which is what keeps a bare screenshot from reading as a raw crop bleeding
-       into the paper. */
-    .shot { justify-self: end; padding-right: 44px; }
-    .shot img {
-      width: 470px; height: auto; display: block;
-      border-radius: 1.5rem;
-      box-shadow: 0 20px 25px -5px #0000001a, 0 8px 10px -6px #0000001a;
+    /* .desk-objects, verbatim from home.css: positions are percentages of the
+       box, so the card's 1200x630 lays them out as the hero's 1320x650 does. */
+    .objects { position: absolute; inset: 0; }
+    .objects img { position: absolute; height: auto; }
+    .mailbox { left: 44%; bottom: 14%; width: 29%; }
+    .rack { right: 0; bottom: 24%; width: 26%; }
+    .stack { left: 14%; bottom: 8%; width: 30%; }
+    .stamp, .sticker {
+      transform: scaleY(.62) rotate(var(--turn, 0deg));
+      transform-origin: center bottom;
+      filter: drop-shadow(0 2px 1px #594b393d);
     }
+    .stamp { width: 5.5%; }
+    .stamp-one { left: 74%; bottom: 12%; --turn: -6deg; }
+    .stamp-two { left: 82%; bottom: 11.5%; --turn: 3deg; }
+    .stamp-three { left: 90%; bottom: 12%; --turn: -3deg; }
+    .sticker { width: 5.5%; }
+    .sticker-one { left: 54%; bottom: 8%; --turn: -8deg; }
+    .sticker-two { left: 63%; bottom: 9%; --turn: 7deg; }
   </style>
 </head>
 <body>
-  <div>
+  <div class="copy">
     <div class="mark">
       <img class="glyph" src="../assets/mark.png" alt="" />
       <img class="word" src="../assets/wordmark.png" alt="Postmello" />
     </div>
-    <h1>A quiet place<br />for letters.</h1>
-    <p class="aside">Without the rush of messaging.</p>
-    <p class="lead">A private desk for digital letters between friends and
-       family.</p>
-    <!-- The hero's status line, matched. NOT Apple's App Store badge, and
-         deliberately not: this card is an IMAGE in someone's timeline with
-         nothing to click, so a download badge here would be a button that
-         does nothing. The pill is the site's own type saying the same fact
-         the hero says under its badge. -->
-    <span class="badge">On iPad. Free to start.</span>
+    <h1>A quiet place<br /><em>for letters.</em></h1>
+    <p class="lead">Write and draw digital letters with friends and family.</p>
+    <p class="status">For iPad. One desk, free.</p>
   </div>
-  <div class="shot">
-    <!-- The screen-only crop, the same file the homepage hero uses. The
-         bezelled app-desk.jpg stays in the repo but nothing renders it now. -->
-    <img src="../assets/app-desk-screen.jpg" alt="" />
+  <div class="objects">
+    <img class="mailbox" src="../assets/hero/p-mailbox.webp" alt="" />
+    <img class="rack" src="../assets/hero/p-rack.webp" alt="" />
+    <img class="stack" src="../assets/hero/p-stack.webp" alt="" />
+    <img class="stamp stamp-one" src="../assets/hero/p-stamp-bluebell.webp" alt="" />
+    <img class="stamp stamp-two" src="../assets/hero/p-stamp-lighthouse.webp" alt="" />
+    <img class="stamp stamp-three" src="../assets/hero/p-stamp-rainbow.webp" alt="" />
+    <img class="sticker sticker-one" src="../assets/hero/p-sticker-toadstoolhouse.webp" alt="" />
+    <img class="sticker sticker-two" src="../assets/hero/p-sticker-butterfly.webp" alt="" />
   </div>
 </body>
 </html>

@@ -12,8 +12,9 @@ site the same day, ahead of the release, to see it on production.
 `launch-badge-prototype` was merged into `main` with a merge commit, because
 its save commits carry the `[CF-Pages-Skip]` prefix and a fast-forward would
 have skipped the production build. The merge commit's own body then quoted
-the token while saying so, and Cloudflare skipped that push as well; a commit
-whose message never mentions the token followed (README, "Hosting").
+the token while saying so; whether Cloudflare skipped that push is unknown
+(its deployment list was not readable), a commit whose message never mentions
+the token followed, and the site was live at 16:18 UTC (README, "Hosting").
 
 The App Store link, `https://apps.apple.com/app/id6806487006`, is the
 listing's Apple id read from App Store Connect (`brand.json`, applied to both

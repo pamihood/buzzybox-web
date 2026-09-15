@@ -93,11 +93,15 @@ The selected website went live on 2026-09-15, after Apple approved 1.0 (build
 in App Store Connect and resolves as-is once it is. A work-in-progress branch may
 prefix its save commits with `[CF-Pages-Skip]` to avoid preview deployments.
 Bring such a branch to `main` with a merge commit, never a fast-forward, and
-keep that token out of the merge commit's message entirely, body included: on
+keep that token out of the merge commit's message entirely, body included. On
 2026-09-15 the merge commit and the notes commit after it both quoted the
-token while explaining this rule, Cloudflare built from neither push, and the
-GitHub Pages standby had deployed in 21 seconds. A commit whose message never
-mentions the token is what fetches the Cloudflare build.
+token while explaining this rule; the GitHub Pages standby deployed in 21
+seconds, production still served the old site three minutes later, a commit
+whose message never mentions the token was pushed, and the new site was live
+about forty seconds after that (214 seconds after the first push). Cloudflare's
+deployment list was not readable from that session, so whether the first push
+built at all is unknown. A message that never mentions the token is the safe
+rule either way.
 Archive tags preserve the original and all explorations.
 
 `_headers` maintains security and immutable CSS caching. The cache versions must

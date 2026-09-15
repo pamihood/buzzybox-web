@@ -63,7 +63,7 @@ def shell(title, description, path, content, article=False):
   <meta property="og:title" content="{title}" />
   <meta property="og:description" content="{description}" />
   <meta property="og:type" content="{'article' if article else 'website'}" />
-  <meta property="og:image" content="{ORIGIN}/assets/og-card.jpg" />
+  <meta property="og:image" content="{ORIGIN}{asset_url('/assets/og-card.jpg')}" />
   <meta property="og:url" content="{canonical}" />
   <meta property="og:site_name" content="Postmello" />
   <meta name="twitter:card" content="summary_large_image" />

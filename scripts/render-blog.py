@@ -133,13 +133,12 @@ def article(post):
 
 
 def index():
+    # One list, the two overviews first: the group headings, the intro line and
+    # the index-level byline came out on 2026-09-15 (Patrick). Each article
+    # still carries its own byline under the deck.
     content = ['<div class="blog-index">', '<a class="back" href="/">← Home</a>',
-               '<h1>Postmello Blog</h1>',
-               '<p class="blog-intro">The reasons behind Postmello, and the decisions that give it its shape.</p>',
-               f'<p class="post-meta">Essays by {AUTHOR}</p>']
-    for kind, title in [('overview', 'The idea and the design'), ('essay', 'A closer look')]:
-        content.extend([f'<section class="blog-section" aria-labelledby="{kind}-heading">',
-                        f'<h2 id="{kind}-heading">{title}</h2>', '<ul class="post-list">'])
+               '<h1>Postmello Blog</h1>', '<ul class="post-list">']
+    for kind in ('overview', 'essay'):
         for post in POSTS:
             if post['kind'] != kind:
                 continue
@@ -147,8 +146,7 @@ def index():
             content.extend(['<li>', f'<h3><a href="{url}">{html.escape(post["title"])}</a></h3>',
                             f'<p>{html.escape(post["description"])}</p>',
                             f'<a class="editorial-link" href="{url}">Read the essay <span aria-hidden="true">→</span></a>', '</li>'])
-        content.extend(['</ul></section>'])
-    content.append('</div>')
+    content.extend(['</ul>', '</div>'])
     return shell('Postmello Blog', 'Essays on friendship, creative letters and the design of a quiet place to write.', '/blog/', '\n'.join(content))
 
 

@@ -51,8 +51,10 @@ homepage anchors continue to resolve through aliases in `assets/site.js`.
 Patrick accepted the seven focused essays. They are integrated locally with
 “tablet” in the prose, alongside new versions of both original articles. The
 design article is now titled “A World Built for Childhood” and retains its
-existing URL. The blog index groups the two overview articles ahead of the
-seven closer looks; the overview links to all seven.
+existing URL. The blog index lists the two overview articles ahead of the
+seven closer looks, as one list; the overview links to all seven. Since
+2026-09-15 (Patrick) the index has no intro line, no index-level byline and no
+group headings, and the navigation label for it reads "Blog".
 
 The why article combines the selected homepage's motivations with Patrick's
 original summer/travel experiences: independent friendships before a smartphone,

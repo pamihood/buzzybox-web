@@ -55,7 +55,7 @@ em { color:var(--accent); font-weight:400; }
 .desk-description p { margin:0; }
 .desk-display { margin:0 auto; max-width:960px; }
 .desk-display>img { width:100%; height:auto; aspect-ratio:auto; object-fit:contain; border-radius:7px; box-shadow:0 17px 30px -14px #73543445; }
-.desk-display>video { display:block; width:100%; height:auto; border-radius:7px; box-shadow:0 17px 30px -14px #73543445; background:#e8d9c3; }
+.desk-display>video { display:block; width:100%; height:auto; background:#253532; }
 .desk-display>[hidden] { display:none; }
 .desk-options { display:flex; justify-content:center; gap:24px; flex-wrap:wrap; margin-top:32px; }
 .desk-options button { cursor:pointer; color:var(--muted); background:none; border:0; border-bottom:2px solid transparent; padding:0 0 10px; display:flex; align-items:center; gap:12px; font-size:.875rem; }
@@ -544,15 +544,20 @@ html { scroll-padding-top:calc(var(--nav-height,92px) + 20px); }
   .desk-options button:last-child:nth-child(odd) { grid-column:1 / -1; justify-self:center; }
 }
 
-/* Slim device bezel restored from the original new-direction concept. */
-.desk-display>img {
+/* Slim device bezel restored from the original new-direction concept.
+   The film wears it too: the desk section swaps a <video> in for the still
+   on the original desk, and a frame on five of six reads as a mistake. It
+   also gives the native control bar an edge to sit inside. */
+.desk-display>img,
+.desk-display>video {
   box-sizing:border-box;
   border:9px solid #253532;
   border-radius:22px;
   box-shadow:0 25px 42px -26px #172c3680;
 }
 @media(max-width:760px) {
-  .desk-display>img { border-width:5px; border-radius:13px; }
+  .desk-display>img,
+  .desk-display>video { border-width:5px; border-radius:13px; }
 }
 
 .desk-keepsake { max-width:38em; margin:26px auto 0; text-align:center; font-size:1rem; line-height:1.6; }

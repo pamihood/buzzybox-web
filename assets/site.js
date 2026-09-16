@@ -2,6 +2,21 @@ const options = document.querySelectorAll('.desk-options button');
 options.forEach(button => button.addEventListener('click', () => {
   options.forEach(option => option.setAttribute('aria-pressed', String(option === button)));
   const image = document.getElementById('desk-image');
+  const video = document.getElementById('desk-video');
+  // The original desk plays the film of a letter being made; the collections
+  // are stills. Swapping which element is shown — rather than putting the
+  // film somewhere else on the page — is what stops the same mint desk
+  // appearing twice in one section. The poster is the film's own first frame,
+  // and it is 4:3 like every still, so nothing shifts on the swap.
+  if (video) {
+    const wantsVideo = button.dataset.video === 'true';
+    // Rewinding on the way out means coming back shows the film's first
+    // frame — which is the poster, and is also what the collection stills
+    // show — instead of dropping someone back onto a half-watched frame.
+    if (!wantsVideo) { video.pause(); video.currentTime = 0; }
+    video.hidden = !wantsVideo;
+    image.hidden = wantsVideo;
+  }
   image.src = button.dataset.image;
   image.alt = button.dataset.alt;
 }));

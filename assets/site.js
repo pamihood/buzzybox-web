@@ -26,13 +26,25 @@ options.forEach(button => button.addEventListener('click', () => {
 const headerPosition = document.querySelector('.header-position');
 const opening = document.querySelector('.opening');
 if (headerPosition && opening) {
+  // Two heights, because the bar is two different sizes and they mean
+  // different things. --nav-height is the OPENING lockup, and .opening reserves
+  // exactly that much padding for it; --nav-dock-height is the shorter docked
+  // strip, and it is what an anchor has to clear. Writing the docked height
+  // into --nav-height would shrink .opening's padding by the difference while
+  // the reader is a screen or two below it, which yanks the whole page up.
   const measureHeader = () => {
-    document.documentElement.style.setProperty('--nav-height', `${headerPosition.offsetHeight}px`);
+    const docked = headerPosition.classList.contains('is-docked');
+    const property = docked ? '--nav-dock-height' : '--nav-height';
+    document.documentElement.style.setProperty(property, `${headerPosition.offsetHeight}px`);
   };
   measureHeader();
   new ResizeObserver(measureHeader).observe(headerPosition);
   new IntersectionObserver(([entry]) => {
     headerPosition.classList.toggle('is-docked', entry.boundingClientRect.bottom <= 0);
+    // The ResizeObserver catches the size change on its own, but only on the
+    // FIRST dock - re-docking at an unchanged size fires nothing, and the
+    // desk section's height cap reads --nav-dock-height on every layout.
+    measureHeader();
   }, { threshold: 0 }).observe(opening);
 }
 

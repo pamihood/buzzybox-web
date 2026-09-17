@@ -302,7 +302,20 @@ a:focus-visible,button:focus-visible,summary:focus-visible { outline:3px solid #
 }
 .header-position { position:absolute; inset:0 0 auto; z-index:100; background:transparent; }
 .header-position.is-docked { position:fixed; background:#fffdf9; box-shadow:0 2px 14px #44392e14; }
-html { scroll-padding-top:calc(var(--nav-height,92px) + 20px); }
+/* Docked, the lockup steps down to a utility strip: 92px -> 58px. The opening
+   header can afford a 46px mark because it floats over the hero with nothing
+   under it, but the docked one is an opaque bar sitting ON the page, and 92px
+   of it is 92px taken off every section below. The desk film is 769px tall, so
+   at 92px the bar and the film together wanted 948px of window - more than a
+   laptop has - and the bar cropped the top of the desk at the one scroll
+   position where the film was otherwise fully in view.
+   The wordmark keeps its 5.12 aspect (width only; see the note on .brand). */
+.header-position.is-docked .header { padding-block:11px; }
+.header-position.is-docked .brand .brand-mark { width:36px; height:36px; }
+.header-position.is-docked .brand .brand-wordmark { width:139px; }
+/* The DOCKED height, not the opening one: an anchor always lands with the bar
+   docked, so the taller opening lockup would push every target 34px low. */
+html { scroll-padding-top:calc(var(--nav-dock-height,58px) + 20px); }
 .desk-room {
   mask-image:linear-gradient(to bottom,transparent,#000 24px);
   background:#f5e8cf url('/assets/site/desk-backdrop.png') center 53.42%/100% 157.48% no-repeat;
@@ -554,6 +567,24 @@ html { scroll-padding-top:calc(var(--nav-height,92px) + 20px); }
   border:9px solid #253532;
   border-radius:22px;
   box-shadow:0 25px 42px -26px #172c3680;
+}
+/* Sized to be SEEN WHOLE, which means capped by the height left under the
+   docked bar and not by width alone. At a flat 1020px the film stood 769px
+   tall, and 769 + the 58px bar + the 87px switcher row below it wants 914px of
+   window - so on any laptop something was always cut off, and switching desks
+   changed a picture you could not see.
+   Every desk is 4:3 (the film is 1440x1080, the stills 2732x2048), so the
+   spare height converts straight back into a width: usable * 4/3, plus the
+   18px the two bezel borders add outside the 4:3 image. 112px is the 55px
+   switcher row, its 32px gap, and 25px of air so the active desk's underline
+   is not sitting on the window's edge. On a tall display the 1020px still wins
+   and nothing moves; on a 900px window the desk gives up 53px of width and
+   arrives whole. svh, not vh: vh is the tall-chrome height on mobile Safari,
+   which would overshoot in exactly the case this is protecting.
+   The 640px floor stops a short, wide window shrinking the desk to a stamp -
+   below that, scrolling the film is the better trade. */
+.desk-display {
+  max-width:min(1020px, max(640px, calc((100svh - var(--nav-dock-height,58px) - 112px - 18px) * 4 / 3 + 18px)));
 }
 @media(max-width:760px) {
   .desk-display>img,

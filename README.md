@@ -17,6 +17,9 @@ Open http://127.0.0.1:8765/. The production files are served directly.
 - `index.html` and `home.css`: selected desk-and-letters homepage.
 - `assets/site/`: the selected desk backdrop, wood texture, and full desk images.
 - `assets/site.js`: desk choices, header behavior, mobile navigation, old anchor aliases.
+- `assets/instagram/`: the prints in the homepage's Instagram section, 3:4 WebP at
+  900×1200, served from here so the page loads nothing from Instagram. The section is
+  hand-maintained in `index.html`; the comment above the prints says how to add a post.
 - `styles.css`: blog, support, legal, parental-consent, and account pages. The last
   section applies the selected design to their existing reading and form layouts.
 - `blog/*/index.md`: maintained article prose. `blog/posts.json` owns ordering,
@@ -42,8 +45,9 @@ Do not hand-edit generated prices or duplicate the download URL.
 - `../posty/pricing.json` is the sole pricing source. Never restate prices or desk
   counts in this README. `scripts/apply-pricing.py` updates all marked amounts,
   plan names, counts, and discounts, including founding-window copy.
-- `brand.json` owns the tagline and App Store URL. `scripts/apply-brand.py` updates
-  the homepage's marked elements and the private letter viewer's fallback link.
+- `brand.json` owns the tagline, the App Store URL and the Instagram URL.
+  `scripts/apply-brand.py` updates the homepage's marked elements and the private
+  letter viewer's fallback link; `scripts/apply-footer.py` reads the Instagram URL too.
 - `scripts/apply-navigation.py` owns supporting-page headers.
 - `scripts/apply-footer.py` owns all public/account footers.
 - `scripts/apply-head-meta.py` owns fonts, canonicals, and shared social metadata.

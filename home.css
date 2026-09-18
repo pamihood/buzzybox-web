@@ -617,3 +617,54 @@ html { scroll-padding-top:calc(var(--nav-dock-height,58px) + 20px); }
   .membership-promise { grid-template-columns:1fr; gap:18px; margin-top:32px; padding:24px; }
   .promise-copy p { font-size:.9375rem; }
 }
+
+/* Instagram: a few prints from the account, laid out like photographs under the
+   copy - a paper mat, a slight turn each, a caption. The prints are hand-kept in
+   index.html (the comment there says how); the row centres one print or three,
+   and on a phone it becomes a strip that scrolls sideways. It sits before the
+   closing so the download is still the page's last word. */
+.surface--instagram { background-color:#fbf1de; border-top:1px solid #d9cbb1; }
+.instagram { padding-block:76px 84px; }
+.instagram-heading { display:flex; justify-content:space-between; align-items:flex-end; gap:45px; margin-bottom:44px; }
+.instagram-heading h2 { font-size:clamp(2.2rem,3.7vw,3.25rem); }
+.instagram-blurb { max-width:400px; margin-bottom:6px; }
+.instagram-blurb p { margin:0 0 6px; font-size:1rem; line-height:1.7; color:var(--muted); }
+.instagram-prints { display:flex; justify-content:center; align-items:flex-start; gap:40px; padding:14px 0 10px; }
+.instagram-print { display:block; flex:0 0 auto; width:300px; padding:10px 10px 12px; background:#fffdf8; border-radius:3px; box-shadow:0 12px 26px -12px #6e533852; text-decoration:none; transform:rotate(-2deg); transition:transform .25s ease,box-shadow .25s ease; }
+.instagram-print:nth-child(even) { transform:rotate(2deg); }
+.instagram-print:hover,.instagram-print:focus-visible { transform:translateY(-4px) rotate(0); box-shadow:0 18px 32px -12px #6e533866; }
+.instagram-print img { width:100%; aspect-ratio:3/4; object-fit:cover; border-radius:2px; }
+.instagram-caption { display:flex; align-items:center; justify-content:center; gap:7px; margin-top:11px; font-size:.8125rem; line-height:1.4; color:var(--muted); }
+.instagram-caption svg { width:10px; height:10px; flex-shrink:0; fill:currentColor; }
+@media (prefers-reduced-motion:reduce) { .instagram-print { transition:none; } }
+@media(max-width:1100px) {
+  .instagram-prints { gap:28px; }
+  .instagram-print { width:260px; }
+}
+@media(max-width:760px) {
+  .instagram { padding-block:55px 60px; }
+  .instagram-heading { display:block; margin-bottom:28px; }
+  .instagram-blurb { margin-top:18px; }
+  /* Bleeds to the screen's edges (the wrap's 32px gutters, undone) so the strip
+     reads as scrollable; auto margins on the ends centre a row that fits and
+     still let a longer one scroll all the way, which justify-content cannot. */
+  .instagram-prints { justify-content:flex-start; gap:22px; margin-inline:-32px; padding:14px 32px 18px; overflow-x:auto; scroll-snap-type:x mandatory; scrollbar-width:none; }
+  .instagram-prints::-webkit-scrollbar { display:none; }
+  .instagram-print { width:236px; scroll-snap-align:center; }
+  .instagram-print:first-child { margin-left:auto; }
+  .instagram-print:last-child { margin-right:auto; }
+}
+
+/* Instagram's own glyph, as its Brand Resource Center draws it: 30px in the
+   footer and 32px by the follow link (the minimum is 29), at least half its
+   size clear on every side, one solid colour - the page's ink - and never
+   reshaped or rotated. Icon only in the footer; the aria-label has the words. */
+.footer nav a { display:inline-flex; align-items:center; }
+.footer-instagram { padding:8px; margin-inline:2px; border-radius:8px; }
+.footer-instagram svg { display:block; width:30px; height:30px; }
+.footer-instagram:hover { opacity:.72; }
+.instagram-follow { display:inline-flex; align-items:center; gap:14px; margin-top:12px; font-size:.9375rem; font-weight:500; text-decoration:none; }
+.instagram-follow svg { flex-shrink:0; width:32px; height:32px; }
+.instagram-follow span:nth-child(2) { border-bottom:1px solid #b6a18b; padding-bottom:5px; }
+.instagram-follow:hover span:nth-child(2) { border-color:var(--ink); }
+.instagram-follow span:last-child { font-size:1.125rem; }

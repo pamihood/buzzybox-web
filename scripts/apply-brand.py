@@ -22,7 +22,7 @@ four call-to-action sites is no longer a LABEL but a LINK - and a link typed
 four times drifts exactly the way the tagline did. A key may use either form or
 both; it fails only when neither marker exists anywhere.
 
-Keys: tagline, app_store_url. (beta_cta was the third until the private beta
+Keys: tagline, app_store_url, instagram_url. (beta_cta was the third until the private beta
 ended - see the note in brand.json.) Anything in brand.json whose name starts
 with an underscore is a note for a human and is skipped.
 

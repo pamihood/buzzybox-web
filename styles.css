@@ -2183,6 +2183,11 @@ body { font-family:var(--font-voice); font-weight:400; }
 .site-footer nav { display:flex; align-items:center; justify-content:center; flex-wrap:wrap; gap:16px 30px; }
 .site-footer nav a { display:inline-flex; align-items:center; min-height:44px; margin:0; font-size:.875rem; font-weight:400; color:var(--ink); }
 .site-footer>span { display:block; margin-top:14px; font-size:.75rem; color:var(--ink-soft); }
+/* Instagram's own glyph at 30px (its minimum is 29), half its size clear around
+   it, in the footer's ink. Icon only; the link's aria-label carries the words. */
+.site-footer .footer-instagram { padding:8px; margin-inline:2px; border-radius:8px; }
+.site-footer .footer-instagram svg { display:block; width:30px; height:30px; }
+.site-footer .footer-instagram:hover { opacity:.72; text-decoration:none; }
 .menu-toggle { display:none; }
 a:focus-visible,button:focus-visible,summary:focus-visible { outline:3px solid #937247; outline-offset:5px; }
 @media(max-width:960px) { .site-head { gap:16px; } .site-head nav { gap:15px; } }

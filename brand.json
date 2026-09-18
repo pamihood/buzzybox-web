@@ -22,6 +22,15 @@
   "_app_store_url_notes": [
     "Confirmed 2026-09-15 against App Store Connect: the Postmello record's Apple id is 6806487006, so this is the listing's URL. It answers 404 until the version is released (manual release) and resolves as-is afterwards. scripts/apply-brand.py writes it into both homepage badges and the private letter viewer fallback."
   ],
+  "instagram_url": "https://www.instagram.com/hellopostmello/",
+  "_instagram_url_notes": [
+    "The account is @hellopostmello, opened 2026-09-18. scripts/apply-brand.py writes",
+    "this into the homepage's data-brand-href=\"instagram_url\" links (the Instagram",
+    "section's follow link and the footer), and scripts/apply-footer.py reads it for",
+    "every other page's footer, so the address is typed here and nowhere else.",
+    "The prints in the homepage section are NOT scripted: they are hand-maintained",
+    "in index.html, and the comment above them says how to add a post."
+  ],
   "_beta_cta_notes": [
     "RETIRED with the private beta. It read 'Request an invite', and before",
     "that 'Join private beta' and 'Get Started'; its note always said it would",

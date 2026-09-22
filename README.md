@@ -27,6 +27,9 @@ Open http://127.0.0.1:8765/. The production files are served directly.
   only one line pointing at it. It posts to posty's `ipad-link` edge function
   (Turnstile-gated, keeps no address, one email per address per day); on
   localhost it uses Cloudflare's always-pass test key and `/mock/ipad-link`.
+  A headless browser cannot pass the real check on postmello.com (Cloudflare
+  shows "Verify you are human" and refuses a scripted tick), so prove a change
+  there with a human send; proven so on 2026-09-22.
 - `assets/origin-writing.webp`: the "How it began" photo, Patrick's daughter
   writing at lunch. Framed below the chin, written names blurred; the recipe and
   boxes are in posty's `_local/marketing/carousel/` (README, "Website 'How it

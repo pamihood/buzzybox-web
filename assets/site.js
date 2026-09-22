@@ -87,6 +87,7 @@ if (film) {
   }));
 
   const EMAIL = /^[^\s@]{1,64}@[^\s@.]+(\.[^\s@.]+)+$/;
+  const TICK = 'Tick the box to confirm, and it will send.';
   const showDone = () => panels.forEach(panel => {
     panel.querySelector('.send-link-form').hidden = true;
     panel.querySelector('.send-link-done').hidden = false;
@@ -105,6 +106,9 @@ if (film) {
     let widget = null;
     let token = '';
     let waiting = null;
+    // True while Cloudflare is showing its "Verify you are human" box: then the
+    // form waits for the tick, however long it takes, instead of giving up.
+    let asking = false;
 
     const prepare = () => {
       if (widget !== null) return;
@@ -113,20 +117,31 @@ if (film) {
       loadTurnstile().then(api => {
         widget = api.render(check, {
           sitekey, appearance: 'interaction-only', size: 'flexible',
-          callback: value => { token = value; if (waiting) waiting(value); },
+          callback: value => { token = value; if (waiting) { message.textContent = ''; waiting(value); } },
           'expired-callback': () => { token = ''; },
           'error-callback': () => { token = ''; },
+          'before-interactive-callback': () => { asking = true; if (waiting) message.textContent = TICK; },
+          'after-interactive-callback': () => { asking = false; },
         });
       }).catch(() => { widget = null; });
     };
     form.addEventListener('focusin', prepare);
     form.addEventListener('pointerdown', prepare);
 
-    // The token usually lands while the address is typed; if not, wait for it
-    // (Cloudflare may be showing its one-click check) for up to 20 seconds.
+    // The token usually lands while the address is typed. If Cloudflare is
+    // asking for a tick, wait for the person - the send goes on its own once
+    // they tick. Otherwise give it 20 seconds (a blocked script, say) and say
+    // it did not send. Found on the live page 2026-09-22: a challenged browser
+    // got the error under a box it had not had the chance to tick.
     const tokenReady = () => token ? Promise.resolve(token) : new Promise(resolve => {
       waiting = value => { waiting = null; resolve(value); };
-      setTimeout(() => { if (waiting) { waiting = null; resolve(''); } }, 20000);
+      if (asking) message.textContent = TICK;
+      const giveUp = () => {
+        if (!waiting) return;
+        if (asking) { setTimeout(giveUp, 20000); return; }
+        waiting = null; resolve('');
+      };
+      setTimeout(giveUp, 20000);
     });
 
     form.addEventListener('submit', async event => {

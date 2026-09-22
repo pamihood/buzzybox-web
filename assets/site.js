@@ -52,6 +52,146 @@ if (film) {
   render(); play();
 }
 
+// "Not on your iPad?": email yourself the App Store link. Postmello is
+// iPad-only and the ads bring parents holding phones. The form lives in the
+// closing section - never the hero, which only gets one quiet line jumping
+// down to it. On a phone the form takes the closing badge's place
+// (html.send-link-first); on a computer or another tablet it sits under the
+// badge; on an iPad neither appears - the badge is the right answer there.
+// Without this script both stay hidden and the badge is all there is.
+//
+// Cloudflare Turnstile guards the endpoint, as it guarded the old invite form,
+// but its script loads only once someone starts on the form: nobody who merely
+// reads the page fetches anything from Cloudflare's challenge servers. It runs
+// "interaction-only", so it is invisible unless Cloudflare wants a click.
+(() => {
+  const panels = [...document.querySelectorAll('[data-send-link]')];
+  if (!panels.length) return;
+  const ua = navigator.userAgent;
+  // iPadOS Safari reports itself as a Mac; the touch points give it away.
+  const onIPad = /iPad/.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1);
+  if (onIPad) return;
+  const onPhone = /iPhone|iPod|Android.+Mobile|Windows Phone/i.test(ua);
+  document.documentElement.classList.toggle('send-link-first', onPhone);
+  const local = /^(localhost|127\.0\.0\.1)$/.test(location.hostname);
+  const note = (...parts) => document.dispatchEvent(new CustomEvent('postmello:event', { detail: parts }));
+
+  let turnstile;
+  const loadTurnstile = () => turnstile || (turnstile = new Promise((resolve, reject) => {
+    window.postmelloTurnstileReady = () => resolve(window.turnstile);
+    const script = document.createElement('script');
+    script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit&onload=postmelloTurnstileReady';
+    script.async = true;
+    script.onerror = reject;
+    document.head.append(script);
+  }));
+
+  const EMAIL = /^[^\s@]{1,64}@[^\s@.]+(\.[^\s@.]+)+$/;
+  const showDone = () => panels.forEach(panel => {
+    panel.querySelector('.send-link-form').hidden = true;
+    panel.querySelector('.send-link-done').hidden = false;
+  });
+
+  panels.forEach(panel => {
+    const form = panel.querySelector('.send-link-form');
+    const input = form.querySelector('input[type=email]');
+    const button = form.querySelector('button[type=submit]');
+    const message = form.querySelector('.send-link-msg');
+    const check = form.querySelector('.send-link-check');
+    // Cloudflare's always-pass test key and a local stand-in on a dev server:
+    // the real key only answers on postmello.com.
+    const sitekey = local ? '1x00000000000000000000AA' : panel.dataset.sitekey;
+    const endpoint = local ? '/mock/ipad-link' : panel.dataset.endpoint;
+    let widget = null;
+    let token = '';
+    let waiting = null;
+
+    const prepare = () => {
+      if (widget !== null) return;
+      widget = false;
+      note('link', 'start', panel.dataset.sendLink);
+      loadTurnstile().then(api => {
+        widget = api.render(check, {
+          sitekey, appearance: 'interaction-only', size: 'flexible',
+          callback: value => { token = value; if (waiting) waiting(value); },
+          'expired-callback': () => { token = ''; },
+          'error-callback': () => { token = ''; },
+        });
+      }).catch(() => { widget = null; });
+    };
+    form.addEventListener('focusin', prepare);
+    form.addEventListener('pointerdown', prepare);
+
+    // The token usually lands while the address is typed; if not, wait for it
+    // (Cloudflare may be showing its one-click check) for up to 20 seconds.
+    const tokenReady = () => token ? Promise.resolve(token) : new Promise(resolve => {
+      waiting = value => { waiting = null; resolve(value); };
+      setTimeout(() => { if (waiting) { waiting = null; resolve(''); } }, 20000);
+    });
+
+    form.addEventListener('submit', async event => {
+      event.preventDefault();
+      message.textContent = '';
+      const email = input.value.trim();
+      if (!EMAIL.test(email)) { message.textContent = 'Check the email address and try again.'; input.focus(); return; }
+      prepare();
+      button.disabled = true;
+      button.textContent = 'Sending…';
+      const done = text => { button.disabled = false; button.textContent = 'Email me the link'; message.textContent = text || ''; };
+      const proof = await tokenReady();
+      if (!proof) { done('That didn’t send. Please try again in a moment.'); return; }
+      try {
+        const response = await fetch(endpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, company: form.company.value, turnstileToken: proof, source: panel.dataset.sendLink }),
+        });
+        const reply = await response.json().catch(() => ({}));
+        if (response.ok && reply.status === 'ok') { note('link', 'sent', panel.dataset.sendLink); showDone(); return; }
+        // A Turnstile token is single-use: whatever happened, the next try needs a fresh one.
+        token = '';
+        if (window.turnstile && widget) window.turnstile.reset(widget);
+        done(reply.status === 'invalid_email' ? 'Check the email address and try again.' : 'That didn’t send. Please try again in a moment.');
+      } catch (_) {
+        token = '';
+        if (window.turnstile && widget) window.turnstile.reset(widget);
+        done('That didn’t send. Please try again in a moment.');
+      }
+    });
+    panel.hidden = false;
+  });
+
+  const cue = document.querySelector('.send-link-cue');
+  if (cue) {
+    cue.hidden = false;
+    cue.addEventListener('click', event => {
+      const target = document.getElementById('get-the-link');
+      if (!target) return;
+      event.preventDefault();
+      note('link', 'cue');
+      // Centred rather than under the docked bar, and the cursor goes in the
+      // field only once the scroll has landed: focusing mid-scroll cancels a
+      // smooth scroll, which stranded the form at the foot of a phone screen.
+      const calm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      target.scrollIntoView({ behavior: calm ? 'auto' : 'smooth', block: 'center' });
+      // Pictures further up load as the scroll passes them and push the form
+      // down after the scroll has aimed at it (several have no reserved size),
+      // so once it lands, look again and step straight to it if it moved.
+      const input = target.querySelector('input[type=email]');
+      let settled = false;
+      const settle = () => {
+        if (settled) return;
+        settled = true;
+        const box = target.getBoundingClientRect();
+        if (box.top < 0 || box.bottom > window.innerHeight) target.scrollIntoView({ block: 'center' });
+        if (input) input.focus({ preventScroll: true });
+      };
+      window.addEventListener('scrollend', settle, { once: true });
+      setTimeout(settle, 1500);
+    });
+  }
+})();
+
 // The opening header scrolls away naturally. Reuse the same navigation as a
 // fixed white bar only after the entire hero has passed.
 const headerPosition = document.querySelector('.header-position');
@@ -140,6 +280,7 @@ if (opening) {
     };
 
     send('view');
+    document.addEventListener('postmello:event', event => send(...event.detail));
 
     // A section counts as reached once any of it is in the top half of the screen.
     if ('IntersectionObserver' in window) {

@@ -21,6 +21,12 @@ Open http://127.0.0.1:8765/. The production files are served directly.
   muted as the page opens. Its recipe is `web_loop.sh` in posty's
   `_local/marketing/product-film/_recipe/`. The six desks are shown further down
   as a plain grid (`*-grid.webp`, 800x600), not as a switcher.
+- "Not on your iPad?" (`[data-send-link]` in `index.html`, its script in
+  `assets/site.js`): the closing section's form that emails a visitor the App
+  Store link, for the phones the ads bring to an iPad-only app. The hero carries
+  only one line pointing at it. It posts to posty's `ipad-link` edge function
+  (Turnstile-gated, keeps no address, one email per address per day); on
+  localhost it uses Cloudflare's always-pass test key and `/mock/ipad-link`.
 - `assets/origin-writing.webp`: the "How it began" photo, Patrick's daughter
   writing at lunch. Framed below the chin, written names blurred; the recipe and
   boxes are in posty's `_local/marketing/carousel/` (README, "Website 'How it

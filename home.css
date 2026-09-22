@@ -651,3 +651,54 @@ html { scroll-padding-top:calc(var(--nav-dock-height,58px) + 20px); }
   .origin-inner { grid-template-columns:1fr; gap:34px; }
   .origin-photo { width:min(100%,340px); margin-inline:auto; }
 }
+
+/* "Not on your iPad?" (2026-09-22). The ads bring parents who are almost all on
+   phones, and Postmello is iPad-only, so the App Store badge is a dead end on
+   the device they are holding. This keeps the interest instead: an email to
+   themselves with the App Store link, to open later on the iPad. It lives in
+   the closing section, NOT the hero (Patrick: the form must not crowd it);
+   the hero only carries one quiet line that jumps down to it. Both stay hidden
+   until the script decides the visitor is not on an iPad. On a phone the form
+   takes the closing badge's place (html.send-link-first); elsewhere it sits
+   under the badge. */
+.send-link[hidden],.send-link-form[hidden],.send-link-done[hidden] { display:none; }
+.send-link {
+  max-width:440px; margin-top:26px; padding:18px 20px 20px; text-align:left;
+  background:#fffaf2; border:1px solid #e3d2b6; border-radius:14px;
+  box-shadow:0 10px 24px -20px #5a3f2070;
+}
+.send-link-title { margin:0; font:500 1.25rem/1.3 Lora,Georgia,serif; letter-spacing:-.02em; color:var(--ink); }
+.send-link-detail { margin:4px 0 0; font-size:.9375rem; line-height:1.55; color:var(--muted); }
+.send-link-label { display:block; margin:14px 0 6px; font-size:.8125rem; font-weight:600; color:var(--ink); }
+.send-link-row { display:flex; gap:8px; }
+.send-link-input {
+  flex:1 1 auto; min-width:0; height:48px; padding:0 14px;
+  border:1px solid #cdb99c; border-radius:10px; background:#fffdf9;
+  color:var(--ink); font:400 1rem 'DM Sans',sans-serif;
+}
+.send-link-input::placeholder { color:#a3927e; }
+.send-link-input:focus { outline:3px solid #9372474d; outline-offset:1px; border-color:#937247; }
+.send-link-button {
+  flex:0 0 auto; height:48px; padding:0 18px; border:0; border-radius:10px; cursor:pointer;
+  background:#1f1b17; color:#fff; font:600 .9375rem 'DM Sans',sans-serif;
+}
+.send-link-button:hover { background:#000; }
+.send-link-button[disabled] { opacity:.6; cursor:progress; }
+/* The honeypot: off-screen, never tabbed to, filled only by bots. */
+.send-link-hp { position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden; }
+.send-link-check:empty { display:none; }
+.send-link-check { margin-top:10px; }
+.send-link-msg { margin:8px 0 0; font-size:.875rem; line-height:1.5; color:#9a3b1f; }
+.send-link-msg:empty { display:none; }
+.closing .send-link { margin:26px auto 18px; }
+html.send-link-first .closing .store { display:none; }
+.send-link-cue[hidden] { display:none; }
+.send-link-cue { display:inline-flex; align-items:center; gap:8px; margin-top:16px; font-size:.875rem; font-weight:500; color:var(--muted); text-decoration:underline; text-decoration-color:#c9b79f; text-underline-offset:4px; }
+.send-link-cue:hover { color:var(--ink); text-decoration-color:currentColor; }
+@media(max-width:760px) {
+  .send-link-cue { order:3; align-self:flex-start; margin-top:14px; }
+  .send-link { max-width:none; padding:16px 16px 18px; }
+  .send-link-row { flex-direction:column; }
+  .send-link-button { width:100%; }
+  .closing .send-link { margin-top:22px; }
+}

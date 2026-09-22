@@ -15,11 +15,13 @@
        loudly. When home.css changes a face, a token or the hero, change it
        here and rerun the script.
 
-       REBUILT 2026-09-15 as the new hero: the painted desk room as the ground,
-       the mailbox, paper rack, pen on its stack, stamps and stickers placed by
-       the same percentages home.css uses (.desk-mailbox and friends), and the
-       hero's own words. The desk-room rule and the object positions below are
-       copied from home.css; if those move, move these.
+       REBUILT 2026-09-22 with the homepage, when the hero became the desk
+       film: the hero's cream ground, its words, and the film's thin iPad frame
+       around the mint desk - the app's own original desk as a still
+       (assets/site/desk.webp), never a frame from the film. The AI still life
+       of the previous hero is gone from the card as it is from the page. The
+       ground and the frame are copied from home.css (.opening, .film-screen);
+       if those move, move these.
 
        Not linked from anywhere and not in the sitemap - it is a source file
        that happens to be HTML. -->
@@ -46,9 +48,12 @@
       font-family: var(--font-sans);
       color: var(--ink);
       font-synthesis: none;
-      /* .desk-room, verbatim: the wall and the mint desk, the desk's rear edge
-         at 62% of the height and its front lip from 96%. */
-      background: #f5e8cf url("../assets/site/desk-backdrop.png") center 53.42% / 100% 157.48% no-repeat;
+      /* .opening, verbatim: the cream ground with its light behind the film. */
+      background:
+        radial-gradient(ellipse 58% 70% at 71% 42%, #fffaf1 0%, #fffaf100 70%),
+        url("../assets/paper-grain.png") repeat,
+        linear-gradient(#f7e9d3, #f2e1c7);
+      background-size: auto, 128px, auto;
     }
     /* THE SIZE RULE - read this before changing any font-size here.
        Nothing on this card is sized against the other things on this card. It
@@ -59,7 +64,8 @@
        comfortably. Test, do not estimate: render, downsample to 300px and
        360px, and look. A line that is illegible there is not on the card. */
     .copy {
-      position: absolute; left: 72px; top: 76px; width: 560px; z-index: 1;
+      position: absolute; left: 72px; top: 50%; width: 470px; z-index: 1;
+      transform: translateY(-50%);
     }
     /* THE WORDMARK IS DRAWN - assets/wordmark.png, the same file the site
        header uses, no typeface at all. Sized by height, width auto: the aspect
@@ -72,10 +78,10 @@
     .mark .word { height: 32px; width: auto; display: block; }
     /* The hero's headline: Lora at the site's 500 (it loads no 700, and
        font-synthesis is off there too), the second line italic in the hero's
-       brown. Two lines, as the page breaks it. 72px: the mailbox's visible
-       left edge sits near x=535, and "place" needs real air before it - at
-       88 the word ran into the mailbox, at 80 it stopped 24px short and still
-       read as touching (Patrick, 2026-09-15). 72 leaves about 70px. */
+       brown. Two lines, as the page breaks it. 72px: "place" needs real air
+       before whatever sits to its right - at 88 the word ran into the old
+       card's mailbox, at 80 it stopped 24px short and still read as touching
+       (Patrick, 2026-09-15). The iPad keeps the same distance now. */
     h1 {
       font-family: var(--font-serif);
       font-weight: 500; font-size: 72px;
@@ -94,25 +100,16 @@
        caption beside the App Store badge on the site; with no badge on the
        card it read as a stray sentence, and it landed on the desk's rear edge
        above the paper stack. The platform is on the page and in the listing. */
-    /* .desk-objects, verbatim from home.css: positions are percentages of the
-       box, so the card's 1200x630 lays them out as the hero's 1320x650 does. */
-    .objects { position: absolute; inset: 0; }
-    .objects img { position: absolute; height: auto; }
-    .mailbox { left: 44%; bottom: 14%; width: 29%; }
-    .rack { right: 0; bottom: 24%; width: 26%; }
-    .stack { left: 14%; bottom: 8%; width: 30%; }
-    .stamp, .sticker {
-      transform: scaleY(.62) rotate(var(--turn, 0deg));
-      transform-origin: center bottom;
-      filter: drop-shadow(0 2px 1px #594b393d);
+    /* .film-screen, at the card's scale: the thin dark bezel and its shadow,
+       around the desk at 4:3. 560px wide leaves "place" its air. */
+    .ipad {
+      position: absolute; right: 64px; top: 50%; width: 560px;
+      transform: translateY(-50%);
+      border: 9px solid #253532; border-radius: 22px; overflow: hidden;
+      background: #253532;
+      box-shadow: 0 34px 56px -30px #3c2a1888, 0 12px 24px -16px #3c2a1844;
     }
-    .stamp { width: 5.5%; }
-    .stamp-one { left: 74%; bottom: 12%; --turn: -6deg; }
-    .stamp-two { left: 82%; bottom: 11.5%; --turn: 3deg; }
-    .stamp-three { left: 90%; bottom: 12%; --turn: -3deg; }
-    .sticker { width: 5.5%; }
-    .sticker-one { left: 54%; bottom: 8%; --turn: -8deg; }
-    .sticker-two { left: 63%; bottom: 9%; --turn: 7deg; }
+    .ipad img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; }
   </style>
 </head>
 <body>
@@ -123,15 +120,6 @@
     </div>
     <h1>A quiet place<br /><em>for letters.</em></h1>
   </div>
-  <div class="objects">
-    <img class="mailbox" src="../assets/hero/p-mailbox.webp" alt="" />
-    <img class="rack" src="../assets/hero/p-rack.webp" alt="" />
-    <img class="stack" src="../assets/hero/p-stack.webp" alt="" />
-    <img class="stamp stamp-one" src="../assets/hero/p-stamp-bluebell.webp" alt="" />
-    <img class="stamp stamp-two" src="../assets/hero/p-stamp-lighthouse.webp" alt="" />
-    <img class="stamp stamp-three" src="../assets/hero/p-stamp-rainbow.webp" alt="" />
-    <img class="sticker sticker-one" src="../assets/hero/p-sticker-toadstoolhouse.webp" alt="" />
-    <img class="sticker sticker-two" src="../assets/hero/p-sticker-butterfly.webp" alt="" />
-  </div>
+  <div class="ipad"><img src="../assets/site/desk.webp" alt="" /></div>
 </body>
 </html>

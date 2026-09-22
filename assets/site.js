@@ -1,25 +1,56 @@
-const options = document.querySelectorAll('.desk-options button');
-options.forEach(button => button.addEventListener('click', () => {
-  options.forEach(option => option.setAttribute('aria-pressed', String(option === button)));
-  const image = document.getElementById('desk-image');
-  const video = document.getElementById('desk-video');
-  // The original desk plays the film of a letter being made; the collections
-  // are stills. Swapping which element is shown — rather than putting the
-  // film somewhere else on the page — is what stops the same mint desk
-  // appearing twice in one section. The poster is the film's own first frame,
-  // and it is 4:3 like every still, so nothing shifts on the swap.
-  if (video) {
-    const wantsVideo = button.dataset.video === 'true';
-    // Rewinding on the way out means coming back shows the film's first
-    // frame — which is the poster, and is also what the collection stills
-    // show — instead of dropping someone back onto a half-watched frame.
-    if (!wantsVideo) { video.pause(); video.currentTime = 0; }
-    video.hidden = !wantsVideo;
-    image.hidden = wantsVideo;
+// The film that opens the homepage. It plays muted as soon as it can - never
+// for reduced motion or data saver, and never while it is off screen - with a
+// pause and a sound button. Every failure lands on the poster: an autoplay the
+// browser refuses shows a play button instead.
+const film = document.querySelector('.film');
+if (film) {
+  const video = film.querySelector('video');
+  const start = film.querySelector('.film-start');
+  const pause = film.querySelector('.film-pause');
+  const sound = film.querySelector('.film-sound');
+  // What the visitor wants, kept apart from what the video is doing: scrolling
+  // away pauses the film, but must not turn into "paused" when they come back.
+  // Data saver counts as asking: the poster and a play button, no download.
+  let wantsPlay = !window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    && !(navigator.connection && navigator.connection.saveData);
+  let onScreen = true;
+  let started = false;
+
+  const render = () => {
+    film.classList.toggle('is-paused', !wantsPlay);
+    film.classList.toggle('has-sound', !video.muted);
+    pause.setAttribute('aria-label', wantsPlay ? 'Pause the film' : 'Play the film');
+    sound.setAttribute('aria-pressed', String(!video.muted));
+    sound.setAttribute('aria-label', video.muted ? 'Turn the sound on' : 'Turn the sound off');
+    start.hidden = started || wantsPlay;
+  };
+  const play = () => {
+    if (!wantsPlay || !onScreen) return;
+    const attempt = video.play();
+    // NotAllowedError is the browser refusing to autoplay (Low Power Mode,
+    // data saver): offer the button. AbortError only means a pause() - the
+    // off-screen observer's first report, say - interrupted the request.
+    if (attempt) attempt.catch(error => { if (error.name === 'NotAllowedError') { wantsPlay = false; render(); } });
+  };
+
+  video.addEventListener('playing', () => { started = true; render(); });
+  pause.addEventListener('click', () => { wantsPlay = !wantsPlay; if (wantsPlay) play(); else video.pause(); render(); });
+  start.addEventListener('click', () => { wantsPlay = true; play(); render(); });
+  sound.addEventListener('click', () => {
+    video.muted = !video.muted;
+    if (!video.muted && !wantsPlay) { wantsPlay = true; play(); }
+    render();
+  });
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(([entry]) => {
+      onScreen = entry.isIntersecting;
+      if (onScreen) play(); else video.pause();
+    }, { threshold: 0.25 }).observe(video);
   }
-  image.src = button.dataset.image;
-  image.alt = button.dataset.alt;
-}));
+  film.querySelector('.film-controls').hidden = false;
+  if (wantsPlay) video.preload = 'auto';
+  render(); play();
+}
 
 // The opening header scrolls away naturally. Reuse the same navigation as a
 // fixed white bar only after the entire hero has passed.
@@ -80,7 +111,7 @@ if (menuButton && mainNavigation) {
 
 // Keep previously shared homepage section links useful after the redesign.
 if (opening) {
-  const aliases = {'#how-it-works':'#experience', '#desks':'#desk', '#membership':'#pricing', '#grandparents':'#family', '#safety':'#parents', '#request-an-invite':'#pricing'};
+  const aliases = {'#how-it-works':'#experience', '#desk':'#experience', '#membership':'#pricing', '#grandparents':'#family', '#safety':'#parents', '#request-an-invite':'#pricing'};
   if (aliases[location.hash]) location.replace(aliases[location.hash]);
 }
 
@@ -144,14 +175,16 @@ if (opening) {
         send('tap', name, sectionName(link));
         return;
       }
-      const desk = event.target.closest('.desk-options button');
-      if (desk) send('tap', 'desk', (desk.dataset.image || '').split('/').pop().replace(/\.webp$/, ''));
+      if (event.target.closest('.film-pause') && video && !video.paused) send('video', 'paused');
     }, true);
 
+    // The film starts on its own, so "playing" says autoplay worked, not that
+    // someone pressed anything; "watched" is reaching the bee's pickup once.
     const video = document.getElementById('desk-video');
     if (video) {
-      video.addEventListener('play', () => send('video', 'play'));
-      video.addEventListener('ended', () => send('video', 'finished'));
+      video.addEventListener('playing', () => send('video', 'playing'));
+      video.addEventListener('timeupdate', () => { if (video.currentTime >= 12.4) send('video', 'watched'); });
+      video.addEventListener('volumechange', () => { if (!video.muted) send('video', 'sound'); });
     }
   } catch (_) {}
 })();

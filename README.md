@@ -16,6 +16,15 @@ Open http://127.0.0.1:8765/. The production files are served directly.
 
 - `index.html` and `home.css`: selected desk-and-letters homepage.
 - `assets/site/`: the selected desk backdrop, wood texture, and full desk images.
+- The hero is the desk film: `assets/site/desk-loop-960.mp4` (phones) and
+  `desk-loop-1440.mp4`, the site film without its brand card and end card, playing
+  muted as the page opens. Its recipe is `web_loop.sh` in posty's
+  `_local/marketing/product-film/_recipe/`. The six desks are shown further down
+  as a plain grid (`*-grid.webp`, 800x600), not as a switcher.
+- `assets/origin-writing.webp`: the "How it began" photo, Patrick's daughter
+  writing at lunch. Framed below the chin, written names blurred; the recipe and
+  boxes are in posty's `_local/marketing/carousel/` (README, "Website 'How it
+  began' photo"). Any photo of a child here follows the same rules.
 - `assets/site.js`: desk choices, header behavior, mobile navigation, old anchor aliases.
 - `assets/instagram/`: the prints in the homepage's Instagram section, 3:4 WebP at
   900×1200, served from here so the page loads nothing from Instagram. The section is

@@ -42,26 +42,9 @@ em { color:var(--accent); font-weight:400; }
 .hero-art .letter { position:absolute; top:18%; width:99%; left:-6%; transform:rotate(-9deg); filter:drop-shadow(0 12px 12px #6b4f2d20); }
 .hero-art .mailbox { position:absolute; width:45%; right:0; bottom:1%; filter:drop-shadow(2px 15px 13px #6b4f2d1c); }
 .hero-art .butterfly { position:absolute; width:17%; right:2%; top:7%; transform:rotate(13deg); }
-.intro { display:grid; grid-template-columns:1fr 1fr; gap:9%; border-top:1px solid var(--line); padding-top:70px; }
-.intro h2 { font-size:clamp(2.1rem,3.7vw,3.2rem); }
-.intro-copy { padding-top:38px; }
 .text-link { font-size:.9375rem; font-weight:500; display:inline-flex; align-items:center; gap:25px; text-decoration:none; border-bottom:1px solid #b6a18b; padding-bottom:6px; margin-top:10px; }
 .text-link:hover { border-color:var(--ink); }
 .text-link span { font-size:1.125rem; }
-.desk-section { background:var(--grain) repeat, #f0e8db; background-size:128px; padding:80px 0 54px; }
-.desk-heading { display:flex; justify-content:space-between; align-items:flex-end; gap:70px; margin-bottom:46px; }
-.desk-heading h2 { font-size:clamp(2.5rem,4vw,3.75rem); }
-.desk-description { max-width:340px; }
-.desk-description p { margin:0; }
-.desk-display { margin:0 auto; max-width:960px; }
-.desk-display>img { width:100%; height:auto; aspect-ratio:auto; object-fit:contain; border-radius:7px; box-shadow:0 17px 30px -14px #73543445; }
-.desk-display>video { display:block; width:100%; height:auto; background:#253532; }
-.desk-display>[hidden] { display:none; }
-.desk-options { display:flex; justify-content:center; gap:24px; flex-wrap:wrap; margin-top:32px; }
-.desk-options button { cursor:pointer; color:var(--muted); background:none; border:0; border-bottom:2px solid transparent; padding:0 0 10px; display:flex; align-items:center; gap:12px; font-size:.875rem; }
-.desk-options button img { width:58px; height:43px; object-fit:cover; border-radius:2px; box-shadow:0 2px 5px #604c3220; }
-.desk-options button[aria-pressed=true] { color:var(--ink); border-color:#816b50; }
-.desk-options button:hover { color:var(--ink); }
 .collection-note { font-size:.75rem; color:var(--muted); text-align:center; margin-top:20px; }
 .breathing { display:grid; grid-template-columns:1fr 1fr; gap:8%; align-items:center; }
 .breathing h2 { font-size:clamp(2.1rem,3.8vw,3.3rem); margin-bottom:28px; }
@@ -125,9 +108,6 @@ a:focus-visible,button:focus-visible,summary:focus-visible { outline:3px solid #
   .hero { gap:30px; }
   .hero h1 { font-size:clamp(3rem,6vw,4.5rem); }
   .hero-detail { font-size:1.125rem; }
-  .desk-options { gap:20px; }
-  .desk-options button { flex-direction:column; gap:10px; min-width:130px; }
-  .desk-options button img { width:84px; height:63px; }
   .footer { flex-wrap:wrap; }
 }
 @media(max-width:760px) {
@@ -147,15 +127,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible { outline:3px solid #
   .hero-art .mailbox { width:39%; right:1%; bottom:0; }
   .hero-art .butterfly { width:14%; top:9%; right:4%; }
   .section { padding-block:60px; }
-  .intro,.breathing,.family { grid-template-columns:1fr; gap:28px; }
-  .intro-copy { padding-top:0; }
-  .intro h2 { font-size:clamp(2rem,6.7vw,2.75rem); }
-  .desk-section { padding-top:55px; }
-  .desk-heading { display:block; margin-bottom:30px; }
-  .desk-heading h2 { font-size:2.5rem; }
-  .desk-description { margin-top:26px; max-width:100%; }
-  .desk-options { display:grid; grid-template-columns:1fr 1fr; gap:18px; max-width:450px; margin-inline:auto; }
-  .desk-options button { min-width:0; font-size:.875rem; padding-bottom:12px; }
+  .breathing,.family { grid-template-columns:1fr; gap:28px; }
   .collection-note { max-width:28em; margin-inline:auto; }
   .breathing-art { width:94%; margin:auto; padding-top:20px; }
   .breathing h2 { font-size:2.25rem; }
@@ -296,10 +268,6 @@ a:focus-visible,button:focus-visible,summary:focus-visible { outline:3px solid #
   --mint:#dee6d8;
 }
 .header { padding-block:23px; }
-.opening {
-  padding-top:var(--nav-height,92px);
-  background:#f5e8cf url('/assets/site/desk-backdrop.png') center top / auto 1600px no-repeat;
-}
 .header-position { position:absolute; inset:0 0 auto; z-index:100; background:transparent; }
 .header-position.is-docked { position:fixed; background:#fffdf9; box-shadow:0 2px 14px #44392e14; }
 /* Docked, the lockup steps down to a utility strip: 92px -> 58px. The opening
@@ -316,24 +284,6 @@ a:focus-visible,button:focus-visible,summary:focus-visible { outline:3px solid #
 /* The DOCKED height, not the opening one: an anchor always lands with the bar
    docked, so the taller opening lockup would push every target 34px low. */
 html { scroll-padding-top:calc(var(--nav-dock-height,58px) + 20px); }
-.desk-room {
-  mask-image:linear-gradient(to bottom,transparent,#000 24px);
-  background:#f5e8cf url('/assets/site/desk-backdrop.png') center 53.42%/100% 157.48% no-repeat;
-}
-.opening .hero {
-  position:relative;
-  display:block;
-  width:min(1320px,calc(100% - 80px));
-  min-height:650px;
-  height:clamp(650px,46vw,700px);
-  padding:0;
-}
-.opening .hero-copy {
-  position:relative;
-  z-index:1;
-  width:44%;
-  padding:42px 0 0;
-}
 .opening .hero h1 {
   font-size:clamp(2.75rem,4.35vw,4.1rem);
   line-height:1.18;
@@ -349,40 +299,6 @@ html { scroll-padding-top:calc(var(--nav-dock-height,58px) + 20px); }
 }
 .opening .hero-actions { margin-top:25px; }
 .opening .hero-actions span { font-size:.875rem; }
-.desk-objects { position:absolute; inset:0; pointer-events:none; }
- .desk-objects img { position:absolute; height:auto; }
-/* Oversized upright objects fill the wall beside the copy. The mailbox’s
-   transparent left margin keeps its visible edge beyond the text column. */
-.desk-mailbox { left:44%; bottom:14%; width:29%; }
-.desk-rack { right:0; bottom:24%; width:26%; }
-/* The desk's rear edge is at 62%; its front lip starts at 96%.
-   Flat objects occupy the middle of that band, leaving a clear front margin.
-   Apply the in-plane turn first, then foreshorten vertically to match the desk. */
-.desk-stack { left:14%; bottom:8%; width:30%; }
-.desk-stamp,.desk-sticker {
-  transform:scaleY(.62) rotate(var(--turn,0deg));
-  transform-origin:center bottom;
-  filter:drop-shadow(0 2px 1px #594b393d);
-}
-.desk-stamp { width:5.5%; }
-.stamp-one { left:74%; bottom:12%; --turn:-6deg; }
-.stamp-two { left:82%; bottom:11.5%; --turn:3deg; }
-.stamp-three { left:90%; bottom:12%; --turn:-3deg; }
-.desk-sticker { width:5.5%; }
-.sticker-one { left:54%; bottom:8%; --turn:-8deg; }
-.sticker-two { left:63%; bottom:9%; --turn:7deg; }
-.intro { border:0; padding-block:78px 88px; }
-.intro-copy { padding-top:32px; }
-.desk-section {
-  background:var(--grain) repeat,#dbe5d7;
-  background-size:128px;
-  border-block:1px solid #c8d0bf;
-  padding-block:82px 56px;
-}
-.desk-description { max-width:365px; }
-.desk-display { max-width:1020px; }
-.desk-display>img { border-radius:6px; box-shadow:0 16px 32px -15px #39462c60; }
-.desk-options button[aria-pressed=true] { border-color:#66735b; }
 .collection-note { font-size:.8125rem; }
 .surface { display:flow-root; background-image:var(--grain); background-size:128px; }
 .surface--stationery { background-color:#eddbbc; background-image:url('/assets/site/maple-wood.jpg'); background-size:cover; background-position:center; background-repeat:no-repeat; border-block:1px solid #d3bc98; }
@@ -420,49 +336,13 @@ html { scroll-padding-top:calc(var(--nav-dock-height,58px) + 20px); }
 
 
 @media (min-width:761px) and (max-width:1100px) {
-  .opening .hero { width:calc(100% - 64px); }
-  .opening .hero-copy { width:45%; padding-top:34px; }
-  .opening .hero h1 { font-size:clamp(2.6rem,4.8vw,3.15rem); }
-  .opening .hero-detail { font-size:1rem; line-height:1.65; margin-top:20px; }
-  .opening .hero-actions { gap:15px; margin-top:22px; }
   .fairy-spread { gap:35px; }
   .collection-icon-grid img { height:155px; }
 }
 @media (max-width:60rem) {
   .header { padding-block:22px; }
-  /* Use the actual cream wall here too; the paper-grain tile introduced
-     a cool/gray cast behind the copy at this breakpoint. */
-  .desk-room { background:#f5e8cf url('/assets/site/desk-backdrop.png') center top / auto 1600px no-repeat; }
-  .opening .hero-copy { background:transparent; }
-  .opening .hero { width:100%; height:auto; min-height:0; padding:0; }
-  .opening .hero-copy { width:calc(100% - 40px); max-width:520px; margin:auto; padding:32px 0 0; }
-  .opening .hero h1 { font-size:clamp(2.75rem,9vw,3.5rem); }
-  .opening .hero-detail { font-size:1.0625rem; max-width:28em; margin-top:22px; }
-  .opening .hero-actions { margin-top:22px; }
-  .desk-objects {
-    position:relative;
-    height:auto;
-    aspect-ratio:1.85;
-    margin-top:14px;
-    background:url('/assets/site/desk-backdrop.png') center 53.42%/100% 157.48% no-repeat;
-    mask-image:linear-gradient(to bottom,transparent,#000 18%);
-  }
-  .desk-mailbox { left:6%; bottom:14%; width:28%; }
-  .desk-rack { right:3%; bottom:24%; width:31%; }
-  .desk-stack { left:35%; bottom:8%; width:29%; }
-  .desk-stamp { width:6%; }
-  .stamp-one { left:70%; bottom:12%; }
-  .stamp-two { left:79%; bottom:11.5%; }
-  .stamp-three { left:88%; bottom:12%; }
-  .desk-sticker { width:6%; }
-  .sticker-one { left:13%; bottom:10%; }
-  .sticker-two { left:24%; bottom:11%; }
 }
 @media (max-width:760px) {
-  .intro { padding-block:58px 62px; }
-  .intro-copy { padding-top:0; }
-  .desk-section { padding-block:58px 34px; }
-  .desk-description { max-width:none; }
   .stationery-section { padding-block:55px; }
   .fairy-spread { gap:30px; }
   .breathing { padding-block:60px; }
@@ -497,15 +377,8 @@ html { scroll-padding-top:calc(var(--nav-dock-height,58px) + 20px); }
 
 /* Large displays need the composition to grow with the desk, not just more wall. */
 @media(min-width:1600px) {
-  .opening .hero { width:min(1920px,calc(100% - 160px)); height:clamp(760px,46vw,1000px); }
-  .opening .hero h1 { font-size:clamp(4.1rem,4.1vw,5.75rem); }
-  .opening .hero-detail { font-size:clamp(1.0625rem,1.1vw,1.5rem); }
-  .opening .hero-copy { padding-top:50px; }
-  .opening .hero-actions .store img { width:clamp(150px,10vw,200px); height:auto; }
-  .opening .hero-actions span { font-size:1rem; }
   .header-position .header { width:min(1800px,calc(100% - 160px)); }
 }
-.opening { background-size:max(100%,3200px) auto; }
 
 /* Mobile disclosure keeps every destination available. */
 .menu-toggle { display:none; }
@@ -551,48 +424,8 @@ html { scroll-padding-top:calc(var(--nav-dock-height,58px) + 20px); }
 .founding-note { max-width:960px; margin:14px auto 0; text-align:right; font-size:.75rem; line-height:1.5; color:var(--muted); }
 @media(max-width:760px) {
   .founding-note { text-align:left; }
-  /* A two-column grid leaves the last button alone only when the count is
-     ODD — then it spans and centres. With an even count (six desks since
-     2026-09-15) it must stay in its column, beside its neighbour. */
-  .desk-options button:last-child:nth-child(odd) { grid-column:1 / -1; justify-self:center; }
 }
 
-/* Slim device bezel restored from the original new-direction concept.
-   The film wears it too: the desk section swaps a <video> in for the still
-   on the original desk, and a frame on five of six reads as a mistake. It
-   also gives the native control bar an edge to sit inside. */
-.desk-display>img,
-.desk-display>video {
-  box-sizing:border-box;
-  border:9px solid #253532;
-  border-radius:22px;
-  box-shadow:0 25px 42px -26px #172c3680;
-}
-/* Sized to be SEEN WHOLE, which means capped by the height left under the
-   docked bar and not by width alone. At a flat 1020px the film stood 769px
-   tall, and 769 + the 58px bar + the 87px switcher row below it wants 914px of
-   window - so on any laptop something was always cut off, and switching desks
-   changed a picture you could not see.
-   Every desk is 4:3 (the film is 1440x1080, the stills 2732x2048), so the
-   spare height converts straight back into a width: usable * 4/3, plus the
-   18px the two bezel borders add outside the 4:3 image. 112px is the 55px
-   switcher row, its 32px gap, and 25px of air so the active desk's underline
-   is not sitting on the window's edge. On a tall display the 1020px still wins
-   and nothing moves; on a 900px window the desk gives up 53px of width and
-   arrives whole. svh, not vh: vh is the tall-chrome height on mobile Safari,
-   which would overshoot in exactly the case this is protecting.
-   The 640px floor stops a short, wide window shrinking the desk to a stamp -
-   below that, scrolling the film is the better trade. */
-.desk-display {
-  max-width:min(1020px, max(640px, calc((100svh - var(--nav-dock-height,58px) - 112px - 18px) * 4 / 3 + 18px)));
-}
-@media(max-width:760px) {
-  .desk-display>img,
-  .desk-display>video { border-width:5px; border-radius:13px; }
-}
-
-.desk-keepsake { max-width:38em; margin:26px auto 0; text-align:center; font-size:1rem; line-height:1.6; }
-.desk-keepsake + .collection-note { margin-top:10px; }
 
 .membership-plus { max-width:960px; margin:24px auto 0; border-bottom:1px solid var(--line); }
 .membership-plus summary { display:flex; align-items:center; justify-content:space-between; gap:20px; padding:14px 0; min-height:44px; cursor:pointer; list-style:none; font-size:.9375rem; font-weight:500; }
@@ -639,16 +472,18 @@ html { scroll-padding-top:calc(var(--nav-dock-height,58px) + 20px); }
 @media (prefers-reduced-motion:reduce) { .instagram-print { transition:none; } }
 @media(max-width:1100px) {
   .instagram-prints { gap:28px; }
-  .instagram-print { width:260px; }
+  /* Three 260px prints and their gaps are 836px, wider than an iPad's column
+     in portrait: the row scrolled the whole page sideways. They shrink to fit. */
+  .instagram-print { width:min(260px,calc((100% - 56px) / 3)); }
 }
 @media(max-width:760px) {
   .instagram { padding-block:55px 60px; }
   .instagram-heading { display:block; margin-bottom:28px; }
   .instagram-blurb { margin-top:18px; }
-  /* Bleeds to the screen's edges (the wrap's 32px gutters, undone) so the strip
+  /* Bleeds to the screen's edges (the wrap's 20px phone gutters, undone) so the strip
      reads as scrollable; auto margins on the ends centre a row that fits and
      still let a longer one scroll all the way, which justify-content cannot. */
-  .instagram-prints { justify-content:flex-start; gap:22px; margin-inline:-32px; padding:14px 32px 18px; overflow-x:auto; scroll-snap-type:x mandatory; scrollbar-width:none; }
+  .instagram-prints { justify-content:flex-start; gap:22px; margin-inline:-20px; padding:14px 20px 18px; overflow-x:auto; scroll-snap-type:x mandatory; scrollbar-width:none; }
   .instagram-prints::-webkit-scrollbar { display:none; }
   .instagram-print { width:236px; scroll-snap-align:center; }
   .instagram-print:first-child { margin-left:auto; }
@@ -668,3 +503,151 @@ html { scroll-padding-top:calc(var(--nav-dock-height,58px) + 20px); }
 .instagram-follow span:nth-child(2) { border-bottom:1px solid #b6a18b; padding-bottom:5px; }
 .instagram-follow:hover span:nth-child(2) { border-color:var(--ink); }
 .instagram-follow span:last-child { font-size:1.125rem; }
+
+/* Pass six (2026-09-22): the film opens the page.
+   The hero was an AI still life of the desk's objects, and the real desk - the
+   film of a letter being made on it - waited two sections further down behind
+   a play button. Between 17 and 22 September, 13 of about 500 visitors pressed
+   it. Now the film IS the hero, playing muted on arrival (never for reduced
+   motion or data saver, never off screen), with a pause and a sound button
+   and nothing else. The loop is the site film without its brand card and end
+   card: the headline beside it says both. */
+.opening {
+  padding-top:var(--nav-height,92px);
+  background:
+    radial-gradient(ellipse 58% 70% at 71% 42%,#fffaf1 0%,#fffaf100 70%),
+    var(--grain) repeat,
+    linear-gradient(#f7e9d3,#f2e1c7);
+  background-size:auto,128px,auto;
+  border-bottom:1px solid #e0cdb0;
+}
+.opening .hero {
+  display:grid;
+  grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);
+  align-items:center;
+  gap:clamp(36px,4.4vw,72px);
+  width:min(1320px,calc(100% - 80px));
+  padding:clamp(4px,1.5vh,24px) 0 clamp(40px,6vh,72px);
+}
+/* Seen whole in the first screen: the film takes the height left under the
+   opening header, less some air, turned back into a 4:3 width plus the 18px
+   of bezel. The 460px floor stops a short, wide window shrinking it to a stamp. */
+.film {
+  margin:0 auto;
+  width:min(100%,max(460px,calc((100svh - var(--nav-height,92px) - 96px) * 4 / 3 + 18px)));
+}
+.film-screen {
+  position:relative;
+  overflow:hidden;
+  border:9px solid #253532;
+  border-radius:22px;
+  background:#253532;
+  box-shadow:0 34px 56px -30px #3c2a1888,0 12px 24px -16px #3c2a1844;
+}
+.film-screen>video { display:block; width:100%; height:auto; aspect-ratio:4/3; object-fit:cover; background:#ead7b8; }
+.film-controls { position:absolute; right:12px; bottom:12px; z-index:2; display:flex; gap:8px; }
+.film-controls[hidden],.film-start[hidden] { display:none; }
+.film-controls button,.film-start {
+  display:grid; place-items:center; padding:0; border:0; border-radius:50%; cursor:pointer;
+  color:#3a322a; background:#fffaf2e8; box-shadow:0 2px 10px #2b1d0f33;
+  -webkit-backdrop-filter:blur(6px); backdrop-filter:blur(6px);
+}
+.film-controls button { width:42px; height:42px; }
+.film-controls button:hover,.film-start:hover { background:#fff; }
+.film-controls svg { width:16px; height:16px; fill:currentColor; }
+.film .icon-play,.film .icon-sound,.film.is-paused .icon-pause,.film.has-sound .icon-muted { display:none; }
+.film.is-paused .icon-play,.film.has-sound .icon-sound { display:block; }
+.film-start { position:absolute; left:50%; top:50%; z-index:2; width:78px; height:78px; transform:translate(-50%,-50%); }
+.film-start svg { width:28px; height:28px; margin-left:4px; fill:currentColor; }
+/* While the big button offers the film, the small pair would only repeat it. */
+.film-start:not([hidden]) ~ .film-controls { display:none; }
+@media(min-width:1600px) {
+  .opening .hero { width:min(1560px,calc(100% - 160px)); }
+  .opening .hero h1 { font-size:clamp(4.1rem,3.9vw,5.25rem); }
+  .opening .hero-detail { font-size:clamp(1.0625rem,1.05vw,1.375rem); }
+  .opening .hero-actions .store img { width:clamp(150px,9vw,190px); height:auto; }
+  .opening .hero-actions span { font-size:1rem; }
+}
+@media(max-width:1100px) {
+  .opening .hero { width:calc(100% - 64px); }
+  .opening .hero h1 { font-size:clamp(2.6rem,4.6vw,3.3rem); }
+  .opening .hero-detail { font-size:1rem; line-height:1.65; margin-top:20px; }
+  .opening .hero-actions { gap:15px; margin-top:22px; }
+}
+/* Tablet: one column, the words first. */
+@media(max-width:1023px) {
+  .opening .hero { grid-template-columns:minmax(0,1fr); width:min(760px,calc(100% - 64px)); gap:34px; padding-top:18px; }
+  .opening .hero h1 { font-size:clamp(2.75rem,6.4vw,3.5rem); }
+  .opening .hero-detail { max-width:30em; }
+  .film { width:100%; }
+}
+/* Phone: the film straight under the headline and the download under the
+   film, so the first screen of an in-app browser holds all three; the
+   sentence follows. The words' wrapper steps aside (display:contents) so the
+   film can sit between the headline and the button. */
+@media(max-width:760px) {
+  .opening .hero { display:flex; flex-direction:column; align-items:stretch; width:calc(100% - 40px); gap:0; padding:4px 0 44px; }
+  .opening .hero-copy { display:contents; }
+  .opening .hero h1 { order:1; font-size:clamp(2.5rem,10.6vw,3.25rem); }
+  .film { order:2; margin-top:20px; }
+  .opening .hero-actions { order:3; margin-top:20px; }
+  .opening .hero-detail { order:4; margin-top:18px; font-size:1rem; }
+  .film-screen { border-width:5px; border-radius:14px; }
+  .film-controls { right:7px; bottom:7px; gap:6px; }
+  .film-controls button { width:34px; height:34px; }
+  .film-controls svg { width:13px; height:13px; }
+  .film-start { width:64px; height:64px; }
+}
+
+/* The desks, as a picture. They were a switcher under the film and almost
+   nobody pressed it, so every desk is simply shown: six in a grid, nothing
+   to tap, in a section of their own after the letters. */
+.surface--desks { background-color:#dbe5d7; border-block:1px solid #c8d0bf; }
+.desk-gallery { padding-block:80px 72px; }
+.desk-gallery-heading { text-align:center; margin-bottom:44px; }
+.desk-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:36px 30px; margin:0; padding:0; list-style:none; }
+.desk-grid figure { margin:0; }
+.desk-grid img { width:100%; height:auto; aspect-ratio:4/3; object-fit:cover; border-radius:8px; box-shadow:0 14px 28px -16px #39462c70; }
+.desk-grid figcaption { margin-top:12px; text-align:center; font-size:.9375rem; font-weight:500; }
+.desk-keepsake { max-width:38em; margin:42px auto 0; text-align:center; font-size:1rem; line-height:1.6; }
+.desk-keepsake + .collection-note { margin-top:6px; }
+@media(max-width:760px) {
+  .desk-gallery { padding-block:56px 52px; }
+  .desk-gallery-heading { text-align:left; margin-bottom:28px; }
+  .desk-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:22px 14px; }
+  .desk-grid img { border-radius:6px; }
+  .desk-grid figcaption { margin-top:8px; font-size:.875rem; }
+  .desk-keepsake { margin-top:30px; text-align:left; }
+  .desk-gallery .collection-note { text-align:left; margin-inline:0; }
+}
+
+/* "Texting can wait." (back 2026-09-22, lower down). It opened the page and read
+   as a wall of words between the hero and the desk; here it opens the half of
+   the page about why, after the desks and the stationery have been seen. The
+   three promises under it are the Instagram ads' own lines. */
+.intro { display:grid; grid-template-columns:1fr 1fr; gap:0 9%; padding-block:84px 88px; }
+.intro h2 { font-size:clamp(2.1rem,3.7vw,3.2rem); }
+.intro-copy { padding-top:32px; }
+.intro-copy p:last-child { margin-bottom:0; }
+.intro-promises { grid-column:1 / -1; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:32px; margin:56px 0 0; padding:0; list-style:none; }
+.intro-promises li { padding-top:22px; border-top:1px solid var(--line); text-align:center; font:400 clamp(1.5rem,2.4vw,2.1rem)/1.25 Lora,Georgia,serif; letter-spacing:-.035em; text-wrap:balance; }
+@media(max-width:760px) {
+  .intro { grid-template-columns:1fr; padding-block:58px 62px; }
+  .intro h2 { font-size:clamp(2rem,6.7vw,2.75rem); }
+  .intro-copy { padding-top:22px; }
+  .intro-promises { grid-template-columns:1fr; gap:0; margin-top:32px; }
+  .intro-promises li { padding:16px 0; font-size:1.625rem; }
+  .intro-promises li:last-child { border-bottom:1px solid var(--line); }
+}
+
+/* How it began, beside a snapshot of the first desk in use: a print on a paper
+   mat, turned a little, like the letters elsewhere on the page. The photo keeps
+   every rule for pictures of children here - framed below the chin, never a
+   blurred face, and the written names blurred. */
+.origin-inner { grid-template-columns:minmax(0,1.3fr) minmax(0,.7fr); align-items:center; gap:64px; }
+.origin-photo { margin:0; padding:10px 10px 12px; background:#fffdf8; border-radius:3px; box-shadow:0 18px 34px -18px #5a3f2085; transform:rotate(1.5deg); }
+.origin-photo img { width:100%; height:auto; border-radius:2px; }
+@media(max-width:760px) {
+  .origin-inner { grid-template-columns:1fr; gap:34px; }
+  .origin-photo { width:min(100%,340px); margin-inline:auto; }
+}

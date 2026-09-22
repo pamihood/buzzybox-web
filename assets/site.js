@@ -83,3 +83,75 @@ if (opening) {
   const aliases = {'#how-it-works':'#experience', '#desks':'#desk', '#membership':'#pricing', '#grandparents':'#family', '#safety':'#parents', '#request-an-invite':'#pricing'};
   if (aliases[location.hash]) location.replace(aliases[location.hash]);
 }
+
+// Anonymous page events: which sections were reached, how long the page stayed
+// in view, and what was tapped. Each event is one request to /t/<page>/<event>,
+// answered by functions/t/[[path]].js and counted by Cloudflare's request log,
+// so there is no cookie, no identifier and nothing kept in the browser. Each
+// event is sent at most once per page load. It can never break the page: every
+// part is optional and a failed send is dropped. scripts/site-events.py reads it.
+(() => {
+  try {
+    const slug = value => String(value).toLowerCase().replace(/\.html$/, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 60);
+    const page = slug(location.pathname) || 'home';
+    const sent = new Set();
+    const send = (...parts) => {
+      const path = `/t/${page}/${parts.map(slug).filter(Boolean).join('/')}`;
+      if (sent.has(path)) return;
+      sent.add(path);
+      try { if (navigator.sendBeacon && navigator.sendBeacon(path)) return; } catch (_) {}
+      fetch(path, { method: 'POST', keepalive: true }).catch(() => {});
+    };
+    const sectionName = element => {
+      const section = element && element.closest('section, footer, header');
+      if (!section) return 'page';
+      return section.id || (section.tagName === 'SECTION' ? section.classList[0] : section.tagName) || 'page';
+    };
+
+    send('view');
+
+    // A section counts as reached once any of it is in the top half of the screen.
+    if ('IntersectionObserver' in window) {
+      const reached = new IntersectionObserver(entries => entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        reached.unobserve(entry.target);
+        send('seen', sectionName(entry.target).replace(/-section$/, ''));
+      }), { rootMargin: '0px 0px -50% 0px' });
+      document.querySelectorAll('main section, footer').forEach(section => reached.observe(section));
+    }
+
+    // Time the page was actually on screen, as milestones. A milestone is sent
+    // while the visitor is still here, so it never depends on the in-app
+    // browsers firing anything on the way out, which they often do not.
+    const marks = [10, 30, 60, 120, 300];
+    let seconds = 0;
+    const clock = setInterval(() => {
+      if (document.visibilityState !== 'visible') return;
+      seconds += 5;
+      if (marks.includes(seconds)) send('time', `${seconds}s`);
+      if (seconds >= marks[marks.length - 1]) clearInterval(clock);
+    }, 5000);
+
+    document.addEventListener('click', event => {
+      const link = event.target.closest('a[href]');
+      if (link) {
+        const url = new URL(link.href, location.href);
+        const name = link.dataset.brandHref === 'app_store_url' || url.hostname === 'apps.apple.com' ? 'app-store'
+          : url.hostname.endsWith('instagram.com') ? 'instagram'
+          : url.origin !== location.origin ? url.hostname
+          : url.pathname === location.pathname && url.hash ? `jump-${url.hash}`
+          : url.pathname === '/' ? 'home' : url.pathname;
+        send('tap', name, sectionName(link));
+        return;
+      }
+      const desk = event.target.closest('.desk-options button');
+      if (desk) send('tap', 'desk', (desk.dataset.image || '').split('/').pop().replace(/\.webp$/, ''));
+    }, true);
+
+    const video = document.getElementById('desk-video');
+    if (video) {
+      video.addEventListener('play', () => send('video', 'play'));
+      video.addEventListener('ended', () => send('video', 'finished'));
+    }
+  } catch (_) {}
+})();

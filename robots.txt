@@ -11,4 +11,7 @@ Disallow: /letter/
 # scripts/og-card.html is the share-card artwork, not a page.
 Disallow: /scripts/
 
+# Anonymous page events sent by assets/site.js; nothing to read.
+Disallow: /t/
+
 Sitemap: https://postmello.com/sitemap.xml

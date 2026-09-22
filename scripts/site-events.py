@@ -8,8 +8,12 @@ Reads Cloudflare's request log for the zone, so it needs a token with Zone
 Analytics Read: CLOUDFLARE_API_TOKEN in the environment, or in ../posty/.env.
 The free plan limits each query to one day, so it walks day by day.
 
-Counts are Cloudflare's estimates. On a busy day the log is sampled and a
-rare event (one tap) can be missed or counted as ~2; the rates are sound.
+Counts are VISITORS (distinct addresses), not requests. The log is sampled
+whenever the zone is busy, and a kept request is then weighted to stand for
+several: one real page load came back as "6 views" on 2026-09-22. Counting
+addresses ignores the weights. Sampling can still DROP an event, so a visitor
+counts toward the total if any event of theirs survived, and each event's
+count is a floor. Addresses are only counted, never printed.
 """
 import argparse, collections, datetime as dt, json, os, pathlib, urllib.request
 
@@ -31,7 +35,7 @@ def day_rows(tok, day, country):
     query = '''query($z: String!, $s: Time!, $e: Time!) { viewer { zones(filter: {zoneTag: $z}) {
       rows: httpRequestsAdaptiveGroups(limit: 5000, filter: {datetime_geq: $s, datetime_lt: $e,
         clientRequestPath_like: "/t/%%", requestSource: "eyeball"%s}) {
-        count dimensions { clientRequestPath } } } } }''' % extra
+        count dimensions { clientRequestPath clientIP } } } } }''' % extra
     body = json.dumps({'query': query, 'variables': {
         'z': ZONE, 's': f'{day}T00:00:00Z', 'e': f'{day + dt.timedelta(days=1)}T00:00:00Z'}}).encode()
     request = urllib.request.Request('https://api.cloudflare.com/client/v4/graphql', data=body, headers={
@@ -50,21 +54,24 @@ def main():
     parser.add_argument('--country', help='two-letter code, e.g. FI')
     args = parser.parse_args()
 
-    tok, counts, day = token(), collections.Counter(), args.since
+    tok, seen, day = token(), collections.defaultdict(set), args.since
     while day <= args.until:
         for row in day_rows(tok, day, args.country):
-            counts[row['dimensions']['clientRequestPath'][3:]] += row['count']
+            path, visitor = row['dimensions']['clientRequestPath'][3:], row['dimensions']['clientIP']
+            seen[path].add(visitor)
+            seen[path.split('/')[0] + '/*'].add(visitor)
         day += dt.timedelta(days=1)
+    counts = {path: len(visitors) for path, visitors in seen.items()}
 
     pages = sorted({path.split('/')[0] for path in counts})
     print(f"{args.since} to {args.until}{' · ' + args.country if args.country else ''}")
     if not pages:
         print('no events')
     for page in pages:
-        views = counts.get(f'{page}/view', 0)
-        print(f'\n{page}: {views} views')
+        views = counts[f'{page}/*']
+        print(f'\n{page}: {views} visitors')
         events = sorted(((path.split('/', 1)[1], n) for path, n in counts.items()
-                         if path.startswith(page + '/') and path != f'{page}/view'),
+                         if path.startswith(page + '/') and path != f'{page}/*'),
                         key=lambda item: (item[0].split('/')[0], -item[1]))
         for event, n in events:
             share = f'{100 * n / views:3.0f}%' if views else '   -'

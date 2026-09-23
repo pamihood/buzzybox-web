@@ -24,7 +24,8 @@ Open http://127.0.0.1:8765/. The production files are served directly.
 - "Not on your iPad?" (`[data-send-link]` in `index.html`, its script in
   `assets/site.js`): the closing section's form that emails a visitor the App
   Store link, for the phones the ads bring to an iPad-only app. The hero carries
-  only one line pointing at it. It posts to posty's `ipad-link` edge function
+  only one line pointing at it; on a phone that line is the hero's button and
+  both App Store badges are hidden (an iPhone cannot install Postmello). It posts to posty's `ipad-link` edge function
   (Turnstile-gated, keeps no address, one email per address per day); on
   localhost it uses Cloudflare's always-pass test key and `/mock/ipad-link`.
   A headless browser cannot pass the real check on postmello.com (Cloudflare

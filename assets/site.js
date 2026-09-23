@@ -56,7 +56,8 @@ if (film) {
 // iPad-only and the ads bring parents holding phones. The form lives in the
 // closing section - never the hero, which only gets one quiet line jumping
 // down to it. On a phone the form takes the closing badge's place
-// (html.send-link-first); on a computer or another tablet it sits under the
+// (html.send-link-first), and the hero's badge gives way to that line, dressed
+// as the button; on a computer or another tablet the form sits under the
 // badge; on an iPad neither appears - the badge is the right answer there.
 // Without this script both stay hidden and the badge is all there is.
 //

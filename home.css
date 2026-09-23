@@ -664,7 +664,9 @@ html { scroll-padding-top:calc(var(--nav-dock-height,58px) + 20px); }
    the hero only carries one quiet line that jumps down to it. Both stay hidden
    until the script decides the visitor is not on an iPad. On a phone the form
    takes the closing badge's place (html.send-link-first); elsewhere it sits
-   under the badge. */
+   under the badge. On a phone the hero's badge goes too (2026-09-23: every App
+   Store tap from the ads was an iPhone that could not install), and the line
+   becomes the hero's button, still jumping down to the form. */
 .send-link[hidden],.send-link-form[hidden],.send-link-done[hidden] { display:none; }
 .send-link {
   max-width:440px; margin-top:26px; padding:18px 20px 20px; text-align:left;
@@ -699,8 +701,16 @@ html.send-link-first .closing .store { display:none; }
 .send-link-cue[hidden] { display:none; }
 .send-link-cue { display:inline-flex; align-items:center; gap:8px; margin-top:16px; font-size:.875rem; font-weight:500; color:var(--muted); text-decoration:underline; text-decoration-color:#c9b79f; text-underline-offset:4px; }
 .send-link-cue:hover { color:var(--ink); text-decoration-color:currentColor; }
+html.send-link-first .opening .hero-actions .store { display:none; }
+html.send-link-first .send-link-cue-ask { display:none; }
+html.send-link-first .send-link-cue {
+  justify-content:center; min-height:48px; padding:0 22px; border-radius:10px;
+  background:#1f1b17; color:#fff; font-size:.9375rem; font-weight:600; text-decoration:none;
+}
+html.send-link-first .send-link-cue:hover { background:#000; color:#fff; }
 @media(max-width:760px) {
   .send-link-cue { order:3; align-self:flex-start; margin-top:14px; }
+  html.send-link-first .send-link-cue { align-self:stretch; margin-top:14px; }
   .send-link { max-width:none; padding:16px 16px 18px; }
   .send-link-row { flex-direction:column; }
   .send-link-button { width:100%; }

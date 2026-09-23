@@ -35,6 +35,18 @@ Open http://127.0.0.1:8765/. The production files are served directly.
   boxes are in posty's `_local/marketing/carousel/` (README, "Website 'How it
   began' photo"). Any photo of a child here follows the same rules.
 - `assets/site.js`: desk choices, header behavior, mobile navigation, old anchor aliases.
+- `press.html` and `assets/press/`: the press kit at `/press`, linked from the
+  footer. "About Postmello" is the site's own sentences (homepage and the Three
+  Kinds of Quiet essay), so change the homepage first and carry it over; the
+  story is Patrick's voice. The solo-build angle lives only here, and no photo of
+  a child goes on it. Film files are named length, shape, sound
+  (`postmello-long-16x9-no-music.mp4`), matching the finished set in posty's
+  `_local/marketing/films/`; the short 4:3 film is the homepage's own
+  `assets/site/desk-loop-1440.mp4`.
+- Patrick's portrait (`assets/press/patrick-amihood-*.webp`, full-size `.jpg`
+  for press) is a square crop of `~/Documents/me/misc/me.png`. It appears at the
+  homepage's "How it began" signature, on every essay's byline and closing author
+  card (`AUTHOR_CARD` in `scripts/render-blog.py`), and on the press page.
 - `assets/instagram/`: the prints in the homepage's Instagram section, 3:4 WebP at
   900×1200, served from here so the page loads nothing from Instagram. The section is
   hand-maintained in `index.html`; the comment above the prints says how to add a post.

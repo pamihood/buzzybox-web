@@ -32,7 +32,7 @@ FONTS = (
 # Public and account pages share fonts. Private letters keep local-only assets.
 FONT_PAGES = [
     "index.html",
-    "support.html", "privacy.html", "terms.html", "safety.html",
+    "support.html", "press.html", "privacy.html", "terms.html", "safety.html",
     "404.html", "parents.html", "confirmed.html", "reset.html", "blog/index.html",
 ] + [str(p.relative_to(ROOT)) for p in sorted((ROOT / "blog").glob("*/index.html"))]
 
@@ -46,6 +46,7 @@ FONT_PAGES = [
 PAGES = {
     "index.html": ("/", ""),
     "support.html": ("/support", ""),
+    "press.html": ("/press", ""),
     "privacy.html": ("/privacy", ""),
     "terms.html": ("/terms", ""),
     "safety.html": ("/safety", ""),

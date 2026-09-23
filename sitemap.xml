@@ -35,6 +35,10 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://postmello.com/press</loc>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://postmello.com/support</loc>
     <lastmod>2026-08-24</lastmod>
     <priority>0.6</priority>

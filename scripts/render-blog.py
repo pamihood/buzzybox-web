@@ -16,6 +16,18 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 ORIGIN = 'https://postmello.com'
 AUTHOR = 'Patrick Amihood, Creator of Postmello'
+PORTRAIT = '/assets/press/patrick-amihood-192.webp'
+# Every essay is Patrick's, so every essay ends on the same short card: the face
+# that the byline's small portrait promised, and the one line of background a
+# reader would otherwise go looking for. The full bio lives on /press.
+AUTHOR_CARD = (
+    '<aside class="post-author" aria-label="About the author">'
+    f'<img src="{PORTRAIT}" width="88" height="88" alt="Patrick Amihood" loading="lazy" decoding="async" />'
+    '<div><p class="post-author-name">Patrick Amihood</p>'
+    '<p>Patrick is a dad in Palo Alto, California, and the creator of Postmello. '
+    'Before Postmello, Patrick spent nearly a decade at Google leading '
+    'engineering teams.</p></div></aside>'
+)
 POSTS = json.loads((ROOT / 'blog/posts.json').read_text())
 BY_SLUG = {post['slug']: post for post in POSTS}
 SHARED = (ROOT / 'support.html').read_text()
@@ -106,7 +118,7 @@ def article(post):
         '<article class="post">', '<a class="back" href="/blog/">← Postmello Blog</a>',
         f'<h1>{html.escape(post["title"])}</h1>',
         f'<p class="post-deck">{html.escape(post["deck"])}</p>',
-        f'<p class="post-meta">By {AUTHOR}</p>',
+        f'<p class="post-meta"><img class="post-meta-portrait" src="{PORTRAIT}" width="36" height="36" alt="" decoding="async" />By {AUTHOR}</p>',
     ]
     paragraphs = 0
     image = post.get('figure')
@@ -124,6 +136,7 @@ def article(post):
                 rendered.append(figure(image))
     if image and paragraphs < image['after_paragraph']:
         raise ValueError(f"Image position exceeds prose: {post['slug']}")
+    rendered.append(AUTHOR_CARD)
     rendered.append('<nav class="post-related" aria-label="More from the desk"><h2>Keep reading</h2><ul>')
     for slug in post['related']:
         related = BY_SLUG[slug]

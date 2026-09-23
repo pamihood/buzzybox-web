@@ -60,7 +60,7 @@ check_syntax home.css
 check_syntax styles.css
 
 stamp home.css index.html
-stamp styles.css support.html privacy.html terms.html safety.html parents.html \
+stamp styles.css support.html press.html privacy.html terms.html safety.html parents.html \
       confirmed.html reset.html 404.html blog/index.html blog/*/index.html
 
 # The shared navigation/desk script is versioned on every page that loads it.

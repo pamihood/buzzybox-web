@@ -59,7 +59,11 @@ em { color:var(--accent); font-weight:400; }
 .origin h2 { font-size:clamp(2rem,3.4vw,2.8rem); margin-bottom:26px; }
 .origin p:not(.eyebrow) { max-width:660px; }
 .signature { display:flex; align-items:center; justify-content:space-between; gap:25px; margin-top:26px; }
-.signature>span { font-size:.9375rem; line-height:1.6; }
+.signature-person { display:flex; align-items:center; gap:16px; }
+.signature-person>span { font-size:.9375rem; line-height:1.6; }
+/* Patrick's portrait, pasted beside the name like the lunch-table photo is
+   pinned beside the story: a white edge and a soft shadow, never a frame. */
+.signature-portrait { width:72px; height:72px; flex-shrink:0; border-radius:50%; object-fit:cover; border:3px solid #fffdf8; box-shadow:0 8px 16px -8px #5a3f2099; }
 .signature small { font-size:.75rem; color:var(--muted); }
 .safety { background:var(--grain) repeat, var(--mint); background-size:128px; padding-block:70px; }
 .safety-heading { display:flex; align-items:center; justify-content:space-between; gap:30px; }

@@ -18,3 +18,5 @@
 .post .post-author p { margin: 0; font-size: 1rem; line-height: 1.6; }
 .post .post-author .post-author-name { margin-bottom: .3rem; font-family: var(--font-serif); font-size: 1.25rem; color: var(--ink); }
 @media (max-width: 520px) { .post-author { flex-direction: column; gap: 14px; } }
+/* The founder essay's closing availability note: a quiet italic line under the prose. */
+.post .post-availability { margin-top: 2.2rem; font-size: 1rem; color: var(--ink-soft); }

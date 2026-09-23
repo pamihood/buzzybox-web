@@ -29,6 +29,7 @@ AUTHOR_CARD = (
     'engineering teams.</p></div></aside>'
 )
 POSTS = json.loads((ROOT / 'blog/posts.json').read_text())
+APP_STORE_URL = json.loads((ROOT / 'brand.json').read_text())['app_store_url']
 BY_SLUG = {post['slug']: post for post in POSTS}
 SHARED = (ROOT / 'support.html').read_text()
 TOKEN = re.compile(r'(\[[^\]]+\]\([^)]+\)|\*\*[^*]+\*\*|\*[^*]+\*)')
@@ -136,6 +137,12 @@ def article(post):
                 rendered.append(figure(image))
     if image and paragraphs < image['after_paragraph']:
         raise ValueError(f"Image position exceeds prose: {post['slug']}")
+    # An essay a reporter reaches from a pitch says plainly that the app is out
+    # (2026-09-23, after a review read a pre-launch copy). Flagged per essay in
+    # posts.json; the address comes from brand.json, never typed into prose.
+    if post.get('availability'):
+        rendered.append('<p class="post-availability"><em>Postmello is available now for iPad on the '
+                        f'<a href="{html.escape(APP_STORE_URL, quote=True)}">App Store</a>.</em></p>')
     rendered.append(AUTHOR_CARD)
     rendered.append('<nav class="post-related" aria-label="More from the desk"><h2>Keep reading</h2><ul>')
     for slug in post['related']:

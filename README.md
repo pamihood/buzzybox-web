@@ -77,8 +77,8 @@ Do not hand-edit generated prices or duplicate the download URL.
   counts in this README. `scripts/apply-pricing.py` updates all marked amounts,
   plan names, counts, and discounts, including founding-window copy.
 - `brand.json` owns the tagline, the App Store URL and the Instagram URL.
-  `scripts/apply-brand.py` updates the homepage's marked elements and the private
-  letter viewer's fallback link; `scripts/apply-footer.py` reads the Instagram URL too.
+  `scripts/apply-brand.py` updates the homepage's marked elements, the press
+  kit's App Store links, and the private letter viewer's fallback link; `scripts/apply-footer.py` reads the Instagram URL too.
 - `scripts/apply-navigation.py` owns supporting-page headers.
 - `scripts/apply-footer.py` owns all public/account footers.
 - `scripts/apply-head-meta.py` owns fonts, canonicals, and shared social metadata.

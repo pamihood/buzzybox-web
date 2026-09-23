@@ -39,6 +39,7 @@ import sys
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 BRAND = ROOT / "brand.json"
 INDEX = ROOT / "index.html"
+EXTRA_PAGES = ["press.html"]   # href markers only, e.g. the press kit's App Store links
 
 # The tags a brand string is allowed to live in. Narrow on purpose: a marker
 # on something unexpected is a mistake worth failing on rather than rewriting.
@@ -93,6 +94,27 @@ def main():
             disagreements.append((key, have, want))
             html = html[: match.start(2)] + want + html[match.end(2):]
             written += 1
+
+    # Other pages may carry the same href markers -- the press kit's two App
+    # Store links (2026-09-23). They are kept in step here too, but unlike
+    # index.html no key is REQUIRED on them.
+    for rel in EXTRA_PAGES:
+        path = ROOT / rel
+        page = path.read_text(encoding="utf-8")
+        changed = False
+        for key, want in expected.items():
+            href_pattern = re.compile(
+                r'(<(?:' + TAGS + r')\b[^>]*data-brand-href="' + re.escape(key)
+                + r'"[^>]*\bhref=")([^"]*)(")')
+            for match in sorted(href_pattern.finditer(page),
+                                key=lambda m: m.start(2), reverse=True):
+                if match.group(2) == want:
+                    continue
+                disagreements.append((f"{rel} {key}", match.group(2), want))
+                page = page[: match.start(2)] + want + page[match.end(2):]
+                changed = True
+        if changed and not args.check:
+            path.write_text(page, encoding="utf-8")
 
     letter_path = ROOT / "letter" / "index.html"
     letter_html = letter_path.read_text(encoding="utf-8")

@@ -14,78 +14,89 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://postmello.com/</loc>
-    <lastmod>2026-08-25</lastmod>
+    <lastmod>2026-09-23</lastmod>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://postmello.com/blog/</loc>
+    <lastmod>2026-09-23</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://postmello.com/blog/why-i-built-postmello/</loc>
+    <lastmod>2026-09-23</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://postmello.com/blog/designing-a-desk-not-an-app/</loc>
+    <lastmod>2026-09-23</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://postmello.com/safety</loc>
-    <lastmod>2026-08-25</lastmod>
+    <lastmod>2026-09-23</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://postmello.com/press</loc>
+    <lastmod>2026-09-23</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://postmello.com/support</loc>
-    <lastmod>2026-08-24</lastmod>
+    <lastmod>2026-09-23</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://postmello.com/privacy</loc>
-    <lastmod>2026-08-25</lastmod>
+    <lastmod>2026-09-23</lastmod>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://postmello.com/terms</loc>
-    <lastmod>2026-08-23</lastmod>
+    <lastmod>2026-09-23</lastmod>
     <priority>0.4</priority>
   </url>
   <!-- The Parent Privacy Notice: a legal document like /privacy and /terms,
        not a marketing page, so it shares their 0.4. -->
   <url>
     <loc>https://postmello.com/parents</loc>
-    <lastmod>2026-08-25</lastmod>
+    <lastmod>2026-09-23</lastmod>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://postmello.com/blog/three-kinds-of-quiet/</loc>
+    <lastmod>2026-09-23</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://postmello.com/blog/a-letter-keeps-its-audience/</loc>
+    <lastmod>2026-09-23</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://postmello.com/blog/the-name-on-the-desk/</loc>
+    <lastmod>2026-09-23</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://postmello.com/blog/what-the-bee-knows/</loc>
+    <lastmod>2026-09-23</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://postmello.com/blog/learning-the-desk-through-its-objects/</loc>
+    <lastmod>2026-09-23</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://postmello.com/blog/a-friend-does-not-need-another-app/</loc>
+    <lastmod>2026-09-23</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://postmello.com/blog/a-space-of-your-own/</loc>
+    <lastmod>2026-09-23</lastmod>
     <priority>0.6</priority>
   </url>
 </urlset>

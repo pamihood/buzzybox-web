@@ -2245,6 +2245,9 @@ a:focus-visible,button:focus-visible,summary:focus-visible { outline:3px solid #
 .press .press-story blockquote p:last-child { margin-bottom:0; }
 
 .press-film { display:block; width:100%; height:auto; border-radius:6px; background:#e9dcc8; box-shadow:0 18px 40px -24px #5a3f2080; }
+/* A link, not an embedded player: the site loads nothing from third parties. */
+.press .press-youtube { display:flex; flex-wrap:wrap; align-items:baseline; gap:6px 16px; margin:0 0 28px; padding:14px 18px; background:var(--card); border:1px solid var(--line); border-radius:6px; font-size:.9375rem; }
+.press-youtube a { font-weight:600; }
 .press-films { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:28px; align-items:start; }
 .press-films figure { margin:0; }
 .press-films figcaption { margin-top:14px; font-size:.9375rem; line-height:1.55; color:var(--ink-soft); }

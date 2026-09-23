@@ -2,7 +2,7 @@
 
 *By Patrick Amihood, Creator of Postmello*
 
-One summer, my older daughter, then nine, asked my wife to borrow our phone to text a best friend.
+Last summer, my older daughter, 9 years old, asked my wife to borrow our phone to text a best friend.
 
 It was a small request, and a reasonable one. School was out. My daughter missed a friend and wanted a way to stay in touch without asking us to arrange every exchange. That wish for a little independence was something I wanted to encourage.
 

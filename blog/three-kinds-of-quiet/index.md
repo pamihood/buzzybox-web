@@ -30,7 +30,7 @@ Those small signals carry a surprising amount of social information. They tell u
 
 I wanted to leave that time with its owner. A person should be able to read, think, get distracted, go outside, or begin a reply and finish it later. The letter remains there through all of that.
 
-Nor is there a streak to keep alive, or a number counting up what arrived while someone was away. A letter that comes while the tablet is put away waits in the mailbox, the way mail waits on the doormat, until someone is ready to open it.
+Nor is there a streak to keep alive, or a number counting up what arrived while someone was away. A letter that comes while the device is put away waits in the mailbox, the way mail waits on the doormat, until someone is ready to open it.
 
 Digital delivery is still quick. Two friends might exchange letters in an afternoon. But a quick delivery does not need to become a demand for a quick reply.
 

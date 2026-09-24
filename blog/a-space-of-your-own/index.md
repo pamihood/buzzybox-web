@@ -12,7 +12,7 @@ I remember the Japanese desk as an important point in that progression. A differ
 
 Meanwhile, I was working on a very practical problem: the back of the desk.
 
-A tablet does not offer one fixed rectangle. Different sizes and proportions have to hold the same writing space. The rim helped contain that space, while the lower surface could stretch to fit. It was a useful way to make the desk feel complete across devices.
+A screen does not offer one fixed rectangle. Different sizes and proportions have to hold the same writing space. The rim helped contain that space, while the lower surface could stretch to fit. It was a useful way to make the desk feel complete across devices.
 
 But the rim also raised another question. What belonged beyond the writing surface?
 

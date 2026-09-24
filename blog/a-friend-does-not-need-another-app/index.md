@@ -2,7 +2,7 @@
 
 *By Patrick Amihood, Creator of Postmello*
 
-A letter should be able to reach a friend who does not have a tablet.
+A letter should be able to reach a friend who does not have the app.
 
 That sounds like a small accommodation. Add an email address, send a copy, and the problem seems solved. But correspondence has two directions. And a friendship lasts longer than the choice of app someone happens to use today.
 
@@ -36,6 +36,6 @@ Even the state of an old letter matters. Something already opened through its em
 
 None of that should feel like a migration project to the friend accepting an invitation. The visible result should be ordinary: the letters are here, the people are familiar, and the correspondence continues.
 
-Email also remains useful after someone has a desk. An inbox may be the convenient place to answer while away from the tablet. Supporting that route makes participation less dependent on everyone using the same device in the same way.
+Email also remains useful after someone has a desk. An inbox may be the convenient place to answer while away from the desk. Supporting that route makes participation less dependent on everyone using the same device in the same way.
 
 That is the inclusion I wanted email to provide. The invitation is to stay in touch. The software should make room for the way a friend is able to answer.

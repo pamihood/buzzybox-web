@@ -45,12 +45,6 @@ em { color:var(--accent); font-weight:400; }
 .text-link { font-size:.9375rem; font-weight:500; display:inline-flex; align-items:center; gap:25px; text-decoration:none; border-bottom:1px solid #b6a18b; padding-bottom:6px; margin-top:10px; }
 .text-link:hover { border-color:var(--ink); }
 .text-link span { font-size:1.125rem; }
-.collection-note { font-size:.75rem; color:var(--muted); text-align:center; margin-top:20px; }
-.breathing { display:grid; grid-template-columns:1fr 1fr; gap:8%; align-items:center; }
-.breathing h2 { font-size:clamp(2.1rem,3.8vw,3.3rem); margin-bottom:28px; }
-.breathing-art { padding:45px 10px 25px; }
-.breathing-art img { transform:rotate(-5deg); filter:drop-shadow(0 14px 14px #74593826); }
-.breathing-art span { display:block; font-size:.75rem; color:var(--muted); text-align:center; margin-top:35px; }
 .family { display:grid; grid-template-columns:1fr 1fr; gap:8%; align-items:center; border-top:1px solid var(--line); }
 .family h2 { margin-bottom:28px; }
 .family>img { width:100%; border-radius:4px; box-shadow:0 8px 20px #7459381c; transform:rotate(2deg); }
@@ -69,13 +63,7 @@ em { color:var(--accent); font-weight:400; }
 .safety-heading { display:flex; align-items:center; justify-content:space-between; gap:30px; }
 .safety-heading h2 { font-size:clamp(2rem,3.2vw,2.75rem); }
 .safety-heading img { width:130px; max-height:100px; object-fit:contain; margin-right:5%; }
-.safety-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:40px; margin-top:42px; }
-.safety-grid article { border-top:1px solid #bdc4b4; padding-top:23px; }
-.safety-grid article>span { display:none; }
-.safety-grid h3 { font-size:1.125rem; font-weight:500; margin-bottom:12px; }
-.safety-grid p { font-size:1rem; color:#5d6655; }
 .safety-bottom { display:flex; justify-content:space-between; align-items:center; gap:50px; border-top:1px solid #bdc4b4; padding-top:25px; margin-top:20px; }
-.safety-bottom p { font-size:.875rem; color:#5d6655; max-width:690px; margin:0; }
 .safety-bottom a { white-space:nowrap; }
 .pricing-heading { max-width:640px; margin:0 auto 40px; text-align:center; }
 .pricing-heading p:last-child { margin-top:26px; }
@@ -131,11 +119,8 @@ a:focus-visible,button:focus-visible,summary:focus-visible { outline:3px solid #
   .hero-art .mailbox { width:39%; right:1%; bottom:0; }
   .hero-art .butterfly { width:14%; top:9%; right:4%; }
   .section { padding-block:60px; }
-  .breathing,.family { grid-template-columns:1fr; gap:28px; }
-  .collection-note { max-width:28em; margin-inline:auto; }
-  .breathing-art { width:94%; margin:auto; padding-top:20px; }
-  .breathing h2 { font-size:2.25rem; }
-  .family>img { width:97%; margin:10px auto 0; }
+  .family { grid-template-columns:1fr; gap:28px; }
+    .family>img { width:97%; margin:10px auto 0; }
   .origin { padding:20px 0 55px; }
   .origin-inner { grid-template-columns:1fr; gap:0; padding-top:35px; }
   .origin h2 { font-size:2rem; }
@@ -143,8 +128,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible { outline:3px solid #
   .safety-heading { gap:15px; }
   .safety-heading h2 { font-size:2rem; }
   .safety-heading img { width:70px; margin-right:0; }
-  .safety-grid { grid-template-columns:1fr; gap:16px; margin-top:30px; }
-  .safety-bottom { display:block; margin-top:8px; }
+    .safety-bottom { display:block; margin-top:8px; }
   .safety-bottom a { margin-top:20px; }
   .price-grid { grid-template-columns:1fr; }
   .price-card { padding:28px; }
@@ -179,7 +163,6 @@ a:focus-visible,button:focus-visible,summary:focus-visible { outline:3px solid #
 .fairy-showcase { margin-block:20px; color:#44392e; }
 #desks .fairy-showcase { border-top:1px solid #d4c1a7; padding-top:64px; margin-top:65px; }
 .fairy-heading { display:flex; justify-content:space-between; align-items:flex-end; gap:45px; margin-bottom:46px; }
-.fairy-eyebrow { color:#806a55; font:600 .75rem/1.5 var(--font-sans,'DM Sans',sans-serif); letter-spacing:.13em; text-transform:uppercase; margin:0 0 18px; }
 .fairy-heading h2 { font-family:var(--font-serif,Lora,Georgia,serif); font-size:clamp(2.2rem,3.7vw,3.25rem); line-height:1.2; letter-spacing:-.035em; font-weight:400; margin:0; }
 .fairy-heading h2 em { font-weight:400; color:#80634e; }
 .fairy-heading>p { max-width:360px; margin:0 0 4px; font-size:1rem; line-height:1.7; color:#6e6255; }
@@ -189,7 +172,6 @@ a:focus-visible,button:focus-visible,summary:focus-visible { outline:3px solid #
 .fairy-paper-pair img { width:48%; aspect-ratio:3/4; height:auto; object-fit:contain; box-shadow:0 11px 18px #67573920; }
 .fairy-paper-pair img:first-child { transform:rotate(-5deg); }
 .fairy-paper-pair img:last-child { transform:rotate(4deg); }
-.fairy-spread figcaption { text-align:center; color:#6e6255; font-size:.875rem; line-height:1.5; margin-top:15px; }
 .fairy-small-goods { display:grid; grid-template-columns:1fr 1fr; gap:32px 30px; }
 .fairy-envelopes { grid-column:1/-1; }
 .fairy-envelopes>div { display:flex; align-items:center; gap:5%; padding:4px 8px; }
@@ -200,18 +182,6 @@ a:focus-visible,button:focus-visible,summary:focus-visible { outline:3px solid #
 .fairy-stamps img,.fairy-stickers img { width:calc((100% - 20px)/3); max-height:85px; object-fit:contain; filter:drop-shadow(0 3px 3px #67573918); }
 .fairy-note { text-align:center; color:#806a55; font-size:.8125rem; line-height:1.6; margin:36px 0 0; }
 .stationery-section { padding-block:82px 60px; }
-.collection-gallery { max-width:1040px; margin:42px auto 0; border-top:1px solid #d4c1a7; padding-top:40px; }
-.collection-gallery-heading { display:flex; justify-content:space-between; align-items:flex-end; gap:38px; }
-.collection-gallery-heading h3 { font-family:Lora,Georgia,serif; font-size:2.25rem; line-height:1.2; letter-spacing:-.035em; }
-.collection-gallery-heading p { font-size:1rem; margin:0 0 9px; }
-.collection-gallery-heading .fairy-eyebrow { font-size:.75rem; margin-bottom:16px; }
-.collection-gallery-heading .collection-price { color:#73583c; font-size:.9375rem; font-weight:600; }
-.collection-gallery-heading .collection-permanent { font-size:.8125rem; color:#6e6255; }
-.collection-icon-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:28px; margin-top:35px; }
-.collection-icon-grid figure { margin:0; text-align:center; }
-.collection-icon-grid img { width:100%; height:175px; object-fit:contain; filter:drop-shadow(0 7px 7px #6757391a); }
-.collection-icon-grid figcaption { margin-top:20px; font-family:Lora,Georgia,serif; font-size:1.125rem; }
-.collection-gallery>.text-link { margin-top:34px; }
 .family-voices { padding-block:80px 24px; }
 .voices-heading { text-align:center; margin-bottom:38px; }
 .voices-heading h2 { font-size:clamp(2.2rem,3.5vw,3rem); }
@@ -229,8 +199,6 @@ a:focus-visible,button:focus-visible,summary:focus-visible { outline:3px solid #
   .header .brand .brand-mark { width:42px; height:42px; }
   .fairy-spread { gap:30px; }
   .fairy-small-goods { gap:25px 20px; }
-  .collection-icon-grid { gap:20px; }
-  .collection-icon-grid img { height:145px; }
 }
 @media(max-width:760px) {
   .header { flex-wrap:wrap; gap:18px; }
@@ -245,17 +213,10 @@ a:focus-visible,button:focus-visible,summary:focus-visible { outline:3px solid #
   .fairy-paper-pair { max-width:430px; margin:auto; }
   .fairy-small-goods { max-width:470px; width:100%; margin:auto; gap:25px; }
   .fairy-envelopes>div { padding-inline:10px; }
-  .fairy-spread figcaption { margin-top:10px; }
   .fairy-stamps img,.fairy-stickers img { max-height:74px; }
   .fairy-note { margin-top:25px; }
   .stationery-section { padding-block:55px 35px; }
   #desks .fairy-showcase { margin-top:40px; padding-top:40px; }
-  .collection-gallery { margin-top:28px; padding-top:28px; }
-  .collection-gallery-heading { display:block; }
-  .collection-gallery-heading h3 { font-size:2rem; margin-bottom:25px; }
-  .collection-icon-grid { grid-template-columns:1fr 1fr; gap:30px 18px; margin-top:26px; }
-  .collection-icon-grid img { height:145px; }
-  .collection-icon-grid figcaption { font-size:1rem; margin-top:12px; }
   .family-voices { padding-block:55px 0; }
   .voices-grid { grid-template-columns:1fr; gap:26px; }
   .family-note { padding:30px; min-height:260px; }
@@ -295,33 +256,28 @@ html { scroll-padding-top:calc(var(--nav-dock-height,58px) + 20px); }
 }
 .opening .hero h1 em { color:#7b644c; }
 .opening .hero-detail {
-  max-width:26em;
+  max-width:24em;
   margin-top:24px;
-  font-size:1.0625rem;
-  line-height:1.7;
-  color:#635748;
+  font-size:1.375rem;
+  line-height:1.5;
+  color:#54483a;
+  text-wrap:balance;
 }
-.opening .hero-actions { margin-top:25px; }
-.opening .hero-actions span { font-size:.875rem; }
-.collection-note { font-size:.8125rem; }
+.opening .hero-actions { margin-top:28px; }
+.opening .hero-actions span { font-size:1rem; line-height:1.5; color:#5d5143; }
 .surface { display:flow-root; background-image:var(--grain); background-size:128px; }
 .surface--stationery { background-color:#eddbbc; background-image:url('/assets/site/maple-wood.jpg'); background-size:cover; background-position:center; background-repeat:no-repeat; border-block:1px solid #d3bc98; }
 .stationery-section { padding-block:82px 78px; }
 .fairy-heading>p { max-width:375px; }
 .fairy-spread { gap:64px; }
-.surface--breathing { background-color:#edf1ee; }
-.breathing { padding-block:88px; }
-.breathing-art { padding:20px 10px 25px; }
-.breathing-art img { transform:rotate(-3deg); }
-.breathing-art span { font-size:.8125rem; }
-.surface--family { background-color:#fff9ed; border-top:1px solid #ddd8c9; }
+.surface--family { background-color:#e6edf0; border-top:1px solid #cad6dc; }
 .surface--origin { background-color:#efe1cb; border-top:1px solid #d7c7ae; }
 .family { border:0; padding-block:88px; }
 .family>img { transform:rotate(1deg); }
 .origin { padding-block:76px; }
 .origin-inner { border:0; padding-top:0; }
-.safety { background-color:#e0e6d9; border-block:1px solid #c9d1c0; }
-.surface--voices { background-color:#eae0cd; }
+.safety { background-color:#dae3cf; border-block:1px solid #c2ccb5; }
+.surface--voices { background-color:#f8f1e4; border-top:1px solid #dccdb4; }
 .family-voices { padding-block:76px 84px; }
 .family-note { padding:42px; }
 .surface--pricing { background-color:#fcf7ee; }
@@ -329,8 +285,6 @@ html { scroll-padding-top:calc(var(--nav-dock-height,58px) + 20px); }
 .price-card { background-color:#fffdf6; border-color:#d1c5b1; box-shadow:0 5px 16px #6e53380b; }
 .price-card.member { background-color:#e8eddf; border-color:#c5ceba; }
 .price-explanation { font-size:.875rem; }
-.collection-gallery { border-color:#d5c9b7; margin-top:42px; padding-top:42px; }
-.collection-icon-grid img { height:190px; }
 .surface--faq { background-color:#edf0e7; border-top:1px solid #d2d8c8; }
 .faq { padding-block:70px 82px; }
 .surface--closing { background-color:#e0e7d8; border-top:1px solid #c9d1c0; }
@@ -341,7 +295,6 @@ html { scroll-padding-top:calc(var(--nav-dock-height,58px) + 20px); }
 
 @media (min-width:761px) and (max-width:1100px) {
   .fairy-spread { gap:35px; }
-  .collection-icon-grid img { height:155px; }
 }
 @media (max-width:60rem) {
   .header { padding-block:22px; }
@@ -349,15 +302,11 @@ html { scroll-padding-top:calc(var(--nav-dock-height,58px) + 20px); }
 @media (max-width:760px) {
   .stationery-section { padding-block:55px; }
   .fairy-spread { gap:30px; }
-  .breathing { padding-block:60px; }
-  .breathing-art { padding-top:20px; }
   .family { padding-block:58px; }
   .origin { padding-block:55px; }
   .family-voices { padding-block:55px 62px; }
   .family-note { padding:32px; }
   .pricing { padding-block:60px 40px; }
-  .collection-gallery { margin-top:25px; padding-top:30px; }
-  .collection-icon-grid img { height:145px; }
   .faq { padding-block:50px 58px; }
   .closing { padding-block:52px 58px; }
 }
@@ -568,14 +517,14 @@ html { scroll-padding-top:calc(var(--nav-dock-height,58px) + 20px); }
 @media(min-width:1600px) {
   .opening .hero { width:min(1560px,calc(100% - 160px)); }
   .opening .hero h1 { font-size:clamp(4.1rem,3.9vw,5.25rem); }
-  .opening .hero-detail { font-size:clamp(1.0625rem,1.05vw,1.375rem); }
+  .opening .hero-detail { font-size:clamp(1.375rem,1.3vw,1.6875rem); }
   .opening .hero-actions .store img { width:clamp(150px,9vw,190px); height:auto; }
-  .opening .hero-actions span { font-size:1rem; }
+  .opening .hero-actions span { font-size:clamp(1rem,.95vw,1.1875rem); }
 }
 @media(max-width:1100px) {
   .opening .hero { width:calc(100% - 64px); }
   .opening .hero h1 { font-size:clamp(2.6rem,4.6vw,3.3rem); }
-  .opening .hero-detail { font-size:1rem; line-height:1.65; margin-top:20px; }
+  .opening .hero-detail { font-size:1.25rem; line-height:1.5; margin-top:20px; }
   .opening .hero-actions { gap:15px; margin-top:22px; }
 }
 /* Tablet: one column, the words first. */
@@ -595,7 +544,8 @@ html { scroll-padding-top:calc(var(--nav-dock-height,58px) + 20px); }
   .opening .hero h1 { order:1; font-size:clamp(2.5rem,10.6vw,3.25rem); }
   .film { order:2; margin-top:20px; }
   .opening .hero-actions { order:3; margin-top:20px; }
-  .opening .hero-detail { order:4; margin-top:18px; font-size:1rem; }
+  .opening .hero-detail { order:4; margin-top:18px; font-size:1.1875rem; }
+  .opening .hero-actions span { font-size:.9375rem; }
   .film-screen { border-width:5px; border-radius:14px; }
   .film-controls { right:7px; bottom:7px; gap:6px; }
   .film-controls button { width:34px; height:34px; }
@@ -603,46 +553,127 @@ html { scroll-padding-top:calc(var(--nav-dock-height,58px) + 20px); }
   .film-start { width:64px; height:64px; }
 }
 
-/* The desks, as a picture. They were a switcher under the film and almost
-   nobody pressed it, so every desk is simply shown: six in a grid, nothing
-   to tap, in a section of their own after the letters. */
+/* Creativity, calm and safety (2026-09-24). After the film the page makes
+   three promises, each in the site's own words. Creativity: their very own
+   place, the collections, a little wonder on every page, and what kids make
+   when there's room. Calm: connected, not always on. Safety: their
+   independence, your boundaries. "Quiet" stays in the blog essay; on this page
+   it read as a mood rather than a reason. The tiny all-caps labels went too: a
+   heading that says what its section is needs nothing above it. */
+
+/* Their very own place: the two best desks, large, rather than six small, and
+   nothing else - no caption, no mat, no device. Each is the desk exactly as the
+   app draws it, with a soft edge and a shadow. Tried and refused on 2026-09-24:
+   a photo print on a paper mat ("they need to look like desk assets"), an iPad
+   frame (too strong) and the desk's own nameplate as the caption (it pulls the
+   eye off the desk). */
 .surface--desks { background-color:#dbe5d7; border-block:1px solid #c8d0bf; }
-.desk-gallery { padding-block:80px 72px; }
-.desk-gallery-heading { text-align:center; margin-bottom:44px; }
-.desk-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:36px 30px; margin:0; padding:0; list-style:none; }
-.desk-grid figure { margin:0; }
-.desk-grid img { width:100%; height:auto; aspect-ratio:4/3; object-fit:cover; border-radius:8px; box-shadow:0 14px 28px -16px #39462c70; }
-.desk-grid figcaption { margin-top:12px; text-align:center; font-size:.9375rem; font-weight:500; }
-.desk-keepsake { max-width:38em; margin:42px auto 0; text-align:center; font-size:1rem; line-height:1.6; }
-.desk-keepsake + .collection-note { margin-top:6px; }
+.desk-gallery { padding-block:84px 80px; }
+.desk-gallery-heading { text-align:center; margin-bottom:52px; }
+.desk-pair { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:clamp(28px,3.6vw,52px); margin:0; padding:0; list-style:none; }
+.desk-pair img { width:100%; height:auto; aspect-ratio:4/3; object-fit:cover; border-radius:14px; box-shadow:0 26px 44px -26px #39462c8c,0 3px 8px #39462c1a; }
+.desk-more { margin:46px 0 0; text-align:center; }
+.desk-more .text-link { margin-top:0; gap:12px; }
 @media(max-width:760px) {
-  .desk-gallery { padding-block:56px 52px; }
-  .desk-gallery-heading { text-align:left; margin-bottom:28px; }
-  .desk-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:22px 14px; }
-  .desk-grid img { border-radius:6px; }
-  .desk-grid figcaption { margin-top:8px; font-size:.875rem; }
-  .desk-keepsake { margin-top:30px; text-align:left; }
-  .desk-gallery .collection-note { text-align:left; margin-inline:0; }
+  .desk-gallery { padding-block:56px; }
+  .desk-gallery-heading { text-align:left; margin-bottom:30px; }
+  .desk-pair { grid-template-columns:1fr; gap:24px; }
+  .desk-pair img { border-radius:10px; }
+  .desk-more { margin-top:32px; text-align:left; }
 }
 
-/* "Texting can wait." (back 2026-09-22, lower down). It opened the page and read
-   as a wall of words between the hero and the desk; here it opens the half of
-   the page about why, after the desks and the stationery have been seen. The
-   three promises under it are the Instagram ads' own lines. */
-.intro { display:grid; grid-template-columns:1fr 1fr; gap:0 9%; padding-block:84px 88px; }
-.intro h2 { font-size:clamp(2.1rem,3.7vw,3.2rem); }
-.intro-copy { padding-top:32px; }
-.intro-copy p:last-child { margin-bottom:0; }
-.intro-promises { grid-column:1 / -1; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:32px; margin:56px 0 0; padding:0; list-style:none; }
-.intro-promises li { padding-top:22px; border-top:1px solid var(--line); text-align:center; font:400 clamp(1.5rem,2.4vw,2.1rem)/1.25 Lora,Georgia,serif; letter-spacing:-.035em; text-wrap:balance; }
-@media(max-width:760px) {
-  .intro { grid-template-columns:1fr; padding-block:58px 62px; }
-  .intro h2 { font-size:clamp(2rem,6.7vw,2.75rem); }
-  .intro-copy { padding-top:22px; }
-  .intro-promises { grid-template-columns:1fr; gap:0; margin-top:32px; }
-  .intro-promises li { padding:16px 0; font-size:1.625rem; }
-  .intro-promises li:last-child { border-bottom:1px solid var(--line); }
+/* The collections: every one of them, in a rail that scrolls sideways
+   (2026-09-24) - a showcase, not a price list; pricing keeps one line about
+   what they cost. The rail runs to the window's edges but starts on the page's
+   margin (--gutter is the .wrap margin at each width) and fades out at both
+   edges. A finger or a trackpad scrolls it; assets/site.js adds two arrows for
+   a mouse, which has no sideways wheel. */
+.surface--collections { background-color:#fcf7ee; }
+.collections { --gutter:max(48px,calc((100% - 1200px) / 2)); padding-block:80px 72px; }
+.collections-heading { display:flex; justify-content:space-between; align-items:flex-end; gap:38px; }
+.collections-aside { display:flex; align-items:flex-end; padding-bottom:8px; }
+.rail-arrows { display:flex; gap:10px; flex-shrink:0; }
+.rail-arrows[hidden] { display:none; }
+.rail-arrow { display:grid; place-items:center; width:46px; height:46px; padding:0; border:1px solid #cbbda7; border-radius:50%; background:#fffdf9; color:var(--ink); font-size:1.125rem; line-height:1; cursor:pointer; transition:border-color .2s ease,opacity .2s ease; }
+.rail-arrow:hover:not(:disabled) { border-color:var(--ink); background:#fff; }
+.rail-arrow:disabled { opacity:.35; cursor:default; }
+.collection-rail {
+  --fade:min(96px,var(--gutter));
+  display:flex; gap:clamp(20px,2.6vw,38px); margin-top:38px; padding:22px var(--gutter) 12px;
+  overflow-x:auto; overscroll-behavior-x:contain; scroll-padding-inline:var(--gutter); scroll-snap-type:x proximity; scrollbar-width:none;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 var(--fade),#000 calc(100% - var(--fade)),transparent);
+  mask-image:linear-gradient(90deg,transparent,#000 var(--fade),#000 calc(100% - var(--fade)),transparent);
 }
+.collection-rail::-webkit-scrollbar { display:none; }
+.collection-rail:focus-visible { outline:3px solid #937247; outline-offset:-3px; }
+.collection-rail img { -webkit-user-drag:none; user-select:none; }
+@media(hover:hover) and (pointer:fine) { .collection-rail { cursor:grab; } }
+.collection-rail.is-dragging { cursor:grabbing; scroll-snap-type:none; user-select:none; }
+.collection-rail figure { flex:0 0 auto; width:clamp(172px,15.5vw,216px); margin:0; text-align:center; scroll-snap-align:start; }
+.collection-rail img { width:100%; height:196px; object-fit:contain; filter:drop-shadow(0 9px 8px #67573924); }
+.collection-rail figcaption { margin-top:18px; font:400 1.1875rem/1.3 Lora,Georgia,serif; letter-spacing:-.015em; }
+@media(max-width:1100px) {
+  .collections { --gutter:32px; }
+  .collection-rail img { height:170px; }
+}
+@media(max-width:760px) {
+  .collections { --gutter:20px; padding-block:56px 50px; }
+  .collections-heading { display:block; }
+  .rail-arrows { display:none; }
+  .collection-rail { gap:18px; margin-top:24px; padding-top:16px; scroll-snap-type:x mandatory; }
+  .collection-rail figure { width:clamp(124px,36vw,164px); }
+  .collection-rail img { height:132px; }
+  .collection-rail figcaption { margin-top:12px; font-size:1.0625rem; }
+}
+
+/* Calm: connected, not always on - with the old "the letter arrives" layout
+   and its paddleboard letter. */
+.surface--calm { background-color:#e1e9ed; border-top:1px solid #cbd7dd; }
+.calm { display:grid; grid-template-columns:1fr 1fr; gap:8%; align-items:center; padding-block:88px; }
+.calm h2 { font-size:clamp(2.1rem,3.8vw,3.3rem); margin-bottom:28px; }
+.calm-art { padding:20px 10px 25px; }
+.calm-art img { transform:rotate(-3deg); filter:drop-shadow(0 14px 14px #74593826); }
+.calm-copy p { max-width:26em; }
+.calm-copy p:first-of-type { font:400 clamp(1.25rem,1.8vw,1.5rem)/1.45 Lora,Georgia,serif; letter-spacing:-.02em; }
+@media(max-width:760px) {
+  .calm { grid-template-columns:1fr; gap:28px; padding-block:60px; }
+  .calm-art { width:94%; margin:auto; padding-top:20px; }
+  .calm h2 { font-size:2.25rem; }
+}
+
+/* Safety: four facts and no paragraphs; the safety page has the rest. */
+.safety-list { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:32px; margin:42px 0 0; padding:0; list-style:none; }
+.safety-list li { border-top:1px solid #bdc4b4; padding-top:22px; font:400 clamp(1.2rem,1.6vw,1.4rem)/1.35 Lora,Georgia,serif; letter-spacing:-.02em; text-wrap:balance; }
+.safety .safety-bottom { justify-content:flex-start; border-top:0; padding-top:0; margin-top:34px; }
+@media(max-width:1100px) {
+  .safety-list { grid-template-columns:repeat(2,minmax(0,1fr)); gap:26px 32px; }
+}
+@media(max-width:760px) {
+  .safety-list { grid-template-columns:1fr; gap:0; margin-top:28px; }
+  .safety-list li { padding:16px 0; }
+  .safety-list li:last-child { border-bottom:1px solid #bdc4b4; }
+}
+
+/* Pricing: one line for the collections under the cards. And the prices sit
+   on one line: each card is a subgrid of the pair's five rows - label, desks,
+   list, price, note - so a two-line note under one price no longer lifts that
+   price above the other. */
+.collections-line { max-width:960px; margin:30px auto 0; text-align:center; font:400 clamp(1.15rem,1.6vw,1.35rem)/1.4 Lora,Georgia,serif; letter-spacing:-.02em; }
+@supports (grid-template-rows:subgrid) {
+  @media(min-width:761px) {
+    .price-grid { grid-template-rows:repeat(5,auto); row-gap:0; }
+    .price-card { display:grid; grid-row:span 5; grid-template-rows:subgrid; row-gap:0; }
+    .price-card .plan-cost { display:contents; }
+    .price-card .plan-price { padding-top:22px; }
+  }
+}
+@media(max-width:760px) {
+  .collections-line { text-align:left; }
+}
+
+/* The labels that stay (Pricing, the FAQ, Instagram) are there to be read:
+   sentence case at body size, not tiny tracked capitals. */
+.eyebrow { font-size:.9375rem; letter-spacing:.01em; text-transform:none; color:var(--accent); margin-bottom:16px; }
 
 /* How it began, beside a snapshot of the first desk in use: a print on a paper
    mat, turned a little, like the letters elsewhere on the page. The photo keeps
@@ -654,65 +685,4 @@ html { scroll-padding-top:calc(var(--nav-dock-height,58px) + 20px); }
 @media(max-width:760px) {
   .origin-inner { grid-template-columns:1fr; gap:34px; }
   .origin-photo { width:min(100%,340px); margin-inline:auto; }
-}
-
-/* "Not on your iPad?" (2026-09-22). The ads bring parents who are almost all on
-   phones, and Postmello is iPad-only, so the App Store badge is a dead end on
-   the device they are holding. This keeps the interest instead: an email to
-   themselves with the App Store link, to open later on the iPad. It lives in
-   the closing section, NOT the hero (Patrick: the form must not crowd it);
-   the hero only carries one quiet line that jumps down to it. Both stay hidden
-   until the script decides the visitor is not on an iPad. On a phone the form
-   takes the closing badge's place (html.send-link-first); elsewhere it sits
-   under the badge. On a phone the hero's badge goes too (2026-09-23: every App
-   Store tap from the ads was an iPhone that could not install), and the line
-   becomes the hero's button, still jumping down to the form. */
-.send-link[hidden],.send-link-form[hidden],.send-link-done[hidden] { display:none; }
-.send-link {
-  max-width:440px; margin-top:26px; padding:18px 20px 20px; text-align:left;
-  background:#fffaf2; border:1px solid #e3d2b6; border-radius:14px;
-  box-shadow:0 10px 24px -20px #5a3f2070;
-}
-.send-link-title { margin:0; font:500 1.25rem/1.3 Lora,Georgia,serif; letter-spacing:-.02em; color:var(--ink); }
-.send-link-detail { margin:4px 0 0; font-size:.9375rem; line-height:1.55; color:var(--muted); }
-.send-link-label { display:block; margin:14px 0 6px; font-size:.8125rem; font-weight:600; color:var(--ink); }
-.send-link-row { display:flex; gap:8px; }
-.send-link-input {
-  flex:1 1 auto; min-width:0; height:48px; padding:0 14px;
-  border:1px solid #cdb99c; border-radius:10px; background:#fffdf9;
-  color:var(--ink); font:400 1rem 'DM Sans',sans-serif;
-}
-.send-link-input::placeholder { color:#a3927e; }
-.send-link-input:focus { outline:3px solid #9372474d; outline-offset:1px; border-color:#937247; }
-.send-link-button {
-  flex:0 0 auto; height:48px; padding:0 18px; border:0; border-radius:10px; cursor:pointer;
-  background:#1f1b17; color:#fff; font:600 .9375rem 'DM Sans',sans-serif;
-}
-.send-link-button:hover { background:#000; }
-.send-link-button[disabled] { opacity:.6; cursor:progress; }
-/* The honeypot: off-screen, never tabbed to, filled only by bots. */
-.send-link-hp { position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden; }
-.send-link-check:empty { display:none; }
-.send-link-check { margin-top:10px; }
-.send-link-msg { margin:8px 0 0; font-size:.875rem; line-height:1.5; color:#9a3b1f; }
-.send-link-msg:empty { display:none; }
-.closing .send-link { margin:26px auto 18px; }
-html.send-link-first .closing .store { display:none; }
-.send-link-cue[hidden] { display:none; }
-.send-link-cue { display:inline-flex; align-items:center; gap:8px; margin-top:16px; font-size:.875rem; font-weight:500; color:var(--muted); text-decoration:underline; text-decoration-color:#c9b79f; text-underline-offset:4px; }
-.send-link-cue:hover { color:var(--ink); text-decoration-color:currentColor; }
-html.send-link-first .opening .hero-actions .store { display:none; }
-html.send-link-first .send-link-cue-ask { display:none; }
-html.send-link-first .send-link-cue {
-  justify-content:center; min-height:48px; padding:0 22px; border-radius:10px;
-  background:#1f1b17; color:#fff; font-size:.9375rem; font-weight:600; text-decoration:none;
-}
-html.send-link-first .send-link-cue:hover { background:#000; color:#fff; }
-@media(max-width:760px) {
-  .send-link-cue { order:3; align-self:flex-start; margin-top:14px; }
-  html.send-link-first .send-link-cue { align-self:stretch; margin-top:14px; }
-  .send-link { max-width:none; padding:16px 16px 18px; }
-  .send-link-row { flex-direction:column; }
-  .send-link-button { width:100%; }
-  .closing .send-link { margin-top:22px; }
 }

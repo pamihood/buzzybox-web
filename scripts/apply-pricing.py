@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""Sync the homepage's marked prices, plan names, desk counts, and discounts.
+"""Sync the homepage's marked prices, plan names, and desk counts (as figures and in prose).
 
 The app's ../posty/pricing.json is the source of truth. All occurrences of each
-marker are updated, including repeated member discounts. Founding annotations
+marker are updated, including the collection price wherever it repeats. Founding annotations
 empty themselves when the founding window closes. Use --check to validate
 without writing; --pricing PATH or POSTY_PRICING_JSON can override the source.
 """
@@ -93,10 +93,27 @@ def expected_lines(pricing):
         "membership_more": f"Need more than {fam['max_desks']} desks?",
         "membership_plus": money(selling_price(pricing, plus)),
         "membership_plus_context": f" at the founding rate (regularly {money(plus['price_per_year'])}/year)" if founding else "",
-        "collections": money(pricing["collections"]["price_from"]),
-        "collections_discount": f"{round(pricing['collections']['member_discount'] * 100)}%",
+        # One price for every collection since 2026-09-24 ("$0.99 each"), and
+        # no member discount to print: Membership INCLUDES collections now.
+        "collections": money(pricing["collections"]["price"]),
         "collections_shelf": str(pricing["collections"]["max_active_per_household"]),
     }
+
+
+NUMBER_WORDS = ["zero", "one", "two", "three", "four", "five", "six", "seven",
+                "eight", "nine", "ten", "eleven", "twelve"]
+
+
+def count_word(n, current):
+    """A desk count spelled out for prose ("Two desks, free."), in the case the
+    page already uses at that spot: a capital where it opens a sentence, lower
+    case mid-sentence. The case is the page's; the number is pricing.json's."""
+    word = NUMBER_WORDS[n] if 0 <= n < len(NUMBER_WORDS) else str(n)
+    return word.capitalize() if current[:1].isupper() else word
+
+
+def expected_counts(pricing):
+    return {key: plan["max_desks"] for key, plan in pricing["plans"].items()}
 
 
 def expected_names(pricing):
@@ -208,6 +225,28 @@ def main():
                     continue
                 disagreements.append((f'{attr}="{key}"', have, want))
                 html = html[:m.start(2)] + want + html[m.end(2):]
+
+    # Desk counts in prose ("Two desks, free.", "up to six desks"), spelled
+    # out in the case each spot already uses. Only the tiers the page actually
+    # mentions are rewritten, but the free count must be there: it is the
+    # headline number since 2026-09-24, and a page that stopped marking it
+    # would be a page typing it by hand.
+    counts = expected_counts(pricing)
+    pat = re.compile(r'(<span\b[^>]*data-desk-count="([a-z_]+)"[^>]*>)(.*?)(</span>)', re.S)
+    seen = set()
+    for m in reversed(list(pat.finditer(html))):
+        key = m.group(2)
+        if key not in counts:
+            raise SystemExit(f'!! index.html: data-desk-count="{key}" names no plan in pricing.json')
+        seen.add(key)
+        have = normalize(m.group(3))
+        want = count_word(counts[key], have)
+        if have == want:
+            continue
+        disagreements.append((f'data-desk-count="{key}"', have, want))
+        html = html[:m.start(3)] + want + html[m.end(3):]
+    if "free" not in seen:
+        raise SystemExit('!! index.html: no data-desk-count="free" element to rewrite')
 
     shelf_problems = check_shelf_copies(pricing, pricing_path)
 

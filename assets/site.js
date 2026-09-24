@@ -52,160 +52,50 @@ if (film) {
   render(); play();
 }
 
-// "Not on your iPad?": email yourself the App Store link. Postmello is
-// iPad-only and the ads bring parents holding phones. The form lives in the
-// closing section - never the hero, which only gets one quiet line jumping
-// down to it. On a phone the form takes the closing badge's place
-// (html.send-link-first), and the hero's badge gives way to that line, dressed
-// as the button; on a computer or another tablet the form sits under the
-// badge; on an iPad neither appears - the badge is the right answer there.
-// Without this script both stay hidden and the badge is all there is.
-//
-// Cloudflare Turnstile guards the endpoint, as it guarded the old invite form,
-// but its script loads only once someone starts on the form: nobody who merely
-// reads the page fetches anything from Cloudflare's challenge servers. It runs
-// "interaction-only", so it is invisible unless Cloudflare wants a click.
+// The collections rail: every collection, scrolling sideways (2026-09-24). A
+// finger or a trackpad scrolls it natively. A mouse has no sideways wheel, so
+// it gets both: the rail drags like a finger, and two arrows step through it.
+// The arrows appear only when this script runs and the rail is wider than the
+// window, and each greys out at its end of the rail.
 (() => {
-  const panels = [...document.querySelectorAll('[data-send-link]')];
-  if (!panels.length) return;
-  const ua = navigator.userAgent;
-  // iPadOS Safari reports itself as a Mac; the touch points give it away.
-  const onIPad = /iPad/.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1);
-  if (onIPad) return;
-  const onPhone = /iPhone|iPod|Android.+Mobile|Windows Phone/i.test(ua);
-  document.documentElement.classList.toggle('send-link-first', onPhone);
-  const local = /^(localhost|127\.0\.0\.1)$/.test(location.hostname);
-  const note = (...parts) => document.dispatchEvent(new CustomEvent('postmello:event', { detail: parts }));
-
-  let turnstile;
-  const loadTurnstile = () => turnstile || (turnstile = new Promise((resolve, reject) => {
-    window.postmelloTurnstileReady = () => resolve(window.turnstile);
-    const script = document.createElement('script');
-    script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit&onload=postmelloTurnstileReady';
-    script.async = true;
-    script.onerror = reject;
-    document.head.append(script);
-  }));
-
-  const EMAIL = /^[^\s@]{1,64}@[^\s@.]+(\.[^\s@.]+)+$/;
-  const TICK = 'Tick the box to confirm, and it will send.';
-  const showDone = () => panels.forEach(panel => {
-    panel.querySelector('.send-link-form').hidden = true;
-    panel.querySelector('.send-link-done').hidden = false;
+  const rail = document.querySelector('.collection-rail');
+  const arrows = document.querySelector('.rail-arrows');
+  if (!rail || !arrows) return;
+  const prev = arrows.querySelector('[data-rail="prev"]');
+  const next = arrows.querySelector('[data-rail="next"]');
+  const calm = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const note = (...detail) => document.dispatchEvent(new CustomEvent('postmello:event', { detail }));
+  const sync = () => {
+    arrows.hidden = rail.scrollWidth <= rail.clientWidth + 4;
+    prev.disabled = rail.scrollLeft <= 4;
+    next.disabled = rail.scrollLeft + rail.clientWidth >= rail.scrollWidth - 4;
+    if (!prev.disabled) note('rail', 'scrolled');
+    if (next.disabled && !prev.disabled) note('rail', 'end');
+  };
+  const move = direction => rail.scrollBy({
+    left: direction * rail.clientWidth * 0.8,
+    behavior: calm.matches ? 'auto' : 'smooth',
   });
-
-  panels.forEach(panel => {
-    const form = panel.querySelector('.send-link-form');
-    const input = form.querySelector('input[type=email]');
-    const button = form.querySelector('button[type=submit]');
-    const message = form.querySelector('.send-link-msg');
-    const check = form.querySelector('.send-link-check');
-    // Cloudflare's always-pass test key and a local stand-in on a dev server:
-    // the real key only answers on postmello.com.
-    const sitekey = local ? '1x00000000000000000000AA' : panel.dataset.sitekey;
-    const endpoint = local ? '/mock/ipad-link' : panel.dataset.endpoint;
-    let widget = null;
-    let token = '';
-    let waiting = null;
-    // True while Cloudflare is showing its "Verify you are human" box: then the
-    // form waits for the tick, however long it takes, instead of giving up.
-    let asking = false;
-
-    const prepare = () => {
-      if (widget !== null) return;
-      widget = false;
-      note('link', 'start', panel.dataset.sendLink);
-      loadTurnstile().then(api => {
-        widget = api.render(check, {
-          sitekey, appearance: 'interaction-only', size: 'flexible',
-          callback: value => { token = value; if (waiting) { message.textContent = ''; waiting(value); } },
-          'expired-callback': () => { token = ''; },
-          'error-callback': () => { token = ''; },
-          'before-interactive-callback': () => { asking = true; if (waiting) message.textContent = TICK; },
-          'after-interactive-callback': () => { asking = false; },
-        });
-      }).catch(() => { widget = null; });
-    };
-    form.addEventListener('focusin', prepare);
-    form.addEventListener('pointerdown', prepare);
-
-    // The token usually lands while the address is typed. If Cloudflare is
-    // asking for a tick, wait for the person - the send goes on its own once
-    // they tick. Otherwise give it 20 seconds (a blocked script, say) and say
-    // it did not send. Found on the live page 2026-09-22: a challenged browser
-    // got the error under a box it had not had the chance to tick.
-    const tokenReady = () => token ? Promise.resolve(token) : new Promise(resolve => {
-      waiting = value => { waiting = null; resolve(value); };
-      if (asking) message.textContent = TICK;
-      const giveUp = () => {
-        if (!waiting) return;
-        if (asking) { setTimeout(giveUp, 20000); return; }
-        waiting = null; resolve('');
-      };
-      setTimeout(giveUp, 20000);
-    });
-
-    form.addEventListener('submit', async event => {
-      event.preventDefault();
-      message.textContent = '';
-      const email = input.value.trim();
-      if (!EMAIL.test(email)) { message.textContent = 'Check the email address and try again.'; input.focus(); return; }
-      prepare();
-      button.disabled = true;
-      button.textContent = 'Sending…';
-      const done = text => { button.disabled = false; button.textContent = 'Email me the link'; message.textContent = text || ''; };
-      const proof = await tokenReady();
-      if (!proof) { done('That didn’t send. Please try again in a moment.'); return; }
-      try {
-        const response = await fetch(endpoint, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email, company: form.company.value, turnstileToken: proof, source: panel.dataset.sendLink }),
-        });
-        const reply = await response.json().catch(() => ({}));
-        if (response.ok && reply.status === 'ok') { note('link', 'sent', panel.dataset.sendLink); showDone(); return; }
-        // A Turnstile token is single-use: whatever happened, the next try needs a fresh one.
-        token = '';
-        if (window.turnstile && widget) window.turnstile.reset(widget);
-        done(reply.status === 'invalid_email' ? 'Check the email address and try again.' : 'That didn’t send. Please try again in a moment.');
-      } catch (_) {
-        token = '';
-        if (window.turnstile && widget) window.turnstile.reset(widget);
-        done('That didn’t send. Please try again in a moment.');
-      }
-    });
-    panel.hidden = false;
+  prev.addEventListener('click', () => move(-1));
+  next.addEventListener('click', () => move(1));
+  // Snapping is off while dragging, or it fights the hand.
+  let drag = null;
+  rail.addEventListener('pointerdown', event => {
+    if (event.pointerType !== 'mouse' || event.button !== 0) return;
+    drag = { x: event.clientX, left: rail.scrollLeft };
+    rail.setPointerCapture(event.pointerId);
+    rail.classList.add('is-dragging');
   });
-
-  const cue = document.querySelector('.send-link-cue');
-  if (cue) {
-    cue.hidden = false;
-    cue.addEventListener('click', event => {
-      const target = document.getElementById('get-the-link');
-      if (!target) return;
-      event.preventDefault();
-      note('link', 'cue');
-      // Centred rather than under the docked bar, and the cursor goes in the
-      // field only once the scroll has landed: focusing mid-scroll cancels a
-      // smooth scroll, which stranded the form at the foot of a phone screen.
-      const calm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      target.scrollIntoView({ behavior: calm ? 'auto' : 'smooth', block: 'center' });
-      // Pictures further up load as the scroll passes them and push the form
-      // down after the scroll has aimed at it (several have no reserved size),
-      // so once it lands, look again and step straight to it if it moved.
-      const input = target.querySelector('input[type=email]');
-      let settled = false;
-      const settle = () => {
-        if (settled) return;
-        settled = true;
-        const box = target.getBoundingClientRect();
-        if (box.top < 0 || box.bottom > window.innerHeight) target.scrollIntoView({ block: 'center' });
-        if (input) input.focus({ preventScroll: true });
-      };
-      window.addEventListener('scrollend', settle, { once: true });
-      setTimeout(settle, 1500);
-    });
-  }
+  rail.addEventListener('pointermove', event => {
+    if (drag) rail.scrollLeft = drag.left - (event.clientX - drag.x);
+  });
+  const drop = () => { drag = null; rail.classList.remove('is-dragging'); };
+  rail.addEventListener('pointerup', drop);
+  rail.addEventListener('pointercancel', drop);
+  rail.addEventListener('dragstart', event => event.preventDefault());
+  rail.addEventListener('scroll', sync, { passive: true });
+  new ResizeObserver(sync).observe(rail);
+  sync();
 })();
 
 // The opening header scrolls away naturally. Reuse the same navigation as a
@@ -267,7 +157,7 @@ if (menuButton && mainNavigation) {
 
 // Keep previously shared homepage section links useful after the redesign.
 if (opening) {
-  const aliases = {'#how-it-works':'#experience', '#desk':'#experience', '#membership':'#pricing', '#grandparents':'#family', '#safety':'#parents', '#request-an-invite':'#pricing'};
+  const aliases = {'#how-it-works':'#experience', '#desk':'#experience', '#membership':'#pricing', '#grandparents':'#family', '#safety':'#parents', '#request-an-invite':'#pricing', '#get-the-link':'#experience'};
   if (aliases[location.hash]) location.replace(aliases[location.hash]);
 }
 

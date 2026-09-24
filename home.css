@@ -314,14 +314,13 @@ html { scroll-padding-top:calc(var(--nav-dock-height,58px) + 20px); }
 .surface--letters { background-color:#f6f3e9; }
 .real-letters { padding-block:76px 82px; }
 .letters-heading { text-align:center; margin-bottom:44px; }
-.letter-examples { display:grid; grid-template-columns:.75fr 1.25fr; gap:45px; align-items:center; }
+/* One letter, large: the purple mountains (2026-09-24; the blue "leafy"
+   page beside it went). */
+.letter-examples { max-width:1000px; margin-inline:auto; }
 .letter-examples img { width:100%; height:auto; }
-.letter-examples img:first-child { transform:rotate(-2deg); }
-.letter-examples img:last-child { transform:none; }
 @media(max-width:760px) {
   .real-letters { padding-block:55px 60px; }
   .letters-heading { text-align:left; margin-bottom:30px; }
-  .letter-examples { grid-template-columns:1fr; gap:30px; }
 }
 
 @media(max-width:760px) {
@@ -551,6 +550,32 @@ html { scroll-padding-top:calc(var(--nav-dock-height,58px) + 20px); }
   .film-controls button { width:34px; height:34px; }
   .film-controls svg { width:13px; height:13px; }
   .film-start { width:64px; height:64px; }
+}
+
+/* The iPhone (2026-09-24): in front of the film's lower-RIGHT corner, a little
+   larger than the film's third, so the picture says "for iPhone and iPad"
+   before the words do - and the film's two buttons move to the lower-left to
+   make room. A still, so the film stays the only thing moving. It must NOT
+   show the desk again (Patrick: the film already does, and the desk is
+   cramped on a phone); iphone-desk-900.webp is a placeholder until his
+   capture. It hangs off the film only as far as the page margin allows at
+   each width, so it never widens the page. */
+.film { position:relative; }
+.film-phone {
+  position:absolute; right:-4%; bottom:-6%; z-index:3; width:44%;
+  padding:5px; border-radius:26px; background:#253532;
+  box-shadow:0 28px 44px -24px #3c2a18a3,0 10px 20px -12px #3c2a1866;
+}
+.film-phone img { display:block; width:100%; height:auto; border-radius:21px; }
+.film-controls { right:auto; left:12px; }
+@media(max-width:1023px) {
+  .film-phone { right:-3%; }
+}
+@media(max-width:760px) {
+  .film-phone { right:-2%; bottom:-12%; width:46%; padding:3px; border-radius:15px; }
+  .film-phone img { border-radius:12px; }
+  .film-controls { right:auto; left:7px; }
+  .opening .hero-actions { margin-top:44px; }
 }
 
 /* Creativity, calm and safety (2026-09-24). After the film the page makes

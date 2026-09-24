@@ -19,7 +19,12 @@ Open http://127.0.0.1:8765/. The production files are served directly.
 - The hero is the desk film: `assets/site/desk-loop-960.mp4` (phones) and
   `desk-loop-1440.mp4`, the site film without its brand card and end card, playing
   muted as the page opens. Its recipe is `web_loop.sh` in posty's
-  `_local/marketing/product-film/_recipe/`. Further down, two desks (Sandy Beach
+  `_local/marketing/product-film/_recipe/`. In front of the film's lower-left
+  corner sits an iPhone (`.film-phone`, a still): the picture says "iPhone and
+  iPad" before the words do. It must NOT show the desk again (Patrick,
+  2026-09-24: the film already did, and the desk is cramped on a phone);
+  `assets/site/iphone-desk-900.webp` is a placeholder from the iPhone session's
+  working build until Patrick's own capture replaces it. Further down, two desks (Sandy Beach
   and Ember Peak, `desk-*-1200.webp`) are shown large and PLAIN: no caption, no
   mat, no device frame, just a soft edge. Refused on 2026-09-24: a photo print
   on a paper mat, an iPad frame (too strong) and the desk's own nameplate as the
@@ -29,17 +34,27 @@ Open http://127.0.0.1:8765/. The production files are served directly.
   without texting.** over the one line that says what the app does,
   **Write and draw digital letters with friends and family.** — keep that line
   verbatim. Then three promises, each in the site's own words:
-  **creativity** — *Their very own place* (two desks, large, and a link on to
-  the rest — "A desk in every collection"), *Spark their imagination. So many
-  worlds to choose from.* (every collection's icon in a rail that scrolls
-  sideways — a finger or trackpad natively, a mouse by dragging or
-  the arrows — in Patrick's order; `assets/collections/<key>.webp` are the
-  app's own catalog icons; add a collection's icon there when it goes live),
-  *A little wonder on every page* ("Papers, envelopes, stamps, and stickers in
-  every collection"; Fairy Glen's pieces unlabelled), *What kids make when
-  there's room* (the real letters). "Whole little worlds" and "Yours to keep"
-  were refused: "little" reads as for small children, and keeping is not why
-  anyone chooses a collection; **calm** — *Connected, not always on*; **safety** — *Their
+  **creativity** — and the desk does not come again straight after the film
+  (Patrick, 2026-09-24), so it opens on *A little wonder on every page*
+  (Fairy Glen; "Papers, envelopes, stamps, and stickers in every collection";
+  its pieces unlabelled), then *What kids make when there's room* (one real
+  letter, the purple mountains), then *Their very own place. A desk that
+  feels like them.* (two desks, large and plain, and "A desk in every
+  collection"),
+  then *Spark their imagination. So many worlds to choose from.* (every
+  collection's icon in a rail that scrolls sideways — a finger or trackpad
+  natively, a mouse by dragging or the arrows — in Patrick's order;
+  `assets/collections/<key>.webp` are the app's own catalog icons; add a
+  collection's icon there when it goes live). Each heading carries ONE value:
+  the desk is IDENTITY (a child picks a desk for themselves, because it feels
+  like them — not for friends, not for anyone else; Patrick, 2026-09-24), the
+  collections are imagination and choice, so the desk line never says
+  "choose". Refused: "So many possibilities" under the desks (it said the
+  collections' thing twice), "For the people they love" (nobody picks a desk
+  for someone else), "With their name on it" (a feature, not a value),
+  "Whole little worlds" ("little" reads as for small children) and "Yours to
+  keep" (keeping is not why anyone chooses a collection). Then
+  **calm** — *Connected, not always on*; **safety** — *Their
   independence. Your boundaries.* (four facts; the safety page has the rest).
   Then pricing (**Two desks, free. Room to grow.** — true on every plan, which
   "Letters are free. Always." was not: a member pays), email friends, how it

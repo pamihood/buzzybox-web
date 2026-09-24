@@ -20,3 +20,11 @@
 @media (max-width: 520px) { .post-author { flex-direction: column; gap: 14px; } }
 /* The founder essay's closing availability note: a quiet italic line under the prose. */
 .post .post-availability { margin-top: 2.2rem; font-size: 1rem; color: var(--ink-soft); }
+/* The featured essays on the index: two, so each gets a card of its own. */
+.post-list--featured li { margin-bottom: 28px; padding: 0; overflow: hidden; background: var(--card); border: 1px solid var(--line); border-radius: 6px; }
+.post-card-image { display: block; }
+.post-card-image img { display: block; width: 100%; height: auto; aspect-ratio: 2 / 1; object-fit: cover; }
+.post-card-body { padding: 26px 32px 30px; }
+.post-list--featured li:last-child { border-bottom: 1px solid var(--line); }
+.post-list--featured h3 { font-size: clamp(1.9rem, 3vw, 2.5rem); margin-bottom: .5rem; }
+@media (max-width: 520px) { .post-card-body { padding: 22px 20px 24px; } }

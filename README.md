@@ -34,7 +34,10 @@ Open http://127.0.0.1:8765/. The production files are served directly.
 - `assets/origin-writing.webp`: the "How it began" photo, Patrick's daughter
   writing at lunch. Framed below the chin, written names blurred; the recipe and
   boxes are in posty's `_local/marketing/carousel/` (README, "Website 'How it
-  began' photo"). Any photo of a child here follows the same rules.
+  began' photo"). Any photo of a child here follows the same rules. Patrick
+  approved reusing it (2026-09-23) in the Why I Built Postmello essay and, as a
+  2:1 band of the hand and the page, on that essay's blog card
+  (`assets/blog/why-i-built-postmello-card.webp`).
 - `assets/site.js`: desk choices, header behavior, mobile navigation, old anchor aliases.
 - `press.html` and `assets/press/`: the press kit at `/press`, linked from the
   footer. "About Postmello" is the site's own sentences (homepage and the Three
@@ -54,8 +57,16 @@ Open http://127.0.0.1:8765/. The production files are served directly.
 - `styles.css`: blog, support, legal, parental-consent, and account pages. The last
   section applies the selected design to their existing reading and form layouts.
 - `blog/*/index.md`: maintained article prose. `blog/posts.json` owns ordering,
-  descriptions, selected figures and related links. `scripts/render-blog.py`
-  renders the nine articles and index; `assets/blog.css` adds reading details.
+  descriptions, selected figures, related links, and which essays the index
+  lists: `featured`, each with a 2:1 `card` image (Why I Built Postmello and
+  Three Kinds of Quiet since 2026-09-23, because nine at once read as homework).
+  The other seven are unlisted but live, in the sitemap, and every essay's Keep
+  reading points at the featured two. `scripts/render-blog.py` renders the nine
+  articles and index; `assets/blog.css` adds reading details. Three Kinds of
+  Quiet's picture (`assets/blog/three-kinds-of-quiet.webp`) is rendered from
+  posty's `samples/app-store/compose/blog-three-kinds-of-quiet.html` (the App
+  Store screenshots' wall, grain and object shadow and their cut-out art),
+  by headless Chrome at 900x450 CSS px, device scale 2.
 - `letter/index.html`: private letter viewer with its own CSS and behavior. It
   stays noindex, no-referrer, and outside the sitemap. No marketing navigation or
   third-party font requests are added to this private surface.

@@ -153,19 +153,28 @@ def article(post):
 
 
 def index():
-    # One list, the two overviews first: the group headings, the intro line and
-    # the index-level byline came out on 2026-09-15 (Patrick). Each article
-    # still carries its own byline under the deck.
+    # Only the FEATURED essays are listed (Patrick, 2026-09-23): nine at once
+    # read as homework, so the index shows two, larger, with their decks. The
+    # other seven stay live and in the sitemap, and every essay's Keep reading
+    # list points at the featured pair, so a reader who arrives at one from a
+    # search or a link still finds the way in. (One list, no group headings or
+    # intro line, as since 2026-09-15.)
     content = ['<div class="blog-index">', '<a class="back" href="/">← Home</a>',
-               '<h1>Postmello Blog</h1>', '<ul class="post-list">']
-    for kind in ('overview', 'essay'):
-        for post in POSTS:
-            if post['kind'] != kind:
-                continue
-            url = '/blog/' + post['slug'] + '/'
-            content.extend(['<li>', f'<h3><a href="{url}">{html.escape(post["title"])}</a></h3>',
-                            f'<p>{html.escape(post["description"])}</p>',
-                            f'<a class="editorial-link" href="{url}">Read the essay <span aria-hidden="true">→</span></a>', '</li>'])
+               '<h1>Postmello Blog</h1>', '<ul class="post-list post-list--featured">']
+    for post in POSTS:
+        if not post.get('featured'):
+            continue
+        url = '/blog/' + post['slug'] + '/'
+        card = post.get('card')
+        if card and not (ROOT / card['src'].lstrip('/')).is_file():
+            raise ValueError(f"Missing card image: {card['src']}")
+        picture = (f'<a class="post-card-image" href="{url}" tabindex="-1" aria-hidden="true">'
+                   f'<img src="{html.escape(card["src"])}" alt="" width="{card["width"]}" height="{card["height"]}" '
+                   f'loading="lazy" decoding="async" /></a>') if card else ''
+        content.extend(['<li>', picture, '<div class="post-card-body">', f'<h3><a href="{url}">{html.escape(post["title"])}</a></h3>',
+                        f'<p class="post-list-deck">{html.escape(post["deck"])}</p>',
+                        f'<p>{html.escape(post["description"])}</p>',
+                        f'<a class="editorial-link" href="{url}">Read the essay <span aria-hidden="true">→</span></a>', '</div>', '</li>'])
     content.extend(['</ul>', '</div>'])
     return shell('Postmello Blog', 'Essays on friendship, creative letters and the design of a quiet place to write.', '/blog/', '\n'.join(content))
 

@@ -1,14 +1,30 @@
 [
   {
     "slug": "why-i-built-postmello",
+    "featured": true,
+    "card": {
+      "src": "/assets/blog/why-i-built-postmello-card.webp",
+      "alt": "A child's hand writing a letter with an Apple Pencil on a tablet",
+      "width": 1000,
+      "height": 500
+    },
+    "figure": {
+      "src": "/assets/origin-writing.webp",
+      "alt": "Patrick's daughter writing a letter with an Apple Pencil at the lunch table",
+      "caption": "My older daughter, writing a letter at lunch.",
+      "after_paragraph": 1,
+      "width": 1000,
+      "height": 1250,
+      "compact": true
+    },
     "availability": true,
     "title": "Why I Built Postmello",
     "deck": "Friendship deserves room to grow, before and beyond a first phone.",
     "description": "A request to borrow a phone became a place for independent friendships, creative letters and time away from the screen.",
     "kind": "overview",
     "related": [
-      "designing-a-desk-not-an-app",
-      "three-kinds-of-quiet"
+      "three-kinds-of-quiet",
+      "designing-a-desk-not-an-app"
     ]
   },
   {
@@ -19,7 +35,7 @@
     "kind": "overview",
     "related": [
       "why-i-built-postmello",
-      "what-the-bee-knows"
+      "three-kinds-of-quiet"
     ],
     "figure": {
       "src": "/assets/site/desk.webp",
@@ -32,21 +48,28 @@
   },
   {
     "slug": "three-kinds-of-quiet",
+    "featured": true,
     "title": "Three Kinds of Quiet",
     "deck": "Time to make something. Time to answer. A small circle.",
     "description": "How Postmello protects three kinds of quiet: the quiet of making something, the quiet of having time to answer, and the quiet of a small circle, with no audience and no strangers.",
     "kind": "essay",
     "related": [
-      "designing-a-desk-not-an-app",
-      "why-i-built-postmello"
+      "why-i-built-postmello",
+      "a-letter-keeps-its-audience"
     ],
+    "card": {
+      "src": "/assets/blog/three-kinds-of-quiet.webp",
+      "alt": "A handwritten letter with a painting, a mint mailbox holding letters with its flag up, and three drawers labeled Iris, Luna and Theo",
+      "width": 1800,
+      "height": 900
+    },
     "figure": {
-      "src": "/assets/step-writing.jpg",
-      "alt": "A blank moon-and-stars writing page with drawing tools along its edge.",
-      "caption": "The page has room for whatever the letter becomes.",
-      "after_paragraph": 5,
-      "width": 900,
-      "height": 675
+      "src": "/assets/blog/three-kinds-of-quiet.webp",
+      "alt": "A handwritten letter with a painting, a mint mailbox holding letters with its flag up, and three drawers labeled Iris, Luna and Theo",
+      "caption": "A letter someone made. Letters waiting in the mailbox. A few friends, known by name.",
+      "after_paragraph": 4,
+      "width": 1800,
+      "height": 900
     }
   },
   {
@@ -56,8 +79,8 @@
     "description": "Why Postmello has no forwarding action, and why a reply goes to the sender or the original group.",
     "kind": "essay",
     "related": [
-      "designing-a-desk-not-an-app",
-      "why-i-built-postmello"
+      "why-i-built-postmello",
+      "three-kinds-of-quiet"
     ]
   },
   {
@@ -67,8 +90,8 @@
     "description": "Nicknames, hero icons and the names we give our friends make the desk personal while keeping its writer recognizable.",
     "kind": "essay",
     "related": [
-      "designing-a-desk-not-an-app",
-      "why-i-built-postmello"
+      "why-i-built-postmello",
+      "three-kinds-of-quiet"
     ]
   },
   {
@@ -78,8 +101,8 @@
     "description": "How the mailbox, waking bee and connection notes tell the truth about a letter’s journey.",
     "kind": "essay",
     "related": [
-      "designing-a-desk-not-an-app",
-      "why-i-built-postmello"
+      "why-i-built-postmello",
+      "three-kinds-of-quiet"
     ],
     "figure": {
       "src": "/assets/blog/bee-at-home.png",
@@ -98,8 +121,8 @@
     "description": "Paper, drawers, envelopes and a mailbox give correspondence a place and each touch a consequence.",
     "kind": "essay",
     "related": [
-      "designing-a-desk-not-an-app",
-      "why-i-built-postmello"
+      "why-i-built-postmello",
+      "three-kinds-of-quiet"
     ]
   },
   {
@@ -109,8 +132,8 @@
     "description": "Email in both directions, shared addresses and careful merging keep letters and friendships together.",
     "kind": "essay",
     "related": [
-      "designing-a-desk-not-an-app",
-      "why-i-built-postmello"
+      "why-i-built-postmello",
+      "three-kinds-of-quiet"
     ],
     "figure": {
       "src": "/assets/beyond-reply.jpg",
@@ -128,8 +151,8 @@
     "description": "The evolution from one desk to personal spaces, with familiar objects and room for imagination.",
     "kind": "essay",
     "related": [
-      "designing-a-desk-not-an-app",
-      "why-i-built-postmello"
+      "why-i-built-postmello",
+      "three-kinds-of-quiet"
     ],
     "figure": {
       "src": "/assets/blog/space-with-a-view.jpg",

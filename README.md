@@ -57,7 +57,10 @@ Open http://127.0.0.1:8765/. The production files are served directly.
 - `styles.css`: blog, support, legal, parental-consent, and account pages. The last
   section applies the selected design to their existing reading and form layouts.
 - `blog/*/index.md`: maintained article prose. `blog/posts.json` owns ordering,
-  descriptions, selected figures, related links, and which essays the index
+  descriptions, selected figures, related links, each essay's `published` and
+  `updated` dates (set by hand, so a typo fix does not move them; the byline shows
+  month and year, "Updated" only for a revision in a later month, and each page
+  carries them as article times and schema.org data), and which essays the index
   lists: `featured`, each with a 2:1 `card` image (Why I Built Postmello and
   Three Kinds of Quiet since 2026-09-23, because nine at once read as homework).
   The other seven are unlisted but live, in the sitemap, and every essay's Keep

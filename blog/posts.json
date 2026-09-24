@@ -1,6 +1,8 @@
 [
   {
     "slug": "why-i-built-postmello",
+    "published": "2026-08-14",
+    "updated": "2026-09-23",
     "featured": true,
     "card": {
       "src": "/assets/blog/why-i-built-postmello-card.webp",
@@ -29,6 +31,8 @@
   },
   {
     "slug": "designing-a-desk-not-an-app",
+    "published": "2026-08-14",
+    "updated": "2026-09-23",
     "title": "A World Built for Childhood",
     "deck": "A complete world for imagination, independence and real friendship.",
     "description": "A desk to explore, a world to make their own, and real friends to create for. The design choices that make Postmello a place built for children.",
@@ -48,6 +52,8 @@
   },
   {
     "slug": "three-kinds-of-quiet",
+    "published": "2026-09-10",
+    "updated": "2026-09-23",
     "featured": true,
     "title": "Three Kinds of Quiet",
     "deck": "Time to make something. Time to answer. A small circle.",
@@ -74,6 +80,8 @@
   },
   {
     "slug": "a-letter-keeps-its-audience",
+    "published": "2026-09-10",
+    "updated": "2026-09-23",
     "title": "A Letter Keeps Its Audience",
     "deck": "Writing back respects the people a letter was meant for.",
     "description": "Why Postmello has no forwarding action, and why a reply goes to the sender or the original group.",
@@ -85,6 +93,7 @@
   },
   {
     "slug": "the-name-on-the-desk",
+    "published": "2026-09-10",
     "title": "The Name on the Desk",
     "deck": "Room for expression, with a familiar name underneath.",
     "description": "Nicknames, hero icons and the names we give our friends make the desk personal while keeping its writer recognizable.",
@@ -96,6 +105,7 @@
   },
   {
     "slug": "what-the-bee-knows",
+    "published": "2026-09-10",
     "title": "What the Bee Knows",
     "deck": "A small courier makes the waiting understandable.",
     "description": "How the mailbox, waking bee and connection notes tell the truth about a letter’s journey.",
@@ -116,6 +126,7 @@
   },
   {
     "slug": "learning-the-desk-through-its-objects",
+    "published": "2026-09-10",
     "title": "Learning the Desk Through Its Objects",
     "deck": "The objects explain the actions.",
     "description": "Paper, drawers, envelopes and a mailbox give correspondence a place and each touch a consequence.",
@@ -127,6 +138,7 @@
   },
   {
     "slug": "a-friend-does-not-need-another-app",
+    "published": "2026-09-10",
     "title": "A Friend Does Not Need Another App",
     "deck": "The correspondence continues across devices and inboxes.",
     "description": "Email in both directions, shared addresses and careful merging keep letters and friendships together.",
@@ -146,6 +158,7 @@
   },
   {
     "slug": "a-space-of-your-own",
+    "published": "2026-09-10",
     "title": "A Space of Your Own",
     "deck": "How a practical edge became a place with a view.",
     "description": "The evolution from one desk to personal spaces, with familiar objects and room for imagination.",

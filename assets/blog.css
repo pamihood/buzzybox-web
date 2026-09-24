@@ -28,3 +28,5 @@
 .post-list--featured li:last-child { border-bottom: 1px solid var(--line); }
 .post-list--featured h3 { font-size: clamp(1.9rem, 3vw, 2.5rem); margin-bottom: .5rem; }
 @media (max-width: 520px) { .post-card-body { padding: 22px 20px 24px; } }
+/* The byline's date moves as one piece when the line wraps. */
+.post-meta time { white-space: nowrap; }

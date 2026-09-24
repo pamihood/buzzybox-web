@@ -7,6 +7,7 @@ furniture is read from support.html, which the existing maintenance scripts own.
 Run those scripts before rendering after a shared navigation or font change.
 """
 import argparse
+import datetime
 import hashlib
 import html
 import json
@@ -57,7 +58,42 @@ def asset_url(path):
     return f'{path}?v={version}'
 
 
-def shell(title, description, path, content, article=False):
+def month(iso):
+    return datetime.date.fromisoformat(iso).strftime('%B %Y')
+
+
+def dateline(post):
+    """Month and year only, so a date ages gently. A revision in a LATER month
+    than first publication says so ("Updated September 2026"); the dates are
+    set by hand in posts.json, so a typo fix does not move them (2026-09-23)."""
+    published, updated = post['published'], post.get('updated')
+    if updated and month(updated) != month(published):
+        return f'<time datetime="{updated}">Updated {month(updated)}</time>'
+    return f'<time datetime="{published}">{month(published)}</time>'
+
+
+def article_head(post, canonical):
+    """Publication dates for search engines: Open Graph article times and a
+    schema.org BlogPosting. Invisible on the page."""
+    picture = post.get('card') or post.get('figure')
+    data = {
+        '@context': 'https://schema.org', '@type': 'BlogPosting',
+        'headline': post['title'], 'description': post['description'],
+        'datePublished': post['published'], 'dateModified': post.get('updated', post['published']),
+        'author': {'@type': 'Person', 'name': 'Patrick Amihood'},
+        'publisher': {'@type': 'Organization', 'name': 'Postmello',
+                      'logo': {'@type': 'ImageObject', 'url': ORIGIN + '/assets/mark.png'}},
+        'mainEntityOfPage': canonical,
+    }
+    if picture:
+        data['image'] = ORIGIN + picture['src']
+    ld = json.dumps(data, ensure_ascii=False).replace('</', '<\\/')
+    return (f'<meta property="article:published_time" content="{post["published"]}" />\n'
+            f'  <meta property="article:modified_time" content="{post.get("updated", post["published"])}" />\n'
+            f'  <script type="application/ld+json">{ld}</script>\n  ')
+
+
+def shell(title, description, path, content, article=False, head_extra=''):
     header = re.search(r'<header\b.*?</header>', SHARED, re.S).group()
     footer = re.search(r'<footer\b.*?</footer>', SHARED, re.S).group()
     fonts = '\n  '.join(tag for tag in re.findall(r'<link\b[^>]+>', SHARED)
@@ -81,7 +117,7 @@ def shell(title, description, path, content, article=False):
   <meta property="og:site_name" content="Postmello" />
   <meta name="twitter:card" content="summary_large_image" />
   <link rel="canonical" href="{canonical}" />
-  {fonts}
+  {head_extra}{fonts}
   <link rel="stylesheet" href="{asset_url('/styles.css')}" />
   <link rel="stylesheet" href="{asset_url('/assets/blog.css')}" />
   <script src="{asset_url('/assets/site.js')}" defer></script>
@@ -119,7 +155,7 @@ def article(post):
         '<article class="post">', '<a class="back" href="/blog/">← Postmello Blog</a>',
         f'<h1>{html.escape(post["title"])}</h1>',
         f'<p class="post-deck">{html.escape(post["deck"])}</p>',
-        f'<p class="post-meta"><img class="post-meta-portrait" src="{PORTRAIT}" width="36" height="36" alt="" decoding="async" />By {AUTHOR}</p>',
+        f'<p class="post-meta"><img class="post-meta-portrait" src="{PORTRAIT}" width="36" height="36" alt="" decoding="async" /><span>By {AUTHOR} · {dateline(post)}</span></p>',
     ]
     paragraphs = 0
     image = post.get('figure')
@@ -149,7 +185,9 @@ def article(post):
         related = BY_SLUG[slug]
         rendered.append(f'<li><a href="/blog/{slug}/">{html.escape(related["title"])} <span aria-hidden="true">→</span></a></li>')
     rendered.extend(['</ul></nav>', '</article>'])
-    return shell(post['title'], post['description'], f'/blog/{post["slug"]}/', '\n'.join(rendered), True)
+    path = f'/blog/{post["slug"]}/'
+    return shell(post['title'], post['description'], path, '\n'.join(rendered), True,
+                 article_head(post, ORIGIN + path))
 
 
 def index():

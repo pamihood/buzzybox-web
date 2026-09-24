@@ -42,9 +42,9 @@ And the friendship reaches beyond the app. An approved friend can receive, answe
 
 ## The afternoon is still theirs
 
-I wanted my daughters to enjoy staying in touch and still have the afternoon to themselves. Quiet had to mean more than turning down the sound: room to become absorbed in making something, time to answer a friend, and the freedom to leave.
+I wanted my daughters to enjoy staying in touch and still have the afternoon to themselves. Quiet had to mean more than turning down the sound: room to become absorbed in making something, time to answer a friend, and a small circle with no audience.
 
-Those [three kinds of quiet](/blog/three-kinds-of-quiet/) shape the whole experience. One letter fills the reading space, with no running chat alongside it. A mailbox flag announces an arrival; its sound stays on the desk, away from writing and reading. There are no typing indicators, read receipts or online status telling a friend that an answer might be due. Putting the tablet away brings no push notifications calling the writer back.
+Those [three kinds of quiet](/blog/three-kinds-of-quiet/) shape the whole experience. One letter fills the reading space, with no running chat alongside it. A mailbox flag announces an arrival; its sound stays on the desk, away from writing and reading. There are no typing indicators, read receipts or online status telling a friend that an answer might be due, and no streak to keep alive. And nothing is public: only approved friends can write, and a letter never travels beyond the people it was written for.
 
 The postal ritual gives this quiet a rhythm. Choosing paper, making the letter, dressing the envelope and adding a stamp are small acts of care for the friend receiving it. There is pleasure in preparing something to send. Dropping it into the outgoing box brings that time to a finish: the letter is posted, and the writer's turn is complete.
 

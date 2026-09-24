@@ -34,13 +34,13 @@ That difference became central to Postmello. I wanted the experience on the scre
 
 The tablet gives that activity somewhere to happen. It can be a shared device at home, with a separate desk for each person. Someone comes to the desk to write or check the mailbox, then puts the device down. Where and when that happens remains a decision for the people using it. At my daughters' ages, that decision is still mine.
 
-The desk does not follow with push notifications. Opening a letter does not send a read receipt, and nobody sees whether someone is online or halfway through a reply. A letter can arrive quickly and still wait patiently. We built [three kinds of quiet](/blog/three-kinds-of-quiet/) around that idea.
+Opening a letter does not send a read receipt, and nobody sees whether someone is online or halfway through a reply. A letter can arrive quickly and still wait patiently. We built [three kinds of quiet](/blog/three-kinds-of-quiet/) around that idea.
 
 ## Independence inside known relationships
 
 I also wanted my daughters to be able to write without us composing every message or operating the app for every exchange.
 
-In Postmello, admins approve the friends who exchange letters. There are no public profiles to browse, no audience to build and no stranger discovery. That is what makes me comfortable as a parent: the space is closed. Nothing public, no photo or video sharing, no forwarded memes. Those decisions give the person at the desk room to act independently within relationships already agreed upon.
+In Postmello, admins approve the friends who exchange letters. There are no public profiles to browse, no audience to build and no stranger discovery. That is what makes me comfortable as a parent: it is [a small circle](/blog/three-kinds-of-quiet/), closed on purpose. Nothing public, no photo or video sharing, no forwarded memes. Those decisions give the person at the desk room to act independently within relationships already agreed upon.
 
 Inside that boundary, the space is personal. A nameplate, a nickname, a hero icon and a chosen desk help make it feel like somewhere that belongs to its writer. The familiar name stays visible beneath a different sender nickname, so expression still has a recognizable person behind it.
 

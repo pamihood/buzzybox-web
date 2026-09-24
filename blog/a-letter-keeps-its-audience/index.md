@@ -34,4 +34,4 @@ These boundaries do not control every possible use of a tablet. Someone could ta
 
 But the actions a product makes easy matter too. A forwarding control turns redistribution into a normal next step. Postmello gives that place to writing back.
 
-The aim is to keep correspondence rooted in the people involved: a page someone made, the friends it was meant for, and an answer that respects that audience.
+The aim is to keep correspondence rooted in the people involved: a page someone made, the friends it was meant for, and an answer that respects that audience. It is part of what keeps [the circle small](/blog/three-kinds-of-quiet/).

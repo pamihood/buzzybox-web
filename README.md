@@ -37,7 +37,8 @@ Open http://127.0.0.1:8765/. The production files are served directly.
   verbatim. Straight after the film comes *How it began* — "She wanted a way
   to stay close to her friend." — because the headline is its story (Patrick,
   2026-09-24); its signature is "Dad & creator of Postmello" and nothing about
-  past employers (the blog's author card and the press bio still say Google).
+  past employers, and neither does the blog's author card (Patrick, 2026-09-24:
+  it read as showing off). Only the press bio keeps that background.
   Then three promises, each in the site's own words:
   **creativity** — and the desk does not come again straight after the film
   (Patrick, 2026-09-24), so it opens on *A little wonder on every page*

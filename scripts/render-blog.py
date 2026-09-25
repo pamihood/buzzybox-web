@@ -25,9 +25,8 @@ AUTHOR_CARD = (
     '<aside class="post-author" aria-label="About the author">'
     f'<img src="{PORTRAIT}" width="88" height="88" alt="Patrick Amihood" loading="lazy" decoding="async" />'
     '<div><p class="post-author-name">Patrick Amihood</p>'
-    '<p>Patrick is a dad in Palo Alto, California, and the creator of Postmello. '
-    'Before Postmello, Patrick spent nearly a decade at Google leading '
-    'engineering teams.</p></div></aside>'
+    '<p>Patrick is a dad in Palo Alto, California, and the creator of Postmello.</p>'
+    '</div></aside>'
 )
 POSTS = json.loads((ROOT / 'blog/posts.json').read_text())
 APP_STORE_URL = json.loads((ROOT / 'brand.json').read_text())['app_store_url']

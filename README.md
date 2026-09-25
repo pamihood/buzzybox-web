@@ -22,9 +22,10 @@ Open http://127.0.0.1:8765/. The production files are served directly.
   `_local/marketing/product-film/_recipe/`. In front of the film's lower-left
   corner sits an iPhone (`.film-phone`, a still): the picture says "iPhone and
   iPad" before the words do. It must NOT show the desk again (Patrick,
-  2026-09-24: the film already did, and the desk is cramped on a phone);
-  `assets/site/iphone-desk-900.webp` is a placeholder from the iPhone session's
-  working build until Patrick's own capture replaces it. Further down, two desks (Sandy Beach
+  2026-09-24: the film already did, and the desk is cramped on a phone). It
+  shows a letter being made — the purple mountains, typed, with the sticker
+  drawer open (`assets/site/iphone-letter-900.webp`, Patrick's own capture,
+  turned a quarter counter-clockwise: iOS stores a sideways screen upright). Further down, two desks (Sandy Beach
   and Ember Peak, `desk-*-1200.webp`) are shown large and PLAIN: no caption, no
   mat, no device frame, just a soft edge. Refused on 2026-09-24: a photo print
   on a paper mat, an iPad frame (too strong) and the desk's own nameplate as the

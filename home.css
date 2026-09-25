@@ -557,9 +557,10 @@ html { scroll-padding-top:calc(var(--nav-dock-height,58px) + 20px); }
    before the words do - and the film's two buttons move to the lower-left to
    make room. A still, so the film stays the only thing moving. It must NOT
    show the desk again (Patrick: the film already does, and the desk is
-   cramped on a phone); iphone-desk-900.webp is a placeholder until his
-   capture. It hangs off the film only as far as the page margin allows at
-   each width, so it never widens the page. */
+   cramped on a phone): it shows a letter being made, Patrick's own capture
+   (iphone-letter-900.webp, turned a quarter to read upright). It hangs off
+   the film only as far as the page margin allows at each width, so it never
+   widens the page. */
 .film { position:relative; }
 .film-phone {
   position:absolute; right:-4%; bottom:-6%; z-index:3; width:44%;

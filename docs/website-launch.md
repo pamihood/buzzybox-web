@@ -21,6 +21,29 @@ listing's Apple id read from App Store Connect (`brand.json`, applied to both
 homepage badges and the private letter viewer's fallback). It returns 404 until
 the version is released and then resolves with no change to the site.
 
+## Next push: iPhone and two free desks (`iphone-and-pricing`)
+
+The branch says "For iPhone and iPad", "Two desks, free", collections at $0.99
+each and Membership including every collection. Every one of those must be
+true the moment it goes live, so it is pushed (merged into `main` = deployed)
+only when the version carrying BOTH the iPhone and the pricing change is
+RELEASED — not merely accepted: the app uses manual release, so press Release
+first. Before that: posty's hosted migration `20260924100000` (with Patrick's
+go) and, on release day, the collections' price in App Store Connect. posty's
+`pricing-and-onboarding` goes into that same release; its
+`check-pricing-sync.py` passes against this branch and fails against the old
+`main` until both merge. None of the branch's commits carry
+`[CF-Pages-Skip]`, so a plain merge builds production.
+
+Before pushing, check the App Store badge on a real iPhone AND a real iPad.
+There is ONE link, `https://apps.apple.com/app/id6806487006` — the listing
+itself, with no platform or country in it, so it is not an iPad link. Apple
+shows one listing for both devices, and it offers Get on an iPhone only once
+the released build supports iPhone: posty's `main` has the iPhone layout
+merged but switched off (builds ship iPad-only, 2026-09-24), so today an
+iPhone opens the listing and cannot install. After the release: the listing
+names iPhone, Get works on both, and nothing on the site changes.
+
 ## Archives
 
 - `archive/pre-exploration-website` points to `84270d5`, the full website before

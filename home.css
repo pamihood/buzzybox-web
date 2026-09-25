@@ -271,7 +271,10 @@ html { scroll-padding-top:calc(var(--nav-dock-height,58px) + 20px); }
 .fairy-heading>p { max-width:375px; }
 .fairy-spread { gap:64px; }
 .surface--family { background-color:#e6edf0; border-top:1px solid #cad6dc; }
-.surface--origin { background-color:#efe1cb; border-top:1px solid #d7c7ae; }
+/* How it began sits straight after the film (2026-09-24): the headline is its
+   story. Light paper, so it stands apart from the hero's tan above and the
+   wood below. */
+.surface--origin { background-color:#fcf8f0; border-bottom:1px solid #e3d6c1; }
 .family { border:0; padding-block:88px; }
 .family>img { transform:rotate(1deg); }
 .origin { padding-block:76px; }

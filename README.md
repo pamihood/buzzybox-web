@@ -34,7 +34,11 @@ Open http://127.0.0.1:8765/. The production files are served directly.
   `iphone-and-pricing`, 2026-09-24). The hero says **Kids can keep in touch
   without texting.** over the one line that says what the app does,
   **Write and draw digital letters with friends and family.** — keep that line
-  verbatim. Then three promises, each in the site's own words:
+  verbatim. Straight after the film comes *How it began* — "She wanted a way
+  to stay close to her friend." — because the headline is its story (Patrick,
+  2026-09-24); its signature is "Dad & creator of Postmello" and nothing about
+  past employers (the blog's author card and the press bio still say Google).
+  Then three promises, each in the site's own words:
   **creativity** — and the desk does not come again straight after the film
   (Patrick, 2026-09-24), so it opens on *A little wonder on every page*
   (Fairy Glen; "Papers, envelopes, stamps, and stickers in every collection";
@@ -58,8 +62,8 @@ Open http://127.0.0.1:8765/. The production files are served directly.
   **calm** — *Connected, not always on*; **safety** — *Their
   independence. Your boundaries.* (four facts; the safety page has the rest).
   Then pricing (**Two desks, free. Room to grow.** — true on every plan, which
-  "Letters are free. Always." was not: a member pays), email friends, how it
-  began, testimonials, FAQ, Instagram, and the close: **Letters, not texts.**
+  "Letters are free. Always." was not: a member pays), email friends,
+  testimonials, FAQ, Instagram, and the close: **Letters, not texts.**
   (the brand line, `brand.json` `tagline`). The contrast is TEXTING, never phones
   (Postmello runs on one) and barely social media (the children it is for
   should not be on it); lead with what a child gains, and keep safety to plain

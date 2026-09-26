@@ -42,9 +42,24 @@ homepage anchors continue to resolve through aliases in `assets/site.js`.
 
 1. Confirm Apple approval and update/verify the App Store link.
 2. Run the maintenance commands in README.md and `python3 scripts/check-site.py`.
-3. Review the homepage, desk choices, mobile navigation, Membership Plus, FAQs,
+3. Review the homepage, desk choices, mobile navigation, pricing, FAQs,
    supporting pages, and account landing states locally.
 4. Merge and deploy only after authorization.
+
+## Collections-only pricing - 2026-09-26
+
+Patrick dropped Membership for launch (posty `pricing.json` 2026-09-26a):
+desks, friends, letters, replies and history are free, up to the free plan's
+desk count, and collections are the only thing sold - bought once, yours to
+keep. Both `main` (iPad) and `iphone-and-pricing` (iPhone and iPad) say so:
+the hero, one free card, the collection price, the promise, the FAQ, the
+press kit and the terms (only their now-false sentences changed). No page
+shows a Membership, a founding rate or a price per year, and
+`scripts/apply-pricing.py` renders only what `pricing.json` has on sale.
+
+Push `main` only once every claim is true: the free desk count live on the
+hosted server (posty migration `20260926100000`) and collections selling in
+App Store Connect at the site's "from" price, with no subscription on sale.
 
 ## Blog integration — 2026-09-09
 

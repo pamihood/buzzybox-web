@@ -12,8 +12,8 @@
     },
     "figure": {
       "src": "/assets/origin-writing.webp",
-      "alt": "Patrick's daughter writing a letter with an Apple Pencil at the lunch table",
-      "caption": "My older daughter, writing a letter at lunch.",
+      "alt": "Patrick's daughter writing a letter with an Apple Pencil",
+      "caption": "My older daughter, writing a letter.",
       "after_paragraph": 1,
       "width": 1000,
       "height": 1250,
@@ -21,8 +21,8 @@
     },
     "availability": true,
     "title": "Why I Built Postmello",
-    "deck": "Friendship deserves room to grow, before and beyond a first phone.",
-    "description": "A request to borrow a phone became a place for independent friendships, creative letters and time away from the screen.",
+    "deck": "Friendship deserves room to grow, before texting and social media.",
+    "description": "A request to borrow a phone to text became a place for independent friendships, creative letters and a quieter way to stay in touch.",
     "kind": "overview",
     "related": [
       "three-kinds-of-quiet",

@@ -25,9 +25,8 @@ AUTHOR_CARD = (
     '<aside class="post-author" aria-label="About the author">'
     f'<img src="{PORTRAIT}" width="88" height="88" alt="Patrick Amihood" loading="lazy" decoding="async" />'
     '<div><p class="post-author-name">Patrick Amihood</p>'
-    '<p>Patrick is a dad in Palo Alto, California, and the creator of Postmello. '
-    'Before Postmello, Patrick spent nearly a decade at Google leading '
-    'engineering teams.</p></div></aside>'
+    '<p>Patrick is a dad in Palo Alto, California, and the creator of Postmello.</p>'
+    '</div></aside>'
 )
 POSTS = json.loads((ROOT / 'blog/posts.json').read_text())
 APP_STORE_URL = json.loads((ROOT / 'brand.json').read_text())['app_store_url']
@@ -177,7 +176,7 @@ def article(post):
     # (2026-09-23, after a review read a pre-launch copy). Flagged per essay in
     # posts.json; the address comes from brand.json, never typed into prose.
     if post.get('availability'):
-        rendered.append('<p class="post-availability"><em>Postmello is available now for iPad on the '
+        rendered.append('<p class="post-availability"><em>Postmello is available now for iPhone and iPad on the '
                         f'<a href="{html.escape(APP_STORE_URL, quote=True)}">App Store</a>.</em></p>')
     rendered.append(AUTHOR_CARD)
     rendered.append('<nav class="post-related" aria-label="More from the desk"><h2>Keep reading</h2><ul>')

@@ -30,7 +30,7 @@ There are two reasons for keeping the group together. One is privacy: writing on
 
 A private answer to the writer is still useful. Sometimes a letter invites a personal response. That is an explicit, understandable choice, alongside answering everyone who was part of the original letter.
 
-These boundaries do not control every possible use of a tablet. Someone could take a screenshot, repeat something in a new letter, or share it elsewhere. And the words a friend writes still matter, whatever interface carries them.
+These boundaries do not control every possible use of a device. Someone could take a screenshot, repeat something in a new letter, or share it elsewhere. And the words a friend writes still matter, whatever interface carries them.
 
 But the actions a product makes easy matter too. A forwarding control turns redistribution into a normal next step. Postmello gives that place to writing back.
 

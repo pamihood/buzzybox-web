@@ -1,5 +1,5 @@
 {
-  "tagline": "A quiet place for letters.",
+  "tagline": "Letters, not texts.",
   "_tagline_notes": [
     "THE tagline, and the reason this file exists: it appeared in three places",
     "(the header, the hero headline, the footer) and changing it meant hunting",
@@ -16,7 +16,17 @@
     "",
     "The period is part of the string. It reads as a sentence in the hero and as",
     "a small full stop under the wordmark, and one canonical form beats a rule",
-    "about where punctuation is added."
+    "about where punctuation is added.",
+    "",
+    "RETIRED 2026-09-24 (Patrick): 'A quiet place for letters.' A mood rather than",
+    "a reason - a parent scrolling on a phone could not tell it was for kids or what",
+    "it replaced. The brand line is now 'Letters, not texts.', and it CLOSES the",
+    "homepage (the closing section's heading carries data-brand=\"tagline\"). The",
+    "hero headline is no longer the tagline: it is 'Kids can keep in touch without",
+    "texting.' over the one line that says what the app does, 'Write and draw",
+    "digital letters with friends and family.' Typed by hand in index.html, because",
+    "it is a headline, not a repeated brand string. It was 'Kids can stay close",
+    "without texting.' (the ads' hook) until Patrick asked: close to whom?"
   ],
   "app_store_url": "https://apps.apple.com/app/id6806487006",
   "_app_store_url_notes": [

@@ -21,6 +21,37 @@ listing's Apple id read from App Store Connect (`brand.json`, applied to both
 homepage badges and the private letter viewer's fallback). It returns 404 until
 the version is released and then resolves with no change to the site.
 
+## Next push: iPhone (`iphone-and-pricing`)
+
+The branch says "For iPhone and iPad", and since 2026-09-26 it carries the
+collections-only pricing (below), as `main` does for iPad. Every claim must be
+true the moment it goes live, so the branch is merged into `main` (= deployed)
+only when the version carrying the iPhone app is RELEASED — not merely
+accepted: the app uses manual release, so press Release first. The pricing
+claims need two facts live by then, whichever push comes first: the free desk
+count on the hosted server (posty migration `20260926100000`, Patrick's go)
+and collections selling in App Store Connect at the site's "from" price, with
+no subscription on sale. posty's `check-pricing-sync.py` passes against both
+this branch and `main`.
+
+`main` and this branch both rewrote the pricing copy on 2026-09-26, so the
+merge conflicts where the two differ: `index.html` and `press.html` say iPhone
+here and iPad there. Take this branch's side, then run the maintenance
+commands in README.md (including `bash scripts/stamp-css-version.sh`) and
+`python3 scripts/check-site.py`, and set `sitemap.xml`'s lastmod for every
+page the merge changes. The branch's save commits carry `[CF-Pages-Skip]`, so
+bring it in with a merge commit whose message never mentions that token
+(README, "Hosting").
+
+Before pushing, check the App Store badge on a real iPhone AND a real iPad.
+There is ONE link, `https://apps.apple.com/app/id6806487006` — the listing
+itself, with no platform or country in it, so it is not an iPad link. Apple
+shows one listing for both devices, and it offers Get on an iPhone only once
+the released build supports iPhone: posty's `main` has the iPhone layout
+merged but switched off (builds ship iPad-only, 2026-09-24), so today an
+iPhone opens the listing and cannot install. After the release: the listing
+names iPhone, Get works on both, and nothing on the site changes.
+
 ## Archives
 
 - `archive/pre-exploration-website` points to `84270d5`, the full website before

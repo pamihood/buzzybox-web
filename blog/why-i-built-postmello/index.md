@@ -16,7 +16,7 @@ The decision about a first smartphone is often discussed as a question of timing
 
 Organizations such as [Wait Until 8th](https://www.waituntil8th.org/faqs) help people navigate that decision together. Its pledge concerns delaying a smartphone until at least the end of eighth grade; it explicitly leaves room for communication through simpler devices.
 
-That distinction matters to me. The wish to delay a smartphone does not make the need for friendship disappear. A friend moves away. School ends for the summer. Someone wants to share a drawing, remember a joke, or tell a person about the day.
+That distinction matters to me. What I wanted to postpone was not a screen. It was texting and social media: the conversation that never closes, the audience, the pull to answer right away. Wanting to wait does not make the need for friendship disappear. A friend moves away. School ends for the summer. Someone wants to share a drawing, remember a joke, or tell a person about the day.
 
 My daughter's request made the gap very concrete. Saying “you'll see each other when school starts” would have left the actual wish unanswered. I wanted a way for those friendships to have a life between visits.
 
@@ -32,7 +32,7 @@ Digital delivery removes the days in transit while keeping that opportunity to m
 
 That difference became central to Postmello. I wanted the experience on the screen to be worth the time spent there: writing, drawing, arranging, thinking about a friend. There is no requirement to produce an impressive letter. A ridiculous picture and a few words belong just as much as a careful account of a whole week.
 
-The tablet gives that activity somewhere to happen. It can be a shared device at home, with a separate desk for each person. Someone comes to the desk to write or check the mailbox, then puts the device down. Where and when that happens remains a decision for the people using it. At my daughters' ages, that decision is still mine.
+A tablet or a phone gives that activity somewhere to happen. It can be a shared device at home, with a separate desk for each person, or a parent's phone, lent for a letter instead of a text. Someone comes to the desk to write or check the mailbox, then puts the device down. Where and when that happens remains a decision for the people using it. At my daughters' ages, that decision is still mine.
 
 Opening a letter does not send a read receipt, and nobody sees whether someone is online or halfway through a reply. A letter can arrive quickly and still wait patiently. We built [three kinds of quiet](/blog/three-kinds-of-quiet/) around that idea.
 
@@ -66,6 +66,6 @@ Postmello began with my older daughter's request, but the question has grown wit
 
 I want Postmello to make those possibilities ordinary. A person sits down at a desk, makes something for a friend, sends it, and gets on with the day. There is a sense of connection without anxiety, and of anticipation without the constant pull to check.
 
-I hope that this can help children retain their childhood for a little longer and postpone texting and social media.
+I hope that this can help children retain their childhood for a little longer: postponing texting and social media, and protecting three kinds of quiet.
 
 The next letter will be there when it is time to return.

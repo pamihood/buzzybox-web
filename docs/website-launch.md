@@ -21,19 +21,27 @@ listing's Apple id read from App Store Connect (`brand.json`, applied to both
 homepage badges and the private letter viewer's fallback). It returns 404 until
 the version is released and then resolves with no change to the site.
 
-## Next push: iPhone and two free desks (`iphone-and-pricing`)
+## Next push: iPhone (`iphone-and-pricing`)
 
-The branch says "For iPhone and iPad", "Two desks, free", collections at $0.99
-each and Membership including every collection. Every one of those must be
-true the moment it goes live, so it is pushed (merged into `main` = deployed)
-only when the version carrying BOTH the iPhone and the pricing change is
-RELEASED — not merely accepted: the app uses manual release, so press Release
-first. Before that: posty's hosted migration `20260924100000` (with Patrick's
-go) and, on release day, the collections' price in App Store Connect. posty's
-`pricing-and-onboarding` goes into that same release; its
-`check-pricing-sync.py` passes against this branch and fails against the old
-`main` until both merge. None of the branch's commits carry
-`[CF-Pages-Skip]`, so a plain merge builds production.
+The branch says "For iPhone and iPad", and since 2026-09-26 it carries the
+collections-only pricing (below), as `main` does for iPad. Every claim must be
+true the moment it goes live, so the branch is merged into `main` (= deployed)
+only when the version carrying the iPhone app is RELEASED — not merely
+accepted: the app uses manual release, so press Release first. The pricing
+claims need two facts live by then, whichever push comes first: the free desk
+count on the hosted server (posty migration `20260926100000`, Patrick's go)
+and collections selling in App Store Connect at the site's "from" price, with
+no subscription on sale. posty's `check-pricing-sync.py` passes against both
+this branch and `main`.
+
+`main` and this branch both rewrote the pricing copy on 2026-09-26, so the
+merge conflicts where the two differ: `index.html` and `press.html` say iPhone
+here and iPad there. Take this branch's side, then run the maintenance
+commands in README.md (including `bash scripts/stamp-css-version.sh`) and
+`python3 scripts/check-site.py`, and set `sitemap.xml`'s lastmod for every
+page the merge changes. The branch's save commits carry `[CF-Pages-Skip]`, so
+bring it in with a merge commit whose message never mentions that token
+(README, "Hosting").
 
 Before pushing, check the App Store badge on a real iPhone AND a real iPad.
 There is ONE link, `https://apps.apple.com/app/id6806487006` — the listing
@@ -65,9 +73,24 @@ homepage anchors continue to resolve through aliases in `assets/site.js`.
 
 1. Confirm Apple approval and update/verify the App Store link.
 2. Run the maintenance commands in README.md and `python3 scripts/check-site.py`.
-3. Review the homepage, desk choices, mobile navigation, Membership Plus, FAQs,
+3. Review the homepage, desk choices, mobile navigation, pricing, FAQs,
    supporting pages, and account landing states locally.
 4. Merge and deploy only after authorization.
+
+## Collections-only pricing - 2026-09-26
+
+Patrick dropped Membership for launch (posty `pricing.json` 2026-09-26a):
+desks, friends, letters, replies and history are free, up to the free plan's
+desk count, and collections are the only thing sold - bought once, yours to
+keep. Both `main` (iPad) and `iphone-and-pricing` (iPhone and iPad) say so:
+the hero, one free card, the collection price, the promise, the FAQ, the
+press kit and the terms (only their now-false sentences changed). No page
+shows a Membership, a founding rate or a price per year, and
+`scripts/apply-pricing.py` renders only what `pricing.json` has on sale.
+
+Push `main` only once every claim is true: the free desk count live on the
+hosted server (posty migration `20260926100000`) and collections selling in
+App Store Connect at the site's "from" price, with no subscription on sale.
 
 ## Blog integration — 2026-09-09
 

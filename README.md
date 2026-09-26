@@ -62,8 +62,10 @@ Open http://127.0.0.1:8765/. The production files are served directly.
   keep" (keeping is not why anyone chooses a collection). Then
   **calm** — *Connected, not always on*; **safety** — *Their
   independence. Your boundaries.* (four facts; the safety page has the rest).
-  Then pricing (**Two desks, free. Room to grow.** — true on every plan, which
-  "Letters are free. Always." was not: a member pays), email friends,
+  Then pricing (**Postmello is free. Room to grow.** — since the collections-only
+  revision of 2026-09-26 there is one free card, and one line saying collections
+  are optional, from their price, and yours to keep; no plan is sold, so no
+  second card, founding rate or yearly price), email friends,
   testimonials, FAQ, Instagram, and the close: **Letters, not texts.**
   (the brand line, `brand.json` `tagline`). The contrast is TEXTING, never phones
   (Postmello runs on one) and barely social media (the children it is for
@@ -140,15 +142,15 @@ pages use a sticky paper header.
 Do not hand-edit generated prices or duplicate the download URL.
 
 - `../posty/pricing.json` is the sole pricing source. Never restate prices or desk
-  counts in this README. `scripts/apply-pricing.py` updates all marked amounts,
-  plan names and counts, including founding-window copy. A desk count in prose
-  is a `data-desk-count="<plan>"` span, written out as a word in the case the
-  page already uses there ("Two desks, free." / "up to six desks").
-- While `iphone-and-pricing` is unmerged, its prices come from posty's
-  `pricing-and-onboarding` branch, not from posty's `main`: pass
-  `--pricing ~/proj/posty-pricing/pricing.json` (or set `POSTY_PRICING_JSON`).
-  The two branches ship together - merge both, then run the script against
-  `../posty/pricing.json` as usual.
+  counts in this README. `scripts/apply-pricing.py` renders only what is on sale -
+  since 2026-09-26 the free plan and collections - into the homepage's markers:
+  the plan's name and desk count (`data-plan-name`, `data-plan-desks`, and in
+  prose `data-desk-count`, a word in the case the page already uses there), `$0`,
+  the collection price (`data-price="collections"`, which the page reads as
+  "from") and the shelf size. It fails on a marker it does not render, on any
+  mention of a plan `pricing.json` has off sale, and on a price typed outside a
+  marker. The press kit and the terms state no desk count or price, so nothing
+  there can go stale.
 - `brand.json` owns the tagline, the App Store URL and the Instagram URL.
   `scripts/apply-brand.py` updates the homepage's marked elements, the press
   kit's App Store links, and the private letter viewer's fallback link; `scripts/apply-footer.py` reads the Instagram URL too.
@@ -224,5 +226,7 @@ from public routes. Existing App Store privacy/support `.html` URLs remain valid
 - `hello@postmello.com` is the creator/front-door address; `support@postmello.com`
   is for support, legal, privacy, and reporting requests.
 - Existing testimonials are real quotes. No fabricated awards, metrics, or endorsements.
-- Keep purchased collections distinct from membership and preserve the pricing source.
+- Collections are the only thing sold: optional, bought once, and yours to keep.
+  Never present one as a toll on letters, friends or desks, as a discount, or as
+  an "unlock", and preserve the pricing source.
 - Preserve the blog's rationale and legal documents; visual changes should not rewrite them.

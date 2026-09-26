@@ -1,9 +1,27 @@
 #!/usr/bin/env python3
-"""Sync the homepage's marked prices, plan names, and desk counts (as figures and in prose).
+"""Sync the homepage's marked prices, plan name, and desk counts with pricing.json.
 
-The app's ../posty/pricing.json is the source of truth. All occurrences of each
-marker are updated, including the collection price wherever it repeats. Founding annotations
-empty themselves when the founding window closes. Use --check to validate
+The app's ../posty/pricing.json is the source of truth. Since its 2026-09-26
+collections-only revision, Postmello sells one kind of thing: a collection,
+bought once and kept, "from" collections.price_from. Desks, friends, letters,
+replies and history are free, up to plans.free.max_desks in one account. The
+two membership tiers are still in the file, marked "on_sale": false, because
+grants hold them - and the site must never offer them. So only what is on
+sale is rendered, and the run fails when the homepage marks or names a plan
+that is not.
+
+Each marker is rewritten wherever it occurs:
+
+  data-plan-name="free"           the plan's public_name, verbatim
+  data-plan-desks="free"          "Up to 6 desks" (lower case where the page has it so)
+  data-desk-count="free"          the count as a word ("six"), in the page's case
+  data-price="free"               "$0"
+  data-price="collections"        collections.price_from - the page says "from"
+  data-price="collections_shelf"  collections.max_active_per_household
+
+Any other marker fails the run (a retired discount, an off-sale plan's price
+or founding rate: a page still offering what is no longer sold), and so does a
+dollar amount typed outside a data-price marker. Use --check to validate
 without writing; --pricing PATH or POSTY_PRICING_JSON can override the source.
 """
 import argparse
@@ -12,10 +30,26 @@ import os
 import pathlib
 import re
 import sys
+from html.parser import HTMLParser
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent   # repo root, not scripts/
 DEFAULT_PRICING = ROOT.parent / "posty" / "pricing.json"
 INDEX = ROOT / "index.html"
+
+ATTRS = ("data-price", "data-plan-name", "data-plan-desks", "data-desk-count")
+# A marker is a leaf: one of these tags, holding text and nothing else.
+# Groups: 1 opening tag, 2 tag name, 3 attribute, 4 key, 5 text, 6 closing tag.
+MARKER = re.compile(
+    r'(<(p|span|dt|dd|strong|h3|li)\b[^>]*?\b(' + "|".join(ATTRS) + r')="([^"]*)"[^>]*>)'
+    r"(.*?)(</\2>)", re.S)
+ANY_MARKER = re.compile(r"\b(" + "|".join(ATTRS) + r')="([^"]*)"')
+
+NUMBER_WORDS = ["zero", "one", "two", "three", "four", "five", "six", "seven",
+                "eight", "nine", "ten", "eleven", "twelve"]
+
+# Meta tags whose content a visitor meets (search results, link previews).
+META_SHOWN = {"description", "og:title", "og:description",
+              "twitter:title", "twitter:description"}
 
 
 def money(amount):
@@ -27,109 +61,92 @@ def normalize(text):
     return " ".join(text.split())
 
 
-def selling_price(pricing, plan):
-    """What a subscriber PAYS today: the founding launch price while the
-    window is open (2026-08-17: everyone subscribes; the founding benefit is
-    this price, preserved for existing subscribers when the ASC price later
-    rises), the regular price after."""
-    if pricing["founding_window"]["active"] and "founding_price_per_year" in plan:
-        return plan["founding_price_per_year"]
-    return plan["price_per_year"]
+def on_sale(plan):
+    """Free carries no flag and is on sale by definition. Since 2026-09-26 the
+    membership tiers carry "on_sale": false: held by grants, sold to nobody."""
+    return plan.get("on_sale", True) is not False
 
 
-def monthly(amount_per_year):
-    """The supporting monthly equivalent — never the lead."""
-    return f"${amount_per_year / 12:.2f}"
+def in_page_case(text, current):
+    """The words are pricing.json's; the case is the page's. A marker that
+    opens a sentence or a line keeps its capital, one mid-sentence stays lower
+    case ("Up to 6 desks" on a card, "up to six desks" in an answer)."""
+    if current[:1].islower():
+        return text[:1].lower() + text[1:]
+    return text[:1].upper() + text[1:]
 
 
-def membership_price_line(pricing, plan):
-    """While founding is open: the genuine post-founding regular price,
-    struck, beside the founding selling price. The strike is honest by the
-    site's own rule only because price_per_year IS the documented later
-    price; if that intent ever changes, pricing.json changes and this line
-    follows."""
-    now = selling_price(pricing, plan)
-    later = plan["price_per_year"]
-    if now != later:
-        return f"<s>{money(later)}</s> {money(now)}/year"
-    return f"{money(now)}/year"
+def count_word(n):
+    return NUMBER_WORDS[n] if 0 <= n < len(NUMBER_WORDS) else str(n)
 
 
-# The markers whose desk count lands MID-SENTENCE rather than at the head of
-# its own line. Membership Plus is not a card; it is a disclosure row reading
-# "Membership Plus supports up to 12 desks." — and a capital U inside that
-# clause is a typo the page cannot fix at its end, because this script owns
-# the string. The card markers (free, membership) each open a line of their
-# own and keep the capital. Add a key here if a count ever moves into prose.
-MIDSENTENCE_DESKS = {"membership_plus"}
+def desks_line(n):
+    """The desk count on a card. One desk says what it is; more is a ceiling:
+    max_desks is a server-side capability (account_capabilities), retunable
+    without a release, and "up to" is what keeps that honest. A numeral, like
+    every other figure on the card."""
+    return "1 desk" if n == 1 else f"Up to {n} desks"
 
 
-def desks_line(plan, key):
-    """The desk count, in the block's own voice. Free says what it IS; the
-    paid tiers say "up to", because the number is a server-side capability
-    (account_capabilities) that is meant to be retunable without a release,
-    and "up to" is what keeps that honest.
-
-    Case follows the SLOT, not the tier: see MIDSENTENCE_DESKS above."""
-    n = plan["max_desks"]
-    if key == "free":
-        # Numeral, like every other figure in the block. "One desk" was the
-        # odd one out the moment the paid cards started saying "Up to 4".
-        return f"{n} desk" + ("" if n == 1 else "s")
-    lead = "up to" if key in MIDSENTENCE_DESKS else "Up to"
-    return f"{lead} {n} desk" + ("" if n == 1 else "s")
-
-
-def expected_lines(pricing):
-    """Leaf values used by the selected homepage; keep founding copy conditional."""
-    fam = pricing["plans"]["membership"]
-    plus = pricing["plans"]["membership_plus"]
-    founding = pricing["founding_window"]["active"]
+def renderers(pricing):
+    """{(attribute, key): current text -> wanted text} for every marker the
+    homepage may carry. A plan off sale gets none, so a marker naming it is
+    reported instead of rendered."""
+    free = pricing["plans"]["free"]
+    n = free["max_desks"]
+    coll = pricing["collections"]
+    price_from = coll.get("price_from", coll["price"])
+    shelf = str(coll["max_active_per_household"])
     return {
-        "free": "$0",
-        "membership": money(selling_price(pricing, fam)),
-        "membership_context": f"Founding rate · Regularly {money(fam['price_per_year'])}/year" if founding else "",
-        "membership_founding": "Founding rate stays while subscribed." if founding else "",
-        "membership_more": f"Need more than {fam['max_desks']} desks?",
-        "membership_plus": money(selling_price(pricing, plus)),
-        "membership_plus_context": f" at the founding rate (regularly {money(plus['price_per_year'])}/year)" if founding else "",
-        # One price for every collection since 2026-09-24 ("$0.99 each"), and
-        # no member discount to print: Membership INCLUDES collections now.
-        "collections": money(pricing["collections"]["price"]),
-        "collections_shelf": str(pricing["collections"]["max_active_per_household"]),
+        ("data-plan-name", "free"): lambda cur: free["public_name"],
+        ("data-plan-desks", "free"): lambda cur: in_page_case(desks_line(n), cur),
+        ("data-desk-count", "free"): lambda cur: in_page_case(count_word(n), cur),
+        ("data-price", "free"): lambda cur: "$0",
+        ("data-price", "collections"): lambda cur: money(price_from),
+        ("data-price", "collections_shelf"): lambda cur: shelf,
     }
 
 
-NUMBER_WORDS = ["zero", "one", "two", "three", "four", "five", "six", "seven",
-                "eight", "nine", "ten", "eleven", "twelve"]
+class VisibleText(HTMLParser):
+    """The words a visitor can meet: text outside <script> and <style>, the
+    attributes that are shown or read aloud, and the page's description."""
+    SKIP = {"script", "style"}
+
+    def __init__(self, html):
+        super().__init__(convert_charrefs=True)
+        self.parts, self._skip = [], 0
+        self.feed(html)
+        self.close()
+        self.text = normalize(" ".join(self.parts))
+
+    def handle_starttag(self, tag, attrs):
+        a = dict(attrs)
+        if tag in self.SKIP:
+            self._skip += 1
+        for name in ("alt", "title", "aria-label", "placeholder"):
+            if a.get(name):
+                self.parts.append(a[name])
+        if tag == "meta" and (a.get("name") or a.get("property")) in META_SHOWN:
+            self.parts.append(a.get("content") or "")
+
+    def handle_endtag(self, tag):
+        if tag in self.SKIP and self._skip:
+            self._skip -= 1
+
+    def handle_data(self, data):
+        if not self._skip:
+            self.parts.append(data)
 
 
-def count_word(n, current):
-    """A desk count spelled out for prose ("Two desks, free."), in the case the
-    page already uses at that spot: a capital where it opens a sentence, lower
-    case mid-sentence. The case is the page's; the number is pricing.json's."""
-    word = NUMBER_WORDS[n] if 0 <= n < len(NUMBER_WORDS) else str(n)
-    return word.capitalize() if current[:1].isupper() else word
-
-
-def expected_counts(pricing):
-    return {key: plan["max_desks"] for key, plan in pricing["plans"].items()}
-
-
-def expected_names(pricing):
-    """Card eyebrows: public_name, verbatim.
-
-    They were briefly stripped to "Free" / "Membership" / "Membership Plus" on
-    the theory that the brand is already established by this scroll depth.
-    Patrick put it back (2026-08-18): these are the PRODUCT names, they are
-    what the App Store sheet and the app say, and a plan view is where a
-    reader decides what to buy — the one place worth spending the word.
-    Verbatim also means one rule, with no special case for Free."""
-    return {key: plan["public_name"] for key, plan in pricing["plans"].items()}
-
-
-def expected_desks(pricing):
-    return {key: desks_line(plan, key) for key, plan in pricing["plans"].items()}
+def off_sale_names(pricing):
+    """Each off-sale plan's public name and its short form ("Postmello
+    Membership Plus", "Membership Plus", ...), longest first."""
+    names = set()
+    for plan in pricing["plans"].values():
+        if not on_sale(plan):
+            names.add(plan["public_name"])
+            names.add(plan["public_name"].removeprefix("Postmello "))
+    return sorted(names, key=len, reverse=True)
 
 
 SHELF_COPIES = [
@@ -184,9 +201,41 @@ def check_shelf_copies(pricing, pricing_path):
     return problems
 
 
+def page_problems(html, pricing, seen):
+    """What no rewrite can fix: the page offering, or failing to mark, what
+    pricing.json says. Reported in page order."""
+    problems = []
+    if ("data-price", "collections") not in seen:
+        problems.append('no data-price="collections" element: the one thing '
+                        "sold must carry its price")
+    if not {("data-plan-desks", "free"), ("data-desk-count", "free")} & seen:
+        problems.append('no data-plan-desks="free" or data-desk-count="free" '
+                        "element: the free desk count must be marked, not typed")
+
+    names = off_sale_names(pricing)
+    if names:
+        said = re.compile(r"\b(" + "|".join(map(re.escape, names)) + r")s?\b", re.I)
+        hits = {}
+        for m in said.finditer(VisibleText(html).text):
+            hits.setdefault(m.group(0).lower(), m.group(0))
+        for hit in hits.values():
+            problems.append(f'the page says "{hit}", and pricing.json has that '
+                            "plan off sale: the site must not offer it")
+
+    # Every dollar amount is a marker's. Blank the data-price markers, and
+    # whatever figure is left was typed by hand.
+    blanked = MARKER.sub(
+        lambda m: m.group(1) + m.group(6) if m.group(3) == "data-price" else m.group(0),
+        html)
+    for m in re.finditer(r".{0,30}\$\s?\d[\d.,]*.{0,12}", VisibleText(blanked).text):
+        problems.append(f'a price typed by hand ("...{m.group(0).strip()}..."): '
+                        "wrap it in a data-price marker")
+    return problems
+
+
 def main():
     ap = argparse.ArgumentParser(
-        description="Sync index.html's plans-block prices with pricing.json.")
+        description="Sync index.html's marked prices and desk counts with pricing.json.")
     ap.add_argument("--pricing", help="path to pricing.json "
                     "(default: $POSTY_PRICING_JSON, then ../posty/pricing.json)")
     ap.add_argument("--check", action="store_true",
@@ -197,72 +246,69 @@ def main():
         args.pricing or os.environ.get("POSTY_PRICING_JSON") or DEFAULT_PRICING)
     pricing = json.loads(pricing_path.read_text(encoding="utf-8"))
 
-    # No founding-window gate: closing the window in pricing.json simply
-    # makes selling == regular, which drops the strike and the "Early price"
-    # suffix on the next run. (The old founding-note paragraph this script
-    # once guarded was removed 2026-08-17 — "that join while Postmello is
-    # new" read as if nobody was on it.)
+    sold = [key for key, plan in pricing["plans"].items() if on_sale(plan)]
+    if sold != ["free"]:
+        raise SystemExit(
+            f"!! {pricing_path} puts {sold} on sale. This page renders the free "
+            "plan and collections only; a plan that is sold needs its card and "
+            "its price written into index.html, and a renderer here, first.")
+
+    render = renderers(pricing)
+    # Longest first, so "membership_plus_context" belongs to membership_plus.
+    off_sale = sorted((key for key in pricing["plans"] if key not in sold),
+                      key=len, reverse=True)
     html = INDEX.read_text(encoding="utf-8")
-    disagreements = []
-    # (attribute, tag alternation, expected map) — one rewrite rule each.
-    for attr, tags, expected in (
-        # h3 joined the alternation with the 2026-08-23 redesign: the plan
-        # NAME is a heading on the new card, not a <dt> in a <dl>.
-        ("data-price", "p|span|dt|strong|h3", expected_lines(pricing)),
-        ("data-plan-name", "p|span|dt|h3", expected_names(pricing)),
-        ("data-plan-desks", "h3|span|strong", expected_desks(pricing)),
-    ):
-        for key, want in expected.items():
-            pat = re.compile(
-                r'(<(?:' + tags + r')\b[^>]*' + attr + r'="' + re.escape(key) + r'"[^>]*>)'
-                r"(.*?)(</(?:" + tags + r")>)", re.S)
-            matches = list(pat.finditer(html))
-            if not matches:
-                raise SystemExit(f'!! index.html: no {attr}="{key}" element to rewrite')
-            for m in reversed(matches):
-                have = normalize(m.group(2))
-                if have == normalize(want):
-                    continue
-                disagreements.append((f'{attr}="{key}"', have, want))
-                html = html[:m.start(2)] + want + html[m.end(2):]
+    disagreements, marker_problems, seen = [], [], set()
 
-    # Desk counts in prose ("Two desks, free.", "up to six desks"), spelled
-    # out in the case each spot already uses. Only the tiers the page actually
-    # mentions are rewritten, but the free count must be there: it is the
-    # headline number since 2026-09-24, and a page that stopped marking it
-    # would be a page typing it by hand.
-    counts = expected_counts(pricing)
-    pat = re.compile(r'(<span\b[^>]*data-desk-count="([a-z_]+)"[^>]*>)(.*?)(</span>)', re.S)
-    seen = set()
-    for m in reversed(list(pat.finditer(html))):
-        key = m.group(2)
-        if key not in counts:
-            raise SystemExit(f'!! index.html: data-desk-count="{key}" names no plan in pricing.json')
-        seen.add(key)
-        have = normalize(m.group(3))
-        want = count_word(counts[key], have)
-        if have == want:
+    matches = list(MARKER.finditer(html))
+    if len(matches) != len(ANY_MARKER.findall(html)):
+        marker_problems.append(
+            "a marker sits on a tag this script does not rewrite, or inside "
+            "another marker: use p, span, dt, dd, strong, h3 or li, holding text only")
+    for m in reversed(matches):
+        attr, key, text = m.group(3), m.group(4), m.group(5)
+        rule = render.get((attr, key))
+        if rule is None:
+            plan = next((k for k in off_sale if key == k or key.startswith(k + "_")), None)
+            why = (f"belongs to {plan}, which pricing.json has off sale" if plan
+                   else "is not a marker this script renders")
+            marker_problems.append(f'{attr}="{key}" {why}: remove it, and its copy')
             continue
-        disagreements.append((f'data-desk-count="{key}"', have, want))
-        html = html[:m.start(3)] + want + html[m.end(3):]
-    if "free" not in seen:
-        raise SystemExit('!! index.html: no data-desk-count="free" element to rewrite')
+        if "<" in text:
+            marker_problems.append(f'{attr}="{key}" wraps markup; a marker holds text only')
+            continue
+        seen.add((attr, key))
+        have = normalize(text)
+        want = rule(have)
+        if have != want:
+            disagreements.append((f'{attr}="{key}"', have, want))
+            html = html[:m.start(5)] + want + html[m.end(5):]
+    disagreements.reverse()
+    marker_problems.reverse()
 
+    problems = marker_problems + page_problems(html, pricing, seen)
     shelf_problems = check_shelf_copies(pricing, pricing_path)
 
     if args.check:
-        if disagreements or shelf_problems:
+        if disagreements or problems or shelf_problems:
             if disagreements:
                 print(f"!! index.html disagrees with {pricing_path}:")
                 for key, have, want in disagreements:
                     print(f"   {key}")
                     print(f"     - {have}")
                     print(f"     + {want}")
+            for problem in problems:
+                print(f"!! index.html: {problem}")
             for problem in shelf_problems:
                 print(f"!! {problem}")
             sys.exit(1)
         print(f"[pricing] index.html agrees with {pricing_path}")
         return
+
+    if problems:
+        for problem in problems:
+            print(f"!! index.html: {problem}")
+        sys.exit("!! nothing written: fix the page, then run this again")
 
     for problem in shelf_problems:
         print(f"!! {problem}")

@@ -156,7 +156,8 @@ Do not hand-edit generated prices or duplicate the download URL.
   kit's App Store links, and the private letter viewer's fallback link; `scripts/apply-footer.py` reads the Instagram URL too.
 - `scripts/apply-navigation.py` owns supporting-page headers.
 - `scripts/apply-footer.py` owns all public/account footers.
-- `scripts/apply-head-meta.py` owns fonts, canonicals, and shared social metadata.
+- `scripts/apply-head-meta.py` owns fonts, canonicals, shared social metadata,
+  and the homepage's structured data.
 - `scripts/stamp-css-version.sh` versions both stylesheets and the shared script.
 
 After changes, run:
@@ -217,6 +218,32 @@ Archive tags preserve the original and all explorations.
 `_headers` maintains security and immutable CSS caching. The cache versions must
 be refreshed after stylesheet edits. `_redirects` excludes operational documents
 from public routes. Existing App Store privacy/support `.html` URLs remain valid.
+
+## Search engines and AI answers
+
+- `robots.txt` lets every crawler in, AI search and training crawlers included;
+  only `/letter/`, `/scripts/` and `/t/` are closed. Cloudflare lets them through
+  too: from 2026-09-19 to 09-27 the zone log shows Googlebot, Bingbot,
+  OAI-SearchBot, ChatGPT-User, GPTBot and Applebot answered with 200s only. When
+  a search engine or an AI answer shows old copy, check when its crawler last
+  fetched the page (`httpRequestsAdaptiveGroups`, `userAgent_like`) before
+  suspecting a block. The "For iPad" ChatGPT still quoted on 2026-09-27 matched
+  OAI-SearchBot's last read of the homepage, on 09-23.
+- Cloudflare's Browser Integrity Check answers some script user agents
+  (`Python-urllib`) with a 403, error 1010. Crawlers are unaffected; give a
+  script its own User-Agent.
+- The homepage carries schema.org Organization (Postmello LLC), WebSite and
+  MobileApplication data (`apply-head-meta.py`); every essay a BlogPosting whose
+  author links to the bio at `/press#founder` (`render-blog.py`). Google shows
+  no app rich result without a visible rating or review, so Search Console
+  listing the app as missing one is expected. Never add a rating the page does
+  not show.
+- After a push is live, tell Bing and the other IndexNow engines what changed:
+  `python3 scripts/indexnow.py --since <date> --send` (without `--send` it only
+  lists). It takes the pages from `sitemap.xml` by `lastmod`, which is one more
+  reason to keep lastmod honest. The 32-character `.txt` file at the root is its
+  public key file; never delete it as junk. Google does not take IndexNow: use
+  Search Console's URL inspection, then Request indexing.
 
 ## Content rules
 

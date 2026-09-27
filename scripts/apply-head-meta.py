@@ -1,14 +1,17 @@
 #!/usr/bin/env python3
 """Give every page the same head furniture: the webfonts, canonical, absolute
-og:image/og:url, twitter card, apple-touch-icon.
+og:image/og:url, twitter card, apple-touch-icon; and the homepage its
+schema.org structured data.
 
 og:image and og:url MUST be absolute — a scraper fetching the page has no base
 to resolve "assets/app-desk.jpg" against, so the homepage has been unfurling
 with no picture at all. They are also the only absolute origins in the markup,
 which is what makes the postmello.com move a single grep.
 """
+import json
 import re
 import pathlib
+from html import unescape   # not `import html`: the loops below name a variable html
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent   # repo root, not scripts/
 ORIGIN = "https://postmello.com"          # flip here at the domain move
@@ -135,3 +138,57 @@ for rel, (path, prefix) in PAGES.items():
 
     f.write_text(html, encoding="utf-8")
     print(f"[meta] {rel:48} {'+ ' + ', '.join(added) if added else '(already complete)'}")
+
+
+# The homepage's schema.org graph: the company, the site and the app, saying in
+# machine terms what the page says in prose. Google takes the site name and logo
+# in results from the Organization and WebSite nodes on the home page, and search
+# engines and AI answers learn from the app node that Postmello is a free iPhone
+# and iPad app. Every link comes from ORIGIN or brand.json, so the App Store URL
+# is still typed in exactly one place, and the app's description IS the page's
+# meta description, so the two cannot drift. Each essay's BlogPosting names the
+# same Organization by its @id (scripts/render-blog.py).
+#
+# Google shows an app rich result only for a page with a visible rating or
+# review. This page has neither and must never invent one, so Search Console
+# lists the app as missing "aggregateRating" or "review". That is expected: it
+# costs the star snippet, nothing about indexing.
+BRAND = json.loads((ROOT / "brand.json").read_text(encoding="utf-8"))
+LD_PAGE = "index.html"
+
+
+def homepage_graph(description):
+    org = {"@id": f"{ORIGIN}/#organization"}
+    return {
+        "@context": "https://schema.org",
+        "@graph": [
+            {"@type": "Organization", **org, "name": "Postmello", "legalName": "Postmello LLC",
+             "url": f"{ORIGIN}/", "logo": f"{ORIGIN}/assets/mark.png", "email": "hello@postmello.com",
+             "founder": {"@type": "Person", "name": "Patrick Amihood", "url": f"{ORIGIN}/press#founder"},
+             "sameAs": [BRAND["instagram_url"]]},
+            {"@type": "WebSite", "@id": f"{ORIGIN}/#website", "name": "Postmello",
+             "url": f"{ORIGIN}/", "publisher": org},
+            {"@type": "MobileApplication", "@id": f"{ORIGIN}/#app", "name": "Postmello",
+             "description": description, "operatingSystem": "iOS, iPadOS",
+             "applicationCategory": "LifestyleApplication",   # the App Store category
+             "installUrl": BRAND["app_store_url"], "sameAs": BRAND["app_store_url"],
+             "image": f"{ORIGIN}/assets/app-icon.png",
+             "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
+             "publisher": org},
+        ],
+    }
+
+
+f = ROOT / LD_PAGE
+html = f.read_text(encoding="utf-8")
+description = unescape(re.search(r'<meta name="description" content="([^"]*)"', html).group(1))
+ld = json.dumps(homepage_graph(description), ensure_ascii=False).replace("</", "<\\/")
+tag = f'<script type="application/ld+json">{ld}</script>'
+# Replace in place, else add it last in <head>: the font links above are removed
+# and re-added before the stylesheet on every run, so anchoring there would move
+# this block on the second run.
+html, n = re.subn(r'<script type="application/ld\+json">.*?</script>', lambda m: tag, html, count=1, flags=re.S)
+if not n:
+    html = html.replace("</head>", tag + "\n</head>", 1)
+f.write_text(html, encoding="utf-8")
+print(f"[ld]   {LD_PAGE}: Organization, WebSite, MobileApplication")

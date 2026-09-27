@@ -54,6 +54,8 @@ if parsed[ROOT/'letter/index.html'].meta.get('referrer')!='no-referrer': errors.
 if 'noindex' in parsed[ROOT/'index.html'].meta.get('robots',''): errors.append('Homepage still marked as exploration')
 if (ROOT/'_concepts').exists(): errors.append('Exploration directory still present')
 if '_concepts/' in (ROOT/'index.html').read_text(): errors.append('Homepage contains review links')
+key=re.search(r'^KEY = "(\w+)"',(ROOT/'scripts/indexnow.py').read_text(),re.M).group(1)
+if not (ROOT/f'{key}.txt').exists() or (ROOT/f'{key}.txt').read_text().strip()!=key: errors.append(f'IndexNow key file {key}.txt missing or wrong (scripts/indexnow.py)')
 if errors:
     print('\n'.join(errors)); sys.exit(1)
 print(f'[site] {len(PAGES)} pages: links, assets, IDs, CSS versions, and privacy metadata passed')

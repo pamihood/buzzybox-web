@@ -73,19 +73,22 @@ def dateline(post):
 
 def article_head(post, canonical):
     """Publication dates for search engines: Open Graph article times and a
-    schema.org BlogPosting. Invisible on the page."""
+    schema.org BlogPosting. Invisible on the page. The author links to the full
+    bio on /press, and the publisher is the homepage's Organization, named by
+    its @id (scripts/apply-head-meta.py), so every essay has the same known
+    person and company behind it."""
     picture = post.get('card') or post.get('figure')
     data = {
         '@context': 'https://schema.org', '@type': 'BlogPosting',
         'headline': post['title'], 'description': post['description'],
         'datePublished': post['published'], 'dateModified': post.get('updated', post['published']),
-        'author': {'@type': 'Person', 'name': 'Patrick Amihood'},
-        'publisher': {'@type': 'Organization', 'name': 'Postmello',
+        'author': {'@type': 'Person', 'name': 'Patrick Amihood', 'url': ORIGIN + '/press#founder'},
+        'publisher': {'@type': 'Organization', '@id': ORIGIN + '/#organization', 'name': 'Postmello',
                       'logo': {'@type': 'ImageObject', 'url': ORIGIN + '/assets/mark.png'}},
         'mainEntityOfPage': canonical,
     }
-    if picture:
-        data['image'] = ORIGIN + picture['src']
+    # An essay without a picture of its own is shown by its share card, as in og:image.
+    data['image'] = ORIGIN + (picture['src'] if picture else asset_url('/assets/og-card.jpg'))
     ld = json.dumps(data, ensure_ascii=False).replace('</', '<\\/')
     return (f'<meta property="article:published_time" content="{post["published"]}" />\n'
             f'  <meta property="article:modified_time" content="{post.get("updated", post["published"])}" />\n'

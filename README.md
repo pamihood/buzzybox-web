@@ -229,6 +229,10 @@ from public routes. Existing App Store privacy/support `.html` URLs remain valid
   fetched the page (`httpRequestsAdaptiveGroups`, `userAgent_like`) before
   suspecting a block. The "For iPad" ChatGPT still quoted on 2026-09-27 matched
   OAI-SearchBot's last read of the homepage, on 09-23.
+- The homepage's `<title>` is **Postmello · Kids can keep in touch without
+  texting** (Patrick, 2026-09-27). A search result leads with the title, and the
+  brand line alone did not say what Postmello is. `og:title` keeps the brand
+  line, "Postmello - Letters, not texts.", for link previews.
 - Cloudflare's Browser Integrity Check answers some script user agents
   (`Python-urllib`) with a 403, error 1010. Crawlers are unaffected; give a
   script its own User-Agent.

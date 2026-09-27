@@ -2,41 +2,55 @@
 """Count the anonymous page events that assets/site.js sends to /t/<page>/<event>.
 
     python3 scripts/site-events.py                                  # today so far
-    python3 scripts/site-events.py --since "2026-09-26 20:00"        # since 8 pm
-    python3 scripts/site-events.py --since "2026-09-26 20:00" --ads --country US,GB,CA,AU,NZ,IE,DK --visits
-    python3 scripts/site-events.py --since 2026-09-22 --until 2026-09-24 --country FI
+    python3 scripts/site-events.py --since "2026-09-28 08:00"        # since 8 am
+    python3 scripts/site-events.py --since "2026-09-28 08:00" --ads --country US,GB,CA,AU,NZ,IE,DK --visits
+    python3 scripts/site-events.py --log --since 2026-09-22 --until 2026-09-24 --country FI
 
 Times are Pacific unless they carry an offset, and a bare --until date includes
 that whole day. --ads keeps only Meta's in-app browsers (Instagram, Facebook,
 Messenger, Threads), which is where every ad click lands. --visits adds one
 line per visitor: when, where, what device, how long and how far down.
 
-Reads Cloudflare's request log for the zone, so it needs a token with Zone
-Analytics Read: CLOUDFLARE_API_TOKEN in the environment, or in ../posty/.env.
-The free plan limits each query to one day, so it walks a day at a time.
+THE COUNT is Workers Analytics Engine (dataset postmello_site_events): from
+2026-09-27, functions/t/[[path]].js writes one row per event, kept three
+months. A visit there is one page load, grouped by the random number site.js
+makes for it and keeps nowhere, so nothing links two visits. It needs
+CLOUDFLARE_API_TOKEN (Account Analytics Read) and CLOUDFLARE_ACCOUNT_ID, in the
+environment or in ../posty/.env. Every run checks the rows it got against the
+dataset's own total, and the header says so if Analytics Engine ever samples.
 
-A visitor is an address (an IPv6 /64, since one phone holds many) with one
-browser, counted once it is sent a page or sends an event. Counts are visitors,
-not requests: the log is sampled whenever the zone is busy, and a kept request
-is then weighted to stand for several (one real page load came back as "6
-views" on 2026-09-22). Sampling can also DROP an event, so every event count is
-a floor. A time mark implies the ones before it. Addresses are never printed.
+--log reads the zone's request log instead: the only record of events before
+the switch, kept about a week. Cloudflare SAMPLES that log as it stores it (on
+2026-09-27 it held 37 of 59 page views), so every count from it is a floor, and
+an event sent once, like an App Store tap, is kept or lost whole. There a
+visitor is an address (an IPv6 /64, since one phone holds many) with one
+browser, counted once it is sent a page or sends an event; a time mark implies
+the ones before it; addresses are never printed. It needs Zone Analytics Read,
+and the free plan limits each query to one day, so it walks a day at a time.
 
 Left out, and counted in the header:
 - Meta's own servers. When an ad is created or edited, Meta's review systems
   load the page with ordinary-looking browsers, run its script, scroll and tap
   links: 294 requests in 15 minutes on 2026-09-26, "from" the US, Ireland and
-  Denmark, where Meta has data centres, all from 2a03:2880::/32.
+  Denmark, where Meta has data centres, all from 2a03:2880::/32 (AS32934).
 - Crawlers and scanners: bot user agents, and the years-old "iPhone OS 13_2_3"
   string that scanners use.
+- Probes (user agent PostmelloProbe), and every host but postmello.com, such as
+  a check sent to postmello-web.pages.dev.
 """
-import argparse, collections, datetime as dt, ipaddress, json, os, pathlib, re, urllib.request
+import argparse, collections, datetime as dt, ipaddress, json, os, pathlib, re, urllib.error, urllib.request
 from zoneinfo import ZoneInfo
 
 ZONE = '8bcbea4cdb1ae7595b92d048f5ebfe47'  # postmello.com
+DATASET = 'postmello_site_events'          # previews write postmello_site_events_preview
+HOSTS = {'postmello.com', 'www.postmello.com'}
+IN_APPS = {'Instagram', 'Facebook', 'Threads'}  # what functions/t/[[path]].js calls Meta's browsers
+OLD_SCRIPT = 'a site.js older than visit numbers'
+OLD_SCRIPT_TAPS = 'App Store taps among them'
 PACIFIC = ZoneInfo('America/Los_Angeles')
 SITE = pathlib.Path(__file__).resolve().parents[1]
 LIMIT = 10000
+COUNTED_LIMIT = 200000
 
 # Meta's networks (AS32934). Ad review has only been seen on the first.
 META = [ipaddress.ip_network(net) for net in (
@@ -51,14 +65,14 @@ IN_APP = re.compile(r'Instagram|FBAN|FBAV|FB_IAB|FB4A|Barcelona')
 TIMES = [10, 30, 60, 120, 300]
 
 
-def token():
-    if os.environ.get('CLOUDFLARE_API_TOKEN'):
-        return os.environ['CLOUDFLARE_API_TOKEN']
-    env = SITE.parent / 'posty' / '.env'
-    for line in env.read_text().splitlines():
-        if line.startswith('CLOUDFLARE_API_TOKEN='):
+def setting(name):
+    """A value from the environment, else from ../posty/.env."""
+    if os.environ.get(name):
+        return os.environ[name]
+    for line in (SITE.parent / 'posty' / '.env').read_text().splitlines():
+        if line.startswith(name + '='):
             return line.split('=', 1)[1].strip().strip('"')
-    raise SystemExit('CLOUDFLARE_API_TOKEN not set and not in ../posty/.env')
+    raise SystemExit(f'{name} not set and not in ../posty/.env')
 
 
 def slug(value):
@@ -97,6 +111,40 @@ def fetch(tok, start, end):
     return rows
 
 
+def sql(query):
+    """One Analytics Engine query, its rows as dicts."""
+    account = setting('CLOUDFLARE_ACCOUNT_ID')
+    request = urllib.request.Request(
+        f'https://api.cloudflare.com/client/v4/accounts/{account}/analytics_engine/sql',
+        data=f'{query} FORMAT JSON'.encode(),
+        headers={'Authorization': f'Bearer {setting("CLOUDFLARE_API_TOKEN")}'})
+    try:
+        return json.load(urllib.request.urlopen(request))['data']
+    except urllib.error.HTTPError as error:
+        raise SystemExit(f'Analytics Engine answered {error.code}: {error.read().decode()[:300]}')
+
+
+def counted(start, end):
+    """Every event Analytics Engine holds in [start, end), checked against its own total."""
+    utc = lambda moment: moment.astimezone(dt.timezone.utc).strftime('%Y-%m-%d %H:%M:%S')
+    window = (f"FROM {DATASET} WHERE timestamp >= toDateTime('{utc(start)}')"
+              f" AND timestamp < toDateTime('{utc(end)}')")
+    rows = sql('SELECT timestamp, _sample_interval AS weight, blob1 AS host, blob2 AS page, blob3 AS event,'
+               ' blob4 AS load, blob5 AS country, blob6 AS device, blob7 AS app, blob8 AS who'
+               f' {window} ORDER BY timestamp LIMIT {COUNTED_LIMIT}')
+    total = int(sql(f'SELECT count() AS n {window}')[0]['n'])
+    if len(rows) != total:
+        raise SystemExit(f'Analytics Engine sent {len(rows)} of the {total} rows in that window: narrow it')
+    return rows
+
+
+def counting_began():
+    """When Analytics Engine's first event landed, or None before there was one."""
+    first = sql(f'SELECT min(timestamp) AS first FROM {DATASET}')[0]['first']
+    began = dt.datetime.fromisoformat(first).replace(tzinfo=dt.timezone.utc)
+    return began if began.year >= 2026 else None
+
+
 def section_order():
     """Each page's sections in the order the page shows them, named as site.js names them."""
     order = {}
@@ -124,27 +172,13 @@ def device(agent):
     return f'{kind} · {app}' if app else kind
 
 
-def main():
-    parser = argparse.ArgumentParser(description=__doc__.split('\n')[0])
-    parser.add_argument('--since', help='Pacific date or time, default today 00:00')
-    parser.add_argument('--until', help='Pacific date (inclusive) or time, default now')
-    parser.add_argument('--country', help='two-letter codes, comma-separated, e.g. US,GB,DK')
-    parser.add_argument('--ads', action='store_true', help="only Meta's in-app browsers")
-    parser.add_argument('--visits', action='store_true', help='one line per visitor')
-    args = parser.parse_args()
+def new_visitor():
+    return {'pages': set(), 'events': set(), 'first': None, 'weight': 1}
 
-    now = dt.datetime.now(PACIFIC)
-    start = moment(args.since) if args.since else now.replace(hour=0, minute=0, second=0, microsecond=0)
-    end = min(moment(args.until, end=True), now) if args.until else now
-    countries = {code.strip().upper() for code in args.country.split(',')} if args.country else None
 
-    tok, rows, chunk = token(), [], start
-    while chunk < end:
-        rows += fetch(tok, chunk, min(chunk + dt.timedelta(days=1), end))
-        chunk += dt.timedelta(days=1)
-
-    left_out = collections.Counter()
-    visitors = collections.defaultdict(lambda: {'pages': set(), 'events': set(), 'first': None})
+def from_log(rows, args, countries):
+    """Visitors from the zone's sampled request log: an address with one browser."""
+    left_out, visitors = collections.Counter(), collections.defaultdict(new_visitor)
     for row in rows:
         d = row['dimensions']
         address = ipaddress.ip_address(d['clientIP'])
@@ -172,6 +206,65 @@ def main():
         visitor['pages'].add(page)
         if event:
             visitor['events'].add((page, event))
+    return visitors, left_out
+
+
+def from_counted(rows, args, countries):
+    """Visits from Analytics Engine: one per page load, every event in it."""
+    why = {'meta': "Meta's own servers", 'bot': 'crawlers and scanners', 'probe': 'probes'}
+    left_out, visits = collections.Counter(), collections.defaultdict(new_visitor)
+    for row in rows:
+        if row['host'] not in HOSTS:
+            left_out['other hosts (pages.dev)'] += 1
+            continue
+        if row['who'] != 'person':
+            left_out[why.get(row['who'], row['who'])] += 1
+            continue
+        if countries and row['country'] not in countries:
+            continue
+        if args.ads and row['app'] not in IN_APPS:
+            continue
+        if not row['load']:  # a site.js from before the number: no visit to put it in
+            left_out[OLD_SCRIPT] += 1
+            left_out[OLD_SCRIPT_TAPS] += row['event'].startswith('tap/app-store')
+            continue
+        visit = visits[row['load']]
+        visit.update(country=row['country'],
+                     device=row['device'] if row['app'] == 'other' else f"{row['device']} · {row['app']}")
+        visit['weight'] = max(visit['weight'], int(row['weight']))
+        visit['first'] = min(filter(None, (visit['first'], row['timestamp'].replace(' ', 'T') + 'Z')))
+        visit['pages'].add(row['page'])
+        visit['events'].add((row['page'], row['event']))
+    return visits, left_out
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__.split('\n')[0])
+    parser.add_argument('--since', help='Pacific date or time, default today 00:00')
+    parser.add_argument('--until', help='Pacific date (inclusive) or time, default now')
+    parser.add_argument('--country', help='two-letter codes, comma-separated, e.g. US,GB,DK')
+    parser.add_argument('--ads', action='store_true', help="only Meta's in-app browsers")
+    parser.add_argument('--visits', action='store_true', help='one line per visitor')
+    parser.add_argument('--log', action='store_true',
+                        help="the zone's SAMPLED request log instead: before 2026-09-27, and floors")
+    args = parser.parse_args()
+
+    now = dt.datetime.now(PACIFIC)
+    start = moment(args.since) if args.since else now.replace(hour=0, minute=0, second=0, microsecond=0)
+    end = min(moment(args.until, end=True), now) if args.until else now
+    countries = {code.strip().upper() for code in args.country.split(',')} if args.country else None
+    when = lambda moment: moment.astimezone(PACIFIC).strftime('%a %d %b %H:%M')
+
+    if args.log:
+        tok, rows, chunk = setting('CLOUDFLARE_API_TOKEN'), [], start
+        while chunk < end:
+            rows += fetch(tok, chunk, min(chunk + dt.timedelta(days=1), end))
+            chunk += dt.timedelta(days=1)
+        visitors, left_out = from_log(rows, args, countries)
+        source, noun, unit = "the zone's request log, SAMPLED: every count is a floor", 'visitors', 'requests'
+    else:
+        visitors, left_out = from_counted(counted(start, end), args, countries)
+        source, noun, unit = 'Analytics Engine: every event', 'visits', 'events'
     for visitor in visitors.values():  # staying 60 s means having stayed 10 s and 30 s
         for page, event in list(visitor['events']):
             if event.startswith('time/'):
@@ -179,14 +272,25 @@ def main():
                 visitor['events'] |= {(page, f'time/{mark}s') for mark in TIMES if mark < seconds}
 
     order = section_order()
-    when = lambda moment: moment.astimezone(PACIFIC).strftime('%a %d %b %H:%M')
     print(f"{when(start)} to {when(end)} Pacific"
           + (" · Meta ads (Instagram and Facebook in-app browsers)" if args.ads else '')
-          + (f" · {', '.join(sorted(countries))}" if countries else ''))
+          + (f" · {', '.join(sorted(countries))}" if countries else '')
+          + f"\nCounted from {source}.")
+    if not args.log:
+        began = counting_began()
+        if began is None or began > start:
+            print(f"Counting began {when(began) + ' Pacific' if began else 'with the first event'};"
+                  " anything earlier is only in the sampled log (--log).")
+        if any(v['weight'] > 1 for v in visitors.values()):
+            print('Analytics Engine SAMPLED some of these: each kept visit counts as the visits it stands for.')
+    stale_taps = left_out.pop(OLD_SCRIPT_TAPS, 0)
     if left_out:
-        print('Left out: ' + ', '.join(f'{n} requests from {why}' for why, n in left_out.most_common()) + '.')
+        print('Left out: ' + ', '.join(f'{n} {unit if n != 1 else unit[:-1]} from {why}'
+                                       for why, n in left_out.most_common()) + '.')
+    if stale_taps:
+        print(f'{stale_taps} of those were App Store taps, which the table below does not include.')
     if not visitors:
-        print('no visitors')
+        print(f'no {noun}')
         return
 
     def reached(visitor, section):
@@ -196,17 +300,19 @@ def main():
         marks = [int(event[5:-1]) for _, event in visitor['events'] if event.startswith('time/')]
         return f'{max(marks)}s' if marks else '<10s'
 
-    columns = ['visitors', 'any event', *(f'{mark}s' for mark in TIMES[:3]), 'pricing', 'App Store']
-    tests = [lambda v: True, lambda v: bool(v['events']),
+    columns = [noun, *(['any event'] if args.log else []), *(f'{mark}s' for mark in TIMES[:3]),
+               'pricing', 'App Store']
+    tests = [lambda v: True, *([lambda v: bool(v['events'])] if args.log else []),
              *(lambda v, m=mark: any(e == f'time/{m}s' for _, e in v['events']) for mark in TIMES[:3]),
              lambda v: reached(v, 'pricing'),
              lambda v: any(e.startswith('tap/app-store') for _, e in v['events'])]
+    weigh = lambda group, test=lambda v: True: sum(v['weight'] for v in group if test(v))
     by_country = collections.defaultdict(list)
     for visitor in visitors.values():
         by_country[visitor['country']].append(visitor)
     print('\n       ' + ''.join(f'{name:>11}' for name in columns))
-    for country, group in sorted(by_country.items(), key=lambda item: -len(item[1])) + [('all', list(visitors.values()))]:
-        print(f'  {country:5}' + ''.join(f'{sum(map(test, group)):11}' for test in tests))
+    for country, group in sorted(by_country.items(), key=lambda item: -weigh(item[1])) + [('all', list(visitors.values()))]:
+        print(f'  {country:5}' + ''.join(f'{weigh(group, test):11}' for test in tests))
 
     if args.visits:
         print()
@@ -220,17 +326,21 @@ def main():
                   f"{' · tapped ' + ', '.join(taps) if taps else ''}")
 
     for page in sorted({page for v in visitors.values() for page in v['pages']},
-                       key=lambda page: -sum(page in v['pages'] for v in visitors.values())):
+                       key=lambda page: -weigh(visitors.values(), lambda v: page in v['pages'])):
         here = [v for v in visitors.values() if page in v['pages']]
-        counts = collections.Counter(event for v in here for p, event in v['events'] if p == page)
+        counts = collections.Counter()
+        for v in here:
+            for p, event in v['events']:
+                if p == page:
+                    counts[event] += v['weight']
         sections = order.get(page, [])
         rank = lambda event: ({'view': 0, 'time': 1, 'seen': 2, 'tap': 3}.get(event.split('/')[0], 4),
                               int(event[5:-1]) if event.startswith('time/') else
                               sections.index(event[5:]) if event[5:] in sections else len(sections),
                               -counts[event], event)
-        print(f'\n{page}: {len(here)} visitors')
+        print(f'\n{page}: {weigh(here)} {noun}')
         for event in sorted(counts, key=rank):
-            print(f'  {counts[event]:6}  {100 * counts[event] / len(here):3.0f}%  {event}')
+            print(f'  {counts[event]:6}  {100 * counts[event] / weigh(here):3.0f}%  {event}')
 
 
 if __name__ == '__main__':

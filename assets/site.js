@@ -163,8 +163,10 @@ if (opening) {
 
 // Anonymous page events: which sections were reached, how long the page stayed
 // in view, and what was tapped. Each event is one request to /t/<page>/<event>,
-// answered by functions/t/[[path]].js and counted by Cloudflare's request log,
-// so there is no cookie, no identifier and nothing kept in the browser. Each
+// answered by functions/t/[[path]].js, which counts it in Workers Analytics
+// Engine. There is no cookie and nothing is kept in the browser. The one number
+// sent along (?l=) is random, made fresh for each page load and kept nowhere,
+// so a visit's events read together and nobody is recognised on the next. Each
 // event is sent at most once per page load. It can never break the page: every
 // part is optional and a failed send is dropped. scripts/site-events.py reads it.
 (() => {
@@ -172,12 +174,15 @@ if (opening) {
     const slug = value => String(value).toLowerCase().replace(/\.html$/, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 60);
     const page = slug(location.pathname) || 'home';
     const sent = new Set();
+    let load = '';
+    try { load = Array.from(crypto.getRandomValues(new Uint8Array(8)), byte => byte.toString(16).padStart(2, '0')).join(''); } catch (_) {}
     const send = (...parts) => {
       const path = `/t/${page}/${parts.map(slug).filter(Boolean).join('/')}`;
       if (sent.has(path)) return;
       sent.add(path);
-      try { if (navigator.sendBeacon && navigator.sendBeacon(path)) return; } catch (_) {}
-      fetch(path, { method: 'POST', keepalive: true }).catch(() => {});
+      const url = load ? `${path}?l=${load}` : path;
+      try { if (navigator.sendBeacon && navigator.sendBeacon(url)) return; } catch (_) {}
+      fetch(url, { method: 'POST', keepalive: true }).catch(() => {});
     };
     const sectionName = element => {
       const section = element && element.closest('section, footer, header');

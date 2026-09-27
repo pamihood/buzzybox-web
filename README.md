@@ -219,6 +219,35 @@ Archive tags preserve the original and all explorations.
 be refreshed after stylesheet edits. `_redirects` excludes operational documents
 from public routes. Existing App Store privacy/support `.html` URLs remain valid.
 
+## Page events
+
+`assets/site.js` sends each page event (a section coming into view, a time
+mark, a tap) as one POST to `/t/<page>/<event>`, carrying `?l=`, a random
+number made for that page load and kept nowhere. `functions/t/[[path]].js`
+answers 204 and writes one row per event to Workers Analytics Engine: binding
+`EVENTS` on the Pages project, dataset `postmello_site_events` in production and
+`postmello_site_events_preview` on previews (set 2026-09-27 through the Pages
+API; a binding reaches a deployment only when it is built). A row keeps the
+host, page, event, visit number, country, a device and app family, who sent it
+(person, meta, bot or probe) and the network's AS number, never an address or a
+user agent, for three months.
+
+`python3 scripts/site-events.py` reads it (the docstring has the options).
+`--log` reads the zone's request log instead, the only record from before the
+switch. Cloudflare samples that log as it stores it, so its counts are floors:
+on 2026-09-27 it held 37 of 59 page views, and an App Store tap, sent once, is
+kept or lost whole.
+
+To check the pipeline without touching the numbers, post a probe to the
+`pages.dev` host. The report leaves it out twice over, by host and by agent:
+
+    curl -s -o /dev/null -w '%{http_code}\n' -X POST -A 'PostmelloProbe/1' \
+      https://postmello-web.pages.dev/t/probe/check
+
+Then find it with the SQL API (`blob8 = 'probe'`). Never test the App Store
+buttons in Playwright's WebKit without cancelling the click: WebKit hands
+`apps.apple.com` links to the Mac App Store, which then loads the real listing.
+
 ## Search engines and AI answers
 
 - `robots.txt` lets every crawler in, AI search and training crawlers included;

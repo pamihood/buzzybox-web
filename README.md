@@ -230,7 +230,10 @@ answers 204 and writes one row per event to Workers Analytics Engine: binding
 API; a binding reaches a deployment only when it is built). A row keeps the
 host, page, event, visit number, country, a device and app family, who sent it
 (person, meta, bot or probe) and the network's AS number, never an address or a
-user agent, for three months.
+user agent, for three months. Each event is its own index (visit number/event),
+because Analytics Engine samples an index that is written to quickly: indexed by
+visit alone, one page load's burst of events was sampled (a preview kept 10 rows
+for 19 events on 2026-09-27).
 
 `python3 scripts/site-events.py` reads it (the docstring has the options).
 `--log` reads the zone's request log instead, the only record from before the

@@ -6,8 +6,14 @@
 // preview deployments), read by scripts/site-events.py. Not the zone's request
 // log: Cloudflare SAMPLES that as it stores it, so an event sent once, like an
 // App Store tap, is kept or lost whole (on 2026-09-27 the log held 37 of 59
-// page views). Analytics Engine keeps every event at this volume, and marks
-// each row with its _sample_interval if it ever stops.
+// page views).
+//
+// Analytics Engine samples too, but only an index that is written to quickly,
+// so each event is its own index: visit number/event, which no other row
+// shares. The first version indexed by visit number alone, and a page load's
+// burst (a dozen events in two seconds) was sampled at once: on 2026-09-27 a
+// preview kept 10 rows for 19 events. A row that is ever sampled carries its
+// _sample_interval, and the report says so.
 //
 // A row, blob by blob (the report reads them by POSITION, so a new field goes
 // on the end):
@@ -57,7 +63,7 @@ export const onRequest = ({ request, env }) => {
       const agent = request.headers.get('User-Agent') || '';
       const asn = Number(request.cf?.asn) || 0;
       env.EVENTS.writeDataPoint({
-        indexes: [load || clip(page, 96)],
+        indexes: [clip(`${load || page}/${event.join('/')}`, 96)],
         blobs: [url.hostname, page, event.join('/'), load, request.cf?.country,
                 device(agent), app(agent), who(agent, asn)].map(value => clip(value)),
         doubles: [asn],

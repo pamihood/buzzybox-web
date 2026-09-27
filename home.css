@@ -675,8 +675,11 @@ html { scroll-padding-top:calc(var(--nav-dock-height,58px) + 20px); }
    the second card, 2026-09-26.) */
 .collections-line { max-width:960px; margin:30px auto 0; text-align:center; font:400 clamp(1.15rem,1.6vw,1.35rem)/1.4 Lora,Georgia,serif; letter-spacing:-.02em; }
 .price-note { max-width:960px; margin:10px auto 0; text-align:center; font-size:.75rem; line-height:1.5; color:var(--muted); }
+/* The download under the card (2026-09-27): readers who reached "Postmello
+   is free." had no button until the closing, and most stopped before it. */
+.pricing-download { margin-top:28px; text-align:center; }
 @media(max-width:760px) {
-  .collections-line, .price-note { text-align:left; }
+  .collections-line, .price-note, .pricing-download { text-align:left; }
 }
 
 /* The labels that stay (Pricing, the FAQ, Instagram) are there to be read:

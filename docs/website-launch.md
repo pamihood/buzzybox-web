@@ -21,7 +21,16 @@ listing's Apple id read from App Store Connect (`brand.json`, applied to both
 homepage badges and the private letter viewer's fallback). It returns 404 until
 the version is released and then resolves with no change to the site.
 
-## Next push: iPhone (`iphone-and-pricing`)
+## Shipped 2026-09-26: iPhone (`iphone-and-pricing`)
+
+**Done.** Patrick released 1.1 (build 100) the afternoon it was approved; once
+the public store showed 1.1 with iPhone (UK, DE, AU and CA first — the US
+lookup data lagged while apps.apple.com/us already said Version 1.1), the
+branch was merged into `main` as `006c811` (staged on a local branch, both
+conflicts taken from the branch as below, every check green) and pushed; live
+within seconds. The same afternoon the founder's story moved to just before
+"Connected, not always on", on the manila card tone (`12b53fd`). What follows
+is the plan as it stood before the push.
 
 The branch says "For iPhone and iPad", and since 2026-09-26 it carries the
 collections-only pricing (below), as `main` does for iPad. Every claim must be

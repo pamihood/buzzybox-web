@@ -13,7 +13,7 @@ line per visitor: when, where, what device, how long and how far down.
 
 THE COUNT is Workers Analytics Engine (dataset postmello_site_events): from
 2026-09-27, functions/t/[[path]].js writes one row per event, kept three
-months. A visit there is one page load, grouped by the random number site.js
+months, landing a minute or two after it is sent. A visit there is one page load, grouped by the random number site.js
 makes for it and keeps nowhere, so nothing links two visits. It needs
 CLOUDFLARE_API_TOKEN (Account Analytics Read) and CLOUDFLARE_ACCOUNT_ID, in the
 environment or in ../posty/.env. Every run checks the rows it got against the
@@ -338,7 +338,7 @@ def main():
                               int(event[5:-1]) if event.startswith('time/') else
                               sections.index(event[5:]) if event[5:] in sections else len(sections),
                               -counts[event], event)
-        print(f'\n{page}: {weigh(here)} {noun}')
+        print(f'\n{page}: {weigh(here)} {noun if weigh(here) != 1 else noun[:-1]}')
         for event in sorted(counts, key=rank):
             print(f'  {counts[event]:6}  {100 * counts[event] / weigh(here):3.0f}%  {event}')
 
